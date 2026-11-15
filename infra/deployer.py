@@ -27,6 +27,12 @@ import urllib.request
 import zipfile
 from pathlib import Path
 
+# Sous Windows, une sortie non redirigée vers un terminal UTF-8 (ou redirigée dans un fichier) est en
+# cp1252 par défaut : « ▶ » fait planter le script avant même le premier appel AWS.
+for _flux in (sys.stdout, sys.stderr):
+    if hasattr(_flux, "reconfigure"):
+        _flux.reconfigure(encoding="utf-8", errors="replace")
+
 RACINE = Path(__file__).resolve().parents[1]
 BUILD = RACINE / "infra" / "build"
 NOM_FONCTION = "alphaforge-api"
