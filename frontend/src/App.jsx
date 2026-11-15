@@ -7,6 +7,7 @@ import Etape4Verdict from './etapes/Etape4Verdict.jsx'
 import Etape5Bascule from './etapes/Etape5Bascule.jsx'
 import Comparer from './etapes/Comparer.jsx'
 import TiroirFait from './composants/TiroirFait.jsx'
+import { RegistreContext } from './composants/Sources.jsx'
 
 export const NOM_PRODUIT = 'AlphaForge AI'
 export const SOUS_TITRE = 'Second avis'
@@ -32,10 +33,12 @@ export default function App() {
   const [erreur, setErreur] = useState(null)
 
   const [sante, setSante] = useState(null)
+  const [registre, setRegistre] = useState(null)
 
   useEffect(() => {
     Promise.all([api.personas(), api.actifs(), api.questions(), api.sante()])
       .then(([p, a, q, s]) => { setPersonas(p); setActifs(a); setQuestions(q); setSante(s) })
+      .then(() => api.sources().then(setRegistre).catch(() => setRegistre(null)))
       .catch((e) => setErreur(`Impossible de joindre l'API. Lance-la avec « uvicorn api:app --port 8000 » dans backend/. (${e.message})`))
   }, [])
 
@@ -66,6 +69,7 @@ export default function App() {
   const recommencer = () => { setEtape(0); setDossier(null); setProfil(PROFIL_VIERGE); setDemande({ texte: '', ticker: null, montant_cad: null }) }
 
   return (
+    <RegistreContext.Provider value={registre}>
     <div className="app">
       <header className="entete">
         <div className="entete-int">
@@ -138,5 +142,6 @@ export default function App() {
         <TiroirFait fait={dossier.faits.find((f) => f.id === faitOuvert)} onFermer={() => setFaitOuvert(null)} />
       )}
     </div>
+    </RegistreContext.Provider>
   )
 }

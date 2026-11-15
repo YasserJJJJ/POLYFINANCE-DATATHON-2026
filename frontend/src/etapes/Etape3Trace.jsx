@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { PucesFaits } from '../composants/Base.jsx'
+import { SourcesCompactes } from '../composants/Sources.jsx'
 
 export const AGENTS = {
   Profileur: { role: 'Comprend ta demande et structure ton profil', nature: 'Agent IA' },
@@ -62,6 +63,7 @@ export default function Etape3Trace({ dossier, onFini, ouvrirFait }) {
                 </div>
               ))}
               <PucesFaits ids={[...new Set(t.faits)]} ouvrir={ouvrirFait} />
+              <SourcesCompactes ids={t.references} prefixe="Conçu d'après :" />
             </div>
             <span className="duree mono">{t.duree_ms} ms</span>
           </li>

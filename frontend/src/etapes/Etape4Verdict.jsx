@@ -1,6 +1,7 @@
 import { dollars } from '../api.js'
 import { Etiquette, PuceNiveau, PuceVerdict, PucesFaits } from '../composants/Base.jsx'
 import GraphiqueChute from '../composants/GraphiqueChute.jsx'
+import { ListeSources, SourcesCompactes, SourcesParType, sourcesDuDossier } from '../composants/Sources.jsx'
 
 function Phrase({ p, ouvrir }) {
   return (
@@ -8,6 +9,7 @@ function Phrase({ p, ouvrir }) {
       <Etiquette type={p.type} />
       <span>{p.texte}</span>
       <PucesFaits ids={p.faits} ouvrir={ouvrir} />
+      {p.references?.length > 0 && <SourcesCompactes ids={p.references} prefixe="Source :" />}
     </li>
   )
 }
@@ -90,12 +92,19 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
             {reglesTriees.map((r) => (
               <li key={r.code} className={`regle n-${r.niveau}`}>
                 <div className="regle-tete"><strong>{r.libelle}</strong><PuceNiveau niveau={r.niveau} /></div>
-                <p>{r.explication}</p>
+                <p>{r.type && <Etiquette type={r.type} />} {r.explication}</p>
                 <PucesFaits ids={r.faits} ouvrir={ouvrirFait} />
+                {r.references?.length > 0 && (
+                  <details className="pourquoi-regle">
+                    <summary>Sur quoi repose cette règle ?</summary>
+                    <ListeSources ids={r.references} />
+                  </details>
+                )}
               </li>
             ))}
           </ul>
-          <p className="muted petit">Ces règles sont du code, pas l'avis d'une IA. Le verdict ne peut pas les contredire.</p>
+          <p className="muted petit">Ces règles sont du code, pas l'avis d'une IA. Le verdict ne peut pas les contredire.
+            Les seuils (étiquette Hypothèse) sont des choix de l'équipe, au registre des chiffres ci-dessous.</p>
         </div>
 
         <div className="pile">
@@ -158,6 +167,13 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
           </div>
           <p className="avertissement">{texte?.avertissement}</p>
         </div>
+      </div>
+      <div className="carte sources-analyse">
+        <h2>Sources de cette analyse</h2>
+        <p className="muted petit">Chaque chiffre vient d'un fichier du jeu de départ et d'une méthode appliquée par le code.
+          Chaque règle et chaque agent s'appuient sur les références ci-dessous. Le niveau d'examen indique ce que
+          l'équipe a réellement lu : une référence non relue n'est jamais présentée comme vérifiée.</p>
+        <SourcesParType ids={sourcesDuDossier(dossier)} />
       </div>
     </section>
   )

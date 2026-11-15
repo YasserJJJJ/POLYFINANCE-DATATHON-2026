@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Etiquette } from './Base.jsx'
+import { ListeSources } from './Sources.jsx'
 
 const affiche = (v) => (typeof v === 'object' && v !== null
   ? Object.entries(v).map(([k, x]) => `${k} : ${x}`).join(' · ')
@@ -28,7 +29,17 @@ export default function TiroirFait({ fait, onFermer }) {
           <dt>Méthode</dt>
           <dd>{fait.methode}</dd>
         </dl>
-        <p className="muted petit">Ce chiffre a été produit par du code, pas par un modèle de langage.</p>
+        {fait.references?.length > 0 && (
+          <>
+            <h3 className="tiroir-sous-titre">Sur quoi repose ce chiffre</h3>
+            <ListeSources ids={fait.references} />
+          </>
+        )}
+        <p className="muted petit">
+          {fait.type === 'HYPOTHESE'
+            ? "Ce seuil est un choix de l'équipe, publié et appliqué par le code. Ce n'est pas un fait observé."
+            : 'Ce chiffre a été produit par du code, pas par un modèle de langage.'}
+        </p>
       </aside>
     </div>
   )

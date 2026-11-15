@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { dollars } from '../api.js'
 import { ETATS, PuceVerdict } from '../composants/Base.jsx'
 import { SECTEURS_FR } from './Etape2Verifier.jsx'
+import { sourcesDuDossier, useRegistre } from '../composants/Sources.jsx'
 
 const LEXIQUE = {
   'Pire chute': "La plus forte baisse entre un sommet et le creux qui suit, sur la période observée.",
@@ -12,7 +13,7 @@ const LEXIQUE = {
   Corrélation: "À quel point deux placements montent et baissent en même temps (1 = toujours ensemble).",
 }
 
-function fiche(d) {
+function fiche(d, registre) {
   const p = d.profil, ev = p.evaluation, v = d.verdict
   const estPersona = ['Amira', 'Mateo', 'Robert'].includes(p.nom)
   const bloquees = d.regles.filter((r) => r.niveau === 'rouge' || r.niveau === 'orange')
@@ -46,6 +47,10 @@ function fiche(d) {
     `## Mes questions pour le conseiller`,
     ...questions.map((q) => `- ${q}`),
     '',
+    `## Sur quoi repose ce second avis`,
+    ...sourcesDuDossier(d).map((id) => registre?.references?.[id]).filter(Boolean)
+      .map((r) => `- ${r.auteurs} (${r.annee}). ${r.titre}.${r.lien ? ` ${r.lien}` : ''} (examen : ${r.examen})`),
+    '',
     `## Les mots à connaître`,
     ...Object.entries(LEXIQUE).map(([m, def]) => `- **${m}** : ${def}`),
     '',
@@ -67,7 +72,8 @@ export default function Etape5Bascule({ dossier, onRetour, onRecommencer }) {
   const [copie, setCopie] = useState('')
   const montant = montants[iM]
   const caseActuelle = bascule.cases.find((c) => c.montant_cad === montant && c.horizon_ans === h)
-  const texteFiche = useMemo(() => fiche(dossier), [dossier])
+  const registre = useRegistre()
+  const texteFiche = useMemo(() => fiche(dossier, registre), [dossier, registre])
 
   const copier = async () => {
     try { await navigator.clipboard.writeText(texteFiche); setCopie('Copié.') } catch { setCopie('Sélectionne le texte et copie-le.') }

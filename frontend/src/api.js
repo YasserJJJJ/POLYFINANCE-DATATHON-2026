@@ -14,6 +14,7 @@ async function requete(chemin, options = {}) {
 
 export const api = {
   sante: () => requete('/api/sante'),
+  sources: () => requete('/api/sources'),
   personas: () => requete('/api/personas'),
   actifs: () => requete('/api/actifs'),
   questions: () => requete('/api/questions'),

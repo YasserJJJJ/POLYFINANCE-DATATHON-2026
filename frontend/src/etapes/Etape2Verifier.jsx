@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { api, dollars } from '../api.js'
 import { Jauge } from '../composants/Base.jsx'
+import { SourcesCompactes, useRegistre } from '../composants/Sources.jsx'
 
 export const SECTEURS_FR = {
   Energy: 'Énergie (pétrole, gaz, pipelines)', 'Crypto asset': 'Cryptoactifs', Financials: 'Finance',
@@ -74,6 +75,7 @@ export default function Etape2Verifier({ profil, setProfil, demande, setDemande,
 
   const secteurs = useMemo(() => [...new Set(actifs.map((a) => a.sector))].filter((s) => SECTEURS_FR[s]), [actifs])
   const actif = actifs.find((a) => a.ticker === demande.ticker)
+  const registre = useRegistre()
   const ev = compris?.profil?.evaluation
   // Le pourcentage vient du backend (même calcul qu'à l'étape du verdict) pour ne jamais diverger
   // d'un arrondi JS à un arrondi Python ; secours si l'appel /api/comprendre n'a pas encore répondu.
@@ -231,6 +233,8 @@ export default function Etape2Verifier({ profil, setProfil, demande, setDemande,
               </p>
             )}
             <p className="muted petit">Barèmes : hypothèses de l'équipe, inspirées des Réformes axées sur le client (ACVM).</p>
+            <SourcesCompactes ids={[...(registre?.justifications?.jauges?.references || []),
+              ...(registre?.justifications?.questions?.references || [])]} />
           </div>
         </div>
       </div>
