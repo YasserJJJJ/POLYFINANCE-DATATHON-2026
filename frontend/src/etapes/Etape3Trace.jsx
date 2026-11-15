@@ -14,23 +14,36 @@ const DELAI_MS = 750
 
 export default function Etape3Trace({ dossier, onFini, ouvrirFait }) {
   const [visibles, setVisibles] = useState(0)
+  const [secondes, setSecondes] = useState(0)
   const trace = dossier?.trace || []
+  const totalMs = trace.reduce((s, t) => s + (t.duree_ms || 0), 0)
 
+  // Pendant l'attente : un vrai chronomètre (l'API renvoie le dossier d'un bloc, rien n'est simulé ici).
   useEffect(() => {
-    if (!dossier) return
-    if (visibles >= trace.length) {
-      const t = setTimeout(onFini, 900)
-      return () => clearTimeout(t)
-    }
+    if (dossier) return
+    const debut = Date.now()
+    const t = setInterval(() => setSecondes(Math.round((Date.now() - debut) / 1000)), 250)
+    return () => clearInterval(t)
+  }, [dossier])
+
+  // Une fois le dossier reçu : relecture de la trace réelle, étape par étape. Pas de passage automatique au
+  // verdict : la personne (ou le jury) lit à son rythme, puis clique.
+  useEffect(() => {
+    if (!dossier || visibles >= trace.length) return
     const t = setTimeout(() => setVisibles((v) => v + 1), DELAI_MS)
     return () => clearTimeout(t)
-  }, [dossier, visibles, trace.length, onFini])
+  }, [dossier, visibles, trace.length])
 
   return (
     <section className="etape3">
-      <p className="surtitre">Analyse en direct</p>
+      <p className="surtitre">Analyse</p>
       <h1>Six rôles examinent ta demande, chacun à son tour.</h1>
       <p className="lede">Les chiffres viennent du code. Les agents comprennent, contestent et expliquent.</p>
+      <p className="muted petit" aria-live="polite">
+        {dossier
+          ? `Analyse terminée en ${(totalMs / 1000).toFixed(1).replace('.', ',')} s. Ci-dessous, la relecture de la trace réelle : chaque étape affiche sa durée mesurée.`
+          : `Les agents travaillent (${secondes} s écoulées ; une analyse avec Bedrock prend en général 10 à 15 s).`}
+      </p>
 
       <ol className="trace">
         {trace.slice(0, visibles).map((t, i) => (
