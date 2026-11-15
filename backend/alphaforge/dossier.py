@@ -1,0 +1,92 @@
+"""Dossier de décision : l'état partagé que chaque agent lit et complète.
+
+Contrat commun de l'équipe (voir docs/contrats.md). On ne change ces champs
+qu'après accord de l'équipe.
+"""
+from __future__ import annotations
+
+import time
+from dataclasses import asdict, dataclass, field
+from typing import Any, Literal
+
+TypeFait = Literal["FAIT", "HYPOTHESE", "SCENARIO"]
+EtatVerdict = Literal["coherent", "ajustement", "incoherent", "indetermine"]
+NiveauRegle = Literal["ok", "orange", "rouge", "gris", "non_evaluee"]
+
+
+@dataclass
+class Fait:
+    """Un chiffre ou un constat, toujours relié à sa source et à sa méthode."""
+
+    id: str
+    libelle: str
+    valeur: Any
+    unite: str
+    type: TypeFait
+    source: str
+    methode: str
+    lu_ou_calcule: Literal["lu", "calcule"] = "calcule"
+
+
+@dataclass
+class Regle:
+    code: str
+    libelle: str
+    niveau: NiveauRegle
+    explication: str
+    faits: list[str] = field(default_factory=list)
+
+
+@dataclass
+class Objection:
+    """Objection du Sceptique : toujours liée à un fait et à un recalcul."""
+
+    id: str
+    cible: str
+    texte: str
+    recalcul: str
+    resolue: bool = False
+    reponse: str = ""
+
+
+@dataclass
+class EtapeTrace:
+    agent: str
+    action: str
+    detail: str
+    faits: list[str] = field(default_factory=list)
+    duree_ms: int = 0
+
+
+@dataclass
+class Dossier:
+    profil: dict
+    demande: dict
+    faits: list[Fait] = field(default_factory=list)
+    objections: list[Objection] = field(default_factory=list)
+    regles: list[Regle] = field(default_factory=list)
+    verdict: dict = field(default_factory=dict)
+    options: list[dict] = field(default_factory=list)
+    bascule: dict = field(default_factory=dict)
+    qualite_donnees: list[dict] = field(default_factory=list)
+    questions: list[str] = field(default_factory=list)
+    texte: dict = field(default_factory=dict)
+    trace: list[EtapeTrace] = field(default_factory=list)
+
+    def ajouter_fait(self, libelle: str, valeur: Any, unite: str, type_: TypeFait,
+                     source: str, methode: str, lu_ou_calcule: str = "calcule") -> Fait:
+        fait = Fait(f"F-{len(self.faits) + 1}", libelle, valeur, unite, type_, source,
+                    methode, lu_ou_calcule)  # type: ignore[arg-type]
+        self.faits.append(fait)
+        return fait
+
+    def fait(self, fait_id: str) -> Fait | None:
+        return next((f for f in self.faits if f.id == fait_id), None)
+
+    def tracer(self, agent: str, action: str, detail: str, faits: list[str] | None = None,
+               debut: float | None = None) -> None:
+        duree = int((time.perf_counter() - debut) * 1000) if debut else 0
+        self.trace.append(EtapeTrace(agent, action, detail, faits or [], duree))
+
+    def to_dict(self) -> dict:
+        return asdict(self)
