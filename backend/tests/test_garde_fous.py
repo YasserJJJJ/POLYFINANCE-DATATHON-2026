@@ -36,3 +36,22 @@ def test_injection_dans_la_phrase_libre_n_apparait_jamais_dans_le_texte_final():
     tout = [t["reformulation"], t["verdict"]] + [ph["texte"] for s in ("miroir", "pourquoi", "ce_qui_changerait",
                                                                        "limites") for ph in t[s]]
     assert all(mots_de_conseil(x) == [] for x in tout), tout
+
+
+# Objection réellement écrite par Claude pour Amira (vérification Bedrock de l'audit, après corrections).
+RAPPORT_REEL = ("Compare bien l'ampleur du risque: la pire chute du marché canadien est presque cinq fois plus petite "
+                "que celle du Bitcoin, ce qui change la nature du pari que tu prends.")
+
+
+@pytest.mark.parametrize("texte", [RAPPORT_REEL, "Tu perdrais la moitié de ta mise.", "Soixante-dix pour cent de baisse.",
+                                   "Le risque est trois fois plus élevé."])
+def test_rapport_en_lettres_refuse_au_sceptique_et_au_redacteur(texte):
+    from alphaforge.agents.sceptique import _texte_acceptable
+    assert not _texte_acceptable("comparer_marche", texte + " marché")
+    assert any("lettres" in x for x in verifier({"reformulation": "R.", "pourquoi": [
+        {"texte": texte, "type": "HYPOTHESE", "faits": []}]}, set(), set()))
+
+
+def test_petits_mots_neutres_acceptes():
+    from alphaforge.garde_fous import rapport_calcule
+    assert not rapport_calcule("Tu as deux jauges et trois options à comparer.")

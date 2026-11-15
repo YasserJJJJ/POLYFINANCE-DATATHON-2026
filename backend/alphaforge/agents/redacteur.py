@@ -18,7 +18,7 @@ import time
 from .. import llm
 from ..dossier import Dossier
 from ..format import dollars
-from ..garde_fous import mots_de_conseil, sans_accents
+from ..garde_fous import mots_de_conseil, rapport_calcule, sans_accents
 
 TYPES = {"FAIT", "HYPOTHESE", "SCENARIO"}
 SECTIONS = ("reformulation", "miroir", "pourquoi", "ce_qui_changerait")
@@ -278,6 +278,8 @@ def verifier(texte_json: dict, autorises: set[float], ids_valides: set[str],
         if en_trop:
             defauts.append(f"nombre(s) absent(s) du dossier : {', '.join(f'{n:g}' for n in sorted(en_trop))} "
                            f"dans « {ph[:60]}… »")
+        if rapport_calcule(hors_citation):
+            defauts.append(f"rapport ou quantité en lettres dans « {ph[:50]}… » : aucun calcul, cite les chiffres du dossier")
         if contredit_le_verdict(ph, etat):
             defauts.append(f"« {ph[:50]}… » contredit le verdict du Gardien ({etat}) : tu ne changes pas le verdict")
         interdits = mots_de_conseil(ph)

@@ -13,7 +13,7 @@ from .. import calculs, llm
 from ..donnees import _prix
 from ..dossier import Dossier, Objection
 from ..format import fr
-from ..garde_fous import mots_de_conseil, sans_accents
+from ..garde_fous import mots_de_conseil, rapport_calcule, sans_accents
 
 MAX_OBJECTIONS = 3
 
@@ -145,6 +145,7 @@ def _texte_acceptable(code: str, texte: str) -> bool:
     """Aucun chiffre inventé, aucune formule de conseil, et le texte parle bien de la vérification choisie."""
     bas = sans_accents(texte.lower())
     return (not llm.nombres(texte) - {1.0, 2.0, 3.0, 5.0, 12.0} and not mots_de_conseil(texte)
+            and not rapport_calcule(texte)
             and any(mot in bas for mot in THEMES.get(code, ())))
 
 
