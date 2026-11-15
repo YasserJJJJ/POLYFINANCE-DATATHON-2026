@@ -56,7 +56,9 @@ export default function App() {
     try {
       setDossier(await api.analyser(profil, demande))
     } catch (e) {
-      setErreur(e.message)
+      // Sans dossier, l'écran d'analyse attendrait sans fin : on revient à l'étape 2, réponses conservées.
+      setEtape(1)
+      setErreur(`L'analyse n'a pas pu aboutir. Vérifie tes réponses, puis relance. (${e.message})`)
     }
   }
 
