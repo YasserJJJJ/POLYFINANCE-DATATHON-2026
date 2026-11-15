@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react'
 import { api, dollars } from '../api.js'
 import { PuceNiveau, PuceVerdict } from '../composants/Base.jsx'
 
+// Analyses déjà faites pendant la session : rouvrir la vue ne relance pas 3 analyses Bedrock (≈ 13 s chacune).
+const CACHE = new Map()
+
 // Même question posée par 3 profils : la démonstration que le profil change vraiment la réponse.
 export default function Comparer({ personas }) {
   const [memeDemande, setMemeDemande] = useState(true)
@@ -9,14 +12,22 @@ export default function Comparer({ personas }) {
   const ref = personas.robert.demande
 
   useEffect(() => {
+    let actuel = true   // une réponse arrivée après un changement de mode est ignorée
     setResultats({})
     Object.entries(personas).forEach(([cle, p]) => {
       const montant = Math.round(p.profil.epargne_totale_cad * 0.2)
       const demande = memeDemande
         ? { texte: `Je veux mettre ${montant} $ dans Tesla, tout le monde en parle.`, ticker: ref.ticker, montant_cad: montant }
         : p.demande
-      api.analyser(p.profil, demande).then((d) => setResultats((r) => ({ ...r, [cle]: d })))
+      const cle_cache = `${cle}:${memeDemande}`
+      if (!CACHE.has(cle_cache)) {
+        CACHE.set(cle_cache, api.analyser(p.profil, demande).catch((e) => { CACHE.delete(cle_cache); throw e }))
+      }
+      CACHE.get(cle_cache)
+        .then((d) => actuel && setResultats((r) => ({ ...r, [cle]: d })))
+        .catch((e) => actuel && setResultats((r) => ({ ...r, [cle]: { erreur: e.message } })))
     })
+    return () => { actuel = false }
   }, [personas, memeDemande, ref])
 
   return (
@@ -29,7 +40,8 @@ export default function Comparer({ personas }) {
       </div>
       <div className="trois-colonnes">
         {Object.entries(personas).map(([cle, p]) => {
-          const d = resultats[cle]
+          const r = resultats[cle]
+          const d = r && !r.erreur ? r : null
           const bloquantes = d?.regles.filter((r) => r.niveau === 'rouge' || r.niveau === 'orange') || []
           return (
             <article key={cle} className={`carte colonne-persona ${d ? `etat-${d.verdict.etat}` : ''}`}>
@@ -52,7 +64,9 @@ export default function Comparer({ personas }) {
                     <p className="ajustement">Version ajustée : {dollars(d.options[1].montant_cad)} sur {d.options[1].horizon_ans} an(s)</p>
                   )}
                 </>
-              ) : <p className="muted">Analyse en cours…</p>}
+              ) : r?.erreur
+                ? <p className="alerte" role="alert">Analyse impossible pour ce profil. ({r.erreur})</p>
+                : <p className="muted">Analyse en cours…</p>}
             </article>
           )
         })}
