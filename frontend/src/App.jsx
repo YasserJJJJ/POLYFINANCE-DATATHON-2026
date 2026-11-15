@@ -130,7 +130,7 @@ export default function App() {
 
       <footer className="pied">
         Simulation éducative. Aucune transaction réelle, aucun conseil financier personnalisé. Données publiques
-        2021-11-12 → 2026-11-12 (Yahoo Finance, Banque du Canada, FRED). Montants des profils fictifs.
+        2021-11-12 → 2026-11-12 (prix Yahoo Finance, taux de change Banque du Canada). Montants des profils fictifs.
       </footer>
 
       {faitOuvert && dossier && (
