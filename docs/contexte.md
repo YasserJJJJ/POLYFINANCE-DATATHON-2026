@@ -82,10 +82,9 @@ biais du survivant ; **aucune donnée ESG ni nouvelle** incluse (à sourcer si o
 | **Yasser** | Gardien, AWS, tests, intégration (à confirmer) | Second avis strict : verdict à 4 états, 3 choix, point de bascule ; « le code décide, l'IA explique » | Pas de démo de bout en bout → **squelette d'abord, gel dimanche 16 h** |
 | **Adam** | Agents, consignes, architecture | Méthodique : clarifier puis comparer, ne demander que l'info utile, chaque conclusion vérifiable | Impressionnant mais générique → **test anti-générique : changer de persona doit changer le texte** |
 
-Le dépôt GitHub appartient à Yasser. Le plan d'attaque complet (schémas des 4 visions, matrice des réponses) :
-artifact **https://claude.ai/artifact/U4F45ZdsweHSkxKQehYh8k** (privé, à partager depuis son menu « Partager »)
-et copie hors ligne dans [docs/plan-attaque.html](plan-attaque.html). Réponses brutes au questionnaire : sur
-l'ordinateur de Yahia (`Desktop/datathon2026PF/reponses_equipe.md`), volontairement pas dans ce dépôt public.
+Le dépôt GitHub appartient à Yasser. Le plan d'attaque complet (schémas des 4 visions, matrice des réponses) est
+dans [docs/plan-attaque.html](plan-attaque.html). Les réponses brutes au questionnaire restent volontairement hors
+de ce dépôt public.
 
 ---
 
