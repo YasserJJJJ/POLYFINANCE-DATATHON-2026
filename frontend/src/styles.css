@@ -234,8 +234,17 @@ input[type=range] { width: 100%; accent-color: var(--accent); }
 .carte-chaleur { display: grid; gap: 2px; min-width: 420px; align-items: center; }
 .ax-y { font-size: 0.72rem; color: var(--doux); text-align: right; padding-right: 6px; font-variant-numeric: tabular-nums; }
 .ax-x { font-size: 0.7rem; color: var(--doux); text-align: center; }
-.cellule { height: 20px; border: 0; border-radius: 3px; cursor: pointer; padding: 0; background: currentColor; opacity: 0.55; }
-.cellule:hover { opacity: 0.85; }
+/* Cases de la carte de bascule. Opacité 0,8 : au moins 4,5:1 contre le fond (WCAG 1.4.11 demande 3:1).
+   L'état ne repose pas que sur la couleur (WCAG 1.4.1) : motif rayé pour « à ajuster », quadrillé pour
+   « incohérent », pointillé pour « impossible de conclure », uni pour « cohérent ». Légende à côté. */
+.cellule { height: 20px; border: 0; border-radius: 3px; cursor: pointer; padding: 0; background-color: currentColor; opacity: 0.8; }
+.cellule.warn, .legende-bascule .warn i { background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.55) 0 2px, transparent 2px 5px); }
+.cellule.bad, .legende-bascule .bad i { background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.5) 0 1.5px, transparent 1.5px 4px), repeating-linear-gradient(-45deg, rgba(255,255,255,.5) 0 1.5px, transparent 1.5px 4px); }
+.cellule.grey, .legende-bascule .grey i { background-image: radial-gradient(rgba(255,255,255,.6) 1px, transparent 1.2px); background-size: 4px 4px; }
+.cellule:hover { opacity: 1; }
+.legende-bascule { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 8px 0 0; padding: 0; list-style: none; font-size: 0.78rem; }
+.legende-bascule li { display: flex; align-items: center; gap: 6px; }
+.legende-bascule i { width: 14px; height: 14px; border-radius: 3px; background-color: currentColor; opacity: 0.8; display: inline-block; }
 .cellule.ici { opacity: 1; outline: 2px solid var(--encre); outline-offset: 1px; }
 .fiche-tete { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
 .fiche-texte { white-space: pre-wrap; font: 0.85rem/1.6 var(--f-mono); background: var(--voile); border-radius: 10px; padding: 16px; max-height: 360px; overflow: auto; margin: 0; }

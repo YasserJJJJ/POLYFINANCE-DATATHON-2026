@@ -125,6 +125,11 @@ export default function Etape5Bascule({ dossier, onRetour, onRecommencer }) {
               {bascule.horizons.map((hz) => <span key={hz} className="ax-x">{hz % 5 === 0 || hz === 1 ? hz : ''}</span>)}
             </div>
           </div>
+          <ul className="legende-bascule" aria-label="Légende de la carte">
+            {Object.entries(ETATS).map(([cle, e]) => (
+              <li key={cle} className={e.classe}><i aria-hidden="true" /><span>{e.libelle}</span></li>
+            ))}
+          </ul>
           <p className="muted petit">Horizontal : horizon en années. Vertical : montant placé. Chaque case = le verdict du Gardien.</p>
         </div>
       </div>
