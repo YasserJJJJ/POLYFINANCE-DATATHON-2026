@@ -26,3 +26,35 @@ def test_valeur_impossible_donne_gris_explique(profil, demande):
 
 def test_valeurs_valides_inchangees():
     assert _run("robert")["verdict"]["etat"] == "ajustement"
+
+
+# --- Version ajustée : elle doit améliorer l'état et viser le montant exact de bascule ---
+RANG = {"coherent": 0, "ajustement": 1, "incoherent": 2, "indetermine": 3}
+
+
+def _ajustee(d):
+    return next((o for o in d["options"] if o["nom"] == "Version ajustée"), None)
+
+
+def test_version_ajustee_robert_est_le_montant_exact_de_bascule():
+    from alphaforge import gardien
+    d = _run("robert")
+    aj = _ajustee(d)
+    assert aj and aj["etat"] == "coherent"
+    # 20 000 $ = 5 % de 400 000 $, exactement le seuil : c'est le plus petit ajustement (avant : 16 000 $).
+    assert aj["montant_cad"] == 20000
+    p, dem = PERSONAS["robert"]["profil"], PERSONAS["robert"]["demande"]
+    m = d["demande"]["mesures"]
+    au_dessus = gardien.verdict(gardien.appliquer_regles(p, {**dem, "montant_cad": 20100}, m))["etat"]
+    assert au_dessus != "coherent"
+
+
+@pytest.mark.parametrize("nom, profil", [
+    ("robert", {"fonds_urgence": False}),   # avant : « Version ajustée » à 60 000 $, toujours « ajustement »
+    ("robert", {}), ("amira", {}), ("mateo", {}),
+])
+def test_version_ajustee_ameliore_toujours_l_etat(nom, profil):
+    d = _run(nom, profil)
+    aj = _ajustee(d)
+    if aj:
+        assert RANG[aj["etat"]] < RANG[d["verdict"]["etat"]], (aj, d["verdict"])

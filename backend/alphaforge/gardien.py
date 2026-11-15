@@ -159,15 +159,44 @@ def grille_bascule(profil: dict, demande: dict, m: dict) -> dict:
     return {"montants": montants, "horizons": horizons, "cases": cases}
 
 
+RANG = {"coherent": 0, "ajustement": 1, "incoherent": 2, "indetermine": 3}
+PAS_MONTANT = 100  # précision du montant ajusté, en $
+
+
+def _etat(profil: dict, demande: dict, m: dict) -> str:
+    return verdict(appliquer_regles(profil, demande, m))["etat"]
+
+
+def _montant_exact(profil: dict, demande: dict, m: dict, bon: float, mauvais: float, cible: str) -> int:
+    """Plus grand montant (au pas de 100 $) entre `bon` (atteint la cible) et `mauvais` (ne l'atteint pas).
+    La grille est monotone en montant (vérifiée par les tests), donc une recherche par dichotomie suffit."""
+    bas, haut = int(bon // PAS_MONTANT), int(mauvais // PAS_MONTANT)
+    while haut - bas > 1:
+        milieu = (bas + haut) // 2
+        if _etat(profil, {**demande, "montant_cad": milieu * PAS_MONTANT}, m) == cible:
+            bas = milieu
+        else:
+            haut = milieu
+    return max(bas * PAS_MONTANT, int(bon))
+
+
 def plus_petit_ajustement(profil: dict, demande: dict, m: dict) -> dict | None:
-    """Premier changement (montant d'abord, puis horizon) qui rend la demande cohérente,
-    sinon qui la rend au moins acceptable avec ajustement."""
+    """Plus petit changement (montant d'abord, puis horizon) qui rend la demande cohérente,
+    sinon qui l'améliore au moins d'un état. Un « ajustement » qui ne change pas l'état n'en est pas un."""
     base_h = profil["horizon_ans"]
-    candidats = [({"montant_cad": round(demande["montant_cad"] * fr)}, {}) for fr in FRACTIONS[1:]]
-    candidats += [({}, {"horizon_ans": base_h + k}) for k in range(1, 6)]
+    actuel = _etat(profil, demande, m)
+    montant = demande["montant_cad"]
     for cible in ("coherent", "ajustement"):
-        for chg_d, chg_p in candidats:
-            r = appliquer_regles({**profil, **chg_p}, {**demande, **chg_d}, m)
-            if verdict(r)["etat"] == cible:
-                return {"changement": {**chg_d, **chg_p}, "etat": cible}
+        if RANG[cible] >= RANG[actuel]:
+            continue
+        precedent = montant
+        for fr in FRACTIONS[1:]:
+            essai = round(montant * fr)
+            if _etat(profil, {**demande, "montant_cad": essai}, m) == cible:
+                exact = _montant_exact(profil, demande, m, essai, precedent, cible)
+                return {"changement": {"montant_cad": exact}, "etat": cible}
+            precedent = essai
+        for k in range(1, 6):
+            if _etat({**profil, "horizon_ans": base_h + k}, demande, m) == cible:
+                return {"changement": {"horizon_ans": base_h + k}, "etat": cible}
     return None
