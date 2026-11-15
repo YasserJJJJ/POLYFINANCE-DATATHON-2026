@@ -1,4 +1,4 @@
-# AlphaForge — un second avis avant d'investir
+# AlphaForge AI — un second avis avant d'investir
 
 Datathon PolyFinances 2026 · Banque Nationale × AWS · défi **AlphaForge AI**.
 

@@ -23,4 +23,4 @@ npm run dev        # http://localhost:5173  (/api est redirigé vers le port 800
 | 5 · Curseurs | `src/etapes/Etape5Bascule.jsx` | Curseurs de bascule, carte complète montant × horizon, fiche pour le conseiller |
 | Comparer | `src/etapes/Comparer.jsx` | La même demande pour Amira, Mateo et Robert, côte à côte |
 
-Le nom du produit (`Second Avis`) est une constante dans `src/App.jsx`, en attendant le choix de l'équipe.
+Le nom affiché (`AlphaForge AI`, sous-titre `Second avis`) est défini par deux constantes dans `src/App.jsx`.

@@ -8,7 +8,8 @@ import Etape5Bascule from './etapes/Etape5Bascule.jsx'
 import Comparer from './etapes/Comparer.jsx'
 import TiroirFait from './composants/TiroirFait.jsx'
 
-export const NOM_PRODUIT = 'Second Avis'
+export const NOM_PRODUIT = 'AlphaForge AI'
+export const SOUS_TITRE = 'Second avis'
 
 const ETAPES = ['Tes mots', 'On vérifie', 'Analyse', 'Verdict', 'Curseurs']
 
@@ -68,6 +69,7 @@ export default function App() {
           <button type="button" className="marque" onClick={() => { setVue('parcours'); recommencer() }}>
             <span className="marque-signe" aria-hidden="true">≠</span>
             {NOM_PRODUIT}
+            <span className="marque-sous">{SOUS_TITRE}</span>
           </button>
           {vue === 'parcours' && (
             <ol className="etapes" aria-label="Étapes du parcours">
