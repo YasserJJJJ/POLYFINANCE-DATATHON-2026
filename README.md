@@ -78,6 +78,10 @@ Sans identifiants AWS, chaque agent bascule sur sa version déterministe : la d�
 
 ## Démarrer
 
+Prérequis : **Python 3.12 ou plus** (testé avec 3.14.7) et **Node.js 20 ou plus** (testé avec 24.20.0, npm 11.19).
+Les versions des dépendances sont figées dans `backend/requirements.txt` et `frontend/package-lock.json`.
+Sans identifiants AWS, tout fonctionne en mode hors ligne (verdicts identiques, textes rédigés par le code).
+
 ```bash
 python -m venv .venv
 # Windows : .venv\Scripts\activate   ·   macOS/Linux : source .venv/bin/activate
