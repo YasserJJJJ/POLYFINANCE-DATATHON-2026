@@ -26,8 +26,11 @@ function Option({ o, principal }) {
   )
 }
 
+const PERSONAS_NOMS = ['Amira', 'Mateo', 'Robert']
+
 export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifier }) {
-  const { verdict, texte, regles, options, faits, objections, qualite_donnees: qualite, demande } = dossier
+  const { verdict, texte, regles, options, faits, objections, qualite_donnees: qualite, demande, profil } = dossier
+  const estPersona = PERSONAS_NOMS.includes(profil?.nom)
   const ids = demande.ids_faits || {}
   const ordre = { rouge: 0, orange: 1, gris: 2, ok: 3, non_evaluee: 4 }
   const reglesTriees = [...regles].sort((a, b) => ordre[a.niveau] - ordre[b.niveau])
@@ -53,6 +56,10 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
         <div className="carte miroir">
           <h2>Le miroir</h2>
           <ul className="phrases">{texte.miroir.map((p, i) => <Phrase key={i} p={p} ouvrir={ouvrirFait} />)}</ul>
+          {estPersona && (
+            <p className="muted petit">« Tu as dit » cite une phrase type du profil {profil.nom} (scénario fictif
+              de l'équipe), pas une saisie que tu as faite.</p>
+          )}
         </div>
       )}
 
