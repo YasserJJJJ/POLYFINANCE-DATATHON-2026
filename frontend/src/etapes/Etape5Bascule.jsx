@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { dollars } from '../api.js'
 import { ETATS, PuceVerdict } from '../composants/Base.jsx'
+import { SECTEURS_FR } from './Etape2Verifier.jsx'
 
 const LEXIQUE = {
   'Pire chute': "La plus forte baisse entre un sommet et le creux qui suit, sur la période observée.",
@@ -13,9 +14,12 @@ const LEXIQUE = {
 
 function fiche(d) {
   const p = d.profil, ev = p.evaluation, v = d.verdict
+  const estPersona = ['Amira', 'Mateo', 'Robert'].includes(p.nom)
   const bloquees = d.regles.filter((r) => r.niveau === 'rouge' || r.niveau === 'orange')
+  const volatil = (d.demande.mesures?.volatilite_pct ?? 0) > 25
   const questions = [
-    'Quelle part de mon épargne serait raisonnable pour un placement aussi volatil ?',
+    volatil ? 'Quelle part de mon épargne serait raisonnable pour un placement aussi volatil ?'
+      : 'Quelle part de mon épargne serait raisonnable pour ce placement ?',
     ...(bloquees.some((r) => r.code === 'exclusion') ? ['Quelles options respectent mes exclusions avec un profil de risque comparable ?'] : []),
     ...(bloquees.some((r) => r.code === 'horizon' || r.code === 'retrait') ? ["Comment protéger l'argent dont j'aurai besoin avant la fin de mon horizon ?"] : []),
     'Comment ce placement s\'intègre-t-il à ce que je détiens déjà ?',
@@ -30,7 +34,7 @@ function fiche(d) {
     `- Horizon : ${p.horizon_ans} an(s)`,
     `- Tolérance au risque : ${ev.tolerance}/100 · Capacité de perte : ${ev.capacite}/100 (on retient ${ev.score_retenu}/100)`,
     `- Somme à ne jamais risquer : ${dollars(p.somme_a_preserver_cad)}`,
-    p.exclusions?.length ? `- Secteurs que je veux éviter : ${p.exclusions.join(', ')}` : '- Aucune exclusion déclarée',
+    p.exclusions?.length ? `- Secteurs que je veux éviter : ${p.exclusions.map((s) => SECTEURS_FR[s] || s).join(', ')}` : '- Aucune exclusion déclarée',
     '',
     `## Le second avis obtenu`,
     `**${v.libelle}** (${v.respectees} règle(s) respectée(s) sur ${v.evaluees})`,
@@ -45,7 +49,9 @@ function fiche(d) {
     `## Les mots à connaître`,
     ...Object.entries(LEXIQUE).map(([m, def]) => `- **${m}** : ${def}`),
     '',
-    `_${d.texte.avertissement} Données 2021-11-12 → 2026-11-12 ; le passé ne prédit pas l'avenir._`,
+    `_${d.texte.avertissement} Données 2021-11-12 → 2026-11-12 ; le passé ne prédit pas l'avenir. `
+      + `Les scores et les seuils sont des hypothèses de l'équipe (barèmes publiés dans l'application)`
+      + `${estPersona ? ", et les montants de ce profil sont fictifs" : ''}._`,
   ].join('\n')
 }
 
@@ -76,7 +82,9 @@ export default function Etape5Bascule({ dossier, onRetour, onRecommencer }) {
     <section className="etape5">
       <p className="surtitre">Curseurs de bascule</p>
       <h1>Qu'est-ce qui rendrait ta demande raisonnable ?</h1>
-      <p className="lede">Bouge le montant ou l'horizon : les règles sont recalculées par le code, sans IA, à chaque position.</p>
+      <p className="lede">Bouge le montant ou l'horizon : chaque position est un verdict du Gardien, calculé par le code,
+        sans IA ({bascule.cases.length} combinaisons calculées pendant l'analyse).</p>
+      {!bascule.cases.length && <p className="manque">Verdict impossible à calculer : complète d'abord les informations manquantes.</p>}
 
       <div className="colonnes">
         <div className="carte bascule">
