@@ -15,7 +15,8 @@ from .. import calculs
 from ..donnees import FENETRE, SOURCE_FX, SOURCE_PRIX, controle_qualite, info_actif, univers
 from ..dossier import Dossier
 from ..format import dollars, fr
-from ..gardien import SEUIL_CORRELATION, SEUIL_TRES_VOLATIL, SEUIL_VOLATIL_RETRAIT
+from ..gardien import (CLASSES_TITRE_UNIQUE, RETRAIT_PROCHE_ANS, SEUIL_CORRELATION, SEUIL_TRES_VOLATIL,
+                       SEUIL_VOLATIL_RETRAIT)
 from ..sources import references_de
 
 REFERENCE = "XIU.TO"  # marché canadien large, pour donner un ordre de grandeur
@@ -33,7 +34,7 @@ def mesures_actif(ticker: str, portefeuille: list[str] | None = None) -> dict:
             "qualite": controle_qualite(ticker)}
 
 
-def _faits_hypotheses(d: Dossier, ids: dict, avec_correlations: bool) -> None:
+def _faits_hypotheses(d: Dossier, ids: dict, avec_correlations: bool, volatilite: float, asset_class: str) -> None:
     """Les seuils et barèmes de l'équipe entrent au registre comme faits HYPOTHESE : ils sont visibles, chiffrés,
     sourcés et dits comme des choix, au lieu de rester cachés dans le texte des règles."""
     ev = d.profil.get("evaluation") or {}
@@ -49,12 +50,25 @@ def _faits_hypotheses(d: Dossier, ids: dict, avec_correlations: bool) -> None:
             "Capacité de perte selon ta situation (hypothèse de l'équipe)", ev["perte_max_capacite_pct"], "%",
             "HYPOTHESE", origine, "5 + 0,35 × score de capacité. Détail du score : "
             + " ; ".join(ev.get("capacite_raisons") or []) + ".").id
+    tres_volatil = volatilite > SEUIL_TRES_VOLATIL
     if ev.get("seuil_concentration_pct") is not None:
         ids["h_concentration"] = d.ajouter_fait(
             "Part maximale de l'épargne dans un actif très volatil, pour ton profil (hypothèse de l'équipe)",
             ev["seuil_concentration_pct"], "%", "HYPOTHESE", origine,
-            "5 % si le score retenu est sous 35, 10 % de 35 à 64, 20 % à partir de 65. Limite connue : trois paliers "
-            "plutôt qu'une fonction continue du score.").id
+            f"5 + 0,15 × score retenu ({fr(ev['score_retenu'])}), soit de 5 % à 20 % : une fonction continue, "
+            "pour qu'un point de score ne fasse pas basculer le verdict.").id
+    if not tres_volatil and asset_class in CLASSES_TITRE_UNIQUE and ev.get("seuil_titre_unique_pct") is not None:
+        ids["h_titre"] = d.ajouter_fait(
+            "Part maximale de l'épargne dans un seul titre moins volatil, pour ton profil (hypothèse de l'équipe)",
+            ev["seuil_titre_unique_pct"], "%", "HYPOTHESE", origine,
+            "Deux fois le seuil des actifs très volatils : une seule entreprise peut chuter seule, même si son prix "
+            "bouge moins que la moyenne des actifs risqués.").id
+    retrait = d.profil.get("retrait_prevu_ans")
+    if tres_volatil and retrait is not None and retrait <= RETRAIT_PROCHE_ANS:
+        ids["h_retrait_proche"] = d.ajouter_fait(
+            "Retrait jugé proche (hypothèse de l'équipe)", RETRAIT_PROCHE_ANS, "an(s)", "HYPOTHESE", origine,
+            f"Un retrait prévu dans {RETRAIT_PROCHE_ANS} ans ou moins rend incohérente une concentration au-delà du "
+            "seuil sur un actif très volatil : il resterait peu de temps pour attendre une remontée.").id
     ids["h_volatil"] = d.ajouter_fait(
         "Seuil « actif très volatil » (hypothèse de l'équipe)", SEUIL_TRES_VOLATIL, "%/an", "HYPOTHESE", origine,
         f"Au-delà de {SEUIL_TRES_VOLATIL} %/an, la règle de concentration s'applique ; au-delà de "
@@ -146,7 +160,7 @@ def executer(d: Dossier) -> None:
         ids["reference"] = d.ajouter_fait(f"Pour comparer : pire chute de {REFERENCE} (marché canadien)",
                                           ref["pire_chute_pct"], "%", "FAIT", SOURCE_PRIX, f"Même méthode, {periode}.").id
 
-    _faits_hypotheses(d, ids, bool(correls))
+    _faits_hypotheses(d, ids, bool(correls), vol, info["asset_class"])
     # Chaque fait est relié à ses sources : données, règle de calcul, base théorique ou réglementaire (sources.py).
     for cle, fid in ids.items():
         d.fait(fid).references = references_de(cle)

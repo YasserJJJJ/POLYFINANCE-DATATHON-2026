@@ -40,7 +40,7 @@ def test_ce_qui_changerait_reste_ecrit_par_le_code(monkeypatch):
     d = _robert()
     assert d["texte"]["source"] == llm.nom(llm.MODELE_PRINCIPAL)
     textes = " ".join(ph["texte"] for ph in d["texte"]["ce_qui_changerait"])
-    assert "médiatique" not in textes and 20000.0 in llm.nombres(textes)
+    assert "médiatique" not in textes and 38000.0 in llm.nombres(textes)
 
 
 # --- Nombres : seuls ceux du dossier passent ; les mots de la personne restent citables mot pour mot ---

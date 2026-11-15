@@ -14,6 +14,8 @@ from .sources import references_de
 SEUIL_VOLATIL_RETRAIT = 25      # %/an : au-delà, un retrait avant récupération est risqué
 SEUIL_TRES_VOLATIL = 30         # %/an : au-delà, la règle de concentration s'applique
 SEUIL_CORRELATION = 0.8         # au-delà, on parle de fausse diversification
+RETRAIT_PROCHE_ANS = 5          # retrait dans 5 ans ou moins : une concentration très volatile devient rouge
+CLASSES_TITRE_UNIQUE = ("equity", "crypto")  # un seul émetteur : la concentration compte même sous 30 %/an
 
 # Nature de l'explication de chaque règle (affichée comme étiquette) :
 # SCENARIO = situation fictive ; HYPOTHESE = repose sur un seuil de l'équipe ; FAIT = constat observé.
@@ -153,13 +155,22 @@ def _regles(profil: dict, demande: dict, m: dict, f: dict | None = None) -> list
                         f"Ton horizon est de {horizon} an(s) ; après la pire chute, {detail}.",
                         [f.get("recuperation", "")]))
 
-    # 6. Concentration sur un actif très volatil
-    if m["volatilite_pct"] > SEUIL_TRES_VOLATIL:
-        trop = poids * 100 > ev["seuil_concentration_pct"]
-        regles.append(Regle("concentration", "Concentration", "orange" if trop else "ok",
-                            f"Ce placement représente {poids * 100:.0f} % de ton épargne. Pour un actif aussi "
-                            f"volatil, le seuil retenu pour ton profil est {ev['seuil_concentration_pct']:.0f} %.",
-                            [f.get("volatilite", ""), f.get("h_concentration", ""), f.get("h_volatil", "")]))
+    # 6. Concentration : sur un actif très volatil, et sur un seul titre même moins volatil
+    tres_volatil = m["volatilite_pct"] > SEUIL_TRES_VOLATIL
+    if tres_volatil or m.get("asset_class") in CLASSES_TITRE_UNIQUE:
+        seuil = ev["seuil_concentration_pct"] if tres_volatil else ev["seuil_titre_unique_pct"]
+        trop = poids * 100 > seuil
+        proche = tres_volatil and retrait is not None and retrait <= RETRAIT_PROCHE_ANS
+        niveau = ("rouge" if proche else "orange") if trop else "ok"
+        nature = "un actif aussi volatil" if tres_volatil else "un seul titre, moins volatil"
+        txt = (f"Ce placement représente {poids * 100:.0f} % de ton épargne. Pour {nature}, le seuil retenu pour ton "
+               f"profil est {fr(int(seuil) if seuil == int(seuil) else seuil)} %.")
+        if niveau == "rouge":
+            txt += (f" Tu prévois de retirer de l'argent dans {retrait} an(s) : si près du besoin, dépasser ce seuil "
+                    "n'est pas cohérent avec ta situation.")
+        regles.append(Regle("concentration", "Concentration", niveau, txt,
+                            [f.get("volatilite", ""), f.get("h_concentration" if tres_volatil else "h_titre", ""),
+                             f.get("h_volatil", "")] + ([f.get("h_retrait_proche", "")] if niveau == "rouge" else [])))
 
     # 7. Coussin de sécurité
     if profil.get("fonds_urgence") is not None:

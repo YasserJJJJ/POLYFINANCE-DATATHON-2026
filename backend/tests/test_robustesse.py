@@ -25,7 +25,7 @@ def test_valeur_impossible_donne_gris_explique(profil, demande):
 
 
 def test_valeurs_valides_inchangees():
-    assert _run("robert")["verdict"]["etat"] == "ajustement"
+    assert _run("robert")["verdict"]["etat"] == "incoherent"
 
 
 # --- Version ajustée : elle doit améliorer l'état et viser le montant exact de bascule ---
@@ -41,11 +41,11 @@ def test_version_ajustee_robert_est_le_montant_exact_de_bascule():
     d = _run("robert")
     aj = _ajustee(d)
     assert aj and aj["etat"] == "coherent"
-    # 20 000 $ = 5 % de 400 000 $, exactement le seuil : c'est le plus petit ajustement (avant : 16 000 $).
-    assert aj["montant_cad"] == 20000
+    # 38 000 $ = 9,5 % de 400 000 $ (5 + 0,15 × score 30), exactement le seuil : c'est le plus petit ajustement.
+    assert aj["montant_cad"] == 38000
     p, dem = PERSONAS["robert"]["profil"], PERSONAS["robert"]["demande"]
     m = d["demande"]["mesures"]
-    au_dessus = gardien.verdict(gardien.appliquer_regles(p, {**dem, "montant_cad": 20100}, m))["etat"]
+    au_dessus = gardien.verdict(gardien.appliquer_regles(p, {**dem, "montant_cad": 38100}, m))["etat"]
     assert au_dessus != "coherent"
 
 
@@ -97,7 +97,7 @@ def test_tolerance_bornee_entre_0_et_100():
 
 def test_placement_detenu_inconnu_ignore_sans_bloquer_l_analyse():
     d = _run("robert", {"portefeuille_actuel": ["XIU.TO", "FOO"]})     # avant : KeyError → HTTP 422
-    assert d["verdict"]["etat"] == "ajustement"
+    assert d["verdict"]["etat"] == "incoherent"
     assert any("FOO" in t["detail"] for t in d["trace"] if t["agent"] == "Analyste")
 
 

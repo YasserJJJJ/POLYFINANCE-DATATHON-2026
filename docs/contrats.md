@@ -37,7 +37,7 @@ Source de vérité : [backend/alphaforge/dossier.py](../backend/alphaforge/dossi
 | `objections` | `[{id: "O-1", cible: "F-2", texte, recalcul, resolue, reponse}]` |
 | `options` | Ta demande / Version ajustée (si elle existe) / Ne rien changer : `{nom, montant_cad, horizon_ans, etat, changement?}` |
 | `bascule` | `{montants: [...], horizons: [...], cases: [{montant_cad, horizon_ans, etat}]}` pour les curseurs |
-| `profil.evaluation` | Les 2 jauges : `tolerance`, `capacite`, `capacite_raisons`, `score_retenu`, `perte_max_*_pct`, `seuil_concentration_pct` |
+| `profil.evaluation` | Les 2 jauges : `tolerance`, `capacite`, `capacite_raisons`, `score_retenu`, `perte_max_*_pct`, `seuil_concentration_pct`, `seuil_titre_unique_pct` |
 | `profil.tensions` | Tensions repérées (effet de mode, écart tolérance/capacité), en mots factuels |
 | `qualite_donnees` | `[{code, libelle, statut: ok/alerte/echec, detail}]` |
 | `questions` | Questions à poser quand une information manque |

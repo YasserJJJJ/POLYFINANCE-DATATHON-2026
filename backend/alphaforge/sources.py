@@ -296,12 +296,21 @@ JUSTIFICATIONS: dict[str, dict] = {
                    "d'urgence, dettes et retrait prévu (barème détaillé à l'étape 2).",
                    "references": ["acvm-31-103cp", "osc-iap-2015"],
                    "hypothese": "Barème de points choisi par l'équipe à partir des éléments de connaissance du client."},
-    "h_concentration": {"donnees": [], "calcul": "Part maximale de l'épargne dans un actif très volatil : 5 % (score "
-                        "< 35), 10 % (35 à 64), 20 % (65 et plus).",
+    "h_concentration": {"donnees": [], "calcul": "Part maximale de l'épargne dans un actif très volatil = 5 + 0,15 × "
+                        "score retenu, soit de 5 % à 20 %.",
                         "references": ["markowitz-1952", "acvm-ocri-31-368"],
-                        "hypothese": "Trois paliers choisis par l'équipe. Limite connue : l'avis 31-368 critique les "
-                                     "catégories « faible, moyen, élevé » non justifiées ; une fonction continue du score "
-                                     "est à l'étude."},
+                        "hypothese": "Fonction continue choisie par l'équipe, à la place de trois paliers : l'avis 31-368 "
+                                     "critique les catégories « faible, moyen, élevé » non justifiées, et un point de score "
+                                     "ne doit pas faire basculer le verdict."},
+    "h_titre": {"donnees": [], "calcul": "Part maximale de l'épargne dans un seul titre (action ou cryptoactif) qui n'est "
+                "pas très volatil = 2 × le seuil des actifs très volatils, soit de 10 % à 40 %.",
+                "references": ["markowitz-1952"],
+                "hypothese": "Facteur 2 choisi par l'équipe : une seule entreprise porte un risque propre que la "
+                             "volatilité ne montre pas toujours."},
+    "h_retrait_proche": {"donnees": [], "calcul": "Un retrait prévu dans 5 ans ou moins rend rouge une concentration "
+                         "au-delà du seuil, sur un actif très volatil.",
+                         "references": ["acvm-31-103cp"],
+                         "hypothese": "Horizon de 5 ans choisi par l'équipe : peu de temps pour attendre une remontée."},
     "h_volatil": {"donnees": [], "calcul": "Un actif est « très volatil » au-delà de 30 %/an (règle de concentration) et "
                   "« volatil » au-delà de 25 %/an (règle de retrait).", "references": ["markowitz-1952"],
                   "hypothese": "Seuils choisis par l'équipe ; à titre de repère, l'indice canadien large (XIU.TO) a une "
@@ -320,8 +329,10 @@ JUSTIFICATIONS: dict[str, dict] = {
                       "récupération observée.", "references": ["acvm-31-103cp"]},
     "regle-horizon": {"calcul": "Orange si l'horizon est plus court que le temps de récupération observé après la pire chute.",
                       "references": ["acvm-31-103cp", "chekhlov-2005"]},
-    "regle-concentration": {"calcul": "Orange si la part de l'épargne dépasse le seuil de concentration du profil, pour "
-                            "un actif très volatil (> 30 %/an).", "references": ["markowitz-1952", "acvm-ocri-31-368"]},
+    "regle-concentration": {"calcul": "Orange si la part de l'épargne dépasse le seuil de concentration du profil : seuil "
+                            "des actifs très volatils (> 30 %/an), ou seuil d'un seul titre moins volatil. Rouge si, en "
+                            "plus, l'actif est très volatil et qu'un retrait est prévu dans 5 ans ou moins.",
+                            "references": ["markowitz-1952", "acvm-ocri-31-368", "acvm-31-103cp"]},
     "regle-coussin": {"calcul": "Orange sans fonds d'urgence : une dépense imprévue pourrait forcer une vente au "
                       "mauvais moment.", "references": ["acvm-31-103cp"]},
     "regle-diversification": {"calcul": "Orange si la corrélation avec un placement détenu atteint 0,8.",
