@@ -8,6 +8,8 @@ from __future__ import annotations
 
 import time
 
+import pandas as pd
+
 from .. import calculs
 from ..donnees import FENETRE, SOURCE_FX, SOURCE_PRIX, controle_qualite, info_actif
 from ..dossier import Dossier
@@ -38,7 +40,11 @@ def executer(d: Dossier) -> None:
 
     debut = time.perf_counter()
     periode = f"du {FENETRE[0]} au {FENETRE[1]}"
-    methode_cad = "adj_close" + (", converti en CAD (taux BdC du jour)" if info["currency"] == "USD" else "")
+    usd = info["currency"] == "USD"
+    methode_cad = ("adj_close (dividendes réinvestis, fractionnements appliqués)"
+                   + (", converti en CAD au taux BdC du jour, ou au dernier taux publié (fins de semaine, fériés)"
+                      if usd else ""))
+    change = ", en CAD (effet du change USD/CAD inclus)" if usd else ", en CAD"
     ids: dict[str, str] = {}
 
     ids["secteur"] = d.ajouter_fait(f"Secteur de {info['name']}", info["sector"], "", "FAIT",
@@ -48,23 +54,30 @@ def executer(d: Dossier) -> None:
                                   f"Baisse maximale sommet → creux {periode}, {methode_cad}. "
                                   f"Sommet {pc['date_sommet']}, creux {pc['date_creux']}.").id
     if pc["recupere"]:
-        ids["recuperation"] = d.ajouter_fait(f"Temps pour retrouver le sommet ({ticker})", pc["recuperation_annees"],
-                                             "an(s)", "FAIT", SOURCE_PRIX,
-                                             f"Du creux ({pc['date_creux']}) au retour au sommet ({pc['date_retour']}).").id
+        sous_l_eau = round((pd.Timestamp(pc["date_retour"]) - pd.Timestamp(pc["date_sommet"])).days / 365.25, 1)
+        ids["recuperation"] = d.ajouter_fait(f"Temps entre le creux et le retour au sommet ({ticker})",
+                                             pc["recuperation_annees"], "an(s)", "FAIT", SOURCE_PRIX,
+                                             f"Du creux ({pc['date_creux']}) au retour au sommet ({pc['date_retour']}). "
+                                             f"Depuis le sommet ({pc['date_sommet']}), le prix est resté sous son "
+                                             f"sommet {sous_l_eau} an(s).").id
     else:
         ids["recuperation"] = d.ajouter_fait(f"Sommet non retrouvé ({ticker})", pc["annees_depuis_creux"], "an(s)",
                                              "FAIT", SOURCE_PRIX,
                                              f"Au {FENETRE[1]}, le sommet du {pc['date_sommet']} n'est pas retrouvé.").id
     vol = calculs.volatilite_annualisee(ticker)
     ids["volatilite"] = d.ajouter_fait(f"Volatilité annualisée de {ticker}", vol, "%/an", "FAIT", SOURCE_PRIX,
-                                       f"Écart-type des rendements log quotidiens × √{365 if info['asset_class'] == 'crypto' else 252}, {periode}.").id
+                                       f"Écart-type des rendements log quotidiens × √{365 if info['asset_class'] == 'crypto' else 252}"
+                                       f"{change}, {periode}.").id
     rend = calculs.rendement_annualise(ticker)
     ids["rendement"] = d.ajouter_fait(f"Rendement annualisé passé de {ticker}", rend, "%/an", "FAIT", SOURCE_PRIX,
-                                      f"Taux de croissance annuel composé {periode}, en CAD. "
+                                      f"Taux de croissance annuel composé {periode}{change}, dividendes réinvestis. "
                                       "Le passé ne prédit pas le futur.").id
     p12 = calculs.pire_annee_glissante(ticker)
-    ids["pire12"] = d.ajouter_fait(f"Pire période de 12 mois ({ticker})", p12["pire_12_mois_pct"], "%", "FAIT",
-                                   SOURCE_PRIX, f"Rendements sur 52 semaines glissantes, fin {p12['fin_periode']}. "
+    ids["pire12"] = d.ajouter_fait(f"Pire période de 52 semaines ({ticker}, cours du vendredi)",
+                                   p12["pire_12_mois_pct"], "%", "FAIT",
+                                   SOURCE_PRIX, f"Rendements sur 52 semaines glissantes, cours du vendredi, fin "
+                                                f"{p12['fin_periode']}. Mesure hebdomadaire : la pire baisse sur 12 mois "
+                                                "de cotations quotidiennes peut être plus forte. "
                                                 f"{p12['part_periodes_negatives_pct']} % des périodes de 12 mois sont négatives.").id
 
     montant = d.demande.get("montant_cad") or 0

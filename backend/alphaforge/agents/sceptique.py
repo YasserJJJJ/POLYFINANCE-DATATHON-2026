@@ -61,7 +61,7 @@ def _reference(d: Dossier, m: dict, ids: dict) -> str:
 
 def _une_annee(d: Dossier, m: dict, ids: dict) -> str:
     f = d.fait(ids["pire12"])
-    return (f"Vérifié ({f.id}) : sur 12 mois glissants, la pire baisse est de {f.valeur} %. "
+    return (f"Vérifié ({f.id}) : sur 52 semaines glissantes (cours du vendredi), la pire baisse est de {f.valeur} %. "
             "Une baisse forte peut donc survenir en moins d'un an.")
 
 
