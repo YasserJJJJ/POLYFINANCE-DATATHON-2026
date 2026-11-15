@@ -16,6 +16,17 @@ from ..format import dollars
 REFERENCE = "XIU.TO"  # marché canadien large, pour donner un ordre de grandeur
 
 
+def mesures_actif(ticker: str, portefeuille: list[str] | None = None) -> dict:
+    """Les mesures dont le Gardien a besoin, pour n'importe quel actif (sans créer de faits)."""
+    info = info_actif(ticker)
+    pc = calculs.pire_chute(ticker)
+    return {**pc, "volatilite_pct": calculs.volatilite_annualisee(ticker),
+            "rendement_annualise_pct": calculs.rendement_annualise(ticker), "secteur": info["sector"],
+            "asset_class": info["asset_class"], "devise": info["currency"],
+            "correlations": {t: calculs.correlation(ticker, t) for t in (portefeuille or []) if t != ticker},
+            "qualite": controle_qualite(ticker)}
+
+
 def executer(d: Dossier) -> None:
     debut = time.perf_counter()
     ticker = d.demande["ticker"]

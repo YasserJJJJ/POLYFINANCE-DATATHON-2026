@@ -20,6 +20,17 @@ artifact « Plan d'attaque AlphaForge » partagé par Yahia.
 - **Moment signature** : curseurs de bascule en direct + miroir de cohérence.
 - **Ton** : neutre, clair, jamais « achetez ». Français.
 
+## Ce qu'on applique de l'atelier « De la consigne au pipeline qui se corrige »
+
+| Niveau de l'atelier | Chez nous |
+|---|---|
+| 1 · Une consigne qui nomme le cas | `CLAUDE.md` du dépôt, contrats dans `docs/contrats.md` |
+| 3 · Agent spécialisé, outils bornés | Le Sceptique ne peut demander que 6 vérifications du catalogue ; le Gardien n'est pas un LLM |
+| 5 · Ce qui se compte sort du modèle | Tous les chiffres viennent de `calculs.py` ; le LLM n'en produit aucun |
+| 6 · Un garde-fou qui empêche | Le contrôle d'ancrage refuse un texte avec un nombre absent du dossier ou un mot de conseil |
+| 7 · Personne ne note son propre plat | Le Rédacteur ne valide pas son texte : le code le fait ; le Gardien décide, pas l'Analyste |
+| 10 · Le défaut nommé devient la consigne suivante | Un texte refusé est renvoyé au modèle avec le défaut écrit en toutes lettres |
+
 ## Ce qu'on laisse tomber
 
 API de nouvelles en direct · probabilité d'atteindre l'objectif · NASA-TLX · questionnaire complet de 13

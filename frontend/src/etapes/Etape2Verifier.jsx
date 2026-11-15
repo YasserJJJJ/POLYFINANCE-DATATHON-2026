@@ -47,6 +47,7 @@ function MiseEnSituation() {
 export default function Etape2Verifier({ profil, setProfil, demande, setDemande, actifs, questions, onRetour, onLancer }) {
   const [compris, setCompris] = useState(null)
   const minuterie = useRef(null)
+  const texteApplique = useRef(null)
   const maj = (champ, valeur) => setProfil((p) => ({ ...p, [champ]: valeur }))
 
   useEffect(() => {
@@ -54,15 +55,20 @@ export default function Etape2Verifier({ profil, setProfil, demande, setDemande,
     minuterie.current = setTimeout(() => {
       api.comprendre(profil, demande).then((r) => {
         setCompris(r)
-        setDemande((d) => ({
-          ...d,
-          ticker: d.ticker ?? r.demande.ticker ?? null,
-          montant_cad: d.montant_cad ?? r.demande.montant_cad ?? null,
-        }))
+        // Ce que le Profileur a lu dans la phrase ne remplit que les champs vides, une seule fois par phrase :
+        // une correction faite à la main n'est jamais écrasée.
+        if (texteApplique.current === demande.texte) return
+        texteApplique.current = demande.texte
+        const champs = r.profil?.extraits?.champs || {}
+        const pourProfil = Object.fromEntries(Object.entries(champs).filter(([k]) => k !== 'ticker' && k !== 'montant_cad'))
+        if (Object.keys(pourProfil).length) setProfil((p) => ({ ...p, ...pourProfil }))
+        if (champs.ticker || champs.montant_cad) {
+          setDemande((d) => ({ ...d, ticker: d.ticker ?? champs.ticker ?? null, montant_cad: d.montant_cad ?? champs.montant_cad ?? null }))
+        }
       }).catch(() => {})
     }, 300)
     return () => clearTimeout(minuterie.current)
-  }, [profil, demande, setDemande])
+  }, [profil, demande, setDemande, setProfil])
 
   const secteurs = useMemo(() => [...new Set(actifs.map((a) => a.sector))].filter((s) => SECTEURS_FR[s]), [actifs])
   const actif = actifs.find((a) => a.ticker === demande.ticker)
@@ -82,6 +88,18 @@ export default function Etape2Verifier({ profil, setProfil, demande, setDemande,
           <strong>{profil.horizon_ans ?? '…'} an(s)</strong>.
         </p>
         {demande.texte && <p className="citation">« {demande.texte} »</p>}
+        {compris?.profil?.extraits && Object.keys(compris.profil.extraits.champs || {}).length > 0 && (
+          <p className="muted petit">
+            Lu dans ta phrase par {compris.profil.extraits.source}, puis vérifié par le code :{' '}
+            {Object.keys(compris.profil.extraits.champs).join(', ')}.
+          </p>
+        )}
+        {(compris?.profil?.envie || compris?.profil?.peur) && (
+          <p className="envie-peur">
+            {compris.profil.envie && <span><strong>Ce que tu veux :</strong> {compris.profil.envie}</span>}
+            {compris.profil.peur && <span><strong>Ce qui t'inquiète :</strong> {compris.profil.peur}</span>}
+          </p>
+        )}
         {compris?.profil?.tensions?.map((t) => <p key={t} className="tension">{t}</p>)}
         {compris?.questions?.length > 0 && (
           <div className="manque">

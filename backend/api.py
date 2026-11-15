@@ -8,7 +8,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from alphaforge import calculs
+from alphaforge import calculs, llm
 from alphaforge.agents import profileur
 from alphaforge.donnees import serie_cad, univers
 from alphaforge.dossier import Dossier
@@ -27,7 +27,8 @@ class Requete(BaseModel):
 
 @app.get("/api/sante")
 def sante() -> dict:
-    return {"ok": True}
+    return {"ok": True, "llm": llm.actif(), "raison": llm.raison_indisponible(),
+            "modeles": {"principal": llm.nom(llm.MODELE_PRINCIPAL), "leger": llm.nom(llm.MODELE_LEGER)}}
 
 
 @app.get("/api/personas")

@@ -30,9 +30,11 @@ export default function App() {
   const [faitOuvert, setFaitOuvert] = useState(null)
   const [erreur, setErreur] = useState(null)
 
+  const [sante, setSante] = useState(null)
+
   useEffect(() => {
-    Promise.all([api.personas(), api.actifs(), api.questions()])
-      .then(([p, a, q]) => { setPersonas(p); setActifs(a); setQuestions(q) })
+    Promise.all([api.personas(), api.actifs(), api.questions(), api.sante()])
+      .then(([p, a, q, s]) => { setPersonas(p); setActifs(a); setQuestions(q); setSante(s) })
       .catch((e) => setErreur(`Impossible de joindre l'API. Lance-la avec « uvicorn api:app --port 8000 » dans backend/. (${e.message})`))
   }, [])
 
@@ -76,6 +78,13 @@ export default function App() {
                 </li>
               ))}
             </ol>
+          )}
+          {sante && (
+            <span className={`etat-agents ${sante.llm ? 'actifs' : ''}`}
+              title={sante.llm ? `${sante.modeles.principal} et ${sante.modeles.leger}` : sante.raison || ''}>
+              <i aria-hidden="true" />
+              {sante.llm ? 'Agents IA : Bedrock' : 'Agents : mode hors ligne'}
+            </span>
           )}
           <button type="button" className="bouton discret" onClick={() => setVue(vue === 'parcours' ? 'comparer' : 'parcours')}>
             {vue === 'parcours' ? 'Comparer les 3 profils' : 'Retour au parcours'}

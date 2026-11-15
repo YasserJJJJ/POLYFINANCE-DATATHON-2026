@@ -12,7 +12,31 @@ import time
 
 from . import gardien
 from .agents import analyste, profileur, redacteur, sceptique
+from .donnees import info_actif
 from .dossier import Dossier
+
+
+# Placements larges essayés, dans l'ordre, quand une exclusion bloque la demande.
+CANDIDATS_ALTERNATIVE = ["ESGV", "XIU.TO", "XBB.TO", "FTS.TO"]
+
+
+def _alternative(d: Dossier) -> dict | None:
+    """Premier placement large, hors secteurs exclus, que le Gardien juge acceptable au même montant."""
+    exclusions = [e.lower() for e in d.profil.get("exclusions", [])]
+    for t in CANDIDATS_ALTERNATIVE:
+        info = info_actif(t)
+        if t == d.demande["ticker"] or any(e in str(info["sector"]).lower() for e in exclusions):
+            continue
+        m = analyste.mesures_actif(t, d.profil.get("portefeuille_actuel"))
+        etat = gardien.verdict(gardien.appliquer_regles(d.profil, {**d.demande, "ticker": t}, m))["etat"]
+        if etat in ("coherent", "ajustement"):
+            f = d.ajouter_fait(f"Pire chute de {t} ({info['name']})", m["pire_chute_pct"], "%", "FAIT",
+                               "Yahoo Finance via yfinance, jeu de départ AlphaForge",
+                               "Même méthode que pour la demande, en CAD, 2021-11-12 → 2026-11-12.")
+            return {"nom": "Alternative compatible avec tes valeurs", "ticker": t, "libelle_actif": info["name"],
+                    "montant_cad": d.demande["montant_cad"], "horizon_ans": d.profil.get("horizon_ans"),
+                    "etat": etat, "faits": [f.id]}
+    return None
 
 
 def analyser(profil: dict, demande: dict) -> dict:
@@ -31,14 +55,21 @@ def analyser(profil: dict, demande: dict) -> dict:
     m, ids = d.demande["mesures"], d.demande["ids_faits"]
     d.regles = gardien.appliquer_regles(d.profil, d.demande, m, ids)
     d.verdict = gardien.verdict(d.regles)
-    d.options = [{"nom": "Ta demande", "montant_cad": d.demande["montant_cad"],
+    ticker = d.demande["ticker"]
+    d.options = [{"nom": "Ta demande", "ticker": ticker, "montant_cad": d.demande["montant_cad"],
                   "horizon_ans": d.profil.get("horizon_ans"), "etat": d.verdict["etat"]}]
-    if d.verdict["etat"] in ("incoherent", "ajustement"):
+    exclusion = any(r.code == "exclusion" and r.niveau == "rouge" for r in d.regles)
+    if d.verdict["etat"] in ("incoherent", "ajustement") and not exclusion:
         aj = gardien.plus_petit_ajustement(d.profil, d.demande, m)
         if aj:
-            d.options.append({"nom": "Version ajustée", "changement": aj["changement"], "etat": aj["etat"],
+            d.options.append({"nom": "Version ajustée", "ticker": ticker, "changement": aj["changement"],
+                              "etat": aj["etat"],
                               "montant_cad": aj["changement"].get("montant_cad", d.demande["montant_cad"]),
                               "horizon_ans": aj["changement"].get("horizon_ans", d.profil.get("horizon_ans"))})
+    if exclusion:
+        alt = _alternative(d)
+        if alt:
+            d.options.append(alt)
     d.options.append({"nom": "Ne rien changer", "montant_cad": 0, "horizon_ans": d.profil.get("horizon_ans"),
                       "etat": "coherent"})
     if d.verdict["etat"] != "indetermine":

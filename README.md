@@ -55,8 +55,19 @@ Outils de calcul Python ── données nettoyées (S3)
 Services AWS visés : Amazon Bedrock (Claude + Guardrails), Bedrock AgentCore Runtime (Strands), AWS Lambda,
 Amazon S3, AWS Amplify. Voir [infra/](infra/).
 
-État actuel : le pipeline complet tourne **hors ligne** (agents en version déterministe). Le branchement
-Bedrock se fait dans [backend/alphaforge/llm.py](backend/alphaforge/llm.py) avec `ALPHAFORGE_LLM=bedrock`.
+### Les agents sur Amazon Bedrock
+
+| Agent | Modèle | Ce que le code vérifie |
+|---|---|---|
+| Profileur | Nova Lite | Le symbole existe, les nombres sont plausibles, les secteurs existent ; seuls les champs vides sont remplis |
+| Sceptique | Claude Sonnet | Il ne peut choisir que parmi 6 vérifications autorisées, que le code exécute ; objection sans chiffre inventé |
+| Rédacteur | Claude Sonnet | Chaque nombre du texte existe déjà dans le dossier, chaque F-n cité existe, aucun mot de conseil |
+
+Si le texte du Rédacteur échoue au contrôle, le défaut est **nommé** et renvoyé au modèle pour un second essai ;
+s'il persiste, on garde les phrases modèles. Tout est visible dans la trace et sous « Comment ce texte a été vérifié ».
+
+Sans identifiants AWS, chaque agent bascule sur sa version déterministe : la démo marche toujours.
+`ALPHAFORGE_LLM=off` force le mode hors ligne (utilisé par les tests).
 
 ## Démarrer
 
@@ -65,9 +76,16 @@ python -m venv .venv
 # Windows : .venv\Scripts\activate   ·   macOS/Linux : source .venv/bin/activate
 pip install -r backend/requirements.txt
 cd backend
-pytest -q                                  # banc de tests
+pytest -q                                  # banc de tests (hors ligne)
 uvicorn api:app --reload --port 8000       # API locale : http://localhost:8000/docs
+cd ../frontend && npm install && npm run dev   # interface : http://localhost:5173
 ```
+
+Sous Windows, après l'installation : `.\demarrer.ps1` lance l'API, l'interface et le navigateur.
+
+Agents IA : coller le bloc « Windows (PowerShell) » de Workshop Studio dans un terminal, puis
+`.\infra\enregistrer_identifiants.ps1` (profil `datathon`, région `us-east-1`). Vérifier avec
+`python backend/verifier_bedrock.py`.
 
 ## Données
 

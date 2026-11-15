@@ -1,16 +1,15 @@
-"""Sceptique : cherche une faille précise dans les faits et force un recalcul.
+"""Sceptique : cherche une faille précise dans les faits et force une vérification.
 
-Pas d'opinion libre : chaque objection cite un F-n et demande une vérification
-que le code exécute. Version hors ligne : 3 objections types, appliquées
-seulement quand elles sont pertinentes. Le LLM (à brancher) pourra en proposer
-d'autres, toujours sous la forme {cible, texte, recalcul}.
+Agent aux outils BORNÉS : il ne peut demander que des vérifications du catalogue
+ci-dessous, que le code exécute. Pas d'opinion libre : chaque objection cite un F-n.
+Le modèle choisit 1 à 3 vérifications pertinentes et formule l'objection ; sans
+modèle, on applique toutes les vérifications pertinentes.
 """
 from __future__ import annotations
 
 import time
 
-import pandas as pd
-
+from .. import calculs, llm
 from ..donnees import _prix
 from ..dossier import Dossier, Objection
 
@@ -23,42 +22,117 @@ def _chute_en_devise_locale(ticker: str) -> float:
     return round(float((s / s.cummax() - 1).min()) * 100, 1)
 
 
+# Chaque vérification : (applicable ?, fait visé, texte par défaut, exécution → réponse)
+def _devise(d: Dossier, m: dict, ids: dict) -> str:
+    usd = _chute_en_devise_locale(d.demande["ticker"])
+    f = d.ajouter_fait(f"Pire chute de {d.demande['ticker']} en USD (sans conversion)", usd, "%", "FAIT",
+                       "Yahoo Finance", "Même calcul, sans conversion en CAD.")
+    return (f"Recalcul fait ({f.id}) : {usd} % en USD contre {m['pire_chute_pct']} % en CAD "
+            f"(écart de {round(m['pire_chute_pct'] - usd, 1)} point(s)). On garde la mesure en CAD.")
+
+
+def _recuperation(d: Dossier, m: dict, ids: dict) -> str:
+    return (f"Le Gardien utilise {m['annees_depuis_creux']} an(s) comme minimum : la récupération réelle "
+            "sera au moins aussi longue.")
+
+
+def _fenetre(d: Dossier, m: dict, ids: dict) -> str:
+    return "Limite ajoutée au texte final : la pire chute est celle observée sur 5 ans, pas un maximum."
+
+
+def _reference(d: Dossier, m: dict, ids: dict) -> str:
+    ref = d.fait(ids.get("reference", ""))
+    return (f"Comparaison faite avec le marché canadien large ({ref.id} : {ref.valeur} %) : la chute de "
+            f"{d.demande['ticker']} ({m['pire_chute_pct']} %) est propre à ce placement, pas au marché.") if ref else \
+        "Pas de référence disponible : comparaison impossible."
+
+
+def _une_annee(d: Dossier, m: dict, ids: dict) -> str:
+    f = d.fait(ids["pire12"])
+    return (f"Vérifié ({f.id}) : sur 12 mois glissants, la pire baisse est de {f.valeur} %. "
+            "Une baisse forte peut donc survenir en moins d'un an.")
+
+
+def _concentration(d: Dossier, m: dict, ids: dict) -> str:
+    forts = {t: c for t, c in (m.get("correlations") or {}).items() if c >= 0.6}
+    if not forts:
+        return "Vérifié : corrélations avec les placements actuels toutes sous 0,6."
+    return "Vérifié : ce placement bouge avec " + ", ".join(f"{t} ({c})" for t, c in forts.items()) + "."
+
+
+CATALOGUE = {
+    "devise": (lambda m, ids: m["devise"] == "USD", "chute",
+               "La pire chute est-elle mesurée en dollars canadiens ? Pour un investisseur canadien, le taux de change compte.",
+               "Recalculer la pire chute en USD et comparer.", _devise),
+    "recuperation_inconnue": (lambda m, ids: not m["recupere"], "recuperation",
+                              "Le sommet n'est pas retrouvé : le temps de récupération n'est pas connu, il n'est pas nul.",
+                              "Utiliser le temps écoulé depuis le creux comme borne minimale.", _recuperation),
+    "fenetre_courte": (lambda m, ids: True, "chute",
+                       "La fenêtre ne couvre que 5 ans. Une crise plus forte (2008, 2020) n'y figure pas.",
+                       "Marquer la pire chute comme borne observée, pas comme pire cas possible.", _fenetre),
+    "comparer_marche": (lambda m, ids: "reference" in ids, "chute",
+                        "Cette chute vient-elle du placement lui-même ou de tout le marché ?",
+                        "Comparer à la pire chute du marché canadien large.", _reference),
+    "rapidite_baisse": (lambda m, ids: "pire12" in ids, "pire12",
+                        "Une baisse forte peut-elle arriver vite, avant que la personne ait le temps de réagir ?",
+                        "Lire la pire période de 12 mois glissants.", _une_annee),
+    "diversification": (lambda m, ids: bool(m.get("correlations")), "correlation",
+                        "Ce placement diversifie-t-il vraiment ce que la personne détient déjà ?",
+                        "Lire les corrélations avec le portefeuille actuel.", _concentration),
+}
+
+SYSTEME = """Tu es le Sceptique d'un comité d'analyse (simulation éducative, pas de conseil).
+Ton rôle : trouver les failles possibles des chiffres avant qu'ils soient présentés.
+Tu ne peux demander QUE des vérifications de la liste fournie : tu ne calcules rien toi-même.
+Choisis les 1 à 3 vérifications les plus utiles pour CETTE personne et CETTE demande.
+Pour chacune, écris une objection courte (une phrase, en français, vouvoiement interdit : tutoie),
+sans aucun chiffre que tu inventerais.
+Format : {"objections": [{"code": "<code de la liste>", "texte": "<objection>"}]}"""
+
+
+def _choix_llm(d: Dossier, possibles: list[str]) -> list[tuple[str, str]]:
+    p, m = d.profil, d.demande["mesures"]
+    contexte = (f"Personne : {p.get('nom')}, horizon {p.get('horizon_ans')} an(s), expérience {p.get('experience')}, "
+                f"exclusions {p.get('exclusions')}, placements actuels {p.get('portefeuille_actuel')}.\n"
+                f"Demande : {d.demande.get('texte')} ({d.demande['ticker']}, {d.demande['montant_cad']} $).\n"
+                f"Faits : " + "; ".join(f"{f.id} {f.libelle} = {f.valeur} {f.unite}" for f in d.faits) + "\n"
+                f"Vérifications possibles :\n" + "\n".join(f"- {c} : {CATALOGUE[c][3]}" for c in possibles))
+    brut = llm.appeler_json(SYSTEME, contexte, llm.MODELE_PRINCIPAL, 700)
+    choix = []
+    for o in brut.get("objections", [])[:MAX_OBJECTIONS]:
+        if o.get("code") in possibles and o["code"] not in [c for c, _ in choix]:
+            texte = str(o.get("texte", "")).strip()[:300]
+            if texte and not llm.nombres(texte) - {1.0, 2.0, 3.0, 5.0, 12.0}:  # aucun chiffre inventé
+                choix.append((o["code"], texte))
+            else:
+                choix.append((o["code"], CATALOGUE[o["code"]][2]))
+    return choix
+
+
 def executer(d: Dossier) -> None:
     debut = time.perf_counter()
     m, ids = d.demande["mesures"], d.demande["ids_faits"]
-    ticker = d.demande["ticker"]
+    possibles = [c for c, (ok, *_rest) in CATALOGUE.items() if ok(m, ids)]
+    source = "règles (hors ligne)"
+    choix: list[tuple[str, str]] = []
+    if llm.actif():
+        try:
+            choix = _choix_llm(d, possibles)
+            source = llm.nom(llm.MODELE_PRINCIPAL)
+        except Exception:
+            choix = []
+    if not choix:
+        choix = [(c, CATALOGUE[c][2]) for c in possibles if c in ("devise", "recuperation_inconnue", "fenetre_courte")]
+        choix = choix[:MAX_OBJECTIONS]
 
-    if m["devise"] == "USD":
-        usd = _chute_en_devise_locale(ticker)
-        obj = Objection(f"O-{len(d.objections) + 1}", ids["chute"],
-                        f"La pire chute ({m['pire_chute_pct']} %) est-elle mesurée en dollars canadiens ? "
-                        "Pour un investisseur canadien, le taux de change compte.",
-                        "Recalculer la pire chute en USD et comparer.")
-        ecart = round(m["pire_chute_pct"] - usd, 1)
-        f = d.ajouter_fait(f"Pire chute de {ticker} en USD (sans conversion)", usd, "%", "FAIT", "Yahoo Finance",
-                           "Même calcul, sans conversion en CAD.")
+    for code, texte in choix:
+        _ok, cible, _defaut, recalcul, executer_verif = CATALOGUE[code]
+        obj = Objection(f"O-{len(d.objections) + 1}", ids.get(cible, ids["chute"]), texte, recalcul)
+        obj.reponse = executer_verif(d, m, ids)
         obj.resolue = True
-        obj.reponse = (f"Recalcul fait ({f.id}) : {usd} % en USD contre {m['pire_chute_pct']} % en CAD "
-                       f"(écart de {ecart} point(s)). On garde la mesure en CAD.")
         d.objections.append(obj)
 
-    if not m["recupere"]:
-        obj = Objection(f"O-{len(d.objections) + 1}", ids["recuperation"],
-                        "Le sommet n'est pas retrouvé : le temps de récupération n'est pas connu, il n'est pas nul.",
-                        "Utiliser le temps écoulé depuis le creux comme borne minimale.")
-        obj.resolue = True
-        obj.reponse = (f"Le Gardien utilise {m['annees_depuis_creux']} an(s) comme minimum : la récupération réelle "
-                       "sera au moins aussi longue.")
-        d.objections.append(obj)
-
-    if len(d.objections) < MAX_OBJECTIONS:
-        obj = Objection(f"O-{len(d.objections) + 1}", ids["chute"],
-                        "La fenêtre ne couvre que 5 ans. Une crise plus forte (2008, 2020) n'y figure pas.",
-                        "Marquer la pire chute comme borne observée, pas comme pire cas possible.")
-        obj.resolue = True
-        obj.reponse = "Limite ajoutée au texte final : la pire chute est celle observée sur 5 ans, pas un maximum."
-        d.objections.append(obj)
-
-    d.tracer("Sceptique", "objecte et force des recalculs",
-             f"{len(d.objections)} objection(s), toutes traitées par recalcul ou par une limite affichée.",
+    d.tracer("Sceptique", "objecte et force des vérifications",
+             f"{len(d.objections)} objection(s) choisie(s) parmi {len(possibles)} vérifications autorisées "
+             f"({source}). Chacune a été exécutée par le code.",
              [o.cible for o in d.objections], debut)

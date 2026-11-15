@@ -16,6 +16,7 @@ function Option({ o, principal }) {
   return (
     <div className={`carte option ${principal ? 'principale' : ''}`}>
       <p className="option-nom">{o.nom}</p>
+      {o.ticker && <p className="muted petit">{o.libelle_actif ? `${o.libelle_actif} (${o.ticker})` : o.ticker}</p>}
       <PuceVerdict etat={o.etat} />
       <dl className="option-chiffres">
         <div><dt>Montant</dt><dd>{dollars(o.montant_cad)}</dd></div>
@@ -122,6 +123,16 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
         <div className="carte">
           <h2>Limites</h2>
           <ul className="phrases">{texte?.limites?.map((p, i) => <Phrase key={i} p={p} ouvrir={ouvrirFait} />)}</ul>
+          <div className="controle">
+            <p><strong>Comment ce texte a été vérifié.</strong> Rédigé par : {texte?.source}.</p>
+            <p className="muted petit">
+              Avant d'être affiché, le code vérifie que chaque nombre existe déjà dans le dossier, que chaque F-n cité
+              existe, et qu'aucune phrase ne conseille d'acheter ou de vendre. Un défaut est nommé et renvoyé à l'agent.
+            </p>
+            {texte?.controle?.length > 0 && (
+              <ul className="journal">{texte.controle.map((c) => <li key={c}>{c}</li>)}</ul>
+            )}
+          </div>
           <p className="avertissement">{texte?.avertissement}</p>
         </div>
       </div>

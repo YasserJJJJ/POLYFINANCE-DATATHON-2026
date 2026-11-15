@@ -239,6 +239,14 @@ input[type=range] { width: 100%; accent-color: var(--accent); }
 .fiche-tete { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
 .fiche-texte { white-space: pre-wrap; font: 0.85rem/1.6 var(--f-mono); background: var(--voile); border-radius: 10px; padding: 16px; max-height: 360px; overflow: auto; margin: 0; }
 
+/* Vérification du texte, envie / peur, état des agents */
+.controle { margin-top: 12px; padding: 10px 12px; background: var(--voile); border-radius: 8px; font-size: 0.86rem; display: grid; gap: 4px; }
+.journal { margin: 2px 0 0; padding-left: 18px; font-family: var(--f-mono); font-size: 0.75rem; color: var(--doux); }
+.envie-peur { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.92rem; }
+.etat-agents { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; color: var(--doux); }
+.etat-agents i { width: 8px; height: 8px; border-radius: 50%; background: var(--grey); }
+.etat-agents.actifs i { background: var(--ok); }
+
 /* Comparer */
 .bascule-mode { display: flex; gap: 8px; }
 .colonne-persona { display: grid; gap: 10px; align-content: start; border-top: 6px solid var(--trait); }
