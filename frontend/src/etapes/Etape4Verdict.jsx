@@ -42,10 +42,24 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
         {texte?.tensions?.map((t) => <p key={t} className="tension">{t}</p>)}
       </div>
 
+      {verdict.etat === 'indetermine' && dossier.questions?.length > 0 && (
+        <div className="carte manque">
+          <h2>Ce qu'il me faut pour conclure</h2>
+          <ul>{dossier.questions.map((q) => <li key={q}>{q}</li>)}</ul>
+        </div>
+      )}
+
       {texte?.miroir?.length > 0 && (
         <div className="carte miroir">
           <h2>Le miroir</h2>
           <ul className="phrases">{texte.miroir.map((p, i) => <Phrase key={i} p={p} ouvrir={ouvrirFait} />)}</ul>
+        </div>
+      )}
+
+      {texte?.pourquoi?.length > 0 && (
+        <div className="carte">
+          <h2>Pourquoi ce verdict</h2>
+          <ul className="phrases">{texte.pourquoi.map((p, i) => <Phrase key={i} p={p} ouvrir={ouvrirFait} />)}</ul>
         </div>
       )}
 
