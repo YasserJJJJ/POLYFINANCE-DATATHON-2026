@@ -15,7 +15,7 @@ def faux_modele(monkeypatch, fabriquer):
     du dossier et renvoie la réponse JSON du « modèle »."""
     appels = []
 
-    def appeler_json(systeme, consigne, modele=None, max_tokens=0):
+    def appeler_json(systeme, consigne, modele=None, max_tokens=0, **_options):
         reference = json.loads(consigne.split("\n\nDéfauts")[0])["phrases_de_reference"]
         appels.append(consigne)
         return fabriquer(reference)

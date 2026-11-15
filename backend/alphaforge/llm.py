@@ -74,7 +74,8 @@ def acces_verifie() -> bool:
     return bool(_etat["sts_ok"]) and actif()
 
 
-def appeler(systeme: str, message: str, modele: str | None = None, max_tokens: int = 1200) -> str:
+def appeler(systeme: str, message: str, modele: str | None = None, max_tokens: int = 1200,
+            source_ancrage: str | None = None) -> str:
     """Appel à l'API Converse. Renvoie tout le texte de la réponse."""
     if not actif():
         raise LLMIndisponible(raison_indisponible())
@@ -87,18 +88,30 @@ def appeler(systeme: str, message: str, modele: str | None = None, max_tokens: i
         config = {"maxTokens": max_tokens}
         if "anthropic" not in modele:  # les modèles Claude récents refusent le paramètre temperature
             config["temperature"] = 0.2
-        reponse = _client["bedrock"].converse(
-            modelId=modele,
-            system=[{"text": systeme}],
-            messages=[{"role": "user", "content": [{"text": message}]}],
-            inferenceConfig=config,
-        )
+        contenu = [{"text": message}]
+        arguments = dict(modelId=modele, system=[{"text": systeme}], inferenceConfig=config)
+        guardrail = os.environ.get("ALPHAFORGE_GUARDRAIL_ID")
+        if guardrail:
+            # Bedrock Guardrails, en plus du contrôle en code (jamais à la place). Pour l'ancrage contextuel,
+            # Guardrails a besoin de la source à laquelle comparer la réponse : on la marque « grounding_source ».
+            arguments["guardrailConfig"] = {"guardrailIdentifier": guardrail,
+                                            "guardrailVersion": os.environ.get("ALPHAFORGE_GUARDRAIL_VERSION", "DRAFT"),
+                                            "trace": "enabled"}
+            if source_ancrage:
+                contenu = [{"guardContent": {"text": {"text": source_ancrage[:100_000], "qualifiers": ["grounding_source"]}}},
+                           {"guardContent": {"text": {"text": message[:5_000], "qualifiers": ["query"]}}},
+                           {"text": message}]
+        arguments["messages"] = [{"role": "user", "content": contenu}]
+        reponse = _client["bedrock"].converse(**arguments)
     except Exception as e:  # identifiants absents ou expirés, réseau, quota…
         nom_erreur = type(e).__name__
         code = getattr(e, "response", {}).get("Error", {}).get("Code", "") if hasattr(e, "response") else ""
         if nom_erreur in ERREURS_ACCES or code in ERREURS_ACCES:  # erreur d'accès : on passe hors ligne
             _etat["indisponible"] = f"Bedrock indisponible ({nom_erreur})"
         raise LLMIndisponible(f"{nom_erreur}: {e}") from e
+    if reponse.get("stopReason") == "guardrail_intervened":
+        # Le Guardrail a bloqué la réponse : même traitement qu'un refus du contrôle d'ancrage (repli en code).
+        raise LLMIndisponible("guardrail_intervened : réponse bloquée par Bedrock Guardrails")
     # Certains modèles renvoient d'abord un bloc de raisonnement : on concatène tous les blocs texte.
     return "".join(b["text"] for b in reponse["output"]["message"]["content"] if "text" in b)
 
@@ -110,9 +123,10 @@ def extraire_json(texte: str) -> dict:
     return json.loads(texte[debut:fin + 1])
 
 
-def appeler_json(systeme: str, message: str, modele: str | None = None, max_tokens: int = 1500) -> dict:
+def appeler_json(systeme: str, message: str, modele: str | None = None, max_tokens: int = 1500,
+                 source_ancrage: str | None = None) -> dict:
     return extraire_json(appeler(systeme + "\nRéponds uniquement avec un objet JSON valide, sans texte autour.",
-                                 message, modele, max_tokens))
+                                 message, modele, max_tokens, source_ancrage))
 
 
 _NOMBRE = re.compile(r"\d[\d\s  ]*(?:[.,]\d+)?")

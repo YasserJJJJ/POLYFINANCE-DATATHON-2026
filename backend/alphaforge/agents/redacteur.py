@@ -296,10 +296,11 @@ def executer(d: Dossier) -> None:
     if llm.actif():
         autorises = _nombres_autorises(d, base)
         ids_valides = {f.id for f in d.faits}
-        consigne = _dossier_pour_modele(d, base)
+        consigne = dossier_json = _dossier_pour_modele(d, base)
         for essai in (1, 2):
             try:
-                propose = llm.appeler_json(SYSTEME, consigne, llm.MODELE_PRINCIPAL, 1800)
+                # Le dossier sert aussi de source d'ancrage à Bedrock Guardrails, s'il est configuré.
+                propose = llm.appeler_json(SYSTEME, consigne, llm.MODELE_PRINCIPAL, 1800, source_ancrage=dossier_json)
                 defauts = verifier(propose, autorises, ids_valides, _mots_de_la_personne(d), d.verdict.get("etat"))
             except Exception as e:
                 journal.append(f"essai {essai} : réponse inutilisable ({type(e).__name__})")
