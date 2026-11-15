@@ -11,29 +11,23 @@ export const AGENTS = {
   Rédacteur: { role: 'Explique, sans rien ajouter', nature: 'Agent IA' },
 }
 
-const DELAI_MS = 750
+const ORDRE = Object.keys(AGENTS)
 
-export default function Etape3Trace({ dossier, onFini, ouvrirFait }) {
-  const [visibles, setVisibles] = useState(0)
+// Chaque étape s'affiche dès que son agent a fini (flux /api/analyse/flux) : rien n'est rejoué ni simulé.
+export default function Etape3Trace({ dossier, direct, onFini, ouvrirFait }) {
   const [secondes, setSecondes] = useState(0)
-  const trace = dossier?.trace || []
+  const trace = dossier?.trace || direct.trace
+  const objections = dossier?.objections || direct.objections
   const totalMs = trace.reduce((s, t) => s + (t.duree_ms || 0), 0)
+  const dernier = trace[trace.length - 1]?.agent
+  const prochain = dernier ? ORDRE[ORDRE.indexOf(dernier) + 1] : ORDRE[0]
 
-  // Pendant l'attente : un vrai chronomètre (l'API renvoie le dossier d'un bloc, rien n'est simulé ici).
   useEffect(() => {
     if (dossier) return
     const debut = Date.now()
     const t = setInterval(() => setSecondes(Math.round((Date.now() - debut) / 1000)), 250)
     return () => clearInterval(t)
   }, [dossier])
-
-  // Une fois le dossier reçu : relecture de la trace réelle, étape par étape. Pas de passage automatique au
-  // verdict : la personne (ou le jury) lit à son rythme, puis clique.
-  useEffect(() => {
-    if (!dossier || visibles >= trace.length) return
-    const t = setTimeout(() => setVisibles((v) => v + 1), DELAI_MS)
-    return () => clearTimeout(t)
-  }, [dossier, visibles, trace.length])
 
   return (
     <section className="etape3">
@@ -42,12 +36,12 @@ export default function Etape3Trace({ dossier, onFini, ouvrirFait }) {
       <p className="lede">Les chiffres viennent du code. Les agents comprennent, contestent et expliquent.</p>
       <p className="muted petit" aria-live="polite">
         {dossier
-          ? `Analyse terminée en ${(totalMs / 1000).toFixed(1).replace('.', ',')} s. Ci-dessous, la relecture de la trace réelle : chaque étape affiche sa durée mesurée.`
-          : `Les agents travaillent (${secondes} s écoulées ; une analyse avec Bedrock prend en général 10 à 15 s).`}
+          ? `Analyse terminée en ${(totalMs / 1000).toFixed(1).replace('.', ',')} s. Chaque étape s'est affichée dès que son rôle a fini ; sa durée mesurée est à droite.`
+          : `Les agents travaillent (${secondes} s écoulées). Chaque rôle s'affiche dès qu'il a fini.`}
       </p>
 
       <ol className="trace">
-        {trace.slice(0, visibles).map((t, i) => (
+        {trace.map((t, i) => (
           <li key={i} className={`trace-etape ${AGENTS[t.agent]?.nature === 'Code' ? 'code' : 'ia'}`}>
             <div className="trace-agent">
               <strong>{t.agent}</strong>
@@ -56,7 +50,7 @@ export default function Etape3Trace({ dossier, onFini, ouvrirFait }) {
             <div className="trace-corps">
               <p className="trace-action">{t.action}</p>
               <p>{t.detail}</p>
-              {t.agent === 'Sceptique' && dossier.objections.map((o) => (
+              {t.agent === 'Sceptique' && objections.map((o) => (
                 <div key={o.id} className="objection">
                   <p><span className="mono">{o.id} → {o.cible}</span> {o.texte}</p>
                   <p className="recalcul">↳ {o.reponse}</p>
@@ -69,14 +63,14 @@ export default function Etape3Trace({ dossier, onFini, ouvrirFait }) {
             <span className="duree mono">{t.duree_ms} ms</span>
           </li>
         ))}
-        {(!dossier || visibles < trace.length) && (
+        {!dossier && prochain && (
           <li className="trace-etape attente" aria-live="polite">
             <span className="points" aria-hidden="true"><i /><i /><i /></span>
-            {dossier ? `${trace[visibles]?.agent} travaille…` : 'Préparation du dossier de décision…'}
+            {`${prochain} travaille… ${AGENTS[prochain].role.toLowerCase()}.`}
           </li>
         )}
       </ol>
-      {dossier && visibles >= trace.length && (
+      {dossier && (
         <button type="button" className="bouton principal" onClick={onFini}>Voir le verdict</button>
       )}
     </section>

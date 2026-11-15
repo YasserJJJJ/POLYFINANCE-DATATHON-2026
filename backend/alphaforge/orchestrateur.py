@@ -9,6 +9,8 @@ from __future__ import annotations
 
 import copy
 import time
+from collections.abc import Callable
+from dataclasses import asdict
 
 from . import gardien
 from .agents import analyste, profileur, redacteur, sceptique
@@ -41,17 +43,30 @@ def _alternative(d: Dossier) -> dict | None:
     return None
 
 
-def analyser(profil: dict, demande: dict) -> dict:
+def analyser(profil: dict, demande: dict, sur_etape: Callable[[dict], None] | None = None) -> dict:
+    """`sur_etape` reçoit chaque étape de la trace dès que son agent a fini (affichage en direct)."""
     d = Dossier(profil=copy.deepcopy(profil), demande=copy.deepcopy(demande))
+    publiees = 0
+
+    def publier() -> None:
+        nonlocal publiees
+        if sur_etape:
+            for t in d.trace[publiees:]:
+                sur_etape({"etape": asdict(t), "faits": [asdict(f) for f in d.faits],
+                           "objections": [asdict(o) for o in d.objections] if t.agent == "Sceptique" else []})
+        publiees = len(d.trace)
 
     profileur.executer(d)
+    publier()
     if not d.demande.get("ticker") or d.demande.get("montant_cad") is None:
         d.verdict = {"etat": "indetermine", "libelle": gardien.LIBELLES_ETAT["indetermine"],
                      "respectees": 0, "evaluees": 0}
         return d.to_dict()
 
     analyste.executer(d)
+    publier()
     sceptique.executer(d)
+    publier()
 
     debut = time.perf_counter()
     m, ids = d.demande["mesures"], d.demande["ids_faits"]
@@ -83,6 +98,8 @@ def analyser(profil: dict, demande: dict) -> dict:
              f"{d.verdict['libelle']} ({d.verdict['respectees']}/{d.verdict['evaluees']} règles respectées). "
              f"Grille de bascule : {len(d.bascule.get('cases', []))} combinaisons recalculées.",
              [f for r in d.regles for f in r.faits if f], debut)
+    publier()
 
     redacteur.executer(d)
+    publier()
     return d.to_dict()

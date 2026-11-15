@@ -14,6 +14,8 @@ export const SOUS_TITRE = 'Second avis'
 
 const ETAPES = ['Tes mots', 'On vérifie', 'Analyse', 'Verdict', 'Curseurs']
 
+const DIRECT_VIDE = { trace: [], objections: [], faits: [] }
+
 const PROFIL_VIERGE = {
   nom: 'Toi', age: null, experience: null, horizon_ans: null, tolerance: null, reponses_tolerance: {},
   epargne_totale_cad: null, somme_a_preserver_cad: null, revenu_stable: null, fonds_urgence: null,
@@ -29,6 +31,7 @@ export default function App() {
   const [profil, setProfil] = useState(PROFIL_VIERGE)
   const [demande, setDemande] = useState({ texte: '', ticker: null, montant_cad: null })
   const [dossier, setDossier] = useState(null)
+  const [direct, setDirect] = useState(DIRECT_VIDE)   // étapes reçues pendant l'analyse, avant le dossier complet
   const [faitOuvert, setFaitOuvert] = useState(null)
   const [erreur, setErreur] = useState(null)
 
@@ -55,10 +58,15 @@ export default function App() {
 
   const lancer = async () => {
     setDossier(null)
+    setDirect(DIRECT_VIDE)
     setEtape(2)
     try {
       // texte_lu : la personne a relu et corrigé l'étape 2 ; l'analyse ne re-remplit pas un champ qu'elle a vidé.
-      setDossier(await api.analyser(profil, { ...demande, texte_lu: true }))
+      setDossier(await api.analyserEnDirect(profil, { ...demande, texte_lu: true }, (m) => setDirect((d) => ({
+        trace: [...d.trace, m.etape],
+        objections: m.objections.length ? m.objections : d.objections,
+        faits: m.faits,
+      }))))
     } catch (e) {
       // Sans dossier, l'écran d'analyse attendrait sans fin : on revient à l'étape 2, réponses conservées.
       setEtape(1)
@@ -121,7 +129,7 @@ export default function App() {
               <Etape2Verifier profil={profil} setProfil={setProfil} demande={demande} setDemande={setDemande}
                 actifs={actifs} questions={questions} onRetour={() => setEtape(0)} onLancer={lancer} />
             )}
-            {etape === 2 && <Etape3Trace dossier={dossier} onFini={() => setEtape(3)} ouvrirFait={setFaitOuvert} />}
+            {etape === 2 && <Etape3Trace dossier={dossier} direct={direct} onFini={() => setEtape(3)} ouvrirFait={setFaitOuvert} />}
             {etape === 3 && dossier && (
               <Etape4Verdict dossier={dossier} ouvrirFait={setFaitOuvert} onBascule={() => setEtape(4)}
                 onModifier={() => setEtape(1)} />
@@ -138,8 +146,9 @@ export default function App() {
         2021-11-12 → 2026-11-12 (prix Yahoo Finance, taux de change Banque du Canada). Montants des profils fictifs.
       </footer>
 
-      {faitOuvert && dossier && (
-        <TiroirFait fait={dossier.faits.find((f) => f.id === faitOuvert)} onFermer={() => setFaitOuvert(null)} />
+      {faitOuvert && (
+        <TiroirFait fait={(dossier?.faits || direct.faits).find((f) => f.id === faitOuvert)}
+          onFermer={() => setFaitOuvert(null)} />
       )}
     </div>
     </RegistreContext.Provider>
