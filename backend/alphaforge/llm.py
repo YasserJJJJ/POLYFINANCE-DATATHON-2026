@@ -24,11 +24,15 @@ def appeler(systeme: str, message: str, modele: str | None = None, max_tokens: i
     import boto3  # importé ici pour que le mode hors ligne n'en dépende pas
 
     client = boto3.client("bedrock-runtime", region_name=REGION)
+    modele = modele or MODELE_PRINCIPAL
+    config = {"maxTokens": max_tokens}
+    if "anthropic" not in modele:  # les modèles Claude récents refusent le paramètre temperature
+        config["temperature"] = 0.2
     reponse = client.converse(
-        modelId=modele or MODELE_PRINCIPAL,
+        modelId=modele,
         system=[{"text": systeme}],
         messages=[{"role": "user", "content": [{"text": message}]}],
-        inferenceConfig={"maxTokens": max_tokens, "temperature": 0.2},
+        inferenceConfig=config,
     )
     # Certains modèles renvoient d'abord un bloc de raisonnement : on concatène tous les blocs texte.
     return "".join(b["text"] for b in reponse["output"]["message"]["content"] if "text" in b)
