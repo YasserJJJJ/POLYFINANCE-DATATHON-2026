@@ -32,9 +32,15 @@ def appliquer_regles(profil: dict, demande: dict, m: dict, f: dict | None = None
                                     ("montant", montant), ("tolérance", ev["tolerance"])] if v is None]
     if any(c["statut"] == "echec" for c in m.get("qualite", [])):
         manquants.append("données de marché fiables")
-    if manquants:
-        regles.append(Regle("donnees", "Informations essentielles", "gris",
-                            "Il manque : " + ", ".join(manquants) + "."))
+    # Valeurs impossibles : on ne conclut pas (sinon division par zéro, ou un montant négatif jugé « cohérent »).
+    invalides = [nom for nom, v in [("une épargne totale positive", epargne), ("un montant positif", montant),
+                                    ("un horizon d'au moins 1 an", profil.get("horizon_ans"))]
+                 if v is not None and (isinstance(v, bool) or not isinstance(v, (int, float)) or v <= 0
+                                       or (nom.startswith("un horizon") and v < 1))]
+    if manquants or invalides:
+        morceaux = (["Il manque : " + ", ".join(manquants) + "."] if manquants else []) + \
+                   (["Il faut " + ", ".join(invalides) + "."] if invalides else [])
+        regles.append(Regle("donnees", "Informations essentielles", "gris", " ".join(morceaux)))
         return regles
 
     poids = montant / epargne
