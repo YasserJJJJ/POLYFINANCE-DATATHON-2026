@@ -1,0 +1,319 @@
+semantic-conventions-genai/docs/gen-ai/README.md at main · open-telemetry/semantic-conventions-genai · GitHub 
+
+ Skip to content 
+
+Navigation Menu
+
+ Sign in 
+
+ Products 
+
+ Platform 
+ GitHub Repository hosting, code review, and collaboration 
+
+ Copilot AI coding agent for tasks, projects, and automated work 
+
+ Build & Ship 
+ Actions CI/CD and automation 
+
+ Code Quality Quality analysis, fixes, and enforcement 
+
+ Codespaces Cloud development environments 
+
+ Secure 
+ Code Security Vulnerability detection and remediation 
+
+ Secret Protection Secret scanning and leak prevention 
+
+ All Features 
+
+ Developers 
+
+ Learn 
+ Documentation 
+
+ Training 
+
+ Certifications 
+
+ Build 
+ Build with Copilot 
+
+ Customize Copilot 
+
+ Integrations 
+
+ Explore 
+ Trending repos 
+
+ GitHub Sponsors 
+
+ Developer articles 
+
+ Changelog 
+ Changelog Your source for the latest features, improvements, and fixes across GitHub products, all in one place. 
+
+ Businesses 
+
+ By Stage 
+ Enterprises 
+
+ Team 
+
+ Startups 
+
+ Nonprofits 
+
+ By Industry 
+ Healthcare 
+
+ Financial services 
+
+ Manufacturing 
+
+ Government 
+
+ See all industries 
+
+ Evaluate GitHub 
+ Why GitHub 
+
+ Customer Stories 
+
+ Business insights 
+
+ Trust Center 
+
+ Add-ons 
+ GitHub Advanced Security Enterprise-grade code security 
+
+ Copilot for business Enterprise-grade AI features 
+
+ Premium Support Enterprise-grade 24/7 support 
+
+ Resources 
+
+ Learn & Connect 
+ Documentation 
+
+ Resource center 
+
+ Blog 
+
+ Events & webinars 
+
+ Community Forum 
+
+ Customer Stories 
+
+ Integrations 
+
+ Support 
+ Customer support 
+
+ Training 
+
+ GitHub Status 
+
+ Company 
+ About 
+
+ Partners 
+
+ Changelog 
+
+ GitHub Universe 
+ GitHub Universe The event for developers, by developers — talks, workshops, and what’s next for GitHub. 
+
+ Pricing 
+
+ Search / 
+
+ Sign in 
+ Sign up 
+Appearance settings
+
+ You signed in with another tab or window. Reload to refresh your session. 
+ You signed out in another tab or window. Reload to refresh your session. 
+ You switched accounts on another tab or window. Reload to refresh your session. 
+
+ Dismiss alert 
+
+{{ message }}
+
+ open-telemetry 
+
+ semantic-conventions-genai 
+
+Repository navigation
+
+ Code 
+
+ Issues 157  ( 157 ) 
+
+ Pull requests 75  ( 75 ) 
+
+ Actions 
+
+ Security and quality 
+
+ Insights 
+
+ More items 
+
+ Files Expand file tree 
+
+ main 
+
+Breadcrumbs
+ 
+ semantic-conventions-genai 
+
+ / docs 
+
+ / gen-ai 
+ 
+ / 
+README.md
+
+ Copy path 
+
+ Blame 
+
+ More file actions 
+
+ Blame 
+
+ More file actions 
+
+Latest commit
+
+History
+ History 
+
+ History 
+
+ 51 lines (37 loc) · 2.95 KB 
+
+ main 
+
+Breadcrumbs
+ 
+ semantic-conventions-genai 
+
+ / docs 
+
+ / gen-ai 
+ 
+ / 
+README.md
+
+ Copy path 
+
+ Top 
+
+File metadata and controls
+
+Preview
+
+Code
+
+Blame
+
+ 51 lines (37 loc) · 2.95 KB 
+
+ Raw 
+
+ Copy raw file 
+
+ Download raw file 
+
+ Outline 
+ Edit and raw actions 
+
+Semantic conventions for generative AI systems
+
+ Status : Development 
+
+Semantic conventions for Generative AI operations are defined for the following signals:
+
+ Client Inference : Semantic Conventions for Generative AI inference operations - spans, events, and metrics .
+
+ Client Embeddings : Semantic Conventions for Generative AI embeddings operations - spans, events, and metrics .
+
+ Execute Tool : Semantic Conventions for Generative AI tool execution - spans, events, and metrics .
+
+ Retrieval : Semantic Conventions for Generative AI retrieval operations - spans and metrics .
+
+ Client Agent Invocations : Semantic Conventions for Generative AI remote agent invocations - spans and metrics .
+
+ Events : Semantic Conventions for Generative AI inputs and outputs - events .
+
+ Exceptions : Semantic Conventions for Generative AI exceptions .
+
+ Metrics : Semantic Conventions for Generative AI operations - metrics .
+
+ Inference Token Metrics : Semantic Conventions for Generative AI inference token metrics - metrics .
+
+ Model spans : Semantic Conventions for Generative AI model operations - spans and events .
+
+ Realtime content generation : Semantic Conventions for Generative AI realtime, bidirectional streaming operations.
+
+ Agent spans : Semantic Conventions for Generative AI agent operations - spans and events .
+
+Technology specific semantic conventions are defined for the following GenAI system:
+
+ Anthropic : Semantic Conventions for Anthropic.
+
+ Azure AI Inference : Semantic Conventions for Azure AI Inference.
+
+ AWS Bedrock : Semantic Conventions for AWS Bedrock.
+
+ OpenAI : Semantic Conventions for OpenAI.
+
+See also:
+
+ Agent2Agent Protocol : Semantic Conventions for A2A 
+
+ Model Context Protocol : Semantic Conventions for MCP 
+
+Attributes shared across operations
+
+Instrumentations MAY propagate context containing attributes listed below to nested
+instrumentations within the same process. This allows queries to select related
+spans without traversing the hierarchy.
+
+When an attribute is available both from the instrumented library and from outer
+context, instrumentation SHOULD prefer the library's value.
+
+Instrumentations SHOULD NOT propagate attributes not listed here.
+Instrumentations SHOULD NOT use these attributes on signals that don't reference them
+explicitly.
+
+ gen_ai.conversation.id 
+
+Footer
+
+ © 2026 GitHub, Inc.
+
+Footer navigation
+
+ Terms 
+
+ Privacy 
+
+ Security 
+
+ Status 
+
+ Community 
+
+ Docs 
+
+ Contact 
+
+ Manage cookies
+
+ Do not share my personal information
+
+ You can’t perform that action at this time.

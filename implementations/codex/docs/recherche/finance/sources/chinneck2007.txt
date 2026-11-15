@@ -1,0 +1,1357 @@
+Feasibility and Infeasibility
+             in Optimization
+             John W. Chinneck
+              Systems & Computer Engineering
+                          Carleton University
+                            Ottawa, Canada
+
+                   A tutorial for CP-AI-OR-07
+                May 23-26, Brussels, Belgium
+Why (In)feasibility is Interesting
+z Sometimes any feasible solution will do.
+z Feasibility question can be same as optimality question.
+z Assistance in formulating complex optimization models:
+  why is it infeasible?
+z Applications of infeasibility analysis:
+   { Backtracking in constraint logic programs
+   { Training neural networks / classification
+   { Radiation treatment planning
+   { Statistical analysis
+   { Applications to NP-hard problems
+   { Protein folding …
+
+
+                    Chinneck: Feasibility and Infeasibility in Optimization   2
+Outline
+1.    Finding Irreducible Infeasible Subsets of Constraints (IISs)
+     1.   General Methods
+     2.   Linear Programming
+     3.   Mixed-Integer Programming
+     4.   Nonlinear Programming
+     5.   Software
+     6.   Constraint Programming
+     7.   Application to Other Model Issues
+2.    Finding Maximum Feasible Subsets of Constraints
+      (Max FS)
+3.    Repairing Infeasibilities
+4.    Faster Feasibility
+     1.   Mixed-Integer Programs
+     2.   Nonlinear Programs
+                         Chinneck: Feasibility and Infeasibility in Optimization   3
+Analyzing Infeasible Math Programs
+Three main approaches:
+
+z Isolate an Irreducible Infeasible System (IIS)
+   {An infeasible set of constraints that becomes feasible if
+    any constraint removed
+z Find a Maximum Feasible Subset (Max FS)
+   {Maximum cardinality subset of constraints that is
+    feasible
+z Find “best fix” for infeasible constraints
+   {Different matrix norms for measuring “best fix”
+
+                   Chinneck: Feasibility and Infeasibility in Optimization   4
+1. Isolating IISs
+                                                                            B
+Using IISs
+
+Cycle:
+1. Isolate an IIS
+2. Repair the                                        D
+   infeasibility
+3. If still not feasible,                                                       F
+   go to step 1.
+
+                  Chinneck: Feasibility and Infeasibility in Optimization           5
+1.1 General Methods for Finding IISs
+
+zAssume solver perfectly accurate in
+ deciding feasibility status of a set of
+ constraints
+  {Reasonable assumption only for LP
+zGeneral methods for IIS isolation:
+  {Deletion Filter
+  {Additive Method
+  {Elastic Filter
+  {Additive/Deletion method
+
+               Chinneck: Feasibility and Infeasibility in Optimization   6
+The Deletion Filter
+
+INPUT: an infeasible set of constraints.
+FOR each constraint in the set:
+  Temporarily drop the constraint from the set.
+  Test the feasibility of the reduced set:
+  IF feasible THEN return dropped constraint to the set.
+  ELSE (infeasible) drop the constraint permanently.
+OUTPUT: constraints constituting a single IIS.
+
+
+
+                  Chinneck: Feasibility and Infeasibility in Optimization   7
+Deletion Filter: Example
+IIS is {B,D,F} in {A,B,C,D,E,F,G}
+z {B,C,D,E,F,G} infeasible. A deleted.
+z {C,D,E,F,G} feasible. B reinstated.
+z {B,D,E,F,G} infeasible. C deleted.
+z {B,E,F,G} feasible. D reinstated.
+z {B,D,F,G} infeasible. E deleted.
+z {B,D,G} feasible. F reinstated.
+z {B,D,F} infeasible. G deleted.
+Output: the IIS {B,D,F}
+                Chinneck: Feasibility and Infeasibility in Optimization   8
+Deletion Filter: Characteristics
+
+zReturns exactly one IIS, even if there are
+ multiple IISs in the model
+zWhich IIS?
+  {IIS whose first member is last in the test list.
+zSpeed: isn’t this slow?
+  {For LP: time to isolate IIS usually a small
+   fraction of time to find infeasibility initially
+     zDue to advanced starts:
+      each LP is very similar to the previous one
+  {For MIP and NLP: slow
+                 Chinneck: Feasibility and Infeasibility in Optimization   9
+The Additive Method
+C: ordered set of constraints in the infeasible model.
+T: the current test set of constraints.
+I: the set of IIS members identified so far.
+
+INPUT: an infeasible set of constraints C.
+Step 0: Set T = I = ∅.
+Step 1: Set T = I.
+   FOR each constraint ci in C:
+        Set T = T ∪ ci.
+        IF T infeasible THEN
+                 Set I = I ∪ ci.
+                 Go to Step 2.
+Step 2: IF I feasible THEN go to Step 1.
+OUTPUT: I is an IIS.
+
+                       Chinneck: Feasibility and Infeasibility in Optimization   10
+Additive Method: Example
+IIS is {B,D,F} in {A,B,C,D,E,F,G}
+z {A}, {A,B}, {A,B,C}, {A,B,C,D}, {A,B,C,D,E} all
+   feasible.
+z {A,B,C,D,E,F} infeasible: I = {F} is feasible.
+z {F,A}, {F,A,B}, {F,A,B,C} all feasible.
+z {F,A,B,C,D} infeasible: I = {F,D} is feasible.
+z {F,D,A} feasible.
+z {F,D,A,B} infeasible: I = {F,D,B} infeasible. Stop.
+Output: the IIS {F,B,D}
+
+                 Chinneck: Feasibility and Infeasibility in Optimization   11
+Additive Method: Characteristics
+
+z Returns exactly one IIS, even if there are
+  multiple IISs in the model
+z Which IIS?
+  {IIS whose last member is first in the test list.
+z Speed:
+  {If IIS is small and early in the list of constraints, can use
+   far fewer feasibility tests than deletion filter
+  {For LP:
+   speed similar to deletion filter due to basis re-use
+  {For MIP and NLP: slow
+                   Chinneck: Feasibility and Infeasibility in Optimization   12
+Additive/Deletion Method
+
+1. Apply additive method until first
+   infeasible subset of constraints is found.
+2. Apply deletion filter to subset.
+
+z More efficient.
+
+
+
+
+              Chinneck: Feasibility and Infeasibility in Optimization   13
+Elasticizing Constraints
+
+z Make all constraints elastic by adding elastic
+  variables, ei
+z Elastic objective: Min Σei (SINF: sum of infeasibilities)
+
+ original constraint                        elastic version
+   g(x) ≥ bi                                g(x) + ei ≥ bi
+   g(x) ≤ bi                                g(x) - ei ≤ bi
+   g(x) = bi                                g(x) + ei’ - ei” = bi
+
+                   Chinneck: Feasibility and Infeasibility in Optimization   14
+The Elastic Filter
+INPUT: an infeasible set of constraints.
+1. Make all constraints elastic by adding nonnegative
+   elastic variables ei.
+2. Solve the model using the elastic objective function.
+3. IF feasible THEN
+        Enforce the constraints in which any ei>0 by
+        permanently removing their elastic variable(s).
+        Go to step 2.
+   ELSE (infeasible): Exit.
+OUTPUT: the set of de-elasticized constraints contains at
+   least one IIS.
+
+
+                  Chinneck: Feasibility and Infeasibility in Optimization   15
+The Elastic Filter: Example
+
+IIS is {B,D,F} in {A,B,C,D,E,F,G}
+Elasticized constraints are underscored.
+z {A,B,C,D,E,F,G} feasible. B stretched.
+z {A,B,C,D,E,F,G} feasible. F stretched.
+z {A,B,C,D,E,F,G} feasible. D stretched.
+z {A,B,C,D,E,F,G} infeasible.
+Output: the set {B,F,D}
+  {Not necessarily an IIS until deletion filtered
+  {Why? Parts of larger IISs also returned in output
+                  Chinneck: Feasibility and Infeasibility in Optimization   16
+The Elastic Filter: Characteristics
+
+zAt least one member of every IIS will
+ stretch at each iteration
+zNumber of iterations: at most equal to
+ cardinality of smallest IIS
+  {Useful in finding small IISs
+zOutput needs deletion filter to identify a
+ single IIS
+
+
+                Chinneck: Feasibility and Infeasibility in Optimization   17
+Speed-up: Grouping Constraints
+
+zAdd/drop constraints in groups
+  {In order, or by category
+zDeletion Filter: back up and add singly if
+ deleting a group causes feasibility
+zAdditive Method: back up and do singly if
+ adding a group causes infeasibility
+
+zFixed group size? Adaptive group sizing?
+               Chinneck: Feasibility and Infeasibility in Optimization   18
+1.2 Special Methods for LP
+
+Bound-Tightening
+z Standard presolver techniques: iterative
+  tightening of bounds. E.g.:
+  {2x1 − 5x2 ≤ 10 where -10 ≤ x1,x2 ≤ 10
+  {Apply constraint with x1 is at it’s lower bound:
+   2(-10) − 5x2 ≤ 10 ⇒ x2 ≥ -6.
+  {Lower bound on x2 tightened.
+z May lead to detection of infeasibility.
+z Difficult to deduce IIS from long sequence of
+  operations.
+                  Chinneck: Feasibility and Infeasibility in Optimization   19
+The Sensitivity Filter
+
+zDrop all constraints to which the phase 1
+ objective is not sensitive
+  {Insensitive if dual variable is zero
+  {Can apply when infeasibility first detected
+zCharacteristics:
+  {Eliminates many constraints very quickly
+  {Tends to lead to larger IISs
+
+
+               Chinneck: Feasibility and Infeasibility in Optimization   20
+Sensitivity Filter: Characteristics
+
+z Tends to isolate larger IISs
+               A    B                                    B'         A
+                                  C                                           C
+                                                                                  Constraints
+                                                                                  shift during
+                                                                                  phase 1
+
+
+                                 D                                            D
+
+
+       a) before: two IISs,                        b) after: one IIS,
+       {A,B} and {B,C,D}.                          {B',C,D}.
+
+
+                    Chinneck: Feasibility and Infeasibility in Optimization                 21
+Interior Point Methods
+
+z Solution from interior point method can separate
+  the set of constraints into two parts:
+  {those that might be part of some IIS
+  {those that are irrelevant to any IIS.
+z Theorem on strictly complementary partitions.
+z Some advantages over the sensitivity filter,
+  which cannot always identify all the constraints
+  that are part of some IIS
+
+
+                  Chinneck: Feasibility and Infeasibility in Optimization   22
+Deletion/Sensitivity, Reciprocal Filters
+
+Deletion/Sensitivity Filter
+zApply sensitivity filter each time deletion
+ filter deletes a constraint permanently
+                                                                              AL
+                                                                                   Au
+
+Reciprocal Filter
+zFor ranged constraints
+                                                                          C        B
+zBarring simple bound reversal:
+  {If one of the bounds is involved in an IIS, then
+   the other bound cannot be in the same IIS
+                Chinneck: Feasibility and Infeasibility in Optimization                 23
+Simplex Pivoting
+z A: p×n matrix (nonnegativity constraints included
+  in Ax ≤ b),
+z Theorem: Ax ≤ b, x,b ≥ 0, is an IIS iff:
+  {there exist (p-1) linearly independent rows, and
+  {there exist λ > 0 such that Σλiaij= 0 and
+   Σλibi < 0.
+z Efficient pivoting schemes to find such systems
+z Characteristics:
+  {Size doubles when equalities converted to inequalities
+  {Generally slower than filtering methods
+  {Not commercially implemented
+                  Chinneck: Feasibility and Infeasibility in Optimization   24
+Guiding the IIS Search
+z Mark some constraints prior to IIS search:
+   { remove immediately
+   { encourage removal
+   { discourage removal
+   { never remove
+z Give constraints different weights during elastic filter
+z Why might this be done?
+   { It is known that parts of the model are OK
+   { There are several “reflections” of the same IIS, some easier
+     to understand than others.
+z Available in MINOS(IIS) [1994] and Cplex 9.0 [2003].
+
+                    Chinneck: Feasibility and Infeasibility in Optimization   25
+Finding Better IISs in LPs
+
+z May have multiple IISs for same infeasibility
+  { IISs having few row constraints preferred
+z Most effective heuristic tested:
+  1. elastic filter the row constraints
+  2. deletion/sensitivity filter the row constraints while
+     protecting the variable bounds
+  3. sensitivity filter the variable bounds
+  4. deletion/sensitivity filter the variable bounds
+
+
+
+                  Chinneck: Feasibility and Infeasibility in Optimization   26
+Networks: Supply-Demand Balancing
+z Logical reductions based on supply and demand
+  connected via balance nodes
+  {Uses theorems by Gale, Fulkerson, Hoffman
+  {Hao and Orlin: use maximum flow algorithm to find
+   a minimal "witness" set of nodes for which the net
+   supply and the total outflow capacity conflict.
+z Characteristics:
+  {Similar to presolver bound reductions
+  {Difficult to arrive at solid diagnosis by following the
+   sequence of reductions
+  {Methods work only on simple network forms.
+
+                   Chinneck: Feasibility and Infeasibility in Optimization   27
+Networks: Aggregating Large IISs
+Rows in the IIS:                                             c165: - x475 + x477 + x478 - x479 = -246
+c125: - x50 + x379 - x380 = -1825                            c166: - x478 + x479 + x480 - x482 = -232
+c126: - x379 + x380 - x382 = -2535                           c167: - x480 + x482 + x483 - x484 = -61
+c127: - x381 + x382 + x383 - x384 = -1658                    c168: - x483 + x484 + x485 - x486 = -1536
+c128: - x30 - x383 + x384 + x387 - x459 =                    c169: - x485 + x486 + x487 - x488 = -3648
+    -15466                                                   c170: - x487 + x488 + x489 - x490 = -3676
+c147: - x69 + x435 - x437 = -338                             c171: - x464 - x489 + x490 + x491 = -1848
+c148: - x435 + x437 + x438 - x439 = -1037
+c149: - x438 + x439 + x440 - x442 = -5713                    Column Bounds in the IIS:
+c150: - x440 + x442 + x443 - x444 = -16                      x30 <= 12509
+c151: - x443 + x444 + x446 - x448 = -1954                    x50 <= 12509
+c153: - x446 + x448 + x449 - x450 = -4255                    x69 <= 14434
+c154: - x449 + x450 + x451 - x453 = -5155                    x475 <= 14434
+c155: - x451 + x453 + x454 - x455 = -1274                    x477 >= 0
+c156: - x454 + x455 + x456 + x457 - x458 - x463
+    = -1454                                                  Aggregate sum of the balance constraints:
+c157: - x387 - x456 + x458 + x459 = -6401                    - x30 - x50 - x69 - x475 + x477 = -60342
+c158: - x457 + x463 + x464 - x491 = -14
+                                                             Before: 22 rows, 5 bounds, numerous variables
+                                                             After: 1 row, 5 bounds, 5 variables
+
+
+                               Chinneck: Feasibility and Infeasibility in Optimization                   28
+1.3 Special Methods for MIPs
+                                                                A
+zThree classes of
+ constraints:                                                                         B
+  {Linear row                                                LP
+                                                             feasible
+   constraints (LC)                                          region                C
+  {Variable bounds
+   (BD)                                                                      y
+  {Integer                                                                        x
+   Restrictions (IR)                                                     all integer point
+
+
+               Chinneck: Feasibility and Infeasibility in Optimization                    29
+Nontermination in MIPs
+       y
+                                                             6
+
+                                              5                          minimize x+y
+                                                                         x,y are integers
+
+                                        4
+                                                                           all-integer point
+                         3                                                 LP-relaxation
+                                                                           solution point
+
+                  2
+                                                                            x
+           1
+
+
+
+
+               Chinneck: Feasibility and Infeasibility in Optimization                         30
+Simple Deletion Filtering for MIPs
+z Test rows, bounds, and integer restrictions
+z Can suffer from nontermination
+  {Test variable bounds last
+  {If computation limit exceeded on subproblem, retain
+   constraint and label it dubious
+  {Get “infeasible subsystem” (IS) instead of IIS if there are
+   dubious constraints
+z Very slow
+  {Each test requires full B&B tree expansion
+  {Test integer restrictions first: IR-LC-BD method
+  {Often returns small IS instead of IIS
+                  Chinneck: Feasibility and Infeasibility in Optimization   31
+Additive Method for MIPs
+z Assume initial LP is feasible
+  {Add IRs to LC∪BD
+z Cannot identify dubious constraints
+z Dynamic Reordering variant:
+  {When a subproblem is feasible:
+     z scan all constraints later in list; add all constraints satisfied
+       at current solution point to T
+z Additive/Deletion Method
+  {Identifies dubious constraints via deletion filter
+z Very slow
+
+                    Chinneck: Feasibility and Infeasibility in Optimization   32
+Using the Initial B&B Tree
+Any information in original B&B tree?
+z No IIS has IR set identical to the set of IRs
+   satisfied at any intermediate node.
+z Mark sensitive LCs and BDs at all leaf nodes.
+   IR∪{marked LCs}∪{marked BDs} is infeasible.
+  { Some LCs and BDs can be eliminated
+z LC∪BD∪{IRs on all branching variables} is
+  infeasible.
+  { IRs not in this set can be eliminated
+  { Get candidate ISs by looking at sets of IRs defined by
+    root-to-leaf paths.
+
+                 Chinneck: Feasibility and Infeasibility in Optimization   33
+1.4 Special Methods for NLP
+z NLP solvers not perfectly accurate in deciding feasibility.
+   { Factors: NLP algorithm, implementation, tolerances, initial point,
+     termination criteria, method of approximating derivatives, etc.
+   { If feasibility detected: status is certain
+     if unable to find feasible pt.: status is unknown
+z Minimal Intractable Subsystem (MIS): minimal set of
+  constraints causing NLP solver to report infeasibility with
+  a given set of parameter settings (including initial point,
+  tolerances, termination conditions, etc.)
+z Missing constraints can cause math errors: sqrt(x), x ≥ 0
+   { Guard constraints prevent math errors
+
+
+
+                      Chinneck: Feasibility and Infeasibility in Optimization   34
+Deletion Filter for NLPs
+INPUT: an infeasible set of nonlinear constraints.
+FOR each constraint in the set:
+   1. reset the initial point and solver parameters.
+   2. temporarily drop the constraint from the set.
+   3. test the feasibility of the reduced set and DO CASE:
+         i. solver reports feasibility:
+                   return dropped constraint to the set.
+         ii. solver reports infeasibility (ordinary):
+                   drop constraint permanently.
+         iii. solver reports infeasibility (math error):
+                   a. mark dropped constraint as a guard.
+                   b. return dropped constraint to the set.
+OUTPUT: constraints constituting a single MIS (including guards).
+
+Interpretation: this solver finds this MIS intractable with these settings
+                       Chinneck: Feasibility and Infeasibility in Optimization   35
+1.5 Software (1)
+z MINOS(IIS) [research: from 1989]
+   { IIS isolation: Deletion, sensitivity, elastic, reciprocal filtering and
+     all combinations. Guide codes.
+   { MIN IIS COVER: Chinneck’s heuristics
+z CLAUDIA [proprietary: from 1985]
+   { Several heuristics for finding ISs
+   { 1994: deletion filtering added to find IISs
+z LINDO [commercial: from 1994]
+   { IIS isolation via deletion filter
+   { Classes IIS members as necessary or sufficient
+z Cplex [commercial: from 1994]
+   { Deletion/sensitivity filter for speed, elastic filter followed by
+     deletion/sensitivity for small IISs. Row aggregation for equalities.
+   { 2003: weights for guiding IIS search
+                        Chinneck: Feasibility and Infeasibility in Optimization   36
+Software (2)
+z OSL [commercial: from 1995]
+   { Deletion/sensitivity and elastic filtering
+   { Now discontinued
+z XPress-MP [commercial: from 1997]
+   { Deletion/sensitivity and elastic filtering
+   { 2004: added to Mosel
+z Frontline Systems [commercial: from 1997]
+   { Deletion/sensitivity and elastic filtering
+   { Excel add-in
+z OR/MS Today LP Survey Dec. 2003
+   { 27 of 44 solvers or modelling systems surveyed have
+     infeasibility analysis capability (mostly IIS isolation)
+                     Chinneck: Feasibility and Infeasibility in Optimization   37
+1.6 IISs in Constraint Programming
+z IIS same as:
+   { Minimal conflict set
+   { Minimal unsatisfiable core (MUC)
+   { Minimally unsatisfiable subformula (MUS)
+z IISs used for intelligent backtracking:
+   { Backtrack only on members of IIS
+   { Create new constraints based on IISs (“no-goods” learning)
+z For pure logic:
+   { Additive method, deletion filter, additive/deletion filter, grouping
+z For mixed logic and linear constraints:
+   { …add sensitivity filter, pivoting methods, advanced subsets
+z For mixed logic, linear, nonlinear, integer constraints:
+   { …try all above
+
+                      Chinneck: Feasibility and Infeasibility in Optimization   38
+Timeline of Early Papers (1)
+z The additive method.
+   { De Siqueira N. and Puget (1988): prototype for conjunction of
+     clauses.
+   { Tamiz, Mardle and Jones (1995, 1996): for linear programming.
+   { Junker (2001): extends to general constraint programs.
+z The deletion filter.
+   { Dravnieks (1989) introduces deletion filter, sensitivity filter for LP,
+     and elastic method. Finalized in Chinneck and Dravnieks
+     (1991).
+   { Bakker et al (1993): rediscovery for constraint satisfaction
+     problems.
+z Pivoting methods.
+   { Gleeson and Ryan (1990)
+   { De Backer and Beringer (1991): similar methods for constraint
+     programming.
+                       Chinneck: Feasibility and Infeasibility in Optimization   39
+Timeline (2)
+z Constraint grouping.
+    { Chinneck (1995): initial suggestion
+    { Guieu and Chinneck (1999): grouping in deletion filter and additive
+      method for MIPs
+    { Junker (2001): binary grouping for constraint satisfaction problems.
+    { Atlihan and Schrage (2006) binary grouping for mathematical programs.
+z Additive/deletion filter.
+    { Guieu and Chinneck (1999): initial suggestion
+    { Junker (2001): QuickXplain variants
+z Advanced subset of constraints.
+    { Guieu and Chinneck (1999): for MIP, only variables branched on form
+      infeasible set in conjunction with their bounds and integer restrictions
+      and the complete set of linear constraints.
+    { Hemery et al (2006): the wcore concept eliminates some of the original
+      constraints during IIS search based on the fact that they have not been
+      used to reduce the range of any variables.
+
+
+
+                        Chinneck: Feasibility and Infeasibility in Optimization   40
+1.7 Application to Other Model Issues
+
+zAnalyzing LP Unboundedness
+  {primal unbounded ⇒ dual infeasible
+  {IIS isolation on infeasible dual yields a “minimal
+   unbounded set” of variables in the primal
+  {Available in LINDO
+zAnalyzing Network Viability
+  {Structural property forces all flows to zero
+  {Add positivity constraint, find IIS
+
+                Chinneck: Feasibility and Infeasibility in Optimization   41
+Other Model Issues (contd)
+
+zAnalyzing Multiple-Objective Programs
+  {True MOLP: at least two objectives are in conflict
+   (optima at different extreme points).
+  {Convert objectives to constraints at their extreme points
+  {Creates an infeasible LP
+  {Analyze objective interactions via IIS isolation and Max
+   FS solution
+
+
+                                                              Feasible
+                                                              region
+
+
+                  Chinneck: Feasibility and Infeasibility in Optimization   42
+2. Finding Maximum Feasible Subsets
+
+z Progress only on linear constraints
+z Equivalent problems for an infeasible set:
+  {MAX FS: find max cardinality feasible subset
+  {MIN ULR: find min cardinality subset of constraints
+   to remove so that remaining set is feasible
+  {MIN IIS COVER: find smallest cardinality subset
+   of constraints to remove such that at least one
+   constraint is removed from every IIS
+z MIN IIS COVER is not unique
+
+                Chinneck: Feasibility and Infeasibility in Optimization   43
+Difficulty
+
+z MaxFS, MinULR, MinIISCover are NP-hard
+  { Sankaran 1993, Chakravarti 1994, Amaldi and Kann 1995
+z NP-hard for homogeneous systems of
+  inequalities and binary coefficients
+  {Amaldi and Kann (1995)
+z Can be approximated within a factor of 2 but
+  does not have a polynomial-time approximation
+  scheme unless P=NP
+  {Amaldi 1994, Amaldi and Kann 1995, Amaldi et al. 1999
+
+
+                  Chinneck: Feasibility and Infeasibility in Optimization   44
+Example
+     B
+ A                                      z IISs:
+          C                               {A,B,D} and {A,C,D}
+                                        z MaxFS:
+                           D              {A,B,C} or {B,C,D}
+                                        z MinULR or
+                                          MinIISCover:
+                                          {A} or {D}
+
+
+
+          Chinneck: Feasibility and Infeasibility in Optimization   45
+Application:
+Classification, Training Neural Networks
+70
+                                                                        f0(x)          Find
+                                                                                       separating
+60                                                                                     hyperplane
+                                                                                       that
+50
+                                                                                       misclassifies
+                                                                                       the fewest
+                                                                                       points
+40
+
+
+
+30
+
+
+
+20
+
+
+     40   60   80   100         120           140           160            180   200
+
+                     Chinneck: Feasibility and Infeasibility in Optimization                       46
+Classification: Convert to LP
+z Training set: I data points in J dimensions
+z Attributes: value of attribute j for point i is denoted by dij
+z Outcomes known: either type 0 or type 1
+z Constraints: one for each data point:
+   { for points of Type 0: Σjdijwj ≤ w0 − ∈
+   { for points of Type 1: Σjdijwj ≥ w0 + ∈
+z Where
+   { ∈: small positive constant.
+   { dij: known constants
+   { wj: variables, unrestricted in sign
+z If LP is feasible, then data set is linearly classifiable
+   { Solution: Σjxjwj = w0 is classifier hyperplane
+                      Chinneck: Feasibility and Infeasibility in Optimization   47
+Classification: Solve via MinULR
+z If not linearly classifiable (the usual case):
+   {LP is infeasible
+   {MinULR solution = min number unsatisfied constraints
+      z Same as min number of misclassified data points
+   {Remove constraints indicated by MinULR solution.
+    LP now feasible
+      z Same as data set now linearly classifiable
+   {Solve feasible LP: gives eqn of separating hyperplane
+      z Same as hyperplane that misclassifies fewest points
+z Build decision trees, train neural networks
+
+
+                   Chinneck: Feasibility and Infeasibility in Optimization   48
+Other Applications
+z Analyzing infeasible LPs
+z Statistics: data depth, fixing errors, etc.
+z Digital Video Broadcasting
+   {Maximize regions with sufficient signal quality
+z Protein Folding Potentials
+   {Tens of millions of inequalities in hundreds of
+    variables
+z Radiation Therapy
+   {Linear constraints and max and min radiation at
+    locations in body
+z Image and Signal Processing
+z Etc.!
+                  Chinneck: Feasibility and Infeasibility in Optimization   49
+Exact Big-M MIP Formulation
+z Minimize Z=Σyi (MinULR approach)
+z Subject to:
+   {aix ≤ bi + Myi for constraints i of type ≤
+   {aix ≥ bi − Myi for constraints i of type ≥
+   {aix = bi + Myi’ – Myi” for constraints i of type =
+z Where:
+   {y: binary variables
+   {M: the usual “big-M” large positive value
+z In practice:
+   {Slow
+   {Numerical difficulties
+   {Selection of M
+                    Chinneck: Feasibility and Infeasibility in Optimization   50
+Exact LPEC Formulation
+         ∑ y
+            m
+  max
+            i =1 i
+  s.t.   yi ai x {≤, ≥, =} yi bi                                     Amaldi (2003)
+         yi ∈ {0,1}
+
+zMaxFS approach
+zSubst 0≤yi≤1without problems
+zNLP solution needed
+
+
+                      Chinneck: Feasibility and Infeasibility in Optimization        51
+LPEC for Inequalities
+                                             z Machine learning
+      ∑ y
+        m
+min
+        i =1 i                                 formulation
+s.t. s − Ax + b ≥ 0                                   {Mangasarian (1994)
+
+     y( s − Ax + b) = 0                      z For inequalities Ax≤b
+     − y+1≥0                                 z yi=0 only when si=0
+     s( − y + 1) = 0                         z NLP solved by
+                                               successive LP
+      x ∈ ℜn , s ≥ 0, y ≥ 0
+
+
+                   Chinneck: Feasibility and Infeasibility in Optimization   52
+Approximate Parametric NLP
+
+                       zWhen zi=0, then aix≤bi
+    ∑
+       m          −αzi
+min         (1 − e ) is satisfied
+       i =1
+                       zα: control parameter
+s.t. z ≥ Ax − b
+                       zNLP solved by
+     z≥0                successive LP
+                                         {Mangasarian (1996)
+                                         {Bennett and Bredensteiner
+                                          (1997)
+
+
+              Chinneck: Feasibility and Infeasibility in Optimization   53
+IIS Enumeration and Covering
+
+zParker (1995) Parker and Ryan (1996):
+  {Enumerate IISs one at a time
+    zEfficient algorithm for this
+  {Solve MinIISCover each time a new IIS is found
+    zBy exact MIP or by greedy heuristic
+    zPfetsch (2002, 2005), Codato and Fischetti (2004,
+     2006): special cuts to solve MIP faster
+zTamiz (1995)
+  {Heuristic enumeration of IISs
+  {Frequency based heuristic to solve MinIISCover
+                 Chinneck: Feasibility and Infeasibility in Optimization   54
+Phase 1 Heuristics
+z Solve phase 1 LP:
+  {Observation: violated constraints constitute an
+   IIS set cover (Chinneck 1996)
+  {Observation: if just 1 violated constraint in
+   phase1 then minimum cardinality IIS set cover
+    (Chinneck 1996)
+
+z Phase 1 and elastic programs:
+  {Simple phase 1: ≥ and = constraints elasticized
+  {MINOS phase 1: min number of violations and Σsi
+  {Standard elastic program: bounds not elasticized
+  {Full elastic program: bounds also elasticized
+                      Chinneck: Feasibility and Infeasibility in Optimization   55
+Phase 1 IIS Covers
+Model      Minimum cover cardinality                  MINOS Phase 1              Standard elastic pro-
+            (Parker and Ryan 1996)                       cover                   gram Phase 1 cover
+bgdbg1                 12                                  23                             13
+bgindy                  1                                  14                              1
+bgprtr                  1                                   2                             2
+chemcom                 1                                  11                             12
+cplex1                  1                                 211                            212
+gran             not calculated                           244                            473
+greenbea                2                                   3                              2
+itest2                  2                                   2                              2
+itest6                  2                                   3                              4
+klein2                 1                                   3                              5
+klein3                 1                                   4                              19
+mondou2                 3                                   3                              5
+reactor                 1                                   3                              2
+refinery                1                                   3                             6
+woodinfe                2                                   2                              2
+
+
+                       Chinneck: Feasibility and Infeasibility in Optimization                       56
+Chinneck’s Elastic Heuristics (1996)
+      B
+ A                                         z Observation:
+                 C                           Eliminating constraint
+                                             in minimum-cardinality
+                                             IIS set cover should
+                                 D
+                                             reduce SINF more
+                                             than eliminating
+                                             constraint that is not in
+          SINF=0 if                          minimum-cardinality
+          {A} or {D}
+          removed
+                                             IIS set cover
+
+                Chinneck: Feasibility and Infeasibility in Optimization   57
+Chinneck’s Elastic Heuristics
+
+z Observation: Constraints to which the elastic
+   objective function is not sensitive do not reduce
+   SINF when removed from the model
+z Algorithm:
+1. For every constraint having nonzero dual price:
+  { Temporarily remove and note new SINF
+2. Permanently remove constraint that gives
+   lowest new SINF
+3. If feasible, then stop. Else go to Step 1.
+                Chinneck: Feasibility and Infeasibility in Optimization   58
+Chinneck’s Elastic Heuristics
+
+zDetails:
+  {Full elastic model recommended
+  {Remember nonzero dual prices for best new
+   SINF seen so far: do not have to recalculate
+  {If NumInfeasibilities = 1 during test, remember
+   this and use it directly in next round
+  {Many LPs solved
+     zLP hot starts make soln times reasonable
+
+
+                 Chinneck: Feasibility and Infeasibility in Optimization   59
+Chinneck’s Elastic Heuristics (2001)
+
+zObservation: for constraints that are
+ violated during phase 1 a good predictor of
+ SINF drop when removed is (constraint
+ violation) × |dual price|.
+zSmall study:
+  {over 95% accurate in 87% of cases
+  {over 90% accurate in 94% of cases
+
+
+              Chinneck: Feasibility and Infeasibility in Optimization   60
+Chinneck’s Elastic Heuristics
+
+zObservation: for constraints that are
+ satisfied during phase 1 a good predictor
+ of the relative magnitude of the SINF drop
+ when removed is |dual price|.
+
+zUse these two observations to shorten
+ length of candidate list
+
+
+             Chinneck: Feasibility and Infeasibility in Optimization   61
+Chinneck’s Elastic Heuristics
+
+zRevised algorithm:
+1. Sort violated constraints by violn×|dual price|,
+   sort satisfied constraints by |dual price|
+2. For top k constraints in violated and satisfied lists:
+   { Temporarily remove, re-solve LP, note new SINF
+3. Permanently remove constraint giving lowest new SINF
+4. If feasible, then stop. Else go to Step 1.
+
+
+
+
+                    Chinneck: Feasibility and Infeasibility in Optimization   62
+Chinneck’s Elastic Heuristics
+z Details:
+   { Alg 2(k): just top k violated constraints
+   { Alg 3(k): top k violated, top k satisfied
+       z Solve at most 2k LPs at each iteration
+   { Alg 4(k):
+       z May use ordinary phase 1 to detect initial infeasibility, then full
+         elastic phase 1 thereafter
+       z Keep IIS covers from both phase 1 solns as backups
+       z Otherwise same as Alg 3(k)
+z Trade-off: speed vs. accuracy
+z Testing: Alg 3(7) and 4(7) almost as good as original
+  and an order of magnitude faster
+
+                       Chinneck: Feasibility and Infeasibility in Optimization   63
+ Classification data sets
+Data set                                Original Alg. 1                    Algorithm 2(1)      MISMIN
+                                        % acc.     secs                    % acc.    secs   % acc. secs
+breast cancer                            98.4       17                      98.4      4.3    98.2   0.7
+bupa                                    75.1       159                      75.9      1.3    73.9   0.6
+glass (type 2 vs. others)                81.8       38                      78.5      0.6    76.6   0.6
+ionosphere                               98.3       44                      98.3      5.4    98.3   2.6
+iris (versicolor vs. others)             83.3        5                      83.3      0.2    82.0   0.3
+iris (virginica vs. others)              99.3       0.4                     99.3      0.1    99.3   0.3
+new thyroid (normal vs. others)          94.9        3                      94.9      0.3    93.5   0.3
+pima                                     80.6     1434                      80.2      7.2    80.5   1.5
+wpbc                                     96.9       17                      96.9      1.2    91.2   1.5
+average:                                 89.8     216.2                     89.5      2.3    88.2   0.9
+
+
+ z MISMIN: parametric NLP approximation
+      { (Bennett and Bredensteiner 1997)
+
+                            Chinneck: Feasibility and Infeasibility in Optimization                 64
+Two-Phase Relaxation Heuristic
+
+zFirst phase: heuristic soln for MaxFS
+   {A linearization of the big-M formulation, or
+   {A linearization of the bilinear LPEC, or
+   {LP phase 1 heuristic
+zSecond phase: add constraints to first
+ phase soln using more exact method:
+   {Exact “big-M” MIP on smaller 2nd phase
+
+z Amaldi, Bruglieri, Casale 2007
+
+                  Chinneck: Feasibility and Infeasibility in Optimization   65
+Two-Phase Relaxation Heuristic
+                         ∑ y
+                               m
+                   max
+                               i =1 i                         zLinearization
+                         subject to :                          of LPEC
+  ∑ j:a <0 aij zij + ∑ j:a ≥0 aij x j ≥ yibi , i = 1...m zbounded
+       ij                ij
+
+      zij ≤ u j yi , i = 1...m, j = 1...n, s.t. aij < 0        inequalities
+        zij ≤ x j , i = 1...m, j = 1...n, s.t. aij < 0         only
+x j − u j (1 − yi ) ≤ zij , i = 1...m, j = 1...n, s.t. aij < 0zui, li: bounds
+                  l j ≤ x j ≤ u j , j = 1...n                 zzij = yixj
+                    0 ≤ yi ≤ 1, i = 1...m                     zGenerally
+         zij ≥ 0, i = 1...m, j = 1...n, s.t. aij < 0           best results
+                         Chinneck: Feasibility and Infeasibility in Optimization   66
+ Randomized Thermal Relaxation
+z For very large systems.
+   { Tens of millions of inequalities
+   { Amaldi, Belotti, Hauser 2005
+z Thermal perceptron heuristic (Frean
+  1992), or sequential projection algorithm
+  (Censor et al 2001)
+   { xi+1 = xi + ηiaki with probability pi if
+     constraint ki is violated, or xi+1 = xi
+     otherwise
+   { Select constraints with large violations
+     near start; select constraints with small
+     violations near end. Control by
+     temperature parameter as in simulated
+     annealing.
+   { Variations: how adjust ηi, pi, constraint
+     selection, etc.
+                          Chinneck: Feasibility and Infeasibility in Optimization   67
+Randomized Thermal Relaxation
+
+zDigital Video Broadcasting data sets:
+  {Solves many more problems that Big-M MIP
+zProtein-folding potentials tests:
+  {Up to 837,802 rows, 301 cols
+  {Cplex 8.1 Big-M unable to solve any
+  {6 very large feasible instances
+     zRTR comes within 6 constraints of total number in all
+      cases
+
+
+                 Chinneck: Feasibility and Infeasibility in Optimization   68
+3. Repairing Infeasibility
+How to define the “best fix”?
+z Shifting constraints: smallest number
+    { same as Max FS, weighted or unweighted
+z Shifting constraints: smallest total penalty
+    { same as minimizing l1 norm
+    { same as elastic program, weighted or unweighted
+z Altering constraint body: minimize a matrix norm
+    { l1 or l∞, Frobenius norms
+
+Solution methods:
+  •Phase 1 solution          •Fuzzy methods
+  •Elastic programs          •Goal programming
+  •Max FS algorithms         •Reformulation-Linearization-Convexification
+  •Least-squares             •Etc….
+
+
+                        Chinneck: Feasibility and Infeasibility in Optimization   69
+4.1 Faster MIP Feasibility
+                                                                                2nd intersection
+Methods to date:
+z Pivot-and-complement for BIP                                                                         1st intersection
+
+   { BIP: max cx s.t. Ax≤b, xj binary
+   { LP: max cx s.t. Ax+y=b, 0≤x≤1, y≥0, yi basic                                                  x
+   { Pivot to make yi basic. Flip varbs when stuck
+z Pivot-and-shift variant for MIP
+z OCTANE for BIP
+   { Ray in improving direction passes through extended facets of
+     hyper-octagon surrounding hypercube of solns
+   { Hit facets of octagon indicate binary solns to try in order
+z The feasibility pump
+   { After solving intial LP-relaxation, alternate between (i) rounding
+     to get integer-feasible soln (that violates constraints) and (ii)
+     nearest LP-feasible soln (that violates integrality).
+   { Randomization if get stuck.
+
+                      Chinneck: Feasibility and Infeasibility in Optimization                                   70
+Branch and bound
+Steps after start-up:
+1. If no unexplored nodes left then exit:
+   optimal or infeasible.
+2. Choose unexplored node for expansion and
+   solve its LP relaxation.
+  z Infeasible: discard the node, go to Step 1.
+  z Feasible and integer-feasible: check for new
+    incumbent, go to Step 1.
+3. Choose branching variable in current node
+   and create two new child nodes.
+
+                Chinneck: Feasibility and Infeasibility in Optimization   71
+Is Branching Variable Selection Important?
+
+             B&B nodes to First Feasible Soln
+model                Cplex 9.0 Active-Constraints Method
+aflow30a                      23481 22 (A, HM, HO, O, P)
+aflow40b     100,000+ (limit) 33 (HO, O, P)
+fast0507                      14753 26 (A)
+glass4                           7940 62 (A, HM, HO, O, P)
+nsrand-ipx                       3301 18 (HM)
+timtab2                       14059 100,000+ (limit)
+                 Chinneck: Feasibility and Infeasibility in Optimization   72
+Traditional Branching Variable Selection
+
+zBased on estimated impact on objective
+ function
+zGoal: maximize degradation in the
+ objective function value at optimal solution
+ of child node LP relaxations.
+ze.g. pseudo-costs
+
+
+
+              Chinneck: Feasibility and Infeasibility in Optimization   73
+New: Active Constraints Approach
+Goal: make child node LP-relaxation optima far
+  from parent node LP-relaxation optimum.
+z Active constraints fix the position of the LP
+  optimum solution in parent, so…
+z Choose branching variable that has most impact
+  on the active constraints in parent LP relaxation
+  optimum solution.
+z Constraint-oriented approach [Patel and Chinneck 2006]
+
+Note: “active constraints” include tight degenerate
+  constraints
+                   Chinneck: Feasibility and Infeasibility in Optimization   74
+Impact of the Branching Variable
+     LP relaxation                                                   y
+     before
+     branching                                                           x
+                                           Feasible
+                                           Region
+
+
+
+
+          Branch on x                                  Branch on y
+           Chinneck: Feasibility and Infeasibility in Optimization           75
+Estimating Candidate Variable Impact on
+Active Constraints
+1. Calculate the “weight” Wik of each candidate
+   variable i in each active constraint k
+  z   0 if the variable does not appear in constraint
+2. For each variable, total weights over all active
+   constraints.
+3. Choose variable that has the largest total
+   weight.
+
+Dynamic variable ordering: changes at each node.
+                  Chinneck: Feasibility and Infeasibility in Optimization   76
+Overview of Weighting Methods
+z Is candidate variable in active constraint or not?
+z Relative importance of active constraint:
+   { Smaller weight if more candidate or integer variables: changes in
+     other variables compensate for changes in selected variable.
+   { Normalize by absolute sum of coefficients.
+z Relative importance of candidate variable within active
+  constraint:
+   { Greater weight if coefficient size is larger:
+     candidate variable has more impact.
+z Sum weights over all active constraints? Look at biggest
+  impact on single constraint?
+z Etc.
+
+                      Chinneck: Feasibility and Infeasibility in Optimization   77
+Methods A, B, L
+
+Numerous variants. Subset of best:
+z A: Wik=1.
+   {Is candidate variable present in the active constraint?
+z B: Wik = 1/ [Σ(|coeff of all variables|].
+   { Like A, but relative impact of a constraint normalized by
+    absolute sum of coefficients
+z L: Wik = 1/(no. integer variables)
+   {Like A, but relative impact of a constraint normalized by
+    number of integer variables it contains
+   {Related to MOMS rule?
+                   Chinneck: Feasibility and Infeasibility in Optimization   78
+Methods M, O, P
+
+z M: Wik = 1/(no. candidate variables)
+   {Like A, but relative impact of a constraint normalized by
+    number of candidate variables it contains
+   {Not used directly: see H methods
+z O: Wik = |coeffi|/(no. of integer variables)
+   {Like L, but size of coefficient affects weight of varb in
+    constraint
+z P: Wik = |coeffi|/(no. of candidate variables)
+   {Like M, but size of coefficient affects weight of varb in
+    constraint
+
+                    Chinneck: Feasibility and Infeasibility in Optimization   79
+Methods HM, HO
+
+zH methods: for a given base method,
+ choose the variable that has largest weight
+ in any single active constraint
+  {Do not sum across active constraints
+zHM: based on method M
+zHO: based on method O
+
+
+
+               Chinneck: Feasibility and Infeasibility in Optimization   80
+Experiments
+
+zSolver built on Cplex 9.1
+zLimits on time, nodes, node file size
+zMIPLIB 2003 models
+z Experiment 1 (basic B&B): all heuristics off
+z Experiment 2: all heuristics turned on
+
+
+
+
+               Chinneck: Feasibility and Infeasibility in Optimization   81
+Exp 1: Nodes Peformance Profiles
+                                           Experiment 1 Nodes Performance Profile
+
+                             1
+
+                            0.9
+
+                            0.8
+
+                            0.7
+
+
+
+
+       fraction of models
+                            0.6
+
+                            0.5
+
+                            0.4
+                                                                                                Cplex 9.0
+                            0.3                                                                 A
+                                                                                                O
+                            0.2
+                                                                                                P
+                            0.1                                                                 HM
+                                                                                                HO
+                             0
+                                  1       2       3       4       5       6        7       8       9        10
+                                                         ratio to best (nodes)
+
+                                      Chinneck: Feasibility and Infeasibility in Optimization                    82
+Exp 1: Simplex Iterations Perf. Profiles
+                                    Experiment 1 Iterations Performance Profiles
+
+                               1
+                              0.9
+                              0.8
+
+
+
+
+         fraction of models
+                              0.7
+                              0.6
+                              0.5                                                             Cplex 9.0
+                                                                                              A
+                              0.4
+                                                                                              O
+                              0.3                                                             P
+                              0.2                                                             HM
+                                                                                              HO
+                              0.1
+                               0
+                                    1        2        3       4        5        6       7         8   9   10
+                                                  ratio to best (simplex iterations)
+
+
+                                        Chinneck: Feasibility and Infeasibility in Optimization                83
+Experiment 2: Notes
+
+zAll internal heuristics on.
+zHeuristics impact is mixed:
+  {Many models solved at root node
+  {Others: using Cplex alone:
+    zhalf slower with heuristics on, half faster.
+    z1 model solvable with heuristics off, but not
+     solvable with heuristics on
+zActive constraints methods generally
+ better than Cplex
+               Chinneck: Feasibility and Infeasibility in Optimization   84
+Quality Success Ratios
+
+       Experiment 1                                     Experiment 2
+over 40 comparable models                        over 12 comparable models
+   method          QSR                              method          QSR
+      A            0.53                                B            0.75
+     HM           0.55                                 HM           0.50
+     HO           0.58                                 HO           0.50
+     O            0.70                                 L            0.58
+      P           0.78                                  P           0.33
+
+                 Chinneck: Feasibility and Infeasibility in Optimization   85
+4.2 Faster NLP Feasibility
+
+Goal: given arbitrary initial point, move to a
+ near-feasible point quickly
+  {Unbounded variables? Ranges too wide?
+z“near-feasible”?
+  {Traditional: |RHS-LHS| ≤ tolerance
+     zFunction scaling means this varies widely!
+  {New: Euclidean distance to feasible region
+     zThis is a variable-space measure
+
+
+                 Chinneck: Feasibility and Infeasibility in Optimization   86
+The Constraint Consensus Method
+z Feasibility vector: for a violated constraint, a vector indicating
+  step to closest feasible point
+    { |feasibility vector| gives distance to feasibility
+    { Exact for linear constraints, approximation based on gradient for
+      nonlinear constraints
+z Consensus vector: update step from combination of feasibility
+  vectors
+
+Method:
+z Construct feasibility vector for each violated constraint
+z Construct consensus vector (various options)
+z Take the step indicated by the consensus vector
+z Repeat until close enough to feasibility
+
+Simple: no LP solutions, line search, matrix inversion, etc.
+                        Chinneck: Feasibility and Infeasibility in Optimization   87
+Example Constraint Consensus Step
+
+z Next step will reach feasibility
+      9
+
+                               B
+      8
+
+
+
+      7
+
+
+
+      6
+
+
+              A
+      5
+
+
+
+      4
+                        Feasible region
+
+
+
+      3
+          0       0.5      1           1.5             2           2.5              3   3.5
+
+                          Chinneck: Feasibility and Infeasibility in Optimization             88
+Where to start? Initial Point Heuristic
+What if initial point is not given?
+z New initial point heuristic avoids various problems:
+   { If doubly bounded: set at midpoint + (small random ε)
+   { If single lower bound: set at bound + (small random ε)
+   { If single upper bound: set at bound - (small random ε)
+   { If unbounded both directions: set at zero + (small random ε)
+z Couple with CC algorithm, use to start NLP solvers
+z Tested on ~230 CUTE models
+   { At least one NL constraint
+   { Less than 300 constraints
+z Impact on NL solver ability to reach feasibility
+   { MINOS, SNOPT, KNITRO, DONLP2, CONOPT
+                    Chinneck: Feasibility and Infeasibility in Optimization   89
+New Heuristic + CC + solver
+ z Using feasibility distance 0.1 for CC algorithms
+ z Improves over new heuristic + solver
+            MINOS       SNOPT                 KNITRO                  DONLP2           CONOPT
+ modeller    0.864          0.684                   0.939                      0.899     0.877
+ simple      0.868          0.689                   0.908                      0.899     0.877
+ DBmax       0.864          0.693                   0.912                      0.908     0.882
+ DBavg       0.864          0.702                   0.908                      0.895     0.890
+ DBbnd       0.873          0.697                   0.921                      0.899     0.890
+ FDnear      0.864          0.689                   0.904                      0.882     0.890
+ FDfar       0.873          0.706                   0.917                      0.908     0.904
+                     Chinneck: Feasibility and Infeasibility in Optimization                     90
+Useful Sources
+General overview of state of the art:
+z J.W. Chinneck (2007), “Feasibility and Infeasibility in Optimization:
+   Algorithms and Computational Methods”, Springer, in preparation.
+z J.W. Chinneck (1997), “Feasibility and Viability” in Advances in Sensitivity
+   Analysis and Parametric Programming, T. Gal and H.J. Greenberg (eds.),
+   International Series in Operations Research and Management Science, Vol.
+   6, pp. 14-1 to 14-41, Kluwer Academic Publishers.
+On constraint consensus method for NLPs:
+z W. Ibrahim and J.W. Chinneck (2005), "Improving Solver Success in
+   Reaching Feasibility for Sets of Nonlinear Constraints", Computers and
+   Operations Research, to appear
+On active constraints method for MIPs:
+z J. Patel and J. Chinneck (2006), “Active-Constraint Variable Ordering for
+   Faster Feasibility of Mixed Integer Linear Programs”, Mathematical
+   Programming, to appear.
+Other info/software:
+z www.sce.carleton.ca/faculty/chinneck.html
+
+                        Chinneck: Feasibility and Infeasibility in Optimization   91
+

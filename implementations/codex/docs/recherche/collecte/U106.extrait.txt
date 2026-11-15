@@ -1,0 +1,632 @@
+GitHub - ranaroussi/quantstats: Portfolio analytics for quants, written in Python · GitHub 
+
+ Skip to content 
+
+Navigation Menu
+
+ Sign in 
+
+ Products 
+
+ Platform 
+ GitHub Repository hosting, code review, and collaboration 
+
+ Copilot AI coding agent for tasks, projects, and automated work 
+
+ Build & Ship 
+ Actions CI/CD and automation 
+
+ Code Quality Quality analysis, fixes, and enforcement 
+
+ Codespaces Cloud development environments 
+
+ Secure 
+ Code Security Vulnerability detection and remediation 
+
+ Secret Protection Secret scanning and leak prevention 
+
+ All Features 
+
+ Developers 
+
+ Learn 
+ Documentation 
+
+ Training 
+
+ Certifications 
+
+ Build 
+ Build with Copilot 
+
+ Customize Copilot 
+
+ Integrations 
+
+ Explore 
+ Trending repos 
+
+ GitHub Sponsors 
+
+ Developer articles 
+
+ Changelog 
+ Changelog Your source for the latest features, improvements, and fixes across GitHub products, all in one place. 
+
+ Businesses 
+
+ By Stage 
+ Enterprises 
+
+ Team 
+
+ Startups 
+
+ Nonprofits 
+
+ By Industry 
+ Healthcare 
+
+ Financial services 
+
+ Manufacturing 
+
+ Government 
+
+ See all industries 
+
+ Evaluate GitHub 
+ Why GitHub 
+
+ Customer Stories 
+
+ Business insights 
+
+ Trust Center 
+
+ Add-ons 
+ GitHub Advanced Security Enterprise-grade code security 
+
+ Copilot for business Enterprise-grade AI features 
+
+ Premium Support Enterprise-grade 24/7 support 
+
+ Resources 
+
+ Learn & Connect 
+ Documentation 
+
+ Resource center 
+
+ Blog 
+
+ Events & webinars 
+
+ Community Forum 
+
+ Customer Stories 
+
+ Integrations 
+
+ Support 
+ Customer support 
+
+ Training 
+
+ GitHub Status 
+
+ Company 
+ About 
+
+ Partners 
+
+ Changelog 
+
+ GitHub Universe 
+ GitHub Universe The event for developers, by developers — talks, workshops, and what’s next for GitHub. 
+
+ Pricing 
+
+ Search / 
+
+ Sign in 
+ Sign up 
+Appearance settings
+
+ You signed in with another tab or window. Reload to refresh your session. 
+ You signed out in another tab or window. Reload to refresh your session. 
+ You switched accounts on another tab or window. Reload to refresh your session. 
+
+ Dismiss alert 
+
+{{ message }}
+
+ ranaroussi 
+
+ quantstats 
+
+Repository navigation
+
+ Code 
+
+ Issues 8  ( 8 ) 
+
+ Pull requests 25  ( 25 ) 
+
+ Discussions 
+
+ Actions 
+
+ Projects 
+
+ Security and quality 
+
+ Insights 
+
+ More items 
+
+ quantstats 
+ Public 
+
+ Sponsor 
+
+ Notifications You must be signed in to change notification settings 
+
+ Fork 1.3k  ( 1.3k ) 
+
+ Star 7.9k  ( 7.9k ) You must be signed in to star a repository 
+
+ About 
+
+Portfolio analytics for quants, written in Python
+
+ Topics 
+
+ algo-trading algorithmic-trading algotrading finance plotting python quant quantitative-analysis quantitative-finance quantitative-trading visualization 
+
+ Resources 
+
+ Readme 
+
+ Apache-2.0 license 
+
+ Activity 
+
+ Stars 
+
+ 7.9k stars 
+
+ Watchers 
+
+ 122 watching 
+
+ Forks 
+
+ 1.3k forks 
+
+ Report repository 
+
+ main 
+
+ Branches Tags 
+
+ Go to file 
+
+ Code 
+ Open more actions menu 
+
+Latest commit
+
+History
+ 602 Commits 
+
+ 602 Commits 
+
+Folders and files
+
+ Name Name 
+ Last commit message 
+ 
+ Last commit date 
+
+ .claude 
+
+ .claude 
+
+ .github 
+
+ .github 
+
+ docs 
+
+ docs 
+
+ quantstats 
+
+ quantstats 
+
+ tests 
+
+ tests 
+
+ .deepsource.toml 
+
+ .deepsource.toml 
+
+ .flake8 
+
+ .flake8 
+
+ .gitignore 
+
+ .gitignore 
+
+ CHANGELOG.md 
+
+ CHANGELOG.md 
+
+ CONTRIBUTORS.txt 
+
+ CONTRIBUTORS.txt 
+
+ LICENSE.txt 
+
+ LICENSE.txt 
+
+ MANIFEST.in 
+
+ MANIFEST.in 
+
+ README.md 
+
+ README.md 
+
+ pyproject.toml 
+
+ pyproject.toml 
+
+ requirements.txt 
+
+ requirements.txt 
+
+ setup.cfg 
+
+ setup.cfg 
+
+ View all files 
+
+Repository files navigation
+
+ README 
+
+ Apache-2.0 license 
+
+ More items 
+
+QuantStats: Portfolio analytics for quants
+
+ QuantStats Python library that performs portfolio profiling, allowing quants and portfolio managers to understand their performance better by providing them with in-depth analytics and risk metrics.
+
+ Changelog » 
+
+QuantStats is comprised of 3 main modules:
+
+ quantstats.stats - for calculating various performance metrics, like Sharpe ratio, Win rate, Volatility, etc.
+
+ quantstats.plots - for visualizing performance, drawdowns, rolling statistics, monthly returns, etc.
+
+ quantstats.reports - for generating metrics reports, batch plotting, and creating tear sheets that can be saved as an HTML file.
+
+ NEW! Monte Carlo Simulations 
+
+Run probabilistic risk analysis with built-in Monte Carlo simulations:
+
+ mc = qs . stats . montecarlo ( returns , sims = 1000 , bust = - 0.20 , goal = 0.50 )
+ print ( f"Bust probability: { mc . bust_probability :.1% } " )
+ print ( f"Goal probability: { mc . goal_probability :.1% } " )
+ mc . plot () 
+
+ Full Monte Carlo documentation » 
+
+Quick Start
+
+ % matplotlib inline 
+ import quantstats as qs 
+
+ # extend pandas functionality with metrics, etc. 
+ qs . extend_pandas ()
+
+ # fetch the daily returns for a stock 
+ stock = qs . utils . download_returns ( 'META' )
+
+ # show sharpe ratio 
+ qs . stats . sharpe ( stock )
+
+ # or using extend_pandas() :) 
+ stock . sharpe () 
+
+Output:
+
+ 0.7604779884378278
+
+Visualize stock performance
+
+ qs . plots . snapshot ( stock , title = 'Facebook Performance' , show = True )
+
+ # can also be called via: 
+ # stock.plot_snapshot(title='Facebook Performance', show=True) 
+
+Output:
+
+Creating a report
+
+You can create 7 different report tearsheets:
+
+ qs.reports.metrics(mode='basic|full", ...) - shows basic/full metrics
+
+ qs.reports.plots(mode='basic|full", ...) - shows basic/full plots
+
+ qs.reports.basic(...) - shows basic metrics and plots
+
+ qs.reports.full(...) - shows full metrics and plots
+
+ qs.reports.html(...) - generates a complete report as html
+
+Let's create an html tearsheet:
+
+ # benchmark can be a pandas Series or ticker 
+ qs . reports . html ( stock , "SPY" ) 
+
+Output will generate something like this:
+
+ View original html file 
+
+Available methods
+
+To view a complete list of available methods, run:
+
+ [ f for f in dir ( qs . stats ) if f [ 0 ] != '_' ] 
+
+ [ 'avg_loss' ,
+ 'avg_return' ,
+ 'avg_win' ,
+ 'best' ,
+ 'cagr' ,
+ 'calmar' ,
+ 'common_sense_ratio' ,
+ 'comp' ,
+ 'compare' ,
+ 'compsum' ,
+ 'conditional_value_at_risk' ,
+ 'consecutive_losses' ,
+ 'consecutive_wins' ,
+ 'cpc_index' ,
+ 'cvar' ,
+ 'drawdown_details' ,
+ 'expected_return' ,
+ 'expected_shortfall' ,
+ 'exposure' ,
+ 'gain_to_pain_ratio' ,
+ 'geometric_mean' ,
+ 'ghpr' ,
+ 'greeks' ,
+ 'implied_volatility' ,
+ 'information_ratio' ,
+ 'kelly_criterion' ,
+ 'kurtosis' ,
+ 'max_drawdown' ,
+ 'monthly_returns' ,
+ 'montecarlo' ,
+ 'montecarlo_cagr' ,
+ 'montecarlo_drawdown' ,
+ 'montecarlo_sharpe' ,
+ 'outlier_loss_ratio' ,
+ 'outlier_win_ratio' ,
+ 'outliers' ,
+ 'payoff_ratio' ,
+ 'profit_factor' ,
+ 'profit_ratio' ,
+ 'r2' ,
+ 'r_squared' ,
+ 'rar' ,
+ 'recovery_factor' ,
+ 'remove_outliers' ,
+ 'risk_of_ruin' ,
+ 'risk_return_ratio' ,
+ 'rolling_greeks' ,
+ 'ror' ,
+ 'sharpe' ,
+ 'skew' ,
+ 'sortino' ,
+ 'adjusted_sortino' ,
+ 'tail_ratio' ,
+ 'to_drawdown_series' ,
+ 'ulcer_index' ,
+ 'ulcer_performance_index' ,
+ 'upi' ,
+ 'value_at_risk' ,
+ 'var' ,
+ 'volatility' ,
+ 'win_loss_ratio' ,
+ 'win_rate' ,
+ 'worst' ] 
+
+ [ f for f in dir ( qs . plots ) if f [ 0 ] != '_' ] 
+
+ [ 'daily_returns' ,
+ 'distribution' ,
+ 'drawdown' ,
+ 'drawdowns_periods' ,
+ 'earnings' ,
+ 'histogram' ,
+ 'log_returns' ,
+ 'monthly_heatmap' ,
+ 'montecarlo' ,
+ 'montecarlo_distribution' ,
+ 'returns' ,
+ 'rolling_beta' ,
+ 'rolling_sharpe' ,
+ 'rolling_sortino' ,
+ 'rolling_volatility' ,
+ 'snapshot' ,
+ 'yearly_returns' ] 
+
+ *** Full documentation coming soon *** 
+
+Important: Period-Based vs Trade-Based Metrics
+
+QuantStats analyzes return series (daily, weekly, monthly returns), not discrete trade data. This means:
+
+ Win Rate = percentage of periods with positive returns
+
+ Consecutive Wins/Losses = consecutive positive/negative return periods
+
+ Payoff Ratio = average winning period return / average losing period return
+
+ Profit Factor = sum of positive returns / sum of negative returns
+
+These metrics are valid and useful for:
+
+Systematic/algorithmic strategies with regular rebalancing
+
+Analyzing return-series behavior over time
+
+Comparing strategies on a period-by-period basis
+
+For discretionary traders with multi-day trades, these period-based metrics may differ from trade-level statistics. A single 5-day trade might span 3 positive days and 2 negative days - QuantStats would count these as 3 "wins" and 2 "losses" at the daily level.
+
+This is consistent with how all return-based analytics work (Sharpe ratio, Sortino ratio, drawdown analysis, etc.) - they operate on return periods, not discrete trade entries/exits.
+
+In the meantime, you can get insights as to optional parameters for each method, by using Python's help method:
+
+ help ( qs . stats . conditional_value_at_risk ) 
+
+ Help on function conditional_value_at_risk in module quantstats.stats:
+
+conditional_value_at_risk(returns, sigma=1, confidence=0.95, prepare_returns=True, method='parametric')
+ Calculate the Conditional Value at Risk (CVaR), also known as Expected Shortfall.
+
+ CVaR measures the expected loss given that a loss exceeds the VaR threshold.
+ It quantifies the amount of tail risk an investment faces, providing a more
+ comprehensive risk measure than VaR alone.
+
+Installation
+
+Install using pip :
+
+ $ pip install quantstats --upgrade --no-cache-dir 
+
+Install using conda :
+
+ $ conda install -c ranaroussi quantstats 
+
+Requirements
+
+ Python >= 3.10
+
+ pandas >= 1.5.0
+
+ numpy >= 1.24.0
+
+ scipy >= 1.11.0
+
+ matplotlib >= 3.7.0
+
+ seaborn >= 0.13.0
+
+ tabulate >= 0.9.0
+
+ yfinance >= 0.2.40
+
+ plotly >= 5.0.0 (optional, for using plots.to_plotly() )
+
+Questions?
+
+This is a new library... If you find a bug, please
+ open an issue .
+
+If you'd like to contribute, a great place to look is the
+ issues marked with help-wanted .
+
+Known Issues
+
+For some reason, I couldn't find a way to tell seaborn not to return the
+monthly returns heatmap when instructed to save - so even if you save the plot (by passing savefig={...} ) it will still show the plot.
+
+Legal Stuff
+
+ QuantStats is distributed under the Apache Software License . See the LICENSE.txt file in the release for details.
+
+P.S.
+
+Please drop me a note with any feedback you have.
+
+ Ran Aroussi 
+
+ About 
+
+Portfolio analytics for quants, written in Python
+
+ Topics 
+
+ algo-trading algorithmic-trading algotrading finance plotting python quant quantitative-analysis quantitative-finance quantitative-trading visualization 
+
+ Resources 
+
+ Readme 
+
+ Apache-2.0 license 
+
+ Activity 
+
+ Stars 
+
+ 7.9k stars 
+
+ Watchers 
+
+ 122 watching 
+
+ Forks 
+
+ 1.3k forks 
+
+ Report repository 
+
+ Releases 
+
+ Sponsor this project 
+
+ Packages 
+
+ Used by 
+
+ Contributors 
+
+ Languages 
+
+Footer
+
+ © 2026 GitHub, Inc.
+
+Footer navigation
+
+ Terms 
+
+ Privacy 
+
+ Security 
+
+ Status 
+
+ Community 
+
+ Docs 
+
+ Contact 
+
+ Manage cookies
+
+ Do not share my personal information
+
+ You can’t perform that action at this time.

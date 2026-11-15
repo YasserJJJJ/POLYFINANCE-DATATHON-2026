@@ -1,0 +1,1075 @@
+{
+  "body": {
+    "request_id": "0907c1e5-6caf-4de1-a3b1-d4740c66d672",
+    "message": "Variante de revue Folio : comparer une exposition directe initiale de 5 % à TSLA, avec la même convention historique et la même fenêtre que la version 5.",
+    "changes": {
+      "assumptions": [
+        {
+          "id": "retrospective",
+          "origin": "assumed",
+          "text": "Entrées fictives choisies pour comparaison descriptive, achat-conservation, sans projection à quinze ans ; aucune allocation officielle de persona."
+        },
+        {
+          "id": "redistribution",
+          "origin": "declared",
+          "text": "Le capital libéré par la réduction de TSLA est redistribué proportionnellement aux autres positions initiales."
+        },
+        {
+          "id": "historical_window",
+          "origin": "declared",
+          "text": "Utiliser toute la fenêtre commune admissible du snapshot disponible à knowledge_date, sans projection au-delà de l'histoire observée."
+        }
+      ],
+      "capital_cad": 25000,
+      "clarifications": [],
+      "comparison": {
+        "ticker": "TSLA",
+        "target_weight": 0.05
+      },
+      "currency": "CAD",
+      "decision_type": "historical_comparison",
+      "historical_policy": {
+        "redistribution": "proportional_other_holdings",
+        "window": {
+          "end_date": null,
+          "kind": "all_common_available",
+          "start_date": null
+        }
+      },
+      "holdings": [
+        {
+          "ticker": "SPY",
+          "weight": 0.45
+        },
+        {
+          "ticker": "XIU.TO",
+          "weight": 0.3
+        },
+        {
+          "ticker": "TSLA",
+          "weight": 0.25
+        }
+      ],
+      "horizon_years": 15,
+      "knowledge_date": "2026-11-15",
+      "max_asset_weights": {},
+      "objective": "compare_historical",
+      "question": "Comparer deux expositions initiales à TSLA sur le snapshot disponible.",
+      "reserve_policy": null,
+      "scenario_loss_limit_cad": null,
+      "scenarios": [],
+      "unknowns": [
+        "Compositions de FNB et exclusions ESG non établies."
+      ],
+      "withdrawal_cad": null,
+      "withdrawal_months": null
+    },
+    "base_revision": 5,
+    "intent": "variant",
+    "source_revision": 5
+  },
+  "response": {
+    "id": "4a654c3cd06646c5a7765ff58820633d",
+    "title": "Variante de revue Folio : comparer une exposition directe initiale de 5 % à TSLA, avec la même ",
+    "revision": 1,
+    "status": "running",
+    "active_run_id": "9f938e73358e465ea74f9d136423a1f1",
+    "created_at": "2026-11-15T20:47:23.177148+00:00",
+    "updated_at": "2026-11-15T20:47:23.177207+00:00",
+    "origin": "{\"dossier_id\":\"49ed5ae5903f41c297909b644ff7599a\",\"intent\":\"variant\",\"revision\":5,\"source_revision\":5}",
+    "active_problem": null,
+    "current_analysis": null,
+    "current_view": null,
+    "pending_clarifications": {
+      "qualification_ref": null,
+      "questions": []
+    },
+    "artifacts": [
+      {
+        "dossier_id": "4a654c3cd06646c5a7765ff58820633d",
+        "id": "fact.assumptions",
+        "version": 1,
+        "type": "assertion",
+        "owner": "human",
+        "hash": "abfc2839674b7b99713a413d556390eb460ffdcad6a11afc5b0ceae69cb755a2",
+        "input_refs": [],
+        "revision": 1,
+        "created_at": "2026-11-15T20:47:23.179980+00:00",
+        "content": {
+          "category": "scenario_or_assumption",
+          "field": "assumptions",
+          "inherited_from": {
+            "artifact_ref": "fact.assumptions@1",
+            "dossier_id": "49ed5ae5903f41c297909b644ff7599a",
+            "origin": "declared",
+            "sha256": "f1c76ea77191760212ff82cd2d06b2853893b9c62dd9197acc8d462b02c3d9b0",
+            "source_ref": "request@1",
+            "source_revision": 5
+          },
+          "origin": "declared",
+          "source_ref": "request@1",
+          "value": [
+            {
+              "id": "retrospective",
+              "origin": "assumed",
+              "text": "Entrées fictives choisies pour comparaison descriptive, achat-conservation, sans projection à quinze ans ; aucune allocation officielle de persona."
+            },
+            {
+              "id": "redistribution",
+              "origin": "declared",
+              "text": "Le capital libéré par la réduction de TSLA est redistribué proportionnellement aux autres positions initiales."
+            },
+            {
+              "id": "historical_window",
+              "origin": "declared",
+              "text": "Utiliser toute la fenêtre commune admissible du snapshot disponible à knowledge_date, sans projection au-delà de l'histoire observée."
+            }
+          ]
+        },
+        "ref": "fact.assumptions@1",
+        "usable": true
+      },
+      {
+        "dossier_id": "4a654c3cd06646c5a7765ff58820633d",
+        "id": "fact.capital_cad",
+        "version": 1,
+        "type": "assertion",
+        "owner": "human",
+        "hash": "35b34a6f7812c8360202cf789d78707e7bfd22b3e51bf2c19ea76a8cbeef92aa",
+        "input_refs": [],
+        "revision": 1,
+        "created_at": "2026-11-15T20:47:23.180963+00:00",
+        "content": {
+          "category": "input",
+          "field": "capital_cad",
+          "inherited_from": {
+            "artifact_ref": "fact.capital_cad@1",
+            "dossier_id": "49ed5ae5903f41c297909b644ff7599a",
+            "origin": "declared",
+            "sha256": "6d10dcaf7b195fa42d4936d9f32dedd6531be133909e6380c30411ee61785046",
+            "source_ref": "request@1",
+            "source_revision": 5
+          },
+          "origin": "declared",
+          "source_ref": "request@1",
+          "value": 25000
+        },
+        "ref": "fact.capital_cad@1",
+        "usable": true
+      },
+      {
+        "dossier_id": "4a654c3cd06646c5a7765ff58820633d",
+        "id": "fact.clarifications",
+        "version": 1,
+        "type": "assertion",
+        "owner": "human",
+        "hash": "83b507f73fd8f1e7fc5ae81416bc8b725f78e7d99993e9a309bf1896e75f8689",
+        "input_refs": [],
+        "revision": 1,
+        "created_at": "2026-11-15T20:47:23.181764+00:00",
+        "content": {
+          "category": "input",
+          "field": "clarifications",
+          "inherited_from": {
+            "artifact_ref": "fact.clarifications@1",
+            "dossier_id": "49ed5ae5903f41c297909b644ff7599a",
+            "origin": "declared",
+            "sha256": "df4c60d4c40d651475a11e2f94af8c5a5a639494c2b38f237d8e270e8981541d",
+            "source_ref": "request@1",
+            "source_revision": 5
+          },
+          "origin": "declared",
+          "source_ref": "request@1",
+          "value": []
+        },
+        "ref": "fact.clarifications@1",
+        "usable": true
+      },
+      {
+        "dossier_id": "4a654c3cd06646c5a7765ff58820633d",
+        "id": "fact.comparison",
+        "version": 1,
+        "type": "assertion",
+        "owner": "human",
+        "hash": "7a9d184aa52cdf7dde6625278aec4774ae13f6834a9a6df0fa132021daece713",
+        "input_refs": [],
+        "revision": 1,
+        "created_at": "2026-11-15T20:47:23.182488+00:00",
+        "content": {
+          "category": "preference_or_mandate",
+          "field": "comparison",
+          "origin": "declared",
+          "source_ref": "request@1",
+          "value": {
+            "target_weight": 0.05,
+            "ticker": "TSLA"
+          }
+        },
+        "ref": "fact.comparison@1",
+        "usable": true
+      },
+      {
+        "dossier_id": "4a654c3cd06646c5a7765ff58820633d",
+        "id": "fact.currency",
+        "version": 1,
+        "type": "assertion",
+        "owner": "human",
+        "hash": "1c91e3500a90be03026eaf04679c50c1afeac1ee75ae1baeb9908945718e66ed",
+        "input_refs": [],
+        "revision": 1,
+        "created_at": "2026-11-15T20:47:23.183149+00:00",
+        "content": {
+          "category": "input",
+          "field": "currency",
+          "inherited_from": {
+            "artifact_ref": "fact.currency@1",
+            "dossier_id": "49ed5ae5903f41c297909b644ff7599a",
+            "origin": "declared",
+            "sha256": "579c228528cba4161066dfddf7d6700a2a63b56f939bf6c67b5a15a803c679c0",
+            "source_ref": "request@1",
+            "source_revision": 5
+          },
+          "origin": "declared",
+          "source_ref": "request@1",
+          "value": "CAD"
+        },
+        "ref": "fact.currency@1",
+        "usable": true
+      },
+      {
+        "dossier_id": "4a654c3cd06646c5a7765ff58820633d",
+        "id": "fact.decision_type",
+        "version": 1,
+        "type": "assertion",
+        "owner": "human",
+        "hash": "072cdbaf6e1ea9da9d4a0362cf235906e08cc7d355003ba9be6db4a27265f1ae",
+        "input_refs": [],
+        "revision": 1,
+        "created_at": "2026-11-15T20:47:23.183897+00:00",
+        "content": {
+          "category": "input",
+          "field": "decision_type",
+          "inherited_from": {
+            "artifact_ref": "fact.decision_type@1",
+            "dossier_id": "49ed5ae5903f41c297909b644ff7599a",
+            "origin": "declared",
+            "sha256": "11b9e233563f3a03bccf200a97cd807fa25a16348a27a7b75f9b3b6f1a88a163",
+            "source_ref": "request@1",
+            "source_revision": 5
+          },
+          "origin": "declared",
+          "source_ref": "request@1",
+          "value": "historical_comparison"
+        },
+        "ref": "fact.decision_type@1",
+        "usable": true
+      },
+      {
+        "dossier_id": "4a654c3cd06646c5a7765ff58820633d",
+        "id": "fact.historical_policy",
+        "version": 1,
+        "type": "assertion",
+        "owner": "human",
+        "hash": "9c170f2cbcf347021eafda60190ffee784d41f6b081ec604eefb71290fef1eab",
+        "input_refs": [],
+        "revision": 1,
+        "created_at": "2026-11-15T20:47:23.184642+00:00",
+        "content": {
+          "category": "input",
+          "field": "historical_policy",
+          "origin": "declared",
+          "source_ref": "request@1",
+          "value": {
+            "redistribution": "proportional_other_holdings",
+            "window": {
+              "end_date": null,
+              "kind": "all_common_available",
+              "start_date": null
+            }
+          }
+        },
+        "ref": "fact.historical_policy@1",
+        "usable": true
+      },
+      {
+        "dossier_id": "4a654c3cd06646c5a7765ff58820633d",
+        "id": "fact.holdings",
+        "version": 1,
+        "type": "assertion",
+        "owner": "human",
+        "hash": "6de46082d5424c63b420efbbd42bec0406fe8d29ea1576b488d29f9886edcaf6",
+        "input_refs": [],
+        "revision": 1,
+        "created_at": "2026-11-15T20:47:23.185896+00:00",
+        "content": {
+          "category": "input",
+          "field": "holdings",
+          "inherited_from": {
+            "artifact_ref": "fact.holdings@1",
+            "dossier_id": "49ed5ae5903f41c297909b644ff7599a",
+            "origin": "declared",
+            "sha256": "cb97fd68b9b5d9fd130c9da227b6915db643b8ef71e8a91fc7dbded96943e570",
+            "source_ref": "request@1",
+            "source_revision": 5
+          },
+          "origin": "declared",
+          "source_ref": "request@1",
+          "value": [
+            {
+              "ticker": "SPY",
+              "weight": 0.45
+            },
+            {
+              "ticker": "XIU.TO",
+              "weight": 0.3
+            },
+            {
+              "ticker": "TSLA",
+              "weight": 0.25
+            }
+          ]
+        },
+        "ref": "fact.holdings@1",
+        "usable": true
+      },
+      {
+        "dossier_id": "4a654c3cd06646c5a7765ff58820633d",
+        "id": "fact.horizon_years",
+        "version": 1,
+        "type": "assertion",
+        "owner": "human",
+        "hash": "aaf8e6bcfc76bf16ddc9f4545df1c4975a126488409591c39890bd8c222905a9",
+        "input_refs": [],
+        "revision": 1,
+        "created_at": "2026-11-15T20:47:23.186926+00:00",
+        "content": {
+          "category": "preference_or_mandate",
+          "field": "horizon_years",
+          "inherited_from": {
+            "artifact_ref": "fact.horizon_years@1",
+            "dossier_id": "49ed5ae5903f41c297909b644ff7599a",
+            "origin": "declared",
+            "sha256": "9561e792d19751282e1fb7f78e1c51bfab08ce0c2022bed8db89cbcb9120e5c0",
+            "source_ref": "request@1",
+            "source_revision": 5
+          },
+          "origin": "declared",
+          "source_ref": "request@1",
+          "value": 15
+        },
+        "ref": "fact.horizon_years@1",
+        "usable": true
+      },
+      {
+        "dossier_id": "4a654c3cd06646c5a7765ff58820633d",
+        "id": "fact.knowledge_date",
+        "version": 1,
+        "type": "assertion",
+        "owner": "human",
+        "hash": "47a5a2cac919fac410044217b12bd1bffdedb9558747f1956741019aa32b2d75",
+        "input_refs": [],
+        "revision": 1,
+        "created_at": "2026-11-15T20:47:23.187743+00:00",
+        "content": {
+          "category": "input",
+          "field": "knowledge_date",
+          "inherited_from": {
+            "artifact_ref": "fact.knowledge_date@1",
+            "dossier_id": "49ed5ae5903f41c297909b644ff7599a",
+            "origin": "declared",
+            "sha256": "b6cfae5ec64c304b8c9e8a9b98c4d16253d559fc2d229a9921c31dcf17c80737",
+            "source_ref": "request@1",
+            "source_revision": 5
+          },
+          "origin": "declared",
+          "source_ref": "request@1",
+          "value": "2026-11-15"
+        },
+        "ref": "fact.knowledge_date@1",
+        "usable": true
+      },
+      {
+        "dossier_id": "4a654c3cd06646c5a7765ff58820633d",
+        "id": "fact.max_asset_weights",
+        "version": 1,
+        "type": "assertion",
+        "owner": "human",
+        "hash": "a8a5bf6dcdfbf464df0277f95ddcb5b836324cb87d8004ae3ecf3d90f51a18b0",
+        "input_refs": [],
+        "revision": 1,
+        "created_at": "2026-11-15T20:47:23.188568+00:00",
+        "content": {
+          "category": "constraint",
+          "field": "max_asset_weights",
+          "inherited_from": {
+            "artifact_ref": "fact.max_asset_weights@1",
+            "dossier_id": "49ed5ae5903f41c297909b644ff7599a",
+            "origin": "declared",
+            "sha256": "5fe2a4d181c11093f44c52f644511fe272f77c186f0018171d45a25062e9d4e6",
+            "source_ref": "request@1",
+            "source_revision": 5
+          },
+          "origin": "declared",
+          "source_ref": "request@1",
+          "value": {}
+        },
+        "ref": "fact.max_asset_weights@1",
+        "usable": true
+      },
+      {
+        "dossier_id": "4a654c3cd06646c5a7765ff58820633d",
+        "id": "fact.objective",
+        "version": 1,
+        "type": "assertion",
+        "owner": "human",
+        "hash": "a4f7e2137d11dbcb82c28a89e122e105187959f8d305cdfa17e12070883e615c",
+        "input_refs": [],
+        "revision": 1,
+        "created_at": "2026-11-15T20:47:23.189255+00:00",
+        "content": {
+          "category": "preference_or_mandate",
+          "field": "objective",
+          "inherited_from": {
+            "artifact_ref": "fact.objective@1",
+            "dossier_id": "49ed5ae5903f41c297909b644ff7599a",
+            "origin": "declared",
+            "sha256": "2fa8ed8090b7c1f908fff1e7e764818fe1d1c9cbc8b7cee022ecbd192083095d",
+            "source_ref": "request@1",
+            "source_revision": 5
+          },
+          "origin": "declared",
+          "source_ref": "request@1",
+          "value": "compare_historical"
+        },
+        "ref": "fact.objective@1",
+        "usable": true
+      },
+      {
+        "dossier_id": "4a654c3cd06646c5a7765ff58820633d",
+        "id": "fact.question",
+        "version": 1,
+        "type": "assertion",
+        "owner": "human",
+        "hash": "ee81e461516f711c547a43e7640e2d4fc102a824b11fa01770d3833a42411e22",
+        "input_refs": [],
+        "revision": 1,
+        "created_at": "2026-11-15T20:47:23.189908+00:00",
+        "content": {
+          "category": "input",
+          "field": "question",
+          "inherited_from": {
+            "artifact_ref": "fact.question@1",
+            "dossier_id": "49ed5ae5903f41c297909b644ff7599a",
+            "origin": "declared",
+            "sha256": "184c6fe638245d40eb1c7b90d7cc3425f0ad1420329a26191c8506d86b55b401",
+            "source_ref": "request@1",
+            "source_revision": 5
+          },
+          "origin": "declared",
+          "source_ref": "request@1",
+          "value": "Comparer deux expositions initiales à TSLA sur le snapshot disponible."
+        },
+        "ref": "fact.question@1",
+        "usable": true
+      },
+      {
+        "dossier_id": "4a654c3cd06646c5a7765ff58820633d",
+        "id": "fact.reserve_policy",
+        "version": 1,
+        "type": "assertion",
+        "owner": "human",
+        "hash": "7690ad15922c616bc3cbbd397da920774d302ac779c106c014754e70e2557cfb",
+        "input_refs": [],
+        "revision": 1,
+        "created_at": "2026-11-15T20:47:23.190789+00:00",
+        "content": {
+          "category": "scenario_or_assumption",
+          "field": "reserve_policy",
+          "inherited_from": {
+            "artifact_ref": "fact.reserve_policy@1",
+            "dossier_id": "49ed5ae5903f41c297909b644ff7599a",
+            "origin": "declared",
+            "sha256": "fc8a93960684c81d28a1df9300ff156271527075e442875022a739075971e46a",
+            "source_ref": "request@1",
+            "source_revision": 5
+          },
+          "origin": "declared",
+          "source_ref": "request@1",
+          "value": null
+        },
+        "ref": "fact.reserve_policy@1",
+        "usable": true
+      },
+      {
+        "dossier_id": "4a654c3cd06646c5a7765ff58820633d",
+        "id": "fact.scenario_loss_limit_cad",
+        "version": 1,
+        "type": "assertion",
+        "owner": "human",
+        "hash": "3d5084304075d7cfb5cbaaf0ce655437ed4f0afe14c3764d5c9fa57d6dcfc00f",
+        "input_refs": [],
+        "revision": 1,
+        "created_at": "2026-11-15T20:47:23.191560+00:00",
+        "content": {
+          "category": "constraint",
+          "field": "scenario_loss_limit_cad",
+          "inherited_from": {
+            "artifact_ref": "fact.scenario_loss_limit_cad@1",
+            "dossier_id": "49ed5ae5903f41c297909b644ff7599a",
+            "origin": "declared",
+            "sha256": "cc2a135a266c9f0af1c98ca2dcc2a7090d47f263924808c221e2f936c55478e2",
+            "source_ref": "request@1",
+            "source_revision": 5
+          },
+          "origin": "declared",
+          "source_ref": "request@1",
+          "value": null
+        },
+        "ref": "fact.scenario_loss_limit_cad@1",
+        "usable": true
+      },
+      {
+        "dossier_id": "4a654c3cd06646c5a7765ff58820633d",
+        "id": "fact.scenarios",
+        "version": 1,
+        "type": "assertion",
+        "owner": "human",
+        "hash": "32fe74913f18d5fdf2bc14395042cf24b2879f1c96b619a17fc383fd9e385311",
+        "input_refs": [],
+        "revision": 1,
+        "created_at": "2026-11-15T20:47:23.192280+00:00",
+        "content": {
+          "category": "scenario_or_assumption",
+          "field": "scenarios",
+          "inherited_from": {
+            "artifact_ref": "fact.scenarios@1",
+            "dossier_id": "49ed5ae5903f41c297909b644ff7599a",
+            "origin": "declared",
+            "sha256": "82b0cb95950e64f80a259edaec4e8d713ebad41e6c449d7d05f878381271f7e0",
+            "source_ref": "request@1",
+            "source_revision": 5
+          },
+          "origin": "declared",
+          "source_ref": "request@1",
+          "value": []
+        },
+        "ref": "fact.scenarios@1",
+        "usable": true
+      },
+      {
+        "dossier_id": "4a654c3cd06646c5a7765ff58820633d",
+        "id": "fact.unknowns",
+        "version": 1,
+        "type": "assertion",
+        "owner": "human",
+        "hash": "0a9d01dd0fd420324447a23c0dede75a2a6f960fe9c9c44d7135908ecc138ede",
+        "input_refs": [],
+        "revision": 1,
+        "created_at": "2026-11-15T20:47:23.192909+00:00",
+        "content": {
+          "category": "input",
+          "field": "unknowns",
+          "inherited_from": {
+            "artifact_ref": "fact.unknowns@1",
+            "dossier_id": "49ed5ae5903f41c297909b644ff7599a",
+            "origin": "declared",
+            "sha256": "2bbaa50ef1e10750c80e508b9efe0478ba7dbcc3bf0d0448359741f4d3dfeb17",
+            "source_ref": "request@1",
+            "source_revision": 5
+          },
+          "origin": "declared",
+          "source_ref": "request@1",
+          "value": [
+            "Compositions de FNB et exclusions ESG non établies."
+          ]
+        },
+        "ref": "fact.unknowns@1",
+        "usable": true
+      },
+      {
+        "dossier_id": "4a654c3cd06646c5a7765ff58820633d",
+        "id": "fact.withdrawal_cad",
+        "version": 1,
+        "type": "assertion",
+        "owner": "human",
+        "hash": "b5e7514243d1bd62dc0bac70558aadfceb4821a5d22d160e50298e083e918c4d",
+        "input_refs": [],
+        "revision": 1,
+        "created_at": "2026-11-15T20:47:23.193567+00:00",
+        "content": {
+          "category": "constraint",
+          "field": "withdrawal_cad",
+          "inherited_from": {
+            "artifact_ref": "fact.withdrawal_cad@1",
+            "dossier_id": "49ed5ae5903f41c297909b644ff7599a",
+            "origin": "declared",
+            "sha256": "deb00aff535fc40028f538249d116da1668583a7311707cd653a1e0e14be7a24",
+            "source_ref": "request@1",
+            "source_revision": 5
+          },
+          "origin": "declared",
+          "source_ref": "request@1",
+          "value": null
+        },
+        "ref": "fact.withdrawal_cad@1",
+        "usable": true
+      },
+      {
+        "dossier_id": "4a654c3cd06646c5a7765ff58820633d",
+        "id": "fact.withdrawal_months",
+        "version": 1,
+        "type": "assertion",
+        "owner": "human",
+        "hash": "6d690c5aa1d4a8cdea2333b45190a9e8b273930a2c9018bca9c04c8691f1fc7e",
+        "input_refs": [],
+        "revision": 1,
+        "created_at": "2026-11-15T20:47:23.194245+00:00",
+        "content": {
+          "category": "constraint",
+          "field": "withdrawal_months",
+          "inherited_from": {
+            "artifact_ref": "fact.withdrawal_months@1",
+            "dossier_id": "49ed5ae5903f41c297909b644ff7599a",
+            "origin": "declared",
+            "sha256": "c50db00f6e586b8328c297862525c38da460844a3caf86f227fe845739a42f59",
+            "source_ref": "request@1",
+            "source_revision": 5
+          },
+          "origin": "declared",
+          "source_ref": "request@1",
+          "value": null
+        },
+        "ref": "fact.withdrawal_months@1",
+        "usable": true
+      },
+      {
+        "dossier_id": "4a654c3cd06646c5a7765ff58820633d",
+        "id": "request",
+        "version": 1,
+        "type": "assertion",
+        "owner": "human",
+        "hash": "c45fc427bdf2ca8904b5b5bcb878b69d066676efe0c39f71387f45b478cc0691",
+        "input_refs": [
+          "request_source.9f938e73358e465ea74f9d136423a1f1@1"
+        ],
+        "revision": 1,
+        "created_at": "2026-11-15T20:47:23.179230+00:00",
+        "content": {
+          "facts": {
+            "assumptions": [
+              {
+                "id": "retrospective",
+                "origin": "assumed",
+                "text": "Entrées fictives choisies pour comparaison descriptive, achat-conservation, sans projection à quinze ans ; aucune allocation officielle de persona."
+              },
+              {
+                "id": "redistribution",
+                "origin": "declared",
+                "text": "Le capital libéré par la réduction de TSLA est redistribué proportionnellement aux autres positions initiales."
+              },
+              {
+                "id": "historical_window",
+                "origin": "declared",
+                "text": "Utiliser toute la fenêtre commune admissible du snapshot disponible à knowledge_date, sans projection au-delà de l'histoire observée."
+              }
+            ],
+            "capital_cad": 25000,
+            "clarifications": [],
+            "comparison": {
+              "target_weight": 0.05,
+              "ticker": "TSLA"
+            },
+            "currency": "CAD",
+            "decision_type": "historical_comparison",
+            "historical_policy": {
+              "redistribution": "proportional_other_holdings",
+              "window": {
+                "end_date": null,
+                "kind": "all_common_available",
+                "start_date": null
+              }
+            },
+            "holdings": [
+              {
+                "ticker": "SPY",
+                "weight": 0.45
+              },
+              {
+                "ticker": "XIU.TO",
+                "weight": 0.3
+              },
+              {
+                "ticker": "TSLA",
+                "weight": 0.25
+              }
+            ],
+            "horizon_years": 15,
+            "knowledge_date": "2026-11-15",
+            "max_asset_weights": {},
+            "objective": "compare_historical",
+            "question": "Comparer deux expositions initiales à TSLA sur le snapshot disponible.",
+            "reserve_policy": null,
+            "scenario_loss_limit_cad": null,
+            "scenarios": [],
+            "unknowns": [
+              "Compositions de FNB et exclusions ESG non établies."
+            ],
+            "withdrawal_cad": null,
+            "withdrawal_months": null
+          },
+          "kind": "initial",
+          "prompt": "Variante de revue Folio : comparer une exposition directe initiale de 5 % à TSLA, avec la même convention historique et la même fenêtre que la version 5.",
+          "source_ref": "request_source.9f938e73358e465ea74f9d136423a1f1@1"
+        },
+        "ref": "request@1",
+        "usable": true
+      },
+      {
+        "dossier_id": "4a654c3cd06646c5a7765ff58820633d",
+        "id": "request_source.9f938e73358e465ea74f9d136423a1f1",
+        "version": 1,
+        "type": "assertion",
+        "owner": "human",
+        "hash": "5abc2392607158eb633dba10ef76173314a33ee64251375d9993e59a600fe7fa",
+        "input_refs": [],
+        "revision": 1,
+        "created_at": "2026-11-15T20:47:23.178359+00:00",
+        "content": {
+          "facts": {
+            "assumptions": [
+              {
+                "id": "retrospective",
+                "origin": "assumed",
+                "text": "Entrées fictives choisies pour comparaison descriptive, achat-conservation, sans projection à quinze ans ; aucune allocation officielle de persona."
+              },
+              {
+                "id": "redistribution",
+                "origin": "declared",
+                "text": "Le capital libéré par la réduction de TSLA est redistribué proportionnellement aux autres positions initiales."
+              },
+              {
+                "id": "historical_window",
+                "origin": "declared",
+                "text": "Utiliser toute la fenêtre commune admissible du snapshot disponible à knowledge_date, sans projection au-delà de l'histoire observée."
+              }
+            ],
+            "capital_cad": 25000,
+            "clarifications": [],
+            "comparison": {
+              "target_weight": 0.05,
+              "ticker": "TSLA"
+            },
+            "currency": "CAD",
+            "decision_type": "historical_comparison",
+            "historical_policy": {
+              "redistribution": "proportional_other_holdings",
+              "window": {
+                "end_date": null,
+                "kind": "all_common_available",
+                "start_date": null
+              }
+            },
+            "holdings": [
+              {
+                "ticker": "SPY",
+                "weight": 0.45
+              },
+              {
+                "ticker": "XIU.TO",
+                "weight": 0.3
+              },
+              {
+                "ticker": "TSLA",
+                "weight": 0.25
+              }
+            ],
+            "horizon_years": 15,
+            "knowledge_date": "2026-11-15",
+            "max_asset_weights": {},
+            "objective": "compare_historical",
+            "question": "Comparer deux expositions initiales à TSLA sur le snapshot disponible.",
+            "reserve_policy": null,
+            "scenario_loss_limit_cad": null,
+            "scenarios": [],
+            "unknowns": [
+              "Compositions de FNB et exclusions ESG non établies."
+            ],
+            "withdrawal_cad": null,
+            "withdrawal_months": null
+          },
+          "kind": "initial",
+          "prompt": "Variante de revue Folio : comparer une exposition directe initiale de 5 % à TSLA, avec la même convention historique et la même fenêtre que la version 5."
+        },
+        "ref": "request_source.9f938e73358e465ea74f9d136423a1f1@1",
+        "usable": true
+      }
+    ],
+    "questions": [],
+    "evidence": [],
+    "events": [
+      {
+        "id": "642e5a91371b495c8a634617117473ec",
+        "dossier_id": "4a654c3cd06646c5a7765ff58820633d",
+        "kind": "request_received",
+        "actor": "human",
+        "revision": 1,
+        "payload": {
+          "facts": {
+            "assumptions": [
+              {
+                "id": "retrospective",
+                "origin": "assumed",
+                "text": "Entrées fictives choisies pour comparaison descriptive, achat-conservation, sans projection à quinze ans ; aucune allocation officielle de persona."
+              },
+              {
+                "id": "redistribution",
+                "origin": "declared",
+                "text": "Le capital libéré par la réduction de TSLA est redistribué proportionnellement aux autres positions initiales."
+              },
+              {
+                "id": "historical_window",
+                "origin": "declared",
+                "text": "Utiliser toute la fenêtre commune admissible du snapshot disponible à knowledge_date, sans projection au-delà de l'histoire observée."
+              }
+            ],
+            "capital_cad": 25000,
+            "clarifications": [],
+            "comparison": {
+              "target_weight": 0.05,
+              "ticker": "TSLA"
+            },
+            "currency": "CAD",
+            "decision_type": "historical_comparison",
+            "historical_policy": {
+              "redistribution": "proportional_other_holdings",
+              "window": {
+                "end_date": null,
+                "kind": "all_common_available",
+                "start_date": null
+              }
+            },
+            "holdings": [
+              {
+                "ticker": "SPY",
+                "weight": 0.45
+              },
+              {
+                "ticker": "XIU.TO",
+                "weight": 0.3
+              },
+              {
+                "ticker": "TSLA",
+                "weight": 0.25
+              }
+            ],
+            "horizon_years": 15,
+            "knowledge_date": "2026-11-15",
+            "max_asset_weights": {},
+            "objective": "compare_historical",
+            "question": "Comparer deux expositions initiales à TSLA sur le snapshot disponible.",
+            "reserve_policy": null,
+            "scenario_loss_limit_cad": null,
+            "scenarios": [],
+            "unknowns": [
+              "Compositions de FNB et exclusions ESG non établies."
+            ],
+            "withdrawal_cad": null,
+            "withdrawal_months": null
+          },
+          "prompt": "Variante de revue Folio : comparer une exposition directe initiale de 5 % à TSLA, avec la même convention historique et la même fenêtre que la version 5."
+        },
+        "created_at": "2026-11-15T20:47:23.177289+00:00"
+      }
+    ],
+    "revisions": [
+      {
+        "dossier_id": "4a654c3cd06646c5a7765ff58820633d",
+        "revision": 1,
+        "kind": "request_received",
+        "actor": "human",
+        "payload": {
+          "facts": {
+            "assumptions": [
+              {
+                "id": "retrospective",
+                "origin": "assumed",
+                "text": "Entrées fictives choisies pour comparaison descriptive, achat-conservation, sans projection à quinze ans ; aucune allocation officielle de persona."
+              },
+              {
+                "id": "redistribution",
+                "origin": "declared",
+                "text": "Le capital libéré par la réduction de TSLA est redistribué proportionnellement aux autres positions initiales."
+              },
+              {
+                "id": "historical_window",
+                "origin": "declared",
+                "text": "Utiliser toute la fenêtre commune admissible du snapshot disponible à knowledge_date, sans projection au-delà de l'histoire observée."
+              }
+            ],
+            "capital_cad": 25000,
+            "clarifications": [],
+            "comparison": {
+              "target_weight": 0.05,
+              "ticker": "TSLA"
+            },
+            "currency": "CAD",
+            "decision_type": "historical_comparison",
+            "historical_policy": {
+              "redistribution": "proportional_other_holdings",
+              "window": {
+                "end_date": null,
+                "kind": "all_common_available",
+                "start_date": null
+              }
+            },
+            "holdings": [
+              {
+                "ticker": "SPY",
+                "weight": 0.45
+              },
+              {
+                "ticker": "XIU.TO",
+                "weight": 0.3
+              },
+              {
+                "ticker": "TSLA",
+                "weight": 0.25
+              }
+            ],
+            "horizon_years": 15,
+            "knowledge_date": "2026-11-15",
+            "max_asset_weights": {},
+            "objective": "compare_historical",
+            "question": "Comparer deux expositions initiales à TSLA sur le snapshot disponible.",
+            "reserve_policy": null,
+            "scenario_loss_limit_cad": null,
+            "scenarios": [],
+            "unknowns": [
+              "Compositions de FNB et exclusions ESG non établies."
+            ],
+            "withdrawal_cad": null,
+            "withdrawal_months": null
+          },
+          "prompt": "Variante de revue Folio : comparer une exposition directe initiale de 5 % à TSLA, avec la même convention historique et la même fenêtre que la version 5."
+        },
+        "created_at": "2026-11-15T20:47:23.177207+00:00"
+      }
+    ],
+    "runs": [
+      {
+        "id": "9f938e73358e465ea74f9d136423a1f1",
+        "dossier_id": "4a654c3cd06646c5a7765ff58820633d",
+        "status": "running",
+        "current_role": "agent0",
+        "request": {
+          "facts": {
+            "assumptions": [
+              {
+                "id": "retrospective",
+                "origin": "assumed",
+                "text": "Entrées fictives choisies pour comparaison descriptive, achat-conservation, sans projection à quinze ans ; aucune allocation officielle de persona."
+              },
+              {
+                "id": "redistribution",
+                "origin": "declared",
+                "text": "Le capital libéré par la réduction de TSLA est redistribué proportionnellement aux autres positions initiales."
+              },
+              {
+                "id": "historical_window",
+                "origin": "declared",
+                "text": "Utiliser toute la fenêtre commune admissible du snapshot disponible à knowledge_date, sans projection au-delà de l'histoire observée."
+              }
+            ],
+            "capital_cad": 25000,
+            "clarifications": [],
+            "comparison": {
+              "target_weight": 0.05,
+              "ticker": "TSLA"
+            },
+            "currency": "CAD",
+            "decision_type": "historical_comparison",
+            "historical_policy": {
+              "redistribution": "proportional_other_holdings",
+              "window": {
+                "end_date": null,
+                "kind": "all_common_available",
+                "start_date": null
+              }
+            },
+            "holdings": [
+              {
+                "ticker": "SPY",
+                "weight": 0.45
+              },
+              {
+                "ticker": "XIU.TO",
+                "weight": 0.3
+              },
+              {
+                "ticker": "TSLA",
+                "weight": 0.25
+              }
+            ],
+            "horizon_years": 15,
+            "knowledge_date": "2026-11-15",
+            "max_asset_weights": {},
+            "objective": "compare_historical",
+            "question": "Comparer deux expositions initiales à TSLA sur le snapshot disponible.",
+            "reserve_policy": null,
+            "scenario_loss_limit_cad": null,
+            "scenarios": [],
+            "unknowns": [
+              "Compositions de FNB et exclusions ESG non établies."
+            ],
+            "withdrawal_cad": null,
+            "withdrawal_months": null
+          },
+          "kind": "initial",
+          "prompt": "Variante de revue Folio : comparer une exposition directe initiale de 5 % à TSLA, avec la même convention historique et la même fenêtre que la version 5.",
+          "request_ref": "request@1",
+          "software_manifest": {
+            "files": {
+              "alphaforge_app/analytics.py": "fbe8fbdb57080c2652169aea66c5d35fcb54e31087847d05ce72f5e3cbf92b4f",
+              "alphaforge_app/bedrock.py": "ca9241560d5cc0cd12fb5ea8b883b0a0b56cef6c9e36bfd112c3b11ab1f9be94",
+              "alphaforge_app/datasets.py": "ef920c0c6dc9bbe23f1e23c0c76047b45329497d4b5a8126b3314759cc523655",
+              "alphaforge_app/decision/__init__.py": "d1670f31cff060221afeb668b9f8ed2dbc27196308016e503922ccde0e93678f",
+              "alphaforge_app/decision/api.py": "6620f47c4c9e5d4c1f20ee68000b3d78557bb958abe98bfb3167badcd96736d5",
+              "alphaforge_app/decision/assessment.py": "2f3e998f2a008fc838a7dade87de6b39c8dbb5e223c043abe5442ec5229f26ce",
+              "alphaforge_app/decision/finance.py": "7f277003e42216d8e68c5d042a4cfec6363962a171679a694799ccff3f37085e",
+              "alphaforge_app/decision/folio_api.py": "097b280ab2c82177d74e56eb18f19ef003a8b2de76ccbf98cc7007b885f666da",
+              "alphaforge_app/decision/folio_projection.py": "2fd82565add7ee9e55902fc60521bcd9cbeb6e04d8ef007340da53a6cbaf2666",
+              "alphaforge_app/decision/inspection.py": "9fb0f63f2504620a31198dcc1eebb3e4b188bba73f8a04cc6afac6e7eb6e0045",
+              "alphaforge_app/decision/models.py": "a4f30c1ef79a3cd1ecf8c5ec4ad8628df80b13b0d24c9d99af0cd600ff5ca037",
+              "alphaforge_app/decision/research.py": "58c3300b5a208e94b7000306fd994a333b5ad2521deed42614022ae2b39440b3",
+              "alphaforge_app/decision/service.py": "755db8b9e4dd90bd220b5db840ac61d4651e225f7fe92bc8d0c94f1fcab0e845",
+              "alphaforge_app/decision/store.py": "6fb96e5812402335d9965912878907b28bfa7902d04b5e26279c1f31e1d27a49",
+              "alphaforge_app/decision/tool_contracts.py": "ce443706710639a222b37dd90c7bb9a13f38835699a60dac0b189f9c78d3d6b6",
+              "alphaforge_app/decision/workflow.py": "4fff6263c7c750a31bbd309ccde3b68f6f08835fb292ac77ab4b8744561acd60",
+              "requirements.txt": "4b7600a3aa1f20da5d89530428b754c6e49c2a61b8986061cbf2111c1d3a9141"
+            },
+            "format": "sha256-source-files-v2",
+            "source_bundle_object": "ce82776293ee616b762a01a805ec88d540f0c10193fd31eafed5ae6912a3eaef"
+          },
+          "use_ai": true
+        },
+        "error": null,
+        "created_at": "2026-11-15T20:47:23.194297+00:00",
+        "updated_at": "2026-11-15T20:47:23.194299+00:00"
+      }
+    ],
+    "tasks": [],
+    "attempts": [],
+    "comparison": null,
+    "route": {
+      "provider": "amazon-bedrock-runtime",
+      "model": "global.openai.gpt-6-astra",
+      "entry_region": "us-east-1",
+      "residency": "global; aucune résidence canadienne revendiquée",
+      "verified_requests": []
+    },
+    "limitations": [
+      "Conseil simulé sur données et hypothèses explicites.",
+      "Une reprise réutilise les résultats enregistrés ; un appel AWS interrompu avant réception peut nécessiter une nouvelle tentative facturée."
+    ]
+  }
+}

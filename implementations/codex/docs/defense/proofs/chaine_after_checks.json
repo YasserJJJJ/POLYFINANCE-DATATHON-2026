@@ -1,0 +1,16 @@
+{
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_p5_chain_review.py",
+    "tests/test_decision_store_review.py",
+    "tests/test_decision_service_review.py",
+    "tests/test_decision_workflow.py"
+  ],
+  "exit_code": 0,
+  "stdout": "..........................................                               [100%]\n=============================== warnings summary ===============================\n.venv/lib/python3.15/site-packages/langsmith/_internal/_beta_decorator.py:92: 13 warnings\n  /Users/vpro/Documents/ChatGPT/CALIBRE/Datathon_AlphaForge/.venv/lib/python3.15/site-packages/langsmith/_internal/_beta_decorator.py:92: DeprecationWarning: 'asyncio.iscoroutinefunction' is deprecated and slated for removal in Python 3.16; use inspect.iscoroutinefunction() instead\n    if asyncio.iscoroutinefunction(func):\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n42 passed, 13 warnings in 2.96s\n",
+  "stderr": "",
+  "mode": "no_model_inference"
+}

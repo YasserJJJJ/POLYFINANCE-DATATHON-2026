@@ -1,0 +1,564 @@
+{
+  "mode": "fault_injection_real_finance_plus_insufficient_check_no_model",
+  "status": "complete",
+  "view_status": "conditional",
+  "arithmetic_control": {
+    "limits": "Tolérances et hypothèses de la méthode ; consulter les contrôles détaillés.",
+    "method": [
+      {
+        "dual_sign_error": 0.0,
+        "id": "constraints",
+        "method": "Résidus primal, stationnarité et dualité",
+        "numerical_checks_pass": true,
+        "primal_dual_objective_gap": 0.0,
+        "primal_max_residual_fraction": 0.0,
+        "scope": "Ce LP uniquement ; aucune validation d'instrument.",
+        "stationarity_max_residual": 0.0,
+        "status": "sufficient",
+        "tolerance": 1e-08
+      },
+      {
+        "attained": true,
+        "gap_fraction": 0.0,
+        "id": "independent_lower_bound",
+        "lower_bound_fraction": 0.3,
+        "method": "Demi-L1 = somme des augmentations = somme des diminutions",
+        "scope": "T ≥ max(achat nécessaire de réserve, ventes imposées par plafonds).",
+        "status": "sufficient"
+      },
+      {
+        "id": "multiple_optima",
+        "method": "Min/max de chaque poids à rotation ≤ minimum + tolérance",
+        "non_unique_witness_found": true,
+        "scope": "Extrêmes sur la face optimale à tolérance ; aucun optimum de risque recherché.",
+        "status": "sufficient"
+      },
+      {
+        "id": "independent_recomputation",
+        "method": "Controlled arithmetic-verification failure injection.",
+        "scope": "The claimed minimum cannot be verified.",
+        "status": "insufficient"
+      },
+      {
+        "artifact_ref": "baseline_stress@1",
+        "id": "baseline_branch_consistency",
+        "method": "Comparaison des pertes initiales avec le diagnostic indépendant du retrait.",
+        "reused": false,
+        "scope": "Égalité des pertes sous les chocs ; pas admissibilité du portefeuille au retrait.",
+        "status": "sufficient"
+      }
+    ],
+    "scope": "Le sous-problème calculé et ses unités.",
+    "status": "sufficient"
+  },
+  "claims": [
+    {
+      "artifact_ref": "analysis@1",
+      "id": "minimum_reallocation",
+      "kind": "conditional_optimality",
+      "result_refs": [
+        {
+          "pointer": "/options/1/metrics/turnover_cad/value",
+          "unit": "CAD"
+        }
+      ],
+      "scope": "Branche abstraite, contraintes déclarées et tolérances numériques.",
+      "text": "Dans ce modèle, le minimum de capital réalloué est de 30,000.00 CAD."
+    },
+    {
+      "artifact_ref": "analysis@1",
+      "id": "reserve_scope",
+      "kind": "limitation",
+      "result_refs": [],
+      "scope": "Aucun résultat hors du modèle.",
+      "text": "La réserve est abstraite ; aucune garantie d'un instrument réel n'est établie."
+    },
+    {
+      "artifact_ref": "analysis@1",
+      "id": "multiple_optima",
+      "kind": "numerical_witness",
+      "result_refs": [
+        {
+          "pointer": "/optimal_face/non_unique_witness_found",
+          "unit": "boolean"
+        }
+      ],
+      "scope": "Extrêmes sur la face optimale à tolérance ; aucun optimum de risque recherché.",
+      "text": "Plusieurs allocations atteignent le minimum à la tolérance déclarée ; aucun critère de départage n'a été inventé."
+    }
+  ],
+  "options": [
+    {
+      "admissible": false,
+      "constraint_checks": [
+        {
+          "constraint": "budget",
+          "limit": 1.0,
+          "observed": 1.0,
+          "residual": 0.0,
+          "satisfied": true,
+          "tolerance": 1e-08,
+          "unit": "fraction"
+        },
+        {
+          "constraint": "nonnegative:RESERVE_ABSTRAITE",
+          "limit": 0.0,
+          "observed": 0.0,
+          "residual": 0.0,
+          "satisfied": true,
+          "tolerance": 1e-08,
+          "unit": "fraction"
+        },
+        {
+          "constraint": "nonnegative:TSLA",
+          "limit": 0.0,
+          "observed": 0.25,
+          "residual": 0.0,
+          "satisfied": true,
+          "tolerance": 1e-08,
+          "unit": "fraction"
+        },
+        {
+          "constraint": "asset_cap:TSLA",
+          "limit": 0.1,
+          "observed": 0.25,
+          "residual": 0.15,
+          "satisfied": false,
+          "tolerance": 1e-08,
+          "unit": "fraction"
+        },
+        {
+          "constraint": "nonnegative:XBB.TO",
+          "limit": 0.0,
+          "observed": 0.35,
+          "residual": 0.0,
+          "satisfied": true,
+          "tolerance": 1e-08,
+          "unit": "fraction"
+        },
+        {
+          "constraint": "nonnegative:XIU.TO",
+          "limit": 0.0,
+          "observed": 0.2,
+          "residual": 0.0,
+          "satisfied": true,
+          "tolerance": 1e-08,
+          "unit": "fraction"
+        },
+        {
+          "constraint": "nonnegative:ZST.TO",
+          "limit": 0.0,
+          "observed": 0.2,
+          "residual": 0.0,
+          "satisfied": true,
+          "tolerance": 1e-08,
+          "unit": "fraction"
+        },
+        {
+          "constraint": "reserve",
+          "limit": 30000.0,
+          "observed": 0.0,
+          "residual": 30000.0,
+          "satisfied": false,
+          "tolerance": 0.001,
+          "unit": "CAD"
+        },
+        {
+          "constraint": "scenario_loss:actions",
+          "limit": 15000.0,
+          "observed": 18250.0,
+          "residual": 3250.0,
+          "satisfied": false,
+          "tolerance": 0.001,
+          "unit": "CAD"
+        },
+        {
+          "constraint": "scenario_loss:obligations",
+          "limit": 15000.0,
+          "observed": 13900.000000000002,
+          "residual": 0.0,
+          "satisfied": true,
+          "tolerance": 0.001,
+          "unit": "CAD"
+        }
+      ],
+      "diagnostics": {},
+      "id": "baseline",
+      "label": "Allocation initiale",
+      "metrics": {
+        "reserve_cad": {
+          "unit": "CAD",
+          "value": 0.0
+        },
+        "turnover_cad": {
+          "unit": "CAD",
+          "value": 0.0
+        },
+        "turnover_pct": {
+          "unit": "percent",
+          "value": 0.0
+        }
+      },
+      "scenario_results": [
+        {
+          "horizon_months": 12.0,
+          "id": "actions",
+          "kind": "hypothetical",
+          "label": "Choc actions hypothétique",
+          "loss_cad": 18250.0,
+          "probability": null,
+          "unit": "CAD",
+          "wealth_after_withdrawal_cad": null,
+          "wealth_before_withdrawal_cad": 81750.0
+        },
+        {
+          "horizon_months": 12.0,
+          "id": "obligations",
+          "kind": "hypothetical",
+          "label": "Choc obligations hypothétique",
+          "loss_cad": 13900.000000000002,
+          "probability": null,
+          "unit": "CAD",
+          "wealth_after_withdrawal_cad": null,
+          "wealth_before_withdrawal_cad": 86100.0
+        }
+      ],
+      "violations": [
+        {
+          "constraint": "asset_cap:TSLA",
+          "limit": 0.1,
+          "observed": 0.25,
+          "residual": 0.15,
+          "satisfied": false,
+          "tolerance": 1e-08,
+          "unit": "fraction"
+        },
+        {
+          "constraint": "reserve",
+          "limit": 30000.0,
+          "observed": 0.0,
+          "residual": 30000.0,
+          "satisfied": false,
+          "tolerance": 0.001,
+          "unit": "CAD"
+        },
+        {
+          "constraint": "scenario_loss:actions",
+          "limit": 15000.0,
+          "observed": 18250.0,
+          "residual": 3250.0,
+          "satisfied": false,
+          "tolerance": 0.001,
+          "unit": "CAD"
+        }
+      ],
+      "weight_unit": "fraction_of_initial_capital",
+      "weights": {
+        "RESERVE_ABSTRAITE": 0.0,
+        "TSLA": 0.25,
+        "XBB.TO": 0.35,
+        "XIU.TO": 0.2,
+        "ZST.TO": 0.2
+      }
+    },
+    {
+      "admissible": true,
+      "constraint_checks": [
+        {
+          "constraint": "budget",
+          "limit": 1.0,
+          "observed": 1.0,
+          "residual": 0.0,
+          "satisfied": true,
+          "tolerance": 1e-08,
+          "unit": "fraction"
+        },
+        {
+          "constraint": "nonnegative:RESERVE_ABSTRAITE",
+          "limit": 0.0,
+          "observed": 0.3,
+          "residual": 0.0,
+          "satisfied": true,
+          "tolerance": 1e-08,
+          "unit": "fraction"
+        },
+        {
+          "constraint": "nonnegative:TSLA",
+          "limit": 0.0,
+          "observed": 0.1,
+          "residual": 0.0,
+          "satisfied": true,
+          "tolerance": 1e-08,
+          "unit": "fraction"
+        },
+        {
+          "constraint": "asset_cap:TSLA",
+          "limit": 0.1,
+          "observed": 0.1,
+          "residual": 0.0,
+          "satisfied": true,
+          "tolerance": 1e-08,
+          "unit": "fraction"
+        },
+        {
+          "constraint": "nonnegative:XBB.TO",
+          "limit": 0.0,
+          "observed": 0.19999999999999996,
+          "residual": 0.0,
+          "satisfied": true,
+          "tolerance": 1e-08,
+          "unit": "fraction"
+        },
+        {
+          "constraint": "nonnegative:XIU.TO",
+          "limit": 0.0,
+          "observed": 0.2,
+          "residual": 0.0,
+          "satisfied": true,
+          "tolerance": 1e-08,
+          "unit": "fraction"
+        },
+        {
+          "constraint": "nonnegative:ZST.TO",
+          "limit": 0.0,
+          "observed": 0.2,
+          "residual": 0.0,
+          "satisfied": true,
+          "tolerance": 1e-08,
+          "unit": "fraction"
+        },
+        {
+          "constraint": "reserve",
+          "limit": 30000.0,
+          "observed": 30000.0,
+          "residual": 0.0,
+          "satisfied": true,
+          "tolerance": 0.001,
+          "unit": "CAD"
+        },
+        {
+          "constraint": "scenario_loss:actions",
+          "limit": 15000.0,
+          "observed": 10000.0,
+          "residual": 0.0,
+          "satisfied": true,
+          "tolerance": 0.001,
+          "unit": "CAD"
+        },
+        {
+          "constraint": "scenario_loss:obligations",
+          "limit": 15000.0,
+          "observed": 7900.0,
+          "residual": 0.0,
+          "satisfied": true,
+          "tolerance": 0.001,
+          "unit": "CAD"
+        }
+      ],
+      "diagnostics": {
+        "dual_sign_error": 0.0,
+        "numerical_checks_pass": true,
+        "primal_dual_objective_gap": 0.0,
+        "primal_max_residual_fraction": 0.0,
+        "stationarity_max_residual": 0.0,
+        "tolerance": 1e-08
+      },
+      "id": "minimum_turnover",
+      "label": "Minimum de capital réalloué",
+      "metrics": {
+        "reserve_cad": {
+          "unit": "CAD",
+          "value": 30000.0
+        },
+        "turnover_cad": {
+          "unit": "CAD",
+          "value": 30000.0
+        },
+        "turnover_pct": {
+          "unit": "percent",
+          "value": 30.0
+        }
+      },
+      "scenario_results": [
+        {
+          "horizon_months": 12.0,
+          "id": "actions",
+          "kind": "hypothetical",
+          "label": "Choc actions hypothétique",
+          "loss_cad": 10000.0,
+          "probability": null,
+          "unit": "CAD",
+          "wealth_after_withdrawal_cad": 60000.0,
+          "wealth_before_withdrawal_cad": 90000.0
+        },
+        {
+          "horizon_months": 12.0,
+          "id": "obligations",
+          "kind": "hypothetical",
+          "label": "Choc obligations hypothétique",
+          "loss_cad": 7900.0,
+          "probability": null,
+          "unit": "CAD",
+          "wealth_after_withdrawal_cad": 62100.0,
+          "wealth_before_withdrawal_cad": 92100.0
+        }
+      ],
+      "violations": [],
+      "weight_unit": "fraction_of_initial_capital",
+      "weights": {
+        "RESERVE_ABSTRAITE": 0.3,
+        "TSLA": 0.1,
+        "XBB.TO": 0.19999999999999996,
+        "XIU.TO": 0.2,
+        "ZST.TO": 0.2
+      }
+    },
+    {
+      "admissible": true,
+      "constraint_checks": [
+        {
+          "constraint": "budget",
+          "limit": 1.0,
+          "observed": 1.0,
+          "residual": 0.0,
+          "satisfied": true,
+          "tolerance": 1e-08,
+          "unit": "fraction"
+        },
+        {
+          "constraint": "nonnegative:RESERVE_ABSTRAITE",
+          "limit": 0.0,
+          "observed": 0.3,
+          "residual": 0.0,
+          "satisfied": true,
+          "tolerance": 1e-08,
+          "unit": "fraction"
+        },
+        {
+          "constraint": "nonnegative:TSLA",
+          "limit": 0.0,
+          "observed": 0.0,
+          "residual": 0.0,
+          "satisfied": true,
+          "tolerance": 1e-08,
+          "unit": "fraction"
+        },
+        {
+          "constraint": "asset_cap:TSLA",
+          "limit": 0.1,
+          "observed": 0.0,
+          "residual": 0.0,
+          "satisfied": true,
+          "tolerance": 1e-08,
+          "unit": "fraction"
+        },
+        {
+          "constraint": "nonnegative:XBB.TO",
+          "limit": 0.0,
+          "observed": 0.35,
+          "residual": 0.0,
+          "satisfied": true,
+          "tolerance": 1e-08,
+          "unit": "fraction"
+        },
+        {
+          "constraint": "nonnegative:XIU.TO",
+          "limit": 0.0,
+          "observed": 0.14999999999999997,
+          "residual": 0.0,
+          "satisfied": true,
+          "tolerance": 1e-08,
+          "unit": "fraction"
+        },
+        {
+          "constraint": "nonnegative:ZST.TO",
+          "limit": 0.0,
+          "observed": 0.2,
+          "residual": 0.0,
+          "satisfied": true,
+          "tolerance": 1e-08,
+          "unit": "fraction"
+        },
+        {
+          "constraint": "reserve",
+          "limit": 30000.0,
+          "observed": 30000.0,
+          "residual": 0.0,
+          "satisfied": true,
+          "tolerance": 0.001,
+          "unit": "CAD"
+        },
+        {
+          "constraint": "scenario_loss:actions",
+          "limit": 15000.0,
+          "observed": 4749.999999999999,
+          "residual": 0.0,
+          "satisfied": true,
+          "tolerance": 0.001,
+          "unit": "CAD"
+        },
+        {
+          "constraint": "scenario_loss:obligations",
+          "limit": 15000.0,
+          "observed": 7149.999999999999,
+          "residual": 0.0,
+          "satisfied": true,
+          "tolerance": 0.001,
+          "unit": "CAD"
+        }
+      ],
+      "diagnostics": {
+        "optimal_face_gap_fraction": 5.551115123125783e-17
+      },
+      "id": "alternative_minimum",
+      "label": "Autre allocation au minimum, à tolérance",
+      "metrics": {
+        "reserve_cad": {
+          "unit": "CAD",
+          "value": 30000.0
+        },
+        "turnover_cad": {
+          "unit": "CAD",
+          "value": 30000.000000000004
+        },
+        "turnover_pct": {
+          "unit": "percent",
+          "value": 30.000000000000004
+        }
+      },
+      "scenario_results": [
+        {
+          "horizon_months": 12.0,
+          "id": "actions",
+          "kind": "hypothetical",
+          "label": "Choc actions hypothétique",
+          "loss_cad": 4749.999999999999,
+          "probability": null,
+          "unit": "CAD",
+          "wealth_after_withdrawal_cad": 65250.0,
+          "wealth_before_withdrawal_cad": 95250.0
+        },
+        {
+          "horizon_months": 12.0,
+          "id": "obligations",
+          "kind": "hypothetical",
+          "label": "Choc obligations hypothétique",
+          "loss_cad": 7149.999999999999,
+          "probability": null,
+          "unit": "CAD",
+          "wealth_after_withdrawal_cad": 62850.0,
+          "wealth_before_withdrawal_cad": 92850.0
+        }
+      ],
+      "violations": [],
+      "weight_unit": "fraction_of_initial_capital",
+      "weights": {
+        "RESERVE_ABSTRAITE": 0.3,
+        "TSLA": 0.0,
+        "XBB.TO": 0.35,
+        "XIU.TO": 0.14999999999999997,
+        "ZST.TO": 0.2
+      }
+    }
+  ]
+}

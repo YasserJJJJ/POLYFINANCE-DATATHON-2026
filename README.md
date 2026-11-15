@@ -116,3 +116,7 @@ et [docs/donnees.md](docs/donnees.md).
 Règles Git : `main` marche toujours, une branche par sujet (`feature/nom-court`), commits au format
 Conventional Commits, petites PR avec 1 approbation. Contrats communs : [docs/contrats.md](docs/contrats.md).
 Plan complet : [docs/plan.md](docs/plan.md).
+
+## Implémentation Codex indépendante pour la fusion
+
+L’implémentation Codex (Folio, dossier de décision versionné, recherches et tests) est conservée dans [`implementations/codex/`](implementations/codex/IMPORT.md). Elle est importée séparément pour comparaison et intégration ultérieure; l’application à la racine reste distincte.

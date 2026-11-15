@@ -1,0 +1,469 @@
+GitHub - ranaroussi/yfinance: Download market data from Yahoo! Finance's API · GitHub 
+
+ Skip to content 
+
+Navigation Menu
+
+ Sign in 
+
+ Products 
+
+ Platform 
+ GitHub Repository hosting, code review, and collaboration 
+
+ Copilot AI coding agent for tasks, projects, and automated work 
+
+ Build & Ship 
+ Actions CI/CD and automation 
+
+ Code Quality Quality analysis, fixes, and enforcement 
+
+ Codespaces Cloud development environments 
+
+ Secure 
+ Code Security Vulnerability detection and remediation 
+
+ Secret Protection Secret scanning and leak prevention 
+
+ All Features 
+
+ Developers 
+
+ Learn 
+ Documentation 
+
+ Training 
+
+ Certifications 
+
+ Build 
+ Build with Copilot 
+
+ Customize Copilot 
+
+ Integrations 
+
+ Explore 
+ Trending repos 
+
+ GitHub Sponsors 
+
+ Developer articles 
+
+ Changelog 
+ Changelog Your source for the latest features, improvements, and fixes across GitHub products, all in one place. 
+
+ Businesses 
+
+ By Stage 
+ Enterprises 
+
+ Team 
+
+ Startups 
+
+ Nonprofits 
+
+ By Industry 
+ Healthcare 
+
+ Financial services 
+
+ Manufacturing 
+
+ Government 
+
+ See all industries 
+
+ Evaluate GitHub 
+ Why GitHub 
+
+ Customer Stories 
+
+ Business insights 
+
+ Trust Center 
+
+ Add-ons 
+ GitHub Advanced Security Enterprise-grade code security 
+
+ Copilot for business Enterprise-grade AI features 
+
+ Premium Support Enterprise-grade 24/7 support 
+
+ Resources 
+
+ Learn & Connect 
+ Documentation 
+
+ Resource center 
+
+ Blog 
+
+ Events & webinars 
+
+ Community Forum 
+
+ Customer Stories 
+
+ Integrations 
+
+ Support 
+ Customer support 
+
+ Training 
+
+ GitHub Status 
+
+ Company 
+ About 
+
+ Partners 
+
+ Changelog 
+
+ GitHub Universe 
+ GitHub Universe The event for developers, by developers — talks, workshops, and what’s next for GitHub. 
+
+ Pricing 
+
+ Search / 
+
+ Sign in 
+ Sign up 
+Appearance settings
+
+ You signed in with another tab or window. Reload to refresh your session. 
+ You signed out in another tab or window. Reload to refresh your session. 
+ You switched accounts on another tab or window. Reload to refresh your session. 
+
+ Dismiss alert 
+
+{{ message }}
+
+ ranaroussi 
+
+ yfinance 
+
+Repository navigation
+
+ Code 
+
+ Issues 53  ( 53 ) 
+
+ Pull requests 56  ( 56 ) 
+
+ Discussions 
+
+ Actions 
+
+ Projects 
+
+ Wiki 
+
+ Security and quality 
+
+ Insights 
+
+ More items 
+
+ yfinance 
+ Public 
+
+ Sponsor 
+
+ Notifications You must be signed in to change notification settings 
+
+ Fork 3.5k  ( 3.5k ) 
+
+ Star 25.9k  ( 25.9k ) You must be signed in to star a repository 
+
+ About 
+
+Download market data from Yahoo! Finance's API
+
+ ranaroussi.github.io/yfinance 
+
+ Topics 
+
+ financial-data fix-yahoo-finance market-data pandas python stock-data yahoo-finance yahoo-finance-api 
+
+ Resources 
+
+ Readme 
+
+ Apache-2.0 license 
+
+ Code of conduct 
+
+ Code of conduct 
+
+ Contributing 
+
+ Contributing 
+
+ Activity 
+
+ Stars 
+
+ 25.9k stars 
+
+ Watchers 
+
+ 269 watching 
+
+ Forks 
+
+ 3.5k forks 
+
+ Report repository 
+
+ main 
+
+ Branches Tags 
+
+ Go to file 
+
+ Code 
+ Open more actions menu 
+
+Latest commit
+
+History
+ 2,025 Commits 
+
+ 2,025 Commits 
+
+Folders and files
+
+ Name Name 
+ Last commit message 
+ 
+ Last commit date 
+
+ .github 
+
+ .github 
+
+ doc 
+
+ doc 
+
+ maintainer 
+
+ maintainer 
+
+ tests 
+
+ tests 
+
+ yfinance 
+
+ yfinance 
+
+ .gitignore 
+
+ .gitignore 
+
+ .travis.yml 
+
+ .travis.yml 
+
+ CHANGELOG.md 
+
+ CHANGELOG.md 
+
+ CHANGELOG.rst 
+
+ CHANGELOG.rst 
+
+ CODE_OF_CONDUCT.md 
+
+ CODE_OF_CONDUCT.md 
+
+ CONTRIBUTING.md 
+
+ CONTRIBUTING.md 
+
+ LICENSE.txt 
+
+ LICENSE.txt 
+
+ README.md 
+
+ README.md 
+
+ meta.yaml 
+
+ meta.yaml 
+
+ pyproject.toml 
+
+ pyproject.toml 
+
+ ruff.toml 
+
+ ruff.toml 
+
+ View all files 
+
+Repository files navigation
+
+ README 
+
+ Code of conduct 
+
+ Contributing 
+
+ Apache-2.0 license 
+
+ More items 
+
+Download market data from Yahoo! Finance's API
+
+ yfinance offers a Pythonic way to fetch financial & market data from Yahoo!Ⓡ finance .
+
+ Important
+
+ Yahoo!, Y!Finance, and Yahoo! finance are registered trademarks of Yahoo, Inc. 
+
+yfinance is not affiliated, endorsed, or vetted by Yahoo, Inc. It's an open-source tool that uses Yahoo's publicly available APIs, and is intended for research and educational purposes.
+
+ You should refer to Yahoo!'s terms of use ( here , here , and here ) **for details on your rights to use the actual data downloaded.
+
+Remember - the Yahoo! finance API is intended for personal use only.**
+
+ Tip
+
+THE NEW DOCUMENTATION WEBSITE IS NOW LIVE! 🤘
+
+Visit ranaroussi.github.io/yfinance 
+
+Main components
+
+ Ticker : single ticker data
+
+ Tickers : multiple tickers' data
+
+ download : download market data for multiple tickers
+
+ Market : get information about a market
+
+ WebSocket and AsyncWebSocket : live streaming data
+
+ Search : quotes and news from search
+
+ Sector and Industry : sector and industry information
+
+ EquityQuery and Screener : build query to screen market
+
+ Note
+
+ Prices are default adjusted for dividends ( auto_adjust=True ) .
+
+Installation
+
+Install yfinance from PYPI using pip :
+
+ $ pip install yfinance
+
+To install without curl_cffi for requests fallback, see Advanced ▸ Installation .
+
+ yfinance relies on the community to investigate bugs and contribute code. Here's how you can help. 
+
+Legal Stuff
+
+ yfinance is distributed under the Apache Software License . See
+the LICENSE.txt file in the release for details.
+
+AGAIN - yfinance is not affiliated, endorsed, or vetted by Yahoo, Inc. It's
+an open-source tool that uses Yahoo's publicly available APIs, and is
+intended for research and educational purposes. You should refer to Yahoo!'s terms of use
+( here ,
+ here , and
+ here ) for
+details on your rights to use the actual data downloaded.
+
+P.S.
+
+Please drop me a note with any feedback you have.
+
+ Ran Aroussi 
+
+ About 
+
+Download market data from Yahoo! Finance's API
+
+ ranaroussi.github.io/yfinance 
+
+ Topics 
+
+ financial-data fix-yahoo-finance market-data pandas python stock-data yahoo-finance yahoo-finance-api 
+
+ Resources 
+
+ Readme 
+
+ Apache-2.0 license 
+
+ Code of conduct 
+
+ Code of conduct 
+
+ Contributing 
+
+ Contributing 
+
+ Activity 
+
+ Stars 
+
+ 25.9k stars 
+
+ Watchers 
+
+ 269 watching 
+
+ Forks 
+
+ 3.5k forks 
+
+ Report repository 
+
+ Releases 
+
+ Sponsor this project 
+
+ Packages 
+
+ Used by 
+
+ Contributors 
+
+ Languages 
+
+Footer
+
+ © 2026 GitHub, Inc.
+
+Footer navigation
+
+ Terms 
+
+ Privacy 
+
+ Security 
+
+ Status 
+
+ Community 
+
+ Docs 
+
+ Contact 
+
+ Manage cookies
+
+ Do not share my personal information
+
+ You can’t perform that action at this time.

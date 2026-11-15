@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Valet API</title>
+    <link rel="stylesheet" type="text/css"
+          href="https://www.bankofcanada.ca/valet/static/swagger/swagger-ui.css" />
+    <link rel="stylesheet" type="text/css"
+          href="https://www.bankofcanada.ca/valet/static/swagger/index.css" />
+    <link rel="icon" type="image/png"
+          href="https://www.bankofcanada.ca/valet/static/swagger/favicon.ico" sizes="48x48" />
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0WRRH3RZH"></script>
+        <script type="text/javascript">
+            var gaVars = {
+                domains: ['www.bankofcanada.ca', 'www.banqueducanada.ca'],
+                ga4analyticsAccount: 'G-D0WRRH3RZH',
+                baseUrl: 'http://www.bankofcanada.ca',
+                pageUrl: 'http://www.bankofcanada.ca/valet/docs',
+                activeLang: 'en'
+            };
+
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+
+            gtag('js', new Date());
+
+            var DNT = 'no';
+            if (navigator.doNotTrack === "yes" || navigator.doNotTrack === "1" || navigator.msDoNotTrack === "1"
+                || window.doNotTrack === "yes" || window.doNotTrack === "1" || window.msDoNotTrack === "1") {
+                DNT = 'yes';
+            }
+
+            var options = {
+                'send_page_view': false,
+                'linker': {
+                    'domains': gaVars.domains
+                },
+                'link_attribution': {
+                    'cookie_name': '_gaela',
+                    'cookie_expires': 60,
+                    'levels': 9
+                },
+                'anonymize_ip': true,
+                'custom_map': {'dimension1': 'DNT', 'dimension2': 'URLAnchor'}
+            };
+            gtag('config', gaVars.ga4analyticsAccount, options);
+
+            // Manually send page_view event with dimensions
+            gtag('event', 'page_view', {'DNT': DNT, 'URLAnchor': location.hash});
+
+            if (localStorage.getItem('_bocDebug')) {
+                // eslint-disable-next-line no-console
+                console.log("  Options:", options, "\ndataLayer: ", dataLayer);
+            }
+        </script>
+    </head>
+
+<body>
+<boc-header data-lang="en"
+            data-french-url="https://www.banqueducanada.ca/valet/docs"
+            data-english-url="https://www.bankofcanada.ca/valet/docs"></boc-header>
+
+<div id="swagger-ui" style="margin-bottom: 5rem;"></div>
+
+<script src="https://www.bankofcanada.ca/valet/static/swagger/swagger-ui-bundle.js"
+        charset="UTF-8">
+</script>
+<script src="https://www.bankofcanada.ca/valet/static/swagger/swagger-ui-standalone-preset.js"
+        charset="UTF-8">
+</script>
+<script type="application/javascript">
+    window.ValetDocsLang = "en";
+</script>
+<script src="https://www.bankofcanada.ca/valet/static/swagger/boc-header.js"></script>
+<script src="https://www.bankofcanada.ca/valet/static/swagger/swagger-initializer.js"
+        charset="UTF-8">
+</script>
+
+</body>
+</html>

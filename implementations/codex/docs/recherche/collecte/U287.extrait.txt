@@ -1,0 +1,647 @@
+Documentation | OpenFIGI 
+ 
+ About API Insights FIGI Search Contact Us Account Account 
+
+ Account Account 
+
+Documentation
+
+ Overview Documentation OpenAPI Specs Code Examples 
+
+ CATEGORY 
+
+Introduction
+
+The OpenFIGI API allows mapping from third-party identifiers to FIGIs. The base URL for the API is:
+
+api.openfigi.com
+
+More documentation about specific requests can be found using the navigation menu to the left.
+
+The API is free and open to the public, though unauthenticated traffic will be subject to a lower rate-limit. You can sign up for an OpenFIGI account to obtain an API key which provides a higher rate-limit.
+
+You can create or view your API key from your account page after logging in .
+
+Unlisted equities are excluded by default
+Mapping and search requests return only listed equity instruments unless includeUnlistedEquities is set to true . If a request doesn't return an instrument you expect, especially when querying third-party identifiers, retry with "includeUnlistedEquities": true to include unlisted and delisted equities.
+
+You can easily send a mapping request using the curl command:
+ curl 'https://api.openfigi.com/v3/mapping' \
+ --request POST \
+ --header 'Content-Type: application/json' \
+ --data '[{"idType":"ID_BB_GLOBAL","idValue":"BBG000BLNNH6"}]'
+ 
+Example JSON response:
+ [{
+ "data": [{
+ "figi": "BBG000BLNNH6",
+ "securityType": "Common Stock",
+ "marketSector": "Equity",
+ "ticker": "IBM",
+ "name": "INTL BUSINESS MACHINES CORP",
+ "exchCode": "US",
+ "shareClassFIGI": "BBG001S5S399",
+ "compositeFIGI": "BBG000BLNNH6",
+ "securityType2": "Common Stock",
+ "securityDescription": "IBM"
+ }]
+}] 
+
+Examples On Github
+
+See the OpenFIGI/api-examples GitHub repository for code examples on how to use the API.
+
+API Key
+
+Send your API key using the HTTP header X-OPENFIGI-APIKEY . With a valid API key, you will be subject to a higher rate-limit and request size.
+ curl 'https://api.openfigi.com/v3/mapping' \
+ --request POST \
+ --header 'Content-Type: application/json' \
+ --header 'X-OPENFIGI-APIKEY: abcdefghijklmnopqrstuvwxyz' \
+ --data '[{"idType":"TICKER","idValue":"IBM","exchCode":"US"}]'
+ 
+Please sign-up and/or login to obtain an API Key.
+
+Rate Limits
+
+Rate limits are applied per API key, or per IP address when no API key is sent. Each rate-limiting window is 60 seconds long and starts with your first request.
+
+Mapping API
+
+Applies to POST /v3/mapping and GET /v3/mapping/values/:key .
+ 
+ Type of limitation Without API key With API key 
+ 
+ Max Number of Requests 25 Per Minute 250 Per Minute 
+
+ Max Jobs Per Request 10 Jobs 100 Jobs 
+
+ Max Results Per Job 15,000 15,000 
+
+Search / Filter API
+
+Applies to POST /v3/search and POST /v3/filter .
+ 
+ Type of limitation Without API key With API key 
+ 
+ Max Number of Requests 5 Per Minute 20 Per Minute 
+
+ Max Results 15,000 15,000 
+
+ Max Results Per Page 100 100 
+
+ Max Number of Pages 150 150 
+
+ Max Terms In Query 12 12 
+
+The response will include the following rate-limit headers:
+ 
+ Header Description 
+ 
+ ratelimit-policy The rate-limit policy as <limit>;w=<window in seconds>, e.g. 25;w=60. 
+
+ ratelimit-limit Total number of requests allowed in the current rate-limiting window. 
+
+ ratelimit-remaining How many requests can still be made in the current rate-limiting window. 
+
+ ratelimit-reset Time remaining in seconds until the current rate-limiting window resets. 
+
+ retry-after Only sent with a 429 response. Number of seconds to wait before retrying. 
+ 
+A response with status code 429 is returned when the rate limit is reached in the current window. Wait for the number of seconds in the retry-after header before sending more requests. A request with more mapping jobs than allowed is rejected with status code 413.
+
+Status Code
+
+List of http response status code from OpenFIGI API, following and extending standardized rule. 
+
+Not a complete list.
+
+ Response code Response message Detail explanation Suggestion 
+ 
+ 200 OK 
+
+ 400 Bad request. Invalid Payload 
+For enum request, with query key invalid.
+
+For mapping request, with post data not an array.
+
+For searching request, with post data not a plain object.
+
+ 401 Unauthorized. API key is invalid Contact us 
+
+ 404 Invalid url. 
+
+ 405 Invalid HTTP method. 
+
+ 406 Unsupported 'Accept' type. 
+
+ 413 Payload too large. Mapping request contains more than 10 jobs (without an API key) or 100 jobs (with an API key). 
+Reduce the number of jobs contained in each request.
+
+Request an API key if applicable.
+
+ 415 Invalid Content-Type. Only text/json or application/json with valid charset is accepted as Content-Type header. 
+
+ 429 Too Many Requests. Reached rate limitations. Check ratelimit headers for details 
+
+ 500 Internal server error. Resend the request later with an exponential backoff strategy 
+
+ 503 Service Unavailable. Service is under maintenance or temporarily running out of resources. Resend the request later with an exponential backoff strategy. 
+
+OpenAPI Schema
+
+GET /schema
+
+The OpenAPI schema for the OpenFIGI API https://api.openfigi.com/schema. 
+
+For more information on the OpenAPI initiative visit https://www.openapis.org. 
+
+V3
+
+POST /v3/mapping
+
+Map third party identifiers to FIGIs.
+
+Request Format
+
+The request should be an Array of Object s (or Mapping Jobs), e.g. [{{...}}, {{...}}, ...] , where each Object has the following properties:
+ 
+ Property Type Required Description 
+ 
+ idType String ✔ Type of third party identifier. See Enum Values for all supported 3rd party identifier types. 
+
+ idValue String , Number ✔ The value for the represented third party identifier. 
+
+ exchCode String Exchange code of the desired instrument(s) (cannot use in conjunction with micCode ). Click here for the current list of exchCode values. 
+
+ micCode String ISO market identification code(MIC) of the desired instrument(s) (cannot use in conjunction with exchCode ). Click here for the current list of micCode values. 
+
+ currency String Currency associated to the desired instrument(s). Click here for the current list of currency values. 
+
+ marketSecDes String Market sector description of the desired instrument(s). Click here for the current list of marketSecDes values. 
+
+ securityType String Security type of the desired instrument(s). Click here for the current list of securityType values. 
+
+ securityType2 String When idType BASE_TICKER or ID_EXCH_SYMBOL . An alternative security type of the desired instrument(s). securityType2 is typically less specific than securityType . Click here for the current list of securityType2 values. Use Market sector description if securityType2 is not available. Click here for the current list of marketSecDes values. 
+
+ includeUnlistedEquities Boolean Set to true to include equity instruments that are not listed on an exchange. 
+
+ optionType String Will filter instruments based on option type. Valid values are Call and Put . 
+
+ strike Array(2) Will find instruments whose strike price falls in an interval. Value should be an Array interval of the form [a, b] where a , b are Numbers or null . At least one entry must be a Number . When both are Number s, it is required that a <= b . Also, [a, null] is equivalent to the interval [a, ∞) and [null, b] is equivalent to (-∞, b] . 
+
+ contractSize Array(2) Will find instruments whose contract size falls in an interval. Value should be an Array interval of the form [a, b] where a , b are Numbers or null . At least one entry must be a Number . When both are Number s, it is required that a <= b . Also, [a, null] is equivalent to the interval [a, ∞) and [null, b] is equivalent to (-∞, b] . 
+
+ coupon Array(2) Will find instruments whose coupon falls in an interval. Value should be an Array interval of the form [a, b] where a , b are Numbers or null . At least one entry must be a Number . When both are Number s, it is required that a <= b . Also, [a, null] is equivalent to the interval [a, ∞) and [null, b] is equivalent to (-∞, b] . 
+
+ expiration Array(2) When securityType2 is Option or Warrant Will find instruments whose expiration date falls in an interval. Value should be an Array interval of the form [a, b] where a , b are date String s or null . Date strings must be of the form YYYY-MM-DD At least one entry must be a date String . When both are date String s, it is required that a and b are no more than one year apart. Also, [a, null] is equivalent to the interval [a, a + (1 year)] and [null, b] is equivalent to [b - (1 year), b] . 
+
+ maturity Array(2) When securityType2 is Pool Will find instruments whose maturity date falls in an interval. Value should be an Array interval of the form [a, b] where a , b are date String s or null . Date strings must be of the form YYYY-MM-DD At least one entry must be a date String . When both are date String s, it is required that a and b are no more than one year apart. Also, [a, null] is equivalent to the interval [a, a + (1 year)] and [null, b] is equivalent to [b - (1 year), b] . 
+
+ stateCode String State code of the desired instrument(s). Click here for the current list of stateCode values. 
+ 
+Some of the properties above are "enum-like" in the sense that they have only a limited number of valid values. For those properties you can use the GET /v3/mapping/values/:key endpoint to get the current list of valid values.
+
+Response Format
+
+The response is an Array of Object s where the Object at index i contains the results for the Mapping Job at index i in the request. Each Object has one of the following properties:
+ 
+ Property Type Description 
+ 
+ data Array of Object s Is present when FIGI(s) are found for the associated Mapping Job . See below for more information about the structure of the Object s in the Array . 
+
+ error String Is present when 
+Single job result exceeds 15,000 FIGIs.
+
+There was an unexpected error when processing the request.
+
+ warning String Is present when no FIGI is found. 
+ 
+When FIGI(s) are found for a Mapping Job , each Object of the data Array described above will have the following properties:
+ 
+ Property Type Description 
+ 
+ figi String FIGI assigned to the instrument. 
+
+ securityType , marketSector , exchCode , securityType2 String , null Enum-like attributes of the instrument. 
+
+ ticker , name , shareClassFIGI , compositeFIGI , securityDescription String , null Various attributes of the instrument. 
+
+ metadata "Metadata N/A" When the above attributes are unavailable or unable to be shown, this property is present. 
+ 
+Sample Request
+ [
+ { "idType":"ID_BB_GLOBAL", "idValue":"BBG000BLNNH6"},
+ { "idType":"TICKER", "idValue":"IBM", "exchCode":"US"},
+ { "idType":"ID_BB_UNIQUE", "idValue":"EQ0010080100001000", "currency":"USD"},
+ { "idType":"COMPOSITE_ID_BB_GLOBAL", "idValue":"BBG000BLNNH6", "micCode":"XNYS", "currency":"USD"},
+ { "idType":"BASE_TICKER", "idValue":"TSLA 10 C100", "securityType2":"Option", "expiration":["2018-10-01", "2018-12-01"]},
+ { "idType":"BASE_TICKER", "idValue":"NFLX 9 P330", "marketSecDes":"Equity", "securityType2":"Option", "strike":[330,null], "expiration":["2018-07-01",null]},
+ { "idType":"BASE_TICKER", "idValue":"FG", "marketSecDes":"Mtge", "securityType2":"Pool", "maturity":["2019-09-01", "2020-06-01"]},
+ { "idType":"BASE_TICKER", "idValue":"IBM", "marketSecDes":"Corp", "securityType2":"Corp", "maturity":["2026-11-01",null]},
+ { "idType":"BASE_TICKER", "idValue":"2251Q", "securityType2":"Common Stock", "includeUnlistedEquities": true}
+] 
+Sample Response
+ [{
+ "data": [{
+ "figi": "BBG000NHN466",
+ "securityType": "Common Stock",
+ "marketSector": "Equity",
+ "ticker": "IBMGBX",
+ "name": "INTL BUSINESS MACHINES CORP",
+ "exchCode": "EU",
+ "shareClassFIGI": "BBG001S5S399",
+ "compositeFIGI": "BBG000NHN304",
+ "securityType2": "Common Stock",
+ "securityDescription": "IBMGBX"
+ }, {
+ "figi": "BBG000NRMJ71",
+ "securityType": "Common Stock",
+ "marketSector": "Equity",
+ "ticker": "IBMGBX",
+ "name": "INTL BUSINESS MACHINES CORP",
+ "exchCode": "XL",
+ "shareClassFIGI": "BBG001S5S399",
+ "compositeFIGI": "BBG000NRMD01",
+ "securityType2": "Common Stock",
+ "securityDescription": "IBMGBX"
+ }]
+}, {
+ "data": [{
+ "figi": "BBG009R4CLR3",
+ "marketSector": "Govt",
+ "securityType": "US GOVERNMENT",
+ "ticker": "T 2 08/15/25",
+ "name": "US TREASURY N/B",
+ "exchCode": "BERLIN",
+ "securityDescription": "T 2 08/15/25",
+ "securityType2": "Note",
+ "compositeFIGI": null,
+ "shareClassFIGI": null,
+ }]
+},
+{
+ "error": "No identifier found."
+},
+...
+] 
+
+GET /v3/mapping/values/:key
+
+Get the current list of values for the enum-like properties on Mapping Jobs .
+
+Request Format
+ 
+ Property Type Required Description 
+ 
+ key String (one of idType , exchCode , micCode , currency , marketSecDes , securityType , securityType2 , stateCode ,) ✔ The name of the Mapping Job property for which to list the possible values. 
+ 
+Response Format
+
+The response is an Object having one of the following properties:
+ 
+ Property Type Description 
+ 
+ values Array of String s The current list of values present for the property named by the key request parameter. 
+
+ error String Is present when there was an error when processing the request. 
+
+ warning String Is present when no FIGI is found. 
+ 
+Sample Request
+ /v3/mapping/values/marketSecDes 
+Sample Response
+ {
+ "values": [
+ "Comdty",
+ "Corp",
+ "Curncy",
+ "Equity",
+ "Govt",
+ "Index",
+ "M-Mkt",
+ "Mtge",
+ "Muni",
+ "Pfd"
+ ]
+} 
+
+POST /v3/search
+
+Search for FIGIs using key words and other filters.
+
+Request Format
+
+The request should be an Object with the following properties:
+ 
+ Property Type Required Description 
+ 
+ query String Key words. 
+
+ start String The number of results returned for any given request is fixed. When more results are accessible, the response will contain a next property whose value should be sent in succeeding requests as the value of the start property. This will notify the API to return the next "page" of results. 
+
+ exchCode , micCode , currency , marketSecDes , securityType , securityType2 , includeUnlistedEquities , optionType , strike , contractSize , coupon , expiration , maturity , stateCode See POST /v3/mapping All of these properties are optional but otherwise work exactly as in POST /v3/mapping . 
+ 
+Response Format
+
+The response is an Object having one of the following properties:
+ 
+ Property Type Description 
+ 
+ data Array of Object s Works exactly as in the response of POST /v3/mapping . 
+
+ error String Works exactly as in the response of POST /v3/mapping . 
+
+ next String Present when more results are accessible for the query. To get the next "page" of results for the query, send the same search request except with the start property's value set to the value provided here. 
+ 
+Sample Request
+ {
+ "query": "ibm",
+ "exchCode": "US"
+} 
+Sample Response
+ {
+ "data": [{
+ "figi": "BBG000BLNNH6",
+ "name": "INTL BUSINESS MACHINES CORP",
+ "ticker": "IBM",
+ "exchCode": "US",
+ "compositeFIGI": "BBG000BLNNH6",
+ "securityType": "Common Stock",
+ "marketSector": "Equity",
+ "shareClassFIGI": "BBG001S5S399",
+ "securityType2": "Common Stock",
+ "securityDescription": "IBM"
+ }, {
+ "figi": "BBG0002ZTPD8",
+ "name": "March 10 Calls on IBM US",
+ "ticker": "IBM 03/20/10 C105",
+ "exchCode": "US",
+ "compositeFIGI": "BBG0002ZTPD8",
+ "securityType": "Equity Option",
+ "marketSector": "Equity",
+ "shareClassFIGI": null,
+ "securityType2": "Option",
+ "securityDescription": "IBM US 03/20/10 C105"
+ }
+ ...
+ ],
+ "next": "QW9JSVFEOFMrQ3hDUWtjd01ERTRTMHhhUXpBPSAx.3AG33VCsv54AsUl5fGHehSytWPuWLJxf0t8VL3YXuJh="
+} 
+The appearance of the next property in the response signals that more results can be accessed for this query. To do so, send the request:
+ {
+ "query": "ibm",
+ "exchCode": "US",
+ "start": "QW9JSVFEOFMrQ3hDUWtjd01ERTRTMHhhUXpBPSAx.3AG33VCsv54AsUl5fGHehSytWPuWLJxf0t8VL3YXuJh="
+} 
+The next property will continue to appear in the response Object whenever more results are accessible, and those results can be retrieved by repeating this process.
+
+POST /v3/filter
+
+Search for FIGIs using key words and other filters. The results are listed alphabetically by FIGI and include the number of results.
+
+Request Format
+
+The request should be an Object with the following properties:
+ 
+ Property Type Required Description 
+ 
+ query String Key words. 
+
+ start String The number of results returned for any given request is fixed. When more results are accessible, the response will contain a next property whose value should be sent in succeeding requests as the value of the start property. This will notify the API to return the next "page" of results. 
+
+ exchCode , micCode , currency , marketSecDes , securityType , securityType2 , includeUnlistedEquities , optionType , strike , contractSize , coupon , expiration , maturity , stateCode See POST /v3/mapping All of these properties are optional but otherwise work exactly as in POST /v3/mapping . 
+ 
+Response Format
+
+The response is an Object having one of the following properties:
+ 
+ Property Type Description 
+ 
+ data Array of Object s Works exactly as in the response of POST /v3/mapping . 
+
+ error String Works exactly as in the response of POST /v3/mapping . 
+
+ next String Present when more results are accessible for the query. To get the next "page" of results for the query, send the same search request except with the start property's value set to the value provided here. 
+ 
+Sample Request
+ {
+ "exchCode": "US"
+} 
+Sample Response
+ {
+ "data": [{
+ "figi": "BBG000BLNNH6",
+ "name": "INTL BUSINESS MACHINES CORP",
+ "ticker": "IBM",
+ "exchCode": "US",
+ "compositeFIGI": "BBG000BLNNH6",
+ "securityType": "Common Stock",
+ "marketSector": "Equity",
+ "shareClassFIGI": "BBG001S5S399",
+ "securityType2": "Common Stock",
+ "securityDescription": "IBM"
+ }, {
+ "figi": "BBG0002ZTPD8",
+ "name": "March 10 Calls on IBM US",
+ "ticker": "IBM 03/20/10 C105",
+ "exchCode": "US",
+ "compositeFIGI": "BBG0002ZTPD8",
+ "securityType": "Equity Option",
+ "marketSector": "Equity",
+ "shareClassFIGI": null,
+ "securityType2": "Option",
+ "securityDescription": "IBM US 03/20/10 C105"
+ }
+ ...
+ ],
+ "next": "QW9JSVFEOFMrQ3hDUWtjd01ERTRTMHhhUXpBPSAx.3AG33VCsv54AsUl5fGHehSytWPuWLJxf0t8VL3YXuJh=",
+ "total": 29930312
+} 
+The appearance of the next property in the response signals that more results can be accessed for this query. To do so, send the request:
+ {
+ "exchCode": "US",
+ "start": "QW9JSVFEOFMrQ3hDUWtjd01ERTRTMHhhUXpBPSAx.3AG33VCsv54AsUl5fGHehSytWPuWLJxf0t8VL3YXuJh="
+} 
+The next property will continue to appear in the response Object whenever more results are accessible, and those results can be retrieved by repeating this process.
+
+idType Values
+ 
+ Value Description 
+ 
+ ID_ISIN ISIN - International Securities Identification Number.
+Example:
+ [{"idType":"ID_ISIN","idValue":"XX1234567890"}] 
+
+ ID_BB_UNIQUE Unique Bloomberg Identifier - A legacy, internal Bloomberg identifier.
+Example:
+ [{"idType":"ID_BB_UNIQUE","idValue":"EQ0010080100001000"}] 
+
+ ID_SEDOL Sedol Number - Stock Exchange Daily Official List.
+Example:
+ [{"idType":"ID_SEDOL","idValue":"1234567"}] 
+
+ ID_COMMON Common Code - A nine digit identification number.
+Example:
+ [{"idType":"ID_COMMON","idValue":"123456789"}] 
+
+ ID_WERTPAPIER Wertpapierkennnummer/WKN - German securities identification code.
+Example:
+ [{"idType":"ID_WERTPAPIER","idValue":"123456"}] 
+
+ ID_CUSIP CUSIP - Committee on Uniform Securities Identification Procedures.
+Example:
+ [{"idType":"ID_CUSIP","idValue":"123456789"}] 
+
+ ID_CINS CINS - CUSIP International Numbering System.
+Example:
+ [{"idType":"ID_CINS","idValue":"A12345678"}] 
+
+ ID_BB A legacy Bloomberg identifier.
+Example:
+ [{"idType":"ID_BB","idValue":"123456789"}] 
+
+ ID_BB_8_CHR A legacy Bloomberg identifier (8 characters only).
+Example:
+ [{"idType":"ID_BB_8_CHR","idValue":"12345678"}] 
+
+ ID_TRACE Trace eligible bond identifier issued by FINRA.
+Example:
+ [{"idType":"ID_TRACE","idValue":"12345678"}] 
+
+ ID_ITALY Italian Identifier Number - The Italian Identification number consisting of five or six digits.
+Example:
+ [{"idType":"ID_ITALY","idValue":"123456"}] 
+
+ ID_EXCH_SYMBOL Exchange Symbol - Local exchange security symbol.
+Example:
+ [{"idType":"ID_EXCH_SYMBOL","idValue":"IBM123"}] 
+
+ ID_FULL_EXCHANGE_SYMBOL Full Exchange Symbol - Contains the exchange symbol for futures, options, indices inclusive of base symbol and other security elements.
+Example:
+ [{"idType":"ID_FULL_EXCHANGE_SYMBOL", "idValue":"ABC 123456789"}] 
+
+ COMPOSITE_ID_BB_GLOBAL Composite Financial Instrument Global Identifier - The Composite Financial Instrument Global Identifier (FIGI) enables users to link multiple FIGIs at the trading venue level within the same country or market in order to obtain an aggregated view for an instrument within that country or market.
+Example:
+ [{"idType":"COMPOSITE_ID_BB_GLOBAL", "idValue":"BBG000BLNNH6"}] 
+
+ ID_BB_GLOBAL_SHARE_CLASS_LEVEL Share Class Financial Instrument Global Identifier - A Share Class level Financial Instrument Global Identifier is assigned to an instrument that is traded in more than one country. This enables users to link multiple Composite FIGIs for the same instrument in order to obtain an aggregated view for that instrument across all countries (globally).
+Example:
+ [{"idType":"ID_BB_GLOBAL_SHARE_CLASS_LEVEL", "idValue":"BBG001S5S399"}] 
+
+ ID_BB_GLOBAL Financial Instrument Global Identifier (FIGI) - An identifier that is assigned to instruments of all asset classes and is unique to an individual instrument. Once issued, the FIGI assigned to an instrument will not change.
+Example:
+ [{"idType":"ID_BB_GLOBAL", "idValue":"BBG0000362Y4"}] 
+
+ ID_BB_SEC_NUM_DES Security ID Number Description - Descriptor for a financial instrument. Similar to the ticker field, but will provide additional metadata data.
+Example:
+ [{"idType":"ID_BB_SEC_NUM_DES", "idValue":"IBM 7 10/30/25"}] 
+
+ TICKER Ticker - Ticker is a specific identifier for a financial instrument that reflects common usage.
+Example:
+ [{"idType":"TICKER", "idValue":"IBM"}] 
+
+ BASE_TICKER An indistinct identifier which may be linked to multiple instruments. May need to be combined with other values to identify a unique instrument.
+Example:
+ [{"idType":"BASE_TICKER","idValue":"IBM"}] 
+
+ ID_CUSIP_8_CHR CUSIP (8 Characters Only) - Committee on Uniform Securities Identification Procedures.
+Example:
+ [{"idType":"ID_CUSIP_8_CHR","idValue":"12345678"}] 
+
+ OCC_SYMBOL OCC Symbol - A twenty-one character option symbol standardized by the Options Clearing Corporation (OCC) to identify a U.S. option.
+Example:
+ [{"idType":"OCC_SYMBOL","idValue":"ABC 123456789123456789"}] 
+
+ UNIQUE_ID_FUT_OPT Unique Identifier for Future Option - Bloomberg unique ticker with logic for index, currency, single stock futures, commodities and commodity options.
+Example:
+ [{"idType":"UNIQUE_ID_FUT_OPT","idValue":"ABCD=A1 Equity"}] 
+
+ OPRA_SYMBOL OPRA Symbol - Option symbol standardized by the Options Price Reporting Authority (OPRA) to identify a U.S. option.
+Example:
+ [{"idType":"OPRA_SYMBOL","idValue":"ABC A123A456789"}] 
+
+ TRADING_SYSTEM_IDENTIFIER Trading System Identifier - Unique identifier for the instrument as used on the source trading system.
+Example:
+ [{"idType":"TRADING_SYSTEM_IDENTIFIER","idValue":"FZH18 IBMG"}] 
+
+ ID_SHORT_CODE An exchange venue specific code to identify fixed income instruments primarily traded in Asia.
+Example:
+ [{"idType":"ID_SHORT_CODE","idValue":"123456.AB"}] 
+
+ VENDOR_INDEX_CODE Index code assigned by the index provider for the purpose of identifying the security.
+Example:
+ [{"idType":"VENDOR_INDEX_CODE","idValue":"123456"}] 
+
+ We use cookies 
+
+We use cookies to ensure you get the best experience on our website. For more information on how we use cookies, please see our privacy policy .
+
+ By clicking " Accept ", you agree to our use of cookies. By clicking " Decline ", we would only use cookies that are strictly necessary for this website to function. Learn more. 
+
+ Accept Decline 
+
+ About 
+ Overview 
+
+ Benefits 
+
+ Features 
+
+ Facilitators 
+
+ FAQ 
+
+ Regulations 
+
+ Allocation Rules 
+
+ Exchange Codes 
+ API 
+ Overview 
+
+ Documentation 
+
+ OpenAPI Specs 
+
+ Code Examples 
+ Insights 
+ All 
+
+ Notifications 
+
+ Blogs 
+
+ Media & Learning Hub 
+
+ Case Studies 
+
+ Events 
+
+ Reference Materials 
+
+ Newsletters 
+ FIGI SEARCH 
+ Search 
+
+ Newest Issues 
+ Contact Us 
+ Contact Us 
+
+ support@openfigi.com 
+ FOLLOW US 
+ LinkedIn 
+
+ Github 
+
+© 2025 OpenFIGI
+
+ Terms 
+
+ Trademarks 
+
+ Privacy Policy 
+
+ Do Not Share My Personal Information 
+
+ Feedback

@@ -1,0 +1,329 @@
+s3api — AWS CLI 2.40.3 Command Reference 
+
+ AWS CLI Command Reference 
+
+ Home 
+
+ User Guide 
+
+ Forum 
+
+ GitHub 
+
+Navigation
+
+ index 
+
+ next |
+
+ previous |
+
+ AWS CLI 2.40.3 Command Reference »
+
+ aws »
+
+ s3api 
+
+ ← website 
+ / 
+
+ abort-multipart-upload → 
+
+ Table of Contents 
+
+ s3api 
+
+ Description 
+
+ Available Commands 
+
+Quick search
+
+ Search box 
+ 
+ Search 
+
+Feedback
+
+Did you find this page useful? Do you have a suggestion to improve the documentation? Give us feedback .
+
+ If you would like to suggest an improvement or fix for the AWS CLI, check out our contributing guide on GitHub.
+
+User Guide
+
+First time using the AWS CLI? See the
+ User Guide for
+ help getting started.
+
+[ aws ]
+
+s3api ¶ 
+
+Description ¶ 
+
+Note
+For information about using the Amazon S3 API—including authentication, signing requests, code examples, and error handling—see the Amazon S3 Developer Guide .
+
+Welcome to the Amazon S3 API Reference . This guide explains the Amazon Simple Storage Service (Amazon S3) application programming interface (API).
+
+Welcome to the Amazon S3 API Reference . This guide explains the Amazon Simple Storage Service (Amazon S3) application programming interface (API).
+
+You can use any toolkit that supports HTTP to use the REST API. You can even use a browser to fetch objects, as long as they are anonymously readable.
+
+The REST API uses the standard HTTP headers and status codes, so that standard browsers and toolkits work as expected. In some areas, we have added functionality to HTTP (for example, we added headers to support access control). In these cases, we have done our best to add the new functionality in a way that matched the style of standard HTTP usage.
+
+The current version of the Amazon S3 API is 2006-03-01 .
+
+Amazon S3 supports the REST API.
+
+Note
+Support for SOAP over HTTP is deprecated, but it is still available over HTTPS. However, new Amazon S3 features will not be supported for SOAP. We recommend that you use either this REST API or the Amazon Web Services SDKs.
+
+Available Commands ¶ 
+
+ abort-multipart-upload 
+
+ complete-multipart-upload 
+
+ copy-object 
+
+ create-bucket 
+
+ create-bucket-metadata-configuration 
+
+ create-bucket-metadata-table-configuration 
+
+ create-multipart-upload 
+
+ create-session 
+
+ delete-bucket 
+
+ delete-bucket-analytics-configuration 
+
+ delete-bucket-cors 
+
+ delete-bucket-encryption 
+
+ delete-bucket-intelligent-tiering-configuration 
+
+ delete-bucket-inventory-configuration 
+
+ delete-bucket-lifecycle 
+
+ delete-bucket-metadata-configuration 
+
+ delete-bucket-metadata-table-configuration 
+
+ delete-bucket-metrics-configuration 
+
+ delete-bucket-ownership-controls 
+
+ delete-bucket-policy 
+
+ delete-bucket-replication 
+
+ delete-bucket-tagging 
+
+ delete-bucket-website 
+
+ delete-object 
+
+ delete-object-annotation 
+
+ delete-object-tagging 
+
+ delete-objects 
+
+ delete-public-access-block 
+
+ get-bucket-abac 
+
+ get-bucket-accelerate-configuration 
+
+ get-bucket-acl 
+
+ get-bucket-analytics-configuration 
+
+ get-bucket-cors 
+
+ get-bucket-encryption 
+
+ get-bucket-intelligent-tiering-configuration 
+
+ get-bucket-inventory-configuration 
+
+ get-bucket-lifecycle-configuration 
+
+ get-bucket-location 
+
+ get-bucket-logging 
+
+ get-bucket-metadata-configuration 
+
+ get-bucket-metadata-table-configuration 
+
+ get-bucket-metrics-configuration 
+
+ get-bucket-notification-configuration 
+
+ get-bucket-ownership-controls 
+
+ get-bucket-policy 
+
+ get-bucket-policy-status 
+
+ get-bucket-replication 
+
+ get-bucket-request-payment 
+
+ get-bucket-tagging 
+
+ get-bucket-versioning 
+
+ get-bucket-website 
+
+ get-object 
+
+ get-object-acl 
+
+ get-object-annotation 
+
+ get-object-attributes 
+
+ get-object-legal-hold 
+
+ get-object-lock-configuration 
+
+ get-object-retention 
+
+ get-object-tagging 
+
+ get-object-torrent 
+
+ get-public-access-block 
+
+ head-bucket 
+
+ head-object 
+
+ list-bucket-analytics-configurations 
+
+ list-bucket-intelligent-tiering-configurations 
+
+ list-bucket-inventory-configurations 
+
+ list-bucket-metrics-configurations 
+
+ list-buckets 
+
+ list-directory-buckets 
+
+ list-multipart-uploads 
+
+ list-object-annotations 
+
+ list-object-versions 
+
+ list-objects 
+
+ list-objects-v2 
+
+ list-parts 
+
+ put-bucket-abac 
+
+ put-bucket-accelerate-configuration 
+
+ put-bucket-acl 
+
+ put-bucket-analytics-configuration 
+
+ put-bucket-cors 
+
+ put-bucket-encryption 
+
+ put-bucket-intelligent-tiering-configuration 
+
+ put-bucket-inventory-configuration 
+
+ put-bucket-lifecycle-configuration 
+
+ put-bucket-logging 
+
+ put-bucket-metrics-configuration 
+
+ put-bucket-notification-configuration 
+
+ put-bucket-ownership-controls 
+
+ put-bucket-policy 
+
+ put-bucket-replication 
+
+ put-bucket-request-payment 
+
+ put-bucket-tagging 
+
+ put-bucket-versioning 
+
+ put-bucket-website 
+
+ put-object 
+
+ put-object-acl 
+
+ put-object-annotation 
+
+ put-object-legal-hold 
+
+ put-object-lock-configuration 
+
+ put-object-retention 
+
+ put-object-tagging 
+
+ put-public-access-block 
+
+ rename-object 
+
+ restore-object 
+
+ select-object-content 
+
+ update-bucket-metadata-annotation-table-configuration 
+
+ update-bucket-metadata-inventory-table-configuration 
+
+ update-bucket-metadata-journal-table-configuration 
+
+ update-object-encryption 
+
+ upload-part 
+
+ upload-part-copy 
+
+ wait 
+
+ write-get-object-response 
+
+ ← website 
+ / 
+
+ abort-multipart-upload → 
+
+Navigation
+
+ index 
+
+ next |
+
+ previous |
+
+ AWS CLI 2.40.3 Command Reference »
+
+ aws »
+
+ s3api 
+
+ © Copyright 2026, Amazon Web Services. Created using Sphinx .

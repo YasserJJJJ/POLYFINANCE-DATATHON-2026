@@ -1,0 +1,726 @@
+GitHub - ERGO-Code/HiGHS: Linear optimization software · GitHub 
+
+ Skip to content 
+
+Navigation Menu
+
+ Sign in 
+
+ Products 
+
+ Platform 
+ GitHub Repository hosting, code review, and collaboration 
+
+ Copilot AI coding agent for tasks, projects, and automated work 
+
+ Build & Ship 
+ Actions CI/CD and automation 
+
+ Code Quality Quality analysis, fixes, and enforcement 
+
+ Codespaces Cloud development environments 
+
+ Secure 
+ Code Security Vulnerability detection and remediation 
+
+ Secret Protection Secret scanning and leak prevention 
+
+ All Features 
+
+ Developers 
+
+ Learn 
+ Documentation 
+
+ Training 
+
+ Certifications 
+
+ Build 
+ Build with Copilot 
+
+ Customize Copilot 
+
+ Integrations 
+
+ Explore 
+ Trending repos 
+
+ GitHub Sponsors 
+
+ Developer articles 
+
+ Changelog 
+ Changelog Your source for the latest features, improvements, and fixes across GitHub products, all in one place. 
+
+ Businesses 
+
+ By Stage 
+ Enterprises 
+
+ Team 
+
+ Startups 
+
+ Nonprofits 
+
+ By Industry 
+ Healthcare 
+
+ Financial services 
+
+ Manufacturing 
+
+ Government 
+
+ See all industries 
+
+ Evaluate GitHub 
+ Why GitHub 
+
+ Customer Stories 
+
+ Business insights 
+
+ Trust Center 
+
+ Add-ons 
+ GitHub Advanced Security Enterprise-grade code security 
+
+ Copilot for business Enterprise-grade AI features 
+
+ Premium Support Enterprise-grade 24/7 support 
+
+ Resources 
+
+ Learn & Connect 
+ Documentation 
+
+ Resource center 
+
+ Blog 
+
+ Events & webinars 
+
+ Community Forum 
+
+ Customer Stories 
+
+ Integrations 
+
+ Support 
+ Customer support 
+
+ Training 
+
+ GitHub Status 
+
+ Company 
+ About 
+
+ Partners 
+
+ Changelog 
+
+ GitHub Universe 
+ GitHub Universe The event for developers, by developers — talks, workshops, and what’s next for GitHub. 
+
+ Pricing 
+
+ Search / 
+
+ Sign in 
+ Sign up 
+Appearance settings
+
+ You signed in with another tab or window. Reload to refresh your session. 
+ You signed out in another tab or window. Reload to refresh your session. 
+ You switched accounts on another tab or window. Reload to refresh your session. 
+
+ Dismiss alert 
+
+{{ message }}
+
+ ERGO-Code 
+
+ HiGHS 
+
+Repository navigation
+
+ Code 
+
+ Issues 147  ( 147 ) 
+
+ Pull requests 14  ( 14 ) 
+
+ Discussions 
+
+ Actions 
+
+ Projects 
+
+ Security and quality 
+
+ Insights 
+
+ More items 
+
+ HiGHS 
+ Public 
+
+ Notifications You must be signed in to change notification settings 
+
+ Fork 382  ( 382 ) 
+
+ Star 1.9k  ( 1.9k ) You must be signed in to star a repository 
+
+ About 
+
+Linear optimization software
+
+ Topics 
+
+ high-performance interior-point-method linear-optimization mixed-integer-programming parallel quadratic-programming simplex 
+
+ Resources 
+
+ Readme 
+
+ MIT license 
+
+ Code of conduct 
+
+ Code of conduct 
+
+ Contributing 
+
+ Contributing 
+
+ Cite this repository 
+
+ Activity 
+
+ Custom properties 
+
+ Stars 
+
+ 1.9k stars 
+
+ Watchers 
+
+ 28 watching 
+
+ Forks 
+
+ 382 forks 
+
+ Report repository 
+
+ master 
+
+ Branches Tags 
+
+ Go to file 
+
+ Code 
+ Open more actions menu 
+
+Latest commit
+
+History
+ 17,536 Commits 
+
+ 17,536 Commits 
+
+Folders and files
+
+ Name Name 
+ Last commit message 
+ 
+ Last commit date 
+
+ .coin-or 
+
+ .coin-or 
+
+ .github 
+
+ .github 
+
+ app 
+
+ app 
+
+ check 
+
+ check 
+
+ cmake 
+
+ cmake 
+
+ docs 
+
+ docs 
+
+ examples 
+
+ examples 
+
+ extern 
+
+ extern 
+
+ highs 
+
+ highs 
+
+ highspy-extras 
+
+ highspy-extras 
+
+ highspy 
+
+ highspy 
+
+ nuget 
+
+ nuget 
+
+ subprojects 
+
+ subprojects 
+
+ .bazelrc 
+
+ .bazelrc 
+
+ .clang-format 
+
+ .clang-format 
+
+ .envrc 
+
+ .envrc 
+
+ .gitattributes 
+
+ .gitattributes 
+
+ .gitignore 
+
+ .gitignore 
+
+ AUTHORS 
+
+ AUTHORS 
+
+ BUILD.bazel 
+
+ BUILD.bazel 
+
+ CITATION.cff 
+
+ CITATION.cff 
+
+ CMakeLists.txt 
+
+ CMakeLists.txt 
+
+ CODE_OF_CONDUCT.md 
+
+ CODE_OF_CONDUCT.md 
+
+ CONTRIBUTING.md 
+
+ CONTRIBUTING.md 
+
+ FEATURES.md 
+
+ FEATURES.md 
+
+ LICENSE.txt 
+
+ LICENSE.txt 
+
+ MODULE.bazel 
+
+ MODULE.bazel 
+
+ README.md 
+
+ README.md 
+
+ THIRD_PARTY_NOTICES.md 
+
+ THIRD_PARTY_NOTICES.md 
+
+ Version.txt 
+
+ Version.txt 
+
+ WORKSPACE 
+
+ WORKSPACE 
+
+ build_webdemo.sh 
+
+ build_webdemo.sh 
+
+ flake.lock 
+
+ flake.lock 
+
+ flake.nix 
+
+ flake.nix 
+
+ highs.pc.in 
+
+ highs.pc.in 
+
+ meson.build 
+
+ meson.build 
+
+ meson_options.txt 
+
+ meson_options.txt 
+
+ pyproject.toml 
+
+ pyproject.toml 
+
+ version.rc.in 
+
+ version.rc.in 
+
+ View all files 
+
+Repository files navigation
+
+ README 
+
+ Code of conduct 
+
+ Contributing 
+
+ MIT license 
+
+ More items 
+
+HiGHS - Linear optimization software
+
+ About HiGHS 
+
+ Documentation 
+
+ Installation 
+
+ Build from source using CMake 
+
+ Build with Meson* 
+
+ Build with Nix* 
+
+ Precompiled binaries 
+
+ Running HiGHS 
+
+ Interfaces 
+
+ Python 
+
+ C 
+
+ CSharp 
+
+ Fortran 
+
+ Reference 
+
+About HiGHS
+
+HiGHS is a high performance serial and parallel solver for large scale sparse
+linear optimization problems of the form
+
+ $$ \min \quad \dfrac{1}{2}x^TQx + c^Tx \qquad \textrm{s.t.}~ \quad L \leq Ax \leq U; \quad l \leq x \leq u $$ 
+
+where $Q$ must be positive semi-definite and, if $Q$ is zero, there may be a requirement that some of the variables take integer values. Thus HiGHS can solve linear programming (LP) problems, convex quadratic programming (QP) problems, and mixed integer programming (MIP) problems. It is mainly written in C++, but also has some C. It has been developed and tested on various Linux, MacOS and Windows installations. No third-party dependencies are required.
+
+HiGHS has primal and dual revised simplex solvers, originally written by Qi Huangfu and further developed by Julian Hall. It also has an interior point solver for LP written by Lukas Schork, an active set solver for QP written by Michael Feldmeier, and a MIP solver written by Leona Gottwald. Other features have been added by Julian Hall and Ivet Galabova, who manages the software engineering of HiGHS and interfaces to C, C#, FORTRAN, Julia and Python.
+
+Find out more about HiGHS at https://www.highs.dev .
+
+Although HiGHS is freely available under the MIT license, we would be pleased to learn about users' experience and give advice via email sent to highsopt@gmail.com .
+
+Documentation
+
+Documentation is available at https://ergo-code.github.io/HiGHS/ .
+
+Installation
+
+Build from source using CMake
+
+HiGHS uses CMake as build system, and requires at least version 3.15. To generate build files in a new subdirectory called 'build', run:
+
+ cmake -S . -B build
+ cmake --build build 
+
+This installs the executable bin/highs and the library lib/highs .
+
+To test whether the compilation was successful, change into the build directory and run
+
+ ctest 
+
+More details on building with CMake can be found in HiGHS/cmake/README.md .
+
+Build with Meson
+
+As an alternative, HiGHS can be installed using the meson build interface:
+
+ meson setup bbdir -Dwith_tests=True
+meson test -C bbdir 
+
+ The meson build files are provided by the community and are not officially supported by the HiGHS development team. If you use this method and encounter issues, please consider contributing fixes or updates by checking the HiGHS Contribution Guide . 
+
+Build with Nix
+
+There is a nix flake that provides the highs binary:
+
+ nix run . 
+
+You can even run without installing
+anything , supposing you have
+installed nix :
+
+ nix run github:ERGO-Code/HiGHS 
+
+The nix flake also provides the python package:
+
+ nix build . # highspy 
+tree result/ 
+
+And a devShell for testing it:
+
+ nix develop . # highspy 
+python
+>>> import highspy
+>>> highspy.Highs () 
+
+ The nix build files are provided by the community and are not officially supported by the HiGHS development team. 
+
+Precompiled binaries
+
+Precompiled static binaries are available at https://github.com/ERGO-Code/HiGHS/releases .
+
+Additionally, there is one package containing shared libraries for Windows x64.
+
+The *-mit binary packages contain HiGHS and are MIT-licenced.
+The *-apache binary packages contain HiGHS with HiPO and are Apache-licenced, due to the licensing of the dependencies of HiPO. For more information, see THIRD_PARTY_NOTICES.md .
+
+If you have any questions or requests for more platforms and binaries, please get in touch with us at hello@highs.dev .
+
+Running HiGHS
+
+HiGHS can read MPS files and (CPLEX) LP files, and the following command
+solves the model in ml.mps 
+
+ highs ml.mps 
+
+Command line options
+
+When HiGHS is run from the command line, some fundamental option values may be
+specified directly. Many more may be specified via a file. Formally, the usage
+is:
+
+ $ bin/highs --help
+usage:
+ ./bin/highs [options] [file]
+
+options:
+ --model_file file File of model to solve.
+ --options_file file File containing HiGHS options.
+ --read_solution_file file File of solution to read.
+ --read_basis_file text File of initial basis to read.
+ --write_model_file text File for writing out model.
+ --solution_file text File for writing out solution.
+ --write_basis_file text File for writing out final basis.
+ --presolve text Set presolve option to:
+ " choose " * default
+ " on " 
+ " off " 
+ --solver text Set solver option to:
+ " choose " * default
+ " simplex " 
+ " ipm " 
+ --parallel text Set parallel option to:
+ " choose " * default
+ " on " 
+ " off " 
+ --threads int Set maximum number of threads to use:
+ 0: automatic * default
+ --run_crossover text Set run_crossover option to:
+ " choose " 
+ " on " * default
+ " off " 
+ --time_limit float Run time limit (seconds - double).
+ --random_seed int Seed to initialize random number
+ generation.
+ --ranging text Compute cost, bound, RHS and basic
+ solution ranging:
+ " on " 
+ " off " * default
+ -v, --version Print version.
+ -h, --help Print help.
+
+For a full list of options, see the options page of the documentation website.
+
+Interfaces
+
+There are HiGHS interfaces for C, C#, FORTRAN, and Python in HiGHS/highs/interfaces , with example driver files in HiGHS/examples/ . More on language and modelling interfaces can be found at https://ergo-code.github.io/HiGHS/stable/interfaces/other/ .
+
+We are happy to give a reasonable level of support via email sent to highsopt@gmail.com .
+
+Python
+
+The python package highspy is a thin wrapper around HiGHS and is available on PyPi . It can be easily installed via pip by running
+
+ $ pip install highspy 
+
+Alternatively, highspy can be built from source. Download the HiGHS source code and run
+
+ pip install . 
+
+from the root directory.
+
+The python package highspy depends on the numpy package and numpy will be installed as well, if it is not already present.
+
+The installation can be tested using the small example HiGHS/examples/call_highs_from_python_highspy.py .
+
+The Google Colab Example Notebook also demonstrates how to call highspy .
+
+To use HiPO in Python, the additional highspy-extras is required. It contains the HiPO dependencies and is Apache 2.0 licensed. It can be installed with
+
+ $ pip install highspy[extras] 
+
+For more details, see https://ergo-code.github.io/HiGHS/ at Interfaces -> Python -> HiPO in Python.
+
+C
+
+The C API is in HiGHS/highs/interfaces/highs_c_api.h . It is included in the default build. For more details, check out the documentation website https://ergo-code.github.io/HiGHS/ .
+
+CSharp
+
+The nuget package Highs.Native is on https://www.nuget.org , at https://www.nuget.org/packages/Highs.Native/ .
+
+It can be added to your C# project with dotnet 
+
+ dotnet add package Highs.Native --version 1.16.0 
+
+The nuget package contains runtime libraries for
+
+ win-x64 
+
+ win-x86 
+
+ linux-x64 
+
+ linux-arm64 
+
+ macos-x64 
+
+ macos-arm64 
+
+Details for building locally can be found in nuget/README.md .
+
+Fortran
+
+The Fortran API is in HiGHS/highs/interfaces/highs_fortran_api.f90 . It is not included in the default build. For more details, check out the documentation website https://ergo-code.github.io/HiGHS/ .
+
+Reference
+
+If you use HiGHS in an academic context, please acknowledge this and cite the following article.
+
+Parallelizing the dual revised simplex method
+Q. Huangfu and J. A. J. Hall
+Mathematical Programming Computation, 10 (1), 119-142, 2018.
+DOI: 10.1007/s12532-017-0130-5 
+
+ About 
+
+Linear optimization software
+
+ Topics 
+
+ high-performance interior-point-method linear-optimization mixed-integer-programming parallel quadratic-programming simplex 
+
+ Resources 
+
+ Readme 
+
+ MIT license 
+
+ Code of conduct 
+
+ Code of conduct 
+
+ Contributing 
+
+ Contributing 
+
+ Cite this repository 
+
+ Activity 
+
+ Custom properties 
+
+ Stars 
+
+ 1.9k stars 
+
+ Watchers 
+
+ 28 watching 
+
+ Forks 
+
+ 382 forks 
+
+ Report repository 
+
+ Releases 
+
+ Packages 
+
+ Used by 
+
+ Contributors 
+
+ Languages 
+
+Footer
+
+ © 2026 GitHub, Inc.
+
+Footer navigation
+
+ Terms 
+
+ Privacy 
+
+ Security 
+
+ Status 
+
+ Community 
+
+ Docs 
+
+ Contact 
+
+ Manage cookies
+
+ Do not share my personal information
+
+ You can’t perform that action at this time.

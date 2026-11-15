@@ -1,0 +1,77 @@
+{
+  "prompt": "Mon capital est de 100 000 CAD. Dans cet exercice fictif, analyser le retrait de 30 000 CAD à douze mois sous les hypothèses structurées jointes.",
+  "facts": {
+    "decision_type": "reserve_allocation",
+    "question": "Financer un retrait en déplaçant le moins de capital.",
+    "currency": "CAD",
+    "holdings": [
+      {
+        "ticker": "XBB.TO",
+        "weight": 0.35
+      },
+      {
+        "ticker": "ZST.TO",
+        "weight": 0.2
+      },
+      {
+        "ticker": "XIU.TO",
+        "weight": 0.2
+      },
+      {
+        "ticker": "TSLA",
+        "weight": 0.25
+      }
+    ],
+    "withdrawal_cad": 30000,
+    "withdrawal_months": 12,
+    "horizon_years": 4,
+    "max_asset_weights": {
+      "TSLA": 0.1
+    },
+    "scenario_loss_limit_cad": 15000,
+    "scenarios": [
+      {
+        "id": "actions",
+        "label": "Choc actions hypothétique",
+        "kind": "hypothetical",
+        "horizon_months": 12,
+        "returns": {
+          "XBB.TO": -0.05,
+          "ZST.TO": 0,
+          "XIU.TO": -0.2,
+          "TSLA": -0.5,
+          "RESERVE_ABSTRAITE": 0
+        }
+      },
+      {
+        "id": "obligations",
+        "label": "Choc obligations hypothétique",
+        "kind": "hypothetical",
+        "horizon_months": 12,
+        "returns": {
+          "XBB.TO": -0.15,
+          "ZST.TO": -0.02,
+          "XIU.TO": -0.1,
+          "TSLA": -0.25,
+          "RESERVE_ABSTRAITE": 0
+        }
+      }
+    ],
+    "objective": "minimize_reallocated_capital",
+    "comparison": null,
+    "reserve_policy": "abstract_nominal",
+    "knowledge_date": "2026-11-15",
+    "assumptions": [
+      {
+        "id": "example_scope",
+        "text": "Exercice fictif ; réserve abstraite, coûts/fiscalité nuls, chocs CAD synthétiques sans probabilité ; aucun placement réel garanti.",
+        "origin": "assumed"
+      }
+    ],
+    "unknowns": [
+      "Instrument réel de réserve et conditions non qualifiés."
+    ],
+    "clarifications": []
+  },
+  "use_ai": true
+}

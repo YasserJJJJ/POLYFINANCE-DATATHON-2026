@@ -1,0 +1,64 @@
+{
+  "prompt": "Compare mon allocation fictive actuelle à une exposition initiale de 10 % à TSLA. Je demande une analyse historique, pas une prévision.",
+  "facts": {
+    "decision_type": "historical_comparison",
+    "question": "Comparer deux expositions initiales à TSLA sur le snapshot disponible.",
+    "currency": "CAD",
+    "capital_cad": 25000,
+    "holdings": [
+      {
+        "ticker": "SPY",
+        "weight": 0.45
+      },
+      {
+        "ticker": "XIU.TO",
+        "weight": 0.3
+      },
+      {
+        "ticker": "TSLA",
+        "weight": 0.25
+      }
+    ],
+    "withdrawal_cad": null,
+    "withdrawal_months": null,
+    "horizon_years": 15,
+    "max_asset_weights": {},
+    "scenario_loss_limit_cad": null,
+    "scenarios": [],
+    "objective": "compare_historical",
+    "comparison": {
+      "ticker": "TSLA",
+      "target_weight": 0.1
+    },
+    "historical_policy": {
+      "redistribution": "proportional_other_holdings",
+      "window": {
+        "kind": "all_common_available"
+      }
+    },
+    "reserve_policy": null,
+    "knowledge_date": "2026-11-15",
+    "assumptions": [
+      {
+        "id": "retrospective",
+        "text": "Entrées fictives choisies pour comparaison descriptive, achat-conservation, sans projection à quinze ans ; aucune allocation officielle de persona.",
+        "origin": "assumed"
+      },
+      {
+        "id": "redistribution",
+        "text": "Le capital libéré par la réduction de TSLA est redistribué proportionnellement aux autres positions initiales.",
+        "origin": "declared"
+      },
+      {
+        "id": "historical_window",
+        "text": "Utiliser toute la fenêtre commune admissible du snapshot disponible à knowledge_date, sans projection au-delà de l'histoire observée.",
+        "origin": "declared"
+      }
+    ],
+    "unknowns": [
+      "Compositions de FNB et exclusions ESG non établies."
+    ],
+    "clarifications": []
+  },
+  "use_ai": true
+}

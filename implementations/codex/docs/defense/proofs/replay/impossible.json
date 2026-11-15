@@ -1,0 +1,67 @@
+{
+  "dossier": "1f7d3a73d5924a09ba73925655dce389",
+  "model_calls": 0,
+  "scope": "Recalcul local avec le moteur courant ; aucune inférence rejouée.",
+  "status": "compared",
+  "analysis_ref": "analysis@1",
+  "original_method": "reserve-budget-contradiction-v1",
+  "current_method": "reserve-budget-contradiction-v1",
+  "comparisons": {
+    "status": true,
+    "options": true,
+    "claims": true
+  },
+  "equivalent": true,
+  "original_claims": [
+    {
+      "id": "reserve_budget_infeasible",
+      "kind": "infeasibility_certificate",
+      "result_refs": [
+        {
+          "pointer": "/checks/0/withdrawal_cad",
+          "unit": "CAD"
+        },
+        {
+          "pointer": "/checks/0/capital_cad",
+          "unit": "CAD"
+        },
+        {
+          "pointer": "/checks/0/shortfall_cad",
+          "unit": "CAD"
+        }
+      ],
+      "scope": "Sous-ensemble nécessaire des contraintes du modèle déclaré ; aucun IIS global.",
+      "text": "Le retrait demandé de 120,000.00 CAD dépasse le capital de 100,000.00 CAD de 20,000.00 CAD. Le financement par la réserve abstraite est impossible dans ce modèle, sans apport extérieur."
+    }
+  ],
+  "recomputed_claims": [
+    {
+      "id": "reserve_budget_infeasible",
+      "kind": "infeasibility_certificate",
+      "text": "Le retrait demandé de 120,000.00 CAD dépasse le capital de 100,000.00 CAD de 20,000.00 CAD. Le financement par la réserve abstraite est impossible dans ce modèle, sans apport extérieur.",
+      "result_refs": [
+        {
+          "pointer": "/checks/0/withdrawal_cad",
+          "unit": "CAD"
+        },
+        {
+          "pointer": "/checks/0/capital_cad",
+          "unit": "CAD"
+        },
+        {
+          "pointer": "/checks/0/shortfall_cad",
+          "unit": "CAD"
+        }
+      ],
+      "scope": "Sous-ensemble nécessaire des contraintes du modèle déclaré ; aucun IIS global."
+    }
+  ],
+  "tolerance": {
+    "relative": 1e-10,
+    "absolute": 1e-08
+  },
+  "source_run_id": "f52a89028c444e50aead519c854c1c48",
+  "source_bundle_verified": true,
+  "source_bundle_object": "c11646750267a5d83828d34a5f20cbbd7b4c0a9735d44eb26904ae48696aa3ff",
+  "interpretation": "L'égalité numérique ne valide ni données fournisseur ni choix personnel. Une différence de méthode exige examen ; aucune migration implicite des entrées."
+}

@@ -1,0 +1,1458 @@
+                               EVALUATING STYLE ANALYSIS
+
+            FRANS A. DE ROON, T HEO E. NIJMAN AND JENKE R. TER HORST
+
+
+
+
+ERIM REPORT SERIES RESEARCH IN MANAGEMENT
+ERIM Report Series reference number            ERS-2000-11-F&A
+Publication status / version                   draft / version March 2000
+Number of pages                                34
+Email address first author                     Froon@fbk.eur.nl
+Address                                        Erasmus Research Institute of Management (ERIM)
+                                               Rotterdam School of Management / Faculteit Bedrijfskunde
+                                               Erasmus Universiteit Rotterdam
+                                               PoBox 1738
+                                               3000 DR Rotterdam, The Netherlands
+                                               Phone:       # 31-(0) 10-408 1182
+                                               Fax:         # 31-(0) 10-408 9020
+                                               Email:       info@erim.eur.nl
+                                               Internet:     www.erim.eur.nl
+
+    Bibliographic data and classifications of all the ERIM reports are also available on the ERIM website:
+                                                 www.erim.eur.nl
+            ERASMUS RESEARCH INSTITUTE OF MANAGEMENT
+
+
+                                REPORT SERIES
+                            RESEARCH IN MANAGEMENT
+
+
+
+BIBLIOGRAPHIC DATA AND CLASSIFICATIONS
+Abstract                     In this paper we evaluate applications of (return based) style analysis. The portfolio and
+                             positivity constraints imposed by style analysis are useful in constructing mimicking portfolios
+                             without short positions. Such mimicking portfolios can be used e.g. to construct efficient
+                             portfolios of mutual funds with desired factor loadings if the factor loadings in the underlying
+                             factor model are positively weighted portfolios. Under these conditions style analysis may also
+                             be used to determine a benchmark portfolio for performance measurement. Attribution of the
+                             returns on portfolios of which the actual composition is unobserved to specific asset classes on
+                             the basis of return based style analysis is attractive if moreover there are no additional cross
+                             exposures between the asset classes and if fund managers hold securities that on average
+                             have a beta of one relative to their own asset class. If such restrictions are not met, and in
+                             particular if the factor loadings do not generate a positively weighted portfolio, the restrictions
+                             inherent in return based style analysis distort the outcomes of standard regression approaches
+                             rather than that the analysis is improved. The size of the distortions is illustrated by considering
+                             empirical results on style analysis of US mutual funds.
+Library of Congress          5001-6182                    Business
+Classification               4001-4280.7                  Finance Management, Business Finance, Corporation Finance
+(LCC)                        4529.5                       Portfolio management
+Journal of Economic          M                            Business Administration and Business Economics
+Literature                   G3                           Corporate Finance and Governance
+(JEL)                        G 31                         Investment policy
+European Business Schools    85 A                         Business General
+Library Group                220 A                        Financial Management
+(EBSLG)                      220 P                        Investments, Portfolio management
+Gemeenschappelijke Onderwerpsontsluiting (GOO)
+Classification GOO           85.00                        Bedrijfskunde, Organisatiekunde: algemeen
+                             85.30                        Financieel management, financiering
+                             85.33                        Beleggingsleer
+Keywords GOO                 Bedrijfskunde / Bedrijfseconomie
+                             Financieel management, bedrijfsfinanciering, besliskunde
+                             Portfolio-analyse, Pensioenfondsen, Verenigde Staten
+Free keywords                Style analysis, performance measurement, mutual funds, portfolio choice
+Other information
+                   Evaluating Style Analysis¤
+  Frans A. DeRoony, Theo E. Nijmanz, and Jenke R. TerHorstx
+                                 March 15, 2000
+
+
+                                      Abstract
+           In this paper we evaluate applications of (return based) style analy-
+       sis. The portfolio and positivity constraints imposed by style analysis
+       are useful in constructing mimicking portfolios without short posi-
+       tions. Such mimicking portfolios can be used, e.g., to construct ef-
+       …cient portfolios of mutual funds with desired factor loadings if the
+       factor loadings in the underlying factor model are positively weighted
+       portfolios. Under these conditions style analysis may also be used to
+       determine a benchmark portfolio for performance measurement. At-
+       tribution of the returns on portfolios of which the actual composition
+       is unobserved to speci…c asset classes on the basis of return based style
+       analysis is attractive if moreover there are no additional cross expo-
+       sures between the asset classes and if fund managers hold securities
+       that on average have a beta of one relative to their own asset class. If
+       such restrictions are not met, and in particular if the factor loadings
+       do not generate a positively weighted portfolio, the restrictions inher-
+       ent in return based style analysis distort the outcomes of standard
+       regression approaches rather than that the analysis is improved. The
+       size of the distortions is illustrated by considering empirical results on
+       style analysis of US mutual funds.
+
+   ¤
+     Financial support by the Institute for Quantitative Investment Research Europe (IN-
+QUIRE) is gratefully acknowledged by the authors. We are grateful to Bas Werker for
+helpful comments on a previous version.
+   y
+     Financial Management Department and Rotterdam Institute of Financial Manage-
+ment, Erasmus University Rotterdam
+   z
+     Department of Econometrics and CentER, Tilburg University
+   x
+     Department of Finance and CentER, Tilburg University
+
+                                           1
+1     Introduction
+In recent years return based style analysis, as introduced by Sharpe (1992)
+has become a very popular tool for analyzing mutual fund returns. Es-
+sentially, in return based style analysis a factor model is used to explain
+fund returns. The factors are taken to be the returns on several benchmark
+portfolios, such as value, growth, small cap, momentum, country, or sector
+portfolios. Standard style analysis imposes the factor loadings to be positive
+and to sum to one. Therefore, these factor loadings constitute a positively
+weighted portfolio and mutual fund returns can be decomposed in the return
+on the style portfolio and an idiosynchratic fund return.
+    Return based style analysis determines the mimicking portfolio of mutual
+funds or other investment opportunities with positive portfolio weights, i.e.,
+the positively weighted style portfolio that is closest to the mutual fund in
+a least squares sense. These mimicking portfolios are used in various ap-
+plications. In this paper we evaluate several of these applications in order
+to examine whether these style portfolios are appropriate for answering the
+underlying questions. One possible application of this style portfolio is to ex-
+amine whether the style portfolio is available at lower costs than the mutual
+fund itself (either because of smaller load fees or because of smaller expense
+ratios). If this is the case, the style portfolio might be a more attractive
+investment alternative. Secondly, the style portfolio can also be used as a
+benchmark in evaluating the performance of the mutual fund. We will dis-
+cuss this application in some detail and show how it is related to the more
+traditional Jensen measure. A third application of style portfolios is the
+construction of e¢cient portfolios of mutual funds that have desired factor
+loadings (see e.g. Lucas and Riepe (1996)). In addition to the factor expo-
+sures, return based style analysis yields the idiosyncratic fund returns which
+are essential ingredients in constructing the optimal portfolios. When using
+return based style analysis to determine the relevant factor exposures, the
+portfolio and positivity constraints will, in general, result in inconsistent es-
+timates unless the factor loadings are positivily weighted portfolios. Finally,
+return based style analysis may be used to determine the actual asset allo-
+cation of a mutual fund using return data only. In this application the aim
+of return based style analysis coincides with the aim of holdings based style
+analysis where observations on the portfolio holdings of the fund are used to
+allocate every asset to a speci…c asset class. We show that return based style
+analysis is only able to generate the actual asset allocation of a mutual fund
+
+                                       2
+if some additional assumptions are satis…ed.
+    In this paper we argue that the answer to the question whether or not it
+is useful to impose the portfolio and positivity constraints that characterize
+return based style analysis depends on the aim of the analysis. The case
+when no constraints are imposed on the factor loadings, will be refered to
+as weak style analysis. The case where only the portfolio constraint is im-
+posed will be referred to as semi-strong style analysis and the case where
+both the portfolio and the positivity constraints are imposed will be referred
+to as strong style analysis, or style analysis as proposed by Sharpe (1992).
+In Section 2 we discuss the relation between unrestricted factor loadings and
+(positively weighted) mimicking portfolios, i.e., between weak, semi-strong,
+and strong style-analysis. In Section 3 we show how the estimated factor
+exposures can be used to construct optimal factor portfolios from the avail-
+able mutual fund returns. In Section 4 we consider the relation between style
+analysis and performance measurement. Section 5 subsequently considers the
+assumptions under which return based style analysis reduces to the deter-
+mination of the actual portfolio composition of a fund, as in holdings based
+style analysis. Section 6 illustrates the various applications of style analysis
+using data for US-based internationally diversi…ed mutual funds and shows
+how imposing the restrictions that de…ne style analysis improve the analysis.
+Section 7 concludes.
+
+
+2    From unrestricted factor loadings to posi-
+     tively weighted mimicking portfolios
+Before analyzing the possible applications of style analysis, we start by eval-
+uating the e¤ects of the portfolio and positivity constraints in style analysis.
+Suppose that K factor (mimicking) portfolios with return vector Rt drive the
+asset returns. In addition, there are N mutual funds with return vector rt ,
+for which we have the linear factor model
+
+                              rt = a + BRt + "t ;                           (1)
+
+where E["t ] = E["t Ri;t ] = 0 for i = 1; :::; K. In this case B = §rR §¡1
+                                                                        RR , and
+a = ¹r ¡ B¹R , where § is a covariance matrix and ¹ is an expected return
+vector. When using (1) as a factor model, we do not impose any constraints
+on a and B. In particular, the rows of B do not necessarily constitute
+
+                                       3
+positively weighted portfolios. On the other hand, in style analysis, it is
+common to refer to the regression in (1) as the style regression, where we
+impose the constraints that the rows of B are positively weighted portfolios.
+In the sequel, if there are no restrictions on B, we refer to this as weak style
+analysis and to a + "t as the weak idiosyncratic returns. If we de…ne ai as the
+ith element of a and bi as the ith row of B, then ai and bi are the solutions
+to the problem                   h                     i
+                                                     2
+                           min E (ri;t ¡ ® ¡ ¯ 0 Rt ) :                      (2)
+                           ®;¯
+
+The vector b re‡ects the fund mimicking positions or the minimum variance
+hedge positions for the mutual fund.
+                                                P
+    To see the e¤ect of the portfolio constraint j ¯ j = 1, let eai and ebi be the
+solutions of the problem
+                                         h                        i
+                                                              2
+                                  min E (ri;t ¡ ® ¡ ¯ 0 Rt ) ;                (3)
+                                   ®;¯
+
+                  s.t. ¯ 0 ¶K = 1
+
+where ¶K is a K-dimensional vector of ones. Thus, ebi are the factor expo-
+sures which are constrained to sum to one, i.e., they characterize a portfolio.
+The case where only the portfolio constraint is imposed, will be referred
+to as semi-strong style analysis. Using standard least squares results, it is
+straightforward to show that the coe¢cients ebi can be written as
+                   e
+                   bi = bi + (1 ¡ b0i ¶K )§¡1      0  ¡1     ¡1
+                                                                              (4)
+                                           RR ¶K (¶K §RR ¶K ) :
+
+Notice that the last part of this expression equals the Global Minimum Vari-
+ance (GMV) Portfolio of the factor portfolios: wGMV = §¡1             ¡1
+                                                           RR ¶K (¶K §RR ¶K ) .
+                                                                   0         ¡1
+                                    e
+De…ning ci = bi ¶K , the ith row of bi reads
+               0
+
+
+                      e
+                      b    = bi + (1 ¡ ci )wGMV                               (5)
+                       i
+                                Ã       !
+                                   bi
+                           = ci 0         + (1 ¡ ci )wGMV .
+                                  bi ¶K
+
+Thus, for each mutual fund, the semi-strong style coe¢cients, or portfolio
+restricted exposures ebi are equal to a weighted average of the GMV portfolio
+and a hedge portfolio bi =b0i ¶K . It follows immediately from (5) that ebi only
+coincides with the unrestricted exposures bi if ci = 1 which is the case if the
+weak style coe¢cients already are a portfolio.
+
+
+                                         4
+    In a similar fashion, it is straightforward to show that the portfolio con-
+straint implies that the intercepts ae equal
+                          ai = ai + (b0i ¶K ¡ 1)E[RtGMV ]:
+                          e                                                      (6)
+     The semi-strong style coe¢cients in (5) yield the style portfolio that is
+closest to the mutual fund in a least squares sense, i.e., it is the best mim-
+icking portfolio. Since the di¤erence between the mutual fund return ri;t
+and the return on the mimicking portfolio eb0i Rt is simply the tracking error,
+ei;t = ri;t ¡ eb0i Rt , the mimicking portfolio is the portfolio that yields the low-
+est tracking error variance. It is also obvious from (4) and (6) that if the
+portfolio restriction is not valid, these mimicking portfolio weights and the
+resulting intercept give inconsistent estimates of the actual factor loadings
+B, and the associated intercept a, where the inconsistency is proportional to
+the GMV portfolio, wGMV .
+     In addition to the portfolio constraint, it is common in style analysis to
+impose positivity constraints on the estimated factor exposures. The style
+portfolios bbi and the associated intercepts abi are then the solution to the
+problem
+                                                  h                    i
+                                                                   2
+                                           min E (ri;t ¡ ® ¡ ¯ 0 Rt ) ;          (7)
+                                           ®;¯
+
+                   s.t. ¯ 0 ¶K = 1;
+                             ¯ ¸ 0;
+where the inequality sign applies componentwise. We refer to this case as
+                                                                   0
+strong style analysis. If we order the benchmarks as Rt0 = (R1t R2t   0
+                                                                        ) such that
+the positivity constraints are not binding for R1t and binding for R2t (imply-
+ing that ¯ 0 = (¯ 01 002 ), where 02 is a vector of zeros with the same dimension
+as R2t ), then the coe¢cients bb1i coincide with the portfolio constrained co-
+e¢cients in a regression of the mutual fund return on the benchmarks R1t
+only. It follows that the coe¢cients b1i can be written as
+                    b          (1)                 (11)      (1)
+                    b1i   = bi + (1 ¡ ci                  )wGMV                  (8)
+                                     0            1
+                                       (1)
+                               (1) @ bi    A + (1 ¡ c(1) )w (1) ;
+                          =   ci     (1)0            i     GMV
+                                    bi ¶1
+where
+                                           (1)        (1)0
+                                      ci         = bi ¶1 ;
+                                     (1)            §¡1 ¶1
+                               wGMV              = 0 11¡1 ;
+                                                   ¶1 §11 ¶1
+
+                                                  5
+                      (1)
+and the coe¢cients bi       result from the regression
+                                      (1)          (1)0         (1)
+                             ri;t = ai + bi R1t + "i;t :                                  (9)
+                                                   (1)
+It is well known that the coe¢cients bi                   can be expressed in terms of bi as
+                                (1)
+                               bi = b1i + §¡1
+                                           11 §12 b2i :                                  (10)
+
+Similarly, the intercept abi can be written as
+                                (1)         (1)0 GMV
+                        abi = ai + (bi ¶1 ¡ 1)E[R1t  ]:                                  (11)
+
+Again, we get that the strong style portfolio is a weighted average of the GMV
+            (1)                            (1) (1)0
+portfolio wGMV and a hedge portfolio bi =bi ¶1 , but now these portfolios are
+based on the subset of benchmarks, R1t , for which the positivity constraints
+are not binding.
+    The strong style coe¢cients as given in (8) re‡ect the positively weighted
+portfolio of the benchmarks that mimics the mutual fund. Although it is the
+best positively weighted mimicking portfolio, there is an additional potential
+inconsistency in the estimated coe¢cients relative to the actual factor expo-
+sures in (1), because of the positivity constraints. In estimating the strong
+style portfolio bbi , two inconsistencies occur relative to the weak portfolio b.
+The …rst one arises because of the portfolio constraint and is proportional
+to the GMV-portfolio of either Rt or R1t . The second inconsistency arises
+because of the positivity constraints, which result in estimated coe¢cients
+that are based on the subset R1t only, rather than the entire set of bench-
+marks Rt , and this inconsistency is related to (10). Of course, if the factor
+exposures b are all positive and sum to one, then the coe¢cients bbi and bi
+coincide and there is no inconsistency. In this case, imposing the portfolio
+and positivity constraints will actually lead to consistent and more e¢cient
+estimates.
+
+
+3     Using factor exposures and estimated styles
+      in constructing optimal portfolios
+A …rst application of style analysis is the construction of e¢cient portfolios
+from the mutual funds that have desirable factor or risk exposures, as shown,
+for instance, in Lucas & Riepe (1996). If the factor-model in (1) generates
+
+                                               6
+asset returns, then the coe¢cients a and B together with the covariance
+matrix of the residuals "t , §"" , provide the necessary input in constructing
+e¢cient portfolios for investors. Given that the returns Rt represent the
+K relevant risk factors for investors, an investor may want to have speci…c
+exposures to those risk factors, which are given by the K-dimensional vector
+½ (see, e.g., Fama (1996) and Cochrane (1999)). For instance, the investor
+may desire a speci…c exposure to stocks, bonds, and real estate, in which
+case the relevant risk factors are given by those asset classes. Alternatively,
+asset returns may be driven by factors such as market wide risk and recession
+risk, where investors may need a speci…c hedge against recession risk, which
+then determines the desired exposure. We assume that the investor chooses
+his portfolio from the N mutual funds that are available. The portfolio
+he chooses is denoted by wr and the portfolio return by rtp = wr0 rt . If the
+investor wants to obtain a speci…c expected return mp and wants to minimize
+the portfolio variance, then the portfolio problem he faces can be written as
+                        min V ar[rtp ] = wr0 §rr wr ;                     (12)
+                        w r
+
+                          s.t. E[rtp ] = wr0 ¹r = mp ;
+                               wr0 ¶N = 1;
+                               Bwr = ½:
+Fama (1996) denotes portfolios that solve (12) as multifactor e¢cient (MFE).
+If the factor model in (1) is valid, then the variance of the portfolio return
+can be written as
+                   V ar[rtp ] = wr0 V ar [a + BRt + "t ] wr               (13)
+                              = wr0 B§RR B 0 wr + wr §"" wr
+                              = ½0 §RR ½ + wr §"" wr ;
+and the expected portfolio return equals
+                       E[rtp ] = wr0 E [a + BRt + "t ]                    (14)
+                               = wr0 a + ½0 ¹R :
+This implies that the portfolio variance and expected return depend on §""
+and a only, since the exposures ½ are predetermined.
+   Given this setup and de…ning m = mp ¡ ½0 ¹R , the portfolio problem in
+(12) can be rewritten as
+                                       min wr0 §"" wr ;                   (15)
+                                       w   r
+
+
+
+                                       7
+                          s.t. wr0 a = m;
+                              wr0 ¶N = 1;
+                              Bwr = ½:
+This setup shows that style analysis provides the necessary input to solve
+the portfolio problem, because style analysis determines B and §"" as well
+as a. It also shows that, given the desired factor exposures ½, the relevant
+characteristics of the mutual funds are given by their factor exposures, or
+weak style return, and the mean and variance of their weak idiosyncratic
+return, a and §"" . It is important to note that in (13) we explicitly used
+the fact that E ["t Rt ] = 0. If strong style analysis is used to determine a, B,
+and §"" , then this requirement is generally not met which shows the limits
+of using style analysis for the portfolio problem in (15). Imposing portfolio
+and positivity constraints on the style coe¢cients when the actual factor
+loadings are no positively weighted portfolios, leads to error terms et that
+are not necessarily orthogonal to the benchmark returns and to inconsistent
+estimates of a and B.
+    The restrictions on the portfolio weights wr in (15) can be written in short
+hand as
+                                     A0 wr = µ;
+where
+                                      h               i
+                              A =         a ¶N B 0        ;
+                                      0           1
+                                              m
+                                        C
+                          and µ   = B
+                                    @ 1 A:
+                                              ½
+It is now straightforward to show (see, e.g. Cochrane (1999)) that the optimal
+portfolio wr equals                   ³        ´¡1
+                          wr = §¡1        0 ¡1
+                                 "" A A §"" A      µ:                     (16)
+From this optimal portfolio it follows that if there are K relevant risk factors,
+then all possible choices of expected returns and exposures can be attained
+when there are at least K + 2 di¤erent mutual funds, the returns of which
+are linearly independent, because there are K + 2 portfolio constraints that
+have to be satis…ed.
+   Having a factor model like (1) is useful in determining e¢cient portfolios
+that have the desired factor exposures. If strong style analysis is used to de-
+termine the relevant coe¢cients from the factor model, then the real factor
+
+                                          8
+loadings B must satisfy the portfolio and positivity constraints. If this is
+not the case, then style analysis yields inconsistent coe¢cients ab and B,b and
+residuals et which are not orthogonal to the benchmark returns Rt and which
+therefore yield misleading results when substituted in the portfolio problem
+in (15). Thus, unless one is willing to assume that the factor loadings B
+constitute positively weighted portfolios, one should not impose those con-
+straints in style analysis if the results are to be used in constructing e¢cient
+portfolios.
+
+
+4     Style analysis and performance measure-
+      ment
+A second way in which the style portfolio bbi is often used, is to provide a
+benchmark to evaluate the performance of the mutual fund. Since bbi re‡ects
+the best positively weighted mimicking portfolio, it seems natural to compare
+the mutual fund returns rt with the returns on the mimicking portfolio bb0i Rt .
+The intercept abi in the style regression
+
+                              ri;t = bai + bb0i Rt + ei;t ;                     (17)
+
+gives the expected excess return of the mutual fund relative to the mimicking
+portfolio. If it is possible to …nd a perfect mimicking portfolio bbi , implying
+that V ar[ei;t ] = 0, then a positive value of bai implies that the fund return
+can only be obtained at higher cost when using the benchmarks, and that
+investors will strictly prefer the mutual fund over the mimicking portfolio. If
+V ar[ei;t ] > 0; a positive value of abi does not necessarily mean that the fund
+outperforms the mimicking portfolio though, since the mutual fund may also
+be riskier than the mimicking portfolio. If the choice is to invest either in
+the mimicking portfolio or in the mutual fund, the performance can therefore
+best be measured by the Sharpe ratio, which gives the excess expected return
+of the portfolio (or fund) relative to its standard deviation:
+
+                                        E[ri;t ] ¡ Rf
+                               Shi =                  :
+                                          ¾(ri;t )
+
+Since the di¤erence in expected returns between the mutual fund and the
+mimicking portfolio is the style intercept, abi , a positive value of abi will induce
+
+
+                                           9
+a higher Sharpe ratio, unless this is o¤set by a higher standard deviation of
+the mutual fund, ¾(ri;t ).
+   The variance of the mutual fund return can be written as
+
+            V ar[ri;t ] = V ar[bb0i Rt + ei;t ]
+                        = V ar[bb0i Rt ] + V ar[ei;t ] + 2Cov[bb0i Rt ; ei;t ]
+                                                             1 ¡ b0 ¶K
+                        = V ar[bb0i Rt ] + V ar[ei;t ] + 2 £ 0 ¡1i ;
+                                                            ¶K §RR ¶K
+
+where the last term arises because the error term ei;t may be correlated
+with bb0i Rt because of the portfolio constraint, as follows from (5). Thus, the
+variance of the mutual fund return will exceed that of the mimicking portfolio
+return, if
+
+                       1 ¡ b0i ¶K       1
+                                    > ¡ £ V ar[ei;t ] ()                         (18)
+                      ¶0K §¡1
+                           RR ¶K        2
+                                        1 V ar[ei;t ]
+                       1 ¡ b0i ¶K   > ¡                :
+                                        2 V ar[RtGMV ]
+
+Similarly, the variance of the mutual fund return is smaller if the inequality
+is reversed. Notice that a necessary condition for a smaller variance of the
+mutual fund return is that b0i ¶K > 1, implying that - without the portfolio
+constraint - the mimicking portfolio would require a bigger investment than
+the mutual fund. In addition to this, it follows from (18) that in terms
+of variance, the mutual fund becomes more attractive than the mimicking
+portfolio if V ar[RtGMV ] increases and if V ar[ei;t ] decreases.
+    Obviously, a su¢cient condition for the mutual fund to be more (less)
+attractive than the mimicking portfolio is that abi ¸ (·)0 and (1 ¡ b0i ¶K ) is
+smaller (bigger) than the right hand side of (18). In these cases, the Sharpe
+ratio of the mutual fund will clearly be bigger (smaller) than the Sharpe
+ratio of the mimicking portfolio. For other cases, there is always a trade o¤
+between a higher (lower) expected return of the mutual fund and a bigger
+(smaller) variance.
+    An alternative way of analyzing the mutual fund performance is by using
+the Jensen measure, which is the intercept in a regression of the mutual fund
+excess returns on the benchmark excess returns:
+
+                      ri;t ¡ ´ = ®J;i + B(Rt ¡ ´¶K ) + "i;t .                    (19)
+
+                                          10
+Here ´ is the zero-beta rate associated with a mean-variance e¢cient portfo-
+lio, which may be replaced by the risk free rate. A high value of the Jensen
+measure indicates that the maximum obtainable Sharpe ratio from the bench-
+mark assets Rt only can be improved upon if the investor also includes the
+mutual fund in his investment portfolio. Thus, whereas the Sharpe ratio can
+be used to make a choice between two investment alternatives, the mutual
+fund and the benchmark portfolio, the Jensen measure gives the improve-
+ment in the Sharpe ratio that can be obtained if the mutual fund is added to
+the benchmark assets (see, e.g., DeRoon and Nijman (1999)). From Equa-
+tion (6) it follows that the portfolio restricted intercept aei equals a special
+case of the generalized Jensen measure, since aei equals the intercept ®Ji in
+the regression
+                                        ³                  ´
+            ri;t ¡ E[RGMV
+                      t   ] = ®Ji + ¯ Rt ¡ E[RtGMV ]¶K + ui;t :             (20)
+Thus, for investors such that the zero-beta rate equals the expected return on
+the GMV portfolio, we obtain the Jensen measure as the portfolio restricted
+intercept in a regression of the fund returns on the benchmark returns. In a
+similar fashion, the intercept bai in the style analysis, which includes both the
+portfolio and the positivity constraints is also a special case of the Jensen
+measure as in (20), but based on the subset R1t only, for which the positivity
+constraints are not binding.
+    In summary, the performance measurement of the mutual fund relative
+to the mimicking portfolio should not be based on the intercept bai only, since
+the mutual fund may be also be riskier than the mimicking portfolio which
+may actually result in a lower Sharpe ratio even though the intercept abi is
+positive. In addition, although the bai may be interpreted in terms of the
+Jensen measure, it should be noted that abi is the Jensen measure for a very
+speci…c group of investors.
+
+
+5     Style analysis and mutual fund portfolio
+      weights
+A third application of style analysis, apart from …nding the best mimicking
+portfolio or benchmark, or from providing the necessary input for construct-
+ing e¢cient portfolios, is to estimate the portfolio holdings of mutual fund
+managers (see, e.g., (Brown & Goetzmann (1997)). In this case, the portfo-
+lio and positivity constraints on the factor portfolios are imposed to re‡ect
+
+                                       11
+the portfolio and short sales constraints faced by mutual fund managers. In
+this section we consider only one mutual fund, N = 1, and analyze the use
+of style analysis given the fund’s portfolio holdings, in order to see if style
+analysis can indeed be used to estimate the portfolio holdings.
+    Notice that Rt contains the returns on K benchmark or factor portfolios
+which themselves consist of individual assets. Most fund managers typically
+invest in a subset of the assets underlying an index only and, moreover, give
+the assets in their portfolio di¤erent weights than the index. Denote the
+                                                                            (i)
+vector of the stock returns that are present in benchmark index i as Rt ,
+         (i)
+where Rt has K (i) elements. The index return Ri;t itself is de…ned by a
+particular index portfolio x(i) , i.e.,
+                                                    (i)
+                                     Ri;t = x(i)0 Rt :
+                                                                        (i)
+The fund manager chooses a portfolio v (i) from Rt for which in general
+v (i) 6= x(i) . Assuming that the manager chooses portfolios v (i) , from K asset
+classes, he also has to determine the weights wi assigned to each asset class.
+                           (i)                       (i)
+Thus, we have that §j vj = 1; 8i, §i wi = 1; and vj ¸ 0 and wi ¸ 0, 8i; j.
+The manager’s return on asset class i is equal to
+                                      (i)           (i)
+                                     rt = v (i)0 Rt :                           (21)
+
+The return on the fund is now equal to
+                                      (i)                 (i)     (i)     (i)
+                     rt = §K            K       K
+                           i=1 wi rt = §i=1 wi §j=1 vj Rj;t :
+
+                                        (i)
+   Now consider a regression of rt on index i, Ri;t and a constant:
+                               (i)                          (i)
+                           rt = a(i) + b(i) Ri;t + ut ;
+
+then
+                                              (i)
+                               Cov[v (i)0 Rt ; Ri;t ]
+                      b(i) =                          = v (i)0 ¯ (i) ;
+                                  V ar[Ri;t ]
+where ¯ (i) is the vector of beta’s of the assets in subset i relative to their own
+index. Notice that b(i) is not necessarily equal to one, since it may well be
+the case that the manager has selected high-beta stocks in his portfolio for
+instance. Also, a priori there is no need for a(i) to be equal to zero.
+                         (i)
+    Assuming that E[ut Rj;t ] = 0, 8i; j (i.e., the residual for asset class i is
+uncorrelated with all available indices - which is a rather strong assumption
+
+                                              12
+of course), it follows that, without imposing any constraints on the regression
+in (1), the coe¢cients B and a are given by
+                B = [w1 b(1) w2 b(2) ::: wK b(K) ]                                   (22)
+                  = [w1 v(1)0 ¯ (1) w2 v (2)0 ¯ (2) ::: wK v (K)0 ¯ (K) ];
+and
+                                   a = §K       (i)
+                                        i=1 wi a :
+Notice that since b(1) :::b(K) are not necessarily equal to one, even in this case
+the elements of B do not have to sum to one and do not have to be posi-
+tive, even though there may be short sales and portfolio restrictions for the
+managers’ actual portfolio holdings. Also, since the elements of B are com-
+binations of wi , v (i) and ¯ (i) , these elements do not represent the portfolio
+weights v (i) of the mutual fund. If the mutual fund manager holds stocks
+with high (low) ¯ (i) ’s for instance, then the elements of B will overestimate
+(underestimate) the portfolio factor weights wi . The coe¢cients B do repre-
+sent the general style of the mutual fund though. For instance, if the fund
+manager invests a certain fraction w1 of his wealth in asset class 1, while
+selecting stocks that have a high (low) ¯ (1) , then this will be re‡ected by
+higher (lower) values of b1 , re‡ecting a higher sensitivity of the fund for fac-
+tor 1. This would then also show up in a relatively higher weight for factor
+portfolio 1 in the mimicking portfolio for the fund. Thus, although the weak
+style coe¢cients do not need to re‡ect the actual portfolio holdings, they
+do provide the sensitivities or exposures of the mutual fund relative to the
+factor or benchmark portfolios.
+    To see the implications for style analysis, suppose a fund manager is only
+investing in the stocks of index i and in no stocks underlying all the other
+indices. To simplify notation, assume i = 1. Thus, v (1) 6= 0, while v (j) = 0,
+for j 6= 1. Partition the covariance matrix of the indices as
+                        0                                  1
+                          ¾ 11     ¾ 12   ¢¢¢    ¾ 1K
+                       B                                   C  Ã              !
+                       B ¾ 21      ¾ 22   ¢¢¢   ¾ 2K       C    ¾ 11   §1j
+           V ar[Rt ] = B
+                       B ..       ..      ...   ..         C=
+                                                           C                     ;
+                       @ .         .             .         A    §j1    §jj
+                            ¾ K1 ¾ K2 ¢ ¢ ¢ ¾ KK
+where j 6= 1. Similarly, the covariance vector of the mutual fund with the
+benchmark indices is partitioned as
+                                                Ã          !
+                                                    ¾ 1r
+                              Cov[Rt ; rt ] =                  :
+                                                    §jr
+
+                                           13
+Using partitioned inverses and de…ning D ´ (¾ 11 ¡ §1j §¡1
+                                                        jj §j1 ) the weak or
+unrestricted style coe¢cients can be written as
+                  Ã                                                     !
+                      D¡1 (¾ 1r ¡ §1j §¡1
+                                       jj §1j )
+             B=                                                             :
+                      §jj §jr ¡ §jj §j1 D¡1 (¾ 1r ¡ §1j §¡1
+                       ¡1         ¡1
+                                                         jj §jr )
+
+It’s obvious that if the fund mimics index 1 perfectly, i.e., rt = R1;t , then
+¾ 1r = ¾ 11 and §jr = §j1 , implying that
+                                       Ã          !
+                                           1
+                                 B=                   :
+                                           0K¡1
+
+However, in general,
+                              rt = a1 + ¯ r1 R1;t + ut ;
+implying
+
+                              ¾ 1r = ¾ 11 ¯ 1r and
+                              §jr = §j1 ¯ 1r + §ju :
+
+From this, we have that
+                       Ã                                       !
+                           ¯ 1r ¡ D¡1 §1j §¡1
+                                           jj §ju
+                B=                                                  :
+                           §jj §ju + §jj §j1 D¡1 §1j §¡1
+                             ¡1        ¡1
+                                                      jj §ju
+
+This shows that there are two reasons why B1 may deviate from one: The
+fund manager may invest in a portfolio that has a ¯ 1r that deviates from
+one, or the residual ut may be correlated with Rj;t , j 6= 1. Similarly, Bj will
+deviate from zero because §ju 6= 0. This latter situation is likely to arise
+because the indices used in style analysis need not be mutually exclusive and
+the stocks underlying index i may be correlated with index j.
+    It is clear from this analysis that given that the factor portfolios or in-
+dices are constructed from individual stock holdings and that the individual
+stock positions of mutual fund managers will in general be di¤erent from the
+weights in the factor portfolios, the factor loadings of the mutual funds, B,
+will in general not constitute positively weighted portfolios. Using the results
+in Section 2, it then follows that imposing these constraints in style analysis
+will yield inconsistent estimates of B and a. In addition, since the factor
+loadings are a combination of the mutual fund stock holdings and the beta’s
+of the stocks relative to the factor portfolios, even the weak style coe¢cients
+
+                                           14
+B will not represent the actual weights assigned to the factor classes by the
+mutual fund manager. However, because the elements of B represent the
+weights assigned to the factor classes adjusted for the ¯ (i) ’s of the individual
+stocks, B does provide a more accurate picture of the exposure of the fund
+to the asset classes than the portfolio holdings themselves.
+
+
+6     Data and empirical analysis
+In the previous sections we showed that the portfolio and positivity con-
+straints in return based style analysis might lead to inconsistent estimation
+results, which subsequently will lead to inappropriate results in various ap-
+plications of style analysis. In order to illustrate the potential consequences,
+we use style analysis in a number of the applications mentioned before. We
+employ a sample of eighteen US-based internationally investing mutual funds
+over the period January 1982 through April 1999. The mutual fund data are
+obtained from Morningstar’s Principia Pro database and have as reported
+investment style ‘foreign’ or ‘world’, where the distinction between the two
+styles is that in case of ‘foreign’ it is not allowed to hold US-stocks. Our sam-
+ple is comparable with the sample of Cumby and Glenn (1991) and DeRoon,
+Nijman and TerHorst (1998), studying the performance of, respectively, …f-
+teen funds over the period January 1982 through June 1988 and eighteen
+funds over the period January 1982 through December 1994.
+    In Table 1 we present some summary statistics for the sample of funds
+that we employ. It appears that New Perspective realized the highest average
+return, i.e. 1.39% (16.7% annually), with the lowest standard deviation. The
+fund charges an initial load fee of 5.75%, and is by far the largest fund in size.
+The worldwide diversi…ed fund First Invest Global charges the highest load
+fee of 6.25%, while six funds in the sample do not charge an initial load fee.
+The Vanguard International Growth fund can be characterized as a passively
+managed fund, while the other funds in the sample follow an active selection
+strategy.
+
+6.1    Style analysis and performance measurement
+As mentioned in the analysis of Section 4, style analysis is often used to
+provide a benchmark in order to evaluate the performance of mutual funds
+(see, e.g. Sharpe (1992) and Fung and Hsieh (1997)). A question that receives
+
+
+                                       15
+Table 1: The table reports the average monthly fund return over the period
+January 1982 through April 1999, and the corresponding standard deviation
+of the fund return. The column labeled ‘style’ presents the reported invest-
+ment F(oreign) or W(orld). The column ‘Net Assets’ reports the size of the
+fund as measured at the end of 1998, while the column ‘Front Load’ reports
+the load fee that the fund charges for a position in the fund.
+             Mutual          Style   Average   Stand.     Net     Front
+              Fund                   Return     Dev.     Assets   Load
+                                      (%)       (%)     (mln $)    (%)
+      Alliance Global Sm      W       0.94      5.80       74.4    4.25
+      Alliance Intl           F       1.09      5.04       76.7    4.25
+      Bailard, Biehl Intl     F       0.99      4.95      113.4    0.00
+      Evergreen Intl Gr       F       0.94      4.37       66.0    0.00
+      First Invest Global     W       1.17      4.92      312.4    6.25
+      Kemper Intl             F       1.10      4.45      398.4    5.75
+      Nations Intl Gr         F       1.05      4.81       22.4    0.00
+      New Perspective         W       1.39      3.86    23061.1    5.75
+      Oppenheimer Global      W       1.33      4.99     3580.5    5.75
+      Phoenix-Aberdeen        W       1.00      5.67      185.3    4.75
+      Putnam Global Gr        W       1.35      4.23     3518.3    5.75
+      Scudder Intl            F       1.24      4.44     3103.7    0.00
+      T.Rowe Price Intl       F       1.26      4.56    10006.7    0.00
+      Templeton Global Sm     W       1.14      4.36     1095.8    5.75
+      Templeton Gr            W       1.28      4.08    12319.5    5.75
+      Templeton World         W       1.31      4.10     8589.9    5.75
+      United Intl Gr          F       1.27      4.29     1236.4    5.75
+      Vanguard Intl Gr        F       1.32      4.77     7601.6    0.00
+
+
+
+
+                                     16
+considerable attention in the performance evaluation literature is why people
+invest in actively managed mutual funds (see, e.g. Gruber (1996)). Actively
+managed mutual funds are characterised by active stock selection strategies
+and market timing strategies in order to beat the return on a benchmark.
+In contrast, passively managed mutual funds mainly follow buy and hold
+strategies, where the investment objective is to replicate as close as possible a
+certain benchmark or market index. Consequently, due to the higher trading
+activity, actively managed mutual funds usually have much higher operating
+expenses than passively managed funds, i.e. on average respectively 1% vs
+0.2% per year. Since these operating expenses are deducted from a mutual
+fund’s gross income, investors might be interested in a potentially cheaper
+alternative. Most studies report that actively managed funds provide lower
+net returns than the passively managed funds (see, e.g. Wermers (2000)).
+    In order to examine whether it is cheaper to invest in a combination of
+passively managed funds or in one of the seventeen actively managed funds
+in our sample, we report in Table 2 the estimation results of the following
+weak and strong style analysis
+                 ri;t = a^i + ^b1 Rt           + ^b2 Rt
+                                   (V angU SA)        (V angW orld)
+                                                                    + ei;t
+         (V angU SA)       (V angW orld)
+where Rt             and Rt             denote the returns in period t on the
+passively managed funds Vanguard 500 index and Vanguard International
+Growth, both o¤ered by The Vanguard Group. The Vanguard 500 index
+fund seeks to match the performance of a benchmark that measures the
+investment return of large-capitalization US stocks, while the Vanguard In-
+ternational Growth seeks to provide long-term capital growth and primarily
+invests in stocks of seasoned companies outside the United States. The table
+also reports the average tracking error a^i of the strong style analysis. This
+tracking error can be interpreted as the average relative under or outperfor-
+mance of the mutual fund with respect to the passive benchmark consisting of
+the Vanguard 500 index fund and the Vanguard International Growth fund.
+    It appears that the actively managed funds in the sample relatively un-
+derperform their corresponding mimicking portfolio that is a combination of
+the Vanguard 500 index fund and the Vanguard International Growth fund.
+The underperformance varies between 0.54% (i.e. 6.48% annually) for Al-
+liance Global Small Companies fund and 0.04% (i.e. 0.48% annually) for New
+Perspective. However, as discussed in Section 4, a negative average tracking
+error does not necessarily indicate that investors should invest in the mimick-
+ing portfolio if the choice is restricted to invest in either the mutual fund or
+
+                                           17
+Table 2: The table reports the estimation results of a weak and strong style
+analysis with benchmark assets the Vanguard 500 index fund and the Van-
+guard International Growth fund. The column labeled ‘ average tracking
+error’ reports the fund’s relative performance on a monthly basis to the mim-
+icking portfolio of Vanguard funds.
+                              strong style analysis    weak style analysis
+       Mutual Fund        average exp. to Vanguard      exp. to Vanguard
+                           track.    500       Int.     500       Int.
+                            error index      Growth    index     Growth
+   Alliance Global Sm       -0.54    0.92     0.08      1.06      0.16
+   Alliance Intl            -0.26    0.15     0.85      0.18      0.86
+   Bailard, Biehl Intl      -0.33    0.03     0.97      0.00      0.95
+   Evergreen Intl Gr        -0.42    0.22     0.78      0.14      0.74
+   First Invest Global      -0.22    0.37     0.63      0.36      0.62
+   Kemper Intl              -0.24    0.14     0.86      0.09      0.82
+   Nations Intl Gr          -0.29    0.11     0.89      0.11      0.89
+   New Perspective          -0.04    0.58     0.42      0.53      0.39
+   Oppenheimer Global       -0.06    0.40     0.60      0.45      0.63
+   Phoenix-Aberdeen         -0.47    0.84     0.16      0.94      0.22
+   Putnam Global Gr         -0.05    0.40     0.60      0.39      0.60
+   Scudder Intl             -0.12    0.17     0.83      0.15      0.81
+   T.Rowe Price Intl        -0.09    0.13     0.87      0.11      0.86
+   Templeton Global Sm      -0.31    0.70     0.30      0.64      0.26
+   Templeton Gr             -0.17    0.70     0.30      0.65      0.26
+   Templeton World          -0.14    0.73     0.27      0.69      0.25
+   United Intl Gr           -0.11    0.31     0.69      0.24      0.64
+
+
+
+
+                                     18
+the mimicking portfolio, since all mimicking portfolios contain some residual
+risk relative to the actively managed mutual fund. In order to answer that
+question we report in Table 3 the Sharpe ratios of the mutual funds and the
+corresponding mimicking portfolios. Since from the strong style analysis it
+followed that the style intercept ^ai is negative for all the actively managed
+funds in the sample, a higher Sharpe ratio of the fund can only be caused by
+a lower standard deviation of the mutual fund compared to the mimicking
+portfolio.
+    If the choice for the investor is to invest either in the actively managed
+mutual fund or in the passively managed mimicking portfolio then from Table
+3 it follows that the investor should choose the mimicking portfolio in all
+cases except one: the Sharpe ratio of New Perspective is greater than the
+Sharpe ratio corresponding to the mimicking portfolio. For all other cases,
+the investor can obtain a higher expected return per unit of risk by investing
+in the fund mimicking portfolio.
+    As shown by Jobson and Korkie (1989), the Jensen measure is the rel-
+evant one if the investor already holds a portfolio. Therefore, we propose
+to use the Jensen measure, as given in (19), as an alternative performance
+measure that answers the question whether an investor can improve the max-
+imum obtainable Sharpe ratio of his initial portfolio by also investing in an
+actively managed internationally investing mutual fund. From the weak style
+analysis results reported in Table 2, it appears that for none of the seventeen
+mutual funds the positivity constraint is binding. Therefore, as mentioned
+in Section 4, the intercept ^ai in the style analysis with portfolio and posi-
+tivity constraints can be considered as a special case of the Jensen measure
+in case the zero beta rate equals the expected return on the GMV portfolio.
+In Table 3 we report the Jensen measure as in (20), where the benchmark
+assets Rt are the Vanguard 500 index fund and the Vanguard International
+Growth, while we assume that the zero beta rate is equal to 1.43% at a
+monthly basis. This zero beta rate corresponds to the average return on the
+Global Minimum Variance portfolio of the Vanguard 500 index fund and the
+Vanguard International Growth fund. It appears that six of the seventeen
+actively managed mutual funds have a Jensen measure that is signi…cantly
+smaller than zero, indicating that the investor can improve the maximum ob-
+tainable Sharpe ratio of his initial portfolio by taking a short position in the
+mutual fund under consideration (see, e.g. Elton, Gruber and Blake (1996),
+DeRoon, Nijman and TerHorst (1998), DeRoon, Nijman and Werker (2000)).
+
+
+                                      19
+Table 3: The table reports the Sharpe ratios for the mutual funds and their
+corresponding mimicking portfolios determined with strong style analysis
+using the Vanguard 500 index fund and the Vanguard International Growth
+fund as benchmark assets. Furthermore, the table reports the generalized
+Jensen measure for a zero beta rate of 1.43 %, i.e. the average rate of the
+GMV portfolio. The investors’ initial portfolio contains the two Vanguard
+funds. A * behind the Generalized Jensen Measure indicates a value that is
+signi…cant at the 5 % level.
+       Mutual Fund         Jensen Measure          Sharpe Ratio
+                             ´ = 1.43%      mutual fund mim. portfolio
+   Alliance Global Sm          -0.543*         0.163         0.355
+   Alliance Intl                -0.256         0.216         0.303
+   Bailard, Biehl Intl         -0.335*         0.200         0.282
+   Evergreen Intl Gr           -0.419*         0.215         0.314
+   First Invest Global          -0.218         0.238         0.338
+   Kemper Intl                 -0.244*         0.248         0.302
+   Nations Intl Gr             -0.291*         0.218         0.296
+   New Perspective              -0.036         0.360         0.358
+   Oppenheimer Global           -0.059         0.267         0.341
+   Phoenix-Aberdeen            -0.474*         0.176         0.360
+   Putnam Global Gr             -0.046         0.318         0.341
+   Scudder Intl                 -0.117         0.278         0.307
+   T.Rowe Price Intl            -0.087         0.276         0.299
+   Templeton Global Sm          -0.308         0.261         0.362
+   Templeton Gr                 -0.170         0.313         0.362
+   Templeton World              -0.139         0.320         0.363
+   United Intl Gr               -0.111         0.295         0.329
+
+
+
+
+                                    20
+6.2    Style analysis and portfolio weights
+Usually, we do not observe the underlying portfolio holdings of the mutual
+funds. Although style analysis was not initially developed to determine the
+underlying holdings of the mutual fund, strong style analysis is often sug-
+gested as a method to estimate the portfolio holdings of the fund managers.
+As already mentioned by Sharpe (1992), and more extensively analyzed in
+Section 5, the portfolio and positivity constraints in style analysis might
+generally lead to inconsistent estimates of the fund exposures. Therefore,
+semi-strong and strong style analysis is not an appropriate method for the
+purpose of determining underlying fund holdings if these restrictions are not
+satis…ed. As discussed in Section 5, even without he portfolio and positiv-
+ity constraints in style analysis, the estimates will still not in general re‡ect
+the actual holdings since the fund manager could e.g. hold stocks with high
+beta’s with respect to their own index. Nevertheless, the weak style esti-
+mates will re‡ect the sensitivity of the fund for certain factor or benchmark
+portfolios, i.e. the fund exposures.
+    In order to illustrate the potential consequences of imposing the portfolio
+and positivity constraints, in this subsection we will apply style analysis on
+the sample of eighteen internationally investing mutual funds, and compare
+it with the actual portfolio holdings over the sample period January 1991
+through April 1999. Note that the sample period is di¤erent from the pre-
+vious analysis, which is due to the fact that from the mutual funds in the
+sample we observe the reported holdings at an annual frequency for the in-
+vestment regions North America, Europe and Paci…c only over this shorter
+sample period. In Table 4 we report the average returns and corresponding
+standard deviations for the set of benchmark indices that we employ in return
+based style analysis. For each region or country index that we use the table
+reports summary statistics for growth and value stock indices. The data are
+obtained from Datastream International.
+    It appears that the MSCI Hong Kong Value index has the highest average
+monthly return of 2.22% on a monthly basis (i.e. about 26.6% annually), but
+also the highest risk as measured by the standard deviation, i.e. about 38.2%
+annually, over the sample period. The lowest average monthly return is for
+MSCI Japan Growth index, i.e. 0.08% on a monthly basis (about 0.95%
+annually). Corresponding to what is usually found in the literature (see, e.g.
+Fama and French (1998)), on average, value stocks outperform growth stocks
+at the country level, except in Canada and France where the MSCI Growth
+
+
+                                       21
+Table 4: The table reports average monthly returns and corresponding stan-
+dard deviations for a set of Morgan Stanley Capital Indices (MSCI) over the
+period January 1991 through April 1999. For each country or region, the
+table reports a Growth MSCI index and a Value MSCI index. The column
+labeled ¯ (i) reports the beta’s of the country indices relative to their regional
+index. Returns are measured in dollars.
+   Region           Country                 Growth                 Value
+                                        avg std    ¯ (i)    avg    std     ¯ (i)
+   North America                        1.68 3.63           1.59   3.58
+                    United States       1.83 4.13 1.08      1.63   3.58    0.93
+                    Canada              0.95 5.08 0.97      0.87   5.00    0.98
+   Europe                               1.24 3.92           1.44   4.16
+                    France              1.29 5.32 1.06      1.27   5.16    1.09
+                    Germany             1.01 5.17 1.00      1.40   4.92    0.98
+                    United Kingdom      1.23 4.19 0.91      1.34   4.56    0.96
+                    Italy               1.09 7.28 0.87      1.42   8.23    1.00
+   Paci…c                               0.18 6.13           0.56   6.32
+                    Australia           0.86 5.47 0.46      1.41   5.09    0.48
+                    Hong Kong           1.75 8.05 0.52      2.22   11.04   0.74
+                    Japan               0.08 6.86 1.08      0.48   6.94    1.09
+
+
+
+
+                                       22
+index outperforms the MSCI Value index.
+    In order to illustrate that style analysis does not necessarily accurately
+estimate the portfolio holdings of fund managers, we …rst of all apply strong
+style analysis using three asset classes, i.e. regional indices of North America,
+Europe and Paci…c. Table 5 reports the estimated exposures for these style
+indices over the period January 1991 through April 1999, and subsequently
+compares them with the average reported holdings over the same period.
+    It is interesting to note that for most of the funds in Table 5 the order
+of the estimated exposures corresponds to the order of the average reported
+holding over the period 1991 - 1998. The only two exceptions are Evergreen
+Intl Growth and Kemper Intl, where the order between the exposure to North
+America and Paci…c has changed. The bottom three rows of Table 5 give an
+indication of the di¤erence between the estimated strong style exposures and
+the reported actual holdings. On average the estimated style exposures ex-
+ceed the reported holdings for North America (14.2%) and Europe (12.4%),
+whereas the style exposures are lower than the reported holdings for the Pa-
+ci…c index (-7.0%). For all three indices, we …nd that the estimated exposures
+and reported holdings are highly correlated (approximately 0:90).
+    It follows from the analysis in Section 5 that there are two reasons why the
+style estimates may be di¤erent from the actual holdings. The …rst reason is
+that fund managers usually invest in a subset of assets underlying an index,
+and assign di¤erent portfolio weights to these assets than in the index. In
+case the fund manager invests in stocks with low ¯ (i) ’s, the style coe¢cients
+will underestimate the portfolio holding wi : The second reason is that the
+residual in the style analysis may be correlated with the benchmark assets
+in the style regression. This reason is not unlikely since the indices in the
+style analysis usually are not mutually exclusive and, moreover, the stocks
+underlying a certain index may be correlated with another index.
+    In order to analyze what causes the di¤erences between the estimated
+style exposures and the reported holdings, Table 6 reports some results of
+strong style analysis using benchmarks at a more disaggregated level. For
+instance, in case of North America, we now use four di¤erent indices: US
+Growth and Value indices and Canadian Growth and Value indices. If the
+beta’s of these subindices relative to the aggregate North America index are
+not equal to one and if the weights of these subindices in the aggregate index
+di¤er from the weights assigned to them by the fund manager, then this will
+cause a di¤erence between the estimated style exposures and the reported
+holdings, as follows from Section 5.
+
+                                       23
+Table 5: The table reports the estimated exposures to regional indices based
+on return-based style analysis over the period January 1991 through April
+1999, and the average reported holdings over the corresponding sample pe-
+riod.
+ Mutual                Style                 estimated exposures
+ Fund                                    (average reported holdings)
+                               North America     Europe      Paci…c      Other
+ Alliance Global Sm      W      59.1 (52.6)    27.5 (20.2) 13.4 (9.9)     (2.0)
+ Alliance Intl           F       7.1 (1.7)     58.9 (47.5) 34.0 (38.0)    (2.0)
+ Bailard, Biehl Intl     F      16.0 (2.6)     64.0 (53.3) 20.0 (30.0)    (3.2)
+ Evergreen Intl Gr       F      29.1 (4.8)     56.0 (38.7) 14.9 (24.6)    (5.8)
+ First Invest Global     W      39.6 (28.8)    44.3 (35.4) 16.1 (24.8)    (3.2)
+ Kemper Intl             F      20.7 (3.5)     63.0 (51.7) 16.3 (29.6)    (5.2)
+ Nations Intl Gr         F      20.0 (0.7)     59.1 (47.6) 20.1 (33.0)    (6.0)
+ New Perspective         W      52.5 (32.7)    39.8 (29.6) 7.7 (11.1)     (2.6)
+ Oppenheimer Global      W      40.8 (23.9)    45.7 (35.2) 13.5 (15.1)    (6.1)
+ Phoenix-Aberdeen        W      39.2 (31.3)    48.6 (33.7) 12.2 (18.2)    (4.9)
+ Putnam Global Gr        W      43.3 (26.3)    43.8 (34.8) 13.0 (24.3)    (2.5)
+ Scudder Intl            F      17.4 (3.1)     58.2 (46.8) 24.4 (33.8)    (2.1)
+ T.Rowe Price Intl       F      14.0 (1.5)     61.5 (49.1) 24.5 (32.9)    (4.8)
+ Templeton Global Sm     W      49.1 (32.0)    43.8 (29.0) 7.1 (13.4)     (6.1)
+ Templeton Gr            W      51.5 (30.2)    35.5 (27.0) 13.1 (14.7)    (5.2)
+ Templeton World         W      47.9 (32.6)    39.4 (28.1) 12.7 (14.7)    (5.4)
+ United Intl Gr          F      10.7 (3.1)     82.9 (57.5) 6.4 (13.5)     (8.4)
+ Vanguard Intl Gr        F       9.3 (0.5)     65.7 (49.9) 25.0 (39.0)    (2.3)
+ mean di¤erence                    14.2           12.4         -7.0
+ stdev di¤erence                    5.5            4.2         4.8
+ correlation                       0.95           0.96         0.88
+ mean beta                         0.74           0.80         0.40
+ GMV-portfolio                     0.60           0.35         0.05
+
+
+
+
+                                     24
+    For each fund, Table 6 …rst of all reports the sum of the estimated style
+exposures, §ibbi . If style analysis provides consistent estimates of the ac-
+tual portfolio holdings, then these summes exposures should be close to the
+estimated exposures to the aggregate indices in Table 5. For North Amer-
+ica, although the summed exposures are in the same order of magnitude
+as the aggregate exposures in Table 5, they are certainly not equal. Also,
+the di¤erence between the summed exposures and the reported holdings is
+not smaller than the di¤erence between the aggregate exposures and the re-
+ported holdings as can be found in Table 5. The bottom three rows of the
+table summarize the relation between the summed style exposures and the
+actual reported weights. Comparing the mean and standard deviation of
+the di¤erence with the ones reported in Table 5, it can be seen that the use
+of subindices does not give any improvement for the North American case.
+Also, the correlation between the summed style exposures and the actual
+reported weights in Table 6 is almost identical to the one reported in Table
+5, which is based on the aggregate index.
+    This picture changes if we focus on the European indices. For the Euro-
+pean indices, the summed exposures in Table 6 are much closer to the actual
+reported holdings than the estimated exposures in Table 5. The average dif-
+ference decreases from 12.4% in Table 5 to 2.2% in Table 6, and the standard
+deviation of the di¤erences likewise decreases. For the Paci…c region on the
+other hand, the di¤erences between the summed style exposures and the ac-
+tual reported holdings is substantial, and does not show any improvement
+relative to the di¤erences reported in Table 5. The average di¤erence changes
+from -7.0% in Table 5 to +3.1% in Table 6.
+    From Section 5, the summed exposures need not be equal to the reported
+holdings if the beta’s of the subindices relative to the aggregate indices are
+di¤erent from one. To correct for this, Table 6 also reports the sum of
+                                                                    (i)
+the estimated style exposures for each region, weighted by the ¯ j of each
+subindex j relative to the aggregate regional index i. If the style exposure
+for the disaggregated indices re‡ect the actual portfolio weights assigned by
+the fund manager, then this weighted sum should be closer to the reported
+holdings. Comparing the two columns for each region in Table 6, we see
+that the two summed exposures are very close in case of North America and
+Europe, but not for the Paci…c case. This re‡ects the fact that the ¯’s of
+the subindices relative to the aggregate index are close to one in case of
+North America and Europe, whereas in the Paci…c case they can be as low
+as 0.46, as can be seen in Table 4. However, even though for the Paci…c case
+
+                                     25
+the ¯’s are clearly di¤erent from one, the weighted summed exposures do
+not explain the di¤erence between the estimated aggregate exposure and the
+reported holdings in Table 5. On the contrary, the average di¤erence between
+the summed exposure and the actual reported holdings increase from 3.1%
+to 18.6% and the correlation between the summed style exposures and the
+reported holdings even decreases.
+    Although the analysis is limited by the availability of the data, Table
+6 indicates that the di¤erences between estimated exposures and reported
+holdings is not likely to be explained by the fact that fund managers hold on
+average high or low beta stocks relative to the index. It follows then that the
+di¤erence between reported holdings and estimated exposures is more likely
+to be caused by the correlations between the di¤erent indices. Thus, if style
+analysis is to be used to estimate the actual portfolio holdings, then it will
+be important to use indices which are mutually exclusive and which have
+low (zero) correlations with each other. The results in this section suggest
+that if the benchmark indices are not uncorrelated, then the estimated style
+exposures do not re‡ect the actual portfolio holdings of the fund manager.
+
+6.3    Constructing e¢cient portfolios using di¤erent forms
+       of style analysis
+Asset allocation is one of the main issues in the investment decision. It is
+often the case that investors want to allocate a …xed percentage of their
+portfolio to e.g. international growth stocks. Obviously, the investor could
+simply choose an internationally investing mutual fund with reported invest-
+ment style growth. However, the actual investment style does not necesarilly
+correspond to the reported investment style (see, e.g. Sharpe (1992), Brown
+and Goetzmann (1997) and Lucas and Riepe (1996)). Consequently, choos-
+ing a fund with the desired style does not imply that a …xed percentage of the
+investors’ portfolio is allocated to it. Therefore, return based style analysis
+can be implemented in the the investors’ asset allocation decision to properly
+…nd the optimal mix, as suggested by Lucas and Riepe (1996).
+    As shown in Section 3, the application of style analysis in its strong form
+will only lead to e¢cient portfolio weights with desired factor exposures if the
+actual factor loadings are already a positively weighted portfolio. Otherwise,
+the residuals et of this style analysis are not necessarily uncorrelated with
+the benchmark assets and this might lead to inconsistent style estimates.
+
+
+                                      26
+                          P
+Table 6: The colums ’ ^bi ’ in the table reports the estimated exposures
+aggregated at a regional level of a strong style analysis, using as asset classes
+the growth and value indices of each country underlying a regional index.
+The countries underlying a certain regional index are reported in Table 4.
+              P
+The columns ’ ^bi =¯ (i) ’ report a weighted estimated exposure.
+      Mutual Fund                                estimated exposure
+                          North America                  Europe                   Paci…c
+                         P^      P^              P^        P^              P^       P^
+                            bi     bi =¯   (i)
+                                                    bi       bi =¯   (i)
+                                                                             bi       bi =¯ (i)
+ Alliance Global Sm      0.656     0.665         0.193       0.202         0.152      0.191
+ Alliance Intl           0.111     0.115         0.489       0.499         0.400      0.518
+ Bailard, Biehl Intl     0.173     0.176         0.553       0.561         0.274      0.400
+ Evergreen Intl Gr       0.321     0.324         0.474       0.490         0.206      0.299
+ First Invest Global     0.392     0.389         0.378       0.382         0.230      0.335
+ Kemper Intl             0.216     0.228         0.500       0.513         0.284      0.483
+ Nations Intl Gr         0.200     0.206         0.453       0.460         0.347      0.581
+ New Perspective         0.467     0.460         0.346       0.356         0.187      0.328
+ Oppenheimer Global      0.400     0.389         0.392       0.407         0.207      0.309
+ Phoenix-Aberdeen        0.360     0.343         0.402       0.413         0.238      0.412
+ Putnam Global Gr        0.370     0.353         0.394       0.410         0.236      0.381
+ Scudder Intl            0.179     0.184         0.472       0.486         0.349      0.503
+ T.Rowe Price Intl       0.109     0.105         0.514       0.522         0.377      0.584
+ Templeton Global Sm     0.546     0.579         0.288       0.301         0.166      0.328
+ Templeton Gr            0.482     0.515         0.251       0.257         0.267      0.485
+ Templeton World         0.455     0.483         0.282       0.286         0.263      0.459
+ United Intl Gr          0.168     0.172         0.626       0.650         0.207      0.400
+ Vanguard Intl Gr        0.092     0.098         0.534       0.554         0.374      0.563
+    mean di¤erence       0.143     0.148         0.022       0.033         0.031      0.186
+    stdev di¤erence      0.054     0.063         0.031       0.034         0.047      0.079
+       correlation        0.95      0.93          0.96       0.96           0.88       0.71
+
+
+
+
+                                       27
+Consequently, the use of inconsistent style estimates might lead to optimal
+portfolios with undesired factor exposure. In order to illustrate the potential
+consequences of using strong style analysis in constructing e¢cient portfolios
+we will look at the following problem.
+     We assume that an investor chooses his mean-variance e¢cient portfo-
+lio from the N = 18 mutual funds that are available, and that he desires
+an international asset allocation with …xed exposure to certain investment
+regions and types of stock. We consider the following two combinations of
+desired factor exposure: portfolio A : 25% to North American growth stocks,
+50% to European growth stocks and 25% to Paci…c growth stocks, portfolio
+B: 65% to North American value stocks, 25% to European value stocks and
+10% to Paci…c value stocks. In Table 7 we report for each desired exposure
+the optimal portfolio for a required expected return of 1.25% on a monthly
+basis. We apply the three forms of style analysis to determine the exposure
+of the funds for the factors under consideration.
+     It appears that for an e¢cient portfolio with desired exposure ‘A’ and
+expected return 1.25% monthly, a short position has to be taken in nine out
+of the eighteen mutual funds in the sample in case that we apply the weak
+form of style analysis. The portfolio has a short position of more than 46%
+in Kemper International in combination with a long position of more than
+67% in T.Rowe Price International. The determined portfolio with desired
+factor exposures has a standard deviation of 4.50% on a monthly basis (i.e.
+15.6% annually). While keeping the expected return on the portfolio …xed,
+it is interesting to note that in case of semi-strong and strong style analysis
+the corresponding risk on the portfolio decreases. Apparantly, the use of
+portfolio and the positivity restriction in style analysis leads to inconsistent
+style estimates which subsequently lead to inconsistent portfolio weight esti-
+mates. The consequence of the inconsistent portfolio weights is a reduction
+in the risk of the portfolio, while imposing extra restrictions should have led
+to a higher risk. If we use the weak style estimates in combination with the
+optimal weights determined with semi-strong and strong style analysis, then
+it appears that the portfolio does not have the desired factor exposure, i.e.
+22.7% to North American growth stocks, 48.7% to European growth stocks
+and 24.7% to Paci…c growth stocks, indicating that the necessary require-
+ment in (13) that E["t Rt ] = 0 does not hold in semi-strong and strong style
+analysis. For ’Combination B’, where certain exposures for international
+value indices were desired, similar results are found.
+     As mentioned, when applying the weak form of style analysis in the asset
+
+                                      28
+Table 7: The table reports the optimal weights for two combinations of
+desired factor exposure. Combination A re‡ects a desired exposure of 25
+% North American, 50 % European and 25 % Paci…c Growth stocks, while
+Combination B re‡ects a desired exposure of 65 % American, 25 % European
+and 10 % Paci…c Value stocks.
+                                Combination A            Combination B
+        Mutual Fund         weak    semi strong      weak    semi strong
+   Alliance Global Sm       1.19   -4.15    -4.30     7.92  -0.47    -0.47
+   Alliance Intl            6.98    3.53     3.53     8.81  -0.04    -0.04
+   Bailard, Biehl Intl      33.44 34.11 34.14       11.04 11.23 11.23
+   Evergreen Intl Gr        17.79 20.71 20.66        -2.61   5.66    5.65
+   First Invest Global      15.45 13.77 13.79       13.16    9.28    9.28
+   Kemper Intl             -46.20 -41.17 -41.22      -3.37   4.97     4.97
+   Nations Intl Gr          -9.03  -9.54    -9.57     3.43   3.16     3.17
+   New Perspective          8.16   14.00 13.98      18.29 31.83 31.83
+   Oppenheimer Global       -1.71  -6.54    -6.58    -0.00  -8.06    -8.07
+   Phoenix-Aberdeen         -3.46  -3.94    -3.71     0.87  -0.08    -0.08
+   Putnam Global Gr         32.88 28.42 28.39       21.60 18.01 18.01
+   Scudder Intl             -4.53   0.35     0.31   -10.90 -9.51     -9.51
+   T.Rowe Price Intl        67.37 62.18 62.32         6.83   6.28    6.26
+   Templeton Global Sm     -16.27 -11.40 -11.42      -4.86   2.82     2.82
+   Templeton Gr            -14.96 -12.05 -12.00       4.16   5.06     5.06
+   Templeton World          31.12 30.57 30.51       50.30 47.26 47.26
+   United Intl Gr          -12.50 -11.67 -11.69      -8.17  -8.39    -8.39
+   Vanguard Intl Gr         -5.73  -7.19    -7.15   -16.49 -21.92 -21.92
+
+    expected return (%)    1.25    1.25     1.25    1.25    1.25     1.25
+    stand. deviation (%)   4.50    4.35     4.36    4.09    3.82     3.82
+
+
+
+
+                                     29
+allocation decision with …xed exposure, the optimal portfolio contains short
+positions in a number of funds. Obviously, it is hard to take short positions
+in a mutual fund. Therefore we impose short sell restrictions on the mutual
+funds under consideration. As shown by e.g. Markowitz (1991) this leads to
+a segmented mean-variance frontier with on each segment those mutual funds
+with non-binding short sell restrictions. In Table 8 we report for two com-
+binations of desired exposure the optimal portfolio for a required expected
+return of 1.25% on a monthly basis. As before, we apply the three forms of
+style analysis to determine the exposure of the funds for the factors under
+consideration.
+    First of all, it appears that in case of short sell restrictions, the desired
+‘Combination A’ in combination with a required return of 1.25% is not at-
+tainable. Furthermore, similar to the results without short sell restrictions, it
+appears that the optimal weights of the portfolios with desired exposure are
+inconsistent when semi-strong or strong style analysis is used. This follows
+from the reduced risk, although higher risk has to be expected because of ad-
+ditional restrictions. Therefore, we propose not to impose the portfolio and
+positivity constraint in style analysis, when style analysis is used for asset
+allocation decisions with …xed exposure to certain factors. In case of weak
+style analysis, it appears that for the desired ’Combination B’, a considerable
+position has to be taken in the Templeton World fund, while for ten funds
+the short sell constraint is binding. The fact that the positivity and portfo-
+lio constraints in semi-strong and strong style analysis leads to inconsistent
+weight estimates illustrates that in order to determine a portfolio with …xed
+exposure to certain asset classes, the use of the weak form of style analysis
+is recommended.
+
+
+7     Summary and conclusions
+The portfolio and positivity constraints that are usually imposed in return
+based style analysis can lead to inconsistent estimates. The aim of the ap-
+plication where style analysis is used for, determines whether the constraints
+are desired. Strong style analysis is only recommended in case of relative per-
+formance evaluation, while in all other analyzed applications the constraints
+can have serious impacts on the results of the underlying question.
+    In relative performance evaluation the aim of style analysis is to deter-
+mine a benchmark portfolio that mimicks the fund under consideration. In
+
+                                       30
+Table 8: The table reports the optimal weights for two combinations of de-
+sired factor exposure in case it is not allowed to take short positions in the
+mutual funds. A ’-’ in the table indicates that there is a binding short sell
+constraint. Combination A re‡ects a desired exposure of 25 % North Amer-
+ican, 50 % European and 25 % Paci…c Growth stocks, while Combination
+B re‡ects a desired exposure of 65 % American, 25 % European and 10 %
+Paci…c Value stocks.
+                               Combination A            Combination B
+          Mutual Fund        weak semi strong      weak semi strong
+     Alliance Global Sm       -     -      -       15.66 7.05       7.11
+     Alliance Intl            -     -      -        0.03      -       -
+     Bailard, Biehl Intl      -     -      -        1.25    2.26    2.28
+     Evergreen Intl Gr        -     -      -          -     5.42    5.42
+     First Invest Global      -     -      -        7.87    7.68    7.63
+     Kemper Intl              -     -      -          -       -       -
+     Nations Intl Gr          -     -      -          -       -       -
+     New Perspective          -     -      -       10.19 21.26 21.27
+     Oppenheimer Global       -     -      -          -       -       -
+     Phoenix-Aberdeen         -     -      -          -     0.99    0.94
+     Putnam Global Gr         -     -      -       13.73      -       -
+     Scudder Intl             -     -      -          -       -       -
+     T.Rowe Price Intl        -     -      -        3.50      -       -
+     Templeton Global Sm      -     -      -          -     4.25    4.22
+     Templeton Gr             -     -      -          -    11.11 11.10
+     Templeton World          -     -      -       47.77 39.97 40.02
+     United Intl Gr           -     -      -          -       -       -
+     Vanguard Intl Gr         -     -      -          -       -       -
+
+      expected return (%)      -      -      -     1.25    1.25    1.25
+      stand. deviation (%)     -      -      -     4.11    3.96    3.96
+
+
+
+
+                                     31
+this case, the portfolio and positivity constraints are required since in weak
+style analysis the factor exposures do not necessarily sum to one nor they
+are positive. Although the intercept in the strong style regression indicates
+whether the fund under or outperforms the mimicking portfolio on a relative
+basis, it may only be interpreted as the Jensen measure for a very speci…c
+group of investors.
+    When style analysis is used to construct e¢cient portfolios from mutual
+funds that have …xed exposures for certain asset classes, the portfolio and
+positivity constraints lead to a portfolio that does not have the desired expo-
+sure. The fact that in semi-strong and strong style analysis the correlation
+between the error term and the benchmark assets is not necessarily equal to
+zero, leads to inconsistency in the style estimates which subsequently lead
+to portfolios with undesired factor exposure. This can be avoided by simply
+applying weak style analysis.
+    Sometimes style analysis is suggested as a method to estimate portfolio
+holdings of fund managers. However, weak, semi-strong and strong style
+analysis will not consistently estimate the actual portfolio holdings over the
+sample period when fund managers invest in a subset of assets underlying
+an index only, and give the assets di¤erent weights than the index. Even in
+the case that the fund manager holds securities that on average have a beta
+of one relative to their own assets will in general lead to style estimates that
+deviate seriously from the actual holdings. The fact that the indices used in
+style analysis usually are not mutually exclusive can lead to style residuals
+that may be correlated with the style indices.
+
+
+8     References
+    ² Brown, S.J. and W.N. Goetzmann, 1997, Mutual Fund Styles, Journal
+      of Financial Economics, 43, 373-399.
+
+    ² Cochrane, J., 1999, Portfolio Advice for a Multi-Factor World, Working
+      Paper, University of Chicago.
+
+    ² Cumby, R.E. and J.C. Glen, 1990, Evaluating the Performance of In-
+      ternational Mutual Funds, Journal of Finance, 45, 497-521.
+
+    ² DeRoon, F.A., and Th. E. Nijman, 1999, Testing for Mean-Variance
+      Spanning: A Survey, Working Paper, CenterDP. , Tilburg University.
+
+                                      32
+² DeRoon, F.A., Th. E. Nijman and J.R. TerHorst, 1998, Performance
+  Analysis of International Mutual Funds Incorporating Market Frictions,
+  Working Paper, CenterDP. 9851, Tilburg University.
+
+² DeRoon, F.A., Th. E. Nijman and B.J.M. Werker, 2000, Testing for
+  Mean-Variance Spanning with Short Sales Constraints and Transaction
+  Costs: The Case of Emerging Markets, forthcoming Journal of Finance.
+
+² Elton E, M.J. Gruber and C.R. Blake, 1996, The Persistence of Risk-
+  Adjusted Mutual Fund Performance, Journal of Business, 69, 133-157.
+
+² Fama, E.F., 1996, Multifactor Portfolio E¢ciency and Multifactor As-
+  set Pricing, Journal of Financial and Quantitative Analysis, 31, 441-
+  465.
+
+² Fama, E.F. and K.R. French, 1998, Value versus Growth: The Inter-
+  national Evidence, Journal of Finance, 53, 1975-1999.
+
+² Fung, W. and D.A. Hsieh, 1997, Empirical Characteristics of Dynamic
+  Trading Strategies: The Case of Hedge Funds, Review of Financial
+  Studies, 10, 275-302.
+
+² Gruber, M.J., 1996, Another Puzzle: The Growth in Actively Managed
+  Mutual Funds, Journal of Finance, 51, 783-811.
+
+² Jobson, J.D. and B. Korkie, 1989, A Performance Interpretation of
+  Multivariate Tests of Intersection, Spanning and Asset Pricing, Journal
+  of Financial and Quantitative Analysis, 24, 285-304.
+
+² Lucas, L. and M.W. Riepe, 1996, The Role of Returns-Based Style
+  Analysis: Understanding, Implementing, and Interpreting the Tech-
+  nique”, Working Paper, Ibbotson Associates.
+
+² Markowitz, H.M., 1991, Portfolio Selection, Basil Blackwell, Cambridge,
+  Massachusetts.
+
+² Sharpe, W.F., 1992, Asset Allocation: Management Style and Perfor-
+  mance Measurement, Journal of Portfolio Management, Winter, p.7-
+  19.
+
+
+
+
+                                 33
+² Wermers, R., 2000, Mutual Fund Performance: An Empirical Decom-
+  position into Stock-Picking Talent, Style, Transaction Costs, and Ex-
+  penses, Working Paper, University of Colorado.
+
+
+
+
+                                34
+               ERASMUS RESEARCH INSTITUTE OF MANAGEMENT
+
+
+                                 REPORT SERIES
+                             RESEARCH IN MANAGEMENT
+
+
+Publications in the Report Series Research∗ in Management
+
+Impact of the Employee Communication and Perceived External Prestige on Organizational Identification
+Ale Smidts, Cees B.M. van Riel & Ad Th.H. Pruyn
+ERS-2000-01-MKT
+
+Critical Complexities, from marginal paradigms to learning networks
+Slawomir Magala
+ERS-2000-02-ORG
+
+Forecasting Market Shares from Models for Sales
+Dennis Fok & Philip Hans Franses
+ERS-2000-03-MKT
+
+A Greedy Heuristic for a Three-Level Multi-Period Single-Sourcing Problem
+H. Edwin Romeijn & Dolores Romero Morales
+ERS-2000-04-LIS
+
+Integer Constraints for Train Series Connections
+Rob A. Zuidwijk & Leo G. Kroon
+ERS-2000-05-LIS
+
+Competitive Exception Learning Using Fuzzy Frequency Distribution
+W-M. van den Bergh & J. van den Berg
+ERS-2000-06-LIS
+
+Start-Up Capital: Differences Between Male and Female Entrepreneurs, ‘Does Gender Matter?’
+Ingrid Verheul & Roy Thurik
+ERS-2000-07-STR
+
+The Effect of Relational Constructs on Relationship Performance: Does Duration Matter?
+Peter C. Verhoef, Philip Hans Franses & Janny C. Hoekstra
+ERS-2000-08-MKT
+
+Marketing Cooperatives and Financial Structure: a Transaction Costs Economics Analysis
+George W.J. Hendrikse & Cees P. Veerman
+ERS-2000-09-ORG
+
+A Marketing Co-operative as a System of Attributes: A case study of VTN/The Greenery International BV,
+Jos Bijman, George Hendrikse & Cees Veerman
+ERS-2000-10-ORG
+
+
+
+∗
+    ERIM Research Programs:
+    LIS Business Processes, Logistics and Information Systems
+    ORG Organising for Performance
+    MKT Decision Making in Marketing Management
+    F&A Financial Decision Making and Accounting
+    STR Strategic Renewal and the Dynamics of Firms, Networks and Industries
+

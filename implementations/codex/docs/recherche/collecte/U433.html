@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>AWS Glue Data Quality - AWS Glue</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="glue-data-quality" /><meta name="default_state" content="glue-data-quality" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/glue/latest/dg/glue-data-quality.html" /><link rel="alternate" type="text/markdown" href="https://docs.aws.amazon.com/glue/latest/dg/glue-data-quality.md" title="Markdown version" /><meta name="description" content="This section covers how to use AWS Glue Data Quality with AWS Glue Data Catalog. AWS Glue Data Quality helps you evaluate and monitor the quality of your data based on rules that you define." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Glue" /><meta name="guide" content="User Guide" /><meta name="abstract" content="How to use and program AWS Glue." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/glue/latest/dg/glue-data-quality.html" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/glue/latest/dg/glue-data-quality.html" hreflang="id-id" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/glue/latest/dg/glue-data-quality.html" hreflang="id" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/glue/latest/dg/glue-data-quality.html" hreflang="de-de" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/glue/latest/dg/glue-data-quality.html" hreflang="de" /><link rel="alternate" href="https://docs.aws.amazon.com/glue/latest/dg/glue-data-quality.html" hreflang="en-us" /><link rel="alternate" href="https://docs.aws.amazon.com/glue/latest/dg/glue-data-quality.html" hreflang="en" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/glue/latest/dg/glue-data-quality.html" hreflang="es-es" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/glue/latest/dg/glue-data-quality.html" hreflang="es" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/glue/latest/dg/glue-data-quality.html" hreflang="fr-fr" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/glue/latest/dg/glue-data-quality.html" hreflang="fr" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/glue/latest/dg/glue-data-quality.html" hreflang="it-it" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/glue/latest/dg/glue-data-quality.html" hreflang="it" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/glue/latest/dg/glue-data-quality.html" hreflang="ja-jp" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/glue/latest/dg/glue-data-quality.html" hreflang="ja" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/glue/latest/dg/glue-data-quality.html" hreflang="ko-kr" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/glue/latest/dg/glue-data-quality.html" hreflang="ko" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/glue/latest/dg/glue-data-quality.html" hreflang="pt-br" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/glue/latest/dg/glue-data-quality.html" hreflang="pt" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_cn/glue/latest/dg/glue-data-quality.html" hreflang="zh-cn" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_tw/glue/latest/dg/glue-data-quality.html" hreflang="zh-tw" /><link rel="alternate" href="https://docs.aws.amazon.com/glue/latest/dg/glue-data-quality.html" hreflang="x-default" /><meta name="feedback-item" content="Glue" /><meta name="this_doc_product" content="AWS Glue" /><meta name="this_doc_guide" content="User Guide" /><head xmlns="http://www.w3.org/1999/xhtml"> <script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"/></head>
+<script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'glue'}"></script><meta id="panorama-serviceSubSection" value="User Guide" /><meta id="panorama-serviceConsolePage" value="AWS Glue Data Quality" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><p><a href="glue-data-quality.md">View a markdown version of this page</a></p><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>AWS Glue Data Quality - AWS Glue</title><meta name="pdf" content="/pdfs/glue/latest/dg/glue-dg.pdf#glue-data-quality" /><meta name="rss" content="aws-glue-release-notes.rss" /><meta name="forums" content="https://repost.aws/tags/TABBptUaVOS1mAM7TXuTuxWQ" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Glue&amp;topic_url=https://docs.aws.amazon.com/en_us/glue/latest/dg/glue-data-quality.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/glue/latest/dg/glue-data-quality.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/glue/latest/dg/glue-data-quality.html" /><meta name="keywords" content="AWS Glue,AWS Glue Data Catalog,Data Catalog,AWS Glue jobs system,Jobs system,ETL" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Glue",
+        "item" : "https://docs.aws.amazon.com/glue/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "User Guide",
+        "item" : "https://docs.aws.amazon.com/glue/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "AWS Glue Data Quality",
+        "item" : "https://docs.aws.amazon.com/glue/latest/dg/glue-data-quality.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/glue/latest/dg/glue-dg.pdf#glue-data-quality" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/glue/index.html">AWS Glue</a><a href="what-is-glue.html">User Guide</a></div><div id="page-toc-src"><a href="#glue-data-quality-key-features">Benefits and key features</a><a href="#glue-data-quality-how-it-works">How it works</a><a href="#glue-data-quality-considerations">Considerations</a><a href="#data-quality-terms">Terminology</a><a href="#data-quality-limits">Limits</a><a href="#data-quality-release-notes">Release notes for AWS Glue Data Quality</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="glue-data-quality">AWS Glue Data Quality</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>AWS Glue Data Quality allows you to measure and monitor the quality of your data so that you can make
+        good business decisions. Built on top of the open-source DeeQu framework, AWS Glue Data Quality provides a
+        managed, serverless experience. AWS Glue Data Quality works with Data Quality Definition Language (DQDL),
+        which is a domain specific language that you use to define data quality rules. To learn more
+        about DQDL and supported rule types, see <a href="./dqdl.html">Data Quality Definition Language (DQDL) reference</a>.</p><p>For additional product details and pricing, see the service page for <a href="https://aws.amazon.com/glue/features/data-quality" rel="noopener noreferrer" target="_blank"><span>AWS Glue Data Quality</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        <h2 id="glue-data-quality-key-features">Benefits and key features</h2>
+        <p>
+            Benefits and key features of AWS Glue Data Quality include:
+        </p>
+        <div class="itemizedlist">
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>
+                    <b>Serverless</b> – There is no installation, patching or maintenance.
+                </p>
+            </li><li class="listitem">
+                <p>
+                    <b>Get started quickly</b> – AWS Glue Data Quality quickly analyzes your data and creates data quality rules for you. 
+                    You can get started with two clicks: “Create Data Quality Rules → Recommend rules”.
+                </p>
+            </li><li class="listitem">
+                <p>
+                    <b>Detect data quality issues</b> – Use machine learning (ML) to detect anomalies and 
+                    hard-to-detect data quality issues.
+                </p>
+            </li><li class="listitem">
+                <p>
+                    <b>Improvise your rules</b> – with 25+ out-of-the-box DQ rules to start from, you can create rules
+                    that suit your specific needs. 
+                </p>
+            </li><li class="listitem">
+                <p>
+                    <b>Evaluate quality and make confident business decisions</b> – Once you evaluate the rules, 
+                    you get a Data Quality score that provides an overview of the health of your data. 
+                    Use Data Quality score to make confident business decisions.
+                </p>
+            </li><li class="listitem">
+                <p>
+                    <b>Zero in on bad data</b> – AWS Glue Data Quality helps you identify the exact records that caused your 
+                    quality scores to go down. Easily identify them, quarantine and fix them.
+                </p>
+            </li><li class="listitem">
+                <p>
+                    <b>Pay as you go</b> – There are no annual licenses you need to use AWS Glue Data Quality.
+                </p>
+            </li><li class="listitem">
+                <p>
+                    <b>No lock-in</b> – AWS Glue Data Quality is built on open source DeeQu, allowing you to keep the rules you are 
+                    authoring in an open language.
+                </p>
+            </li><li class="listitem">
+                <p>
+                    <b>Data quality checks</b> – You can enforce data quality checks on Data Catalog
+                    and AWS Glue ETL pipelines allowing you to manage data quality at rest and in transit.
+                </p>
+            </li><li class="listitem">
+                <p>
+                    <b>ML-based data quality detection</b> – Use machine learning (ML) to detect anomalies and 
+                    hard-to-detect data quality issues.
+                </p>
+            </li><li class="listitem">
+                <p>
+                    <b>Open language to express rules</b> – ensures that data quality rules are authored 
+                    consistently and simply. Business users can easily express data quality rules in a straightforward language 
+                    that they can understand. For engineers, this language provides the flexibility to generate code, 
+                    implement consistent version control, and automate deployments.
+                </p>
+            </li></ul></div>
+     
+        <h2 id="glue-data-quality-how-it-works">How it works</h2>
+        <p>There are two entry points for AWS Glue Data Quality: the AWS Glue Data Catalog and AWS Glue ETL jobs. This
+            section provides an overview of the use cases and AWS Glue features that each entry point
+            supports.</p>
+         
+            <h3 id="glue-data-quality-for-data-catalog">Data quality for the AWS Glue Data Catalog</h3>
+            <p>AWS Glue Data Quality evaluates tables and supported Amazon Athena views that are stored
+                in the AWS Glue Data Catalog. It offers non-coders an easy way to set up data quality rules.
+                These personas include data stewards and business analysts.</p>
+            <p></p>
+            <div class="mediaobject">
+                 
+                    <iframe width="480" height="390" frameborder="0" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" sandbox="allow-scripts allow-same-origin allow-popups" src="https://www.youtube-nocookie.com/embed/rK1NGQu4Sgg"></iframe>
+                 
+            </div>  
+            <p></p>
+            <p>You might choose this option for the following use cases:</p>
+            <div class="itemizedlist">
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>You want to perform data quality tasks on data sets that you've already
+                        cataloged in the AWS Glue Data Catalog.</p>
+                </li><li class="listitem">
+                    <p>You work on data governance and need to identify or evaluate data quality
+                        issues in your data lake on an ongoing basis.</p>
+                </li></ul></div>
+            <p>You can manage data quality for the Data Catalog using the following interfaces:</p>
+            <div class="itemizedlist">
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>The AWS Glue management console</p>
+                </li><li class="listitem">
+                    <p>AWS Glue APIs</p>
+                </li></ul></div>
+            <p>To get started with AWS Glue Data Quality for the AWS Glue Data Catalog see <a href="./data-quality-getting-started.html">Getting started with AWS Glue Data Quality for the Data Catalog</a>.</p>
+         
+         
+            <h3 id="glue-data-quality-for-etl">Data quality for AWS Glue ETL jobs</h3>
+            <p>AWS Glue Data Quality for AWS Glue ETL jobs lets you perform <em>proactive</em> data quality tasks. Proactive tasks help you identify and
+                filter out bad data <em>before</em> you load a data set
+                into your data lake.</p>          
+                <div class="mediaobject">
+                 
+                    <iframe width="480" height="390" frameborder="0" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" sandbox="allow-scripts allow-same-origin allow-popups" src="https://www.youtube-nocookie.com/embed/DUd5s_CFtBM"></iframe>
+                 
+            </div>
+            
+            <p>You might choose data quality for ETL jobs for the following use cases:</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>You want to incorporate data quality tasks into your ETL jobs</p>
+                </li><li class="listitem">
+                    <p>You want to write code that defines data quality tasks in ETL
+                        scripts</p>
+                </li><li class="listitem">
+                    <p>You want to manage the quality of data that flows in your visual data
+                        pipelines</p>
+                </li></ul></div>
+            <p>You can manage data quality for ETL jobs using the following interfaces:</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>AWS Glue Studio, AWS Glue Studio notebooks, and AWS Glue interactive sessions</p>
+                </li><li class="listitem">
+                    <p>AWS Glue libraries for ETL scripting</p>
+                </li><li class="listitem">
+                    <p>AWS Glue APIs</p>
+                </li></ul></div>
+            <p>To get started with data quality for ETL jobs, see <a href="https://docs.aws.amazon.com/glue/latest/ug/gs-data-quality-chapter.html">Tutorial: Getting started with
+                    Data Quality</a> in the <em>AWS Glue Studio User
+                Guide</em>.</p>
+         
+         
+            <h3 id="glue-data-quality-compare">Comparing data quality for the Data Catalog to data quality for ETL jobs</h3>
+            <p>This table provides an overview of features that each entry point for AWS Glue Data Quality
+                supports.</p>
+            <div class="table-container"><div class="table-contents"><table id="d0e1"><thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Data quality for the Data Catalog</th>
+                            <th>Data quality for ETL jobs</th>
+                        </tr>
+                    </thead>
+                        <tr>
+                            <td tabindex="-1">Data sources</td>
+                            <td tabindex="-1">Amazon S3, Amazon Redshift, JDBC sources compatible
+                                with the Data Catalog, transactional data lake formats such as Apache
+                                Iceberg, Apache Hudi, and Delta Lake, and Amazon Athena views
+                                created using <code class="code">CREATE VIEW</code> and cataloged in the Data Catalog.
+                                AWS Lake Formation managed OTF formats are also supported
+                                with some limitations. Protected multi-dialect Data Catalog views are not
+                                supported. See
+                                <a href="./data-quality-getting-started.html#data-quality-get-started-supported-source-types">Supported source types</a>.
+                            </td>
+                            <td tabindex="-1">All data sources supported by AWS Glue, including custom connectors
+                                and third-party connectors.</td>
+                        </tr>
+                        <tr>
+                            <td tabindex="-1">Data Quality rule recommendations</td>
+                            <td tabindex="-1">Supported</td>
+                            <td tabindex="-1">Not supported</td>
+                        </tr>
+                        <tr>
+                            <td tabindex="-1">Author and run DQDL rules</td>
+                            <td tabindex="-1">Supported</td>
+                            <td tabindex="-1">Supported</td>
+                        </tr>
+                        <tr>
+                            <td tabindex="-1">Auto scaling</td>
+                            <td tabindex="-1">Not supported</td>
+                            <td tabindex="-1">Supported</td>
+                        </tr>
+                        <tr>
+                            <td tabindex="-1">AWS Glue Flex support</td>
+                            <td tabindex="-1">Not supported</td>
+                            <td tabindex="-1">Supported</td>
+                        </tr>
+                        <tr>
+                            <td tabindex="-1">Scheduling</td>
+                            <td tabindex="-1">Supported when evaluating Data Quality rules and via Step Functions.</td>
+                            <td tabindex="-1">Supported when using Step Functions and workflows.</td>
+                        </tr>
+						<tr>
+                            <td tabindex="-1">Identifying records that failed data quality checks</td>
+                            <td tabindex="-1">Not supported</td>
+                            <td tabindex="-1">Supported</td>
+                        </tr>
+						<tr>
+                            <td tabindex="-1">Integration with Amazon Eventbridge</td>
+                            <td tabindex="-1">Supported</td>
+                            <td tabindex="-1">Supported</td>
+                        </tr>
+						<tr>
+                            <td tabindex="-1">Integration with AWS Cloudwatch</td>
+                            <td tabindex="-1">Supported</td>
+                            <td tabindex="-1">Supported</td>
+                        </tr>
+						<tr>
+                            <td tabindex="-1">Writing data quality results to Amazon S3</td>
+                            <td tabindex="-1">Supported</td>
+                            <td tabindex="-1">Supported</td>
+                        </tr>
+						<tr>
+                            <td tabindex="-1">Incremental data quality</td>
+                            <td tabindex="-1">Supported via pushdown predicates</td>
+                            <td tabindex="-1">Supported via AWS Glue bookmarks</td>
+                        </tr>
+						<tr>
+                            <td tabindex="-1">AWS CloudFormation support</td>
+                            <td tabindex="-1">Supported</td>
+                            <td tabindex="-1">Supported</td>
+                        </tr>
+                        <tr>
+                            <td tabindex="-1">ML-based anomaly detection</td>
+                            <td tabindex="-1">Supported</td>
+                            <td tabindex="-1">Supported</td>
+                        </tr>
+                        <tr>
+                            <td tabindex="-1">Dynamic rules</td>
+                            <td tabindex="-1">Supported</td>
+                            <td tabindex="-1">Supported</td>
+                        </tr>
+                    </table></div></div>
+         
+     
+        <h2 id="glue-data-quality-considerations">Considerations</h2>
+        <p>Consider the following items before you use AWS Glue Data Quality:</p>
+        <div class="itemizedlist">
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>Data quality rules can't evaluate nested or list-type data sources. See 
+                    <a href="./transforms-flatten.html">Flatten nested structs</a>.
+                </p>
+            </li></ul></div>
+     
+        <h2 id="data-quality-terms">Terminology</h2>
+        <div class="variablelist">
+            <p>The following list defines terms that are related to AWS Glue Data Quality.</p>
+             
+             
+             
+             
+             
+             
+             
+             
+        <dl>
+                <dt><b><span class="term">Data Quality Definition Language (DQDL)</span></b></dt>
+                <dd>
+                    <p>A domain-specific language that you can use to write AWS Glue Data Quality rules. </p>
+                    <p>To learn more about DQDL, see the <a href="./dqdl.html">Data Quality Definition Language (DQDL) reference</a> guide.</p>
+                </dd>
+            
+                <dt><b><span class="term">data quality </span></b></dt>
+                <dd>
+                    <p>Describes how well a dataset serves its specific purpose. AWS Glue Data Quality
+                        evaluates rules against a dataset to measure data quality. Each rule checks
+                        for particular characteristics like data freshness or integrity. To quantify
+                        data quality, you can use a <em>data quality
+                            score</em>.</p>
+                </dd>
+            
+                <dt><b><span class="term">data quality score</span></b></dt>
+                <dd>
+                    <p>The percentage of data quality rules that pass (result in true) when you
+                        evaluate a ruleset with AWS Glue Data Quality.</p>
+                </dd>
+            
+                <dt><b><span class="term">rule</span></b></dt>
+                <dd>
+                    <p>A DQDL expression that checks your data for a specific characteristic and
+                        returns a Boolean value. For more information, see <a href="./dqdl.html#dqdl-syntax-rule-structure">Rule structure</a>.</p>
+                </dd>
+            
+                <dt><b><span class="term">analyzer</span></b></dt>
+                <dd>
+                    <p>A DQDL expression that gathers data statistics. An analyzer gathers data statistics that can be used by 
+                        ML algorithms to detect anomalies and hard-to-detect data quality issues over time.</p>
+                </dd>
+            
+                <dt><b><span class="term">ruleset</span></b></dt>
+                <dd>
+                    <p>An AWS Glue resource that comprises a set of data quality rules. A ruleset
+                        must be associated with a table in the AWS Glue Data Catalog. When you save a ruleset,
+                        AWS Glue assigns an Amazon Resource Name (ARN) to the ruleset.</p>
+                </dd>
+            
+                <dt><b><span class="term">data quality score</span></b></dt>
+                <dd>
+                    <p>The percentage of data quality rules that pass (result in true) when you evaluate a ruleset with 
+                        AWS Glue Data Quality.</p>
+                </dd>
+            
+                <dt><b><span class="term">observation</span></b></dt>
+                <dd>
+                    <p>An unconfirmed insight generated by AWS Glue by analyzing data
+                        statistics gathered from rules and analyzers over time.</p>
+                </dd>
+            </dl></div>
+     
+        <h2 id="data-quality-limits">Limits</h2>
+        <p>
+            AWS Glue Data Quality service limits:
+        </p>
+        <div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>
+                    You can have 2,000 rules in a ruleset. If your rulesets are larger, we recommend splitting into multiple rulesets.
+                </p>
+            </li><li class="listitem">
+                <p>
+                    The size of the ruleset is 65KB. If your rulesets are larger, we recommend splitting into multiple rulesets.
+                </p>
+            </li><li class="listitem">
+                <p>
+                    AWS Glue Data Quality collects statistics when you create a rule or analyzer. There is no cost associated with storing 
+                    these statistics. However, there is a limit of 100,000 statistics per account, and these statistics will be 
+                    retained for a maximum of two years.
+                </p>
+            </li></ul></div>
+     
+        <h2 id="data-quality-release-notes">Release notes for AWS Glue Data Quality</h2>
+		
+		<p>This topic describes features introduced in AWS Glue Data Quality.</p>
+		
+		 
+        <h3 id="data-quality-release-notes-ga">General availability: new features</h3>
+		
+		<p>The following new features are available with the general availability of AWS Glue Data Quality:</p>
+		
+		<div class="itemizedlist">
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		  
+		   
+		<ul class="itemizedlist"><li class="listitem"><p>The ability to identify which records failed data quality checks is now supported in AWS Glue Studio</p></li><li class="listitem"><p>New data quality ruletypes such as validating referential integrity of data between two data sets, comparing data between two datasets, and data type checks</p></li><li class="listitem"><p>Improved user experience in the AWS Glue Data Catalog</p></li><li class="listitem"><p>Support for Apache Iceberg, Apache Hudi and Delta Lake</p></li><li class="listitem"><p>Support for Amazon Redshift</p></li><li class="listitem"><p>Simplified notification with Amazon EventBridge</p></li><li class="listitem"><p>AWS CloudFormation support for creating rulesets</p></li><li class="listitem"><p>Performance improvements: caching option in ETL and AWS Glue Studio for faster performance when evaluating data quality</p>
+		  </li></ul></div>
+		 
+
+	       
+	          <h3 id="data-quality-release-notes-preview">Nov 27, 2023 (Preview)</h3>
+	          <div class="itemizedlist">
+	               
+	               
+	          <ul class="itemizedlist"><li class="listitem">
+	                  <p>
+	                      ML-powered anomaly detection capabilities are now available in AWS Glue ETL and AWS Glue Studio. 
+	                      With this, you can now detect anomalies and hard-to-detect data quality issues
+	                  </p>
+	              </li><li class="listitem">
+	                  <p>
+	                       <a href="https://docs.aws.amazon.com/glue/latest/dg/dqdl.html#dqdl-dynamic-rules">
+	                           Dynamic Rules allows you to provide dynamic thresholds (ex: <code class="code">RowCount&gt;
+	                           avg(last(10))</code>)
+	                       </a>
+	                  </p>
+	              </li></ul></div>
+	       
+	       
+	          <h3 id="data-quality-release-notes-mar12">Mar 12, 2024</h3>
+	          <div class="itemizedlist">
+	              
+	               	             
+	          <ul class="itemizedlist"><li class="listitem">
+	                  <p>
+	                      DQDL improvements
+	                  </p>
+	                  <div class="itemizedlist">
+	                       
+	                       
+	                       
+	                       
+	                  <ul class="itemizedlist"><li class="listitem">
+	                          <p>
+	                              <a href="./dqdl.html#dqdl-keywords-null-empty-whitespaces_only">
+	                                  Support for Keywords like NULL, BLANKS, WHITESPACES_ONLY
+	                              </a>	                              
+	                          </p>
+	                      </li><li class="listitem">
+	                          <p>
+	                              <a href="./dqdl.html#dqdl-syntax-rule-composition">
+	                                  Options to specify how AWS Glue Data Quality must handle Composite rules
+	                              </a>	                                                           
+	                          </p>
+	                      </li><li class="listitem">
+	                          <p>
+	                              <a href="./dqdl.html#dqdl-keywords-null-empty-whitespaces_only">
+	                                  ColumnValues rule type will not allow NULL values to pass during comparisons
+	                              </a>	                              
+	                          </p>
+	                      </li><li class="listitem">
+	                          <p>
+	                              <a href="./dqdl.html#dqdl-syntax-rule-expressions">
+	                                  Support for NOT operator in DQDL
+	                              </a>	                            
+	                          </p>
+	                      </li></ul></div>
+	              </li></ul></div>
+	       
+	       
+	          <h3 id="data-quality-release-notes-jun26">June 26, 2024</h3>
+	          <div class="itemizedlist">
+	               
+	          <ul class="itemizedlist"><li class="listitem">
+	                  <p>DQDL improvements</p>
+	                  <div class="itemizedlist">
+	                       
+	                  <ul class="itemizedlist"><li class="listitem">
+	                          <p>DQDL now supports <a href="./dqdl.html#dqdl-filtering-data-in-dqdl">
+	                              where clause 
+	                          </a>	 
+	                             so that you can filter data before applying DQ rules</p>
+	                      </li></ul></div>
+	              </li></ul></div>
+	       
+	                 
+	          <h3 id="data-quality-release-notes-aug7">August 7, 2024</h3>
+	          <div class="itemizedlist">
+	               
+	          <ul class="itemizedlist"><li class="listitem">
+	                  <p>Anomaly Detection and Dynamic Rules are now generally available</p>
+	              </li></ul></div>
+	       
+	       
+	          <h3 id="data-quality-release-notes-nov22-2024">Nov 22, 2024</h3>
+	          <div class="itemizedlist">
+	               
+	               
+	               
+	          <ul class="itemizedlist"><li class="listitem">
+	                  <p>
+	                      <a href="https://docs.aws.amazon.com/glue/latest/dg/dqdl.html#dqdl-syntax-rule-composition">
+	                          Complex composite rules allows you to author more complex business rules with nested support
+	                      </a>
+	                  </p>
+	              </li><li class="listitem">
+	                  <p>
+	                      New rule types for managing data quality for your files
+	                  </p>
+	                  <div class="itemizedlist">
+	                       
+	                       
+	                       
+	                       
+	                  <ul class="itemizedlist"><li class="listitem">
+	                          <p>
+	                              <a href="https://docs.aws.amazon.com/glue/latest/dg/dqdl-rule-types-FileFreshness">
+	                                  FileFreshness
+	                              </a>                              
+	                          </p>
+	                      </li><li class="listitem">
+	                          <p>
+	                              <a href="https://docs.aws.amazon.com/glue/latest/dg/dqdl-rule-types-FileSize">
+	                                  FileSize
+	                              </a>     
+	                          </p>
+	                      </li><li class="listitem">
+	                          <p>
+	                              <a href="https://docs.aws.amazon.com/glue/latest/dg/dqdl-rule-types-FileUniqueness">
+	                                  FileUniqueness
+	                              </a>    
+	                          </p>
+	                      </li><li class="listitem">
+	                          <p>
+	                              <a href="https://docs.aws.amazon.com/glue/latest/dg/dqdl-rule-types-FileMatch">
+	                                  FileMatch
+	                              </a>   
+	                          </p>
+	                      </li></ul></div>
+	              </li><li class="listitem">
+	                  <p>Default data quality checks in Visual ETL jobs</p>
+	              </li></ul></div>
+	       
+		   
+		      <h3 id="data-quality-release-notes-dec6-2024">Dec 6, 2024</h3>
+		      <div class="itemizedlist">
+		           
+		      <ul class="itemizedlist"><li class="listitem">
+		              <p>AWS Glue Data Quality now supports Amazon SageMaker AI LakeHouse tables and AWS Lake Formation managed 
+		                  Iceberg, Delta and HUDI tables in AWS Glue ETL 5.0.</p>
+		          </li></ul></div>
+		   
+         
+            <h3 id="data-quality-release-notes-jul7-2025">Jul 7, 2025</h3>
+            <div class="itemizedlist">
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>
+                        AWS Glue Data Quality; now supports Amazon S3 Tables, RMS, Lakehouse and AWS Lake Formation managed Iceberg tables in 
+                        AWS Glue Data Catalog.
+                    </p>
+                </li></ul></div>
+         
+         
+            <h3 id="data-quality-release-notes-nov21-2025">Nov 21, 2025</h3>
+            <div class="itemizedlist">
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>AWS Glue Data Quality now supports rule labeling for enhanced reporting. You can organize and analyze data quality results more effectively by querying results by specific labels to identify failing rules within particular categories, count rule outcomes by team or domain, and create focused reports for different stakeholders. For more information, see <a href="./dqdl.html#dqdl-labels">Labels</a>.</p>
+                </li><li class="listitem">
+                    <p>AWS Glue Data Quality now supports Constants in DQDL, allowing you to define constant values and reference them throughout your script. This helps prevent issues related to query size limits when working with large SQL statements. For more information, see <a href="./dqdl.html#dqdl-constants">Constants</a>.</p>
+                </li></ul></div>
+         
+         
+            <h3 id="data-quality-release-notes-jul27-2026">July 27, 2026</h3>
+            <div class="itemizedlist">
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>With AWS Glue Data Quality, you can now use the <code class="code">Distribution</code> Analyzer to
+                        compute frequency distributions for your data columns. For numeric columns,
+                        it generates binned histograms. For categorical columns, it generates value
+                        distributions sorted by frequency. For more information, see
+                        <a href="./dqdl.html#dqdl-analyzers-distribution">Distribution Analyzer</a>.</p>
+                </li><li class="listitem">
+                    <p>You can now write data quality results to Apache Iceberg tables in the
+                        AWS Glue Data Catalog for querying with . This includes rule results, profiling
+                        results, distribution results, row-level results, and observation results.
+                        For more information, see
+                        <a href="./data-quality-results-catalog-tables.html">Writing data quality results to Data Catalog tables</a>.</p>
+                </li><li class="listitem">
+                    <p>You can now use anomaly detection with the AWS Glue Data Catalog. To enable
+                        anomaly detection for cataloged tables, run evaluation runs with
+                        <code class="code">ObservationScope</code> set to <code class="code">ALL</code>. For more
+                        information, see
+                        <a href="./data-quality-anomaly-detection.html">Anomaly detection in AWS Glue Data Quality</a>.</p>
+                </li></ul></div>
+         
+         
+            <h3 id="data-quality-release-notes-sep18-2026">September 18, 2026</h3>
+            <div class="itemizedlist">
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>AWS Glue Data Quality now supports <code class="code">ADVANCED</code> rule recommendations
+                        through Amazon Bedrock. This mode uses table metadata and
+                        sampled rows to generate Data Quality Definition Language (DQDL) rules.
+                        <code class="code">BASIC</code> remains the default mode. For more information, see
+                        <a href="./data-quality-getting-started.html#data-quality-recommendation-modes">Recommendation modes</a>.</p>
+                </li><li class="listitem">
+                    <p>AWS Glue Data Quality now supports rule recommendation and evaluation runs for
+                        Amazon Athena views stored in the Data Catalog, including same-account,
+                        cross-account, and nested views. For more information, see
+                        <a href="./data-quality-getting-started.html#data-quality-athena-view-support">Amazon Athena view support</a>.</p>
+                </li></ul></div>
+         
+        
+	  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./zero-etl-troubleshooting.html">Troubleshooting</div><div id="next" class="next-link" accesskey="n" href="./data-quality-anomaly-detection.html">Anomaly detection in AWS Glue Data Quality</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Glue&amp;topic_url=https://docs.aws.amazon.com/en_us/glue/latest/dg/glue-data-quality.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Glue&amp;topic_url=https://docs.aws.amazon.com/en_us/glue/latest/dg/glue-data-quality.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

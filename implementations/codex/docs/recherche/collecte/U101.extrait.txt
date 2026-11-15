@@ -1,0 +1,520 @@
+GitHub - rsheftel/pandas_market_calendars: Exchange calendars to use with pandas for trading applications · GitHub 
+
+ Skip to content 
+
+Navigation Menu
+
+ Sign in 
+
+ Products 
+
+ Platform 
+ GitHub Repository hosting, code review, and collaboration 
+
+ Copilot AI coding agent for tasks, projects, and automated work 
+
+ Build & Ship 
+ Actions CI/CD and automation 
+
+ Code Quality Quality analysis, fixes, and enforcement 
+
+ Codespaces Cloud development environments 
+
+ Secure 
+ Code Security Vulnerability detection and remediation 
+
+ Secret Protection Secret scanning and leak prevention 
+
+ All Features 
+
+ Developers 
+
+ Learn 
+ Documentation 
+
+ Training 
+
+ Certifications 
+
+ Build 
+ Build with Copilot 
+
+ Customize Copilot 
+
+ Integrations 
+
+ Explore 
+ Trending repos 
+
+ GitHub Sponsors 
+
+ Developer articles 
+
+ Changelog 
+ Changelog Your source for the latest features, improvements, and fixes across GitHub products, all in one place. 
+
+ Businesses 
+
+ By Stage 
+ Enterprises 
+
+ Team 
+
+ Startups 
+
+ Nonprofits 
+
+ By Industry 
+ Healthcare 
+
+ Financial services 
+
+ Manufacturing 
+
+ Government 
+
+ See all industries 
+
+ Evaluate GitHub 
+ Why GitHub 
+
+ Customer Stories 
+
+ Business insights 
+
+ Trust Center 
+
+ Add-ons 
+ GitHub Advanced Security Enterprise-grade code security 
+
+ Copilot for business Enterprise-grade AI features 
+
+ Premium Support Enterprise-grade 24/7 support 
+
+ Resources 
+
+ Learn & Connect 
+ Documentation 
+
+ Resource center 
+
+ Blog 
+
+ Events & webinars 
+
+ Community Forum 
+
+ Customer Stories 
+
+ Integrations 
+
+ Support 
+ Customer support 
+
+ Training 
+
+ GitHub Status 
+
+ Company 
+ About 
+
+ Partners 
+
+ Changelog 
+
+ GitHub Universe 
+ GitHub Universe The event for developers, by developers — talks, workshops, and what’s next for GitHub. 
+
+ Pricing 
+
+ Search / 
+
+ Sign in 
+ Sign up 
+Appearance settings
+
+ You signed in with another tab or window. Reload to refresh your session. 
+ You signed out in another tab or window. Reload to refresh your session. 
+ You switched accounts on another tab or window. Reload to refresh your session. 
+
+ Dismiss alert 
+
+{{ message }}
+
+ rsheftel 
+
+ pandas_market_calendars 
+
+Repository navigation
+
+ Code 
+
+ Issues 1  ( 1 ) 
+
+ Pull requests 2  ( 2 ) 
+
+ Actions 
+
+ Projects 
+
+ Wiki 
+
+ Security and quality 
+
+ Insights 
+
+ More items 
+
+ pandas_market_calendars 
+ Public 
+
+ Notifications You must be signed in to change notification settings 
+
+ Fork 217  ( 217 ) 
+
+ Star 1k  ( 1k ) You must be signed in to star a repository 
+
+ About 
+
+Exchange calendars to use with pandas for trading applications
+
+ Topics 
+
+ calendar date datetime exchange pandas 
+
+ Resources 
+
+ Readme 
+
+ MIT license 
+
+ Code of conduct 
+
+ Code of conduct 
+
+ Contributing 
+
+ Contributing 
+
+ Activity 
+
+ Stars 
+
+ 1.0k stars 
+
+ Watchers 
+
+ 23 watching 
+
+ Forks 
+
+ 217 forks 
+
+ Report repository 
+
+ master 
+
+ Branches Tags 
+
+ Go to file 
+
+ Code 
+ Open more actions menu 
+
+Latest commit
+
+History
+ 1,087 Commits 
+
+ 1,087 Commits 
+
+Folders and files
+
+ Name Name 
+ Last commit message 
+ 
+ Last commit date 
+
+ .github 
+
+ .github 
+
+ docs 
+
+ docs 
+
+ examples 
+
+ examples 
+
+ pandas_market_calendars 
+
+ pandas_market_calendars 
+
+ tests 
+
+ tests 
+
+ .gitignore 
+
+ .gitignore 
+
+ .readthedocs.yaml 
+
+ .readthedocs.yaml 
+
+ AGENTS.md 
+
+ AGENTS.md 
+
+ CODE_OF_CONDUCT.md 
+
+ CODE_OF_CONDUCT.md 
+
+ CONTRIBUTING.md 
+
+ CONTRIBUTING.md 
+
+ LICENSE 
+
+ LICENSE 
+
+ NOTICE 
+
+ NOTICE 
+
+ README.rst 
+
+ README.rst 
+
+ flake.nix 
+
+ flake.nix 
+
+ pyproject.toml 
+
+ pyproject.toml 
+
+ View all files 
+
+Repository files navigation
+
+ README 
+
+ Code of conduct 
+
+ Contributing 
+
+ MIT license 
+
+ More items 
+
+pandas_market_calendars
+
+Market calendars to use with pandas for trading applications.
+
+Documentation
+
+ http://pandas-market-calendars.readthedocs.io/en/latest/ 
+
+Overview
+
+The Pandas package is widely used in finance and specifically for time series analysis. It includes excellent
+functionality for generating sequences of dates and capabilities for custom holiday calendars, but as an explicit
+design choice it does not include the actual holiday calendars for specific exchanges or OTC markets.
+
+The pandas_market_calendars package looks to fill that role with the holiday, late open and early close calendars
+for specific exchanges and OTC conventions. pandas_market_calendars also adds several functions to manipulate the
+market calendars and includes a date_range function to create a pandas DatetimeIndex including only the datetimes
+when the markets are open. Additionally the package contains product specific calendars for future exchanges which
+have different market open, closes, breaks and holidays based on product type.
+
+This package provides access to over 50+ unique exchange calendars for global equity and futures markets.
+
+Calendar Data and Updates
+
+Calendars and their rules are shipped as package code. pandas_market_calendars does not request market hours from a
+server at runtime. To receive corrected or updated market hours, install a newer package release or update the source
+code. Calendars mirrored from exchange_calendars likewise use the version installed in the local Python environment,
+not a live data feed.
+
+This package is a fork of the Zipline package from Quantopian and extracts just the relevant parts. All credit for
+their excellent work to Quantopian.
+
+Major Releases
+
+As of v1.0 this package only works with Python3. This is consistent with Pandas dropping support for Python2.
+
+As of v1.4 this package now has the concept of a break during the trading day. For example this can accommodate Asian
+markets that have a lunch break, or futures markets that are open 24 hours with a break in the day for trade processing.
+
+As of v2.0 this package provides a mirror of all the calendars from the exchange_calendars 
+package, which itself is the now maintained fork of the original trading_calendars package. This adds over 50 calendars.
+
+As of v3.0, the function date_range() is more complete and consistent, for more discussion on the topic refer to PR #142 and Issue #138.
+
+As of v4.0, this package provides the framework to add interruptions to calendars. These can also be added to a schedule and viewed using
+the new interruptions_df property. A full list of changes can be found in PR #210.
+
+As of v5.0, this package uses the new zoneinfo standard to timezones and depricates and removes pytz. Minimum python version is now 3.9
+
+As of v5.6.0, the minimum pandas version is 2.3.
+
+Source location
+
+Hosted on GitHub: https://github.com/rsheftel/pandas_market_calendars 
+
+Installation
+
+ pip install pandas_market_calendars 
+
+Arch Linux package available here: https://aur.archlinux.org/packages/python-pandas_market_calendars/ 
+
+Calendars
+
+The list of available calendars 
+
+Quick Start
+
+ import pandas_market_calendars as mcal 
+
+ # Create a calendar 
+ nyse = mcal . get_calendar ( 'NYSE' )
+
+ # Show available calendars 
+ print ( mcal . get_calendar_names ()) 
+
+ early = nyse . schedule ( start_date = '2012-07-01' , end_date = '2012-07-10' )
+ early 
+
+ market_open market_close
+=========== ========================= =========================
+ 2012-07-02 2012-07-02 13:30:00+00:00 2012-07-02 20:00:00+00:00
+ 2012-07-03 2012-07-03 13:30:00+00:00 2012-07-03 17:00:00+00:00
+ 2012-07-05 2012-07-05 13:30:00+00:00 2012-07-05 20:00:00+00:00
+ 2012-07-06 2012-07-06 13:30:00+00:00 2012-07-06 20:00:00+00:00
+ 2012-07-09 2012-07-09 13:30:00+00:00 2012-07-09 20:00:00+00:00
+ 2012-07-10 2012-07-10 13:30:00+00:00 2012-07-10 20:00:00+00:00
+
+ mcal . date_range ( early , frequency = '1D' ) 
+
+ DatetimeIndex(['2012-07-02 20:00:00+00:00', '2012-07-03 17:00:00+00:00',
+ '2012-07-05 20:00:00+00:00', '2012-07-06 20:00:00+00:00',
+ '2012-07-09 20:00:00+00:00', '2012-07-10 20:00:00+00:00'],
+ dtype='datetime64[ns, UTC]', freq=None)
+
+ mcal . date_range ( early , frequency = '1H' ) 
+
+ DatetimeIndex(['2012-07-02 14:30:00+00:00', '2012-07-02 15:30:00+00:00',
+ '2012-07-02 16:30:00+00:00', '2012-07-02 17:30:00+00:00',
+ '2012-07-02 18:30:00+00:00', '2012-07-02 19:30:00+00:00',
+ '2012-07-02 20:00:00+00:00', '2012-07-03 14:30:00+00:00',
+ '2012-07-03 15:30:00+00:00', '2012-07-03 16:30:00+00:00',
+ '2012-07-03 17:00:00+00:00', '2012-07-05 14:30:00+00:00',
+ '2012-07-05 15:30:00+00:00', '2012-07-05 16:30:00+00:00',
+ '2012-07-05 17:30:00+00:00', '2012-07-05 18:30:00+00:00',
+ '2012-07-05 19:30:00+00:00', '2012-07-05 20:00:00+00:00',
+ '2012-07-06 14:30:00+00:00', '2012-07-06 15:30:00+00:00',
+ '2012-07-06 16:30:00+00:00', '2012-07-06 17:30:00+00:00',
+ '2012-07-06 18:30:00+00:00', '2012-07-06 19:30:00+00:00',
+ '2012-07-06 20:00:00+00:00', '2012-07-09 14:30:00+00:00',
+ '2012-07-09 15:30:00+00:00', '2012-07-09 16:30:00+00:00',
+ '2012-07-09 17:30:00+00:00', '2012-07-09 18:30:00+00:00',
+ '2012-07-09 19:30:00+00:00', '2012-07-09 20:00:00+00:00',
+ '2012-07-10 14:30:00+00:00', '2012-07-10 15:30:00+00:00',
+ '2012-07-10 16:30:00+00:00', '2012-07-10 17:30:00+00:00',
+ '2012-07-10 18:30:00+00:00', '2012-07-10 19:30:00+00:00',
+ '2012-07-10 20:00:00+00:00'],
+ dtype='datetime64[ns, UTC]', freq=None)
+
+Contributing
+
+All improvements and additional (and corrections) in the form of pull requests are welcome. This package will grow in
+value and correctness the more eyes are on it.
+
+To add new functionality please include tests which are in standard pytest format.
+
+Use pytest to run the test suite.
+
+Use black for formatting.
+
+For complete information on contributing see CONTRIBUTING.md 
+
+Future
+
+This package is open sourced under the MIT license. Everyone is welcome to add more exchanges or OTC markets, confirm
+or correct the existing calendars, and generally do whatever they desire with this code.
+
+ About 
+
+Exchange calendars to use with pandas for trading applications
+
+ Topics 
+
+ calendar date datetime exchange pandas 
+
+ Resources 
+
+ Readme 
+
+ MIT license 
+
+ Code of conduct 
+
+ Code of conduct 
+
+ Contributing 
+
+ Contributing 
+
+ Activity 
+
+ Stars 
+
+ 1.0k stars 
+
+ Watchers 
+
+ 23 watching 
+
+ Forks 
+
+ 217 forks 
+
+ Report repository 
+
+ Releases 
+
+ Packages 
+
+ Used by 
+
+ Contributors 
+
+ Languages 
+
+Footer
+
+ © 2026 GitHub, Inc.
+
+Footer navigation
+
+ Terms 
+
+ Privacy 
+
+ Security 
+
+ Status 
+
+ Community 
+
+ Docs 
+
+ Contact 
+
+ Manage cookies
+
+ Do not share my personal information
+
+ You can’t perform that action at this time.

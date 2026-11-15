@@ -1,0 +1,81 @@
+{
+  "checked_at": "2026-11-15T18:00:47.311104+00:00",
+  "health": {
+    "status": "ok",
+    "version": "0.4.0",
+    "hosting": "local",
+    "application": "alphaforge",
+    "workspace": "/Users/vpro/Documents/ChatGPT/CALIBRE/Datathon_AlphaForge",
+    "inference": "AWS Bedrock",
+    "region": "us-east-1"
+  },
+  "new_inference_calls": 0,
+  "cases": {
+    "robert_aws": {
+      "id": "46715c504cfa4443add54daf90ce9c25",
+      "revision": 10,
+      "aws_calls": 8,
+      "artifacts_verified": 43,
+      "status": "complete",
+      "baseline_tool_calls": 1,
+      "comparison": {
+        "changed_fields": [
+          "fact.withdrawal_cad"
+        ],
+        "reused": [
+          "baseline_stress@1",
+          "fact.assumptions@1",
+          "fact.capital_cad@1",
+          "fact.clarifications@1",
+          "fact.comparison@1",
+          "fact.currency@1",
+          "fact.decision_type@1",
+          "fact.holdings@1",
+          "fact.horizon_years@1",
+          "fact.knowledge_date@1",
+          "fact.max_asset_weights@1",
+          "fact.objective@1",
+          "fact.question@1",
+          "fact.reserve_policy@1",
+          "fact.scenario_loss_limit_cad@1",
+          "fact.scenarios@1",
+          "fact.unknowns@1",
+          "fact.withdrawal_months@1",
+          "research@1"
+        ],
+        "invalidated": [
+          "analysis@1",
+          "analysis_review@1",
+          "fact.withdrawal_cad@1",
+          "problem@1",
+          "qualification@1",
+          "questions.agent0@1",
+          "questions.agent1@1",
+          "questions.agent2@1",
+          "questions.agent3@1",
+          "request@1",
+          "research_review@1",
+          "view@1"
+        ],
+        "provisional": false
+      }
+    },
+    "amira_aws": {
+      "id": "8cddaec5d89642de8f38d0b704658763",
+      "revision": 5,
+      "aws_calls": 4,
+      "artifacts_verified": 31,
+      "status": "complete"
+    }
+  },
+  "python_tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "132",
+    "time": "7.635",
+    "timestamp": "2026-11-15T12:58:54.490476-05:00",
+    "hostname": "MacBook-Pro-de-Adam.local"
+  }
+}

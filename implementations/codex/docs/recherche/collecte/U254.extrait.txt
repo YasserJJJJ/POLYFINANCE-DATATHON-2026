@@ -1,0 +1,450 @@
+GitHub - langchain-ai/langgraph: Build resilient agents. · GitHub 
+
+ Skip to content 
+
+Navigation Menu
+
+ Sign in 
+
+ Products 
+
+ Platform 
+ GitHub Repository hosting, code review, and collaboration 
+
+ Copilot AI coding agent for tasks, projects, and automated work 
+
+ Build & Ship 
+ Actions CI/CD and automation 
+
+ Code Quality Quality analysis, fixes, and enforcement 
+
+ Codespaces Cloud development environments 
+
+ Secure 
+ Code Security Vulnerability detection and remediation 
+
+ Secret Protection Secret scanning and leak prevention 
+
+ All Features 
+
+ Developers 
+
+ Learn 
+ Documentation 
+
+ Training 
+
+ Certifications 
+
+ Build 
+ Build with Copilot 
+
+ Customize Copilot 
+
+ Integrations 
+
+ Explore 
+ Trending repos 
+
+ GitHub Sponsors 
+
+ Developer articles 
+
+ Changelog 
+ Changelog Your source for the latest features, improvements, and fixes across GitHub products, all in one place. 
+
+ Businesses 
+
+ By Stage 
+ Enterprises 
+
+ Team 
+
+ Startups 
+
+ Nonprofits 
+
+ By Industry 
+ Healthcare 
+
+ Financial services 
+
+ Manufacturing 
+
+ Government 
+
+ See all industries 
+
+ Evaluate GitHub 
+ Why GitHub 
+
+ Customer Stories 
+
+ Business insights 
+
+ Trust Center 
+
+ Add-ons 
+ GitHub Advanced Security Enterprise-grade code security 
+
+ Copilot for business Enterprise-grade AI features 
+
+ Premium Support Enterprise-grade 24/7 support 
+
+ Resources 
+
+ Learn & Connect 
+ Documentation 
+
+ Resource center 
+
+ Blog 
+
+ Events & webinars 
+
+ Community Forum 
+
+ Customer Stories 
+
+ Integrations 
+
+ Support 
+ Customer support 
+
+ Training 
+
+ GitHub Status 
+
+ Company 
+ About 
+
+ Partners 
+
+ Changelog 
+
+ GitHub Universe 
+ GitHub Universe The event for developers, by developers — talks, workshops, and what’s next for GitHub. 
+
+ Pricing 
+
+ Search / 
+
+ Sign in 
+ Sign up 
+Appearance settings
+
+ You signed in with another tab or window. Reload to refresh your session. 
+ You signed out in another tab or window. Reload to refresh your session. 
+ You switched accounts on another tab or window. Reload to refresh your session. 
+
+ Dismiss alert 
+
+{{ message }}
+
+ langchain-ai 
+
+ langgraph 
+
+Repository navigation
+
+ Code 
+
+ Issues 359  ( 359 ) 
+
+ Pull requests 121  ( 121 ) 
+
+ Actions 
+
+ Projects 
+
+ Security and quality 13  ( 13 ) 
+
+ Insights 
+
+ More items 
+
+ langgraph 
+ Public 
+
+ Notifications You must be signed in to change notification settings 
+
+ Fork 7.8k  ( 7.8k ) 
+
+ Star 45k  ( 45k ) You must be signed in to star a repository 
+
+ About 
+
+Build resilient agents.
+
+ docs.langchain.com/oss/python/langgraph/ 
+
+ Topics 
+
+ agents ai ai-agents chatgpt deepagents enterprise framework gemini generative-ai langchain langgraph llm multiagent open-source openai pydantic python rag 
+
+ Resources 
+
+ Readme 
+
+ MIT license 
+
+ Code of conduct 
+
+ Code of conduct 
+
+ Contributing 
+
+ Contributing 
+
+ Security policy 
+
+ Security policy 
+
+ Activity 
+
+ Custom properties 
+
+ Stars 
+
+ 45.0k stars 
+
+ Watchers 
+
+ 189 watching 
+
+ Forks 
+
+ 7.8k forks 
+
+ Report repository 
+
+ main 
+
+ Branches Tags 
+
+ Go to file 
+
+ Code 
+ Open more actions menu 
+
+Latest commit
+
+History
+ 7,311 Commits 
+
+ 7,311 Commits 
+
+Folders and files
+
+ Name Name 
+ Last commit message 
+ 
+ Last commit date 
+
+ .github 
+
+ .github 
+
+ docs 
+
+ docs 
+
+ examples 
+
+ examples 
+
+ libs 
+
+ libs 
+
+ .gitignore 
+
+ .gitignore 
+
+ .markdownlint.json 
+
+ .markdownlint.json 
+
+ AGENTS.md 
+
+ AGENTS.md 
+
+ LICENSE 
+
+ LICENSE 
+
+ Makefile 
+
+ Makefile 
+
+ README.md 
+
+ README.md 
+
+ View all files 
+
+Repository files navigation
+
+ README 
+
+ Code of conduct 
+
+ Contributing 
+
+ MIT license 
+
+ Security 
+
+ More items 
+
+Low-level orchestration framework for building stateful agents.
+
+Trusted by companies shaping the future of agents – including Klarna, Replit, Elastic, and more – LangGraph is a low-level orchestration framework for building, managing, and deploying long-running, stateful agents.
+
+ pip install -U langgraph 
+
+ Tip
+
+If you're looking to quickly build agents, check out Deep Agents — a higher-level package built on LangGraph for agents that can plan, use subagents, and leverage file systems for complex tasks.
+
+For an equivalent JS/TS library, check out LangGraph.js and the JS docs .
+
+Why use LangGraph?
+
+LangGraph provides low-level supporting infrastructure for any long-running, stateful workflow or agent:
+
+ Durable execution — Build agents that persist through failures and can run for extended periods, automatically resuming from exactly where they left off.
+
+ Human-in-the-loop — Seamlessly incorporate human oversight by inspecting and modifying agent state at any point during execution.
+
+ Comprehensive memory — Create truly stateful agents with both short-term working memory for ongoing reasoning and long-term persistent memory across sessions.
+
+ Debugging with LangSmith — Gain deep visibility into complex agent behavior with visualization tools that trace execution paths, capture state transitions, and provide detailed runtime metrics.
+
+ Production-ready deployment — Deploy sophisticated agent systems confidently with scalable infrastructure designed to handle the unique challenges of stateful, long-running workflows.
+
+ Tip
+
+For developing, debugging, and deploying AI agents and LLM applications, see LangSmith .
+
+LangGraph ecosystem
+
+While LangGraph can be used standalone, it also integrates seamlessly with any LangChain product, giving developers a full suite of tools for building agents.
+
+To improve your LLM application development, pair LangGraph with:
+
+ Deep Agents – Build agents that can plan, use subagents, and leverage file systems for complex tasks.
+
+ LangChain – Provides integrations and composable components to streamline LLM application development.
+
+ LangSmith – Helpful for agent evals and observability. Debug poor-performing LLM app runs, evaluate agent trajectories, gain visibility in production, and improve performance over time.
+
+ LangSmith Deployment – Deploy and scale agents effortlessly with a purpose-built deployment platform for long-running, stateful workflows. Discover, reuse, configure, and share agents across teams – and iterate quickly with visual prototyping in LangSmith Studio .
+
+Documentation
+
+ docs.langchain.com – Comprehensive documentation, including conceptual overviews and guides
+
+ reference.langchain.com/python/langgraph – API reference docs for LangGraph packages
+
+ LangGraph Quickstart – Get started building with LangGraph
+
+ Chat LangChain – Chat with the LangChain documentation and get answers to your questions
+
+ Discussions : Visit the LangChain Forum to connect with the community and share all of your technical questions, ideas, and feedback.
+
+Additional resources
+
+ Guides – Quick, actionable code snippets for topics such as streaming, adding memory & persistence, and design patterns (e.g. branching, subgraphs, etc.).
+
+ LangChain Academy – Learn the basics of LangGraph in our free, structured course.
+
+ Case studies – Hear how industry leaders use LangGraph to ship AI applications at scale.
+
+ Contributing Guide – Learn how to contribute to LangChain projects and find good first issues.
+
+ Code of Conduct – Our community guidelines and standards for participation.
+
+Acknowledgements
+
+LangGraph is inspired by Pregel and Apache Beam . The public interface draws inspiration from NetworkX . LangGraph is built by LangChain Inc, the creators of LangChain, but can be used without LangChain.
+
+ About 
+
+Build resilient agents.
+
+ docs.langchain.com/oss/python/langgraph/ 
+
+ Topics 
+
+ agents ai ai-agents chatgpt deepagents enterprise framework gemini generative-ai langchain langgraph llm multiagent open-source openai pydantic python rag 
+
+ Resources 
+
+ Readme 
+
+ MIT license 
+
+ Code of conduct 
+
+ Code of conduct 
+
+ Contributing 
+
+ Contributing 
+
+ Security policy 
+
+ Security policy 
+
+ Activity 
+
+ Custom properties 
+
+ Stars 
+
+ 45.0k stars 
+
+ Watchers 
+
+ 189 watching 
+
+ Forks 
+
+ 7.8k forks 
+
+ Report repository 
+
+ Releases 
+
+ Used by 
+
+ Contributors 
+
+ Languages 
+
+Footer
+
+ © 2026 GitHub, Inc.
+
+Footer navigation
+
+ Terms 
+
+ Privacy 
+
+ Security 
+
+ Status 
+
+ Community 
+
+ Docs 
+
+ Contact 
+
+ Manage cookies
+
+ Do not share my personal information
+
+ You can’t perform that action at this time.

@@ -1,0 +1,919 @@
+{
+  "id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+  "title": "Dans cet exercice fictif, je dois retirer 30 000 CAD dans douze mois. Comparons les changements",
+  "revision": 1,
+  "status": "running",
+  "active_run_id": "874af537a0be4dd680e180fc75475071",
+  "created_at": "2026-11-15T20:34:35.304455+00:00",
+  "updated_at": "2026-11-15T20:34:35.305308+00:00",
+  "origin": null,
+  "active_problem": null,
+  "current_analysis": null,
+  "current_view": null,
+  "pending_clarifications": {
+    "qualification_ref": null,
+    "questions": []
+  },
+  "artifacts": [
+    {
+      "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "id": "fact.assumptions",
+      "version": 1,
+      "type": "assertion",
+      "owner": "human",
+      "hash": "f34e4482e2da14dc9bc6b4f86dcd4f2a73e65c13ae3955ac9c01277f9794d5f2",
+      "input_refs": [],
+      "revision": 1,
+      "created_at": "2026-11-15T20:34:35.311325+00:00",
+      "content": {
+        "category": "scenario_or_assumption",
+        "field": "assumptions",
+        "origin": "declared",
+        "source_ref": "request@1",
+        "value": [
+          {
+            "id": "example_scope",
+            "origin": "assumed",
+            "text": "Exercice fictif ; réserve abstraite, coûts/fiscalité nuls, chocs CAD synthétiques sans probabilité ; aucun placement réel garanti."
+          }
+        ]
+      },
+      "ref": "fact.assumptions@1",
+      "usable": true
+    },
+    {
+      "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "id": "fact.capital_cad",
+      "version": 1,
+      "type": "assertion",
+      "owner": "human",
+      "hash": "c30fd1ed7c160a4538ade062ddfa80bd7af94bf82bd8c332319956a90379e939",
+      "input_refs": [],
+      "revision": 1,
+      "created_at": "2026-11-15T20:34:35.308648+00:00",
+      "content": {
+        "category": "input",
+        "field": "capital_cad",
+        "origin": "declared",
+        "source_ref": "request@1",
+        "value": 100000
+      },
+      "ref": "fact.capital_cad@1",
+      "usable": true
+    },
+    {
+      "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "id": "fact.clarifications",
+      "version": 1,
+      "type": "assertion",
+      "owner": "human",
+      "hash": "df4c60d4c40d651475a11e2f94af8c5a5a639494c2b38f237d8e270e8981541d",
+      "input_refs": [],
+      "revision": 1,
+      "created_at": "2026-11-15T20:34:35.311557+00:00",
+      "content": {
+        "category": "input",
+        "field": "clarifications",
+        "origin": "declared",
+        "source_ref": "request@1",
+        "value": []
+      },
+      "ref": "fact.clarifications@1",
+      "usable": true
+    },
+    {
+      "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "id": "fact.comparison",
+      "version": 1,
+      "type": "assertion",
+      "owner": "human",
+      "hash": "22e11fea06dc5b4fee85ddc1e88d4670db7ff537ea1e521a8403f8f6ca4024a5",
+      "input_refs": [],
+      "revision": 1,
+      "created_at": "2026-11-15T20:34:35.310874+00:00",
+      "content": {
+        "category": "preference_or_mandate",
+        "field": "comparison",
+        "origin": "declared",
+        "source_ref": "request@1",
+        "value": null
+      },
+      "ref": "fact.comparison@1",
+      "usable": true
+    },
+    {
+      "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "id": "fact.currency",
+      "version": 1,
+      "type": "assertion",
+      "owner": "human",
+      "hash": "579c228528cba4161066dfddf7d6700a2a63b56f939bf6c67b5a15a803c679c0",
+      "input_refs": [],
+      "revision": 1,
+      "created_at": "2026-11-15T20:34:35.308405+00:00",
+      "content": {
+        "category": "input",
+        "field": "currency",
+        "origin": "declared",
+        "source_ref": "request@1",
+        "value": "CAD"
+      },
+      "ref": "fact.currency@1",
+      "usable": true
+    },
+    {
+      "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "id": "fact.decision_type",
+      "version": 1,
+      "type": "assertion",
+      "owner": "human",
+      "hash": "3764b6b8491baa5754f8283d8c465f7d58248ae49e3f386514b0604870d543a6",
+      "input_refs": [],
+      "revision": 1,
+      "created_at": "2026-11-15T20:34:35.307784+00:00",
+      "content": {
+        "category": "input",
+        "field": "decision_type",
+        "origin": "declared",
+        "source_ref": "request@1",
+        "value": "reserve_allocation"
+      },
+      "ref": "fact.decision_type@1",
+      "usable": true
+    },
+    {
+      "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "id": "fact.holdings",
+      "version": 1,
+      "type": "assertion",
+      "owner": "human",
+      "hash": "97611a859926e0028173b656f483ec2662ce66ee98d59e8c79ae4dac2eb53d51",
+      "input_refs": [],
+      "revision": 1,
+      "created_at": "2026-11-15T20:34:35.308914+00:00",
+      "content": {
+        "category": "input",
+        "field": "holdings",
+        "origin": "declared",
+        "source_ref": "request@1",
+        "value": [
+          {
+            "ticker": "XBB.TO",
+            "weight": 0.35
+          },
+          {
+            "ticker": "ZST.TO",
+            "weight": 0.2
+          },
+          {
+            "ticker": "XIU.TO",
+            "weight": 0.2
+          },
+          {
+            "ticker": "TSLA",
+            "weight": 0.25
+          }
+        ]
+      },
+      "ref": "fact.holdings@1",
+      "usable": true
+    },
+    {
+      "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "id": "fact.horizon_years",
+      "version": 1,
+      "type": "assertion",
+      "owner": "human",
+      "hash": "35b4352bcc8843be608d0c20dc6f2d6ce71a7e5128288be434ec14ec84a427fe",
+      "input_refs": [],
+      "revision": 1,
+      "created_at": "2026-11-15T20:34:35.309687+00:00",
+      "content": {
+        "category": "preference_or_mandate",
+        "field": "horizon_years",
+        "origin": "declared",
+        "source_ref": "request@1",
+        "value": 4
+      },
+      "ref": "fact.horizon_years@1",
+      "usable": true
+    },
+    {
+      "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "id": "fact.knowledge_date",
+      "version": 1,
+      "type": "assertion",
+      "owner": "human",
+      "hash": "b6cfae5ec64c304b8c9e8a9b98c4d16253d559fc2d229a9921c31dcf17c80737",
+      "input_refs": [],
+      "revision": 1,
+      "created_at": "2026-11-15T20:34:35.311212+00:00",
+      "content": {
+        "category": "input",
+        "field": "knowledge_date",
+        "origin": "declared",
+        "source_ref": "request@1",
+        "value": "2026-11-15"
+      },
+      "ref": "fact.knowledge_date@1",
+      "usable": true
+    },
+    {
+      "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "id": "fact.max_asset_weights",
+      "version": 1,
+      "type": "assertion",
+      "owner": "human",
+      "hash": "692e15b7afc447a66314501057e3bb842e149523d2b53ec66e39a2229f11b8b2",
+      "input_refs": [],
+      "revision": 1,
+      "created_at": "2026-11-15T20:34:35.309965+00:00",
+      "content": {
+        "category": "constraint",
+        "field": "max_asset_weights",
+        "origin": "declared",
+        "source_ref": "request@1",
+        "value": {
+          "TSLA": 0.1
+        }
+      },
+      "ref": "fact.max_asset_weights@1",
+      "usable": true
+    },
+    {
+      "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "id": "fact.objective",
+      "version": 1,
+      "type": "assertion",
+      "owner": "human",
+      "hash": "5c003efdaba5195da6c3653574162a338592f0678ca2208643f7e6be1fd383b0",
+      "input_refs": [],
+      "revision": 1,
+      "created_at": "2026-11-15T20:34:35.310766+00:00",
+      "content": {
+        "category": "preference_or_mandate",
+        "field": "objective",
+        "origin": "declared",
+        "source_ref": "request@1",
+        "value": "minimize_reallocated_capital"
+      },
+      "ref": "fact.objective@1",
+      "usable": true
+    },
+    {
+      "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "id": "fact.question",
+      "version": 1,
+      "type": "assertion",
+      "owner": "human",
+      "hash": "c6457ee87970b13bf8d4ce8261dc2392ba16c5bebb65c892ba690580850368a1",
+      "input_refs": [],
+      "revision": 1,
+      "created_at": "2026-11-15T20:34:35.308117+00:00",
+      "content": {
+        "category": "input",
+        "field": "question",
+        "origin": "declared",
+        "source_ref": "request@1",
+        "value": "Financer un retrait en déplaçant le moins de capital."
+      },
+      "ref": "fact.question@1",
+      "usable": true
+    },
+    {
+      "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "id": "fact.reserve_policy",
+      "version": 1,
+      "type": "assertion",
+      "owner": "human",
+      "hash": "0910d3b59a6e3ec53077a29e69ce9a5e75f2b7086849c5e04c04a2d675cb6e23",
+      "input_refs": [],
+      "revision": 1,
+      "created_at": "2026-11-15T20:34:35.310979+00:00",
+      "content": {
+        "category": "scenario_or_assumption",
+        "field": "reserve_policy",
+        "origin": "declared",
+        "source_ref": "request@1",
+        "value": "abstract_nominal"
+      },
+      "ref": "fact.reserve_policy@1",
+      "usable": true
+    },
+    {
+      "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "id": "fact.scenario_loss_limit_cad",
+      "version": 1,
+      "type": "assertion",
+      "owner": "human",
+      "hash": "8ddb64dd6fd1b7ddfe1d7589603f0c9fad51875c0bad0bcb2ebadba74186aa68",
+      "input_refs": [],
+      "revision": 1,
+      "created_at": "2026-11-15T20:34:35.310229+00:00",
+      "content": {
+        "category": "constraint",
+        "field": "scenario_loss_limit_cad",
+        "origin": "declared",
+        "source_ref": "request@1",
+        "value": 15000
+      },
+      "ref": "fact.scenario_loss_limit_cad@1",
+      "usable": true
+    },
+    {
+      "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "id": "fact.scenarios",
+      "version": 1,
+      "type": "assertion",
+      "owner": "human",
+      "hash": "d104a3f492e8dbf39b1dfbbad37c566a81dbd5f9ad4e514c015726a96917d0f3",
+      "input_refs": [],
+      "revision": 1,
+      "created_at": "2026-11-15T20:34:35.310533+00:00",
+      "content": {
+        "category": "scenario_or_assumption",
+        "field": "scenarios",
+        "origin": "declared",
+        "source_ref": "request@1",
+        "value": [
+          {
+            "horizon_months": 12,
+            "id": "actions",
+            "kind": "hypothetical",
+            "label": "Choc actions hypothétique",
+            "returns": {
+              "RESERVE_ABSTRAITE": 0,
+              "TSLA": -0.5,
+              "XBB.TO": -0.05,
+              "XIU.TO": -0.2,
+              "ZST.TO": 0
+            }
+          },
+          {
+            "horizon_months": 12,
+            "id": "obligations",
+            "kind": "hypothetical",
+            "label": "Choc obligations hypothétique",
+            "returns": {
+              "RESERVE_ABSTRAITE": 0,
+              "TSLA": -0.25,
+              "XBB.TO": -0.15,
+              "XIU.TO": -0.1,
+              "ZST.TO": -0.02
+            }
+          }
+        ]
+      },
+      "ref": "fact.scenarios@1",
+      "usable": true
+    },
+    {
+      "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "id": "fact.unknowns",
+      "version": 1,
+      "type": "assertion",
+      "owner": "human",
+      "hash": "ecf67ebf8104a5b6819a09e0dc6f44ad1b0d483196e8a13af1dac2896b7711d9",
+      "input_refs": [],
+      "revision": 1,
+      "created_at": "2026-11-15T20:34:35.311429+00:00",
+      "content": {
+        "category": "input",
+        "field": "unknowns",
+        "origin": "declared",
+        "source_ref": "request@1",
+        "value": [
+          "Instrument réel de réserve et conditions non qualifiés."
+        ]
+      },
+      "ref": "fact.unknowns@1",
+      "usable": true
+    },
+    {
+      "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "id": "fact.withdrawal_cad",
+      "version": 1,
+      "type": "assertion",
+      "owner": "human",
+      "hash": "0c0af631e715a12d26dd5a4f362fc03865f59882391ae34957d23f88f85c9aab",
+      "input_refs": [],
+      "revision": 1,
+      "created_at": "2026-11-15T20:34:35.309163+00:00",
+      "content": {
+        "category": "constraint",
+        "field": "withdrawal_cad",
+        "origin": "declared",
+        "source_ref": "request@1",
+        "value": 30000
+      },
+      "ref": "fact.withdrawal_cad@1",
+      "usable": true
+    },
+    {
+      "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "id": "fact.withdrawal_months",
+      "version": 1,
+      "type": "assertion",
+      "owner": "human",
+      "hash": "1fe7bb33099bd95b24d16c376e31b7ee566a0ad47817f33770b7bb174fec7159",
+      "input_refs": [],
+      "revision": 1,
+      "created_at": "2026-11-15T20:34:35.309288+00:00",
+      "content": {
+        "category": "constraint",
+        "field": "withdrawal_months",
+        "origin": "declared",
+        "source_ref": "request@1",
+        "value": 12
+      },
+      "ref": "fact.withdrawal_months@1",
+      "usable": true
+    },
+    {
+      "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "id": "request",
+      "version": 1,
+      "type": "assertion",
+      "owner": "human",
+      "hash": "4f79e87b0ad7bc08de9b493071cc014a047b7fefcf61e172a40fd0aced953722",
+      "input_refs": [
+        "request_source.874af537a0be4dd680e180fc75475071@1"
+      ],
+      "revision": 1,
+      "created_at": "2026-11-15T20:34:35.307293+00:00",
+      "content": {
+        "facts": {
+          "assumptions": [
+            {
+              "id": "example_scope",
+              "origin": "assumed",
+              "text": "Exercice fictif ; réserve abstraite, coûts/fiscalité nuls, chocs CAD synthétiques sans probabilité ; aucun placement réel garanti."
+            }
+          ],
+          "capital_cad": 100000,
+          "clarifications": [],
+          "comparison": null,
+          "currency": "CAD",
+          "decision_type": "reserve_allocation",
+          "holdings": [
+            {
+              "ticker": "XBB.TO",
+              "weight": 0.35
+            },
+            {
+              "ticker": "ZST.TO",
+              "weight": 0.2
+            },
+            {
+              "ticker": "XIU.TO",
+              "weight": 0.2
+            },
+            {
+              "ticker": "TSLA",
+              "weight": 0.25
+            }
+          ],
+          "horizon_years": 4,
+          "knowledge_date": "2026-11-15",
+          "max_asset_weights": {
+            "TSLA": 0.1
+          },
+          "objective": "minimize_reallocated_capital",
+          "question": "Financer un retrait en déplaçant le moins de capital.",
+          "reserve_policy": "abstract_nominal",
+          "scenario_loss_limit_cad": 15000,
+          "scenarios": [
+            {
+              "horizon_months": 12,
+              "id": "actions",
+              "kind": "hypothetical",
+              "label": "Choc actions hypothétique",
+              "returns": {
+                "RESERVE_ABSTRAITE": 0,
+                "TSLA": -0.5,
+                "XBB.TO": -0.05,
+                "XIU.TO": -0.2,
+                "ZST.TO": 0
+              }
+            },
+            {
+              "horizon_months": 12,
+              "id": "obligations",
+              "kind": "hypothetical",
+              "label": "Choc obligations hypothétique",
+              "returns": {
+                "RESERVE_ABSTRAITE": 0,
+                "TSLA": -0.25,
+                "XBB.TO": -0.15,
+                "XIU.TO": -0.1,
+                "ZST.TO": -0.02
+              }
+            }
+          ],
+          "unknowns": [
+            "Instrument réel de réserve et conditions non qualifiés."
+          ],
+          "withdrawal_cad": 30000,
+          "withdrawal_months": 12
+        },
+        "kind": "initial",
+        "prompt": "Dans cet exercice fictif, je dois retirer 30 000 CAD dans douze mois. Comparons les changements minimaux sous les hypothèses fournies.",
+        "source_ref": "request_source.874af537a0be4dd680e180fc75475071@1"
+      },
+      "ref": "request@1",
+      "usable": true
+    },
+    {
+      "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "id": "request_source.874af537a0be4dd680e180fc75475071",
+      "version": 1,
+      "type": "assertion",
+      "owner": "human",
+      "hash": "819ce976d26a7c628a85c1ba50cddfdda666fb67f705dba495e33d3ad120fcd5",
+      "input_refs": [],
+      "revision": 1,
+      "created_at": "2026-11-15T20:34:35.306457+00:00",
+      "content": {
+        "facts": {
+          "assumptions": [
+            {
+              "id": "example_scope",
+              "origin": "assumed",
+              "text": "Exercice fictif ; réserve abstraite, coûts/fiscalité nuls, chocs CAD synthétiques sans probabilité ; aucun placement réel garanti."
+            }
+          ],
+          "capital_cad": 100000,
+          "clarifications": [],
+          "comparison": null,
+          "currency": "CAD",
+          "decision_type": "reserve_allocation",
+          "holdings": [
+            {
+              "ticker": "XBB.TO",
+              "weight": 0.35
+            },
+            {
+              "ticker": "ZST.TO",
+              "weight": 0.2
+            },
+            {
+              "ticker": "XIU.TO",
+              "weight": 0.2
+            },
+            {
+              "ticker": "TSLA",
+              "weight": 0.25
+            }
+          ],
+          "horizon_years": 4,
+          "knowledge_date": "2026-11-15",
+          "max_asset_weights": {
+            "TSLA": 0.1
+          },
+          "objective": "minimize_reallocated_capital",
+          "question": "Financer un retrait en déplaçant le moins de capital.",
+          "reserve_policy": "abstract_nominal",
+          "scenario_loss_limit_cad": 15000,
+          "scenarios": [
+            {
+              "horizon_months": 12,
+              "id": "actions",
+              "kind": "hypothetical",
+              "label": "Choc actions hypothétique",
+              "returns": {
+                "RESERVE_ABSTRAITE": 0,
+                "TSLA": -0.5,
+                "XBB.TO": -0.05,
+                "XIU.TO": -0.2,
+                "ZST.TO": 0
+              }
+            },
+            {
+              "horizon_months": 12,
+              "id": "obligations",
+              "kind": "hypothetical",
+              "label": "Choc obligations hypothétique",
+              "returns": {
+                "RESERVE_ABSTRAITE": 0,
+                "TSLA": -0.25,
+                "XBB.TO": -0.15,
+                "XIU.TO": -0.1,
+                "ZST.TO": -0.02
+              }
+            }
+          ],
+          "unknowns": [
+            "Instrument réel de réserve et conditions non qualifiés."
+          ],
+          "withdrawal_cad": 30000,
+          "withdrawal_months": 12
+        },
+        "kind": "initial",
+        "prompt": "Dans cet exercice fictif, je dois retirer 30 000 CAD dans douze mois. Comparons les changements minimaux sous les hypothèses fournies."
+      },
+      "ref": "request_source.874af537a0be4dd680e180fc75475071@1",
+      "usable": true
+    }
+  ],
+  "questions": [],
+  "evidence": [],
+  "events": [
+    {
+      "id": "27c01a5e71884a01b52954a43c0f0a37",
+      "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "kind": "request_received",
+      "actor": "human",
+      "revision": 1,
+      "payload": {
+        "facts": {
+          "assumptions": [
+            {
+              "id": "example_scope",
+              "origin": "assumed",
+              "text": "Exercice fictif ; réserve abstraite, coûts/fiscalité nuls, chocs CAD synthétiques sans probabilité ; aucun placement réel garanti."
+            }
+          ],
+          "capital_cad": 100000,
+          "clarifications": [],
+          "comparison": null,
+          "currency": "CAD",
+          "decision_type": "reserve_allocation",
+          "holdings": [
+            {
+              "ticker": "XBB.TO",
+              "weight": 0.35
+            },
+            {
+              "ticker": "ZST.TO",
+              "weight": 0.2
+            },
+            {
+              "ticker": "XIU.TO",
+              "weight": 0.2
+            },
+            {
+              "ticker": "TSLA",
+              "weight": 0.25
+            }
+          ],
+          "horizon_years": 4,
+          "knowledge_date": "2026-11-15",
+          "max_asset_weights": {
+            "TSLA": 0.1
+          },
+          "objective": "minimize_reallocated_capital",
+          "question": "Financer un retrait en déplaçant le moins de capital.",
+          "reserve_policy": "abstract_nominal",
+          "scenario_loss_limit_cad": 15000,
+          "scenarios": [
+            {
+              "horizon_months": 12,
+              "id": "actions",
+              "kind": "hypothetical",
+              "label": "Choc actions hypothétique",
+              "returns": {
+                "RESERVE_ABSTRAITE": 0,
+                "TSLA": -0.5,
+                "XBB.TO": -0.05,
+                "XIU.TO": -0.2,
+                "ZST.TO": 0
+              }
+            },
+            {
+              "horizon_months": 12,
+              "id": "obligations",
+              "kind": "hypothetical",
+              "label": "Choc obligations hypothétique",
+              "returns": {
+                "RESERVE_ABSTRAITE": 0,
+                "TSLA": -0.25,
+                "XBB.TO": -0.15,
+                "XIU.TO": -0.1,
+                "ZST.TO": -0.02
+              }
+            }
+          ],
+          "unknowns": [
+            "Instrument réel de réserve et conditions non qualifiés."
+          ],
+          "withdrawal_cad": 30000,
+          "withdrawal_months": 12
+        },
+        "prompt": "Dans cet exercice fictif, je dois retirer 30 000 CAD dans douze mois. Comparons les changements minimaux sous les hypothèses fournies."
+      },
+      "created_at": "2026-11-15T20:34:35.305814+00:00"
+    }
+  ],
+  "revisions": [
+    {
+      "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "revision": 1,
+      "kind": "request_received",
+      "actor": "human",
+      "payload": {
+        "facts": {
+          "assumptions": [
+            {
+              "id": "example_scope",
+              "origin": "assumed",
+              "text": "Exercice fictif ; réserve abstraite, coûts/fiscalité nuls, chocs CAD synthétiques sans probabilité ; aucun placement réel garanti."
+            }
+          ],
+          "capital_cad": 100000,
+          "clarifications": [],
+          "comparison": null,
+          "currency": "CAD",
+          "decision_type": "reserve_allocation",
+          "holdings": [
+            {
+              "ticker": "XBB.TO",
+              "weight": 0.35
+            },
+            {
+              "ticker": "ZST.TO",
+              "weight": 0.2
+            },
+            {
+              "ticker": "XIU.TO",
+              "weight": 0.2
+            },
+            {
+              "ticker": "TSLA",
+              "weight": 0.25
+            }
+          ],
+          "horizon_years": 4,
+          "knowledge_date": "2026-11-15",
+          "max_asset_weights": {
+            "TSLA": 0.1
+          },
+          "objective": "minimize_reallocated_capital",
+          "question": "Financer un retrait en déplaçant le moins de capital.",
+          "reserve_policy": "abstract_nominal",
+          "scenario_loss_limit_cad": 15000,
+          "scenarios": [
+            {
+              "horizon_months": 12,
+              "id": "actions",
+              "kind": "hypothetical",
+              "label": "Choc actions hypothétique",
+              "returns": {
+                "RESERVE_ABSTRAITE": 0,
+                "TSLA": -0.5,
+                "XBB.TO": -0.05,
+                "XIU.TO": -0.2,
+                "ZST.TO": 0
+              }
+            },
+            {
+              "horizon_months": 12,
+              "id": "obligations",
+              "kind": "hypothetical",
+              "label": "Choc obligations hypothétique",
+              "returns": {
+                "RESERVE_ABSTRAITE": 0,
+                "TSLA": -0.25,
+                "XBB.TO": -0.15,
+                "XIU.TO": -0.1,
+                "ZST.TO": -0.02
+              }
+            }
+          ],
+          "unknowns": [
+            "Instrument réel de réserve et conditions non qualifiés."
+          ],
+          "withdrawal_cad": 30000,
+          "withdrawal_months": 12
+        },
+        "prompt": "Dans cet exercice fictif, je dois retirer 30 000 CAD dans douze mois. Comparons les changements minimaux sous les hypothèses fournies."
+      },
+      "created_at": "2026-11-15T20:34:35.305308+00:00"
+    }
+  ],
+  "runs": [
+    {
+      "id": "874af537a0be4dd680e180fc75475071",
+      "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "status": "running",
+      "current_role": "agent0",
+      "request": {
+        "facts": {
+          "assumptions": [
+            {
+              "id": "example_scope",
+              "origin": "assumed",
+              "text": "Exercice fictif ; réserve abstraite, coûts/fiscalité nuls, chocs CAD synthétiques sans probabilité ; aucun placement réel garanti."
+            }
+          ],
+          "capital_cad": 100000,
+          "clarifications": [],
+          "comparison": null,
+          "currency": "CAD",
+          "decision_type": "reserve_allocation",
+          "holdings": [
+            {
+              "ticker": "XBB.TO",
+              "weight": 0.35
+            },
+            {
+              "ticker": "ZST.TO",
+              "weight": 0.2
+            },
+            {
+              "ticker": "XIU.TO",
+              "weight": 0.2
+            },
+            {
+              "ticker": "TSLA",
+              "weight": 0.25
+            }
+          ],
+          "horizon_years": 4,
+          "knowledge_date": "2026-11-15",
+          "max_asset_weights": {
+            "TSLA": 0.1
+          },
+          "objective": "minimize_reallocated_capital",
+          "question": "Financer un retrait en déplaçant le moins de capital.",
+          "reserve_policy": "abstract_nominal",
+          "scenario_loss_limit_cad": 15000,
+          "scenarios": [
+            {
+              "horizon_months": 12,
+              "id": "actions",
+              "kind": "hypothetical",
+              "label": "Choc actions hypothétique",
+              "returns": {
+                "RESERVE_ABSTRAITE": 0,
+                "TSLA": -0.5,
+                "XBB.TO": -0.05,
+                "XIU.TO": -0.2,
+                "ZST.TO": 0
+              }
+            },
+            {
+              "horizon_months": 12,
+              "id": "obligations",
+              "kind": "hypothetical",
+              "label": "Choc obligations hypothétique",
+              "returns": {
+                "RESERVE_ABSTRAITE": 0,
+                "TSLA": -0.25,
+                "XBB.TO": -0.15,
+                "XIU.TO": -0.1,
+                "ZST.TO": -0.02
+              }
+            }
+          ],
+          "unknowns": [
+            "Instrument réel de réserve et conditions non qualifiés."
+          ],
+          "withdrawal_cad": 30000,
+          "withdrawal_months": 12
+        },
+        "kind": "initial",
+        "prompt": "Dans cet exercice fictif, je dois retirer 30 000 CAD dans douze mois. Comparons les changements minimaux sous les hypothèses fournies.",
+        "request_ref": "request@1",
+        "software_manifest": {
+          "files": {
+            "alphaforge_app/analytics.py": "fbe8fbdb57080c2652169aea66c5d35fcb54e31087847d05ce72f5e3cbf92b4f",
+            "alphaforge_app/bedrock.py": "ca9241560d5cc0cd12fb5ea8b883b0a0b56cef6c9e36bfd112c3b11ab1f9be94",
+            "alphaforge_app/datasets.py": "ef920c0c6dc9bbe23f1e23c0c76047b45329497d4b5a8126b3314759cc523655",
+            "alphaforge_app/decision/__init__.py": "d1670f31cff060221afeb668b9f8ed2dbc27196308016e503922ccde0e93678f",
+            "alphaforge_app/decision/api.py": "6620f47c4c9e5d4c1f20ee68000b3d78557bb958abe98bfb3167badcd96736d5",
+            "alphaforge_app/decision/assessment.py": "2f3e998f2a008fc838a7dade87de6b39c8dbb5e223c043abe5442ec5229f26ce",
+            "alphaforge_app/decision/finance.py": "7f277003e42216d8e68c5d042a4cfec6363962a171679a694799ccff3f37085e",
+            "alphaforge_app/decision/inspection.py": "9fb0f63f2504620a31198dcc1eebb3e4b188bba73f8a04cc6afac6e7eb6e0045",
+            "alphaforge_app/decision/models.py": "a4f30c1ef79a3cd1ecf8c5ec4ad8628df80b13b0d24c9d99af0cd600ff5ca037",
+            "alphaforge_app/decision/research.py": "58c3300b5a208e94b7000306fd994a333b5ad2521deed42614022ae2b39440b3",
+            "alphaforge_app/decision/service.py": "8c7862672a2bbed7a3244e12898574f3e5cc4b93996c5d629279667fb87f0680",
+            "alphaforge_app/decision/store.py": "149f70003f89164d581a27741d12b63714162629889745d4a7def94846c7d618",
+            "alphaforge_app/decision/tool_contracts.py": "ce443706710639a222b37dd90c7bb9a13f38835699a60dac0b189f9c78d3d6b6",
+            "alphaforge_app/decision/workflow.py": "4fff6263c7c750a31bbd309ccde3b68f6f08835fb292ac77ab4b8744561acd60",
+            "requirements.txt": "4b7600a3aa1f20da5d89530428b754c6e49c2a61b8986061cbf2111c1d3a9141"
+          },
+          "format": "sha256-source-files-v2",
+          "source_bundle_object": "c11646750267a5d83828d34a5f20cbbd7b4c0a9735d44eb26904ae48696aa3ff"
+        },
+        "use_ai": true
+      },
+      "error": null,
+      "created_at": "2026-11-15T20:34:35.311631+00:00",
+      "updated_at": "2026-11-15T20:34:35.311634+00:00"
+    }
+  ],
+  "tasks": [],
+  "attempts": [],
+  "comparison": null,
+  "route": {
+    "provider": "amazon-bedrock-runtime",
+    "model": "global.openai.gpt-6-astra",
+    "entry_region": "us-east-1",
+    "residency": "global; aucune résidence canadienne revendiquée",
+    "verified_requests": []
+  },
+  "limitations": [
+    "Conseil simulé sur données et hypothèses explicites.",
+    "Une reprise réutilise les résultats enregistrés ; un appel AWS interrompu avant réception peut nécessiter une nouvelle tentative facturée."
+  ]
+}

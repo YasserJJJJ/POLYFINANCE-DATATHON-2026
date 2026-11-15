@@ -1,0 +1,156 @@
+Set up your domain as an administrator - Amazon SageMaker Unified Studio 
+
+ View a markdown version of this page 
+
+ Set up your domain as an administrator - Amazon SageMaker Unified Studio 
+
+ Documentation Amazon SageMaker Unified Studio User Guide 
+
+ What you will do Step 1: Open SageMaker Unified Studio in the console Step 2: Configure the login role Step 3: Configure the execution role Step 4: Configure storage and encryption Step 5: Explore your new domain Step 6: Create a project and add members What you learned 
+
+Set up your domain as an administrator
+
+ Time: 10 minutes
+
+ Prerequisites: An AWS account with administrator
+ access. If you don't have an account, see the prerequisites section.
+
+ Outcome: You create a SageMaker Unified Studio domain,
+ set up a project, and add a member so your team can start working with data and AI.
+
+What you will do
+
+In this tutorial, you will:
+
+Open the SageMaker Unified Studio setup in the AWS console
+
+Configure login and execution IAM roles
+
+Set up data storage and encryption options
+
+Create your domain
+
+Create a project and add a team member
+
+This tutorial walks you through setting up an IAM-based domain in SageMaker Unified
+ Studio. An IAM-based domain uses AWS Identity and Access Management (IAM) roles for
+ authentication and access control. Only one IAM-based domain is available per AWS
+ account per Region.
+
+Step 1: Open SageMaker Unified Studio in the console
+
+Sign in to the AWS Management Console.
+
+In the search bar at the top, type SageMaker and choose
+ Amazon SageMaker from the results.
+
+On the SageMaker landing page, choose
+ Get started .
+
+The setup flow opens and guides you through configuring your domain.
+
+Step 2: Configure the login role
+
+The login role authenticates the administrator and provides access to SageMaker
+ Unified Studio. The setup flow shows your current IAM role.
+
+Review the login role shown. This is the IAM role that you will use
+ to sign in to SageMaker Unified Studio as an administrator.
+
+The login role must have the SageMakerStudioAdminIAMConsolePolicy 
+ managed policy attached.
+
+Note
+
+The login role also requires an inline policy based on your choice of execution
+ role in the next step.
+
+Step 3: Configure the execution role
+
+The execution role defines which AWS services and data can be accessed through
+ SageMaker Unified Studio projects.
+
+Choose whether to let Amazon SageMaker Unified Studio create a default execution
+ role or use another role. If role manager is enabled in your account, the execution
+ role will be attached for you.
+
+If you use an existing role, it must have the SageMakerStudioAdminIAMPermissiveExecutionPolicy 
+ managed policy attached.
+
+Note
+
+The execution role needs a trust policy that allows SageMaker Unified Studio
+ and related AWS services to assume it. The execution role is also assigned
+ administrator permissions for AWS Lake Formation. The execution role can be the
+ same IAM role as the login role. If you use separate roles, make sure each has the
+ appropriate managed policy attached.
+
+Step 4: Configure storage and encryption
+
+Choose your data storage and encryption settings.
+
+Choose whether to enable S3 tables integration for your
+ domain.
+
+For data encryption, choose AWS owned
+ key (default) or provide your own AWS KMS key.
+
+Choose Set up to create your
+ domain.
+
+Domain creation takes a few minutes. When it completes, you see the default
+ project screen.
+
+Step 5: Explore your new domain
+
+After the domain is created, you land on the default project screen.
+
+You can customize the appearance of SageMaker Unified Studio to your
+ preference.
+
+Choose the Customize appearance 
+ option.
+
+Choose Light if you prefer a lighter
+ interface.
+
+Step 6: Create a project and add members
+
+Now that your domain is ready, create a project and add team members so they can
+ start working. For detailed instructions, see Create a project and add members .
+
+What you learned
+
+In this tutorial, you:
+
+Created an IAM-based SageMaker Unified Studio domain
+
+Configured login and execution IAM roles with the required managed
+ policies
+
+Set up data storage and encryption for your domain
+
+Your team members can now sign in to SageMaker Unified Studio and start using the
+ tutorials in this guide.
+
+ Javascript is disabled or is unavailable in your browser. 
+
+To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.
+
+ Document Conventions 
+
+Accessing Amazon SageMaker Unified Studio from another console
+
+Create a project and add members
+
+Did this page help you? - Yes
+
+Thanks for letting us know we're doing a good job!
+
+If you've got a moment, please tell us what we did right so we can do more of it.
+
+Did this page help you? - No
+
+Thanks for letting us know this page needs work. We're sorry we let you down.
+
+If you've got a moment, please tell us how we can make the documentation better.

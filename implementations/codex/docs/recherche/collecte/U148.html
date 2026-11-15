@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Optimal vs naïve diversification in cryptocurrencies  - CentAUR</title>
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/a/a0/Reading_shield.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/a/a0/Reading_shield.png" type="image/x-icon" />
+    <link rel="stylesheet" href="https://use.typekit.net/rmh6gde.css" />
+    <meta content="78105" name="eprints.eprintid" />
+<meta content="143" name="eprints.rev_number" />
+<meta content="archive" name="eprints.eprint_status" />
+<meta content="15049" name="eprints.userid" />
+<meta content="disk0/00/07/81/05" name="eprints.dir" />
+<meta content="2018-07-13 13:22:12" name="eprints.datestamp" />
+<meta content="2026-07-15 16:07:53" name="eprints.lastmod" />
+<meta content="2018-07-13 13:22:12" name="eprints.status_changed" />
+<meta content="article" name="eprints.type" />
+<meta content="show" name="eprints.metadata_visibility" />
+<meta content="Platanakis, Emmanouil" name="eprints.creators_name" />
+<meta content="Sutcliffe, Charles" name="eprints.creators_name" />
+<meta content="Urquhart, Andrew" name="eprints.creators_name" />
+<meta content="90002289" name="eprints.creators_id" />
+<meta content="90009470" name="eprints.creators_id" />
+<meta content="889911" name="eprints.creators_staff_id" />
+<meta content="918988" name="eprints.creators_staff_id" />
+<meta content="0000-0003-0187-487X" name="eprints.creators_orcid" />
+<meta content="0000-0001-8834-4243" name="eprints.creators_orcid" />
+<meta content="Optimal vs naïve diversification in cryptocurrencies" name="eprints.title" />
+<meta content="pub" name="eprints.ispublished" />
+<meta content="3_fcf4136e" name="eprints.divisions" />
+<meta content="public" name="eprints.full_text_status" />
+<meta content="FTEMB18 Accepted version requires 18 month embargo once item fully published ACD 16/07/2018" name="eprints.suggestions" />
+<meta content="This paper contributes to the literature on cryptocurrencies by examining the performance of naïve (1/N) and optimal (Markowitz) diversification in a portfolio of four popular cryptocurrencies.  We employ weekly data with weekly rebalancing and show there is very little to select between naïve diversification and optimal diversification. Our results hold for different levels of risk-aversion and an alternative estimation window." name="eprints.abstract" />
+<meta content="2018-10" name="eprints.date" />
+<meta content="published" name="eprints.date_type" />
+<meta content="Economics Letters" name="eprints.publication" />
+<meta content="171" name="eprints.volume" />
+<meta content="Elsevier" name="eprints.publisher" />
+<meta content="93-96" name="eprints.pagerange" />
+<meta content="10.1016/j.econlet.2018.07.020" name="eprints.id_number" />
+<meta content="TRUE" name="eprints.refereed" />
+<meta content="0165-1765" name="eprints.issn" />
+<meta content="1" name="eprints.public_doc_count" />
+<meta content="yes" name="eprints.notify_on_approval" />
+<meta content="yes" name="eprints.metadata_checked" />
+<meta content="90002289" name="eprints.creators_browse_id" />
+<meta content="90009470" name="eprints.creators_browse_id" />
+<meta content="c.sutcliffe@icmacentre.ac.uk" name="eprints.creators_browse_email" />
+<meta content="a.j.urquhart@icmacentre.ac.uk" name="eprints.creators_browse_email" />
+<meta content="3_fcf4136e" name="eprints.divisions_browse" />
+<meta content="1_3d300ab3" name="eprints.divs_irstats" />
+<meta content="3_fcf4136e" name="eprints.divs_irstats" />
+<meta content="Platanakis, E., Sutcliffe, C. &lt;https://centaur.reading.ac.uk/view/creators/90002289.html&gt; and Urquhart, A. &lt;https://centaur.reading.ac.uk/view/creators/90009470.html&gt;" name="eprints.creators_browse_name" />
+<meta content="no" name="eprints.further_checking" />
+<meta content="Platanakis, Emmanouil" name="eprints.creators_sort_name" />
+<meta content="Sutcliffe, Charles" name="eprints.creators_sort_name" />
+<meta content="Urquhart, Andrew" name="eprints.creators_sort_name" />
+<meta content="90002289" name="eprints.creators_sort_id" />
+<meta content="90009470" name="eprints.creators_sort_id" />
+<meta content="FALSE" name="eprints.has_pgr_creators" />
+<meta content="FALSE" name="eprints.has_pgt_creators" />
+<meta content="FALSE" name="eprints.has_ug_creators" />
+<meta content="yes" name="eprints.doi_checked" />
+<meta content="79" name="eprints.citation_count_num" />
+<meta content="2024-04-28 15:08:54" name="eprints.citation_count_datestamp" />
+<meta content="2021-12-07" name="eprints.altmetric_last_updated" />
+<meta content="2026-03-22 02:47:05" name="eprints.altmetric_datestamp" />
+<meta content="0.755" name="eprints.sjr_num" />
+<meta content="2024" name="eprints.sjr_year" />
+<meta content="2025-06-15 02:06:03" name="eprints.sjr_datestamp" />
+<meta content="0.98" name="eprints.snip_num" />
+<meta content="2024" name="eprints.snip_year" />
+<meta content="2025-06-15 02:06:03" name="eprints.snip_datestamp" />
+<meta content="TRUE" name="eprints.nofunding" />
+<meta content="FALSE" name="eprints.ros_submitted" />
+<meta content="auto" name="eprints.ros_action" />
+<meta content="FALSE" name="eprints.coversheets_dirty" />
+<meta content="2018-10" name="eprints.dates_date" />
+<meta content="2018-07-21" name="eprints.dates_date" />
+<meta content="2018-07-05" name="eprints.dates_date" />
+<meta content="published" name="eprints.dates_date_type" />
+<meta content="published_online" name="eprints.dates_date_type" />
+<meta content="accepted" name="eprints.dates_date_type" />
+<meta content="511" name="eprints.hoa_compliant" />
+<meta content="18" name="eprints.hoa_emb_len" />
+<meta content="CD" name="eprints.hoa_ref_pan" />
+<meta content="2018-07-05" name="eprints.hoa_date_acc" />
+<meta content="2018-07-21" name="eprints.hoa_date_pub" />
+<meta content="2018-07-16" name="eprints.hoa_date_fcd" />
+<meta content="2020-01-22" name="eprints.hoa_date_foa" />
+<meta content="AM" name="eprints.hoa_version_fcd" />
+<meta content="FALSE" name="eprints.hoa_exclude" />
+<meta content="FALSE" name="eprints.reading_wip" />
+<meta content="  Platanakis, E., Sutcliffe, C. &lt;https://centaur.reading.ac.uk/view/creators/90002289.html&gt; ORCID: https://orcid.org/0000-0003-0187-487X &lt;https://orcid.org/0000-0003-0187-487X&gt; and Urquhart, A. &lt;https://centaur.reading.ac.uk/view/creators/90009470.html&gt; ORCID: https://orcid.org/0000-0001-8834-4243 &lt;https://orcid.org/0000-0001-8834-4243&gt;  (2018) Optimal vs naïve diversification in cryptocurrencies.  Economics Letters, 171.   pp. 93-96.   ISSN 0165-1765  doi: 10.1016/j.econlet.2018.07.020 &lt;https://doi.org/10.1016/j.econlet.2018.07.020&gt;     " name="eprints.citation" />
+<meta content="https://centaur.reading.ac.uk/78105/3/Optimal%20vs%20Naive%20Diversificationin%20Cryptocurrencies%20-%20Final%20Version.pdf" name="eprints.document_url" />
+<link rel="schema.DC" href="http://purl.org/DC/elements/1.0/" />
+<meta content="https://centaur.reading.ac.uk/78105/" name="DC.relation" />
+<meta content="Optimal vs naïve diversification in cryptocurrencies" name="DC.title" />
+<meta content="Platanakis, Emmanouil" name="DC.creator" />
+<meta content="Sutcliffe, Charles" name="DC.creator" />
+<meta content="Urquhart, Andrew" name="DC.creator" />
+<meta content="This paper contributes to the literature on cryptocurrencies by examining the performance of naïve (1/N) and optimal (Markowitz) diversification in a portfolio of four popular cryptocurrencies.  We employ weekly data with weekly rebalancing and show there is very little to select between naïve diversification and optimal diversification. Our results hold for different levels of risk-aversion and an alternative estimation window." name="DC.description" />
+<meta content="Elsevier" name="DC.publisher" />
+<meta content="2018-10" name="DC.date" />
+<meta content="Article" name="DC.type" />
+<meta content="PeerReviewed" name="DC.type" />
+<meta content="text" name="DC.format" />
+<meta content="en" name="DC.language" />
+<meta content="cc_by_nc_nd_4" name="DC.rights" />
+<meta content="https://centaur.reading.ac.uk/78105/3/Optimal%20vs%20Naive%20Diversificationin%20Cryptocurrencies%20-%20Final%20Version.pdf" name="DC.identifier" />
+<meta content="  Platanakis, E., Sutcliffe, C. &lt;https://centaur.reading.ac.uk/view/creators/90002289.html&gt; ORCID: https://orcid.org/0000-0003-0187-487X &lt;https://orcid.org/0000-0003-0187-487X&gt; and Urquhart, A. &lt;https://centaur.reading.ac.uk/view/creators/90009470.html&gt; ORCID: https://orcid.org/0000-0001-8834-4243 &lt;https://orcid.org/0000-0001-8834-4243&gt;  (2018) Optimal vs naïve diversification in cryptocurrencies.  Economics Letters, 171.   pp. 93-96.   ISSN 0165-1765  doi: 10.1016/j.econlet.2018.07.020 &lt;https://doi.org/10.1016/j.econlet.2018.07.020&gt;     " name="DC.identifier" />
+<meta content="10.1016/j.econlet.2018.07.020" name="DC.relation" />
+<!-- Highwire Press meta tags -->
+<meta content="Optimal vs naïve diversification in cryptocurrencies" name="citation_title" />
+<meta content="Platanakis, Emmanouil" name="citation_author" />
+<meta content="Sutcliffe, Charles" name="citation_author" />
+<meta content="Urquhart, Andrew" name="citation_author" />
+<meta content="2018/07/21" name="citation_publication_date" />
+<meta content="2018/07/13" name="citation_online_date" />
+<meta content="Economics Letters" name="citation_journal_title" />
+<meta content="0165-1765" name="citation_issn" />
+<meta content="171" name="citation_volume" />
+<meta content="93" name="citation_firstpage" />
+<meta content="96" name="citation_lastpage" />
+<meta content="https://centaur.reading.ac.uk/78105/3/Optimal%20vs%20Naive%20Diversificationin%20Cryptocurrencies%20-%20Final%20Version.pdf" name="citation_pdf_url" />
+<meta content="2018/07/21" name="citation_date" />
+<meta content="2018/07/21" name="citation_cover_date" />
+<meta content="Elsevier" name="citation_publisher" />
+<meta content="This paper contributes to the literature on cryptocurrencies by examining the performance of naïve (1/N) and optimal (Markowitz) diversification in a portfolio of four popular cryptocurrencies.  We employ weekly data with weekly rebalancing and show there is very little to select between naïve diversification and optimal diversification. Our results hold for different levels of risk-aversion and an alternative estimation window." name="citation_abstract" />
+<meta content="en" name="citation_language" />
+<!-- PRISM meta tags -->
+<link rel="schema.prism" href="https://www.w3.org/submissions/2020/SUBM-prism-20200910/" />
+<meta content="2018-07-13T13:22:12" name="prism.dateReceived" />
+<meta content="2026-07-15T16:07:53" name="prism.modificationDate" />
+<meta content="93-96" name="prism.pageRange" />
+<meta content="93" name="prism.startingPage" />
+<meta content="96" name="prism.endingPage" />
+<meta content="0165-1765" name="prism.issn" />
+<meta content="Economics Letters" name="prism.publicationName" />
+<meta content="171" name="prism.volume" />
+<link rel="canonical" href="https://centaur.reading.ac.uk/78105/" />
+<link type="text/plain; charset=utf-8" rel="alternate" title="OpenURL ContextObject in Span" href="https://centaur.reading.ac.uk/cgi/export/eprint/78105/COinS/reading-eprint-78105.txt" />
+<link type="application/atom+xml;charset=utf-8" rel="alternate" title="Atom" href="https://centaur.reading.ac.uk/cgi/export/eprint/78105/Atom/reading-eprint-78105.xml" />
+<link type="text/plain; charset=utf-8" rel="alternate" title="BibTeX" href="https://centaur.reading.ac.uk/cgi/export/eprint/78105/BibTeX/reading-eprint-78105.bib" />
+<link type="application/vnd.eprints.data+xml; charset=utf-8" rel="alternate" title="EP3 XML" href="https://centaur.reading.ac.uk/cgi/export/eprint/78105/XML/reading-eprint-78105.xml" />
+<link type="text/xml; charset=utf-8" rel="alternate" title="MPEG-21 DIDL" href="https://centaur.reading.ac.uk/cgi/export/eprint/78105/DIDL/reading-eprint-78105.xml" />
+<link type="text/plain; charset=utf-8" rel="alternate" title="Dublin Core" href="https://centaur.reading.ac.uk/cgi/export/eprint/78105/LocalDC_For_OAI/reading-eprint-78105.txt" />
+<link type="text/xml; charset=utf-8" rel="alternate" title="RIOXX2 XML" href="https://centaur.reading.ac.uk/cgi/export/eprint/78105/RIOXX2/reading-eprint-78105.xml" />
+<link type="text/plain" rel="alternate" title="Reference Manager" href="https://centaur.reading.ac.uk/cgi/export/eprint/78105/RIS/reading-eprint-78105.ris" />
+<link type="text/plain; charset=utf-8" rel="alternate" title="Simple Metadata" href="https://centaur.reading.ac.uk/cgi/export/eprint/78105/Simple/reading-eprint-78105.txt" />
+<link type="text/n3" rel="alternate" title="RDF+N3" href="https://centaur.reading.ac.uk/cgi/export/eprint/78105/RDFN3/reading-eprint-78105.n3" />
+<link type="application/rdf+xml" rel="alternate" title="RDF+XML" href="https://centaur.reading.ac.uk/cgi/export/eprint/78105/RDFXML/reading-eprint-78105.rdf" />
+<link type="text/plain" rel="alternate" title="RDF+N-Triples" href="https://centaur.reading.ac.uk/cgi/export/eprint/78105/RDFNT/reading-eprint-78105.nt" />
+<link type="text/html; charset=utf-8" rel="alternate" title="HTML Citation (with IDs)" href="https://centaur.reading.ac.uk/cgi/export/eprint/78105/IDandHTML/reading-eprint-78105.html" />
+<link type="text/csv; charset=utf-8" rel="alternate" title="Multiline CSV" href="https://centaur.reading.ac.uk/cgi/export/eprint/78105/CSV/reading-eprint-78105.csv" />
+<link type="application/xml; charset=utf-8" rel="alternate" title="Data Cite XML" href="https://centaur.reading.ac.uk/cgi/export/eprint/78105/DataCiteXML/reading-eprint-78105.xml" />
+<link type="text/xml; charset=utf-8" rel="alternate" title="METS" href="https://centaur.reading.ac.uk/cgi/export/eprint/78105/METS/reading-eprint-78105.xml" />
+<link type="text/plain" rel="alternate" title="RefWorks" href="https://centaur.reading.ac.uk/cgi/export/eprint/78105/RefWorks/reading-eprint-78105.ref" />
+<link type="text/plain" rel="alternate" title="Refer" href="https://centaur.reading.ac.uk/cgi/export/eprint/78105/Refer/reading-eprint-78105.refer" />
+<link type="text/xml; charset=utf-8" rel="alternate" title="OpenURL ContextObject" href="https://centaur.reading.ac.uk/cgi/export/eprint/78105/ContextObject/reading-eprint-78105.xml" />
+<link type="text/plain; charset=utf-8" rel="alternate" title="Dublin Core" href="https://centaur.reading.ac.uk/cgi/export/eprint/78105/DC/reading-eprint-78105.txt" />
+<link type="text/html; charset=utf-8" rel="alternate" title="Wordle Link" href="https://centaur.reading.ac.uk/cgi/export/eprint/78105/WordleLink/reading-eprint-78105.txt" />
+<link type="text/plain; charset=utf-8" rel="alternate" title="ASCII Citation" href="https://centaur.reading.ac.uk/cgi/export/eprint/78105/Text/reading-eprint-78105.txt" />
+<link type="application/javascript; charset=utf-8" rel="alternate" title="JSON" href="https://centaur.reading.ac.uk/cgi/export/eprint/78105/JSON/reading-eprint-78105.js" />
+<link type="text/plain" rel="alternate" title="EndNote" href="https://centaur.reading.ac.uk/cgi/export/eprint/78105/EndNote/reading-eprint-78105.enw" />
+<link type="text/plain; charset=utf-8" rel="alternate" title="Dublin Core" href="https://centaur.reading.ac.uk/cgi/export/eprint/78105/LocalDC/reading-eprint-78105.txt" />
+<link type="text/html; charset=utf-8" rel="alternate" title="HTML Citation" href="https://centaur.reading.ac.uk/cgi/export/eprint/78105/HTML/reading-eprint-78105.html" />
+<link type="text/xml; charset=utf-8" rel="alternate" title="MODS" href="https://centaur.reading.ac.uk/cgi/export/eprint/78105/MODS/reading-eprint-78105.xml" />
+<link rel="Top" href="https://centaur.reading.ac.uk/" />
+    <link rel="Sword" href="https://centaur.reading.ac.uk/sword-app/servicedocument" />
+    <link rel="SwordDeposit" href="https://centaur.reading.ac.uk/id/contents" />
+    <link rel="Search" href="https://centaur.reading.ac.uk/cgi/search" type="text/html" />
+    <link rel="Search" title="CentAUR" href="https://centaur.reading.ac.uk/cgi/opensearchdescription" type="application/opensearchdescription+xml" />
+    <script type="text/javascript" src="https://www.google.com/jsapi">
+//padder
+</script><script type="text/javascript">
+// <![CDATA[
+google.charts.load("current", {packages:["corechart", "geochart"]});
+// ]]></script><script type="text/javascript">
+// <![CDATA[
+var eprints_http_root = "https://centaur.reading.ac.uk";
+var eprints_http_cgiroot = "https://centaur.reading.ac.uk/cgi";
+var eprints_oai_archive_id = "centaur.reading.ac.uk";
+var eprints_logged_in = false;
+var eprints_logged_in_userid = 0; 
+var eprints_logged_in_username = ""; 
+var eprints_logged_in_usertype = ""; 
+var eprints_lang_id = "en";
+// ]]></script>
+    <style type="text/css">.ep_logged_in { display: none }</style>
+    <link rel="stylesheet" href="/style/auto-3.4.6.css?1793899060" type="text/css" />
+    <script type="text/javascript" src="/javascript/auto-3.4.6.js?1793899060">
+//padder
+</script>
+    <!--[if lte IE 6]>
+        <link rel="stylesheet" type="text/css" href="/style/ie6.css" />
+   <![endif]-->
+    <meta name="Generator" content="EPrints 3.4.6" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta content="en" http-equiv="Content-Language" />
+    <script type="text/javascript">
+// <![CDATA[
+var eprints_user_id = "false";
+// ]]></script><style>.abstract_lists { display: none !important; } .ep_search_BatchList{ display: none; }</style>
+  </head>
+  <body>
+    <div class="sb-tools-bar-wrapper content m-auto d-none">
+      <div class="sb-tools-bar">
+        <ul class="ep_tm_key_tools" id="ep_tm_menu_tools"><li class="ep_tm_key_tools_item"><a class="ep_tm_key_tools_item_link" href="/cgi/users/home">Login</a></li></ul>
+      </div>
+    </div>
+    <div class="sb-header-bar-wrapper">
+      <div class="sb-header-bar content m-auto">
+        <ul class="sb-header-item-list">
+          <li class="sb-header-item-logo">
+            <a href="https://www.reading.ac.uk/"><div style="     visibility: hidden;     width: 0px;     height: 0px; ">link to Reading.ac.uk</div>
+<svg width="113.559" height="38" viewBox="0 0 113.559 36.97">
+  <defs>
+    <clippath id="clip-path">
+      <rect id="Rectangle_225" data-name="Rectangle 225" width="113.559" height="36.97" transform="translate(0 0)" fill="#303030"></rect>
+    </clippath>
+  </defs>
+  <g id="Group_235" data-name="Group 235" transform="translate(0 0)">
+    <g id="Group_234" data-name="Group 234" clip-path="url(#clip-path)">
+      <path id="Path_123" data-name="Path 123" d="M41,6.718V1H39.222V7.5a5.84,5.84,0,0,1-.088,1.279c-.221.94-.867,1.4-2.088,1.4a1.793,1.793,0,0,1-2-1.264A4.831,4.831,0,0,1,34.93,7.63V1h-2.1V6.91a5.82,5.82,0,0,0,.559,3.115c.558.868,1.66,1.515,3.572,1.515,2.1,0,3.116-.853,3.586-1.794A6.515,6.515,0,0,0,41,6.718" fill="#303030"></path>
+      <path id="Path_124" data-name="Path 124" d="M49.345,11.378V6.836a7.089,7.089,0,0,0-.117-1.47A2.18,2.18,0,0,0,46.861,3.69a2.73,2.73,0,0,0-2.249.926V3.852h-2v7.526h2.058V5.263a2.625,2.625,0,0,1,1.131-.25,1.243,1.243,0,0,1,1.412,1,5.785,5.785,0,0,1,.059,1.059v4.307Zm3.91-9.7A1.061,1.061,0,0,0,52.079.618a1.083,1.083,0,0,0-1.219,1.1,1.061,1.061,0,0,0,1.175,1.059,1.085,1.085,0,0,0,1.22-1.1m-.161,2.176H51.036v7.526h2.058Zm8.276,0H59.548L58.092,8.718c-.1.367-.264.925-.264.925s-.059-.323-.22-.9L56.167,3.852H53.948l2.645,7.541h2Zm7.086,3.9V7.63A5.434,5.434,0,0,0,68,5.072,2.8,2.8,0,0,0,65.266,3.7c-3.057,0-3.587,2.513-3.587,3.925,0,3.013,1.853,3.866,3.91,3.866a5.907,5.907,0,0,0,2.587-.442l-.4-1.131a3.38,3.38,0,0,1-1.6.338,2.228,2.228,0,0,1-2.411-2.367V7.747ZM66.413,6.7H63.782a3.97,3.97,0,0,1,.087-.883c.163-.676.515-1.116,1.25-1.116.882,0,1.294.558,1.294,1.675Zm8.1-2.779a2.456,2.456,0,0,0-.984-.191,2.076,2.076,0,0,0-1.809,1.117v-1h-2v7.526h2.058V5.469a2.112,2.112,0,0,1,1.1-.265,2.055,2.055,0,0,1,1.22.368Z" fill="#303030"></path>
+      <path id="Path_125" data-name="Path 125" d="M80.11,9.144A2.16,2.16,0,0,0,78.7,7.085l-1.073-.543c-.6-.31-.883-.456-.883-.927,0-.572.545-.735,1.162-.735a3.579,3.579,0,0,1,1.631.4L79.947,4.1a5.732,5.732,0,0,0-2.307-.4c-1.677,0-2.705.719-2.705,2.146A2.277,2.277,0,0,0,76.435,8l1.1.6c.5.279.706.411.706.853,0,.558-.442.837-1.25.837a3.92,3.92,0,0,1-1.91-.411l-.413,1.175a5.728,5.728,0,0,0,2.543.442c1.559,0,2.9-.632,2.9-2.352M83.7,1.676A1.06,1.06,0,0,0,82.521.618a1.084,1.084,0,0,0-1.22,1.1,1.061,1.061,0,0,0,1.176,1.059,1.085,1.085,0,0,0,1.22-1.1m-.161,2.176H81.478v7.526h2.058Zm6.447,7.291-.338-1.132a2.043,2.043,0,0,1-.882.206c-.97,0-1.058-.618-1.058-1.367V4.984h2.219V3.866H87.705V2.1H86.367l-.015.132a2.233,2.233,0,0,1-1.44,1.734l-.206.074v.941h.941V8.717a5.654,5.654,0,0,0,.147,1.53c.323.94,1.072,1.219,2.293,1.219a5.429,5.429,0,0,0,1.9-.323" fill="#303030"></path>
+      <path id="Path_126" data-name="Path 126" d="M97.767,3.851H95.944l-1.382,4.91c-.118.426-.25.911-.25.911a7.268,7.268,0,0,0-.235-.941l-1.485-4.88H90.358l3.013,7.894-.249.69c-.25.707-.559,1.044-1.192,1.044a2.807,2.807,0,0,1-.839-.176l-.2,1.206a3.5,3.5,0,0,0,1.279.191c1.22,0,1.969-.515,2.484-1.985Z" fill="#303030"></path>
+      <path id="Path_127" data-name="Path 127" d="M107.885,7.5c0-2.352-1.279-3.808-3.632-3.808-2.749,0-3.792,1.956-3.792,4.058,0,2.352,1.294,3.807,3.646,3.807,2.749,0,3.778-1.955,3.778-4.057m-2.132.132c0,1.809-.4,2.72-1.558,2.72-1.205,0-1.6-1.015-1.6-2.749,0-1.809.412-2.7,1.574-2.7,1.205,0,1.587,1,1.587,2.734M113.559.25A3.792,3.792,0,0,0,112.03,0a2.265,2.265,0,0,0-2.5,1.6,7.637,7.637,0,0,0-.148,1.867v.4h-.94V4.984h.94v6.393h2.029V4.984h1.542V3.866h-1.542V2.779a2.581,2.581,0,0,1,.147-1.162.893.893,0,0,1,.882-.441,1.436,1.436,0,0,1,.764.192Z" fill="#303030"></path>
+      <path id="Path_128" data-name="Path 128" d="M85.043,15.235c-1.235,0-2,.672-2,1.753a1.686,1.686,0,0,0,1.913,1.662c1.236,0,2-.672,2-1.753a1.686,1.686,0,0,0-1.913-1.662" fill="#303030"></path>
+      <path id="Path_129" data-name="Path 129" d="M51.139,20.155c-5.079,0-5.627,4.191-5.627,5.993,0,4.838,3.295,5.853,6.06,5.853a10.709,10.709,0,0,0,4.136-.642c-.064-.192-.494-1.481-.572-1.717a6.064,6.064,0,0,1-2.448.471c-2.566,0-3.715-1.672-3.715-3.328v-.3h7.2v-.066a9.235,9.235,0,0,0-.667-4.037c-.811-1.521-2.2-2.229-4.367-2.229m1.71,4.763h-3.9V24.78a7.716,7.716,0,0,1,.093-1.346c.226-1.211.837-1.8,1.868-1.8,1.322,0,1.938.8,1.938,2.507Z" fill="#303030"></path>
+      <path id="Path_130" data-name="Path 130" d="M40.553,24.944A4.645,4.645,0,0,0,43.8,20.315a4.087,4.087,0,0,0-3.312-4.036,19.953,19.953,0,0,0-4.229-.315c-1.6,0-3.008.08-3.417.105V31.82h3.3V25.464h.961L41.6,31.82h3.979L40.356,25ZM38.6,23.82a4.7,4.7,0,0,1-1.378.119l-1.072-.027V17.76l.116-.019a6.914,6.914,0,0,1,1-.048c2.07,0,3.077,1.007,3.077,3.077,0,1.928-.9,2.84-1.745,3.05" fill="#303030"></path>
+      <path id="Path_131" data-name="Path 131" d="M62.759,20.133a12.658,12.658,0,0,0-4.246.627c.072.2.532,1.527.613,1.758a6.849,6.849,0,0,1,2.7-.519,2.029,2.029,0,0,1,2.039.969,3.144,3.144,0,0,1,.195,1.288v.73l-.006.143-1.681-.074a6.226,6.226,0,0,0-3.679.794,3.105,3.105,0,0,0-1.264,2.759A3.225,3.225,0,0,0,60.982,32a3.494,3.494,0,0,0,2.916-1.17l.252-.374V31.82h3.165V24.848a8.035,8.035,0,0,0-.287-2.64c-.534-1.4-1.93-2.075-4.269-2.075m1.3,9.877-.07.04a2.78,2.78,0,0,1-1.275.223,1.737,1.737,0,0,1-1.961-1.847,2.07,2.07,0,0,1,.5-1.445,2.318,2.318,0,0,1,1.713-.561l.973.024.121,0Z" fill="#303030"></path>
+      <rect id="Rectangle_224" data-name="Rectangle 224" width="3.415" height="11.436" transform="translate(83.29 20.385)" fill="#303030"></rect>
+      <path id="Path_132" data-name="Path 132" d="M74.63,20.2c-3.175,0-5.308,2.463-5.308,6.129,0,3.6,1.686,5.671,4.625,5.671a3.485,3.485,0,0,0,3.071-1.3l.256-.433v1.55h3.3V14.459H77.16v6.378l-.22-.163a4.2,4.2,0,0,0-2.31-.473m2.53,1.841V29.6l-.07.04a3.171,3.171,0,0,1-1.457.313c-1.782,0-2.8-1.412-2.8-3.875,0-2.8,1.074-4.216,3.191-4.216a3.219,3.219,0,0,1,1.051.146Z" fill="#303030"></path>
+      <path id="Path_133" data-name="Path 133" d="M96.321,20.133a3.954,3.954,0,0,0-3.347,1.4l-.254.391V20.384h-3.3V31.819h3.416V22.556l.072-.039a3.537,3.537,0,0,1,1.569-.335,1.827,1.827,0,0,1,2.05,1.409,8.958,8.958,0,0,1,.093,1.417v6.811h3.438V24.871a10.952,10.952,0,0,0-.178-2.249c-.17-.748-.856-2.489-3.558-2.489" fill="#303030"></path>
+      <path id="Path_134" data-name="Path 134" d="M106.734,20.155c-3.351,0-4.851,1.934-4.851,3.851a3.243,3.243,0,0,0,2.662,3.418l.507.076-.477.188a2.723,2.723,0,0,0-1.713,2.379,1.694,1.694,0,0,0,.9,1.582l.47.211-.513.052c-.1.01-2.428.266-2.428,2.325,0,2.377,3,2.732,4.784,2.732a11.389,11.389,0,0,0,3.6-.494c2.91-.97,3.345-2.947,3.345-4.039,0-2.524-1.947-2.848-3.644-2.848l-1.61.028-.919.018c-.47,0-1.345,0-1.345-1a1.235,1.235,0,0,1,.339-.876l.054-.04,1.112.072c2.981,0,4.692-1.32,4.692-3.622a2.7,2.7,0,0,0-.665-1.838l-.242-.236h2.343V20.407l-4.525,0a7.156,7.156,0,0,0-1.878-.247m.958,11.961c1.06,0,1.826,0,2.231.4a1.053,1.053,0,0,1,.276.782c0,.905-.569,1.983-3.282,1.983-1.306,0-2.8-.194-2.8-1.71a1.608,1.608,0,0,1,.951-1.448l.026-.011Zm.143-5.943,0,0a1.852,1.852,0,0,1-.959.247c-1.162,0-1.8-.858-1.8-2.416a2.473,2.473,0,0,1,.819-2.192,1.92,1.92,0,0,1,.982-.27c1.161,0,1.8.85,1.8,2.393a2.5,2.5,0,0,1-.838,2.236" fill="#303030"></path>
+      <path id="Path_135" data-name="Path 135" d="M25.987,19.755l-.08-17.767A1.192,1.192,0,0,0,24.866.91c-.076-.018-2.71-.278-11.8-.278h-.133c-8.221,0-11.2.162-11.8.276A1.276,1.276,0,0,0,.07,2.028C.064,2.085,0,19.774,0,19.774A8.566,8.566,0,0,0,.4,22.525a12.45,12.45,0,0,0,4.5,6.233,39.718,39.718,0,0,0,7.967,5.065c.076.033.1.045.123.045s.046-.005.137-.047a42.57,42.57,0,0,0,7.938-5.063,12.389,12.389,0,0,0,4.532-6.2,8.573,8.573,0,0,0,.39-2.8M.769,2.1a.593.593,0,0,1,.5-.51c.618-.115,3.489-.269,11.659-.269h.133c8.99,0,11.558.262,11.581.267a.618.618,0,0,1,.553.531l.058,13.026c-1.18-.052-4.567-.161-12.177-.161-7.763,0-11.2.112-12.364.163C.738,9.91.769,2.1.769,2.1M23.108,25.724a.771.771,0,0,0-1.426.167.789.789,0,0,0-.743-.576.78.78,0,0,0-.743.577.79.79,0,0,0-.743-.577.778.778,0,0,0-.743.577.791.791,0,0,0-.744-.577.78.78,0,0,0-.743.576.78.78,0,1,0-.955.956.789.789,0,0,0-.577.743.779.779,0,0,0,.577.742.793.793,0,0,0-.577.745.78.78,0,0,0,.576.742.774.774,0,0,0-.056,1.479l-.328.225a28.2,28.2,0,0,1-2.9,1.58,26.376,26.376,0,0,1-2.859-1.543l-.373-.251a.792.792,0,0,0,.547-.747.778.778,0,0,0-.577-.742.791.791,0,0,0,.577-.743.781.781,0,0,0-.577-.744.79.79,0,0,0,.577-.743.779.779,0,0,0-.577-.743.779.779,0,0,0-.212-1.532.779.779,0,0,0-.742.576.79.79,0,0,0-.744-.576.78.78,0,0,0-.743.576.79.79,0,0,0-.743-.576.781.781,0,0,0-.744.577.789.789,0,0,0-.743-.577.78.78,0,0,0-.743.576.789.789,0,0,0-.743-.576.779.779,0,0,0-.684.41A10.635,10.635,0,0,1,.7,20.517v-.036l.012,0A.8.8,0,0,0,1.32,19.9a.793.793,0,0,0,.751.6.781.781,0,0,0,.743-.577.789.789,0,0,0,.743.577.778.778,0,0,0,.743-.577.791.791,0,0,0,.744.577.781.781,0,0,0,.743-.577.79.79,0,0,0,.743.577.78.78,0,0,0,.743-.577.789.789,0,0,0,.744.577.778.778,0,0,0,.742-.577.78.78,0,0,0,1.533-.212.779.779,0,0,0-.578-.742.792.792,0,0,0,.578-.744.781.781,0,0,0-.578-.743.79.79,0,0,0,.578-.743.781.781,0,0,0-.588-.747.8.8,0,0,0,.491-.368l.023-.043c1.3-.02,2.315-.033,2.681-.033.39,0,1.488.014,2.876.035l.024.044a.791.791,0,0,0,.488.366.768.768,0,0,0-.009,1.489.789.789,0,0,0-.576.743.78.78,0,0,0,.576.743A.78.78,0,0,0,16.49,20.5a.779.779,0,0,0,.743-.577.789.789,0,0,0,.743.577.778.778,0,0,0,.743-.577.791.791,0,0,0,.744.577.78.78,0,0,0,.743-.577.79.79,0,0,0,.744.577.78.78,0,0,0,.742-.577.789.789,0,0,0,.744.577.78.78,0,0,0,.743-.577.789.789,0,0,0,.743.577.779.779,0,0,0,.75-.6.79.79,0,0,0,.576.582h0v.028a10.417,10.417,0,0,1-2.144,5.218" fill="#303030"></path>
+      <path id="Path_136" data-name="Path 136" d="M15.564,20.854a1.743,1.743,0,0,0-.692-1.033l-.013-.011-.005,0a1.752,1.752,0,0,0-1.184-.341C13.257,19.13,13.056,18.2,13,18.2s-.242.937-.667,1.271a1.748,1.748,0,0,0-1.2.338l-.006.005a1.784,1.784,0,0,0-.7,1.017c-.447.29-1.4.193-1.415.245s.818.521,1,1.03a1.47,1.47,0,0,0-.14.65,2.014,2.014,0,0,0,.093.6l.005.015a1.752,1.752,0,0,0,.765.976c.135.514-.247,1.384-.2,1.417s.741-.609,1.281-.634a1.746,1.746,0,0,0,1.163.426H13a1.755,1.755,0,0,0,1.175-.433c.531.031,1.24.662,1.285.63s-.348-.888-.208-1.409a1.749,1.749,0,0,0,.76-.972l0-.016a2.019,2.019,0,0,0,.093-.6,1.48,1.48,0,0,0-.139-.65c.2-.493,1.009-.968.992-1.019s-.94.056-1.4-.23m.167,2.408,0,.01a1.458,1.458,0,0,1-.6.8.638.638,0,0,1-.4.091.9.9,0,0,1-.377-.174.467.467,0,0,1-.038-.034c-.074-.1-.207-.359-.28-.467-.1-.142-.264-.534-.5-.364s.087.448.193.585c.08.1.283.308.357.411a.41.41,0,0,1,.022.05.893.893,0,0,1,.048.408.622.622,0,0,1-.195.338,1.444,1.444,0,0,1-.965.34h0a1.443,1.443,0,0,1-.95-.329.63.63,0,0,1-.2-.349.88.88,0,0,1,.048-.408.3.3,0,0,1,.022-.05c.074-.1.277-.308.357-.411.106-.137.426-.416.194-.585s-.4.222-.5.364c-.075.108-.207.365-.282.467a.315.315,0,0,1-.041.037.9.9,0,0,1-.373.171.638.638,0,0,1-.389-.084,1.442,1.442,0,0,1-.612-.8l0-.011a1.426,1.426,0,0,1,.029-1.023.623.623,0,0,1,.258-.283.9.9,0,0,1,.391-.082.255.255,0,0,1,.067.007c.122.038.378.168.5.212.163.059.528.276.618,0s-.335-.312-.5-.36c-.126-.037-.41-.083-.531-.123a.3.3,0,0,1-.054-.032.9.9,0,0,1-.272-.3.633.633,0,0,1-.037-.407,1.462,1.462,0,0,1,.577-.823l.005,0a1.433,1.433,0,0,1,.972-.291.63.63,0,0,1,.359.16.9.9,0,0,1,.2.351.292.292,0,0,1,.013.061c0,.127-.043.412-.047.543-.006.172-.1.587.188.587s.193-.415.188-.587c-.005-.131-.048-.416-.048-.543a.258.258,0,0,1,.013-.058.891.891,0,0,1,.2-.354.629.629,0,0,1,.371-.161,1.44,1.44,0,0,1,.961.292l.009.006a1.445,1.445,0,0,1,.573.82.63.63,0,0,1-.038.406.886.886,0,0,1-.283.305.421.421,0,0,1-.043.025c-.121.04-.4.086-.53.123-.166.048-.59.086-.5.36s.454.056.617,0c.123-.044.38-.174.5-.212a.244.244,0,0,1,.051,0,.874.874,0,0,1,.407.08.629.629,0,0,1,.265.3,1.445,1.445,0,0,1,.022,1.011" fill="#303030"></path>
+      <path id="Path_137" data-name="Path 137" d="M14.867,19.817l0,0h0Z" fill="#303030"></path>
+      <path id="Path_138" data-name="Path 138" d="M13,23a.629.629,0,1,1,.634-.629A.632.632,0,0,1,13,23" fill="#303030"></path>
+      <path id="Path_139" data-name="Path 139" d="M8.188,7.922h0a4.289,4.289,0,0,1-.393-.316c-.041-.04-.142-.153-.284-.319L7.5,7.27c.005,0,.458-1.161.458-1.161A.683.683,0,0,0,8,5.878a.35.35,0,0,0-.372-.347l-1.447,0A2.333,2.333,0,0,0,6,5.211a.608.608,0,0,0-.61-.376.611.611,0,0,0-.614.377,2.438,2.438,0,0,0-.18.316l-1.445,0a.366.366,0,0,0-.306.143.362.362,0,0,0-.066.2.683.683,0,0,0,.047.231s.442,1.136.454,1.168l-.01.008c-.145.17-.244.28-.285.32a4.289,4.289,0,0,1-.393.316,1.122,1.122,0,0,0-.605.87V8.81a1.821,1.821,0,0,0,.3.787l.064.116a6.742,6.742,0,0,0,.459.851,6.565,6.565,0,0,0,1.055.907,2.513,2.513,0,0,0,.608.179l.077.015a4.057,4.057,0,0,0,.838.2,4.089,4.089,0,0,0,.838-.2L6.3,11.65a2.5,2.5,0,0,0,.611-.179,6.565,6.565,0,0,0,1.055-.907,6.944,6.944,0,0,0,.459-.852L8.493,9.6a1.834,1.834,0,0,0,.3-.786V8.791a1.117,1.117,0,0,0-.6-.869m-1.3.313A11.043,11.043,0,0,0,8,9.725a2.99,2.99,0,0,1-.182.434,1.233,1.233,0,0,1-.25.276A10.893,10.893,0,0,0,6.43,8.824l-.011.012,0,.017a11.3,11.3,0,0,0,.824,1.805l.017.034a3.972,3.972,0,0,1-.449.373,1.649,1.649,0,0,1-.353.132A14.968,14.968,0,0,0,5.8,9.167h0l-.011.008c-.007.007-.015.027-.015.113,0,.428.19,1.943.2,2.033l-.091.021-.19.042-.081.025a1.041,1.041,0,0,1-.222.053,1.006,1.006,0,0,1-.218-.053l-.082-.025L4.9,11.342l-.092-.021c.012-.09.2-1.607.2-2.033,0-.086-.007-.105-.014-.113l0,0-.013-.005a15.109,15.109,0,0,0-.65,2.03,1.728,1.728,0,0,1-.354-.132,4.083,4.083,0,0,1-.447-.373l.023-.046a13.277,13.277,0,0,0,.818-1.793l0-.015-.009-.011a10.316,10.316,0,0,0-1.137,1.608,1.208,1.208,0,0,1-.25-.276,2.944,2.944,0,0,1-.184-.438A10.893,10.893,0,0,0,3.891,8.238l-.005-.016a.09.09,0,0,0-.018-.01A10.39,10.39,0,0,0,2.61,9.344l-.055-.1-.091-.167a.559.559,0,0,1-.043-.228l0-.077c.012-.167.188-.375.494-.586A3.5,3.5,0,0,0,3.261,7.9l.064-.059a25.431,25.431,0,0,0,1.819-2.46.288.288,0,0,1,.494,0,25.346,25.346,0,0,0,1.82,2.46l.062.057a3.2,3.2,0,0,0,.344.293c.177.122.476.36.494.586l0,.077a.543.543,0,0,1-.043.228l-.086.16c-.005.007-.047.082-.059.106A10.676,10.676,0,0,0,6.918,8.212L6.9,8.217a.055.055,0,0,0-.011.018M6.373,5.866H7.507c.087,0,.11.01.116.019l.011.047a.257.257,0,0,1-.022.1s-.334.875-.382,1c-.017-.025-.776-1.05-.857-1.16m-1.963,0-.858,1.16-.382-1a.3.3,0,0,1-.022-.1l.012-.047c.006-.009.028-.023.115-.019H4.41" fill="#303030"></path>
+      <path id="Path_140" data-name="Path 140" d="M15.8,7.826h0a4.034,4.034,0,0,1-.393-.317c-.041-.039-.142-.152-.284-.318l-.014-.016s.458-1.161.458-1.161a.683.683,0,0,0,.047-.231.35.35,0,0,0-.372-.347l-1.447,0a2.09,2.09,0,0,0-.18-.318.685.685,0,0,0-1.223,0,2.3,2.3,0,0,0-.18.316l-1.445,0a.361.361,0,0,0-.306.143.355.355,0,0,0-.067.2.7.7,0,0,0,.047.23s.443,1.137.455,1.169l-.01.008c-.145.169-.244.28-.285.319a4.159,4.159,0,0,1-.393.317,1.122,1.122,0,0,0-.605.87v.018a1.811,1.811,0,0,0,.3.787l.064.116a6.718,6.718,0,0,0,.458.851,6.571,6.571,0,0,0,1.056.908,2.513,2.513,0,0,0,.608.179l.077.015a4.1,4.1,0,0,0,.837.2,4.056,4.056,0,0,0,.838-.2l.075-.015a2.475,2.475,0,0,0,.611-.179,6.526,6.526,0,0,0,1.055-.908,6.608,6.608,0,0,0,.459-.851l.065-.116a1.833,1.833,0,0,0,.3-.787V8.695a1.117,1.117,0,0,0-.6-.869m-1.3.313a10.952,10.952,0,0,0,1.1,1.49,2.775,2.775,0,0,1-.182.434,1.172,1.172,0,0,1-.25.275,10.857,10.857,0,0,0-1.133-1.61l-.012.011,0,.018a11.345,11.345,0,0,0,.824,1.805l.018.034a3.972,3.972,0,0,1-.449.373,1.649,1.649,0,0,1-.353.132,15.012,15.012,0,0,0-.651-2.03h0l-.011.008c-.007.007-.015.027-.015.113,0,.428.189,1.943.2,2.033l-.091.021-.19.043-.081.024a1.036,1.036,0,0,1-.223.053,1.012,1.012,0,0,1-.217-.053l-.082-.024-.191-.043-.092-.021c.011-.09.2-1.607.2-2.034,0-.085-.007-.1-.014-.112l0,0-.013,0a15.156,15.156,0,0,0-.65,2.03,1.744,1.744,0,0,1-.354-.132,3.916,3.916,0,0,1-.447-.373c0-.01.023-.046.023-.046a13.224,13.224,0,0,0,.817-1.793l0-.015-.009-.012a10.278,10.278,0,0,0-1.137,1.608,1.176,1.176,0,0,1-.25-.275,2.942,2.942,0,0,1-.184-.439,10.816,10.816,0,0,0,1.1-1.482l0-.016a.056.056,0,0,0-.018-.01,10.307,10.307,0,0,0-1.258,1.132c-.01-.017-.055-.1-.055-.1l-.091-.167a.559.559,0,0,1-.043-.228l0-.078c.013-.166.189-.374.494-.585a3.517,3.517,0,0,0,.343-.291l.063-.059a25.262,25.262,0,0,0,1.82-2.46.286.286,0,0,1,.493,0,25.509,25.509,0,0,0,1.821,2.46l.061.057a3.315,3.315,0,0,0,.345.293c.177.122.476.36.493.585l0,.078a.576.576,0,0,1-.043.228l-.091.168-.055.1a10.5,10.5,0,0,0-1.254-1.132l-.016,0a.088.088,0,0,0-.01.019m-.52-2.369h1.135c.087,0,.109.01.115.02l.012.045-.022.1s-.334.875-.382,1l-.858-1.16m-1.962,0c-.021.028-.841,1.135-.858,1.16l-.382-1a.3.3,0,0,1-.022-.1l.012-.046c.006-.01.028-.024.115-.02h1.135" fill="#303030"></path>
+      <path id="Path_141" data-name="Path 141" d="M23.378,7.922h0a4.465,4.465,0,0,1-.393-.316c-.041-.04-.142-.153-.284-.319l-.014-.016c.006,0,.458-1.161.458-1.161a.683.683,0,0,0,.047-.231.348.348,0,0,0-.372-.347l-1.447,0a2.16,2.16,0,0,0-.179-.317.686.686,0,0,0-1.224,0,2.194,2.194,0,0,0-.179.316l-1.446,0a.367.367,0,0,0-.306.143.362.362,0,0,0-.066.2.683.683,0,0,0,.047.231s.442,1.136.455,1.168l-.011.008c-.145.17-.243.28-.284.32a4.465,4.465,0,0,1-.393.316,1.121,1.121,0,0,0-.606.87V8.81a1.808,1.808,0,0,0,.3.787l.064.116a6.742,6.742,0,0,0,.459.851,6.609,6.609,0,0,0,1.055.907,2.506,2.506,0,0,0,.609.179l.076.015a4.12,4.12,0,0,0,.837.2,4.067,4.067,0,0,0,.839-.2l.076-.015a2.506,2.506,0,0,0,.61-.179,6.66,6.66,0,0,0,1.055-.907,6.81,6.81,0,0,0,.459-.852l.064-.116a1.821,1.821,0,0,0,.3-.786V8.791a1.119,1.119,0,0,0-.6-.869m-1.3.313a11.043,11.043,0,0,0,1.1,1.49,2.991,2.991,0,0,1-.182.434,1.2,1.2,0,0,1-.25.276A10.893,10.893,0,0,0,21.62,8.824l-.011.012,0,.017a11.3,11.3,0,0,0,.824,1.805l.017.034a3.952,3.952,0,0,1-.448.373,1.676,1.676,0,0,1-.354.132A14.968,14.968,0,0,0,21,9.167H20.99l-.011.008c-.007.007-.015.027-.015.113,0,.428.19,1.943.2,2.033l-.091.021-.19.042-.081.025a1.013,1.013,0,0,1-.222.053,1.006,1.006,0,0,1-.218-.053l-.082-.025-.191-.042L20,11.321c.012-.09.2-1.607.2-2.033,0-.086-.008-.105-.015-.113l0,0-.013-.005a14.969,14.969,0,0,0-.649,2.03,1.693,1.693,0,0,1-.355-.132,4.006,4.006,0,0,1-.447-.373l.024-.046a13.224,13.224,0,0,0,.817-1.793l0-.015-.01-.011a10.316,10.316,0,0,0-1.137,1.608,1.186,1.186,0,0,1-.25-.276,2.944,2.944,0,0,1-.184-.438,10.806,10.806,0,0,0,1.1-1.483l0-.016a.09.09,0,0,0-.018-.01A10.39,10.39,0,0,0,17.8,9.344l-.055-.1-.09-.167a.543.543,0,0,1-.044-.228l0-.077c.012-.167.188-.375.494-.586a3.381,3.381,0,0,0,.342-.291l.064-.059a25.1,25.1,0,0,0,1.819-2.46.288.288,0,0,1,.494,0,25.346,25.346,0,0,0,1.82,2.46l.062.057a3.2,3.2,0,0,0,.344.293c.177.122.476.36.494.586l0,.077a.543.543,0,0,1-.043.228l-.091.168-.054.1a10.6,10.6,0,0,0-1.255-1.132l-.015.005a.055.055,0,0,0-.011.018m-.519-2.369H22.7c.086,0,.109.01.115.019l.012.047-.022.1s-.335.875-.383,1c-.017-.025-.776-1.05-.857-1.16m-1.963,0-.858,1.16-.382-1a.3.3,0,0,1-.022-.1l.012-.047c.006-.009.029-.023.115-.019H19.6" fill="#303030"></path>
+    </g>
+  </g>
+</svg>
+            </a>
+          </li>
+          <li class="sb-header-item">
+            <a href="/">
+              Home
+            </a>
+          </li>
+          <li class="sb-header-item sb-header-item-browse">
+		  <a href="/view.html" menu="browse-menu">
+              Browse
+
+<svg id="small_chevron_down" data-name="small chevron down" width="26" height="26" viewBox="0 0 26 26">
+  <defs>
+    <clippath id="clip-path">
+      <rect id="Rectangle_296" data-name="Rectangle 296" width="26" height="26" fill="none"></rect>
+    </clippath>
+  </defs>
+  <g id="Group_157" data-name="Group 157" clip-path="url(#clip-path)">
+    <path id="Path_77" data-name="Path 77" d="M12.417,15.5a1.08,1.08,0,0,1-.766-.317L7.317,10.849A1.083,1.083,0,0,1,8.849,9.317l3.567,3.567,3.567-3.567a1.083,1.083,0,1,1,1.532,1.532l-4.333,4.333a1.08,1.08,0,0,1-.766.317" transform="translate(0.583 0.75)" fill="#303030"></path>
+  </g>
+</svg>
+
+            </a>
+            <div id="browse-menu" style="display:none;position: absolute;     background: white;     padding: 10px;     margin-top: 10px;">
+              <div class="sb-browse">
+                <a href="/view/year/">
+                  Year
+                </a>
+              </div>
+              <div class="sb-browse">
+                <a href="/view/divisions/">
+                  Division
+                </a>
+              </div>
+              <div class="sb-browse">
+                <a href="/view/creators">
+                  Author
+                </a>
+              </div>
+              <div class="sb-browse">
+                <a href="/cgi/latest_tool">
+                  Latest additions
+                </a>
+              </div>
+            </div>
+          </li>
+
+          <li class="sb-header-item sb-header-item-information">
+	    <a href="/page/information" menu="information-menu">
+              About
+<svg id="small_chevron_down" data-name="small chevron down" width="26" height="26" viewBox="0 0 26 26">
+  <defs>
+    <clippath id="clip-path">
+      <rect id="Rectangle_296" data-name="Rectangle 296" width="26" height="26" fill="none"></rect>
+    </clippath>
+  </defs>
+  <g id="Group_157" data-name="Group 157" clip-path="url(#clip-path)">
+    <path id="Path_77" data-name="Path 77" d="M12.417,15.5a1.08,1.08,0,0,1-.766-.317L7.317,10.849A1.083,1.083,0,0,1,8.849,9.317l3.567,3.567,3.567-3.567a1.083,1.083,0,1,1,1.532,1.532l-4.333,4.333a1.08,1.08,0,0,1-.766.317" transform="translate(0.583 0.75)" fill="#303030"></path>
+  </g>
+</svg>
+            </a>
+            <div id="information-menu" style="display:none;position: absolute;     background: white;     padding: 10px;     margin-top: 10px;">
+              <div class="sb-browse">
+		<a href="/page/information">
+                  About CentAUR
+                </a>
+              </div>
+              <div class="sb-browse">
+		<a href="/page/help/quick_guide">
+                  Deposit publication
+                </a>
+              </div>
+              <div class="sb-browse">
+	        <a href="/page/policies">
+			Policies
+                </a>
+              </div>
+              <div class="sb-browse">
+	        <a href="/page/help">
+			Help
+                </a>
+              </div>
+              <div class="sb-browse">
+	        <a href="/page/contact">
+			Contact
+                </a>
+              </div>
+            </div>
+          </li>
+
+          <li class="sb-header-item">
+            <a href="/cgi/stats/report">
+              Statistics
+            </a>
+          </li>
+          <li class="sb-header-item sb-header-item-end d-none" id="sb-main-nav-login-item">
+            <a href="/cgi/users/home">Login</a>
+          </li>
+          <div class="sb-header-list d-none">
+            <svg width="20" height="20" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"></path>
+            </svg>
+          </div>
+        </ul>
+      </div>
+    </div>
+    <div class="sb-homepage-header-dropdown-wrapper d-none" style="display: none;">
+      <ul class="sb-header-item-list-sm">
+        <li class="sb-header-item">
+          <a href="/">
+            Home
+          </a>
+        </li>
+        <li class="sb-header-item">
+          <a href="/view">
+            Browse
+          </a>
+        </li>
+        <li class="sb-header-item">
+          <a href="/information.html">
+            About
+          </a>
+        </li>
+        <li class="sb-header-item">
+          <a href="/cgi/stats/report">
+            Statistics
+          </a>
+        </li>
+      </ul>
+      <ul class="ep_tm_key_tools" id="ep_tm_menu_tools"><li class="ep_tm_key_tools_item"><a class="ep_tm_key_tools_item_link" href="/cgi/users/home">Login</a></li></ul>
+    </div>
+    <div class="sb-homepage-banner-wrapper sb-homepage-banner-wrapper-internal">
+      <div class="sb-homepage-banner">
+        <div class="sb-searchbar-wrapper content m-auto">
+          
+          <form method="get" accept-charset="utf-8" action="/cgi/search" class="sb-searchbar-form" role="search" aria-label="Publication simple search">
+            <input class="ep_tm_searchbarbox" size="20" placeholder="Enter your search terms" type="text" name="q" aria-labelledby="searchbutton" />
+            <input class="ep_tm_searchbarbutton" value="Search" type="submit" name="_action_search" id="searchbutton" />
+            <input type="hidden" name="_action_search" value="Search" />
+            <input type="hidden" name="_order" value="bytitle" />
+            <input type="hidden" name="basic_srchtype" value="ALL" />
+            <input type="hidden" name="_satisfyall" value="ALL" />
+          </form>
+          <div class="sb-searchbar-text">
+            <a href="/cgi/search/advanced">
+              <p>Advanced search</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sb-page-wrapper">
+	    <h1 class="ep_tm_pagetitle">
+
+Optimal vs naïve diversification in cryptocurrencies
+
+</h1>
+      <div class="ep_summary_content"><div class="ep_summary_content_top"></div><div class="ep_summary_content_left"></div><div class="ep_summary_content_right"><div id="ep_summary_box_1" class="ep_summary_box ep_plugin_summary_box_download"><div class="ep_summary_box_title"><div class="ep_no_js">Download</div><div id="ep_summary_box_1_colbar" class="ep_only_js"><a class="ep_box_collapse_link" href="#" onclick="EPJS_blur(event); EPJS_toggleSlideScroll('ep_summary_box_1_content',true,'ep_summary_box_1');EPJS_toggle('ep_summary_box_1_colbar',true);EPJS_toggle('ep_summary_box_1_bar',false);return false"><img border="0" alt="-" src="/style/images/minus.png" /> Download</a></div><div id="ep_summary_box_1_bar" class="ep_only_js" style="display: none"><a class="ep_box_collapse_link" href="#" onclick="EPJS_blur(event); EPJS_toggleSlideScroll('ep_summary_box_1_content',false,'ep_summary_box_1');EPJS_toggle('ep_summary_box_1_colbar',true);EPJS_toggle('ep_summary_box_1_bar',false);return false"><img border="0" alt="+" src="/style/images/plus.png" /> Download</a></div></div><div id="ep_summary_box_1_content" class="ep_summary_box_body"><div id="ep_summary_box_1_content_inner"><div style="margin-bottom: 1em" class="ep_block">
+
+  
+
+    
+    
+      
+      <div class="ep_docs">
+        
+          <div class="ep_doc">
+            <div class="ep_doc_preview"><a onfocus="EPJS_ShowPreview( event, 'doc_preview_562842', 'right' );" class="ep_document_link" onmouseout="EPJS_HidePreview( event, 'doc_preview_562842', 'right' );" onblur="EPJS_HidePreview( event, 'doc_preview_562842', 'right' );" onmouseover="EPJS_ShowPreview( event, 'doc_preview_562842', 'right' );" href="https://centaur.reading.ac.uk/78105/3/Optimal%20vs%20Naive%20Diversificationin%20Cryptocurrencies%20-%20Final%20Version.pdf"><img border="0" alt="[thumbnail of Optimal vs Naive Diversificationin Cryptocurrencies - Final Version.pdf]" class="ep_doc_icon" src="https://centaur.reading.ac.uk/78105/3.hassmallThumbnailVersion/Optimal%20vs%20Naive%20Diversificationin%20Cryptocurrencies%20-%20Final%20Version.pdf" title="Optimal vs Naive Diversificationin Cryptocurrencies - Final Version.pdf" /></a><div id="doc_preview_562842" class="ep_preview"><div><div><span><img border="0" alt="" id="doc_preview_562842_img" class="ep_preview_image" src="https://centaur.reading.ac.uk/78105/3.haspreviewThumbnailVersion/Optimal%20vs%20Naive%20Diversificationin%20Cryptocurrencies%20-%20Final%20Version.pdf" /><div class="ep_preview_title">Preview</div></span></div></div></div></div>
+            <div class="ep_doc_citation">
+              
+
+<!-- document citation -->
+
+
+<span class="ep_document_citation">
+	<a href="https://centaur.reading.ac.uk/78105/3/Optimal%20vs%20Naive%20Diversificationin%20Cryptocurrencies%20-%20Final%20Version.pdf" class="ep_document_link"><span class="document_format">Text</span></a>
+	<br />- Accepted Version
+
+
+
+  <br />· Available under License <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution Non-commercial No Derivatives</a>.
+
+</span>
+
+
+	      <!--              <epc:if test="$doc.is_public()">
+                <epc:choose>
+                  <epc:when test="$doc.thumbnail_url('video_mp4').is_set()">
+                    | <epc:print expr="$doc.preview_link($doc.citation_link('default'),'docs','video_mp4')" />
+                  </epc:when>
+                  <epc:when test="$doc.thumbnail_url('audio_mp4').is_set()">
+                    | <epc:print expr="$doc.preview_link($doc.citation_link('default'),'docs','audio_mp4')" />
+                  </epc:when>
+                  <epc:when test="$doc.thumbnail_url('lightbox').is_set()">
+                    | <epc:print expr="$doc.preview_link($doc.citation_link('default'),'docs','lightbox')" />
+                  </epc:when>
+                </epc:choose>
+	      </epc:if>-->
+	      <!--<epc:if test="!$doc.is_public() and $item.contact_email().is_set() and eprint_status = 'archive'">
+                | <a href="{$config{http_cgiurl}}/request_doc?docid={$doc{docid}"><epc:phrase ref="request:button" /></a>
+	      </epc:if>-->
+            </div>
+	    <!--<div class="ep_doc_details">
+              <epc:if test="$doc.property('security') != 'public'">
+                <div class="ep_doc_restrict">Restricted to <epc:print expr="$doc.property('security')"/><epc:if test="$doc.property('date_embargo')"> until <epc:print expr="$doc.property('date_embargo')"/></epc:if></div>
+              </epc:if>
+              <epc:if test="$doc.property('license')">
+                <div class="ep_doc_license">Available under license: <epc:phrase ref="licenses_description_{$doc.property('license').as_string()}" /></div>
+              </epc:if>
+	    </div>-->
+	    </div>
+        
+        <!-- <a href="{$item.download_all_docs_url()}" class="ep_documents_download_button">Download<epc:if test="length($docs) gt 1"> All Documents</epc:if></a> -->
+      </div>
+    
+
+  
+
+</div></div></div></div><div id="ep_summary_box_2" class="ep_summary_box ep_plugin_summary_box_information"><div class="ep_summary_box_title"><div class="ep_no_js">Advice</div><div id="ep_summary_box_2_colbar" class="ep_only_js"><a class="ep_box_collapse_link" href="#" onclick="EPJS_blur(event); EPJS_toggleSlideScroll('ep_summary_box_2_content',true,'ep_summary_box_2');EPJS_toggle('ep_summary_box_2_colbar',true);EPJS_toggle('ep_summary_box_2_bar',false);return false"><img border="0" alt="-" src="/style/images/minus.png" /> Advice</a></div><div id="ep_summary_box_2_bar" class="ep_only_js" style="display: none"><a class="ep_box_collapse_link" href="#" onclick="EPJS_blur(event); EPJS_toggleSlideScroll('ep_summary_box_2_content',false,'ep_summary_box_2');EPJS_toggle('ep_summary_box_2_colbar',true);EPJS_toggle('ep_summary_box_2_bar',false);return false"><img border="0" alt="+" src="/style/images/plus.png" /> Advice</a></div></div><div id="ep_summary_box_2_content" class="ep_summary_box_body"><div id="ep_summary_box_2_content_inner"><p style="margin-bottom: 1em" class="ep_block">Please see our <a target="_blank" href="https://centaur.reading.ac.uk/1492/1/End_User_Agreement_version_C1%2000.pdf">End User Agreement</a>.</p><p style="margin-bottom: 1em" class="ep_block">It is advisable to refer to the publisher's version if you intend to cite from this work. See <a target="_blank" href="https://centaur.reading.ac.uk/71187/10/CentAUR%20citing%20guide.pdf">Guidance on citing</a>.</p></div></div></div><div id="ep_summary_box_3" class="ep_summary_box ep_plugin_summary_box_tools"><div class="ep_summary_box_title"><div class="ep_no_js">Tools</div><div id="ep_summary_box_3_colbar" class="ep_only_js"><a class="ep_box_collapse_link" href="#" onclick="EPJS_blur(event); EPJS_toggleSlideScroll('ep_summary_box_3_content',true,'ep_summary_box_3');EPJS_toggle('ep_summary_box_3_colbar',true);EPJS_toggle('ep_summary_box_3_bar',false);return false"><img border="0" alt="-" src="/style/images/minus.png" /> Tools</a></div><div id="ep_summary_box_3_bar" class="ep_only_js" style="display: none"><a class="ep_box_collapse_link" href="#" onclick="EPJS_blur(event); EPJS_toggleSlideScroll('ep_summary_box_3_content',false,'ep_summary_box_3');EPJS_toggle('ep_summary_box_3_colbar',true);EPJS_toggle('ep_summary_box_3_bar',false);return false"><img border="0" alt="+" src="/style/images/plus.png" /> Tools</a></div></div><div id="ep_summary_box_3_content" class="ep_summary_box_body"><div id="ep_summary_box_3_content_inner"><div style="margin-bottom: 1em" class="ep_block"><form accept-charset="utf-8" method="get" action="/cgi/export_redirect">
+  <input id="eprintid" type="hidden" value="78105" name="eprintid" />
+  <select name="format">
+    <option value="COinS">OpenURL ContextObject in Span</option>
+    <option value="Atom">Atom</option>
+    <option value="BibTeX">BibTeX</option>
+    <option value="XML">EP3 XML</option>
+    <option value="DIDL">MPEG-21 DIDL</option>
+    <option value="LocalDC_For_OAI">Dublin Core</option>
+    <option value="RIOXX2">RIOXX2 XML</option>
+    <option value="RIS">Reference Manager</option>
+    <option value="Simple">Simple Metadata</option>
+    <option value="RDFN3">RDF+N3</option>
+    <option value="RDFXML">RDF+XML</option>
+    <option value="RDFNT">RDF+N-Triples</option>
+    <option value="IDandHTML">HTML Citation (with IDs)</option>
+    <option value="CSV">Multiline CSV</option>
+    <option value="DataCiteXML">Data Cite XML</option>
+    <option value="METS">METS</option>
+    <option value="RefWorks">RefWorks</option>
+    <option value="Refer">Refer</option>
+    <option value="ContextObject">OpenURL ContextObject</option>
+    <option value="DC">Dublin Core</option>
+    <option value="WordleLink">Wordle Link</option>
+    <option value="Text">ASCII Citation</option>
+    <option value="JSON">JSON</option>
+    <option value="EndNote">EndNote</option>
+    <option value="LocalDC">Dublin Core</option>
+    <option value="HTML">HTML Citation</option>
+    <option value="MODS">MODS</option>
+  </select>
+  <input type="submit" class="ep_form_action_button" value="Export" />
+</form></div><div class="addtoany_share_buttons"><a target="_blank" href="https://www.addtoany.com/share?linkurl=https://centaur.reading.ac.uk/id/eprint/78105&amp;title=Optimal vs naïve diversification in cryptocurrencies"><img alt="Add to Any" class="ep_form_action_button" src="/images/shareicon/a2a.svg" /></a><a target="_blank" href="https://www.addtoany.com/add_to/twitter?linkurl=https://centaur.reading.ac.uk/id/eprint/78105&amp;linkname=Optimal vs naïve diversification in cryptocurrencies"><img alt="Add to Twitter" class="ep_form_action_button" src="/images/shareicon/twitter.svg" /></a><a target="_blank" href="https://www.addtoany.com/add_to/facebook?linkurl=https://centaur.reading.ac.uk/id/eprint/78105&amp;linkname=Optimal vs naïve diversification in cryptocurrencies"><img alt="Add to Facebook" class="ep_form_action_button" src="/images/shareicon/facebook.svg" /></a><a target="_blank" href="https://www.addtoany.com/add_to/linkedin?linkurl=https://centaur.reading.ac.uk/id/eprint/78105&amp;linkname=Optimal vs naïve diversification in cryptocurrencies"><img alt="Add to Linkedin" class="ep_form_action_button" src="/images/shareicon/linkedin.svg" /></a><a target="_blank" href="https://www.addtoany.com/add_to/pinterest?linkurl=https://centaur.reading.ac.uk/id/eprint/78105&amp;linkname=Optimal vs naïve diversification in cryptocurrencies"><img alt="Add to Pinterest" class="ep_form_action_button" src="/images/shareicon/pinterest.svg" /></a><a target="_blank" href="https://www.addtoany.com/add_to/email?linkurl=https://centaur.reading.ac.uk/id/eprint/78105&amp;linkname=Optimal vs naïve diversification in cryptocurrencies"><img alt="Add to Email" class="ep_form_action_button" src="/images/shareicon/email.svg" /></a></div></div></div></div><div id="ep_summary_box_4" class="ep_summary_box abstract_lists"><div class="ep_summary_box_title"><div class="ep_no_js">Lists</div><div id="ep_summary_box_4_colbar" class="ep_only_js" style="display: none"><a class="ep_box_collapse_link" href="#" onclick="EPJS_blur(event); EPJS_toggleSlideScroll('ep_summary_box_4_content',true,'ep_summary_box_4');EPJS_toggle('ep_summary_box_4_colbar',true);EPJS_toggle('ep_summary_box_4_bar',false);return false"><img border="0" alt="-" src="/style/images/minus.png" /> Lists</a></div><div id="ep_summary_box_4_bar" class="ep_only_js"><a class="ep_box_collapse_link" href="#" onclick="EPJS_blur(event); EPJS_toggleSlideScroll('ep_summary_box_4_content',false,'ep_summary_box_4');EPJS_toggle('ep_summary_box_4_colbar',false);EPJS_toggle('ep_summary_box_4_bar',true);return false"><img border="0" alt="+" src="/style/images/plus.png" /> Lists</a></div></div><div id="ep_summary_box_4_content" class="ep_summary_box_body" style="display: none"><div id="ep_summary_box_4_content_inner"><div id="lists_78105" class="abstract_lists"></div>
+	<script type="text/javascript">
+		generateList(78105, false, "");
+	</script>
+</div></div></div></div><div class="ep_summary_content_main">
+<div id="ep_pane">
+
+  <p class="ep_summary_citation">
+    
+
+    <span class="person_name"><span class="person_name">Platanakis, E.</span></span>, <span class="person orcid-person"><a href="https://centaur.reading.ac.uk/view/creators/90002289.html"><span class="person_name">Sutcliffe, C.</span></a> <a target="_blank" class="orcid" href="https://orcid.org/0000-0003-0187-487X"><img src="/images/orcid_16x16.png" /><span class="orcid-tooltip">ORCID: https://orcid.org/0000-0003-0187-487X</span></a></span> and <span class="person orcid-person"><a href="https://centaur.reading.ac.uk/view/creators/90009470.html"><span class="person_name">Urquhart, A.</span></a> <a target="_blank" class="orcid" href="https://orcid.org/0000-0001-8834-4243"><img src="/images/orcid_16x16.png" /><span class="orcid-tooltip">ORCID: https://orcid.org/0000-0001-8834-4243</span></a></span>
+  
+
+(2018)
+
+<em>Optimal vs naïve diversification in cryptocurrencies.</em>
+
+
+    Economics Letters, 171.
+    
+         pp. 93-96.
+      
+     ISSN 0165-1765
+  
+
+doi: <a target="_blank" href="https://doi.org/10.1016/j.econlet.2018.07.020">10.1016/j.econlet.2018.07.020</a>
+
+
+  
+
+
+
+
+
+  </p>
+
+  
+
+  
+    <h2 class="ep_summary_abstract_head">Abstract/Summary</h2>
+    <p class="ep_summary_abstract_body col-sm-8 col-md-8 col-lg-8">This paper contributes to the literature on cryptocurrencies by examining the performance of naïve (1/N) and optimal (Markowitz) diversification in a portfolio of four popular cryptocurrencies.  We employ weekly data with weekly rebalancing and show there is very little to select between naïve diversification and optimal diversification. Our results hold for different levels of risk-aversion and an alternative estimation window.</p>
+  
+            <!-- public docs -->
+        
+            
+                
+                    
+
+                
+            
+        
+    
+<!-- ALTMETRIC & DIMENSIONS - VICTORIA-179 [10/2/21 ejo] -->
+  
+    <div class="col-sm-8 col-md-8 col-lg-8">
+      <div class="row">
+
+      <!-- DIMENSIONS -->
+	    <!--
+      <div class="col-sm-6 dimensions_column">
+	<h4>Dimensions Badge</h4>
+	<div class="dimensions" id="dimensionsContainer" style="padding-bottom: 25px;">
+	  <div class="__dimensions_badge_embed__" data-doi="{doi_for_dimensions(id_number)}" data-hide-zero-citations="false" data-legend="always">
+	    <script async="true" src="https://badge.dimensions.ai/badge.js" charset="utf-8"></script>
+	  </div>
+	</div>
+		    </div>
+	    -->
+
+      <!-- ALTMETRIC -->
+        <div class="col-sm-6 alt_dim_badges">
+          <div class="altmetrics_column">
+            <h4>Altmetric Badge</h4>
+            <div id="altmetric_summary_page" data-hide-no-mentions="false" data-altmetric-id-type="doi" data-altmetric-id="10.1016/j.econlet.2018.07.020"></div>
+            <script>
+              new EP_Altmetric_Badge( 'altmetric_summary_page' );
+            </script>
+          </div>
+          
+            <div class="dimension_column">
+              <h4>Dimensions Badge</h4>
+              <span data-legend="always" class="__dimensions_badge_embed__" data-doi="10.1016/j.econlet.2018.07.020"></span><script async="async" charset="utf-8" src="https://badge.dimensions.ai/badge.js">// <!-- No script --></script>
+            </div>        
+          
+        </div>
+      </div>
+    </div>
+  
+
+  <table class="ep_summary_table">
+    
+    <tr>
+      <td>Item Type</td>
+      <td>
+        Article
+        
+        
+        
+      </td>
+    </tr>
+    <tr>
+      <td>URI</td>
+      <td><a href="https://centaur.reading.ac.uk/id/eprint/78105">https://centaur.reading.ac.uk/id/eprint/78105</a></td>
+    </tr>
+    
+    
+    
+      
+        <tr>
+          <td>Identification Number/DOI</td>
+          <td><a target="_blank" href="https://doi.org/10.1016/j.econlet.2018.07.020">10.1016/j.econlet.2018.07.020</a></td>
+        </tr>
+      
+    
+      
+        <tr>
+          <td>Refereed</td>
+          <td>Yes</td>
+        </tr>
+      
+    
+      
+        <tr>
+          <td>Divisions</td>
+          <td><a href="https://centaur.reading.ac.uk/view/divisions/1=5F3d300ab3.html">Henley Business School</a> &gt; <a href="https://centaur.reading.ac.uk/view/divisions/3=5Ffcf4136e.html">Finance and Accounting</a></td>
+        </tr>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <tr>
+          <td>Publisher</td>
+          <td>Elsevier</td>
+        </tr>
+      
+    
+      
+    
+    <!--
+    <epc:if test="is_set($item.property('scopus_impact'))">
+    <tr>
+      <td><epc:phrase ref="page:citations"/></td>
+      <td><epc:print expr="$item.property('scopus_impact')"/> - <a href="http://scopus.com/inward/record.url?partnerID=65&amp;eid={scopus_cluster}">View on Scopus</a></td>
+    </tr>
+    </epc:if>
+    -->
+    <tr>
+      <td>Download/View statistics</td>
+      <td><a href="https://centaur.reading.ac.uk/cgi/stats/report/eprint/78105">View download statistics for this item</a></td>
+    </tr>
+  </table>
+
+  <!--
+  <epc:if test="data_cit_attrib">
+    <h2 class="ep_summary_data_cit_attrib_head"><epc:phrase ref="eprint_fieldname_data_cit_attrib" /></h2>
+    <p class="ep_summary_data_cit_attrib_body"><epc:print expr="data_cit_attrib" /></p>
+  </epc:if>
+  -->
+
+  
+
+  
+
+</div>
+<div class="repo_links ep_summary_box "></div><div id="ep_summary_box_stats" class="ep_summary_box "><div class="ep_summary_box_title"><div class="ep_no_js">Download Statistics</div><div id="ep_summary_box_stats_colbar" class="ep_only_js"><a class="ep_box_collapse_link" href="#" onclick="EPJS_blur(event); EPJS_toggleSlideScroll('ep_summary_box_stats_content',true,'ep_summary_box_stats');EPJS_toggle('ep_summary_box_stats_colbar',true);EPJS_toggle('ep_summary_box_stats_bar',false);return false"><img border="0" alt="-" src="/style/images/minus.png" /> Download Statistics</a></div><div id="ep_summary_box_stats_bar" class="ep_only_js" style="display: none"><a class="ep_box_collapse_link" href="#" onclick="EPJS_blur(event); EPJS_toggleSlideScroll('ep_summary_box_stats_content',false,'ep_summary_box_stats');EPJS_toggle('ep_summary_box_stats_colbar',true);EPJS_toggle('ep_summary_box_stats_bar',false);return false"><img border="0" alt="+" src="/style/images/plus.png" /> Download Statistics</a></div></div><div id="ep_summary_box_stats_content" class="ep_summary_box_body"><div id="ep_summary_box_stats_content_inner">
+<h2 class="irstats2_summary_page_header">Downloads</h2>
+<div class="irstats2_summary_page_container">
+<p>Downloads per month over past year</p>
+<div id="irstats2_summary_page_downloads" class="irstats2_graph"></div>
+<!--<p style="text-align:center"><a href="#" id="irstats2_summary_page:link">View more statistics</a></p>-->
+</div>
+<script type="text/javascript">
+
+	google.setOnLoadCallback( function(){ drawChart_eprint( '78105' ) } );
+	
+	function drawChart_eprint( irstats2_summary_page_eprintid ){ 
+
+		/* $( 'irstats2_summary_page:link' ).setAttribute( 'href', '/cgi/stats/report/eprint/' + irstats2_summary_page_eprintid ); */
+
+		new EPJS_Stats_GoogleGraph ( {
+			'context': {
+				'range':'1y',
+				'set_name': 'eprint',
+				'set_value': irstats2_summary_page_eprintid,
+				'datatype':'downloads'
+			},
+			'options': {
+				'container_id': 'irstats2_summary_page_downloads', 'date_resolution':'month','graph_type':'column'
+			}
+		} );
+	}
+
+	/* Uncomment to resize graphs on window size change. This will override an existing use of window.onresize. */
+    /* window.onresize = irstats2_redraw; */
+
+</script>
+</div></div></div><div id="deposit_detailsbox" class="ep_summary_box "><div class="ep_summary_box_title"><div class="ep_no_js">Deposit Details</div><div id="deposit_detailsbox_colbar" class="ep_only_js" style="display: none"><a class="ep_box_collapse_link" href="#" onclick="EPJS_blur(event); EPJS_toggleSlideScroll('deposit_detailsbox_content',true,'deposit_detailsbox');EPJS_toggle('deposit_detailsbox_colbar',true);EPJS_toggle('deposit_detailsbox_bar',false);return false"><img border="0" alt="-" src="/style/images/minus.png" /> Deposit Details</a></div><div id="deposit_detailsbox_bar" class="ep_only_js"><a class="ep_box_collapse_link" href="#" onclick="EPJS_blur(event); EPJS_toggleSlideScroll('deposit_detailsbox_content',false,'deposit_detailsbox');EPJS_toggle('deposit_detailsbox_colbar',false);EPJS_toggle('deposit_detailsbox_bar',true);return false"><img border="0" alt="+" src="/style/images/plus.png" /> Deposit Details</a></div></div><div id="deposit_detailsbox_content" class="ep_summary_box_body" style="display: none"><div id="deposit_detailsbox_content_inner"><table border="0" cellpadding="3" style="margin-bottom: 1em" class="ep_block"><tr class="ep_table_row"><th valign="top" class="ep_row ep_table_header">Date Deposited:</th><td valign="top" class="ep_row ep_table_data">13 Jul 2018 13:22</td><td valign="top" class="ep_row ep_table_data">Date item deposited into CentAUR</td></tr><tr class="ep_table_row"><th valign="top" class="ep_row ep_table_header">Last Modified:</th><td valign="top" class="ep_row ep_table_data">15 Jul 2026 16:07</td><td valign="top" class="ep_row ep_table_data">Date item last modified</td></tr></table></div></div></div><div id="ep_summary_box_corerecommender" class="ep_summary_box "><div class="ep_summary_box_title"><div class="ep_no_js">CORE (COnnecting REpositories)</div><div id="ep_summary_box_corerecommender_colbar" class="ep_only_js"><a class="ep_box_collapse_link" href="#" onclick="EPJS_blur(event); EPJS_toggleSlideScroll('ep_summary_box_corerecommender_content',true,'ep_summary_box_corerecommender');EPJS_toggle('ep_summary_box_corerecommender_colbar',true);EPJS_toggle('ep_summary_box_corerecommender_bar',false);return false"><img border="0" alt="-" src="/style/images/minus.png" /> CORE (COnnecting REpositories)</a></div><div id="ep_summary_box_corerecommender_bar" class="ep_only_js" style="display: none"><a class="ep_box_collapse_link" href="#" onclick="EPJS_blur(event); EPJS_toggleSlideScroll('ep_summary_box_corerecommender_content',false,'ep_summary_box_corerecommender');EPJS_toggle('ep_summary_box_corerecommender_colbar',true);EPJS_toggle('ep_summary_box_corerecommender_bar',false);return false"><img border="0" alt="+" src="/style/images/plus.png" /> CORE (COnnecting REpositories)</a></div></div><div id="ep_summary_box_corerecommender_content" class="ep_summary_box_body"><div id="ep_summary_box_corerecommender_content_inner"><div id="coreRecommenderOutput"></div><script type="text/javascript">
+            (function (d, s, idScript, idRec, userInput) {
+                var coreAddress = 'https://core.ac.uk';
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(idScript))
+                    return;
+                js = d.createElement(s);
+                js.id = idScript;
+                js.src = coreAddress + '/recommender-plugin/embed.js';
+                fjs.parentNode.insertBefore(js, fjs);
+
+                localStorage.setItem('idRecommender', idRec);
+                localStorage.setItem('userInput', JSON.stringify(userInput));
+
+                
+            }(document, 'script', 'recommender-embed', '57d4f6', {}));</script></div></div></div><p align="right">University Staff: <a href="https://centaur.reading.ac.uk/cgi/users/home?screen=EPrint::Staff::RequestCorrection&amp;eprintid=78105">Request a correction</a> | Centaur Editors: <a href="https://centaur.reading.ac.uk/cgi/users/home?screen=EPrint::View&amp;eprintid=78105">Update this record</a></p><div style="clear: both;"></div></div><div class="ep_summary_content_bottom"></div><div class="ep_summary_content_after"></div></div>
+    </div>
+    <footer class="sb-footer-wrapper">
+      <div class="sb-footer-cols content m-auto">
+        <div class="sb-footer-useful-links">
+          <ul class="">
+            <li class="sb-footer-header">
+              Useful links
+            </li>
+            <li>
+              <a href="/contact.html">
+                Contact
+              </a>
+            </li>
+            <li>
+              <a href="/information.html">
+                About
+              </a>
+            </li>
+            <li>
+              <a href="https://libguides.reading.ac.uk/open-access">
+		Open Access
+              </a>
+            </li>
+            <li>
+              <a href="https://www.reading.ac.uk/library/">
+		Library
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sb-footer-indexed-by">
+          <ul class="">
+            <li class="sb-footer-header">
+		    Indexed by
+            </li>
+            <li>
+              <a href="https://scholar.google.com.au/scholar?hl=en&amp;as_sdt=0%2C5&amp;q=site:centaur.reading.ac.uk&amp;btnG=">Google Scholar</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="sb_footer_poweredby">
+        <p>
+          This site is powered by EPrints 3.4, free software developed by <a href="https://eprints.org/">EPrints Services</a> at the <a href="https://www.southampton.ac.uk">University of Southampton</a>.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

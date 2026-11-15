@@ -1,0 +1,113 @@
+{
+  "reserve": {
+    "robert_30000": {
+      "status": "conditional",
+      "oracle": {
+        "turnover_fraction": 0.30000000000000004,
+        "weights": {
+          "RESERVE_ABSTRAITE": 0.30000000000000004,
+          "TSLA": 0.1,
+          "XBB.TO": 0.35,
+          "XIU.TO": 0.2,
+          "ZST.TO": 0.04999999999999999
+        }
+      }
+    },
+    "robert_40000": {
+      "status": "conditional",
+      "oracle": {
+        "turnover_fraction": 0.4,
+        "weights": {
+          "RESERVE_ABSTRAITE": 0.4,
+          "TSLA": 0.0,
+          "XBB.TO": 0.35,
+          "XIU.TO": 0.2,
+          "ZST.TO": 0.04999999999999999
+        }
+      }
+    },
+    "tight_loss_1000": {
+      "status": "conditional",
+      "oracle": {
+        "turnover_fraction": 0.744,
+        "weights": {
+          "RESERVE_ABSTRAITE": 0.744,
+          "TSLA": 0.0,
+          "XBB.TO": 0.008000000000000004,
+          "XIU.TO": 0.047999999999999994,
+          "ZST.TO": 0.2
+        }
+      }
+    },
+    "cap_1_percent": {
+      "status": "conditional",
+      "oracle": {
+        "turnover_fraction": 0.3000000000000001,
+        "weights": {
+          "RESERVE_ABSTRAITE": 0.30000000000000016,
+          "TSLA": 0.0,
+          "XBB.TO": 0.35,
+          "XIU.TO": 0.2,
+          "ZST.TO": 0.14999999999999997
+        }
+      }
+    },
+    "impossible_withdrawal_110000": {
+      "status": "infeasible",
+      "oracle": null
+    }
+  },
+  "historical": {
+    "amira_initial": {
+      "start": "2021-11-12",
+      "end": "2026-11-12",
+      "observations": 1228,
+      "fx_carried_dates": 10,
+      "max_fx_age_days": 3,
+      "metrics": {
+        "ending_value_cad": 44515.75141219115,
+        "total_return_pct": 78.0630056487646,
+        "cagr_pct": 12.233000062932842,
+        "volatility_pct": 20.03205768476158,
+        "max_drawdown_pct": -26.871588707496173
+      }
+    },
+    "amira_target": {
+      "start": "2021-11-12",
+      "end": "2026-11-12",
+      "observations": 1228,
+      "fx_carried_dates": 10,
+      "max_fx_age_days": 3,
+      "metrics": {
+        "ending_value_cad": 46874.02232082809,
+        "total_return_pct": 87.49608928331236,
+        "cagr_pct": 13.397843768685469,
+        "volatility_pct": 15.962031141726415,
+        "max_drawdown_pct": -19.87837786167672
+      }
+    },
+    "simple_equal_thirds": {
+      "start": "2021-11-12",
+      "end": "2026-11-12",
+      "observations": 1228,
+      "fx_carried_dates": 10,
+      "max_fx_age_days": 3,
+      "metrics": {
+        "ending_value_cad": 43090.829497980274,
+        "total_return_pct": 72.36331799192111,
+        "cagr_pct": 11.505033462222048,
+        "volatility_pct": 22.54226753806063,
+        "max_drawdown_pct": -31.403814284810128
+      }
+    }
+  },
+  "boundaries": {
+    "missing_policy": "missing_input",
+    "other_redistribution": "unsupported",
+    "specified_window": "unsupported",
+    "withdrawal_not_supported": "unsupported",
+    "loss_constraint_not_supported": "unsupported",
+    "before_snapshot": "missing_input",
+    "one_percent_initial_cap": "conditional"
+  }
+}

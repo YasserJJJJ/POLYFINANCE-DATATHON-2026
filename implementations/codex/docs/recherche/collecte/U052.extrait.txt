@@ -1,0 +1,649 @@
+GitHub - google/or-tools: Google's Operations Research tools: · GitHub 
+
+ Skip to content 
+
+Navigation Menu
+
+ Sign in 
+
+ Products 
+
+ Platform 
+ GitHub Repository hosting, code review, and collaboration 
+
+ Copilot AI coding agent for tasks, projects, and automated work 
+
+ Build & Ship 
+ Actions CI/CD and automation 
+
+ Code Quality Quality analysis, fixes, and enforcement 
+
+ Codespaces Cloud development environments 
+
+ Secure 
+ Code Security Vulnerability detection and remediation 
+
+ Secret Protection Secret scanning and leak prevention 
+
+ All Features 
+
+ Developers 
+
+ Learn 
+ Documentation 
+
+ Training 
+
+ Certifications 
+
+ Build 
+ Build with Copilot 
+
+ Customize Copilot 
+
+ Integrations 
+
+ Explore 
+ Trending repos 
+
+ GitHub Sponsors 
+
+ Developer articles 
+
+ Changelog 
+ Changelog Your source for the latest features, improvements, and fixes across GitHub products, all in one place. 
+
+ Businesses 
+
+ By Stage 
+ Enterprises 
+
+ Team 
+
+ Startups 
+
+ Nonprofits 
+
+ By Industry 
+ Healthcare 
+
+ Financial services 
+
+ Manufacturing 
+
+ Government 
+
+ See all industries 
+
+ Evaluate GitHub 
+ Why GitHub 
+
+ Customer Stories 
+
+ Business insights 
+
+ Trust Center 
+
+ Add-ons 
+ GitHub Advanced Security Enterprise-grade code security 
+
+ Copilot for business Enterprise-grade AI features 
+
+ Premium Support Enterprise-grade 24/7 support 
+
+ Resources 
+
+ Learn & Connect 
+ Documentation 
+
+ Resource center 
+
+ Blog 
+
+ Events & webinars 
+
+ Community Forum 
+
+ Customer Stories 
+
+ Integrations 
+
+ Support 
+ Customer support 
+
+ Training 
+
+ GitHub Status 
+
+ Company 
+ About 
+
+ Partners 
+
+ Changelog 
+
+ GitHub Universe 
+ GitHub Universe The event for developers, by developers — talks, workshops, and what’s next for GitHub. 
+
+ Pricing 
+
+ Search / 
+
+ Sign in 
+ Sign up 
+Appearance settings
+
+ You signed in with another tab or window. Reload to refresh your session. 
+ You signed out in another tab or window. Reload to refresh your session. 
+ You switched accounts on another tab or window. Reload to refresh your session. 
+
+ Dismiss alert 
+
+{{ message }}
+
+ google 
+
+ or-tools 
+
+Repository navigation
+
+ Code 
+
+ Issues 103  ( 103 ) 
+
+ Pull requests 36  ( 36 ) 
+
+ Discussions 
+
+ Actions 
+
+ Projects 
+
+ Security and quality 
+
+ Insights 
+
+ More items 
+
+ or-tools 
+ Public 
+
+ Notifications You must be signed in to change notification settings 
+
+ Fork 2.6k  ( 2.6k ) 
+
+ Star 14.4k  ( 14.4k ) You must be signed in to star a repository 
+
+ About 
+
+Google's Operations Research tools:
+
+ developers.google.com/optimization/ 
+
+ Topics 
+
+ combinatorial-optimization linear-programming operations-research optimization or-tools 
+
+ Resources 
+
+ Readme 
+
+ Apache-2.0 license 
+
+ Code of conduct 
+
+ Code of conduct 
+
+ Contributing 
+
+ Contributing 
+
+ Security policy 
+
+ Security policy 
+
+ Activity 
+
+ Custom properties 
+
+ Stars 
+
+ 14.4k stars 
+
+ Watchers 
+
+ 311 watching 
+
+ Forks 
+
+ 2.6k forks 
+
+ Report repository 
+
+ stable 
+
+ Branches Tags 
+
+ Go to file 
+
+ Code 
+ Open more actions menu 
+
+Latest commit
+
+History
+ 15,820 Commits 
+
+ 15,820 Commits 
+
+Folders and files
+
+ Name Name 
+ Last commit message 
+ 
+ Last commit date 
+
+ .allstar 
+
+ .allstar 
+
+ .github 
+
+ .github 
+
+ bazel 
+
+ bazel 
+
+ cmake 
+
+ cmake 
+
+ examples 
+
+ examples 
+
+ makefiles 
+
+ makefiles 
+
+ ortools 
+
+ ortools 
+
+ patches 
+
+ patches 
+
+ tools 
+
+ tools 
+
+ .bazelignore 
+
+ .bazelignore 
+
+ .bazelrc 
+
+ .bazelrc 
+
+ .clang-format 
+
+ .clang-format 
+
+ .cmake-format.py 
+
+ .cmake-format.py 
+
+ .dockerignore 
+
+ .dockerignore 
+
+ .gitattributes 
+
+ .gitattributes 
+
+ .gitignore 
+
+ .gitignore 
+
+ .pylintrc 
+
+ .pylintrc 
+
+ BUILD.bazel 
+
+ BUILD.bazel 
+
+ CMakeLists.txt 
+
+ CMakeLists.txt 
+
+ CONTRIBUTING.md 
+
+ CONTRIBUTING.md 
+
+ Dependencies.txt 
+
+ Dependencies.txt 
+
+ LICENSE 
+
+ LICENSE 
+
+ MODULE.bazel 
+
+ MODULE.bazel 
+
+ Makefile 
+
+ Makefile 
+
+ README.md 
+
+ README.md 
+
+ Version.txt 
+
+ Version.txt 
+
+ WORKSPACE.bzlmod 
+
+ WORKSPACE.bzlmod 
+
+ deps.bzl 
+
+ deps.bzl 
+
+ go.mod 
+
+ go.mod 
+
+ go.sum 
+
+ go.sum 
+
+ or-tools.code-workspace 
+
+ or-tools.code-workspace 
+
+ View all files 
+
+Repository files navigation
+
+ README 
+
+ Code of conduct 
+
+ Contributing 
+
+ Apache-2.0 license 
+
+ Security 
+
+ More items 
+
+OR-Tools - Google Optimization Tools
+
+Google's software suite for combinatorial optimization.
+
+Table of Contents
+
+ About OR-Tools 
+
+ Codemap 
+
+ Installation 
+
+ Quick Start 
+
+ Documentation 
+
+ Contributing 
+
+ License 
+
+About OR-Tools
+
+Google Optimization Tools (a.k.a., OR-Tools) is an open-source, fast and
+portable software suite for solving combinatorial optimization problems.
+
+The suite contains:
+
+Two constraint programming solver (CP* and CP-SAT);
+
+Two linear programming solvers (Glop and PDLP);
+
+Wrappers around commercial and other open source solvers, including mixed
+integer solvers;
+
+Bin packing and knapsack algorithms;
+
+Algorithms for the Traveling Salesman Problem and Vehicle Routing Problem;
+
+Graph algorithms (shortest paths, min cost flow, max flow, linear sum
+assignment).
+
+We wrote OR-Tools in C++, but provide wrappers in Python, C# and Java.
+
+Codemap
+
+This software suite is composed of the following components:
+
+ Makefile Top-level for
+ GNU Make based build.
+
+ makefiles Subsidiary Make files, CI and build system documentation.
+
+ CMakeLists.txt Top-level for
+ CMake based build.
+
+ cmake Subsidiary CMake files, CI and build system documentation.
+
+ WORKSPACE Top-level for
+ Bazel based build.
+
+ bazel Subsidiary Bazel files, CI and build system documentation.
+
+ ortools Root directory for source code.
+
+ base Basic utilities.
+
+ algorithms Basic algorithms.
+
+ samples Carefully crafted samples.
+
+ graph Graph algorithms.
+
+ samples Carefully crafted samples.
+
+ linear_solver Linear solver wrapper.
+
+ samples Carefully crafted samples.
+
+ glop Simplex-based linear programming solver.
+
+ samples Carefully crafted samples.
+
+ pdlp First-order linear programming solver.
+
+ samples Carefully crafted samples.
+
+ lp_data Data structures for linear models.
+
+ constraint_solver Constraint and Routing
+solver.
+
+ docs Documentation of the component.
+
+ samples Carefully crafted samples.
+
+ sat SAT solver.
+
+ docs Documentation of the component.
+
+ samples Carefully crafted samples.
+
+ bop Boolean solver based on SAT.
+
+ util Utilities needed by the constraint solver
+
+ examples Root directory for all examples.
+
+ contrib Examples from the community.
+
+ cpp C++ examples.
+
+ dotnet .Net examples.
+
+ java Java examples.
+
+ python Python examples.
+
+ notebook Jupyter/IPython notebooks.
+
+ flatzinc FlatZinc examples.
+
+ tools Delivery Tools (e.g. Windows GNU binaries, scripts, release dockers)
+
+Installation
+
+This software suite has been tested under:
+
+Ubuntu 18.04 LTS and up (64-bit);
+
+Apple macOS Mojave with Xcode 9.x (64-bit);
+
+Microsoft Windows with Visual Studio 2022 (64-bit).
+
+OR-Tools currently builds with a Makefile, but also provides Bazel and CMake
+support.
+
+For installation instructions (both source and binary), please visit
+ https://developers.google.com/optimization/introduction/installing .
+
+Build from source using Make (legacy)
+
+We provide a Make based build.
+Please check the
+ Make build instructions .
+
+Build from source using CMake
+
+We provide a CMake based build.
+Please check the
+ CMake build instructions .
+
+Build from source using Bazel
+
+We provide a Bazel based build.
+Please check the
+ Bazel build instructions .
+
+Quick Start
+
+The best way to learn how to use OR-Tools is to follow the tutorials in our
+developer guide:
+
+ https://developers.google.com/optimization/introduction/get_started 
+
+If you want to learn from code examples, take a look at the examples in the
+ examples directory.
+
+Documentation
+
+The complete documentation for OR-Tools is available at:
+ https://developers.google.com/optimization/ 
+
+Contributing
+
+The CONTRIBUTING.md file contains instructions on how to
+submit the Contributor License Agreement before sending any pull requests (PRs).
+Of course, if you're new to the project, it's usually best to discuss any
+proposals and reach consensus before sending your first PR.
+
+License
+
+The OR-Tools software suite is licensed under the terms of the Apache License 2.0.
+
+See LICENSE for more information.
+
+ About 
+
+Google's Operations Research tools:
+
+ developers.google.com/optimization/ 
+
+ Topics 
+
+ combinatorial-optimization linear-programming operations-research optimization or-tools 
+
+ Resources 
+
+ Readme 
+
+ Apache-2.0 license 
+
+ Code of conduct 
+
+ Code of conduct 
+
+ Contributing 
+
+ Contributing 
+
+ Security policy 
+
+ Security policy 
+
+ Activity 
+
+ Custom properties 
+
+ Stars 
+
+ 14.4k stars 
+
+ Watchers 
+
+ 311 watching 
+
+ Forks 
+
+ 2.6k forks 
+
+ Report repository 
+
+ Releases 
+
+ Used by 
+
+ Contributors 
+
+ Languages 
+
+Footer
+
+ © 2026 GitHub, Inc.
+
+Footer navigation
+
+ Terms 
+
+ Privacy 
+
+ Security 
+
+ Status 
+
+ Community 
+
+ Docs 
+
+ Contact 
+
+ Manage cookies
+
+ Do not share my personal information
+
+ You can’t perform that action at this time.

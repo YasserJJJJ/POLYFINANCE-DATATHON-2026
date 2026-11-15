@@ -1,0 +1,624 @@
+GitHub - cvxpy/cvxpy: A Python-embedded modeling language for convex optimization problems. · GitHub 
+
+ Skip to content 
+
+Navigation Menu
+
+ Sign in 
+
+ Products 
+
+ Platform 
+ GitHub Repository hosting, code review, and collaboration 
+
+ Copilot AI coding agent for tasks, projects, and automated work 
+
+ Build & Ship 
+ Actions CI/CD and automation 
+
+ Code Quality Quality analysis, fixes, and enforcement 
+
+ Codespaces Cloud development environments 
+
+ Secure 
+ Code Security Vulnerability detection and remediation 
+
+ Secret Protection Secret scanning and leak prevention 
+
+ All Features 
+
+ Developers 
+
+ Learn 
+ Documentation 
+
+ Training 
+
+ Certifications 
+
+ Build 
+ Build with Copilot 
+
+ Customize Copilot 
+
+ Integrations 
+
+ Explore 
+ Trending repos 
+
+ GitHub Sponsors 
+
+ Developer articles 
+
+ Changelog 
+ Changelog Your source for the latest features, improvements, and fixes across GitHub products, all in one place. 
+
+ Businesses 
+
+ By Stage 
+ Enterprises 
+
+ Team 
+
+ Startups 
+
+ Nonprofits 
+
+ By Industry 
+ Healthcare 
+
+ Financial services 
+
+ Manufacturing 
+
+ Government 
+
+ See all industries 
+
+ Evaluate GitHub 
+ Why GitHub 
+
+ Customer Stories 
+
+ Business insights 
+
+ Trust Center 
+
+ Add-ons 
+ GitHub Advanced Security Enterprise-grade code security 
+
+ Copilot for business Enterprise-grade AI features 
+
+ Premium Support Enterprise-grade 24/7 support 
+
+ Resources 
+
+ Learn & Connect 
+ Documentation 
+
+ Resource center 
+
+ Blog 
+
+ Events & webinars 
+
+ Community Forum 
+
+ Customer Stories 
+
+ Integrations 
+
+ Support 
+ Customer support 
+
+ Training 
+
+ GitHub Status 
+
+ Company 
+ About 
+
+ Partners 
+
+ Changelog 
+
+ GitHub Universe 
+ GitHub Universe The event for developers, by developers — talks, workshops, and what’s next for GitHub. 
+
+ Pricing 
+
+ Search / 
+
+ Sign in 
+ Sign up 
+Appearance settings
+
+ You signed in with another tab or window. Reload to refresh your session. 
+ You signed out in another tab or window. Reload to refresh your session. 
+ You switched accounts on another tab or window. Reload to refresh your session. 
+
+ Dismiss alert 
+
+{{ message }}
+
+ cvxpy 
+
+ cvxpy 
+
+Repository navigation
+
+ Code 
+
+ Issues 122  ( 122 ) 
+
+ Pull requests 64  ( 64 ) 
+
+ Discussions 
+
+ Actions 
+
+ Projects 
+
+ Wiki 
+
+ Security and quality 
+
+ Insights 
+
+ More items 
+
+ cvxpy 
+ Public 
+
+ Notifications You must be signed in to change notification settings 
+
+ Fork 1.2k  ( 1.2k ) 
+
+ Star 6.4k  ( 6.4k ) You must be signed in to star a repository 
+
+ About 
+
+A Python-embedded modeling language for convex optimization problems.
+
+ www.cvxpy.org 
+
+ Topics 
+
+ convex-optimization cvxpy mathematical-optimization modeling-language numerical-optimization optimization optimization-modeling python 
+
+ Resources 
+
+ Readme 
+
+ Apache-2.0 license 
+
+ Code of conduct 
+
+ Code of conduct 
+
+ Contributing 
+
+ Contributing 
+
+ Activity 
+
+ Custom properties 
+
+ Stars 
+
+ 6.4k stars 
+
+ Watchers 
+
+ 125 watching 
+
+ Forks 
+
+ 1.2k forks 
+
+ Report repository 
+
+ master 
+
+ Branches Tags 
+
+ Go to file 
+
+ Code 
+ Open more actions menu 
+
+Latest commit
+
+History
+ 4,077 Commits 
+
+ 4,077 Commits 
+
+Folders and files
+
+ Name Name 
+ Last commit message 
+ 
+ Last commit date 
+
+ .devcontainer 
+
+ .devcontainer 
+
+ .github 
+
+ .github 
+
+ continuous_integration 
+
+ continuous_integration 
+
+ cvxpy 
+
+ cvxpy 
+
+ doc 
+
+ doc 
+
+ setup 
+
+ setup 
+
+ tools 
+
+ tools 
+
+ .coveragerc 
+
+ .coveragerc 
+
+ .git-blame-ignore-revs 
+
+ .git-blame-ignore-revs 
+
+ .gitignore 
+
+ .gitignore 
+
+ .pre-commit-config.yaml 
+
+ .pre-commit-config.yaml 
+
+ .readthedocs.yaml 
+
+ .readthedocs.yaml 
+
+ AGENTS.md 
+
+ AGENTS.md 
+
+ CLAUDE.md 
+
+ CLAUDE.md 
+
+ CODE_OF_CONDUCT.md 
+
+ CODE_OF_CONDUCT.md 
+
+ CONTRIBUTING.md 
+
+ CONTRIBUTING.md 
+
+ LICENSE 
+
+ LICENSE 
+
+ MANIFEST.in 
+
+ MANIFEST.in 
+
+ Makefile 
+
+ Makefile 
+
+ PROCEDURES.md 
+
+ PROCEDURES.md 
+
+ README.md 
+
+ README.md 
+
+ add_gpl 
+
+ add_gpl 
+
+ copyright.txt 
+
+ copyright.txt 
+
+ pyproject.toml 
+
+ pyproject.toml 
+
+ rebuild_cvxcore.sh 
+
+ rebuild_cvxcore.sh 
+
+ requirements.txt 
+
+ requirements.txt 
+
+ setup.py 
+
+ setup.py 
+
+ View all files 
+
+Repository files navigation
+
+ README 
+
+ Code of conduct 
+
+ Contributing 
+
+ Apache-2.0 license 
+
+ More items 
+
+CVXPY
+
+ The CVXPY documentation is at cvxpy.org . 
+
+ We are building a CVXPY community on Discord . Join the conversation! For issues and long-form discussions, use Github Issues and Github Discussions . 
+
+ Contents 
+
+ Installation 
+
+ Getting started 
+
+ Issues 
+
+ Community 
+
+ Contributing 
+
+ Team 
+
+ Citing 
+
+CVXPY is a Python-embedded modeling language for convex optimization problems. It allows you to express your problem in a natural way that follows the math, rather than in the restrictive standard form required by solvers.
+
+For example, the following code solves a least-squares problem where the variable is constrained by lower and upper bounds:
+
+ import cvxpy as cp 
+ import numpy 
+
+ # Problem data. 
+ m = 30 
+ n = 20 
+ numpy . random . seed ( 1 )
+ A = numpy . random . randn ( m , n )
+ b = numpy . random . randn ( m )
+
+ # Construct the problem. 
+ x = cp . Variable ( n )
+ objective = cp . Minimize ( cp . sum_squares ( A @ x - b ))
+ constraints = [ 0 <= x , x <= 1 ]
+ prob = cp . Problem ( objective , constraints )
+
+ # The optimal objective is returned by prob.solve(). 
+ result = prob . solve ()
+ # The optimal value for x is stored in x.value. 
+ print ( x . value )
+ # The optimal Lagrange multiplier for a constraint 
+ # is stored in constraint.dual_value. 
+ print ( constraints [ 0 ]. dual_value ) 
+
+With CVXPY, you can model
+
+convex optimization problems,
+
+mixed-integer convex optimization problems,
+
+geometric programs,
+
+quasiconvex programs, and
+
+nonlinear programs
+
+CVXPY is not a solver. It relies upon the open source solvers
+ Clarabel , SCS ,
+ OSQP and HiGHS .
+Additional solvers are available ,
+but must be installed separately.
+
+CVXPY began as a Stanford University research project. It is now developed by
+many people, across many institutions and countries.
+
+Installation
+
+CVXPY is available on PyPI, and can be installed with
+
+ pip install cvxpy 
+
+CVXPY can also be installed with conda, using
+
+ conda install -c conda-forge cvxpy 
+
+CVXPY has the following dependencies:
+
+Python >= 3.11
+
+Clarabel >= 0.5.0
+
+OSQP >= 1.0.0
+
+SCS >= 3.2.4.post1
+
+NumPy >= 2.0.0
+
+SciPy >= 1.13.0
+
+highspy >= 1.11.0
+
+sparsediffpy >= 0.2.2
+
+For detailed instructions, see the installation
+guide .
+
+Getting started
+
+To get started with CVXPY, check out the following:
+
+ official CVXPY tutorial 
+
+ example library 
+
+ API reference 
+
+Issues
+
+We encourage you to report issues using the Github tracker . We welcome all kinds of issues, especially those related to correctness, documentation, performance, and feature requests.
+
+For basic usage questions (e.g., "Why isn't my problem DCP?"), please use StackOverflow instead.
+
+Community
+
+The CVXPY community consists of researchers, data scientists, software engineers, and students from all over the world. We welcome you to join us!
+
+To chat with the CVXPY community in real-time, join us on Discord .
+
+To have longer, in-depth discussions with the CVXPY community, use Github Discussions .
+
+To share feature requests and bug reports, use Github Issues .
+
+Please be respectful in your communications with the CVXPY community, and make sure to abide by our code of conduct .
+
+Contributing
+
+We appreciate all contributions. You don't need to be an expert in convex
+optimization to help out.
+
+You should first
+install CVXPY from source .
+Here are some simple ways to start contributing immediately:
+
+Read the CVXPY source code and improve the documentation, or address TODOs
+
+Enhance the website documentation 
+
+Browse the issue tracker , and look for issues tagged as "help wanted"
+
+Polish the example library 
+
+Add a benchmark 
+
+If you'd like to add a new example to our library, or implement a new feature,
+please get in touch with us first to make sure that your priorities align with
+ours.
+
+Contributions should be submitted as pull requests .
+A member of the CVXPY development team will review the pull request and guide
+you through the contributing process.
+
+Before starting work on your contribution, please read the contributing guide .
+
+Team
+
+CVXPY is a community project, built from the contributions of many
+researchers and engineers.
+
+CVXPY is developed and maintained by Steven
+Diamond , Akshay
+Agrawal , Riley Murray ,
+ Philipp Schiele ,
+ Bartolomeo Stellato ,
+and Parth Nobel , with many others contributing
+significantly.
+A non-exhaustive list of people who have shaped CVXPY over the
+years includes Stephen Boyd, Eric Chu, Robin Verschueren,
+Jaehyun Park, Enzo Busseti, AJ Friend, Judson Wilson, Chris Dembia, and
+William Zhang.
+
+For more information about the team and our processes, see our governance document .
+
+Citing
+
+If you use CVXPY for academic work, we encourage you to cite our papers . If you use CVXPY in industry, we'd love to hear from you as well, on Discord or over email.
+
+ About 
+
+A Python-embedded modeling language for convex optimization problems.
+
+ www.cvxpy.org 
+
+ Topics 
+
+ convex-optimization cvxpy mathematical-optimization modeling-language numerical-optimization optimization optimization-modeling python 
+
+ Resources 
+
+ Readme 
+
+ Apache-2.0 license 
+
+ Code of conduct 
+
+ Code of conduct 
+
+ Contributing 
+
+ Contributing 
+
+ Activity 
+
+ Custom properties 
+
+ Stars 
+
+ 6.4k stars 
+
+ Watchers 
+
+ 125 watching 
+
+ Forks 
+
+ 1.2k forks 
+
+ Report repository 
+
+ Releases 
+
+ Packages 
+
+ Used by 
+
+ Contributors 
+
+ Languages 
+
+Footer
+
+ © 2026 GitHub, Inc.
+
+Footer navigation
+
+ Terms 
+
+ Privacy 
+
+ Security 
+
+ Status 
+
+ Community 
+
+ Docs 
+
+ Contact 
+
+ Manage cookies
+
+ Do not share my personal information
+
+ You can’t perform that action at this time.

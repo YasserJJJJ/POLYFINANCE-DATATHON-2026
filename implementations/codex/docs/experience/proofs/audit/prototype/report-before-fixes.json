@@ -1,0 +1,402 @@
+{
+  "timestamp": "2026-11-15T19:58:34.915Z",
+  "checks": [
+    {
+      "name": "Home promise",
+      "pass": true
+    },
+    {
+      "name": "Robert initial minimum 30000",
+      "pass": true
+    },
+    {
+      "name": "Proof dialog focus",
+      "pass": true
+    },
+    {
+      "name": "Proof content",
+      "pass": true
+    },
+    {
+      "name": "Proof Escape focus return",
+      "pass": true
+    },
+    {
+      "name": "Options minimum invariant",
+      "pass": true
+    },
+    {
+      "name": "Simple reference visible",
+      "pass": true
+    },
+    {
+      "name": "Allocation table",
+      "pass": true
+    },
+    {
+      "name": "Method minimum invariant",
+      "pass": true
+    },
+    {
+      "name": "Source noresult state",
+      "pass": true
+    },
+    {
+      "name": "Source search filtered",
+      "pass": true
+    },
+    {
+      "name": "History all three minima",
+      "pass": true
+    },
+    {
+      "name": "Revision r10",
+      "pass": true
+    },
+    {
+      "name": "Revision r15",
+      "pass": true
+    },
+    {
+      "name": "Real exploration min40",
+      "pass": true
+    },
+    {
+      "name": "Adopted copy label",
+      "pass": true
+    },
+    {
+      "name": "Adopt min40",
+      "pass": true
+    },
+    {
+      "name": "Restore r5min30",
+      "pass": true
+    },
+    {
+      "name": "Error preserves field",
+      "pass": true
+    },
+    {
+      "name": "Retry result35",
+      "pass": true
+    },
+    {
+      "name": "Cancel clears result",
+      "pass": true
+    },
+    {
+      "name": "Cached result adoption preserves true base",
+      "pass": false,
+      "detail": "A result computed from r5 must not call r15 its archive base"
+    },
+    {
+      "name": "Amira retrospective limit",
+      "pass": true
+    },
+    {
+      "name": "Amira series table populated",
+      "pass": true
+    },
+    {
+      "name": "incomplet no allocation chart",
+      "pass": true
+    },
+    {
+      "name": "impossible no allocation chart",
+      "pass": true
+    },
+    {
+      "name": "robert no page overflow 390",
+      "pass": true,
+      "detail": {
+        "viewport": 390,
+        "body": 390,
+        "root": 390,
+        "overflow": []
+      }
+    },
+    {
+      "name": "amira no page overflow 390",
+      "pass": true,
+      "detail": {
+        "viewport": 390,
+        "body": 390,
+        "root": 390,
+        "overflow": []
+      }
+    },
+    {
+      "name": "incomplet no page overflow 390",
+      "pass": true,
+      "detail": {
+        "viewport": 390,
+        "body": 390,
+        "root": 390,
+        "overflow": []
+      }
+    },
+    {
+      "name": "impossible no page overflow 390",
+      "pass": true,
+      "detail": {
+        "viewport": 390,
+        "body": 390,
+        "root": 390,
+        "overflow": []
+      }
+    },
+    {
+      "name": "robert no page overflow 320",
+      "pass": true,
+      "detail": {
+        "viewport": 320,
+        "body": 320,
+        "root": 320,
+        "overflow": []
+      }
+    },
+    {
+      "name": "amira no page overflow 320",
+      "pass": true,
+      "detail": {
+        "viewport": 320,
+        "body": 320,
+        "root": 320,
+        "overflow": []
+      }
+    },
+    {
+      "name": "incomplet no page overflow 320",
+      "pass": true,
+      "detail": {
+        "viewport": 320,
+        "body": 320,
+        "root": 320,
+        "overflow": []
+      }
+    },
+    {
+      "name": "impossible no page overflow 320",
+      "pass": false,
+      "detail": {
+        "viewport": 320,
+        "body": 350,
+        "root": 350,
+        "overflow": [
+          {
+            "tag": "DIV",
+            "cls": "",
+            "right": 349.96875
+          },
+          {
+            "tag": "SMALL",
+            "cls": "",
+            "right": 321.890625
+          },
+          {
+            "tag": "STRONG",
+            "cls": "",
+            "right": 349.96875
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+  ],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:8770/api/prototype/explore",
+      "method": "POST",
+      "body": "{\"case_id\":\"robert\",\"version_id\":\"r5\",\"changes\":{\"withdrawal_cad\":40000,\"scenario_loss_limit_cad\":15000,\"capital_cad\":100000,\"tsla_cap\":0.1},\"simulate_error\":false}"
+    },
+    {
+      "url": "http://127.0.0.1:8770/api/prototype/explore",
+      "method": "POST",
+      "body": "{\"case_id\":\"robert\",\"version_id\":\"r5\",\"changes\":{\"withdrawal_cad\":35000,\"scenario_loss_limit_cad\":15000,\"capital_cad\":100000,\"tsla_cap\":0.1},\"simulate_error\":true}"
+    },
+    {
+      "url": "http://127.0.0.1:8770/api/prototype/explore",
+      "method": "POST",
+      "body": "{\"case_id\":\"robert\",\"version_id\":\"r5\",\"changes\":{\"withdrawal_cad\":35000,\"scenario_loss_limit_cad\":15000,\"capital_cad\":100000,\"tsla_cap\":0.1},\"simulate_error\":false}"
+    }
+  ],
+  "screens": [
+    "home-desktop.png",
+    "robert-essential-desktop.png",
+    "proof-desktop.png",
+    "robert-options-desktop.png",
+    "robert-method-desktop.png",
+    "history-desktop.png",
+    "explore-result-desktop.png",
+    "simulated-error.png",
+    "amira-essential.png",
+    "amira-options.png",
+    "incomplet-desktop.png",
+    "impossible-desktop.png",
+    "robert-mobile-390.png",
+    "amira-mobile-390.png",
+    "incomplet-mobile-390.png",
+    "impossible-mobile-390.png",
+    "robert-mobile-320.png",
+    "amira-mobile-320.png",
+    "incomplet-mobile-320.png",
+    "impossible-mobile-320.png"
+  ],
+  "accessibility": [
+    {
+      "name": "home-desktop",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 1
+        },
+        {
+          "id": "color-contrast",
+          "nodes": 3
+        }
+      ],
+      "passes": 17
+    },
+    {
+      "name": "proof-desktop",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 1
+        }
+      ],
+      "passes": 15
+    },
+    {
+      "name": "robert-options-desktop",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".allocation-row:nth-child(1) > .allocation-bar > span[title=\"XIU : 20 %\"]"
+              ],
+              "html": "<span style=\"width:20%;background:#7593b4\" title=\"XIU : 20 %\">20%</span>",
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.18 (foreground color: #ffffff, background color: #7593b4, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".allocation-row:nth-child(2) > .allocation-bar > span[title=\"XIU : 20 %\"]"
+              ],
+              "html": "<span style=\"width:20%;background:#7593b4\" title=\"XIU : 20 %\">20%</span>",
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.18 (foreground color: #ffffff, background color: #7593b4, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "span[title=\"XIU : 15 %\"]"
+              ],
+              "html": "<span style=\"width:14.999999999999996%;background:#7593b4\" title=\"XIU : 15 %\">15%</span>",
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.18 (foreground color: #ffffff, background color: #7593b4, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "span[title=\"XIU : 16 %\"]"
+              ],
+              "html": "<span style=\"width:16%;background:#7593b4\" title=\"XIU : 16 %\">16%</span>",
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.18 (foreground color: #ffffff, background color: #7593b4, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 2
+        },
+        {
+          "id": "color-contrast",
+          "nodes": 5
+        }
+      ],
+      "passes": 26
+    },
+    {
+      "name": "amira-options",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 1
+        },
+        {
+          "id": "color-contrast",
+          "nodes": 12
+        }
+      ],
+      "passes": 26
+    },
+    {
+      "name": "incomplet-desktop",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 1
+        },
+        {
+          "id": "color-contrast",
+          "nodes": 5
+        }
+      ],
+      "passes": 23
+    },
+    {
+      "name": "impossible-desktop",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 1
+        },
+        {
+          "id": "color-contrast",
+          "nodes": 5
+        }
+      ],
+      "passes": 23
+    },
+    {
+      "name": "impossible-320",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 1
+        },
+        {
+          "id": "color-contrast",
+          "nodes": 8
+        }
+      ],
+      "passes": 23
+    }
+  ],
+  "snapshots": {
+    "essential": "← Tous les dossiers\n/\nRobert\nArchive du 15 nov. 2026 · r5\nR\nLe dossier de Robert\n\nComprendre les conditions d’une décision fictive\n\nVOTRE NIVEAU DE LECTURE · SANS EFFET SUR LE CALCUL\nL’essentiel\nLes options\nLa méthode\nVersion historique : elle conserve sa portée, sans remplacer l’état final. Retrait 30 000 CAD.\nVoir les 3 états ↗\nLa décision\nExplorer une variante\nCe qui a changé 3\nRésultat conditionnel\nDéplacer 30 000 CAD\nsuffit dans ce modèle.\n\nLe minimum est établi. Plusieurs allocations l’atteignent : le choix du portefeuille reste ouvert.\n\nCAPITAL RÉALLOUÉ AU MINIMUM\n30 000CAD\n\nÀ partir du portefeuille initial de 100 000 CAD\n\nPourquoi ce chiffre ? ↗\n↳\nLa réserve est abstraite. Elle ne désigne aucun placement garanti. Les deux chocs sont hypothétiques, sans probabilités ; frais et impôts sont exclus.\n\nUne règle simple fait aussi bien sur ce minimum. Le solveur ne prouve aucune supériorité des agents. Voir la comparaison ↗\n\nCe qui explique la réponse\nUn retrait à financer\n30 000 CAD doivent être disponibles dans 12 mois. La réserve initiale est nulle.\nDes contraintes à respecter\nTSLA au plus à 10 % au départ ; une perte au plus de 15 000 CAD dans chacun des deux chocs.\nMême minimum, expositions différentes.\n\nLe risque et la répartition peuvent changer sans déplacer davantage de capital.\n\nComparer les options ↗\nUNE INFORMATION PEUT TOUT CHANGER\nEt si votre besoin évoluait ?\n\nExplorez un autre retrait ou un autre budget de perte, sans changer ce dossier.\n\nCréer une variante →\nRésultats archivés · analysis@1 · dossier 4089e4b0… · Exporter cet état\nLE CADRE DE LA DÉCISION\nCapital initial\n100 000 CAD\nRetrait prévu\n30 000 CAD\nRetrait dans\n12 mois\nBudget de perte\n15 000 CAD\nTSLA, au maximum\n10 %\nOrigine des informations\n↗\nCorriger le profil\n\nLes paramètres financiers changent l’analyse. Le niveau de lecture change seulement sa présentation.\n\nCE QUE NOUS NE SAVONS PAS\n\nAucun instrument réel de réserve n’a été qualifié. La perte future peut dépasser les chocs étudiés.\n\nExaminer les limites\n↗\nLE TRAVAIL DERRIÈRE LA RÉPONSE\n0\nQualifier\n✓\n1\nÉtayer\n✓\n2\nCalculer\n✓\n3\nExpliquer\n✓\nOuvrir les contributions et reçus\n↗\nUN OUTIL QUE L’ON PEUT CONTESTER\n\nUn calcul exact sous ses hypothèses ne prouve ni la qualité d’un placement réel, ni la supériorité de quatre agents.",
+    "proof": "LE DOSSIER, SANS PERDRE LE CONTEXTE\nD’où vient ce minimum ?\n×\n\nDans ce modèle, le minimum de capital réalloué est de 30,000.00 CAD.\n\nVALEUR ISSUE DU CALCUL\n30 000 CAD\n\nBranche abstraite, contraintes déclarées et tolérances numériques.\n\n01 · LA QUESTION\n\nFinancer un retrait en déplaçant le moins de capital.\n\n02 · LES ENTRÉES\n\n100 000 CAD au départ ; retrait de 30 000 CAD. Positions et contraintes déclarées.\n\nVoir l’origine des paramètres ↗\n03 · LE CALCUL\n\nLe solveur minimise la moitié de la somme des changements absolus de poids, multipliée par le capital. Il ne minimise pas le risque.\n\nreserve-turnover-lp-v1\n04 · LA VÉRIFICATION ET SA LIMITE\n\nRésidus et borne de contrôle portent sur le problème déclaré. Ils ne certifient ni les valeurs déclarées ni un produit financier réel.\n\nOuvrir les contrôles distincts ↗\n↳\nLa règle simple atteint le même minimum. Ce calcul n’établit pas un avantage de la sophistication agentique.\nLIAISON EXACTE\nanalysis@1 /options/1/metrics/turnover_cad/value\nValeurs, empreinte et références\nPassages documentaires consultés ↗",
+    "options": "← Tous les dossiers\n/\nRobert\nArchive du 15 nov. 2026 · r5\nR\nLe dossier de Robert\n\nComprendre les conditions d’une décision fictive\n\nVOTRE NIVEAU DE LECTURE · SANS EFFET SUR LE CALCUL\nL’essentiel\nLes options\nLa méthode\nVersion historique : elle conserve sa portée, sans remplacer l’état final. Retrait 30 000 CAD.\nVoir les 3 états ↗\nLa décision\nExplorer une variante\nCe qui a changé 3\nRésultat conditionnel\nDéplacer 30 000 CAD\nsuffit dans ce modèle.\n\nLe minimum est établi. Plusieurs allocations l’atteignent : le choix du portefeuille reste ouvert.\n\nCAPITAL RÉALLOUÉ AU MINIMUM\n30 000CAD\n\nÀ partir du portefeuille initial de 100 000 CAD\n\nPourquoi ce chiffre ? ↗\n↳\nLa réserve est abstraite. Elle ne désigne aucun placement garanti. Les deux chocs sont hypothétiques, sans probabilités ; frais et impôts sont exclus.\n\nUne règle simple fait aussi bien sur ce minimum. Le solveur ne prouve aucune supériorité des agents. Voir la comparaison ↗\n\nCe qui explique la réponse\nUn retrait à financer\n30 000 CAD doivent être disponibles dans 12 mois. La réserve initiale est nulle.\nDes contraintes à respecter\nTSLA au plus à 10 % au départ ; une perte au plus de 15 000 CAD dans chacun des deux chocs.\nCOMPARER LES EXPOSITIONS\nOù va chaque part du capital ?\n\nPoids initiaux · total 100 % par option\n\nRépartition\nTableau\nAllocation initiale\nHors contraintes\n25%\n35%\n20%\n20%\n100 %\nSolution du solveur\nAdmissible sous hypothèses\n30%\n10%\n20%\n20%\n20%\n100 %\nAutre minimum\nAdmissible sous hypothèses\n30%\n35%\n15%\n20%\n100 %\nRègle simple\nRéférence indépendante\n30%\n10%\n28%\n16%\n16%\n100 %\nRéserve abstraite\nTSLA\nXBB\nXIU\nZST\n\nUne autre allocation au minimum est un témoin, pas un optimum de risque. Aucune préférence de départage n’a été inventée. Données et contrôle ↗\n\nUn compromis, dans deux chocs précis.\nLes hypothèses ↗\nOption\tÀ réallouer\nCAD\tPerte · actions\nCAD\tPerte · obligations\nCAD\nAllocation initiale\nHors contraintes du dossier\n\t0\t18 250\t13 900\nSolution du solveur\t30 000\t10 000\t7 900\nAutre minimum\t30 000\t4 750\t7 150\nRègle simple\t30 000\t9 600\t8 620\n\nPertes terminales dans les chocs déclarés à 12 mois. Aucune probabilité, aucune borne sur la perte future. Même capital et même portefeuille initial pour chaque option.\n\nUNE INFORMATION PEUT TOUT CHANGER\nEt si votre besoin évoluait ?\n\nExplorez un autre retrait ou un autre budget de perte, sans changer ce dossier.\n\nCréer une variante →\nRésultats archivés · analysis@1 · dossier 4089e4b0… · Exporter cet état\nLE CADRE DE LA DÉCISION\nCapital initial\n100 000 CAD\nRetrait prévu\n30 000 CAD\nRetrait dans\n12 mois\nBudget de perte\n15 000 CAD\nTSLA, au maximum\n10 %\nOrigine des informations\n↗\nCorriger le profil\n\nLes paramètres financiers changent l’analyse. Le niveau de lecture change seulement sa présentation.\n\nCE QUE NOUS NE SAVONS PAS\n\nAucun instrument réel de réserve n’a été qualifié. La perte future peut dépasser les chocs étudiés.\n\nExaminer les limites\n↗\nLE TRAVAIL DERRIÈRE LA RÉPONSE\n0\nQualifier\n✓\n1\nÉtayer\n✓\n2\nCalculer\n✓\n3\nExpliquer\n✓\nOuvrir les contributions et reçus\n↗\nUN OUTIL QUE L’ON PEUT CONTESTER\n\nUn calcul exact sous ses hypothèses ne prouve ni la qualité d’un placement réel, ni la supériorité de quatre agents.",
+    "method": "← Tous les dossiers\n/\nRobert\nArchive du 15 nov. 2026 · r5\nR\nLe dossier de Robert\n\nComprendre les conditions d’une décision fictive\n\nVOTRE NIVEAU DE LECTURE · SANS EFFET SUR LE CALCUL\nL’essentiel\nLes options\nLa méthode\nVersion historique : elle conserve sa portée, sans remplacer l’état final. Retrait 30 000 CAD.\nVoir les 3 états ↗\nLa décision\nExplorer une variante\nCe qui a changé 3\nRésultat conditionnel\nDéplacer 30 000 CAD\nsuffit dans ce modèle.\n\nLe minimum est établi. Plusieurs allocations l’atteignent : le choix du portefeuille reste ouvert.\n\nCAPITAL RÉALLOUÉ AU MINIMUM\n30 000CAD\n\nÀ partir du portefeuille initial de 100 000 CAD\n\nPourquoi ce chiffre ? ↗\n↳\nLa réserve est abstraite. Elle ne désigne aucun placement garanti. Les deux chocs sont hypothétiques, sans probabilités ; frais et impôts sont exclus.\n\nUne règle simple fait aussi bien sur ce minimum. Le solveur ne prouve aucune supériorité des agents. Voir la comparaison ↗\n\nCe qui explique la réponse\nUn retrait à financer\n30 000 CAD doivent être disponibles dans 12 mois. La réserve initiale est nulle.\nDes contraintes à respecter\nTSLA au plus à 10 % au départ ; une perte au plus de 15 000 CAD dans chacun des deux chocs.\nCOMPARER LES EXPOSITIONS\nOù va chaque part du capital ?\n\nPoids initiaux · total 100 % par option\n\nRépartition\nTableau\nAllocation\tRéserve abstraite\n%\tTSLA\n%\tXBB\n%\tXIU\n%\tZST\n%\nAllocation initiale\t0\t25\t35\t20\t20\nSolution du solveur\t30\t10\t20\t20\t20\nAutre minimum\t30\t0\t35\t15\t20\nRègle simple\t30\t10\t28\t16\t16\n\nUne autre allocation au minimum est un témoin, pas un optimum de risque. Aucune préférence de départage n’a été inventée. Données et contrôle ↗\n\nUn compromis, dans deux chocs précis.\nLes hypothèses ↗\nOption\tÀ réallouer\nCAD\tPerte · actions\nCAD\tPerte · obligations\nCAD\nAllocation initiale\nHors contraintes du dossier\n\t0\t18 250\t13 900\nSolution du solveur\t30 000\t10 000\t7 900\nAutre minimum\t30 000\t4 750\t7 150\nRègle simple\t30 000\t9 600\t8 620\n\nPertes terminales dans les chocs déclarés à 12 mois. Aucune probabilité, aucune borne sur la perte future. Même capital et même portefeuille initial pour chaque option.\n\nLa méthode, à portée de lecture.\nSources et passages ↗\nQUESTION → MÉTHODE\nMinimiser le capital déplacé\n\nRéallocation initiale, positions fractionnaires, réserve abstraite, chocs CAD terminaux.\n\nreserve-turnover-lp-v1\nCALCUL → PORTÉE\nRésultat calculé, portée limitée\n\nGarantie conditionnelle au modèle et à ses tolérances. Aucun instrument réel de réserve qualifié.\n\nExaminer les cinq contrôles ↗\nUne citation consultée n’est pas forcément retenue. Une citation retenue n’établit pas, à elle seule, chaque affirmation. Ces statuts restent distincts.\nToutes les hypothèses et limites déterminantes\nUNE INFORMATION PEUT TOUT CHANGER\nEt si votre besoin évoluait ?\n\nExplorez un autre retrait ou un autre budget de perte, sans changer ce dossier.\n\nCréer une variante →\nRésultats archivés · analysis@1 · dossier 4089e4b0… · Exporter cet état\nLE CADRE DE LA DÉCISION\nCapital initial\n100 000 CAD\nRetrait prévu\n30 000 CAD\nRetrait dans\n12 mois\nBudget de perte\n15 000 CAD\nTSLA, au maximum\n10 %\nOrigine des informations\n↗\nCorriger le profil\n\nLes paramètres financiers changent l’analyse. Le niveau de lecture change seulement sa présentation.\n\nCE QUE NOUS NE SAVONS PAS\n\nAucun instrument réel de réserve n’a été qualifié. La perte future peut dépasser les chocs étudiés.\n\nExaminer les limites\n↗\nLE TRAVAIL DERRIÈRE LA RÉPONSE\n0\nQualifier\n✓\n1\nÉtayer\n✓\n2\nCalculer\n✓\n3\nExpliquer\n✓\nOuvrir les contributions et reçus\n↗\nUN OUTIL QUE L’ON PEUT CONTESTER\n\nUn calcul exact sous ses hypothèses ne prouve ni la qualité d’un placement réel, ni la supériorité de quatre agents.",
+    "result": "VARIANTE CALCULÉE · DOSSIER PRINCIPAL INCHANGÉ\nVoici ce que votre hypothèse change.\n\nRetrait prévu : 30 000 → 40 000 CAD\n\nÉtat de référence · minimum\n30 000 CAD\n→\nVariante locale · minimum\n40 000 CAD\n↳\nMinimum conditionnel. Réserve abstraite, mêmes chocs sans probabilités, sans frais ni impôts. La référence simple de Robert r5 n’est pas extrapolée à cette variante.\nENTRÉES INDÉPENDANTES RÉUTILISABLES\n\nScénarios déclarés\n\nPositions initiales\n\nBibliographie générique\n\nDiagnostic des pertes du portefeuille initial\n\nRÉEXAMEN PRÉVU APRÈS ADOPTION\n\nQualification du besoin\n\nApplicabilité documentaire\n\nConclusion et restitution\n\nLes calculs d’allocation et leurs contrôles ont réellement été exécutés. Les listes ci-dessus prévoient les dépendances d’une future révision ; aucun événement d’agent n’a été produit.\n\nUtiliser dans la copie du prototype\nConserver le dossier de référence\nRésultat exact, limites et reçu du calcul local",
+    "cachedAgainstR15": "VARIANTE CALCULÉE · DOSSIER PRINCIPAL INCHANGÉ\nVoici ce que votre hypothèse change.\n\nRetrait prévu : 30 000 → 35 000 CAD\n\nÉtat de référence · minimum\n30 000 CAD\n→\nVariante locale · minimum\n35 000 CAD\n↳\nMinimum conditionnel. Réserve abstraite, mêmes chocs sans probabilités, sans frais ni impôts. La référence simple de Robert r5 n’est pas extrapolée à cette variante.\nENTRÉES INDÉPENDANTES RÉUTILISABLES\n\nScénarios déclarés\n\nPositions initiales\n\nBibliographie générique\n\nDiagnostic des pertes du portefeuille initial\n\nRÉEXAMEN PRÉVU APRÈS ADOPTION\n\nQualification du besoin\n\nApplicabilité documentaire\n\nConclusion et restitution\n\nLes calculs d’allocation et leurs contrôles ont réellement été exécutés. Les listes ci-dessus prévoient les dépendances d’une future révision ; aucun événement d’agent n’a été produit.\n\nUtiliser dans la copie du prototype\nConserver le dossier de référence\nRésultat exact, limites et reçu du calcul local",
+    "cachedAdopted": "← Tous les dossiers\n/\nRobert\nCopie locale du prototype\nR\nLe dossier de Robert\n\nComprendre les conditions d’une décision fictive\n\nVOTRE NIVEAU DE LECTURE · SANS EFFET SUR LE CALCUL\nL’essentiel\nLes options\nLa méthode\nCopie du prototype · calcul réel, sans nouvelle revue des quatre agents\nRevenir à l’archive r15\nLa décision\nExplorer une variante\nCe qui a changé 3\nRésultat conditionnel\nDéplacer 35 000 CAD\nsuffit dans ce modèle.\n\nLe minimum est établi. Plusieurs allocations l’atteignent : le choix du portefeuille reste ouvert.\n\nCAPITAL RÉALLOUÉ AU MINIMUM\n35 000CAD\n\nÀ partir du portefeuille initial de 100 000 CAD\n\nPourquoi ce chiffre ? ↗\n↳\nLa réserve est abstraite. Elle ne désigne aucun placement garanti. Les deux chocs sont hypothétiques, sans probabilités ; frais et impôts sont exclus.\n\nMinimum de capital déplacé ≠ risque minimal. La référence simple publiée pour le retrait de 30 000 CAD n’est pas extrapolée ici.\n\nCe qui explique la réponse\nUn retrait à financer\n35 000 CAD doivent être disponibles dans 12 mois. La réserve initiale est nulle.\nDes contraintes à respecter\nTSLA au plus à 10 % au départ ; une perte au plus de 15 000 CAD dans chacun des deux chocs.\nCOMPARER LES EXPOSITIONS\nOù va chaque part du capital ?\n\nPoids initiaux · total 100 % par option\n\nRépartition\nTableau\nAllocation\tRéserve abstraite\n%\tTSLA\n%\tXBB\n%\tXIU\n%\tZST\n%\nAllocation initiale\t0\t25\t35\t20\t20\nSolution du solveur\t35\t10\t15\t20\t20\nAutre minimum\t35\t0\t35\t10\t20\n\nUne autre allocation au minimum est un témoin, pas un optimum de risque. Aucune préférence de départage n’a été inventée. Données et contrôle ↗\n\nUn compromis, dans deux chocs précis.\nLes hypothèses ↗\nOption\tÀ réallouer\nCAD\tPerte · actions\nCAD\tPerte · obligations\nCAD\nAllocation initiale\nHors contraintes du dossier\n\t0\t18 250\t13 900\nSolution du solveur\t35 000\t9 750\t7 150\nAutre minimum\t35 000\t3 750\t6 650\n\nPertes terminales dans les chocs déclarés à 12 mois. Aucune probabilité, aucune borne sur la perte future. Même capital et même portefeuille initial pour chaque option.\n\nLa méthode, à portée de lecture.\nSources et passages ↗\nQUESTION → MÉTHODE\nMinimiser le capital déplacé\n\nRéallocation initiale, positions fractionnaires, réserve abstraite, chocs CAD terminaux.\n\nreserve-turnover-lp-v1\nCALCUL → PORTÉE\nRésultat calculé, portée limitée\n\nGarantie conditionnelle au modèle et à ses tolérances. Aucun instrument réel de réserve qualifié.\n\nExaminer les cinq contrôles ↗\nUne citation consultée n’est pas forcément retenue. Une citation retenue n’établit pas, à elle seule, chaque affirmation. Ces statuts restent distincts.\nToutes les hypothèses et limites déterminantes\nUNE INFORMATION PEUT TOUT CHANGER\nEt si votre besoin évoluait ?\n\nExplorez un autre retrait ou un autre budget de perte, sans changer ce dossier.\n\nCréer une variante →\nCalcul local depuis des paramètres copiés. Aucun changement dans l’application actuelle.\nLE CADRE DE LA DÉCISION\nCapital initial\n100 000 CAD\nRetrait prévu\n35 000 CAD\nRetrait dans\n12 mois\nBudget de perte\n15 000 CAD\nTSLA, au maximum\n10 %\nOrigine des informations\n↗\nCorriger le profil\n\nLes paramètres financiers changent l’analyse. Le niveau de lecture change seulement sa présentation.\n\nCE QUE NOUS NE SAVONS PAS\n\nAucun instrument réel de réserve n’a été qualifié. La perte future peut dépasser les chocs étudiés.\n\nExaminer les limites\n↗\nLE TRAVAIL DERRIÈRE LA RÉPONSE\n\nCette exploration exécute seulement le calcul. Les quatre agents n’ont pas examiné ce nouvel état.\n\nOuvrir les contributions et reçus\n↗\nUN OUTIL QUE L’ON PEUT CONTESTER\n\nUn calcul exact sous ses hypothèses ne prouve ni la qualité d’un placement réel, ni la supériorité de quatre agents.",
+    "amira": "← Tous les dossiers\n/\nAmira\nArchive du 15 nov. 2026 · r5\nA\nLe dossier d’Amira\n\nComparer une concentration · données historiques\n\nVOTRE NIVEAU DE LECTURE · SANS EFFET SUR LE CALCUL\nL’essentiel\nLes options\nLa méthode\nLa décision\nExplorer une variante\nCe qui a changé\nObservation historique\nMoins de TSLA.\nUn autre parcours passé.\n\nSur la période commune étudiée, la variante à 10 % a connu une baisse maximale plus faible et un rendement cumulé plus élevé.\n\nRENDEMENT CUMULÉ · VARIANTE / INITIAL\n87,5 % / 78,06 %\n\n12 nov. 2021 → 12 nov. 2026 · CAD · avant frais\n\nVérifier les chiffres ↗\n↳\nUn résultat passé, pas une prévision. Le choix utilise un instantané acquis en novembre 2026. Il ne simule pas une sélection avec les connaissances de 2021.\n\nLes deux allocations suivent la même période, le même change et l’achat-conservation. Réduire une concentration ne garantit pas une meilleure performance future.\n\nUN MÊME DÉPART : 25 000 CAD\nLa trajectoire observée\n\nValeur du portefeuille en CAD · achat-conservation\n\nDonnées exactes ↗\nAllocation initiale\n44 516 CAD\nTSLA limité à 10 %\n46 874 CAD\n10 000\n20 000\n30 000\n40 000\n50 000\nnov. 2021\nnov. 2026\n\nSéries réellement calculées, sans lissage. Prix ajustés une seule fois et conversion USD→CAD. Le graphique ne se prolonge pas au-delà des observations.\n\nCe que cette comparaison peut dire.\n\nElle décrit deux allocations sur une période passée. Elle ne qualifie ni l’ESG, ni les expositions internes des ETF.\n\nExaminer la méthode\nRésultats archivés · analysis@1 · dossier f281a906… · Exporter cet état\nLE CADRE DE LA DÉCISION\nCapital initial\n25 000 CAD\nTSLA, au départ\n25 %\nPlafond comparé\n10 %\nDevise de calcul\nCAD\nFenêtre\n2021–2026\nOrigine des informations\n↗\nCorriger le profil\n\nLes paramètres financiers changent l’analyse. Le niveau de lecture change seulement sa présentation.\n\nCE QUE NOUS NE SAVONS PAS\n\nCe résultat ne prédit pas les années à venir. Les expositions internes des fonds ne sont pas établies.\n\nExaminer les limites\n↗\nLE TRAVAIL DERRIÈRE LA RÉPONSE\n0\nQualifier\n✓\n1\nÉtayer\n✓\n2\nCalculer\n✓\n3\nExpliquer\n✓\nOuvrir les contributions et reçus\n↗\nUN OUTIL QUE L’ON PEUT CONTESTER\n\nUn calcul exact sous ses hypothèses ne prouve ni la qualité d’un placement réel, ni la supériorité de quatre agents.",
+    "amiraTableRows": 1228,
+    "incomplet": "← Tous les dossiers\n/\nUne demande à préciser\nArchive du 15 nov. 2026 · r4\n?\nUne demande à préciser\n\nComprendre les conditions d’une décision fictive\n\nVOTRE NIVEAU DE LECTURE · SANS EFFET SUR LE CALCUL\nL’essentiel\nLes options\nLa méthode\nLa décision\nExplorer une variante\nCe qui a changé\nConclusion en attente\nLe besoin est clair.\nIl manque de quoi le chiffrer.\n\nUn retrait dans douze mois a été compris. Sans capital, montant et positions, aucune allocation ne peut être établie.\n\n↳\nAucune valeur n’a été remplacée par une supposition. Les informations manquantes restent inconnues.\nCE QUI CHANGERAIT L’ANALYSE\nQuel montant souhaitez-vous retirer ?\n\nCe montant fixe le besoin de réserve. Il doit être rapproché du capital disponible ; une réponse isolée ne suffira pas à terminer ce dossier.\n\nPréparer les informations\nVoir tous les points manquants (20) ↗\nUne attente utile, pas une réponse inventée.\n\nDans le produit, une clarification revient à l’agent de qualification. Ici, vous pouvez préparer un brouillon local ; il ne déclenche pas de nouvelle inférence.\n\nRésultats archivés · qualification en attente · dossier e6405c6c… · Exporter cet état\nLE CADRE DE LA DÉCISION\nCapital initial\nInconnu\nRetrait prévu\nInconnu\nRetrait dans\n12 mois\nBudget de perte\nInconnu\nTSLA, au maximum\nInconnu\nOrigine des informations\n↗\nCorriger le profil\n\nLes paramètres financiers changent l’analyse. Le niveau de lecture change seulement sa présentation.\n\nCE QUE NOUS NE SAVONS PAS\n\nAucun instrument réel de réserve n’a été qualifié. La perte future peut dépasser les chocs étudiés.\n\nExaminer les limites\n↗\nLE TRAVAIL DERRIÈRE LA RÉPONSE\n0\nQualifier\n✓\n1\nÉtayer\n✓\n2\nCalculer\n↳\n3\nExpliquer\n↳\nOuvrir les contributions et reçus\n↗\nUN OUTIL QUE L’ON PEUT CONTESTER\n\nUn calcul exact sous ses hypothèses ne prouve ni la qualité d’un placement réel, ni la supériorité de quatre agents.",
+    "impossible": "← Tous les dossiers\n/\nUn retrait impossible\nArchive du 15 nov. 2026 · r5\n?\nUn retrait impossible\n\nComprendre les conditions d’une décision fictive\n\nVOTRE NIVEAU DE LECTURE · SANS EFFET SUR LE CALCUL\nL’essentiel\nLes options\nLa méthode\nLa décision\nExplorer une variante\nCe qui a changé\nIncompatibilité établie dans le modèle\nLe retrait dépasse\nle capital disponible.\n\nLa réserve ne peut financer 120 000 CAD à partir de 100 000 CAD, sans apport extérieur.\n\nLA CONTRAINTE QUI SUFFIT À CONCLURE\nRetrait demandé\n120 000\nCAD\n›\nCapital disponible\n100 000\nCAD\n=\nÉcart\n20 000\nCAD\nExaminer le certificat ↗\n↳\nImpossible sous ces conditions précises. Réserve abstraite à rendement nul, sans emprunt ni apport extérieur. Ce diagnostic ne prétend pas couvrir tous les modèles financiers.\nQuelle information revoir ?\n\nRevoir le retrait ou préciser les ressources. Réduire l’écart est nécessaire ; cela ne garantit pas la faisabilité de toutes les autres contraintes.\n\nExaminer les paramètres\nRésultats archivés · analysis@1 · dossier 1f7d3a73… · Exporter cet état\nLE CADRE DE LA DÉCISION\nCapital initial\n100 000 CAD\nRetrait prévu\n120 000 CAD\nRetrait dans\n12 mois\nBudget de perte\n15 000 CAD\nTSLA, au maximum\n10 %\nOrigine des informations\n↗\nCorriger le profil\n\nLes paramètres financiers changent l’analyse. Le niveau de lecture change seulement sa présentation.\n\nCE QUE NOUS NE SAVONS PAS\n\nAucun instrument réel de réserve n’a été qualifié. La perte future peut dépasser les chocs étudiés.\n\nExaminer les limites\n↗\nLE TRAVAIL DERRIÈRE LA RÉPONSE\n0\nQualifier\n✓\n1\nÉtayer\n✓\n2\nCalculer\n✓\n3\nExpliquer\n✓\nOuvrir les contributions et reçus\n↗\nUN OUTIL QUE L’ON PEUT CONTESTER\n\nUn calcul exact sous ses hypothèses ne prouve ni la qualité d’un placement réel, ni la supériorité de quatre agents."
+  }
+}

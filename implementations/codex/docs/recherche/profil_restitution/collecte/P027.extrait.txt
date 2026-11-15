@@ -1,0 +1,826 @@
+         Questioning the ability of feature-based explanations to
+            empower non-experts in robo-advised financial
+                            decision-making
+                           Astrid Bertrand, James Eagan, Winston Maxwell
+
+
+
+      To cite this version:
+     Astrid Bertrand, James Eagan, Winston Maxwell. Questioning the ability of feature-based explanations
+     to empower non-experts in robo-advised financial decision-making. FAccT ’23: the 2023 ACM Con-
+     ference on Fairness, Accountability, and Transparency, Jun 2023, Chicago, United States. pp.943-958,
+     ⟨10.1145/3593013.3594053⟩. ⟨hal-04125939⟩
+
+
+
+
+                                        HAL Id: hal-04125939
+                              https://hal.science/hal-04125939v1
+                                           Submitted on 12 Jun 2023
+
+
+
+
+    HAL is a multi-disciplinary open access archive             L’archive ouverte pluridisciplinaire HAL, est des-
+for the deposit and dissemination of scientific re-        tinée au dépôt et à la diffusion de documents scien-
+search documents, whether they are published or not.       tifiques de niveau recherche, publiés ou non, émanant
+The documents may come from teaching and research          des établissements d’enseignement et de recherche
+institutions in France or abroad, or from public or pri-   français ou étrangers, des laboratoires publics ou
+vate research centers.                                     privés.
+
+
+                                              HAL Authorization
+Questioning the ability of feature-based explanations to empower
+    non-experts in robo-advised financial decision-making
+                   Astrid Bertrand                                              Winston Maxwell                                  James R. Eagan
+       astrid.bertrand@telecom-paris.fr                               winston.maxwell@telecom-paris.fr                  james.eagan@telecom-paris.fr
+     LTCI, Institut Polytechnique de Paris                            i3, CNRS, Institut Polytechnique de             LTCI, Institut Polytechnique de Paris
+                     France                                                           Paris                                           France
+                                                                                     France
+ABSTRACT                                                                                        1   INTRODUCTION
+Robo-advisors are democratizing access to life-insurance by en-                                 As online AI-based services are becoming more ubiquitous with
+abling fully online underwriting. In Europe, financial legislation                              commercial recommender systems, internet users are exposed to
+requires that the reasons for recommending a life insurance plan                                opaque personalized suggestions. This raises questions on how
+be explained according to the characteristics of the client, in order                           to communicate relevant and accessible information to foster ap-
+to empower the client to make a “fully informed decision”. In this                              propriate trust in those systems [8]. While explanations are often
+study conducted in France, we seek to understand whether legal                                  unnecessary or non-critical in many low-risk applications of AI,
+requirements for feature-based explanations actually help users in                              such as for movie or music suggestions, they can be mandated by
+their decision-making. We conduct a qualitative study to character-                             law in some high-stakes industries, such as finance, through the
+ize the explainability needs formulated by non-expert users and by                              legal notion of "informed decision".
+regulators expert in customer protection. We then run a large-scale                                Real-world scenarios of explainability in the scientific litera-
+quantitative study using Robex, a simplified robo-advisor built us-                             ture are primarily in the health care domain [9, 19, 20, 24]. In this
+ing ecological interface design that delivers recommendations with                              paper, we focus on another use case of explainability which is
+explanations in different hybrid textual and visual formats: either                             equally high-stake, widespread, and legally motivated: AI-based
+“dialogic”—more textual—or “graphical”—more visual. We find that                                financial advice, i.e. robo-advisors. Explanations of these systems
+providing feature-based explanations does not improve appropriate                               are required to make online services to savings and investment
+reliance or understanding compared to not providing any expla-                                  customers more understandable. The challenge is to ensure that
+nation. In addition, dialogic explanations increase users’ trust in                             customers are informed of the processes by which a recommenda-
+the recommendations of the robo-advisor, sometimes to the users’                                tion is made, through clear explanations. This aims at protecting
+detriment. This real-world scenario illustrates how XAI can address                             clients from recommendations misaligned with their objectives, risk
+information asymmetry in complex areas such as finance. This                                    appetite and other personal characteristics. Moreover, the financial
+work has implications for other critical, AI-based recommender                                  domain can feel overwhelming and complex to many people [38],
+systems, where the General Data Protection Regulation (GDPR)                                    which poses an additional challenge: explaining in simple terms
+may require similar provisions for feature-based explanations.                                  not only the attributes of the system but also financial principles to
+                                                                                                novice users. Few studies [6] have focused on how to design legally
+CCS CONCEPTS                                                                                    mandated explanations for lay users in real-world, high-stakes
+• Human-centered computing → Empirical studies in HCI.                                          scenarios. Yet, the lack of understanding of how explainability re-
+                                                                                                quirements should be implemented is currently a barrier to the use
+KEYWORDS                                                                                        of AI systems in high stake domains [5]. We aim to address this
+                                                                                                gap by leveraging the knowledge of customer protection specialists
+explainability, intelligibility, AI regulation, financial inclusion
+                                                                                                about existent explainability requirements in the financial domain.
+ACM Reference Format:                                                                           We interviewed 6 customer protection experts who work at the
+Astrid Bertrand, Winston Maxwell, and James R. Eagan. 2023. Questioning                         French regulatory authority of financial services to describe the
+the ability of feature-based explanations to empower non-experts in robo-                       legal motivations and expectations for explanations in this domain
+advised financial decision-making. In 2023 ACM Conference on Fairness,                          and test the propensity of feature-based explanations to meet these
+Accountability, and Transparency (FAccT ’23), June 12–15, 2023, Chicago, IL,                    requirements. We believe the insights from experts from the regu-
+USA. ACM, New York, NY, USA, 16 pages. https://doi.org/10.1145/3593013.
+                                                                                                latory sphere present interesting yet so far unsolicited proxies for
+3594053
+                                                                                                characterizing the users’ needs. Our aim is to better understand the
+Permission to make digital or hard copies of all or part of this work for personal or           regulatory challenges arising with explainability, which we believe
+classroom use is granted without fee provided that copies are not made or distributed           is an under-explored area in the human-computer interaction side
+for profit or commercial advantage and that copies bear this notice and the full citation
+on the first page. Copyrights for components of this work owned by others than the
+                                                                                                of the XAI field. Our first research question is the following:
+author(s) must be honored. Abstracting with credit is permitted. To copy otherwise, or             RQ1: What are the regulatory expectations for explanations in
+republish, to post on servers or to redistribute to lists, requires prior specific permission   financial investment services to protect customers? How can current
+and/or a fee. Request permissions from permissions@acm.org.
+FAccT ’23, June 12–15, 2023, Chicago, IL, USA
+                                                                                                XAI methods meet them?
+© 2023 Copyright held by the owner/author(s). Publication rights licensed to ACM.                  In addition, we interviewed 5 lay users on their needs for expla-
+ACM ISBN 979-8-4007-0192-4/23/06. . . $15.00                                                    nations of robo-advisors. This enabled us to qualitatively compare
+https://doi.org/10.1145/3593013.3594053
+FAccT ’23, June 12–15, 2023, Chicago, IL, USA                                                                                        Bertrand, et al.
+
+
+regulatory and “practical” needs for explanations, in an attempt to      However, the point of view of regulators has not been solicited so
+address the second research question:                                    far in the explainability literature, to the best of our knowledge.
+   RQ2: How do regulators on the one hand and end users on the other
+describe the need for explanations?                                      2.2    Representing AI explanations to non-expert
+   To illustrate how legal requirements might be transformed into               users
+explanation representations, we designed several formats of feature
+                                                                         2.2.1 Explanation formats. A few contributions from the computer
+importance explanations and conducted a large-scale study with
+                                                                         science side of XAI conducted user studies to evaluate the ability
+256 participants to compare their impact on user trust, and users’
+                                                                         of XAI methods to successfully convey accurate mental models of
+appropriate reliance and understanding. Recent advances in the fast-
+                                                                         AI systems to users. In particular, this line of research sheds light
+growing field of explainability have brought a better understanding
+                                                                         on the limitations of some technical solutions for aiding user un-
+of how different representations and interactions of AI explanations
+                                                                         derstanding, or worse, on their potential for deception [21, 23, 40].
+impact non-expert users [7, 10, 35, 39, 47]. Szymanski et al. [47]
+                                                                         Some work has focused specifically on the implementation of expla-
+found that lay users preferred graphical explanations but could
+                                                                         nations for non-expert users in specific contexts [7, 10, 47]. Cheng et
+more easily misinterpret them compared to textual explanations,
+                                                                         al. [10] presented explanations of an algorithmic school admission
+motivating the need for hybrid textual and visual explanations.
+                                                                         decision process to users with no domain or technical expertise.
+However, little is known about where the cursor should be placed
+                                                                         They found that static and interactive explanations, where users
+between textual and visual content. In this paper, we compare
+                                                                         could change the inputs to see the resulting outcome, improved
+different formats of hybrid textual and graphical explanations using
+                                                                         users’ understanding of the AI decisions. Bove et al. [7], however,
+SHAP [30]. Our aim is to answer the following research question:
+                                                                         were unable to replicate these results in the context of explaining an
+   RQ3: How effective are different representations of hybrid textual
+                                                                         algorithmic car insurance pricing decision. They did not find that
+and graphical explanations to protect non-expert users?
+                                                                         explanations improved comprehension but they did improve user
+                                                                         satisfaction. Szymanski et al. [47] studied how different represen-
+   The contributions of this paper can be summarized as follows.
+                                                                         tations of explanations (either visual, textual or both) affect users’
+We analyze the legal requirements for explainability in a real-world
+                                                                         understanding of an AI system in an artificial task (estimating the
+context: online life-insurance underwriting. Then, in a qualitative
+                                                                         reading time of news articles). The paper shows that purely visual
+study, we compare regulators’ and end-users’ perspectives on legal
+                                                                         explanations (in this case line graphs) can be subject to misinterpre-
+explainability requirements in life-insurance and argue for the
+                                                                         tation, while purely textual explanations are better understood but
+relevance of consulting regulators for defining customers’ XAI
+                                                                         less satisfactory to users. A combination of the two representations
+needs. Finally, we provide evidence through a large-scale study that
+                                                                         could provide the best of both worlds. However, there could be
+the benefits of explanations on user understanding, appropriate
+                                                                         many different ways to design “hybrid” textual and visual explana-
+trust and reliance are not clear, and that dialogic explanations might
+                                                                         tions. Specifically, it is still unclear if textual explanations presented
+lead to harmful over-reliance.
+                                                                         as conversations achieve better user preferences and improve task
+                                                                         accuracy compared to graphical formats.
+                                                                             Additionally, explanations’ ability to engage users in a sensitive
+2 RELATED WORK                                                           and complex topic such as financial investment has not yet been
+2.1 Understanding explainability needs                                   studied in the XAI literature where artificial contexts are often used
+                                                                         as test benches [8, 11, 14].
+In recent years, the XAI community has made substantial progress
+in making AI systems more intelligible to end users [22, 27, 29, 42,     2.2.2 Mitigating overreliance issues. Other work in human-centered
+51]. Much of this work aimed at understanding user needs to better       XAI research has been studying how expertise affects the percep-
+inform the design of technical solutions [15, 26, 27, 34]. Using semi-   tion of explanations. For example, Simkute et al. [43] stress the
+structured interviews, articles such as [27, 28, 45] give an account     importance of differentiating the reasoning of experts from that of
+of users’ questions and motivations regarding explainability. They       lay users and reflecting this difference in the design of explanations.
+inform on the actual user demand for information about AI systems        Quite logically, experts are able to be more critical of the explana-
+by presenting taxonomies of user questions [27, 28], for example.        tions, sometimes at the cost of not trusting them enough, whereas
+Theoretical approaches have also provided important insights on          lay users are more subject to over-reliance [3, 41]. Eiband et al. [12],
+users’ cognitive needs regarding explainability in the form of frame-    for example, demonstrated that the mere presence of explanations
+works, surveys or theories [34, 44, 46, 48, 51]. For example, Miller     reinforced non experts’ trust using placebic explanations.
+[34] draws on how humans explain things to each other to find out            Explanations must therefore support either trust building for
+what people expect from explanations.                                    experts, or critical thinking for lay users. Another key difference
+   All these studies provide relevant findings to inform on the ac-      is the level of motivation to use explanations, which can be much
+tual needs of users regarding explainability. Another potentially        lower for non-expert users. This makes it particularly challenging
+relevant source of information to design helpful explanations are        to make explanations both simple and appealing to lay users, while
+legal requirements. Very few XAI research efforts have been mo-          encouraging cognitive engagement and skepticism [4, 36]. It is still
+tivated by legal obligations to produce explanations such as the         unclear if explanations for non-expert users can be designed to
+“right to explanation” included in the GDPR. Bibal et al. [6] give a     foster trust and understanding on the one hand while encouraging
+complete overview of existing legal frameworks for explainable AI.       users’ critical thinking (i.e. ability to detect errors) on the other.
+Questioning the ability of feature-based explanations to empower non-experts in robo-advised financial decision-making          FAccT ’23, June 12–15, 2023, Chicago, IL, USA
+
+
+This might be desirable in sensitive contexts where the algorithmic                       the amount and nature of the rules. Yet, many studies foresee an
+output can have strong consequences on the user’s life quality.                           acceleration of AI-based underwriting solutions in the financial
+                                                                                          sector and in life-insurance [2, 31]. AI-powered systems offer faster
+3     THE TEST-BED FOR STUDYING                                                           and more personalized financial advice. For brokers, data-driven
+      EXPLANATIONS OF RECOMMENDATIONS                                                     underwriting helps identify risk in a more fine-grained manner
+      OF FINANCIAL CONTRACTS                                                              [1]. The insurance market is also gaining interest in AI-powered
+                                                                                          robo-advisors with the successful examples of companies which
+In this paper, we focus on a real-case application of explainability:                     used this technology to increase sales revenue significantly [1].
+explanations of online recommendations for life insurance prod-
+ucts. In Europe, explanations in this context are legally required by                    3.1.3 Legal Requirements for feature-based explanations. In the
+sector-specific regulations to ensure customer protection. We de-                        life-insurance context, financial legislation regarding the insurance
+scribe below the case study context, the related legal requirements                      sector apply. The law on insurance distribution (Articles 20 and 30
+for explanations and the system used in the studies presented in                         of Directive (EU) 2016/97 of January 20, 2016), which aims to pro-
+Section 4 and Section 5.                                                                 tect consumers against the sale of products unsuited to their needs,
+                                                                                         requires providers to explain “the reasons for the appropriateness
+3.1     Context                                                                          of the proposed contract”. Our research question is which explana-
+3.1.1 Life-insurance underwriting. As AI systems gain performance,                       tion format, especially provided by automatic means—through a
+their adoption expands to areas considered critical. In finance, in-                     roboadvisor—, is the most suitable format to protect the consumer.
+creasingly sophisticated recommender systems known as “robo-                             This leads us to question more precisely the purpose of the explana-
+advisors” are democratizing online underwriting of life insurance.                       tion in light of the objectives of the law. What exactly is expected of
+In France, where the study was conducted, life insurance is a sav-                       the explanation so that it is effective with regard to the objectives
+ings vehicle used both to pass on money to a designated beneficiary                      of the Articles L. 521-4 and L. 522-5 of the French Insurance Code
+upon the death of the subscriber of the contract, and to make a long-                    and EU Directive 2016/97? One of the objectives of the explana-
+term financial investment in a tax-advantaged environment. In the                        tions is to enable future life-insurance subscribers to make a “fully
+rest of the paper, we will only address the latter, most common us-                      informed” decision about the product being proposed. This objec-
+age of life-insurance. Life insurance subscribers are presented with                     tive is explicitly stated in the text of Article L. 521-4 of the French
+a financial recommendation with a specific level of risk (a higher                       Insurance Code and Article 20 of EU Directive 2016/97. However,
+level of risk means more chances to win big but also more chances                        this objective is relatively imprecise and difficult to measure. To
+to lose). Choosing a life insurance contract with an appropriate                         better measure whether an explanation allows for an “informe”
+risk level—not too high for the client’s financial situation—is cru-                     decision, the goal should be broken down into subgoals that are
+cial to ensuring clients’ financial stability. However, many clients                     easier to test and measure. We understand these subgoals to be 1)
+may not be financially literate. Therefore, French and European                          help users appropriately rely on a recommendation (and be able to
+legislation1 require insurance providers to produce “clear, precise                      detect a big mistake) 2) help users understand the appropriateness
+and non-misleading” explanations to guide potential customers                            of a recommendation for them 3) help users calibrate their trust in
+towards an “informed” decision and address the asymmetry of                              robo-advisors. This is therefore what we measured in Study 2.
+information between client and advisor. We describe further the                              In addition to the goal of “fully informing” clients, the law pur-
+legal requirements to explain recommendations in this context in                         sues the objective of supervising the behavior of intermediaries by
+the next section. Most existing online recommender systems cur-                          imposing the obligation to set out in writing the client’s needs as
+rently fall short of this legal explanation requirement, according                       well as the reasons why the recommended product is in line with
+to our discussions with French regulators in the life-insurance sec-                     those needs. The formalization of these steps will reduce the risks
+tor. Specifically, explanations of online recommender systems, i.e.                      of intermediaries taking shortcuts and letting conflicts of interest
+robo-advisors, rarely focus on the reasons why a recommendation                          interfere with their duty to give objective investment advice to
+is adapted to the user’s need, which is the type of explanation we                       customers.
+focus on in this paper.
+                                                                                            In other contexts, AI systems may also be affected by require-
+3.1.2 Towards more digital and AI powered systems. The automated                         ments for feature-based explanations. Consumer protection law has
+advice provided by robo-advisors is seen as a more cost-efficient                        provisions regarding explanations of recommender systems in on-
+way to deliver proposals to pockets of population who do not other-                      line marketplaces. It notably imposes to show “the main parameters
+wise have access to financial advice, as an OECD report highlights                       determining the ranking [...] of offers presented to the consumer
+[31]. Additionally, the COVID crisis has accelerated the interest                        as a result of the search query and the relative importance of those
+in online systems with the increasing demand for online and real-                        parameters as opposed to other parameters”2 . Moreover, the GDPR
+time services [2]. As seen through our series of interviews with                         provisions can also apply in some contexts. It requires that data
+regulators in life-insurance—described later in the paper—, most                         controllers disclose “meaningful information about the logic in-
+current robo-advisors (specifically in France where this study was                       volved” (articles 13-15) in entirely automated decisions. The GDPR
+conducted) are rule-based, with varying degrees of complexity in                         provisions apply “when the decisions (i) involve the processing of
+                                                                                         personal data, (ii) are based solely on an automated processing of
+1 The European Parliament and the European Concil. 2016. Directive (EU) 2016/97 on
+insurance distribution.                                                                   2 New art. 6(a) of Directive 2011/83 on Consumer Rights
+FAccT ’23, June 12–15, 2023, Chicago, IL, USA                                                                                                  Bertrand, et al.
+
+
+                                                                           a basis to produce different explanation interfaces that vary in
+                                                                           representation format and interactivity.
+
+                                                                           4     STUDY 1: QUALITATIVE UNDERSTANDING
+                                                                                 OF THE NEED FOR EXPLANATIONS FROM
+Figure 1: Fictional life-insurance plans proposed by Robex,
+the explainable robo-advisor developed for this study                            REGULATORS’ AND END-USERS’
+                                                                                 PERSPECTIVES
+                                                                           To answer our RQ1 and RQ2, we interviewed domain experts and
+                                                                           lay users to better understand regulatory expectations with regard
+data and (iii) produce legal or significant effects on the recipient of    to explanations.
+the decision” [6].
+                                                                           4.1     Method
+3.2     Robex, the explainable robo-advisor                                4.1.1 Prototypical Graphical Explanations. Initially, we designed
+3.2.1 A simplified model. Robex—standing for EXplainable ROBo-             an explanation interface inspired from the graphical Shapley ex-
+advisor—is a simplified and fictional life-insurance recommender           planations presented in [30]. However, we tried to simplify the
+system developed for the purpose of this study. Robex’s recommen-          visual elements to make them readable by non-professional users.
+dation algorithm is not AI but a rule-based algorithm established          We simplified the graph into a table, because some research on
+with the help of domain experts. Indeed, since our goal was to             explainability showed that tables were the most interpretable rep-
+study explanation representations using existing agnostic explain-         resentation medium for non-professional users [18]. We also added
+ability methods, we did not need to use a real AI algorithm for this       clear column titles and textual descriptions available on demand
+study. The design of Robex was done using Ecological Interface             on the “input features” of the explanation, i.e. the client’s charac-
+Design [50]. We reviewed existing robo-advisors and conducted              teristics used. We showed to participants in Study 1 a prototypical
+informal interviews with 4 regulators with extensive experience            “graphical” summary of the importance of each variable on the risk
+in the control of intermediaries (or brokers) in life-insurance to         of the proposal, as shown in Figure 2A. However, the arrows for
+better understand the domain. Based on these discussions, we de-           each input were shaped a little differently and there was no risk
+veloped a profiling questionnaire to measure 5 user characteristics:       scale under the different insurance plans. We improved the expla-
+the amount to be invested compared to the user’s total financial           nation representation based on the feedback from expert and lay
+wealth, her investment objective, her financial knowledge and ex-          participants in this study.
+perience, her risk appetite and the proportion of her financial assets
+already placed on financial markets. For each of the questions used        4.1.2 Participants and procedure. We conducted interviews with 11
+to measure these characteristics (cf. Table 3 of the Appendix), we         participants: 6 consumer protection experts3 and 5 end-users. The
+associated coefficients so as to obtain a risk-score that denoted          consumer protection experts were volunteers from the consumer
+the amount of risk a user can take. We were then able to sketch            protection section of the French regulator of banking and insurance
+five fictional but realistic life-insurance plans that represented 5       services with whom we collaborated during this study. We refer to
+levels of risk. Our score-based, simplified underwriting rules then        them below with the term “regulator”. All participants had strong
+matched a profile to a plan.                                               experience in auditing insurance providers (from 3 to more than 10
+    The usual underwriting process with robo-advisors—and Robex—           years). Their expertise and role is to verify that insurers respect “the
+is as follows. First, users go through a series of questions about their   rules intended to ensure the protection of the customers” as well as
+profile and financial objectives. Then, they can see the summary of        the “adequacy of the means and procedures which they implement
+their profile and the proposed recommendation—on the same page             for this purpose” and to promote fair commercial practices among
+in Robex. During this recommendation phase, Robex presents an              industrial professionals4 . Half of them had some experience in
+additional section on why this product is recommended to you.              reviewing robo-advisors.
+                                                                              The novice users were volunteer doctoral students recruited
+3.2.2 Feature Importance Explanations. We approached the ex-               through the network of the university with which the authors are
+plainability phase as if the Robex algorithm was a black-box, so           affiliated. All participants received a consent form informing them
+that our results can be transposed to more opaque AI-powered               of the study objectives and identified risks. All participants were
+robo-advisors. As seen in Section 3.1.3, the required explanations         volunteers, not compensated, recruited through an email describing
+in life-insurance but also for other online recommender systems            the objective and duration of the experiment. An ethics committee
+with significant effect on the recipient include “feature importance”      was not required for this study.
+explanations. They correspond to linking client’s characteristics to          Each participant took part in an individual session that lasted
+the recommendation, which is what feature importance techniques            between 45 minutes and 1h30. Each session was divided into three
+do. In this paper, we question the usefulness of these explanations
+required by law, by studying the effects of feature importance expla-
+                                                                           3 Four of them were different from the 4 persons we interviewed to design the Robex
+nations on users’ appropriate reliance and trust in the recommen-
+                                                                           algorithm.
+dation. In each of the studies presented below, we used SHAP [30]          4 https://acpr.banque-france.fr/en/customer-protection/professionals/customer-
+a post-hoc, agnostic, and widespread interpretability method as            protection-principles
+Questioning the ability of feature-based explanations to empower non-experts in robo-advised financial decision-making   FAccT ’23, June 12–15, 2023, Chicago, IL, USA
+
+
+parts: a semi-structured interview, a task-oriented think aloud por-                     “There’s too much complexity even for them.” This highlights the
+tion and a post-study questionnaire. One researcher was present                          relevance of the XAI domain to help solve real-world problems,
+during all interviews and took detailed notes of the participants’                       even when the underlying recommendation system is AI but rule-
+answers and think-aloud statements. The first part of the session                        based. The regulators insisted on the importance of explanations as
+consisted of a semi-structured interview to explore the needs of life-                   a safeguard to inform customers about risk, taking as an example
+insurance clients for explanations of recommendations. Structured                        cases of overestimation of the risk for vulnerable people. Although
+questions varied slightly if participants were regulators or novice                      we could group both regulator and end-user perspectives into com-
+end-users. Regulators were asked about the role of explanations in                       mon themes, some themes were discussed more by one group. For
+enabling users to make an informed decision and the type of expla-                       example, end-users expressed their need to be engaged—some felt
+nations, what they thought of the explanations currently offered by                      either overwhelmed or bored by the topic. regulators talked about
+robo-advisors, and how to address people without financial knowl-                        the need for complete information although end-users insisted on
+edge. Novice users were asked about their financial investment                           their need for simple, easy-to-digest information.
+recommendations, if they had any, and about what explanations
+they would like to receive about the recommended financial prod-                             Placing the cursor between text and graphics. One of the themes
+uct. During the second part of the study, participants were asked                        we found was the need for schematic explanations on the one
+to use Robex. Participants were observed by the researcher and                           hand and the need for more human explanations that can answer a
+asked to think aloud throughout their interaction with the system.                       wide range of users’ questions on the other. Two regulators very
+Finally, participants were asked about their overall impression of                       much appreciated our graphical, Shapley-based explanations, find-
+the system.                                                                              ing they had never seen something like that in the market and that
+                                                                                         it responded well to the need to link users’ characteristics to the
+4.1.3 Text analysis. We conducted an inductive [13] content analy-                       recommended product. However, many—regulators and end-users
+sis of the detailed notes taken by one author during the interviews                      alike—indicated their need to be able to chat with a human counsel-
+with regulators and end-users. One author identified concepts and                        lor despite the explanation. A regulator also imagined explanations
+themes about the characteristics of the explanations that emerged                        could look more like a Frequently Asked Questions menu and a
+from reading the interview notes. First, the author observed that                        participant said “I can imagine a chatbot with someone behind
+participants talked mainly about either the explanation implemen-                        it who can answer my questions.” This led us to compare more
+tation or the explanation’s purpose (notably with discussion around                      “conversational” or more “graphical” explanations in the next study.
+risk). On this basis, different themes for either explanations’ for-
+mat/content or explanations’ purpose could be derived that encom-                         5     STUDY 2: DO GRAPHICAL OR DIALOGIC
+pass most of the concepts mentioned by participants. The transla-
+tion from French to English was done after the final categorization.                            FEATURE-BASED EXPLANATIONS HELP
+                                                                                                LAY USERS MAKE BETTER DECISIONS?
+4.2     Results                                                                           In this large-scale study, we investigate the usefulness of simple
+We grouped the main identified themes of the explanation require-                         feature importance explanations—that that can be required by law
+ments according to their connection to the format or content of the                       for recommender systems—to help lay users appropriately rely on
+explanation. Through the regulator’s view, we were able to gather                         life-insurance recommendations.
+domain perspectives that end users alone would not necessarily
+have provided, such as understanding the interests of different                           5.1     Study design
+stakeholders and potential misalignment, where the vulnerability                          5.1.1 Explanations design. Based on the legal requirements for ex-
+of certain users can be exploited, or the wide range of best prac-                        planations and the analysis of regulators’ and end-users’ expressed
+tices seen for recommendations and explanations. Conversely, the                          needs, we derived the following specifications for our explanations.
+end-users’ perspective reminds us of what clients truly care about,                          What to explain?
+regardless of existing regulations. While the main focus of the reg-                      Links between recommendation and user. We use “feature importance”
+ulators was on the notion of risk, the main concern of the users                          explanations to address the relationship between the recommended
+was not as clear. For some, it was the performance of the proposed                        product and the user’s characteristics.
+contract, for others the reliability of the robo-advisor, and for others                  Important Definitions. As highlighted by end-users and regulators
+still, the risk.                                                                          in Study 1, and by prior work [7], it is essential to give the minimal
+                                                                                          background knowledge necessary to understand the financial con-
+   Understanding explanations’ purposes through two perspectives.                         cepts used in the recommendations and explanations. We therefore
+The regulators reported an increasing trend for automated online                          presented definitions for all important financial concepts.
+robo-advisors, and a lack of “good” automated explanations to sup-                        Descriptions of the effect for complex user input parameters. Robex
+port those tools. Current robo-advisors’ explanations were seen                           used five user input parameters: “Your risk appetite”, “Your level of
+as very “generic” and “nebulous” in general. One of the reasons                           financial knowledge”, “the amount to invest proportionally to your
+is the use by many brokers of a third-party software to produce                           total financial assets”, “Your financial objective” and “The portion
+explanations and recommendations, over which they have little                             of your financial assets already invested”. Out of those five parame-
+control. regulators also reported the difficulty for brokers to pro-                      ters, we saw in Study 1 that the last three were more complex to
+duce explanations with the increasing complexity of their tools:                          interpret. For each of these concepts, we provided (1) the effect it
+FAccT ’23, June 12–15, 2023, Chicago, IL, USA                                                                                            Bertrand, et al.
+
+
+Table 1: Main themes emerging from the content analysis of regulators and end-users interviews, with corresponding lexical
+field and citations.
+
+ Explanation aspect            Regulator view                                             End-user view
+ Format and con-
+ tent
+ Synthetic vs. exhaus- short, simple, readable, “[Explanations] are a sort of syn- simple, “Something that tells you "this is really the
+ tive                  thesis”, “clean and clear” vs. exhaustive, “Just putting points you need to know"”
+                       a sentence "considering this and that..." is not enough”,
+                       give links to more information, give enough documen-
+                       tation
+ Schematic                     “schematic”, “graphics and diagrams [for novice users]”,   “I want to see the scale of the risk, and where I’m placed
+                               “playful”, “step-by-step”                                  on that scale”
+ Adapted vocabulary            “adapt vocabulary”, “not too much text”, “avoid financial “use simplified language, not the language of a banker”,
+                               jargon”                                                   “need to have more familiar language”, “I’m not sure
+                                                                                         what a placement is”
+ Purpose
+ Justify                       link user characteristics and product, “justification”, “Why are you making this recommendation? What fac-
+                               “real need of transparency” motivated by misalign- tors are you basing it on?”, “I want an explanation only
+                               ment of interest between insurers and clients, prevent if there is a disagreement.”
+                               “scams”, “what it is based on?”
+ Warn                          control, notify, warn, inform, “tendency to underesti- “What are the risks?”, “How much do I concretely risk
+                               mate [the risk]”, “Explanations are useful because there losing on the 50,000 I put in?”, “What can I expect in
+                               is a risk.”, “the [human] advisor will not say everything”, terms of risks and benefits?”
+                               “robo-advisors don’t have enough safeguards”, “make
+                               them [the users] understand that there is a step to take,
+                               make them question "do I agree?"”
+ Engage users                                                                             “It looks boring”, “I’ll open them [the links] and proba-
+                                                                                          bly not look at them.”
+ Teach                         enable users to have answers to their follow-up ques- “I don’t know anything about that.”, “I neither agree nor
+                               tions                                                 disagree because I don’t really understand this financial
+                                                                                     concept”, “I don’t understand this field”
+
+
+should have on the proposition—either lower or increase the risk               5.1.2 Experimental Conditions. Participants were divided into four
+the customer can take—(2) an indication of the magnitude of the                groups corresponding to the following four different interfaces:
+user’s input (e.g. “75% is a very big portion”). An example is shown           no explanation (control group), graphical-static, graphical-mutable
+in Figure 2.                                                                   and dialogic. The same contextual information was delivered across
+   In which format?                                                            all the different explanation conditions. Each of the four groups
+Graphical-static. The “graphical” explanation we had initially pro-            was then divided in two: one received a correct recommendation
+totyped for Study 1 was improved based on participants’ feedback.              and the other a false recommendation. The objective was to com-
+Graphical-mutable. As some end-users in Study 1 expressed the                  pare the ability of users of different interfaces to detect a crude
+need to change the parameters to know if they can trust the sys-               recommendation error.
+tem, we implemented a version of the graphical explanation where                  The false recommendation was produced by altering the score-
+user parameters were “mutable”. This supports Miller’s view that               based algorithm so that the recommendation was either much too
+explanations should enable to “mutate” events [34].                            risky or really not risky enough. This was done by altering the ini-
+Dialogic. Following feedback from end users and regulators on                  tial user’s risk score calculated by Robex by a roughly 50% change.
+how textual explanations compare to human advisors’, we also                   The direction of the change was so that more-than average risk-
+designed a “dialogic” explanation.It mimics a text message chat.               takers were redirected to low-risk proposals and vice versa. For
+This approach has been adopted in previous XAI work by [16, 17]                example, if a participant was recommended “Securimax” by the nor-
+for “conversational” explanations.                                             mal Robex algorithm, her risk-score would be increased artificially
+                                                                               so as to output the “Flexiplus” recommendation. On the contrary,
+                                                                               participants for whom the initial correct recommendation was ‘the
+Questioning the ability of feature-based explanations to empower non-experts in robo-advised financial decision-making   FAccT ’23, June 12–15, 2023, Chicago, IL, USA
+
+
+
+
+Figure 2: Explanation interfaces for each of the three conditions: A) Graphical-static: users see a graphical summary of how
+their characteristics impact the risk of the proposal, B) Graphical-mutable: users first see the graphical-static interface and
+then a pop-up message indicates they can change some of their characteristic C) Dialogic: the same information provided in the
+interfaces A) and B) is delivered through “sms-like” textual messages. Some graphics are added to facilitate the visualisation of
+the risk and of the variables decreasing and increasing the risk of the proposal. The figures are here translated to English but
+were shown in French to participants (cf. Figure 6 in the Appendix).
+
+
+more risky ‘Flexiplus” would be recommended the more conser-                             measures described below. Question wordings and Cronbach’s al-
+vative ‘Securimax” product. For participants who initially got the                       phas for grouped questionnaire items are provided in the Table 2
+“Flexi” recommendation, if their risk-score was below 12—out of a                        of the Appendix.
+maximum score of 21—, they were redirected to “Dynamo” and for                           Reliance. Reliance was measured by asking participants if they
+risk-scores above 12, to “Securimax”.                                                    thought the robo-advisor’s recommendation was adapted to their
+   The explanations of the false recommendation were produced in                         need or not. Over-reliance occurs when the participant followed
+the same way as the correct recommendations, using agnostic SHAP                         an incorrect recommendation.
+feature importances based on the skewed Robex algorithm. As a                            Trust. Trust was measured through the five question items from
+result, the explanations for false recommendations were illogical,                       the benevolence and competence aspects of McKnight’s frame-
+such as “Your risk appetite: low (1/7) contributed to increase the                       work [32]. One item was added to measure if participants felt the
+risk of the recommendation” cf. Figure 5 of the Appendix.                                need for any additional human advice.
+   Participants were distributed randomly in eight different condi-                      Cognitive load. Cognitive load was measured through the mental
+tions as shown in Figure 3.                                                              demand and effort items of the NASA-TLX Index.
+                                                                                         User engagement. Three user engagement question items were
+5.1.3 Evaluation measures. Building on prior work conducting                             adapted from O’Brien et al.’s framework [37]. Two items were taken
+empirical studies to evaluate XAI systems [8, 25, 29, 42], we used                       from the Felt Involvment (FI) category and one from the Novelty
+FAccT ’23, June 12–15, 2023, Chicago, IL, USA                                                                                                        Bertrand, et al.
+
+
+category (NO).                                                                             and were therefore for the most part representative of non-expert
+Objective Understanding. Understanding of the recommendation                               users. Financial knowledge was measured in the pre-questionnaire
+on the one hand and understanding of the explanation on the other                          through specific questions written with the help of four regulators
+were measured through “test” questions. The question about the                             from the French Regulation Authority of financial services (cf. Table
+recommendation was developed by the authors relying on their                               3 of the Appendix for the detail of the questions).
+knowledge of the field and discussions with experts. To measure                               At the end of the survey, participants in the deceptive condition
+understanding of the explanation, we used three questions to test                          were informed that they had received a wrong recommendation.
+if they understood the direction of the impact of some user inputs,                        All participants were reminded that the financial advice presented
+as seen in prior XAI work [47].                                                            was fictitious and non-relevant for their personal needs.
+All Cronbach’s alpha’s for the different sets of questions were sig-
+nificant, with the exception of trust for which we had to remove                           5.2    Results
+the question about the human advisor.
+                                                                                           For all evaluation measures, we ran a two-way ANOVA analysis
+5.1.4 Procedure and participants. Figure 3 illustrates the experi-                         with the explanation conditions and the recommendation condi-
+mental workflow used for this study. The study was approved by an                          tions (correct or false) as the independent variables. When sig-
+academic research ethics committee. We crowdsourced participants                           nificant, we conducted post-hoc Tukey’s HSD test for pairwise
+using the platform Lucid5 . Our goal was to target participants who                        comparisons. For all measures, the assumptions for ANOVA were
+might be life insurance robo-advisor users. We therefore began with                        met: we used the Shapiro-Wilk test to check that the residuals were
+a question to filter out users who were not at all interested in life-                     approximately normally distributed and the Bartlett test to verify
+insurance. Participants were then given an overview of the study,                          the homogeneity of variances.
+were asked for their consent to participate in it, and went through
+an attention check. The two following steps in the study process                           5.2.1 The no-explanation control group was more or equally likely to
+replicate what we can see in existing robo-advisors: a profiling                           distinguish between good and bad advice than the explanation groups.
+questionnaire and a following recommendation page. Participants                            We found a statistically significant difference in trust (p=0.001) and
+had to go through the questionnaire, read through their user profile                       reliance (p=0.01) between the group that received a correct proposal
+summary, the description of the recommendation, if applicable, an                          and the group that received an incorrect advice for the control con-
+explanation of why this recommendation was made to them, and                               dition (participants who didn’t receive any explanation). Yet, we
+then they had to choose whether to accept or reject the proposed life-                     sometimes didn’t find such a significant statistical difference for the
+insurance plan. We also collected their qualitative feedback about                         groups in the explanation condition. For the dialogic explanation
+explanations through a short free-text field. Finally, a two-page                          condition, there was no statistical difference between the groups
+post-questionnaire measured their understanding, workload, trust                           receiving a correct and an incorrect recommendation regarding
+and engagement in using Robex. The whole study lasted around 10                            trust and reliance on the advice. For the graph-mutable explanation
+minutes. Participants were paid around 3€506 for completing the                            condition, we found participants were able to differentiate their
+study. We randomly assigned participants to an experimental con-                           reliance on the advice between the incorrect and correct proposal
+dition until we had reached a minimum of roughly 30 participants                           (p=0.03), but not their trust. In the graphic-static explanation condi-
+per condition. Participants who failed attention checks, took less                         tion, people trusted a correct proposition significantly more than an
+than 5 minutes or wrote non-serious content (repeated keyboard                             incorrect one (p-value=0.05) and relied on the correct proposition
+strokes, clearly ironical or insulting content) in the free-text field                     almost significantly more (p=0.064) than on the incorrect one.
+were excluded. We also implemented time counters: participants
+                                                                                           5.2.2 Dialogic explanations increase subjective trust. We found that
+could not continue to next page if a (small) minimum amount of
+                                                                                           users who were shown an incorrect recommendation and a dialogic
+time had not elapsed. This was to make sure that participants read
+                                                                                           explanations trusted significantly more the robo-advice compared
+through the profiling questionnaire, the recommendation and the
+                                                                                           to the no-explanation group (p=0.001). Further, we found that par-
+explanation. We ended up with 32 participants in each condition.
+                                                                                           ticipants in the incorrect recommendation and dialogic explanation
+   French workers between 18 and 65 years old were recruited
+                                                                                           condition were almost significantly (p=0.068) more likely to rely on
+online through the platform Lucid. Of the study respondents that
+                                                                                           the incorrect robo-advice than participants in the incorrect/control
+were finally included in the survey, 73% were female and 27% male—
+                                                                                           condition.
+although some participants did not provide any answer to that
+question. 61% had an undergraduate or a graduate degree (Bache-                            5.2.3 Dialogic or graphical explanations do not improve user under-
+lor, Master, Doctorate and other specialized education). We cannot                         standing. The different explanation formats did not improve users’
+explain the skew towards women participants but it is possible that                        understanding of the recommendation and more specifically its risk
+more male participants did not want to answer this demographic                             —question one out of three on the recommendation understanding
+question or that our filters about the interest in life-insurance or                       (cf. Table 2 in the Appendix). Based on the graphs in Figure 4, there
+seriousness of the responses excluded more male participants. Par-                         appears to be a tendency for graphical-mutable explanations to lead
+ticipants had an average financial knowledge score of 1.3 out of 5,                        to better understanding of the recommendation than other condi-
+5 https://lucid.co/                                                                        tions, but the effect was not significant (p=0.1). Further, the level
+6 Lucid goes through several suppliers to gather participants. Each supplier receives      of understanding of the explanations was comparable across the
+3.50€ for each study completed, takes a commission and pays the rest to the participant.   different explanation conditions. However, people in the deceptive
+Questioning the ability of feature-based explanations to empower non-experts in robo-advised financial decision-making      FAccT ’23, June 12–15, 2023, Chicago, IL, USA
+
+
+
+
+Figure 3: The workflow of our quantitative experiments. The profiling questionnaire is used to produce a personalized
+recommendation of a life-insurance contract. Clients can review the recommendation, the explanation and then decide to
+follow the recommendation or not. This decision is used to measure users’ “reliance” on the explainable robo-advisor.
+
+
+
+
+                  (a) Reliance                                                  (b) Trust                                          (c) Cognitive load
+
+
+
+
+             (d) User engagement                           (e) Understanding of the recommendation                       (f) Understanding of the explanation
+
+Figure 4: Results for Study 2. Vertical lines represent the 95% confidence interval. Asterisks and dots indicate the statistical
+significance of the results: *** p-value≤0.001, ** p-value≤0.01, * p-value≤0.05, • p-value≤0.07, "ns" non significant.
+
+
+conditions were significantly less likely to understand the charac-                       6    LIMITATIONS
+teristics of the recommendation and the explanations (p=0.001)—we                        This work has some limitations. First, the content analysis in Study 1
+performed a one-way ANOVA with just the recommendation con-                              was performed based on the detailed notes that one author took dur-
+dition (correct or false) as the independent variable. This evidences                    ing the interviews, which may have limited the amount and breadth
+that people are less likely to understand a recommendation that is                       of captured input from participants. In addition, the non-expert
+not suited to their needs, or that they did not expect.                                  participants from the qualitative study were graduate students, who
+                                                                                         represent a very specific sample of non-expert users. One of the lim-
+5.2.4 No effect of explanations on cognitive load and user engage-                       itations in our implementation of ecological interface design is that
+ment. We do not find any statistically significant effect for the                        we used a simplified and fictional life-insurance robo-advisor. Some
+different explanation conditions on users’ subjective cognitive load                     factors such as time horizon, detailed descriptions of the funds, of
+and user engagement. This finding contradicts other work on the                          their historical performances and the costs of each contract were
+cognitive cost of explanation [49]. Perhaps this is the case here                        not taken into account. We did this to simplify the building of the
+because understanding financial recommendations is already cogni-                        tool, and also because we felt adding costs and performances might
+tively demanding enough due to the complexity of the field, and the                      have diverted participants’ focus from the risk of the proposals,
+cost of adding explanations is negligible in comparison—average                          which is the most critical information for users to understand ac-
+perceived cognitive workload for using the robo-advisor was 5.6                          cording to regulators and the spirit of the legislation. Future work
+out of 10.
+FAccT ’23, June 12–15, 2023, Chicago, IL, USA                                                                                        Bertrand, et al.
+
+
+could explore similar research questions with a real robo-advisor.         1) appropriately rely on the recommendation, 2) understand the
+Additionally, one of the main limitations of crowd-sourcing partici-       recommendation or 3) appropriately calibrate their trust in the robo-
+pants in Study 2 is that they might lack the mental engagement or          advisor compared to the control condition. As noted in Section 3.1.3,
+involvement with the subject. To increase participant engagement,          the objective of the law requiring insurance intermediaries to spec-
+we let them answer the survey with their own profile, instead of           ify in writing “the reasons for the appropriateness of the proposed
+presenting a predefined profile for all participants. We verified that     contract” is also to discipline brokers by making non-objective, self-
+the type of recommendation did not have a significant impact on            interested, recommendations more visible and punishable. Feature-
+our measures. Additionally, we implemented a question to filter out        based explanations are therefore not useless, because they at least
+users completely uninterested in life-insurance, attention checks,         serve the purpose of disciplining insurance intermediaries by forc-
+text fields and time counters to filter out non-serious participants.      ing them to show how the proposed product corresponds to the
+Nevertheless, it is possible that the participants in our study were       customer’s risk profile. However, our work changes the perspec-
+not representative of a real user of a real life-insurance robo-advisor.   tive on the benefit of explanations for customers’ understanding
+Also, the participants in our study were also mainly women (73%).          and reliance. Explanations are not always “all good”, they must be
+                                                                           designed so that over-reliance effects are mitigated. If the explana-
+                                                                           tion formats we presented could not meet the legal objectives we
+7    DISCUSSION AND FUTURE WORK                                            highlighted, future work could address how to design explanations
+Dialogic vs. Graphical explanations. According to Miller [34], expla-      that are cognitively engaging for lay-users. Buçinca et al. designed
+nations are best provided through a social process, i.e. a conversa-       cognitive forcing functions, but these were perceived as friction
+tion, because it matches the way humans explain things. In fact,           by the users. Melsion et al. [33] designed “quiz” explanations by
+“dialogic” explanations have been favorably presented in the XAI           asking users—in this case children—what they thought were the
+literature, with [17] presenting how dialogic management systems           most important characteristics for an AI to predict gender. The use
+can respond to users’ questions about a hotel recommender system,          of such gamified explanations could improve learning in a specific
+or [16] showing how conversational explanations can be useful for          domain without sacrificing user satisfaction.
+criminal investigators. While the benefits of dialogic explanations
+might be real regarding user satisfaction and explanation useful-
+ness in some contexts [16, 17], our results, in turn, shed light on a      8    CONCLUSION
+downside of “dialogic” explanations for impactful AI-based deci-           In this paper, we carried out a qualitative study to understand what
+sions: over-reliance. It is possible that either the “humanness” of        end-users and consumer protection experts—regulators—say about
+the dialogic explanation we presented, or the familiarity of users         feature-based explanation requirements. We then presented the
+with chats, made them more inclined to accept robo-advice. In fact,        results of a large-scale study to investigate if different formats of
+some people might see the anthropomorphisation of systems as               feature-based explanations help novice users appropriately rely
+suspicious. One of our end-user participants in the pilot Study said       on, trust and understand recommendations of life-insurance plans.
+that “It’s quite a lot of anthropomorphization”. This is consistent        We found that providing feature-based explanations did not sig-
+with the study by Hepenstal et al. [16] in which participants were         nificantly improve users’ understanding of the recommendation,
+uncomfortable with the humanness of the XAI agent and wanted               or lead to more accurate reliance on the tool’s recommendation
+to have it clear that they were not talking to a real person. Our find-    compared to having no explanation at all. We also found that ex-
+ings also qualify Szymanski et al.’s results [47] according to which       planations provided in a dialogic format, where users can choose a
+participants prefer graphical explanations but understand textual          question and get chatbot-like text answers, increased users’ trust in
+explanations better. The authors further advance that hybrid tex-          the robo-advisor and did not significantly improve user understand-
+tual and graphical formats could improve both user satisfaction and        ing. This led us to conclude that graphical formats could be better
+understanding. Our study qualifies this result by showing that users       suited to inform clients. This leaves us in a quite unsatisfactory
+made less mistakes with graphical formats which presented small            state of affairs where the obligation to inform clients does not fulfill
+amounts of text than with dialogic formats with small amounts              its promises to empower users in making better decisions. We high-
+of graphical visualizations. This contrasts with Szymanski et al.’s        lighted promising future leads to address this challenge. Finally, we
+finding that text is better understood—however the textual expla-          hope our work may encourage researchers to investigate how legal
+nations in this work were much shorter. Perhaps the brevity and            explainability requirements may take shape, and how to address
+the synthetic aspect of our graphic explanations compared to the           the problem of informing non experts in complex domains.
+dialogic explanations were instrumental in improving users’ appro-
+priate reliance.
+                                                                           ACKNOWLEDGMENTS
+   Legal requirements for feature-based explanations. In this study,       This research is sponsored by the Agence Nationale de la Recherche
+we showed how legal requirements to “motivate” investment ad-              (ANR) through the grant ANR-20-CHIA-0023-01 and by the Af2i
+vice based on client’s features may take shape using a classical           (Association française des investisseurs institutionels) through the
+XAI method (SHAP) and various explanation representations. We              Young Researcher Award attributed to Astrid Bertrand. We thank
+further found that the legal sub-objectives of the explanation that        Olivier Fliche, Christine Saidani, Laurent Dupont, and all the partic-
+we defined in Section 3.1.3 to help users make “fully informed”            ipants from the ACPR and Télécom Paris for their helpful guidance,
+decisions were not fully achieved. Users were not better able to           comments and for making this project possible.
+Questioning the ability of feature-based explanations to empower non-experts in robo-advised financial decision-making              FAccT ’23, June 12–15, 2023, Chicago, IL, USA
+
+
+REFERENCES                                                                                  [17] Diana C. Hernandez-Bocanegra and Jürgen Ziegler. 2021. Conversational review-
+ [1] Ramnath Balasubramanian, Ari Chester, and Nick Milinkovich. 2020. Rewriting                 based explanations for recommender systems: Exploring users’ query behavior. In
+     the rules: Digital and AI-powered underwriting in life insurance. Consultancy               CUI 2021 - 3rd Conference on Conversational User Interfaces (CUI ’21). Association
+     Report. McKinsey & Company. https://www.mckinsey.com/industries/financial-                  for Computing Machinery, New York, NY, USA, 1–11. https://doi.org/10.1145/
+     services/our-insights/rewriting-the-rules-digital-and-ai-powered-                           3469595.3469596
+     underwriting-in-life-insurance                                                         [18] Johan Huysmans, Karel Dejaeger, Christophe Mues, Jan Vanthienen, and Bart
+ [2] Ramnath Balasubramanian, Ari Libarikian, and Doug McElhaney. 2021. Insurance                Baesens. 2011. An empirical evaluation of the comprehensibility of decision table,
+     2030—The impact of AI on the future of insurance. Technical Report. McKin-                  tree and rule based predictive models. Decision Support Systems 51, 1 (April 2011),
+     sey & Company. https://www.mckinsey.com/industries/financial-services/our-                  141–154. https://doi.org/10.1016/j.dss.2010.12.003
+     insights/insurance-2030-the-impact-of-ai-on-the-future-of-insurance                    [19] Maia Jacobs, Jeffrey He, Melanie F. Pradier, Barbara Lam, Andrew C. Ahn,
+ [3] Sarah Bayer, Henner Gimpel, and Moritz Markgraf. 2021. The role of                          Thomas H. McCoy, Roy H. Perlis, Finale Doshi-Velez, and Krzysztof Z. Gajos.
+     domain expertise in trusting and following explainable AI decision sup-                     2021. Designing AI for Trust and Collaboration in Time-Constrained Medi-
+     port systems. Journal of Decision Systems 0, 0 (2021), 1–29.                https://        cal Decisions: A Sociotechnical Lens. In Proceedings of the 2021 CHI Confer-
+     doi.org/10.1080/12460125.2021.1958505 Publisher: Taylor & Francis _eprint:                  ence on Human Factors in Computing Systems. ACM, Yokohama Japan, 1–14.
+     https://doi.org/10.1080/12460125.2021.1958505.                                              https://doi.org/10.1145/3411764.3445385
+ [4] Astrid Bertrand, Rafik Belloum, James R. Eagan, and Winston Maxwell. 2022. How         [20] Zhuochen Jin, Shuyuan Cui, Shunan Guo, David Gotz, Jimeng Sun, and Nan
+     Cognitive Biases Affect XAI-assisted Decision-making: A Systematic Review. In               Cao. 2020. CarePre: An Intelligent Clinical Decision Assistance System. ACM
+     Proceedings of the 2022 AAAI/ACM Conference on AI, Ethics, and Society (AIES                Transactions on Computing for Healthcare 1, 1 (March 2020), 6:1–6:20. https:
+     ’22). Association for Computing Machinery, New York, NY, USA, 78–91. https:                 //doi.org/10.1145/3344258
+     //doi.org/10.1145/3514094.3534164                                                      [21] Been Kim, Rajiv Khanna, and Oluwasanmi Koyejo. 2016. Examples are not
+ [5] Astrid Bertrand, Winston Maxwell, and Xavier Vamparys. 2021. Do AI-based                    Enough, Learn to Criticize! Criticism for Interpretability. (2016), 11.
+     anti-money laundering (AML) systems violate European fundamental rights?               [22] Been Kim, Martin Wattenberg, Justin Gilmer, Carrie Cai, James Wexler, Fernanda
+     International Data Privacy Law (April 2021). https://doi.org/10.1093/idpl/ipab010           Viegas, and Rory Sayres. 2018. Interpretability Beyond Feature Attribution:
+ [6] Adrien Bibal, Michael Lognoul, Alexandre de Streel, and Benoît Frénay. 2021.                Quantitative Testing with Concept Activation Vectors (TCAV). https://doi.org/
+     Legal Requirements on Explainability in Machine Learning. Artificial Intelligence           10.48550/arXiv.1711.11279 arXiv:1711.11279 [stat].
+     and Law 29, 2 (2021), 149–169. https://doi.org/10.1007/s10506-020-09270-4              [23] I. Elizabeth Kumar, Suresh Venkatasubramanian, Carlos Scheidegger, and Sorelle
+     Publisher: Springer Verlag.                                                                 Friedler. 2020. Problems with Shapley-value-based explanations as feature im-
+ [7] Clara Bove, Jonathan Aigrain, Marie-Jeanne Lesot, Charles Tijus, and Marcin                 portance measures. arXiv:2002.11097 [cs, stat] (June 2020). http://arxiv.org/abs/
+     Detyniecki. 2022. Contextualization and Exploration of Local Feature Importance             2002.11097 arXiv: 2002.11097.
+     Explanations to Improve Understanding and Satisfaction of Non-Expert Users. In         [24] Bum Chul Kwon, Min-Je Choi, Joanne Taery Kim, Edward Choi, Young Bin Kim,
+     27th International Conference on Intelligent User Interfaces. ACM, Helsinki Finland,        Soonwook Kwon, Jimeng Sun, and Jaegul Choo. 2019. RetainVis: Visual Analytics
+     807–819. https://doi.org/10.1145/3490099.3511139                                            with Interpretable and Interactive Recurrent Neural Networks on Electronic
+ [8] Zana Buçinca, Maja Barbara Malaya, and Krzysztof Z. Gajos. 2021. To Trust or to             Medical Records. IEEE Transactions on Visualization and Computer Graphics 25, 1
+     Think: Cognitive Forcing Functions Can Reduce Overreliance on AI in AI-assisted             (Jan. 2019), 299–309. https://doi.org/10.1109/TVCG.2018.2865027 Conference
+     Decision-making. Proceedings of the ACM on Human-Computer Interaction 5,                    Name: IEEE Transactions on Visualization and Computer Graphics.
+     CSCW1 (2021), 188:1–188:21. https://doi.org/10.1145/3449287                            [25] Vivian Lai, Chacha Chen, Q. Vera Liao, Alison Smith-Renner, and Chenhao Tan.
+ [9] Furui Cheng, Dongyu Liu, Fan Du, Yanna Lin, Alexandra Zytek, Haomin Li,                     2021. Towards a Science of Human-AI Decision Making: A Survey of Empirical
+     Huamin Qu, and Kalyan Veeramachaneni. 2022. VBridge: Connecting the Dots                    Studies. https://doi.org/10.48550/arXiv.2112.11471 arXiv:2112.11471 [cs].
+     Between Features and Data to Explain Healthcare Models. IEEE Transactions on           [26] M. Langer, D. Oster, T. Speith, H. Hermanns, L. Kästner, E. Schmidt, A. Sesing,
+     Visualization and Computer Graphics 28, 1 (Jan. 2022), 378–388. https://doi.org/10.         and K. Baum. 2021. What do we want from Explainable Artificial Intelligence
+     1109/TVCG.2021.3114836 Conference Name: IEEE Transactions on Visualization                  (XAI)? – A stakeholder perspective on XAI and a conceptual model guiding
+     and Computer Graphics.                                                                      interdisciplinary XAI research. Artificial Intelligence 296 (2021). https://doi.org/
+[10] Hao-Fei Cheng, Ruotong Wang, Zheng Zhang, Fiona O’Connell, Terrance Gray,                   10.1016/j.artint.2021.103473
+     F. Maxwell Harper, and Haiyi Zhu. 2019. Explaining Decision-Making Algorithms          [27] Q. Vera Liao, Daniel Gruen, and Sarah Miller. 2020. Questioning the AI: Informing
+     through UI: Strategies to Help Non-Expert Stakeholders. In Proceedings of the 2019          Design Practices for Explainable AI User Experiences. In Proceedings of the 2020
+     CHI Conference on Human Factors in Computing Systems (CHI ’19). Association                 CHI Conference on Human Factors in Computing Systems (CHI ’20). Association
+     for Computing Machinery, New York, NY, USA, 1–12. https://doi.org/10.1145/                  for Computing Machinery, New York, NY, USA, 1–15. https://doi.org/10.1145/
+     3290605.3300789                                                                             3313831.3376590
+[11] Jonathan Dodge, Andrew A. Anderson, Matthew Olson, Rupika Dikkala, and                 [28] Brian Y. Lim and Anind K. Dey. 2009. Assessing demand for intelligibility in
+     Margaret Burnett. 2022. How Do People Rank Multiple Mutant Agents?. In 27th                 context-aware applications. In Proceedings of the 11th international conference
+     International Conference on Intelligent User Interfaces (IUI ’22). Association for          on Ubiquitous computing (UbiComp ’09). Association for Computing Machinery,
+     Computing Machinery, New York, NY, USA, 191–211. https://doi.org/10.1145/                   New York, NY, USA, 195–204. https://doi.org/10.1145/1620545.1620576
+     3490099.3511115                                                                        [29] Han Liu, Vivian Lai, and Chenhao Tan. 2021. Understanding the Effect of Out-
+[12] Malin Eiband, Daniel Buschek, and Heinrich Hussmann. 2021. How to Sup-                      of-distribution Examples and Interactive Explanations on Human-AI Decision
+     port Users in Understanding Intelligent Systems? Structuring the Discussion.                Making. Proceedings of the ACM on Human-Computer Interaction 5, CSCW2 (Oct.
+     arXiv:2001.08301 [cs] (Feb. 2021).        http://arxiv.org/abs/2001.08301 arXiv:            2021), 408:1–408:45. https://doi.org/10.1145/3479552
+     2001.08301.                                                                            [30] Scott M. Lundberg and Su-In Lee. 2017. A unified approach to interpreting
+[13] Satu Elo and Helvi Kyngäs. 2008. The qualitative content analysis process.                  model predictions. In Proceedings of the 31st International Conference on Neural
+     Journal of Advanced Nursing 62, 1 (2008), 107–115. https://doi.org/10.1111/j.1365-          Information Processing Systems (NIPS’17). Curran Associates Inc., Red Hook, NY,
+     2648.2007.04569.x _eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1365-          USA, 4768–4777.
+     2648.2007.04569.x.                                                                     [31] YOKOI-ARAI Mamiko. 2020. The Impact of Big Data and Artificial Intelligence (AI)
+[14] Shi Feng and Jordan Boyd-Graber. 2019. What can AI do for me? evaluating                    in the Insurance Sector. Technical Report. OECD. http://www.oecd.org/finance/
+     machine learning interpretations in cooperative play. In Proceedings of the 24th            Impact-Big-Data-AI-in-the-Insurance-Sector.htm
+     International Conference on Intelligent User Interfaces (IUI ’19). Association for     [32] D. Harrison McKnight, Vivek Choudhury, and Charles Kacmar. 2002. De-
+     Computing Machinery, New York, NY, USA, 229–239. https://doi.org/10.1145/                   veloping and Validating Trust Measures for e-Commerce: An Integrative Ty-
+     3301275.3302265                                                                             pology. Information Systems Research 13, 3 (Sept. 2002), 334–359. https:
+[15] Juliana J. Ferreira and Mateus S. Monteiro. 2020. What Are People Doing About               //doi.org/10.1287/isre.13.3.334.81 Publisher: INFORMS.
+     XAI User Experience? A Survey on AI Explainability Research and Practice.              [33] Gaspar Isaac Melsión, Ilaria Torre, Eva Vidal, and Iolanda Leite. 2021. Using
+     In Design, User Experience, and Usability. Design for Contemporary Interactive              Explainability to Help Children UnderstandGender Bias in AI. In Interaction De-
+     Environments (Lecture Notes in Computer Science), Aaron Marcus and Elizabeth                sign and Children. ACM, Athens Greece, 87–99. https://doi.org/10.1145/3459990.
+     Rosenzweig (Eds.). Springer International Publishing, Cham, 56–73. https://doi.             3460719
+     org/10.1007/978-3-030-49760-6_4                                                        [34] Tim Miller. 2019. Explanation in artificial intelligence: Insights from the social
+[16] Sam Hepenstal, Leishi Zhang, Neesha Kodagoda, and B. l. william Wong. 2021.                 sciences. Artificial Intelligence 267 (Feb. 2019), 1–38. https://doi.org/10.1016/j.
+     Developing Conversational Agents for Use in Criminal Investigations. ACM                    artint.2018.07.007
+     Transactions on Interactive Intelligent Systems 11, 3-4 (Dec. 2021), 1–35. https:      [35] Sina Mohseni, Niloofar Zarei, and Eric D. Ragan. 2020. A Multidisciplinary
+     //doi.org/10.1145/3444369                                                                   Survey and Framework for Design and Evaluation of Explainable AI Systems.
+                                                                                                 arXiv:1811.11839 [cs] (Aug. 2020).       http://arxiv.org/abs/1811.11839 arXiv:
+                                                                                                 1811.11839.
+FAccT ’23, June 12–15, 2023, Chicago, IL, USA                                                                                                                       Bertrand, et al.
+
+
+[36] Mohammad Naiseh, Reem S. Al-Mansoori, Dena Al-Thani, Nan Jiang, and Raian                    Conference on Fairness, Accountability, and Transparency. ACM, Barcelona Spain,
+     Ali. 2021. Nudging through Friction: An Approach for Calibrating Trust in                    56–67. https://doi.org/10.1145/3351095.3372870
+     Explainable AI. In 2021 8th International Conference on Behavioral and Social           [45] Jiao Sun, Q. Vera Liao, Michael Muller, Mayank Agarwal, Stephanie Houde, Kartik
+     Computing (BESC). 1–5. https://doi.org/10.1109/BESC53957.2021.9635271                        Talamadupula, and Justin D. Weisz. 2022. Investigating Explainability of Genera-
+[37] Heather O’Brien and Paul Cairns. 2015. An empirical evaluation of the User                   tive AI for Code through Scenario-based Design. In 27th International Conference
+     Engagement Scale (UES) in online news environments. Information Processing &                 on Intelligent User Interfaces (IUI ’22). Association for Computing Machinery, New
+     Management 51, 4 (July 2015), 413–427. https://doi.org/10.1016/j.ipm.2015.03.003             York, NY, USA, 212–228. https://doi.org/10.1145/3490099.3511119
+[38] Aimee Prawitz, E. Thomas Garman, Benoit Sorhaindo, Barbara O’Neill, Jinhee              [46] Harini Suresh, Steven R. Gomez, Kevin K. Nam, and Arvind Satyanarayan. 2021.
+     Kim, and Patricia Drentea. 2006. Incharge Financial Distress/Financial Well-                 Beyond Expertise and Roles: A Framework to Characterize the Stakeholders of
+     Being Scale: Development, Administration, and Score Interpretation. https:                   Interpretable Machine Learning and their Needs. In Proceedings of the 2021 CHI
+     //papers.ssrn.com/abstract=2239338                                                           Conference on Human Factors in Computing Systems. Number 74. Association
+[39] Juan Rebanal, Jordan Combitsis, Yuqi Tang, and Xiang ’Anthony’ Chen. 2021.                   for Computing Machinery, New York, NY, USA, 1–16. https://doi.org/10.1145/
+     XAlgo: a Design Probe of Explaining Algorithms’ Internal States via Question-                3411764.3445088
+     Answering. In 26th International Conference on Intelligent User Interfaces (IUI ’21).   [47] Maxwell Szymanski, Martijn Millecamp, and Katrien Verbert. 2021. Visual, tex-
+     Association for Computing Machinery, New York, NY, USA, 329–339. https:                      tual or hybrid: the effect of user expertise on different explanations. In 26th
+     //doi.org/10.1145/3397481.3450676                                                            International Conference on Intelligent User Interfaces. ACM, College Station TX
+[40] Marco Tulio Ribeiro, Sameer Singh, and Carlos Guestrin. 2016. "Why Should I                  USA, 109–119. https://doi.org/10.1145/3397481.3450662
+     Trust You?": Explaining the Predictions of Any Classifier. In Proceedings of the        [48] Richard Tomsett, Dave Braines, Dan Harborne, Alun Preece, and Supriyo
+     22nd ACM SIGKDD International Conference on Knowledge Discovery and Data                     Chakraborty. 2018. Interpretable to Whom? A Role-based Model for Analyz-
+     Mining (KDD ’16). Association for Computing Machinery, New York, NY, USA,                    ing Interpretable Machine Learning Systems. arXiv:1806.07552 [cs] (June 2018).
+     1135–1144. https://doi.org/10.1145/2939672.2939778                                           http://arxiv.org/abs/1806.07552 arXiv: 1806.07552.
+[41] James Schaffer, John O’Donovan, James Michaelis, Adrienne Raglin, and Tobias            [49] Helena Vasconcelos, Matthew Jörke, Madeleine Grunde-McLaughlin, Tobias
+     Höllerer. 2019. I can do better than your AI: expertise and explanations. In                 Gerstenberg, Michael Bernstein, and Ranjay Krishna. 2022. Explanations Can
+     Proceedings of the 24th International Conference on Intelligent User Interfaces              Reduce Overreliance on AI Systems During Decision-Making. http://arxiv.org/
+     (IUI ’19). Association for Computing Machinery, New York, NY, USA, 240–251.                  abs/2212.06823 arXiv:2212.06823 [cs].
+     https://doi.org/10.1145/3301275.3302308                                                 [50] Kim J. Vicente. 2002. Ecological Interface Design: Progress and Challenges. Hu-
+[42] Donghee Shin. 2021. The effects of explainability and causability on perception,             man Factors 44, 1 (March 2002), 62–78. https://doi.org/10.1518/0018720024494829
+     trust, and acceptance: Implications for explainable AI. International Journal of             Publisher: SAGE Publications Inc.
+     Human-Computer Studies 146 (Feb. 2021), 102551. https://doi.org/10.1016/j.ijhcs.        [51] Danding Wang, Qian Yang, Ashraf Abdul, and Brian Y. Lim. 2019. Designing
+     2020.102551                                                                                  Theory-Driven User-Centric Explainable AI. In Proceedings of the 2019 CHI Confer-
+[43] Auste Simkute, Ewa Luger, Mike Evans, and Rhianne Jones. 2020. Experts in the                ence on Human Factors in Computing Systems (CHI ’19). Association for Computing
+     Shadow of Algorithmic Systems: Exploring Intelligibility in a Decision-Making                Machinery, New York, NY, USA, 1–15. https://doi.org/10.1145/3290605.3300831
+     Context. In Companion Publication of the 2020 ACM Designing Interactive Systems
+     Conference (DIS’ 20 Companion). Association for Computing Machinery, New
+     York, NY, USA, 263–268. https://doi.org/10.1145/3393914.3395862                         APPENDIX
+[44] Kacper Sokol and Peter Flach. 2020. Explainability fact sheets: a framework
+     for systematic assessment of explainable approaches. In Proceedings of the 2020
+Questioning the ability of feature-based explanations to empower non-experts in robo-advised financial decision-making   FAccT ’23, June 12–15, 2023, Chicago, IL, USA
+
+
+       Table 2: Question used for measuring different metrics with Cronbach alphas (translated from French to English).
+
+              Measure                     Questions with [possible responses]                                                           Cronbach’s
+                                                                                                                                        alpha
+              Understanding of            What is your estimate of the euro fund percentage in the proposal that was                    NA
+              recommendation              made to you? [Several proposals]
+                                          On a scale of 1 to 5 (5 being the most risky), how risky do you think the Robex
+                                          proposal is?
+                                          What is special about a euro fund? [it offers a high expectation of gains for
+                                          a high risk of loss, it is mostly composed of actions, it is guaranteed by the
+                                          insurer, I do not know]
+              Understanding of ex-        Of your characteristics and goals, which factor weighed the most in the proposal              NA
+              planation                   the algorithm offered you? [Several proposals]
+                                          How did the proportion of your financial assets already invested in risky fi-
+                                          nancial products, which is for you ... , impacted the risk of proposal made by
+                                          Robex? [Increase / decrease / neutral]
+                                          How did your investment objective, which is ... impacted the risk of the proposal
+                                          made by Robex?
+              Trust-Benevolence           I think Robex is acting in my best interest                                                   0.854
+                                          Robex wants to understand my needs and preferences
+              Trust-Competence            Robex is skilled and effective in providing life insurance recommendations
+                                          Robex has the expertise to understand my needs and preferences                                0.878
+                                          Robex is fulfilling its role as a life insurance advisor very well
+              Trust-Other         (not    I would need a human advisor to help me choose a life insurance plan                          Not used
+              used)
+              User engagement             I felt involved in my task of choosing a life insurance plan
+                                          The content of the life insurance recommendation site has attracted my curiosity              0.818
+                                          I was interested in the experience
+              Cognitive load              I found it mentally demanding to read and understand the proposed life insur- 0.829
+                                          ance formula
+                                          I had to make an effort to read and understand the proposed life insurance
+                                          formula
+FAccT ’23, June 12–15, 2023, Chicago, IL, USA                                                                                                Bertrand, et al.
+
+
+Table 3: Question used in the pre-questionnaire for measuring users’ personal characteristics (translated from French to
+English).
+
+              Measure                     Questions with [possible answers]
+              Objective                   What would be the main objective of your investment? [Make my savings grow, Finance a
+                                          project, Finance my retirement, Pass on my assets, Protect my savings]
+              Amount to be in- How much would you like to invest? [Less than 5000€, Between 5000€ and 10 000€, Between
+              vested           10000€ and 50000€, More than 50000€]
+                                          This amount represents what percentage of your total financial assets (excluding your home)?
+                                          [Less than 5%, Between 5% and 25%, Between 25% and 50%, Between 50% and 75%, More than
+                                          75%]
+              Percentage of assets        Have you already invested in a financial product with a risk of capital loss? If so, how much of
+              already invested            your total financial assets do these financial products represent? [Less than 5%, Between 5%
+                                          and 25%, Between 25% and 50%, Between 50% and 75%, More than 75%]
+              Risk appetite               Which of the following statements is closest to the level of financial risk you are willing to
+                                          take when saving or investing? [Take significant financial risk hoping for significant returns,
+                                          Take above average financial risk hoping for above average returns, Take average financial risk
+                                          hoping for average returns, I do not wish to take any financial risk]
+                                          For the next three sentences, please indicate the likelihood that you would engage in the specified
+                                          behavior if you were in the situation described “Investing 10% of your annual income in an
+                                          investment consisting of securities issued by the European Union” [Very unlikely, Somewhat
+                                          unlikely, Uncertain, Somewhat likely, Very likely]
+                                          “Investing 5% of your annual income in highly speculative securities” [Very unlikely, Somewhat
+                                          unlikely, Uncertain, Somewhat likely, Very likely]
+                                          “Investing 10% of your annual income in a new business” [Very unlikely, Somewhat unlikely,
+                                          Uncertain, Somewhat likely, Very likely]
+              Financial knowledge         Have you ever subscribed to a life insurance contract? [Yes, No]
+              and experience
+                                          Have you ever invested in a financial product with a risk of capital loss (e.g. PEA (Plan d’Epargne
+                                          en Actions), multi-support life insurance contract, securities account, crypto assets, investment
+                                          funds...)? [Yes, No]
+                                          A high expectation of gains implies a high risk of capital loss. [True, False]
+                                          A real estate fund (SCPI or OPCI) is a fund with guaranteed capital. [True, False]
+                                          The capital invested in a life insurance plan is blocked for 8 years. [True, False]
+                                          The capital invested in life insurance units of account is subject to a risk of capital loss. [True,
+                                          False]
+Questioning the ability of feature-based explanations to empower non-experts in robo-advised financial decision-making   FAccT ’23, June 12–15, 2023, Chicago, IL, USA
+
+
+
+
+Figure 5: Explanation interfaces examples for an incorrect recommendation for each of the three conditions: A) Graphical-static
+B) Graphical-mutable C) Dialogic. The correct user profile in this case would have been “Secure”, but the skewed Robex
+algorithm outputs “Dynamo”. Explanations are in French, as shown to participants.
+FAccT ’23, June 12–15, 2023, Chicago, IL, USA                                                                      Bertrand, et al.
+
+
+
+
+Figure 6: The original, French version of Figure 2 that shows the three explanation conditions for participants who received a
+correct recommendation.
+

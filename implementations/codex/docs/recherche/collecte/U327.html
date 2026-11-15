@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Amazon ECS Express Mode - Amazon Elastic Container Service</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="express-service-overview" /><meta name="default_state" content="express-service-overview" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/express-service-overview.html" /><link rel="alternate" type="text/markdown" href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/express-service-overview.md" title="Markdown version" /><meta name="description" content="Learn about Express Mode services, a simplified API for deploying containerized web applications and API services." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon Elastic Container Service" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Run, stop, and manage Docker containers on a cluster using the Amazon Elastic Container Service Developer Guide." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/express-service-overview.html" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/AmazonECS/latest/developerguide/express-service-overview.html" hreflang="id-id" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/AmazonECS/latest/developerguide/express-service-overview.html" hreflang="id" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/AmazonECS/latest/developerguide/express-service-overview.html" hreflang="de-de" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/AmazonECS/latest/developerguide/express-service-overview.html" hreflang="de" /><link rel="alternate" href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/express-service-overview.html" hreflang="en-us" /><link rel="alternate" href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/express-service-overview.html" hreflang="en" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/AmazonECS/latest/developerguide/express-service-overview.html" hreflang="es-es" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/AmazonECS/latest/developerguide/express-service-overview.html" hreflang="es" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/AmazonECS/latest/developerguide/express-service-overview.html" hreflang="fr-fr" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/AmazonECS/latest/developerguide/express-service-overview.html" hreflang="fr" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/AmazonECS/latest/developerguide/express-service-overview.html" hreflang="it-it" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/AmazonECS/latest/developerguide/express-service-overview.html" hreflang="it" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/AmazonECS/latest/developerguide/express-service-overview.html" hreflang="ja-jp" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/AmazonECS/latest/developerguide/express-service-overview.html" hreflang="ja" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/AmazonECS/latest/developerguide/express-service-overview.html" hreflang="ko-kr" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/AmazonECS/latest/developerguide/express-service-overview.html" hreflang="ko" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/AmazonECS/latest/developerguide/express-service-overview.html" hreflang="pt-br" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/AmazonECS/latest/developerguide/express-service-overview.html" hreflang="pt" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_cn/AmazonECS/latest/developerguide/express-service-overview.html" hreflang="zh-cn" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_tw/AmazonECS/latest/developerguide/express-service-overview.html" hreflang="zh-tw" /><link rel="alternate" href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/express-service-overview.html" hreflang="x-default" /><meta name="feedback-item" content="ECS" /><meta name="this_doc_product" content="Amazon Elastic Container Service" /><meta name="this_doc_guide" content="Developer Guide" /><head xmlns="http://www.w3.org/1999/xhtml"> <script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"/></head>
+<script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'ecs'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Amazon ECS Express Mode" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><p><a href="express-service-overview.md">View a markdown version of this page</a></p><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Amazon ECS Express Mode - Amazon Elastic Container Service</title><meta name="pdf" content="/pdfs/AmazonECS/latest/developerguide/ecs-dg.pdf#express-service-overview" /><meta name="rss" content="amazon-ecs-release-notes.rss" /><meta name="forums" content="https://repost.aws/tags/TAefn4YSprR-uCBYmbofOpHw" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=ECS&amp;topic_url=https://docs.aws.amazon.com/en_us/AmazonECS/latest/developerguide/express-service-overview.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/AmazonECS/latest/developerguide/express-service-overview.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/AmazonECS/latest/developerguide/express-service-overview.html" /><meta name="keywords" content="ECS,Amazon ECS,Amazon Elastic Container Service,Express Mode service,simplified deployment,containerized applications,web applications" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon ECS",
+        "item" : "https://docs.aws.amazon.com/ecs/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/AmazonECS/latest/developerguide"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Amazon ECS Express Mode",
+        "item" : "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/express-service-overview.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/AmazonECS/latest/developerguide/ecs-dg.pdf#express-service-overview" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/ecs/index.html">Amazon ECS</a><a href="Welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#express-service-benefits">Benefits of Amazon ECS Express Mode services</a><a href="#express-service-pricing">Pricing</a><a href="#express-service-availability">Availability</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="express-service-overview">Amazon ECS Express Mode</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>An Amazon ECS Express Mode service reduces the complexity of deploying containerized applications by providing sensible defaults and automating 
+        the configuration of supporting AWS services. Instead of managing configuration parameters across multiple services, an Express Mode service
+        requires only three things to get started:</p><div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem"><p>A container image</p></li><li class="listitem"><p>A task execution role</p></li><li class="listitem"><p>An infrastructure role</p></li></ul></div><p>Amazon ECS Express Mode orchestrates and configures all necessary infrastructure: a Fargate-based ECS service with a unique accessible URL, 
+        load balancer with SSL/TLS, auto scaling policies, monitoring, and networking components.</p><p>Use Amazon ECS Express Mode services in the following scenarios:</p><div class="itemizedlist">
+         
+         
+         
+         
+    <ul class="itemizedlist"><li class="listitem">
+            <p>Web applications and APIs - Stateless containerized applications that serve HTTP
+                requests</p>
+        </li><li class="listitem">
+            <p>Rapid prototyping - Quickly deploy and test applications without infrastructure
+                setup overhead</p>
+        </li><li class="listitem">
+            <p>Developer productivity - Enable application teams to deploy independently without
+                deep AWS knowledge</p>
+        </li><li class="listitem">
+            <p>Platform team efficiency - Reduce maintenance overhead by providing self-service
+                deployment capabilities</p>
+        </li></ul></div><p>Amazon ECS Express Mode services support either public or private HTTPS applications and automatically
+        scale based on utilization or traffic.</p>
+        <h2 id="express-service-benefits">Benefits of Amazon ECS Express Mode services</h2>
+        <p>Amazon ECS Express Mode services provide several key advantages for deploying and managing containerized applications on AWS.</p>
+        <div class="itemizedlist">
+             
+            
+             
+            
+             
+            
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>Simplified deployment - Deploy containerized applications with production-ready defaults across multiple AWS services.</p>
+            </li><li class="listitem">
+                <p>No compromise on capabilities - All underlying AWS resources remain accessible for direct management when you need fine-grained control or advanced features.</p>
+            </li><li class="listitem">
+                <p>Cost optimization - Shares Application Load Balancers across multiple Express Mode services using the same networking configuration to reduce costs.</p>
+            </li><li class="listitem">
+                <p>Transparent infrastructure - All resources are created in your AWS account with full visibility and accessibility through the AWS console and APIs.</p>
+            </li></ul></div>
+     
+        <h2 id="express-service-pricing">Pricing</h2>
+        <p>There is no additional charge for using an Amazon ECS Express Mode service. You pay only for the underlying AWS resources that are created to run your application, including:</p>
+        <div class="itemizedlist">
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem"><p>Fargate compute resources</p></li><li class="listitem"><p>Application Load Balancer</p></li><li class="listitem"><p>CloudWatch logs and metrics</p></li><li class="listitem"><p>Data transfer charges</p></li></ul></div>
+     
+        <h2 id="express-service-availability">Availability</h2>
+        <p>Amazon ECS Express Mode is available in all AWS Regions where Amazon ECS and Fargate are
+            supported. You can create and manage Express Mode services using any of the
+            following:</p>
+        <div class="itemizedlist">
+             
+             
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem"><p>The Amazon ECS console</p></li><li class="listitem"><p>AWS AWS CLI</p></li><li class="listitem"><p>AWS SDKs</p></li><li class="listitem"><p>CloudFormation</p></li><li class="listitem"><p>Terraform</p></li><li class="listitem"><p>AWS Labs MCP Server for Amazon ECS</p></li></ul></div>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./launch-type-external.html">Amazon ECS Anywhere</div><div id="next" class="next-link" accesskey="n" href="./express-service-create-full.html">Creating an Express Mode service</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=ECS&amp;topic_url=https://docs.aws.amazon.com/en_us/AmazonECS/latest/developerguide/express-service-overview.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=ECS&amp;topic_url=https://docs.aws.amazon.com/en_us/AmazonECS/latest/developerguide/express-service-overview.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

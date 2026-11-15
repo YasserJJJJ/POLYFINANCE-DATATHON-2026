@@ -1,0 +1,419 @@
+{
+  "live_requested": true,
+  "api": "http://127.0.0.1:8768",
+  "cases": {
+    "robert": {
+      "id": "46715c504cfa4443add54daf90ce9c25",
+      "status": "complete",
+      "revision": 10,
+      "analysis_status": "conditional",
+      "method": "reserve-turnover-lp-v1",
+      "claims": [
+        {
+          "id": "minimum_reallocation",
+          "kind": "conditional_optimality",
+          "result_refs": [
+            {
+              "pointer": "/options/1/metrics/turnover_cad/value",
+              "unit": "CAD"
+            }
+          ],
+          "scope": "Branche abstraite, contraintes déclarées et tolérances numériques.",
+          "text": "Dans ce modèle, le minimum de capital réalloué est de 40,000.00 CAD."
+        },
+        {
+          "id": "reserve_scope",
+          "kind": "limitation",
+          "result_refs": [],
+          "scope": "Aucun résultat hors du modèle.",
+          "text": "La réserve est abstraite ; aucune garantie d'un instrument réel n'est établie."
+        },
+        {
+          "id": "multiple_optima",
+          "kind": "numerical_witness",
+          "result_refs": [
+            {
+              "pointer": "/optimal_face/non_unique_witness_found",
+              "unit": "boolean"
+            }
+          ],
+          "scope": "Extrêmes sur la face optimale à tolérance ; aucun optimum de risque recherché.",
+          "text": "Plusieurs allocations atteignent le minimum à la tolérance déclarée ; aucun critère de départage n'a été inventé."
+        }
+      ],
+      "changed_fields": [
+        "fact.withdrawal_cad"
+      ],
+      "reused": [
+        "baseline_stress@1",
+        "fact.assumptions@1",
+        "fact.capital_cad@1",
+        "fact.clarifications@1",
+        "fact.comparison@1",
+        "fact.currency@1",
+        "fact.decision_type@1",
+        "fact.holdings@1",
+        "fact.horizon_years@1",
+        "fact.knowledge_date@1",
+        "fact.max_asset_weights@1",
+        "fact.objective@1",
+        "fact.question@1",
+        "fact.reserve_policy@1",
+        "fact.scenario_loss_limit_cad@1",
+        "fact.scenarios@1",
+        "fact.unknowns@1",
+        "fact.withdrawal_months@1",
+        "research@1"
+      ],
+      "invalidated": [
+        "analysis@1",
+        "analysis_review@1",
+        "fact.withdrawal_cad@1",
+        "problem@1",
+        "qualification@1",
+        "questions.agent0@1",
+        "questions.agent1@1",
+        "questions.agent2@1",
+        "questions.agent3@1",
+        "request@1",
+        "research_review@1",
+        "view@1"
+      ],
+      "roles": [
+        {
+          "role": "agent0",
+          "status": "complete",
+          "output_refs": [
+            "problem@1",
+            "qualification@1",
+            "questions.agent0@1"
+          ]
+        },
+        {
+          "role": "agent1",
+          "status": "complete",
+          "output_refs": [
+            "research@1",
+            "research_review@1",
+            "questions.agent1@1"
+          ]
+        },
+        {
+          "role": "agent2",
+          "status": "complete",
+          "output_refs": [
+            "baseline_stress@1",
+            "analysis@1",
+            "analysis_review@1",
+            "questions.agent2@1"
+          ]
+        },
+        {
+          "role": "agent3",
+          "status": "complete",
+          "output_refs": [
+            "view@1",
+            "questions.agent3@1"
+          ]
+        },
+        {
+          "role": "agent0",
+          "status": "complete",
+          "output_refs": [
+            "problem@2",
+            "qualification@2",
+            "questions.agent0@2"
+          ]
+        },
+        {
+          "role": "agent1",
+          "status": "complete",
+          "output_refs": [
+            "research_review@2",
+            "questions.agent1@2"
+          ]
+        },
+        {
+          "role": "agent2",
+          "status": "complete",
+          "output_refs": [
+            "analysis@2",
+            "analysis_review@2",
+            "questions.agent2@2"
+          ]
+        },
+        {
+          "role": "agent3",
+          "status": "complete",
+          "output_refs": [
+            "view@2",
+            "questions.agent3@2"
+          ]
+        }
+      ],
+      "aws_calls": [
+        {
+          "request_id": "49f7b6f3-cdda-4231-9b33-964d5d7fbc62",
+          "role": "agent0",
+          "usage": {
+            "cache_read_input_tokens": 2240,
+            "cache_write_input_tokens": 0,
+            "input_tokens": 2,
+            "output_tokens": 196,
+            "total_tokens": 2438
+          },
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "status": "complete"
+        },
+        {
+          "request_id": "54fc2bd0-b543-4a3b-9943-d06c3ebe7b61",
+          "role": "agent1",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 11422,
+            "input_tokens": 2,
+            "output_tokens": 564,
+            "total_tokens": 11988
+          },
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "status": "complete"
+        },
+        {
+          "request_id": "d0f687c5-cd5b-4def-afe4-950f0b2398ae",
+          "role": "agent2",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 1172,
+            "input_tokens": 2,
+            "output_tokens": 728,
+            "total_tokens": 1902
+          },
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "status": "complete"
+        },
+        {
+          "request_id": "2fdfcc3e-a4df-4ef9-839f-181b61ddf444",
+          "role": "agent3",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 1316,
+            "input_tokens": 2,
+            "output_tokens": 291,
+            "total_tokens": 1609
+          },
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "status": "complete"
+        },
+        {
+          "request_id": "4c3e0260-bca4-4c8f-b141-e2969c00ceba",
+          "role": "agent0",
+          "usage": {
+            "cache_read_input_tokens": 1850,
+            "cache_write_input_tokens": 0,
+            "input_tokens": 2,
+            "output_tokens": 111,
+            "total_tokens": 1963
+          },
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "status": "complete"
+        },
+        {
+          "request_id": "c75330f1-51b4-41b2-a7ed-27654d026ee4",
+          "role": "agent1",
+          "usage": {
+            "cache_read_input_tokens": 11422,
+            "cache_write_input_tokens": 0,
+            "input_tokens": 2,
+            "output_tokens": 635,
+            "total_tokens": 12059
+          },
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "status": "complete"
+        },
+        {
+          "request_id": "3d9f9532-f8db-4e5f-9002-7231eb0e1ddb",
+          "role": "agent2",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 1212,
+            "input_tokens": 2,
+            "output_tokens": 654,
+            "total_tokens": 1868
+          },
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "status": "complete"
+        },
+        {
+          "request_id": "0911e8dd-6653-43af-b2aa-a3651a10e4dd",
+          "role": "agent3",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 1316,
+            "input_tokens": 2,
+            "output_tokens": 309,
+            "total_tokens": 1627
+          },
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "status": "complete"
+        }
+      ]
+    },
+    "amira": {
+      "id": "8cddaec5d89642de8f38d0b704658763",
+      "status": "complete",
+      "revision": 5,
+      "analysis_status": "conditional",
+      "method": "retrospective-comparison-v1",
+      "claims": [
+        {
+          "id": "historical_return_baseline",
+          "kind": "historical_observation",
+          "result_refs": [
+            {
+              "pointer": "/options/0/metrics/total_return_pct/value",
+              "unit": "percent"
+            },
+            {
+              "pointer": "/method/metadata/start",
+              "unit": "date"
+            },
+            {
+              "pointer": "/method/metadata/end",
+              "unit": "date"
+            }
+          ],
+          "scope": "Descriptif, avant frais de transaction/change/impôts ; aucune prévision.",
+          "text": "Allocation initiale : rendement total rétrospectif de 78.06 %, du 2021-11-12 au 2026-11-12."
+        },
+        {
+          "id": "historical_return_target_variant",
+          "kind": "historical_observation",
+          "result_refs": [
+            {
+              "pointer": "/options/1/metrics/total_return_pct/value",
+              "unit": "percent"
+            },
+            {
+              "pointer": "/method/metadata/start",
+              "unit": "date"
+            },
+            {
+              "pointer": "/method/metadata/end",
+              "unit": "date"
+            }
+          ],
+          "scope": "Descriptif, avant frais de transaction/change/impôts ; aucune prévision.",
+          "text": "Exposition initiale TSLA à 10.0% : rendement total rétrospectif de 87.50 %, du 2021-11-12 au 2026-11-12."
+        }
+      ],
+      "changed_fields": [],
+      "reused": [],
+      "invalidated": [],
+      "roles": [
+        {
+          "role": "agent0",
+          "status": "complete",
+          "output_refs": [
+            "problem@1",
+            "qualification@1",
+            "questions.agent0@1"
+          ]
+        },
+        {
+          "role": "agent1",
+          "status": "complete",
+          "output_refs": [
+            "research@1",
+            "data_inspection@1",
+            "research_review@1",
+            "questions.agent1@1"
+          ]
+        },
+        {
+          "role": "agent2",
+          "status": "complete",
+          "output_refs": [
+            "analysis@1",
+            "analysis_review@1",
+            "questions.agent2@1"
+          ]
+        },
+        {
+          "role": "agent3",
+          "status": "complete",
+          "output_refs": [
+            "view@1",
+            "questions.agent3@1"
+          ]
+        }
+      ],
+      "aws_calls": [
+        {
+          "request_id": "4a7b5a06-440d-4b0e-a2e5-02a7ef483011",
+          "role": "agent0",
+          "usage": {
+            "cache_read_input_tokens": 2064,
+            "cache_write_input_tokens": 0,
+            "input_tokens": 2,
+            "output_tokens": 226,
+            "total_tokens": 2292
+          },
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "status": "complete"
+        },
+        {
+          "request_id": "b6932840-5959-4739-9a56-9d865a1cff1a",
+          "role": "agent1",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 30665,
+            "input_tokens": 2,
+            "output_tokens": 641,
+            "total_tokens": 31308
+          },
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "status": "complete"
+        },
+        {
+          "request_id": "ca02605c-6d3e-4a43-8436-d101c2c795ce",
+          "role": "agent2",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 1287,
+            "input_tokens": 2,
+            "output_tokens": 558,
+            "total_tokens": 1847
+          },
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "status": "complete"
+        },
+        {
+          "request_id": "56e0d4fb-dd63-484a-945a-a1bb04e56fce",
+          "role": "agent3",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 1372,
+            "input_tokens": 2,
+            "output_tokens": 208,
+            "total_tokens": 1582
+          },
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "status": "complete"
+        }
+      ]
+    }
+  },
+  "reference_outputs_used": false
+}

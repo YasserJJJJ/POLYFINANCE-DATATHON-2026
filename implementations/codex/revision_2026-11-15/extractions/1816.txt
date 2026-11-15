@@ -1,0 +1,484 @@
+
+
+## PAGE 1
+
+Event dashboard
+Construire des agents
+Strands Agents
+Strands Agents
+Strands Agents est un SDK open source pour construire des agents. Amazon Bedrock est son fournisseur de modèles par défaut : dans le compte AWS de votre
+équipe, il fonctionne sans autre conﬁguration que vos identiﬁants. Vous pouvez avoir un agent d'analyse de risque fonctionnel en une dizaine de minutes.
+Python 3.10 ou plus récent. Travaillez sur votre ordinateur ou dans JupyterLab ou Code Editor de SageMaker Uniﬁed Studio. Sur votre ordinateur, conﬁgurez d'abord
+les identiﬁants AWS de l'équipe : voir Accès AWS CLI et SDK.
+strands-agents est le SDK. yfinance récupère des prix depuis Yahoo Finance et requests sert à appeler des API publiques comme celle de la Banque du Canada.
+C'est un agent complet. Sans paramètre model, Strands choisit lui-même un modèle Bedrock. Vériﬁez lequel plutôt que de le supposer :
+Deux façons. La courte :
+L'explicite, quand vous voulez contrôler la région et les paramètres d'échantillonnage :
+Voir Choisir un modèle pour l'identiﬁant à utiliser. Commencez avec Nova 2 Lite : il coûte assez peu pour itérer librement et gère bien les appels d'outils. Passez à
+global.anthropic.claude-sonnet-5 quand la qualité des explications compte.
+C'est ce qui en fait un agent. Décorez une fonction avec @tool : Strands lit les annotations de type et la docstring pour construire le schéma que voit le modèle.
+La docstring n'est pas de la documentation : c'est l'instruction que lit le modèle pour décider s'il appelle votre outil. Écrivez-la pour le modèle.
+L'agent ci-dessous a deux outils. Le premier calcule le rendement, la volatilité annualisée et la perte maximale d'un titre à partir de Yahoo Finance. Le second
+récupère le taux USD/CAD de la Banque du Canada (API Valet, sans clé) pour expliquer le risque de change d'un titre coté en dollars américains. Les calculs sont faits
+en Python, pas par le modèle.
+L'exécution affiche les outils au fur et à mesure qu'ils sont appelés, puis la réponse. Extrait abrégé d'une exécution réelle (4 novembre 2026, Nova 2 Lite) :
+Tool #1: mesures_de_risque
+Tool #2: mesures_de_risque
+Tool #3: mesures_de_risque
+Tool #4: variation_usd_cad
+**XBB.TO** (ETF obligataire canadien) : rendement 0,4 %, volatilité 4,7 %, perte maximale -3,1 %
+Source : Yahoo Finance (prix ajustés, 2025-11-04 à 2026-11-04)
+Hypothèse : le risque est faible, conforme à un profil prudent. La devise est le CAD, donc aucun risque de change.
+...
+**SPY** (ETF S&P 500 en USD) : rendement 14,7 %, volatilité 12,8 %, perte maximale -8,9 %
+Hypothèse : le risque est modéré. Le taux USD/CAD a baissé de 0,7 % sur la période
+(source : Banque du Canada), ce qui a réduit la valeur en CAD.
+Rappel : les rendements passés ne garantissent rien. Il s'agit d'une simulation, pas d'un conseil financier personnalisé.
+Remarquez ce qui s'est passé sans instruction explicite : l'agent a appelé l'outil de risque pour chaque titre, a vu que SPY est en USD, et a utilisé les dates renvoyées
+par le premier outil pour interroger la Banque du Canada sur la même période. Rien dans le prompt ne décrivait cette séquence. C'est la boucle qui fait son travail.
+Pour votre interface ou votre vidéo, vous pouvez extraire la trace complète (outil, arguments, résultat) de l'historique de l'agent. Le paramètre limits borne le
+nombre de tours de la boucle ; si la limite est atteinte, l'appel s'arrête sans exception et stop_reason vaut limit_turns.
+Les sociétés américaines déposent leurs rapports annuels (10-K) à la SEC, et l'API EDGAR les expose en JSON sans clé. L'outil ci-dessous renvoie le bénéﬁce net annuel
+des cinq derniers exercices, avec la date de publication de chaque chiffre. Cette date vous aide à respecter la cohérence temporelle : une simulation au 1er janvier
+2025 ne doit pas utiliser un chiffre publié en février 2025.
+Ajoutez-le à la liste : tools=[mesures_de_risque, variation_usd_cad, benefice_net_annuel], puis demandez par exemple « Un investisseur au proﬁl
+Audacieux s'intéresse à NVDA. Comment ont évolué ses bénéﬁces et quel est le risque du titre ? ». L'agent appelle alors benefice_net_annuel puis
+mesures_de_risque.
+Les banques canadiennes comme RY ou TD publient selon les normes IFRS et déposent des formulaires 40-F, pas des 10-K : l'outil renvoie alors une erreur explicite.
+Pour les sociétés canadiennes, voyez SEDAR+ et la page Données ﬁnancières publiques.
+Les noms d'outils doivent respecter ^[a-zA-Z0-9_-]+$ et compter de 1 à 64 caractères. Un nom qui enfreint la règle est remplacé silencieusement par
+INVALID_TOOL_NAME dans ce que voit le modèle, ce qui produit une erreur déroutante. Utilisez des noms de fonction en snake_case sans accents et vous ne la
+rencontrerez jamais.
+Vous pouvez aussi remplacer le nom et la description :
+Strands fournit quelques outils génériques dans strands.vended_tools, par exemple http_request pour appeler une API :
+La liste complète est dans la documentation des outils fournis 
+. C'est pratique pour explorer une API. Pour la démo, préférez vos propres outils : ils renvoient
+exactement les champs utiles, et les calculs y sont faits en Python.
+L'agent a besoin de deux actions Bedrock. Le compte AWS de votre équipe les a déjà :
+bedrock:InvokeModel
+bedrock:InvokeModelWithResponseStream
+Invocation of model ID ... with on-demand throughput isn't supported : ajoutez le préﬁxe global. à l'identiﬁant du modèle. Voir Choisir un modèle.
+`temperature` is deprecated for this model : vous utilisez Claude Sonnet 5, Opus 5 ou Opus 5.5 avec temperature. Retirez ce paramètre.
+L'agent ignore votre outil : la docstring est trop vague, ou elle chevauche celle d'un autre outil. Réécrivez la première ligne de la docstring pour dire exactement
+quand l'utiliser.
+L'agent appelle le même outil en boucle : votre outil renvoie quelque chose que le modèle interprète comme un échec. Renvoyez un message clair comme
+{"erreur": "Symbole introuvable"} plutôt qu'un résultat vide, et ﬁxez limits={"turns": ...}.
+C'est lent : chaque appel d'outil est un aller-retour vers le modèle. Réduisez le nombre d'outils, prenez un modèle plus petit, ou demandez dans le prompt système de
+ne pas tout revériﬁer.
+AgentCore : une recherche web avec citations en un outil de plus, une mémoire qui survit à un redémarrage, et l'hébergement si vous en avez besoin
+MCP : se connecter à des serveurs d'outils existants au lieu d'écrire vos intégrations
+Documentation de Strands 
+ : la référence officielle
+Atelier Getting Started with Strands Agents 
+ : un laboratoire plus long, à votre rythme
+Strands Agents
+Le code de cette page a été exécuté de bout en bout avec Amazon Bedrock dans us-east-1, avec strands-agents 1.63.0, le 4 novembre 2026. Il fonctionne tel quel.
+L'agent de cette page n'exécute aucune transaction. Il lit des données publiques et calcule des indicateurs. Gardez cette règle pour votre projet : aucun outil qui passe des ordres
+ou accède à un compte réel.
+Installer
+python3 -m venv .venv
+source .venv/bin/activate          # Windows : .venv\Scripts\activate
+pip install strands-agents yfinance requests
+1
+2
+3
+4
+L'agent le plus simple possible
+from strands import Agent
+agent = Agent(model="global.amazon.nova-2-lite-v1:0")
+agent("Nommez trois indicateurs courants pour mesurer le risque d'un portefeuille. Une phrase chacun.")
+1
+2
+3
+4
+from strands import Agent
+print(Agent().model.config)
+# {'model_id': 'global.anthropic.claude-sonnet-4-6', 'include_tool_result_status': 'auto'}
+1
+2
+3
+4
+Le modèle par défaut change avec les versions du SDK. Indiquez toujours le modèle explicitement : vous savez alors ce que vous payez et comment il se comporte.
+Choisir le modèle
+from strands import Agent
+agent = Agent(model="global.anthropic.claude-sonnet-5")
+1
+2
+3
+from strands import Agent
+from strands.models import BedrockModel
+model = BedrockModel(
+    model_id="global.amazon.nova-2-lite-v1:0",
+    region_name="us-east-1",
+    temperature=0.3,
+)
+agent = Agent(model=model)
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+Claude Sonnet 5, Opus 5 et Opus 5.5 refusent le paramètre temperature : l'appel échoue avec `temperature` is deprecated for this model. Avec ces modèles, retirez
+temperature de BedrockModel. Claude Sonnet 5.5 et Haiku 5.5 ne sont pas disponibles dans les comptes du Datathon.
+Ajouter des outils
+import math
+import requests
+import yfinance as yf
+from strands import Agent, tool
+from strands.models import BedrockModel
+@tool
+def mesures_de_risque(ticker: str, periode: str = "1y") -> dict:
+    """Calcule le rendement total, la volatilité annualisée et la perte maximale d'un titre,
+    à partir de ses prix de clôture ajustés (Yahoo Finance). Renvoie aussi son nom et sa devise.
+    Args:
+        ticker: Symbole Yahoo Finance, par exemple XBB.TO, SHOP.TO, SPY ou BTC-USD
+        periode: Période historique : 6mo, 1y, 2y ou 5y. Par défaut 1y
+    """
+    titre = yf.Ticker(ticker)
+    prix = titre.history(period=periode, auto_adjust=True)["Close"].dropna()
+    if len(prix) < 20:
+        return {"erreur": f"Pas assez de données pour {ticker}. Vérifiez le symbole."}
+    infos = titre.history_metadata
+    rendements = prix.pct_change().dropna()
+    jours_par_an = 365 if ticker.endswith("-USD") else 252  # les cryptos se négocient tous les jours
+    perte_max = (prix / prix.cummax() - 1).min()
+    return {
+        "ticker": ticker,
+        "nom": infos.get("longName"),
+        "type": infos.get("instrumentType"),
+        "devise": infos.get("currency"),
+        "debut": str(prix.index[0].date()),
+        "fin": str(prix.index[-1].date()),
+        "rendement_total_pct": round((prix.iloc[-1] / prix.iloc[0] - 1) * 100, 1),
+        "volatilite_annualisee_pct": round(rendements.std() * math.sqrt(jours_par_an) * 100, 1),
+        "perte_maximale_pct": round(perte_max * 100, 1),
+        "source": "Yahoo Finance (yfinance), prix de clôture ajustés",
+    }
+@tool
+def variation_usd_cad(debut: str, fin: str) -> dict:
+    """Taux de change USD/CAD de la Banque du Canada (dollars canadiens pour un dollar
+    américain) au début et à la fin d'une période, et sa variation en pourcentage.
+    À utiliser pour expliquer le risque de change d'un titre coté en USD.
+    Args:
+        debut: Date de début au format AAAA-MM-JJ
+        fin: Date de fin au format AAAA-MM-JJ
+    """
+    url = (
+        "https://www.bankofcanada.ca/valet/observations/FXUSDCAD/json"
+        f"?start_date={debut}&end_date={fin}"
+    )
+    try:
+        obs = requests.get(url, timeout=10).json()["observations"]
+    except Exception as e:
+        return {"erreur": f"API Valet de la Banque du Canada indisponible : {e}"}
+    if not obs:
+        return {"erreur": "Aucune observation pour ces dates."}
+    taux_debut = float(obs[0]["FXUSDCAD"]["v"])
+    taux_fin = float(obs[-1]["FXUSDCAD"]["v"])
+    return {
+        "debut": {"date": obs[0]["d"], "cad_par_usd": taux_debut},
+        "fin": {"date": obs[-1]["d"], "cad_par_usd": taux_fin},
+        "variation_usd_contre_cad_pct": round((taux_fin / taux_debut - 1) * 100, 1),
+        "source": "Banque du Canada, API Valet, série FXUSDCAD",
+    }
+agent = Agent(
+    model=BedrockModel(
+        model_id="global.amazon.nova-2-lite-v1:0",
+        region_name="us-east-1",
+        temperature=0.3,
+    ),
+    system_prompt=(
+        "Vous expliquez le risque de placements à un investisseur fictif. "
+        "Profils : Prudent (risque faible), Équilibré (risque modéré), Audacieux (risque élevé). "
+        "Utilisez les outils avant de répondre et n'inventez aucun chiffre. "
+        "Pour un titre coté en USD, donnez aussi la variation du taux USD/CAD sur la même période. "
+        "Citez la source et la période de chaque chiffre. Distinguez les faits de vos hypothèses. "
+        "Rappelez que les rendements passés ne garantissent rien et qu'il s'agit d'une simulation, "
+        "pas d'un conseil financier personnalisé. Répondez en français, en 150 mots au plus."
+    ),
+    tools=[mesures_de_risque, variation_usd_cad],
+)
+agent(
+    "Une investisseuse au profil Prudent détient des dollars canadiens. "
+    "Elle compare XBB.TO, SHOP.TO et SPY. Expliquez-lui le risque de chacun."
+)
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+La trace des appels d'outils est du matériel de démo gratuit. Afficher « Tool #1, Tool #2 » à l'écran en expliquant ce que l'agent a décidé convainc bien plus qu'un paragraphe de
+résultat seul.
+Afficher la trace et limiter les tours
+import json
+resultat = agent("Profil Équilibré : comparez QQQ et XIU.TO.", limits={"turns": 6})
+print("Raison de l'arrêt :", resultat.stop_reason)
+# Trace : quels outils, avec quels arguments, et ce qu'ils ont renvoyé
+for message in agent.messages:
+    for bloc in message["content"]:
+        if "toolUse" in bloc:
+            print("APPEL   ", bloc["toolUse"]["name"], json.dumps(bloc["toolUse"]["input"], ensure_ascii=False))
+        if "toolResult" in bloc:
+            print("RÉSULTAT", bloc["toolResult"]["content"][0].get("text", "")[:120])
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+Ajouter un troisième outil : SEC EDGAR
+from datetime import date
+import requests
+from strands import tool
+# La SEC exige un User-Agent qui identifie l'auteur des requêtes (nom et courriel)
+ENTETES_SEC = {"User-Agent": "Equipe Datathon PolyFinances equipe@example.com"}
+@tool
+def benefice_net_annuel(ticker: str) -> dict:
+    """Bénéfice net annuel (NetIncomeLoss) d'une société américaine, tiré de ses rapports
+    10-K déposés à la SEC (EDGAR), avec la date où chaque chiffre a été publié.
+    Renvoie les cinq derniers exercices.
+    Args:
+        ticker: Symbole boursier américain, par exemple AAPL, MSFT ou NVDA
+    """
+    societes = requests.get(
+        "https://www.sec.gov/files/company_tickers.json", headers=ENTETES_SEC, timeout=10
+    ).json()
+    cik = next((s["cik_str"] for s in societes.values() if s["ticker"] == ticker.upper()), None)
+    if cik is None:
+        return {"erreur": f"{ticker} introuvable dans EDGAR."}
+    url = f"https://data.sec.gov/api/xbrl/companyconcept/CIK{cik:010d}/us-gaap/NetIncomeLoss.json"
+    reponse = requests.get(url, headers=ENTETES_SEC, timeout=10)
+    if reponse.status_code != 200:
+        return {"erreur": f"Aucun NetIncomeLoss en US GAAP pour {ticker} (société non américaine ?)."}
+    # Garde, pour chaque exercice complet, le chiffre du premier 10-K qui l'a publié
+    exercices = {}
+    for f in reponse.json()["units"]["USD"]:
+        duree = (date.fromisoformat(f["end"]) - date.fromisoformat(f["start"])).days
+        if f.get("form") == "10-K" and duree > 350:
+            if f["end"] not in exercices or f["filed"] < exercices[f["end"]]["publie_le"]:
+                exercices[f["end"]] = {"fin_exercice": f["end"], "benefice_net_usd": f["val"], "publie_le": f["filed"]}
+    derniers = [exercices[fin] for fin in sorted(exercices)[-5:]]
+    return {"ticker": ticker.upper(), "exercices": derniers, "source": url}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+Chaque source a ses conditions d'utilisation. yfinance n'est pas affilié à Yahoo et vise un usage de recherche et d'apprentissage. La SEC demande un User-Agent identiﬁable et
+limite le nombre de requêtes par seconde. Citez vos sources dans la démo et la documentation.
+Règles de nommage des outils
+from strands import tool
+@tool(name="risque_titre", description="Volatilité et perte maximale d'un titre, à partir de Yahoo Finance")
+def mesures_de_risque(ticker: str, periode: str = "1y") -> dict:
+    """Implémentation.
+    Args:
+        ticker: Symbole Yahoo Finance
+        periode: Période historique, par exemple 1y
+    """
+    ...
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+Utiliser les outils prêts à l'emploi
+from strands import Agent
+from strands.vended_tools import http_request
+agent = Agent(model="global.amazon.nova-2-lite-v1:0", tools=[http_request])
+agent(
+    "Lisez https://www.bankofcanada.ca/valet/observations/FXUSDCAD/json?recent=1 "
+    "et donnez le dernier taux USD/CAD publié par la Banque du Canada, avec sa date."
+)
+1
+2
+3
+4
+5
+6
+7
+8
+La version 0.9.0 du paquet strands-agents-tools a retiré plusieurs outils que citent d'anciens tutoriels, dont calculator, current_time, http_request et python_repl.
+L'import échoue avec un message qui indique le remplacement. http_request et python_repl sont maintenant dans strands.vended_tools. N'utilisez python_repl ou
+shell qu'en sachant qu'ils exécutent du code arbitraire sur votre machine.
+Permissions
+Quand ça ne marche pas
+Étapes suivantes
+Les anciens liens vers strandsagents.com/latest/documentation/docs/ ne fonctionnent plus. La documentation se trouve maintenant à strandsagents.com/docs/.
+Previous
+Next
+AWS Lambda
+Amazon S3
+AWS IAM
+AWS Glue
+Amazon Athena
+Accès AWS CLI et SDK
+L'IA générative sur AWS
+Votre premier appel de modèle
+Choisir un modèle
+Garde-fous
+Bases de connaissances et RAG
+Data Automation
+Construire des agents
+Fonctionnement des agents
+Strands Agents
+Amazon Bedrock AgentCore
+MCP
+Démarrages rapides
+Données ﬁnancières publiques
+Nettoyage et exportation
+Ressources
+AWS account access
+Open AWS console
+(us-east-1)
+Get AWS CLI credentials
+Share feedback
+Workshop catalog in AWS Builder
+Center
+Exit event
+AWS Workshop Studio
+adamlarhlimi2006
+© 2008 - 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+Privacy policy
+Terms of use
+Cookie preferences

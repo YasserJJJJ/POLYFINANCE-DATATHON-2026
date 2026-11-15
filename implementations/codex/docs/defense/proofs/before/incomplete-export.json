@@ -1,0 +1,2769 @@
+{
+  "id": "eb3fe74c70594b83a273d11f89f23f95",
+  "title": "Je souhaite préserver mon capital et financer un retrait dans douze mois. Je ne connais pas enc",
+  "revision": 4,
+  "status": "waiting",
+  "active_run_id": "f9f0da23a748431fb04b48b06cc13680",
+  "created_at": "2026-11-15T19:01:01.124999+00:00",
+  "updated_at": "2026-11-15T19:01:40.636423+00:00",
+  "origin": null,
+  "active_problem": {
+    "assumptions": [],
+    "capital_cad": null,
+    "clarifications": [
+      {
+        "blocking": true,
+        "field": "scenario_loss_limit_cad",
+        "question": "Que signifie préserver le capital : quel montant doit être maintenu, à quelle échéance, avant ou après le retrait, et avec quelle perte maximale admissible ?"
+      },
+      {
+        "blocking": true,
+        "field": "reserve_policy",
+        "question": "Souhaitez-vous un exercice conditionnel sous réserve abstraite nominale, ou l’étude d’un instrument réel dont les conditions de disponibilité et de protection restent à préciser ?"
+      },
+      {
+        "blocking": true,
+        "field": "objective",
+        "question": "L’objectif est-il de minimiser le capital réalloué sous contraintes de préservation et de financement du retrait, ou souhaitez-vous un autre critère ?"
+      },
+      {
+        "blocking": true,
+        "field": "scenarios",
+        "question": "Quels scénarios hypothétiques explicites, avec quels rendements par actif et quels horizons, doivent encadrer l’exercice ?"
+      },
+      {
+        "blocking": true,
+        "field": "withdrawal_months",
+        "question": "Confirmez numériquement withdrawal_months."
+      }
+    ],
+    "comparison": null,
+    "currency": null,
+    "decision_type": "reserve_allocation",
+    "holdings": [],
+    "horizon_years": null,
+    "knowledge_date": null,
+    "max_asset_weights": {},
+    "objective": "unknown",
+    "question": "Peut-on conclure sur la préservation du capital et le financement d’un retrait dans douze mois avec les informations disponibles ?",
+    "reserve_policy": null,
+    "scenario_loss_limit_cad": null,
+    "scenarios": [],
+    "unknowns": [
+      "Capital disponible en CAD",
+      "Positions actuelles et poids",
+      "Montant du retrait en CAD",
+      "Définition de la préservation du capital et perte maximale admissible",
+      "Scénarios hypothétiques, rendements par actif et horizons",
+      "Nature et comportement de la réserve",
+      "Confirmation de l’objectif de minimisation du capital réalloué"
+    ],
+    "withdrawal_cad": null,
+    "withdrawal_months": null
+  },
+  "current_analysis": null,
+  "current_view": null,
+  "artifacts": [
+    {
+      "dossier_id": "eb3fe74c70594b83a273d11f89f23f95",
+      "id": "request",
+      "version": 1,
+      "type": "assertion",
+      "owner": "human",
+      "hash": "4a94b3ac54c2312f97a294d0c0304d27a8cd09315c8e4da815e9e51f05835544",
+      "input_refs": [],
+      "revision": 1,
+      "created_at": "2026-11-15T19:01:01.128256+00:00",
+      "content": {
+        "facts": {},
+        "kind": "initial",
+        "prompt": "Je souhaite préserver mon capital et financer un retrait dans douze mois. Je ne connais pas encore le montant à retirer et je ne fournis pas mon capital ni mes positions. Pouvez-vous conclure ?"
+      },
+      "ref": "request@1",
+      "usable": true
+    },
+    {
+      "dossier_id": "eb3fe74c70594b83a273d11f89f23f95",
+      "id": "fact.decision_type",
+      "version": 1,
+      "type": "assertion",
+      "owner": "agent0",
+      "hash": "e8a1dd0c577f16867fe9a8143126c13bd7f7f6d85ef4c330a5d7047c00cf78f1",
+      "input_refs": [
+        "request@1"
+      ],
+      "revision": 2,
+      "created_at": "2026-11-15T19:01:16.966133+00:00",
+      "content": {
+        "category": "input",
+        "field": "decision_type",
+        "interpretation": "La demande relève de la préparation d’un retrait avec préservation du capital, mais les données nécessaires à sa formalisation sont absentes.",
+        "origin": "assumed",
+        "quote": "",
+        "source_ref": "request@1",
+        "value": "reserve_allocation"
+      },
+      "ref": "fact.decision_type@1",
+      "usable": true
+    },
+    {
+      "dossier_id": "eb3fe74c70594b83a273d11f89f23f95",
+      "id": "fact.objective",
+      "version": 1,
+      "type": "assertion",
+      "owner": "agent0",
+      "hash": "05f617f6b246002728105491ac3584f28aaf86f0e97b31975a17515ad006f678",
+      "input_refs": [
+        "request@1"
+      ],
+      "revision": 2,
+      "created_at": "2026-11-15T19:01:17.086898+00:00",
+      "content": {
+        "category": "preference_or_mandate",
+        "field": "objective",
+        "interpretation": "La préservation du capital ne suffit pas à établir que l’objectif est de minimiser le capital réalloué.",
+        "origin": "assumed",
+        "quote": "",
+        "source_ref": "request@1",
+        "value": "unknown"
+      },
+      "ref": "fact.objective@1",
+      "usable": true
+    },
+    {
+      "dossier_id": "eb3fe74c70594b83a273d11f89f23f95",
+      "id": "fact.question",
+      "version": 1,
+      "type": "assertion",
+      "owner": "agent0",
+      "hash": "7989a5e3fbde6155f25b6dac2003bafb9c1105a5f2213ff76f2b13d34aa898a9",
+      "input_refs": [
+        "request@1"
+      ],
+      "revision": 2,
+      "created_at": "2026-11-15T19:01:17.042717+00:00",
+      "content": {
+        "category": "input",
+        "field": "question",
+        "interpretation": "L’unité de décision porte sur le financement du retrait sous une contrainte de préservation du capital à préciser.",
+        "origin": "extracted",
+        "quote": "Je souhaite préserver mon capital et financer un retrait dans douze mois.",
+        "source_ref": "request@1",
+        "value": "Peut-on conclure sur la préservation du capital et le financement d’un retrait dans douze mois avec les informations disponibles ?"
+      },
+      "ref": "fact.question@1",
+      "usable": true
+    },
+    {
+      "dossier_id": "eb3fe74c70594b83a273d11f89f23f95",
+      "id": "fact.unknowns",
+      "version": 1,
+      "type": "assertion",
+      "owner": "agent0",
+      "hash": "0a6e81bcf8c2e0b89200ee03e26c3b8723849d3b8ed75a728d24c2621362b6b1",
+      "input_refs": [
+        "request@1"
+      ],
+      "revision": 2,
+      "created_at": "2026-11-15T19:01:17.123906+00:00",
+      "content": {
+        "category": "input",
+        "field": "unknowns",
+        "interpretation": "Ces éléments restent nécessaires pour formaliser l’exercice sans remplacer les données absentes par des suppositions numériques.",
+        "origin": "assumed",
+        "quote": "",
+        "source_ref": "request@1",
+        "value": [
+          "Capital disponible en CAD",
+          "Positions actuelles et poids",
+          "Montant du retrait en CAD",
+          "Définition de la préservation du capital et perte maximale admissible",
+          "Scénarios hypothétiques, rendements par actif et horizons",
+          "Nature et comportement de la réserve",
+          "Confirmation de l’objectif de minimisation du capital réalloué"
+        ]
+      },
+      "ref": "fact.unknowns@1",
+      "usable": true
+    },
+    {
+      "dossier_id": "eb3fe74c70594b83a273d11f89f23f95",
+      "id": "problem",
+      "version": 1,
+      "type": "problem",
+      "owner": "agent0",
+      "hash": "c08ac90e1425e16de67a6fd2fa82d7fd49f39672930206663e6356e3540a410f",
+      "input_refs": [
+        "fact.decision_type@1",
+        "fact.objective@1",
+        "fact.question@1",
+        "fact.unknowns@1",
+        "request@1"
+      ],
+      "revision": 2,
+      "created_at": "2026-11-15T19:01:17.173924+00:00",
+      "content": {
+        "assumptions": [],
+        "capital_cad": null,
+        "clarifications": [
+          {
+            "blocking": true,
+            "field": "capital_cad",
+            "question": "Quel capital en CAD sera concerné, lorsque cette information sera disponible ?"
+          },
+          {
+            "blocking": true,
+            "field": "holdings",
+            "question": "Quelles sont les positions actuelles et leurs poids dans ce capital ?"
+          },
+          {
+            "blocking": true,
+            "field": "withdrawal_cad",
+            "question": "Quel montant en CAD faudra-t-il retirer dans douze mois, une fois ce besoin déterminé ?"
+          },
+          {
+            "blocking": true,
+            "field": "scenario_loss_limit_cad",
+            "question": "Que signifie « préserver mon capital » : quelle perte maximale en CAD serait admissible, et cette préservation s’entend-elle avant ou après le retrait ?"
+          },
+          {
+            "blocking": true,
+            "field": "scenarios",
+            "question": "Quels scénarios hypothétiques explicites souhaitez-vous retenir, avec quels rendements par actif et sur quels horizons ?"
+          },
+          {
+            "blocking": true,
+            "field": "reserve_policy",
+            "question": "L’exercice doit-il être conditionnel à une réserve abstraite stable en valeur nominale, ou porter sur un instrument réel à préciser ?"
+          },
+          {
+            "blocking": true,
+            "field": "objective",
+            "question": "Souhaitez-vous minimiser le capital réalloué tout en respectant les contraintes de retrait et de perte admissible ?"
+          },
+          {
+            "blocking": true,
+            "field": "withdrawal_months",
+            "question": "Confirmez numériquement withdrawal_months."
+          }
+        ],
+        "comparison": null,
+        "currency": null,
+        "decision_type": "reserve_allocation",
+        "holdings": [],
+        "horizon_years": null,
+        "knowledge_date": null,
+        "max_asset_weights": {},
+        "objective": "unknown",
+        "question": "Peut-on conclure sur la préservation du capital et le financement d’un retrait dans douze mois avec les informations disponibles ?",
+        "reserve_policy": null,
+        "scenario_loss_limit_cad": null,
+        "scenarios": [],
+        "unknowns": [
+          "Capital disponible en CAD",
+          "Positions actuelles et poids",
+          "Montant du retrait en CAD",
+          "Définition de la préservation du capital et perte maximale admissible",
+          "Scénarios hypothétiques, rendements par actif et horizons",
+          "Nature et comportement de la réserve",
+          "Confirmation de l’objectif de minimisation du capital réalloué"
+        ],
+        "withdrawal_cad": null,
+        "withdrawal_months": null
+      },
+      "ref": "problem@1",
+      "usable": false
+    },
+    {
+      "dossier_id": "eb3fe74c70594b83a273d11f89f23f95",
+      "id": "qualification",
+      "version": 1,
+      "type": "assertion",
+      "owner": "agent0",
+      "hash": "c540422d61782efd4788e31112211519033e4f305764a2b293838aca9e701930",
+      "input_refs": [
+        "problem@1"
+      ],
+      "revision": 2,
+      "created_at": "2026-11-15T19:01:17.186389+00:00",
+      "content": {
+        "ai_used": true,
+        "clarifications": [
+          {
+            "blocking": true,
+            "field": "capital_cad",
+            "question": "Quel capital en CAD sera concerné, lorsque cette information sera disponible ?"
+          },
+          {
+            "blocking": true,
+            "field": "holdings",
+            "question": "Quelles sont les positions actuelles et leurs poids dans ce capital ?"
+          },
+          {
+            "blocking": true,
+            "field": "withdrawal_cad",
+            "question": "Quel montant en CAD faudra-t-il retirer dans douze mois, une fois ce besoin déterminé ?"
+          },
+          {
+            "blocking": true,
+            "field": "scenario_loss_limit_cad",
+            "question": "Que signifie « préserver mon capital » : quelle perte maximale en CAD serait admissible, et cette préservation s’entend-elle avant ou après le retrait ?"
+          },
+          {
+            "blocking": true,
+            "field": "scenarios",
+            "question": "Quels scénarios hypothétiques explicites souhaitez-vous retenir, avec quels rendements par actif et sur quels horizons ?"
+          },
+          {
+            "blocking": true,
+            "field": "reserve_policy",
+            "question": "L’exercice doit-il être conditionnel à une réserve abstraite stable en valeur nominale, ou porter sur un instrument réel à préciser ?"
+          },
+          {
+            "blocking": true,
+            "field": "objective",
+            "question": "Souhaitez-vous minimiser le capital réalloué tout en respectant les contraintes de retrait et de perte admissible ?"
+          },
+          {
+            "blocking": true,
+            "field": "withdrawal_months",
+            "question": "Confirmez numériquement withdrawal_months."
+          }
+        ],
+        "contradictions": [
+          "Montant non adopté : aucune valeur correspondante dans l’extrait pour withdrawal_months"
+        ],
+        "distinctions": [
+          "déclaré/extrait/supposé/inconnu",
+          "préférence/contrainte",
+          "scénario/historique"
+        ],
+        "interpretation": "Non, aucune conclusion sur la faisabilité n’est possible à ce stade. L’échéance de douze mois est connue, mais le capital, les positions et le montant du retrait manquent explicitement. La préservation du capital doit aussi être traduite en contraintes vérifiables. Aucune allocation ni garantie de préservation ne peut être déduite de ces seules informations."
+      },
+      "ref": "qualification@1",
+      "usable": false
+    },
+    {
+      "dossier_id": "eb3fe74c70594b83a273d11f89f23f95",
+      "id": "questions.agent0",
+      "version": 1,
+      "type": "questions",
+      "owner": "agent0",
+      "hash": "c9e43eb8fb244ebbbcbe71e07e6be717a5049ee7fd0957adbe2b4853732762ae",
+      "input_refs": [
+        "problem@1"
+      ],
+      "revision": 2,
+      "created_at": "2026-11-15T19:01:17.186670+00:00",
+      "content": {
+        "nodes": [
+          {
+            "dependencies": [
+              "decision"
+            ],
+            "id": "goal",
+            "question": "Peut-on conclure sur la préservation du capital et le financement d’un retrait dans douze mois avec les informations disponibles ?",
+            "reopen_if": "Modification du besoin ou du mandat",
+            "resolved_by": "Objectif et mandat explicites",
+            "result_refs": [
+              "problem@1"
+            ],
+            "status": "resolved",
+            "type": "objective"
+          },
+          {
+            "dependencies": [
+              "profile",
+              "method"
+            ],
+            "id": "decision",
+            "question": "Quel problème financier résoudre ?",
+            "reopen_if": "Nouvelle contradiction ou unité de décision",
+            "resolved_by": "Formulation admise et unités vérifiées",
+            "result_refs": [],
+            "status": "resolved",
+            "type": "decision"
+          },
+          {
+            "dependencies": [],
+            "id": "profile",
+            "question": "Quelles informations contraignent la décision ?",
+            "reopen_if": "Correction d'une déclaration",
+            "resolved_by": "Valeurs déclarées ou conditionnelles identifiées",
+            "result_refs": [],
+            "status": "conditional",
+            "type": "subproblem"
+          }
+        ]
+      },
+      "ref": "questions.agent0@1",
+      "usable": false
+    },
+    {
+      "dossier_id": "eb3fe74c70594b83a273d11f89f23f95",
+      "id": "questions.agent1",
+      "version": 1,
+      "type": "questions",
+      "owner": "agent1",
+      "hash": "ddbef0ce5ef91a56b61c4798502358d4006921f93d2f93735f44556a583695a2",
+      "input_refs": [
+        "research@1",
+        "research_review@1"
+      ],
+      "revision": 3,
+      "created_at": "2026-11-15T19:01:31.233571+00:00",
+      "content": {
+        "nodes": [
+          {
+            "dependencies": [
+              "evidence"
+            ],
+            "id": "method",
+            "question": "Quelle méthode répond au problème sous quelles hypothèses ?",
+            "reopen_if": "Méthode hors domaine ou preuve contradictoire",
+            "resolved_by": "Source de méthode lue et domaine explicité",
+            "result_refs": [
+              "research@1"
+            ],
+            "status": "conditional",
+            "type": "method_choice"
+          },
+          {
+            "dependencies": [],
+            "id": "evidence",
+            "question": "Les pièces établissent-elles les faits nécessaires ?",
+            "reopen_if": "Source corrigée, périmée ou nouvelle contradiction",
+            "resolved_by": "Captures datées, passages et portée",
+            "result_refs": [
+              "research@1"
+            ],
+            "status": "conditional",
+            "type": "evidence_requirement"
+          },
+          {
+            "dependencies": [
+              "evidence"
+            ],
+            "id": "real_reserve",
+            "question": "Un placement réel finance-t-il le retrait sans risque nominal ?",
+            "reopen_if": "Nouveau produit ou besoin de liquidité",
+            "resolved_by": "Produit, échéance, conditions et preuve de garantie",
+            "result_refs": [],
+            "status": "not_applicable",
+            "type": "evidence_requirement"
+          }
+        ]
+      },
+      "ref": "questions.agent1@1",
+      "usable": false
+    },
+    {
+      "dossier_id": "eb3fe74c70594b83a273d11f89f23f95",
+      "id": "research",
+      "version": 1,
+      "type": "research",
+      "owner": "agent1",
+      "hash": "7b30b835148489b0741e69274e571e09f5b2ade303ddcb015cc722c42b510f40",
+      "input_refs": [
+        "fact.decision_type@1"
+      ],
+      "revision": 3,
+      "created_at": "2026-11-15T19:01:31.232595+00:00",
+      "content": {
+        "contradictions": [],
+        "evidence": [
+          {
+            "capture": {
+              "path": "docs/recherche/collecte/U341.html",
+              "sha256": "57f7b740b596078d34339613bae7323104c5dfb128553b9edc723528e73ca5ca",
+              "text_path": "runtime/decision/research/92c2ee9bf6639b02ce99e9a1e8c722a3d870c1f103ccba633c2a84f41c45158d.txt",
+              "text_sha256": "92c2ee9bf6639b02ce99e9a1e8c722a3d870c1f103ccba633c2a84f41c45158d"
+            },
+            "id": "local-U341-57f7b740b596",
+            "known_at": "2026-11-15T13:53:52.091977+00:00",
+            "known_at_basis": "timestamp_of_exact_captured_version",
+            "limitations": [
+              "Passages extraits automatiquement ; pertinence et ancrage restent à examiner.",
+              "Date de capture conservatrice ; elle ne prouve pas la disponibilité de cette version à une date antérieure."
+            ],
+            "passage": "ESG considerations can be integrated into an investment policy by negative screening, positive screening, ESG integration, thematic investing, engagement/active ownership, and impact investing.\nRisk objectives are specifications for portfolio risk that reflect the risk tolerance of the client. Quantitative risk objectives can be absolute, relative, or a combination of the two.\nThe client’s overall risk tolerance is a function of both the client’s ability to accept risk and the client’s “risk attitude,” which can be considered the client’s willingness to take risk.\nThe client’s return objectives can be stated on an absolute or a relative basis. As an example of an absolute objective, the client may want to achieve a particular percentage rate of return. Alternatively, the return objective can be stated on a relative basis—for example, relative to a benchmark return.\nThe liquidity section of the IPS should state what the client’s requirements are to draw cash from the portfolio.\nThe time horizon section of the IPS should state the time horizon over which the investor is investing. This horizon may be the period during which the portfolio is accumulating before any assets need to be withdrawn.\nTax status varies among investors, and a client’s tax status should be stated in the IPS.\nThe IPS should state any legal or regulatory restrictions that constrain the investment of the portfolio.\nThe unique circumstances section of the IPS should cover any other aspect of a client’s circumstances that is likely to have a material impact on portfolio composition. Certain ESG implementation approaches may be discussed in this section.\nAsset classes are the building blocks of an asset allocation. An asset class is a category of assets that have similar characteristics, attributes, and risk–return relationships. Traditionally, investors have distinguished cash, equities, bonds, and real estate as the major asset classes.\nA strategic asset allocation results from combining the constraints and objectives articulated in the IPS and capital market expectations regarding the asset classes.\nAs time goes on, a client’s asset allocation will drift from the target allocation, and the amou",
+            "passages": [
+              {
+                "line_end": 44,
+                "line_start": 31,
+                "match_terms": [
+                  "capital",
+                  "liquidity",
+                  "portfolio"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "ESG considerations can be integrated into an investment policy by negative screening, positive screening, ESG integration, thematic investing, engagement/active ownership, and impact investing.\nRisk objectives are specifications for portfolio risk that reflect the risk tolerance of the client. Quantitative risk objectives can be absolute, relative, or a combination of the two.\nThe client’s overall risk tolerance is a function of both the client’s ability to accept risk and the client’s “risk attitude,” which can be considered the client’s willingness to take risk.\nThe client’s return objectives can be stated on an absolute or a relative basis. As an example of an absolute objective, the client may want to achieve a particular percentage rate of return. Alternatively, the return objective can be stated on a relative basis—for example, relative to a benchmark return.\nThe liquidity section of the IPS should state what the client’s requirements are to draw cash from the portfolio.\nThe time horizon section of the IPS should state the time horizon over which the investor is investing. This horizon may be the period during which the portfolio is accumulating before any assets need to be withdrawn.\nTax status varies among investors, and a client’s tax status should be stated in the IPS.\nThe IPS should state any legal or regulatory restrictions that constrain the investment of the portfolio.\nThe unique circumstances section of the IPS should cover any other aspect of a client’s circumstances that is likely to have a material impact on portfolio composition. Certain ESG implementation approaches may be discussed in this section.\nAsset classes are the building blocks of an asset allocation. An asset class is a category of assets that have similar characteristics, attributes, and risk–return relationships. Traditionally, investors have distinguished cash, equities, bonds, and real estate as the major asset classes.\nA strategic asset allocation results from combining the constraints and objectives articulated in the IPS and capital market expectations regarding the asset classes.\nAs time goes on, a client’s asset allocation will drift from the target allocation, and the amou",
+                "text_truncated": true
+              },
+              {
+                "line_end": 24,
+                "line_start": 11,
+                "match_terms": [
+                  "liquidity",
+                  "portfolio"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "Access the Full Reading in the Learning Ecosystem\nIntroduction\nTo build a suitable portfolio for a client, investment advisers should first seek to understand the client’s investment goals, resources, circumstances, and constraints. Investors can be categorized into broad groups based on shared characteristics with respect to these factors (e.g., various types of individual investors and institutional investors). Even investors within a given type, however, will invariably have a number of distinctive requirements. In this reading, we consider in detail the planning for investment success based on an individualized understanding of the client.\nThis reading is organized as follows: Section 2 discusses the investment policy statement, a written document that captures the client’s investment objectives and the constraints. Section 3 discusses the portfolio construction process, including the first step of specifying a strategic asset allocation for the client. Section 4 concludes and summarizes the reading.\nLearning Outcomes\nThe candidate should be able to:\ndescribe the reasons for a written investment policy statement (IPS);\ndescribe the major components of an IPS describe risk and return objectives and how they may be developed for a client;\nexplain the difference between the willingness and the ability (capacity) to take risk in analyzing an investor’s financial risk tolerance;\ndescribe the investment constraints of liquidity, time horizon, tax concerns, legal and regulatory factors, and unique circumstances and their implications for the choice of portfolio assets;\nexplain the specification of asset classes in relation to asset allocation;\ndescribe the principles of portfolio construction and the role of asset allocation in relation to the IPS;\ndescribe how environmental, social, and governance (ESG) considerations may be integrated into portfolio planning and construction.\nSummary",
+                "text_truncated": false
+              }
+            ],
+            "reading_level": "targeted_passages",
+            "review_status": "extracted_for_role_review",
+            "scope": {
+              "pdf_pages": null,
+              "query": "short term withdrawal nominal capital protection liquidity linear programming portfolio",
+              "source_version": "57f7b740b596078d34339613bae7323104c5dfb128553b9edc723528e73ca5ca"
+            },
+            "source": {
+              "authority": "institutional_publisher_scope_to_review",
+              "kind": "captured_document",
+              "title": "Basics of Portfolio Planning and Construction | CFA Institute",
+              "url": "https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/basics-of-portfolio-planning-and-construction"
+            },
+            "source_id": "U341",
+            "version": 1
+          },
+          {
+            "capture": {
+              "path": "docs/recherche/finance/sources/boyd_convex.pdf",
+              "sha256": "40d976c83c18cce1900eff8c41bd5ad408c102b813af39d05ff85678ccf8d76e",
+              "text_path": "runtime/decision/research/9ef784e4ae3e9de3269a90fd6d8aa097e7eda3d55677449b2c1af127b7ce48d9.txt",
+              "text_sha256": "9ef784e4ae3e9de3269a90fd6d8aa097e7eda3d55677449b2c1af127b7ce48d9"
+            },
+            "id": "local-boyd_convex-40d976c83c18",
+            "known_at": "2026-11-15T13:55:11.974998+00:00",
+            "known_at_basis": "timestamp_of_exact_captured_version",
+            "limitations": [
+              "Passages extraits automatiquement ; pertinence et ancrage restent à examiner.",
+              "Date de capture conservatrice ; elle ne prouve pas la disponibilité de cette version à une date antérieure."
+            ],
+            "passage": "This problem can be transformed to an equivalent LP by ﬁrst forming the epigraph\nproblem,\nminimize t\nsubject to maxi=1,...,m(aT i x + bi) ≤ t,\n\n[PDF page 165]\n4.3 Linear optimization problems 151\nand then expressing the inequality as a set of m separate inequalities:\nminimize t\nsubject to aT i x + bi ≤ t, i = 1,...,m.\nThis is an LP (in inequality form), with variables x and t.\n4.3.2 Linear-fractional programming\nThe problem of minimizing a ratio of aﬃne functions over a polyhedron is called a\nlinear-fractional program:",
+            "passages": [
+              {
+                "line_end": 214,
+                "line_start": 201,
+                "match_terms": [
+                  "linear",
+                  "programming"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "This problem can be transformed to an equivalent LP by ﬁrst forming the epigraph\nproblem,\nminimize t\nsubject to maxi=1,...,m(aT i x + bi) ≤ t,\n\n[PDF page 165]\n4.3 Linear optimization problems 151\nand then expressing the inequality as a set of m separate inequalities:\nminimize t\nsubject to aT i x + bi ≤ t, i = 1,...,m.\nThis is an LP (in inequality form), with variables x and t.\n4.3.2 Linear-fractional programming\nThe problem of minimizing a ratio of aﬃne functions over a polyhedron is called a\nlinear-fractional program:",
+                "text_truncated": false
+              },
+              {
+                "line_end": 254,
+                "line_start": 241,
+                "match_terms": [
+                  "linear",
+                  "programming"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "in (4.32), with the same objective value f0(x) = cT y + dz. If (y,z) is feasible\nin (4.33) with z = 0, and x0 is feasible for (4.32), then x = x0 + ty is feasible\nin (4.32) for all t ≥ 0. Moreover, limt→∞ f0(x0 + ty) = cT y + dz, so we can ﬁnd\nfeasible points in (4.32) with objective values arbitrarily close to the objective value\nof (y,z). We conclude that the optimal value of (4.32) is less than or equal to the\noptimal value of (4.33).\n\n[PDF page 166]\n152 4 Convex optimization problems\nGeneralized linear-fractional programming\nA generalization of the linear-fractional program (4.32) is the generalized linear-\nfractional program in which\nf0(x) = max i=1,...,r\ncT i x + di",
+                "text_truncated": false
+              },
+              {
+                "line_end": 24,
+                "line_start": 11,
+                "match_terms": [
+                  "linear"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "2. Solve the convex feasibility problem (4.26).\n3. if (4.26) is feasible, u := t; else l := t.\nuntil u − l ≤ ǫ.\nThe interval [l,u] is guaranteed to contain p⋆, i.e., we have l ≤ p⋆ ≤ u at\neach step. In each iteration the interval is divided in two, i.e., bisected, so the\nlength of the interval after k iterations is 2−k(u − l), where u − l is the length of\nthe initial interval. It follows that exactly ⌈log2((u − l)/ǫ)⌉ iterations are required\nbefore the algorithm terminates. Each step involves solving the convex feasibility\nproblem (4.26).\n4.3 Linear optimization problems\nWhen the objective and constraint functions are all aﬃne, the problem is called a\nlinear program (LP). A general linear program has the form\nminimize cT x + d\nsubject to Gx ≼ h",
+                "text_truncated": false
+              }
+            ],
+            "reading_level": "targeted_passages",
+            "review_status": "extracted_for_role_review",
+            "scope": {
+              "pdf_pages": [
+                160,
+                161,
+                162,
+                163,
+                164,
+                165,
+                166
+              ],
+              "query": "short term withdrawal nominal capital protection liquidity linear programming portfolio",
+              "source_version": "40d976c83c18cce1900eff8c41bd5ad408c102b813af39d05ff85678ccf8d76e"
+            },
+            "source": {
+              "authority": "author_hosted_primary_text",
+              "kind": "captured_document",
+              "title": "Convex Optimization — Boyd et Vandenberghe, chapitre 4.3",
+              "url": "https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf"
+            },
+            "source_id": "boyd_convex",
+            "version": 1
+          },
+          {
+            "capture": {
+              "path": "docs/recherche/collecte/U050.html",
+              "sha256": "0a65c95f8fa2392733b6ea7df908e8dc693a9507eabad71e76d4f5e87f24b5fe",
+              "text_path": "runtime/decision/research/4fa4dc24ff9a272fe1124617a5fc4a2598a648beef1161adad36d7907c371395.txt",
+              "text_sha256": "4fa4dc24ff9a272fe1124617a5fc4a2598a648beef1161adad36d7907c371395"
+            },
+            "id": "local-U050-0a65c95f8fa2",
+            "known_at": "2026-11-15T13:53:13.443931+00:00",
+            "known_at_basis": "timestamp_of_exact_captured_version",
+            "limitations": [
+              "Passages extraits automatiquement ; pertinence et ancrage restent à examiner.",
+              "Date de capture conservatrice ; elle ne prouve pas la disponibilité de cette version à une date antérieure."
+            ],
+            "passage": "Star\n1.9k\n(\n1.9k\n)\nYou must be signed in to star a repository\nAbout\nLinear optimization software\nTopics\nhigh-performance\ninterior-point-method\nlinear-optimization\nmixed-integer-programming\nparallel",
+            "passages": [
+              {
+                "line_end": 24,
+                "line_start": 11,
+                "match_terms": [
+                  "linear",
+                  "programming"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "Star\n1.9k\n(\n1.9k\n)\nYou must be signed in to star a repository\nAbout\nLinear optimization software\nTopics\nhigh-performance\ninterior-point-method\nlinear-optimization\nmixed-integer-programming\nparallel",
+                "text_truncated": false
+              },
+              {
+                "line_end": 169,
+                "line_start": 156,
+                "match_terms": [
+                  "linear",
+                  "programming"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "Reference\nAbout HiGHS\nHiGHS is a high performance serial and parallel solver for large scale sparse\nlinear optimization problems of the form\n$$ \\min \\quad \\dfrac{1}{2}x^TQx + c^Tx \\qquad \\textrm{s.t.}~ \\quad L \\leq Ax \\leq U; \\quad l \\leq x \\leq u $$\nwhere\n$Q$\nmust be positive semi-definite and, if\n$Q$\nis zero, there may be a requirement that some of the variables take integer values. Thus HiGHS can solve linear programming (LP) problems, convex quadratic programming (QP) problems, and mixed integer programming (MIP) problems. It is mainly written in C++, but also has some C. It has been developed and tested on various Linux, MacOS and Windows installations. No third-party dependencies are required.\nHiGHS has primal and dual revised simplex solvers, originally written by Qi Huangfu and further developed by Julian Hall. It also has an interior point solver for LP written by Lukas Schork, an active set solver for QP written by Michael Feldmeier, and a MIP solver written by Leona Gottwald. Other features have been added by Julian Hall and Ivet Galabova, who manages the software engineering of HiGHS and interfaces to C, C#, FORTRAN, Julia and Python.\nFind out more about HiGHS at\nhttps://www.highs.dev\n.",
+                "text_truncated": false
+              },
+              {
+                "line_end": 439,
+                "line_start": 426,
+                "match_terms": [
+                  "linear",
+                  "programming"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "not\nincluded in the default build. For more details, check out the documentation website\nhttps://ergo-code.github.io/HiGHS/\n.\nReference\nIf you use HiGHS in an academic context, please acknowledge this and cite the following article.\nParallelizing the dual revised simplex method\nQ. Huangfu and J. A. J. Hall\nMathematical Programming Computation, 10 (1), 119-142, 2018.\nDOI:\n10.1007/s12532-017-0130-5\nAbout\nLinear optimization software\nTopics",
+                "text_truncated": false
+              }
+            ],
+            "reading_level": "targeted_passages",
+            "review_status": "extracted_for_role_review",
+            "scope": {
+              "pdf_pages": null,
+              "query": "short term withdrawal nominal capital protection liquidity linear programming portfolio",
+              "source_version": "0a65c95f8fa2392733b6ea7df908e8dc693a9507eabad71e76d4f5e87f24b5fe"
+            },
+            "source": {
+              "authority": "software_repository_documentation",
+              "kind": "captured_document",
+              "title": "GitHub - ERGO-Code/HiGHS: Linear optimization software · GitHub",
+              "url": "https://github.com/ERGO-Code/HiGHS"
+            },
+            "source_id": "U050",
+            "version": 1
+          },
+          {
+            "capture": {
+              "path": "runtime/decision/research/09cbe2c6cc000c1a561de38bbc552c49edb6ddec6bad2b2d7bf937841e79400b.pdf",
+              "sha256": "09cbe2c6cc000c1a561de38bbc552c49edb6ddec6bad2b2d7bf937841e79400b",
+              "text_path": "runtime/decision/research/9082d03f15df0d3793037d8e8cf574e7626e0210014f94166a745aedf2772f74.txt",
+              "text_sha256": "9082d03f15df0d3793037d8e8cf574e7626e0210014f94166a745aedf2772f74"
+            },
+            "id": "web-09cbe2c6cc000c1a561d",
+            "known_at": "2026-11-15T19:01:18.210686+00:00",
+            "known_at_basis": "timestamp_of_exact_captured_version",
+            "limitations": [
+              "Capture et extraction ne prouvent ni l'exactitude ni l'applicabilité.",
+              "Métadonnées de publication à recouper ; elles ne rétrodatent pas la capture.",
+              "PDF : extraction bornée aux soixante premières pages, sans OCR."
+            ],
+            "passage": "handling any number of decision variables. Problems \ncontaining more than two or three variables cannot \nbe solved using graphs. Several standardized solu­\ntion procedures (known as algorithms) exist, how­\never, for solving large problems.15\nIn addition to handling as many decision variables \nas necessary, the linear programming model can ac­\ncommodate as many constraints as bank managers \nconsider relevant to the portfolio decision process. \nSpecifically, detailed and realistic sets of liquidity \nconstraints can be built into the model reflecting lia­\nbility and capital structures, cash flow patterns, sea­\nsonal fluctuations in loan demand, and miscellaneous \nrestrictions imposed by management on the basis of",
+            "passages": [
+              {
+                "line_end": 614,
+                "line_start": 601,
+                "match_terms": [
+                  "capital",
+                  "linear",
+                  "liquidity",
+                  "portfolio",
+                  "programming"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "handling any number of decision variables. Problems \ncontaining more than two or three variables cannot \nbe solved using graphs. Several standardized solu­\ntion procedures (known as algorithms) exist, how­\never, for solving large problems.15\nIn addition to handling as many decision variables \nas necessary, the linear programming model can ac­\ncommodate as many constraints as bank managers \nconsider relevant to the portfolio decision process. \nSpecifically, detailed and realistic sets of liquidity \nconstraints can be built into the model reflecting lia­\nbility and capital structures, cash flow patterns, sea­\nsonal fluctuations in loan demand, and miscellaneous \nrestrictions imposed by management on the basis of",
+                "text_truncated": false
+              },
+              {
+                "line_end": 649,
+                "line_start": 636,
+                "match_terms": [
+                  "capital",
+                  "linear",
+                  "liquidity",
+                  "portfolio",
+                  "programming"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "as for the current period. The reader should not \ninfer that management would, at some point, use the \nmodel to suggest desirable portfolios for, say, the next \nfive quarters, and then slavishly follow the prescrip­\ntions for each quarter as time passes. Obviously, the \nmodel should be updated and solved again as fore­\n15 The most widely used algorithm is the so-called “simplex” method. \nSee Baumol, op. cit., pp. 82-97.\n18 In their pioneering application of the linear programming method \nto bank portfolio management, Chambers and Charnes developed a \ndetailed system of capital adequacy-liquidity constraints using some \nof the bank examination criteria employed by the Federal Reserve \nSystem. See D. Chambers and A. Charnes, “ Inter-Temporal Analysis \nand Optimization of Bank Portfolios,” Management Science, 7 (July",
+                "text_truncated": false
+              },
+              {
+                "line_end": 14,
+                "line_start": 1,
+                "match_terms": [
+                  "linear",
+                  "liquidity",
+                  "portfolio",
+                  "programming"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "[PDF page 1]\nFEDERAL RESERVE BANK OF RICHMOND\nMONTHLY \nREVIEW\nLinear Programming: A Nczu \nApproach To Bank Portfolio \nManagement\nCorporate Financing and Liquidity;: \n1968-1972\nI\\ i\nVolum e 58 \nNum ber 11 NOVEMBER 19 7 2\nDigitized for FRASER \nhttp://fraser.stlouisfed.org/",
+                "text_truncated": false
+              }
+            ],
+            "published_at_claim": null,
+            "reading_level": "targeted_passages",
+            "review_status": "extracted_for_role_review",
+            "scope": {
+              "query": "short term withdrawal nominal capital protection liquidity linear programming portfolio",
+              "source_version": "09cbe2c6cc000c1a561de38bbc552c49edb6ddec6bad2b2d7bf937841e79400b"
+            },
+            "search_index": {
+              "published_at_index_claim": null,
+              "snippet": "FEDERAL RESERVE BANK OF RICHMOND MONTHLY R E V I E W Linear Programming: A Nczu Approach To Bank Portfolio Management Corporate Financing and Liquidity;: 1968-1972 I\\ i Volum e 58 Num ber 11 N O V E M B E R  19 7 2 \n\nunderstood and effectively employed by bankers.1 One technique receiving considerable attention is lin­ ear programming. Linear programming is a basic analytical procedure, or “ model,” employed exten­ \n\nerally less liquid and riskier than assets having rela­ tively low yields, such as short-term government securities. The “Pooled-Funds” Approach During the early postwar period, funds were generally available to \n\nThe total funds constraint requires that the point representing the bank’s asset portfolio either fall on A A ' or within the shaded region below and to the left of A A '.9 Liquidity Constraint The bank recognizes that, \n\nThis constraint is depicted by Chart 3. The restriction requires the bank’s portfolio to fall on or to the right of line CC'. The mathematical statement of the constraint is : (4) L >  30 million. The Feasible Region \n\nChart 3 LOAN BALANCE CONSTRAINTS Securities ($ Millions) 100 80 60 40 20 20 40 60 Loans ($ Millions) 80 100 6 MONTHLY REVIEW, NOVEMBER 1972 Digitized for FRASER http://fraser.stlouisfed.org/ Federal Reserve Bank of St. Louis \n\nThis portfolio would yield $8.75 million of income during the period. The linear programming model has pro­ vided the bank an objective procedure for deter­ mining its optimal portfolio. The model has taken \n\nC h a rt 6 THE OPTIMAL ASSET PORTFOLIO Securities ($ M illio n s) Loans ($ M illion s) time deposits and $45 million of demand deposits, management considers a 20 percent liquidity ratio constraint adequate. \n\nobjective function in position QQ'. As indicated by G', the bank’s new income-maximizing portfolio con­ tains $88 million of loans and $22 million of securi- C h a rt 7 SOLUTION TO PROBLEM (10) Securities \n\nbank should define as many asset decision variables as there are assets of significantly different yield, liquid­ ity, and risk in its portfolio. The model is capable of handling any number of decision variables. Problems \n\nas necessary, the linear programming model can ac­ commodate as many constraints as bank managers consider relevant to the portfolio decision process. Specifically, detailed and realistic sets of liquidity ",
+              "title": "Economic Review",
+              "url": "https://fraser.stlouisfed.org/files/docs/publications/frbrichreview/rev_frbrich197211.pdf"
+            },
+            "source": {
+              "authority": "unclassified_requires_review",
+              "kind": "captured_document",
+              "resolved_url": "https://fraser.stlouisfed.org/files/docs/publications/frbrichreview/rev_frbrich197211.pdf",
+              "title": "Economic Review",
+              "url": "https://fraser.stlouisfed.org/files/docs/publications/frbrichreview/rev_frbrich197211.pdf"
+            },
+            "version": 1
+          },
+          {
+            "capture": {
+              "path": "runtime/decision/research/de6b11aa5d196fba2108a0a6d4d8bff758b4b43fb876b6d40c6107493bce87f8.pdf",
+              "sha256": "de6b11aa5d196fba2108a0a6d4d8bff758b4b43fb876b6d40c6107493bce87f8",
+              "text_path": "runtime/decision/research/1279d78c6283fffcc9a269a9648c6d79f1e2b433a5e4ec216e6040fbceb784bf.txt",
+              "text_sha256": "1279d78c6283fffcc9a269a9648c6d79f1e2b433a5e4ec216e6040fbceb784bf"
+            },
+            "id": "web-de6b11aa5d196fba2108",
+            "known_at": "2026-11-15T19:01:19.694520+00:00",
+            "known_at_basis": "timestamp_of_exact_captured_version",
+            "limitations": [
+              "Capture et extraction ne prouvent ni l'exactitude ni l'applicabilité.",
+              "Métadonnées de publication à recouper ; elles ne rétrodatent pas la capture.",
+              "PDF : extraction bornée aux soixante premières pages, sans OCR."
+            ],
+            "passage": "NBER working papers are circulated for discussion and comment purposes. They have not been peer-\nreviewed or been subject to the review by the NBER Board of Directors that accompanies official\nNBER publications.\n© 2013 by Vanya Horneff, Raimond Maurer, Olivia S. Mitchell, and Ralph Rogalla. All rights reserved.\nShort sections of text, not to exceed two paragraphs, may be quoted without explicit permission provided\nthat full credit, including © notice, is given to the source.\n\n[PDF page 2]\nOptimal Life Cycle Portfolio Choice with Variable Annuities Offering Liquidity and Investment\nDownside Protection\nVanya Horneff, Raimond Maurer, Olivia S. Mitchell, and Ralph Rogalla\nNBER Working Paper No. 19206\nJuly 2013\nJEL No. D1,D14,D91,G11,G22",
+            "passages": [
+              {
+                "line_end": 39,
+                "line_start": 26,
+                "match_terms": [
+                  "liquidity",
+                  "portfolio",
+                  "protection",
+                  "short"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "NBER working papers are circulated for discussion and comment purposes. They have not been peer-\nreviewed or been subject to the review by the NBER Board of Directors that accompanies official\nNBER publications.\n© 2013 by Vanya Horneff, Raimond Maurer, Olivia S. Mitchell, and Ralph Rogalla. All rights reserved.\nShort sections of text, not to exceed two paragraphs, may be quoted without explicit permission provided\nthat full credit, including © notice, is given to the source.\n\n[PDF page 2]\nOptimal Life Cycle Portfolio Choice with Variable Annuities Offering Liquidity and Investment\nDownside Protection\nVanya Horneff, Raimond Maurer, Olivia S. Mitchell, and Ralph Rogalla\nNBER Working Paper No. 19206\nJuly 2013\nJEL No. D1,D14,D91,G11,G22",
+                "text_truncated": false
+              },
+              {
+                "line_end": 124,
+                "line_start": 111,
+                "match_terms": [
+                  "capital",
+                  "liquidity",
+                  "portfolio",
+                  "protection"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "Salisbury, 2006). Typically, the consumer may withdraw a maximum percentage of her \npremium per year until the premium is completely recouped. Any remaining capital at the end \nof the deferral period can be converted either into a lifelong annuity or paid to the \n\n[PDF page 4]\n2 \n \npolicyholder in the form of a lump sum. In this way, the GMWB offers access to equity \ninvestments, downside protection against market risk, and the possibility of hedging longevity \nrisk via annuitization. Because of the withdraw al option, premiums are at least in part \nrefundable, so that GMWBs offer also liquidity which can help overcome consumer \nreluctance to voluntary annuitize retirement wealth.1  \nPrior literature on dynamic portfolio choi ce has examined household demand for life \nannuities and its welfare implications. 2 Though several authors study immediate and fixed",
+                "text_truncated": false
+              },
+              {
+                "line_end": 14,
+                "line_start": 1,
+                "match_terms": [
+                  "liquidity",
+                  "portfolio",
+                  "protection"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "[PDF page 1]\nNBER WORKING PAPER SERIES\nOPTIMAL LIFE CYCLE PORTFOLIO CHOICE WITH VARIABLE ANNUITIES\nOFFERING LIQUIDITY AND INVESTMENT DOWNSIDE PROTECTION\nVanya Horneff\nRaimond Maurer\nOlivia S. Mitchell\nRalph Rogalla\nWorking Paper 19206\nhttp://www.nber.org/papers/w19206\nNATIONAL BUREAU OF ECONOMIC RESEARCH\n1050 Massachusetts Avenue\nCambridge, MA 02138\nJuly 2013",
+                "text_truncated": false
+              }
+            ],
+            "published_at_claim": null,
+            "reading_level": "targeted_passages",
+            "review_status": "extracted_for_role_review",
+            "scope": {
+              "query": "short term withdrawal nominal capital protection liquidity linear programming portfolio",
+              "source_version": "de6b11aa5d196fba2108a0a6d4d8bff758b4b43fb876b6d40c6107493bce87f8"
+            },
+            "search_index": {
+              "published_at_index_claim": null,
+              "snippet": "that full credit, including © notice, is given to the source. Optimal Life Cycle Portfolio Choice with Variable Annuities Offering Liquidity and Investment Downside Protection Vanya Horneff, Raimond Maurer, Olivia S. Mitchell, and Ralph Rogalla \n\nNBER Working Paper No. 19206 July 2013 JEL No. D1,D14,D91,G11,G22 ABSTRACT We evaluate lifecycle consumption and portfolio allocation patterns resulting from access to Guaranteed Minimum Withdrawal Benefit (GMWB) variable annuities, one of the most rapidly-growing financial \n\nGermany rogalla@finance.uni-frankfurt.de Optimal Life Cycle Portfolio Choice with Variable Annuities Offering Liquidity and Investment Downside Protection 1. Introduction Defined contribution pensions are the most rapidly growing form of retirement saving \n\nAccount value. A key element of the GMWB is that the insurance company guarantees the policyholder that the sum of all possible (life contingent) withdrawals until the end of the deferral period is at least a certain amount, ∑ \n\nthe period. Hence the policyholder can decide in each period ݐ ൌ 2, … , ܭെ1 to withdraw an amount that satisfies the following limits: 0 ൑ܧ௧൑minሺܩ௧, ܧ୫ୟ୶ሻ. (3) At the end of the deferral period, at time ݐ ൌ ܭ, the remaining cash value of the GMWB is \n\ndistributed with a standard deviation of 18%; additionally the assumed risk-free interest rate is 2%. The maximum guaranteed yearly withdrawal from a GMWB purchased at time ݐ ( ݐ ൌ 1, … , ܭെ1 ) for a premium of ܣ௧ is given by ܧ௠௔௫ൌ \n\nAccounts, and withdrawal limits, or 75 accounts in total. Moreover, this also requires deciding how to optimally distribute withdrawals over the (potentially) 25 Fund Accounts. Explicitly keeping track of so many state and decision variables in a dynamic optimization model is \n\nwithdrawals (clear bars) from existing accounts, as well as the values of the Guarantee (solid line) and Fund Accounts (dashed line). Account values correspond to the left axis, while purchases and withdrawals refer to the right axis. \n\nwithdrawals from the GMWB, the Fund Account nevertheless continues to grow due to the expected return on stocks in which the assets are invested. The Guarantee Account increases to around age 50 because GMWB purchases exceed withdrawals. Thereafter, it declines ",
+              "title": "Microsoft Word - HMMR-GMWB 06-06-2013",
+              "url": "https://www.nber.org/system/files/working_papers/w19206/w19206.pdf"
+            },
+            "source": {
+              "authority": "unclassified_requires_review",
+              "kind": "captured_document",
+              "resolved_url": "https://www.nber.org/system/files/working_papers/w19206/w19206.pdf",
+              "title": "Microsoft Word - HMMR-GMWB 06-06-2013",
+              "url": "https://www.nber.org/system/files/working_papers/w19206/w19206.pdf"
+            },
+            "version": 1
+          }
+        ],
+        "gaps": [
+          {
+            "code": "real_reserve_not_qualified",
+            "effect": "blocks_real_instrument_claim",
+            "message": "Aucun contrat d'instrument réel n'a été qualifié pour assurer disponibilité et nominal du retrait."
+          },
+          {
+            "code": "document_access_incomplete",
+            "execution_refs": [
+              "ea5b9c12486974288b395a15"
+            ],
+            "message": "Certaines recherches ou captures ont échoué ; les reçus indiquent lesquelles."
+          }
+        ],
+        "knowledge_date": null,
+        "limitations": [
+          "La collecte fournit des passages à examiner ; elle ne certifie pas leur soutien à une assertion.",
+          "Aucun score ESG, rendement attendu ou propriété contractuelle n'est imputé."
+        ],
+        "methods": [
+          {
+            "executable_admission": false,
+            "id": "linear_programming",
+            "limitations": [
+              "La pertinence, l'implémentation et les contrôles doivent être qualifiés séparément."
+            ],
+            "name": "Programmation linéaire sous contraintes explicites",
+            "source_refs": [
+              "local-boyd_convex-40d976c83c18"
+            ],
+            "status": "documented_candidate",
+            "version": 1
+          }
+        ],
+        "query": "short term withdrawal nominal capital protection liquidity linear programming portfolio",
+        "receipts": [
+          {
+            "capture_sha256": "57f7b740b596078d34339613bae7323104c5dfb128553b9edc723528e73ca5ca",
+            "execution_id": "ee4736f460e4b7dd76f78865",
+            "finished_at": "2026-11-15T19:01:17.207954+00:00",
+            "output_refs": [
+              "local-U341-57f7b740b596"
+            ],
+            "parameters": {
+              "source_id": "U341"
+            },
+            "started_at": "2026-11-15T19:01:17.190462+00:00",
+            "status": "success",
+            "tool_id": "local_corpus_read",
+            "version": "1.0"
+          },
+          {
+            "capture_sha256": "40d976c83c18cce1900eff8c41bd5ad408c102b813af39d05ff85678ccf8d76e",
+            "execution_id": "4c24aeacb09e50c6513db832",
+            "finished_at": "2026-11-15T19:01:17.448763+00:00",
+            "output_refs": [
+              "local-boyd_convex-40d976c83c18"
+            ],
+            "parameters": {
+              "source_id": "boyd_convex"
+            },
+            "started_at": "2026-11-15T19:01:17.207967+00:00",
+            "status": "success",
+            "tool_id": "local_corpus_read",
+            "version": "1.0"
+          },
+          {
+            "capture_sha256": "0a65c95f8fa2392733b6ea7df908e8dc693a9507eabad71e76d4f5e87f24b5fe",
+            "execution_id": "24b55992958f5d7196ca73c8",
+            "finished_at": "2026-11-15T19:01:17.496780+00:00",
+            "output_refs": [
+              "local-U050-0a65c95f8fa2"
+            ],
+            "parameters": {
+              "source_id": "U050"
+            },
+            "started_at": "2026-11-15T19:01:17.448782+00:00",
+            "status": "success",
+            "tool_id": "local_corpus_read",
+            "version": "1.0"
+          },
+          {
+            "account_id": "471112821226",
+            "execution_id": "d38ce4fb680780d65f1f06f3",
+            "finished_at": "2026-11-15T19:01:17.644686+00:00",
+            "profile": "alphaforge",
+            "provider_request_id": "0d36b518-6ba8-4e1e-99e3-9c6ccbaab245",
+            "region": "us-east-1",
+            "started_at": "2026-11-15T19:01:17.496800+00:00",
+            "status": "success",
+            "tool_id": "aws_sts_identity",
+            "version": "1.0"
+          },
+          {
+            "account_id": "471112821226",
+            "discarded_domain_count": 0,
+            "execution_id": "9c1502f0ff1dc9b57ce9f60a",
+            "finished_at": "2026-11-15T19:01:18.210668+00:00",
+            "measured_cost": null,
+            "mode": "ranked_search_no_WebAnswer",
+            "parameters": {
+              "maxResults": 3,
+              "searchQuery": "short term withdrawal nominal capital protection liquidity linear programming portfolio",
+              "webSearchId": "web-search.v1"
+            },
+            "profile": "alphaforge",
+            "provider_request_id": "e28a68e4-4629-4304-98ef-c5d5b9551d78",
+            "raw_result_count": 3,
+            "region": "us-east-1",
+            "result_count": 3,
+            "results": [
+              {
+                "published_at_index_claim": null,
+                "snippet": "FEDERAL RESERVE BANK OF RICHMOND MONTHLY R E V I E W Linear Programming: A Nczu Approach To Bank Portfolio Management Corporate Financing and Liquidity;: 1968-1972 I\\ i Volum e 58 Num ber 11 N O V E M B E R  19 7 2 \n\nunderstood and effectively employed by bankers.1 One technique receiving considerable attention is lin­ ear programming. Linear programming is a basic analytical procedure, or “ model,” employed exten­ \n\nerally less liquid and riskier than assets having rela­ tively low yields, such as short-term government securities. The “Pooled-Funds” Approach During the early postwar period, funds were generally available to \n\nThe total funds constraint requires that the point representing the bank’s asset portfolio either fall on A A ' or within the shaded region below and to the left of A A '.9 Liquidity Constraint The bank recognizes that, \n\nThis constraint is depicted by Chart 3. The restriction requires the bank’s portfolio to fall on or to the right of line CC'. The mathematical statement of the constraint is : (4) L >  30 million. The Feasible Region \n\nChart 3 LOAN BALANCE CONSTRAINTS Securities ($ Millions) 100 80 60 40 20 20 40 60 Loans ($ Millions) 80 100 6 MONTHLY REVIEW, NOVEMBER 1972 Digitized for FRASER http://fraser.stlouisfed.org/ Federal Reserve Bank of St. Louis \n\nThis portfolio would yield $8.75 million of income during the period. The linear programming model has pro­ vided the bank an objective procedure for deter­ mining its optimal portfolio. The model has taken \n\nC h a rt 6 THE OPTIMAL ASSET PORTFOLIO Securities ($ M illio n s) Loans ($ M illion s) time deposits and $45 million of demand deposits, management considers a 20 percent liquidity ratio constraint adequate. \n\nobjective function in position QQ'. As indicated by G', the bank’s new income-maximizing portfolio con­ tains $88 million of loans and $22 million of securi- C h a rt 7 SOLUTION TO PROBLEM (10) Securities \n\nbank should define as many asset decision variables as there are assets of significantly different yield, liquid­ ity, and risk in its portfolio. The model is capable of handling any number of decision variables. Problems \n\nas necessary, the linear programming model can ac­ commodate as many constraints as bank managers consider relevant to the portfolio decision process. Specifically, detailed and realistic sets of liquidity ",
+                "title": "Economic Review",
+                "url": "https://fraser.stlouisfed.org/files/docs/publications/frbrichreview/rev_frbrich197211.pdf"
+              },
+              {
+                "published_at_index_claim": null,
+                "snippet": "that full credit, including © notice, is given to the source. Optimal Life Cycle Portfolio Choice with Variable Annuities Offering Liquidity and Investment Downside Protection Vanya Horneff, Raimond Maurer, Olivia S. Mitchell, and Ralph Rogalla \n\nNBER Working Paper No. 19206 July 2013 JEL No. D1,D14,D91,G11,G22 ABSTRACT We evaluate lifecycle consumption and portfolio allocation patterns resulting from access to Guaranteed Minimum Withdrawal Benefit (GMWB) variable annuities, one of the most rapidly-growing financial \n\nGermany rogalla@finance.uni-frankfurt.de Optimal Life Cycle Portfolio Choice with Variable Annuities Offering Liquidity and Investment Downside Protection 1. Introduction Defined contribution pensions are the most rapidly growing form of retirement saving \n\nAccount value. A key element of the GMWB is that the insurance company guarantees the policyholder that the sum of all possible (life contingent) withdrawals until the end of the deferral period is at least a certain amount, ∑ \n\nthe period. Hence the policyholder can decide in each period ݐ ൌ 2, … , ܭെ1 to withdraw an amount that satisfies the following limits: 0 ൑ܧ௧൑minሺܩ௧, ܧ୫ୟ୶ሻ. (3) At the end of the deferral period, at time ݐ ൌ ܭ, the remaining cash value of the GMWB is \n\ndistributed with a standard deviation of 18%; additionally the assumed risk-free interest rate is 2%. The maximum guaranteed yearly withdrawal from a GMWB purchased at time ݐ ( ݐ ൌ 1, … , ܭെ1 ) for a premium of ܣ௧ is given by ܧ௠௔௫ൌ \n\nAccounts, and withdrawal limits, or 75 accounts in total. Moreover, this also requires deciding how to optimally distribute withdrawals over the (potentially) 25 Fund Accounts. Explicitly keeping track of so many state and decision variables in a dynamic optimization model is \n\nwithdrawals (clear bars) from existing accounts, as well as the values of the Guarantee (solid line) and Fund Accounts (dashed line). Account values correspond to the left axis, while purchases and withdrawals refer to the right axis. \n\nwithdrawals from the GMWB, the Fund Account nevertheless continues to grow due to the expected return on stocks in which the assets are invested. The Guarantee Account increases to around age 50 because GMWB purchases exceed withdrawals. Thereafter, it declines ",
+                "title": "Microsoft Word - HMMR-GMWB 06-06-2013",
+                "url": "https://www.nber.org/system/files/working_papers/w19206/w19206.pdf"
+              },
+              {
+                "published_at_index_claim": null,
+                "snippet": "I. CURRENT APPROACHES The typical bank's balance sheet lists a variety of assets and liabilities. Liabilities, such as demand and savings deposits, are sources of bank funds. Assets, such as business loans, consumer installment loans, and government securities, are uses of bank funds. The essence of the asset management problem is the need to achieve a proper balance between (1) income, (2) adequate liquidity to meet such contingencies as unanticipated loan demand and deposit withdrawals, and (3) the risk of default. The problem arises because assets carrying relatively high yields, such as consumer installment loans, are generally less liquid and riskier than assets having relatively low yields, such as short-term government securities. \n\nLiquidity Constraint The bank recognizes that, because loans cannot be liquidated during the time period under consideration, some quantity of negotiable securities must be held to meet unanticipated deposit withdrawals. Therefore, the bank makes it a rule always to maintain some minimum ratio of securities to total assets. Assume that, with \\$45 million of demand deposits and \\$45 million of time deposits, the bank always maintains a securities balance equal to or greater than 25 percent of total \n\nIn addition to handling as many decision variables as necessary, the linear programming model can accommodate as many constraints as bank managers consider relevant to the portfolio decision process. Specifically, detailed and realistic sets of liquidity constraints can be built into the model reflecting liability and capital structures, cash flow patterns, seasonal fluctuations in loan demand, and miscellaneous restrictions imposed by management on the basis of experience. ( ^{16} )  A variety of other constraints are conceivable, taking account of such operating factors as legal reserve requirements, corresponding balances, and the use of certain assets as collateral to support government deposits. ",
+                "title": "Economic Review",
+                "url": "http://fraser.stlouisfed.org/docs/publications/frbrichreview/rev_frbrich197211.pdf"
+              }
+            ],
+            "started_at": "2026-11-15T19:01:17.496800+00:00",
+            "status": "success",
+            "tool_id": "aws_invoke_web_search",
+            "version": "1.0"
+          },
+          {
+            "capture_sha256": "09cbe2c6cc000c1a561de38bbc552c49edb6ddec6bad2b2d7bf937841e79400b",
+            "execution_id": "5c5cc70998cb24d4108817ca",
+            "finished_at": "2026-11-15T19:01:19.694488+00:00",
+            "output_refs": [
+              "web-09cbe2c6cc000c1a561d"
+            ],
+            "parameters": {
+              "url": "https://fraser.stlouisfed.org/files/docs/publications/frbrichreview/rev_frbrich197211.pdf"
+            },
+            "resolved_url": "https://fraser.stlouisfed.org/files/docs/publications/frbrichreview/rev_frbrich197211.pdf",
+            "started_at": "2026-11-15T19:01:18.210686+00:00",
+            "status": "success",
+            "tool_id": "http_document_capture",
+            "version": "1.0"
+          },
+          {
+            "capture_sha256": "de6b11aa5d196fba2108a0a6d4d8bff758b4b43fb876b6d40c6107493bce87f8",
+            "execution_id": "fc51e4a6c2e3c5e62b33713e",
+            "finished_at": "2026-11-15T19:01:22.738305+00:00",
+            "output_refs": [
+              "web-de6b11aa5d196fba2108"
+            ],
+            "parameters": {
+              "url": "https://www.nber.org/system/files/working_papers/w19206/w19206.pdf"
+            },
+            "resolved_url": "https://www.nber.org/system/files/working_papers/w19206/w19206.pdf",
+            "started_at": "2026-11-15T19:01:19.694520+00:00",
+            "status": "success",
+            "tool_id": "http_document_capture",
+            "version": "1.0"
+          },
+          {
+            "error_code": "PublicHTTPSRequired",
+            "execution_id": "ea5b9c12486974288b395a15",
+            "finished_at": "2026-11-15T19:01:22.743027+00:00",
+            "parameters": {
+              "url": "http://fraser.stlouisfed.org/docs/publications/frbrichreview/rev_frbrich197211.pdf"
+            },
+            "started_at": "2026-11-15T19:01:22.738339+00:00",
+            "status": "failed",
+            "tool_id": "http_document_capture",
+            "version": "1.0"
+          }
+        ]
+      },
+      "ref": "research@1",
+      "usable": true
+    },
+    {
+      "dossier_id": "eb3fe74c70594b83a273d11f89f23f95",
+      "id": "research_review",
+      "version": 1,
+      "type": "review",
+      "owner": "agent1",
+      "hash": "2666d5049473a877d8835db9b2a251041a90b63bed8b61cf271da814501bb4d5",
+      "input_refs": [
+        "problem@1",
+        "research@1"
+      ],
+      "revision": 3,
+      "created_at": "2026-11-15T19:01:31.233074+00:00",
+      "content": {
+        "ai_used": true,
+        "capture_reused": false,
+        "decision": "clarify",
+        "evidence_ids": [
+          "local-U341-57f7b740b596",
+          "local-boyd_convex-40d976c83c18",
+          "local-U050-0a65c95f8fa2"
+        ],
+        "invalid_method_selections": [],
+        "method_ids": [
+          "linear_programming"
+        ],
+        "reason": "Non, les informations disponibles ne permettent pas de conclure. Le périmètre lui-même est ambigu : préservation avant ou après retrait, réserve abstraite ou produit réel, objectif à retenir. Le CFA étaye la nécessité de préciser les contraintes ; Boyd étaye une formulation linéaire si les fonctions sont affines ; HiGHS documente des capacités logicielles, sans valider ce cas. L’article bancaire de novembre 1972 et le working paper NBER de juillet 2013 sur les rentes GMWB, non évalué par les pairs selon l’extrait, ne qualifient aucun instrument adapté au retrait envisagé. Cette appréciation repose sur les passages capturés fournis, non sur les seuls extraits de recherche web.",
+        "unresolved": [
+          "Définir la préservation du capital : nominal visé, perte admissible et mesure avant ou après retrait.",
+          "Déterminer si le périmètre concerne une réserve abstraite hypothétique ou un instrument réel, et préciser l’objectif d’allocation.",
+          "Fournir le capital, les positions et leurs poids, le montant du retrait, les scénarios et leurs horizons. Douze mois sont indiqués dans la question, mais le champ structuré correspondant reste vide.",
+          "Aucun contrat d’instrument réel ne démontre la disponibilité des fonds et la protection du nominal à la date du retrait ; les conditions, frais, restrictions et risques restent à qualifier.",
+          "La programmation linéaire reste une méthode candidate non admise à l’exécution : vérifier le caractère affine du modèle, son implémentation et ses contrôles.",
+          "La date de connaissance cible n’est pas renseignée. Les captures du 15 novembre 2026 ne prouvent pas la disponibilité antérieure des versions.",
+          "Les passages examinés ne révèlent pas de contradiction directe, mais leur couverture est limitée. Une capture HTTP a échoué ; la capture HTTPS du même article historique a réussi."
+        ]
+      },
+      "ref": "research_review@1",
+      "usable": false
+    },
+    {
+      "dossier_id": "eb3fe74c70594b83a273d11f89f23f95",
+      "id": "problem",
+      "version": 2,
+      "type": "problem",
+      "owner": "agent0",
+      "hash": "c0a6512519dcaf509a7b2ab2baebdc8842bdd06cc9a4dbe663755952e385a7c4",
+      "input_refs": [
+        "fact.decision_type@1",
+        "fact.objective@1",
+        "fact.question@1",
+        "fact.unknowns@1",
+        "request@1"
+      ],
+      "revision": 4,
+      "created_at": "2026-11-15T19:01:40.637167+00:00",
+      "content": {
+        "assumptions": [],
+        "capital_cad": null,
+        "clarifications": [
+          {
+            "blocking": true,
+            "field": "scenario_loss_limit_cad",
+            "question": "Que signifie préserver le capital : quel montant doit être maintenu, à quelle échéance, avant ou après le retrait, et avec quelle perte maximale admissible ?"
+          },
+          {
+            "blocking": true,
+            "field": "reserve_policy",
+            "question": "Souhaitez-vous un exercice conditionnel sous réserve abstraite nominale, ou l’étude d’un instrument réel dont les conditions de disponibilité et de protection restent à préciser ?"
+          },
+          {
+            "blocking": true,
+            "field": "objective",
+            "question": "L’objectif est-il de minimiser le capital réalloué sous contraintes de préservation et de financement du retrait, ou souhaitez-vous un autre critère ?"
+          },
+          {
+            "blocking": true,
+            "field": "scenarios",
+            "question": "Quels scénarios hypothétiques explicites, avec quels rendements par actif et quels horizons, doivent encadrer l’exercice ?"
+          },
+          {
+            "blocking": true,
+            "field": "withdrawal_months",
+            "question": "Confirmez numériquement withdrawal_months."
+          }
+        ],
+        "comparison": null,
+        "currency": null,
+        "decision_type": "reserve_allocation",
+        "holdings": [],
+        "horizon_years": null,
+        "knowledge_date": null,
+        "max_asset_weights": {},
+        "objective": "unknown",
+        "question": "Peut-on conclure sur la préservation du capital et le financement d’un retrait dans douze mois avec les informations disponibles ?",
+        "reserve_policy": null,
+        "scenario_loss_limit_cad": null,
+        "scenarios": [],
+        "unknowns": [
+          "Capital disponible en CAD",
+          "Positions actuelles et poids",
+          "Montant du retrait en CAD",
+          "Définition de la préservation du capital et perte maximale admissible",
+          "Scénarios hypothétiques, rendements par actif et horizons",
+          "Nature et comportement de la réserve",
+          "Confirmation de l’objectif de minimisation du capital réalloué"
+        ],
+        "withdrawal_cad": null,
+        "withdrawal_months": null
+      },
+      "ref": "problem@2",
+      "usable": true
+    },
+    {
+      "dossier_id": "eb3fe74c70594b83a273d11f89f23f95",
+      "id": "qualification",
+      "version": 2,
+      "type": "assertion",
+      "owner": "agent0",
+      "hash": "e443140bd1fefe5c79c6a78ba3929050e61f3701c96d183ba448c14e99581228",
+      "input_refs": [
+        "problem@2"
+      ],
+      "revision": 4,
+      "created_at": "2026-11-15T19:01:40.637410+00:00",
+      "content": {
+        "ai_used": true,
+        "clarifications": [
+          {
+            "blocking": true,
+            "field": "scenario_loss_limit_cad",
+            "question": "Que signifie préserver le capital : quel montant doit être maintenu, à quelle échéance, avant ou après le retrait, et avec quelle perte maximale admissible ?"
+          },
+          {
+            "blocking": true,
+            "field": "reserve_policy",
+            "question": "Souhaitez-vous un exercice conditionnel sous réserve abstraite nominale, ou l’étude d’un instrument réel dont les conditions de disponibilité et de protection restent à préciser ?"
+          },
+          {
+            "blocking": true,
+            "field": "objective",
+            "question": "L’objectif est-il de minimiser le capital réalloué sous contraintes de préservation et de financement du retrait, ou souhaitez-vous un autre critère ?"
+          },
+          {
+            "blocking": true,
+            "field": "scenarios",
+            "question": "Quels scénarios hypothétiques explicites, avec quels rendements par actif et quels horizons, doivent encadrer l’exercice ?"
+          },
+          {
+            "blocking": true,
+            "field": "withdrawal_months",
+            "question": "Confirmez numériquement withdrawal_months."
+          }
+        ],
+        "contradictions": [
+          "Montant non adopté : aucune valeur correspondante dans l’extrait pour withdrawal_months"
+        ],
+        "distinctions": [
+          "déclaré/extrait/supposé/inconnu",
+          "préférence/contrainte",
+          "scénario/historique"
+        ],
+        "interpretation": "Non, il n’est pas possible de conclure à la préservation du capital ni au financement du retrait. Seule l’échéance de douze mois est précisée. Le capital, les positions et le montant du retrait sont explicitement indisponibles ; ils restent nécessaires à toute vérification chiffrée, sans être redemandés ici. L’unité de décision reste une allocation de réserve à qualifier, sans objectif de minimisation confirmé. Une éventuelle conclusion sous réserve abstraite et scénarios explicites serait conditionnelle, non une garantie réelle."
+      },
+      "ref": "qualification@2",
+      "usable": true
+    },
+    {
+      "dossier_id": "eb3fe74c70594b83a273d11f89f23f95",
+      "id": "questions.agent0",
+      "version": 2,
+      "type": "questions",
+      "owner": "agent0",
+      "hash": "c0cfc542af1ed89516234cc4745d4876757ef8f374bbfefaabca6067d36144dc",
+      "input_refs": [
+        "problem@2"
+      ],
+      "revision": 4,
+      "created_at": "2026-11-15T19:01:40.637657+00:00",
+      "content": {
+        "nodes": [
+          {
+            "dependencies": [
+              "decision"
+            ],
+            "id": "goal",
+            "question": "Peut-on conclure sur la préservation du capital et le financement d’un retrait dans douze mois avec les informations disponibles ?",
+            "reopen_if": "Modification du besoin ou du mandat",
+            "resolved_by": "Objectif et mandat explicites",
+            "result_refs": [
+              "problem@2"
+            ],
+            "status": "resolved",
+            "type": "objective"
+          },
+          {
+            "dependencies": [
+              "profile",
+              "method"
+            ],
+            "id": "decision",
+            "question": "Quel problème financier résoudre ?",
+            "reopen_if": "Nouvelle contradiction ou unité de décision",
+            "resolved_by": "Formulation admise et unités vérifiées",
+            "result_refs": [],
+            "status": "resolved",
+            "type": "decision"
+          },
+          {
+            "dependencies": [],
+            "id": "profile",
+            "question": "Quelles informations contraignent la décision ?",
+            "reopen_if": "Correction d'une déclaration",
+            "resolved_by": "Valeurs déclarées ou conditionnelles identifiées",
+            "result_refs": [],
+            "status": "conditional",
+            "type": "subproblem"
+          }
+        ]
+      },
+      "ref": "questions.agent0@2",
+      "usable": true
+    }
+  ],
+  "questions": [
+    {
+      "dependencies": [
+        "decision"
+      ],
+      "id": "goal",
+      "question": "Peut-on conclure sur la préservation du capital et le financement d’un retrait dans douze mois avec les informations disponibles ?",
+      "reopen_if": "Modification du besoin ou du mandat",
+      "resolved_by": "Objectif et mandat explicites",
+      "result_refs": [
+        "problem@2"
+      ],
+      "status": "resolved",
+      "type": "objective"
+    },
+    {
+      "dependencies": [
+        "profile",
+        "method"
+      ],
+      "id": "decision",
+      "question": "Quel problème financier résoudre ?",
+      "reopen_if": "Nouvelle contradiction ou unité de décision",
+      "resolved_by": "Formulation admise et unités vérifiées",
+      "result_refs": [],
+      "status": "resolved",
+      "type": "decision"
+    },
+    {
+      "dependencies": [],
+      "id": "profile",
+      "question": "Quelles informations contraignent la décision ?",
+      "reopen_if": "Correction d'une déclaration",
+      "resolved_by": "Valeurs déclarées ou conditionnelles identifiées",
+      "result_refs": [],
+      "status": "conditional",
+      "type": "subproblem"
+    }
+  ],
+  "evidence": [
+    {
+      "capture": {
+        "path": "docs/recherche/collecte/U341.html",
+        "sha256": "57f7b740b596078d34339613bae7323104c5dfb128553b9edc723528e73ca5ca",
+        "text_path": "runtime/decision/research/92c2ee9bf6639b02ce99e9a1e8c722a3d870c1f103ccba633c2a84f41c45158d.txt",
+        "text_sha256": "92c2ee9bf6639b02ce99e9a1e8c722a3d870c1f103ccba633c2a84f41c45158d"
+      },
+      "id": "local-U341-57f7b740b596",
+      "known_at": "2026-11-15T13:53:52.091977+00:00",
+      "known_at_basis": "timestamp_of_exact_captured_version",
+      "limitations": [
+        "Passages extraits automatiquement ; pertinence et ancrage restent à examiner.",
+        "Date de capture conservatrice ; elle ne prouve pas la disponibilité de cette version à une date antérieure."
+      ],
+      "passage": "ESG considerations can be integrated into an investment policy by negative screening, positive screening, ESG integration, thematic investing, engagement/active ownership, and impact investing.\nRisk objectives are specifications for portfolio risk that reflect the risk tolerance of the client. Quantitative risk objectives can be absolute, relative, or a combination of the two.\nThe client’s overall risk tolerance is a function of both the client’s ability to accept risk and the client’s “risk attitude,” which can be considered the client’s willingness to take risk.\nThe client’s return objectives can be stated on an absolute or a relative basis. As an example of an absolute objective, the client may want to achieve a particular percentage rate of return. Alternatively, the return objective can be stated on a relative basis—for example, relative to a benchmark return.\nThe liquidity section of the IPS should state what the client’s requirements are to draw cash from the portfolio.\nThe time horizon section of the IPS should state the time horizon over which the investor is investing. This horizon may be the period during which the portfolio is accumulating before any assets need to be withdrawn.\nTax status varies among investors, and a client’s tax status should be stated in the IPS.\nThe IPS should state any legal or regulatory restrictions that constrain the investment of the portfolio.\nThe unique circumstances section of the IPS should cover any other aspect of a client’s circumstances that is likely to have a material impact on portfolio composition. Certain ESG implementation approaches may be discussed in this section.\nAsset classes are the building blocks of an asset allocation. An asset class is a category of assets that have similar characteristics, attributes, and risk–return relationships. Traditionally, investors have distinguished cash, equities, bonds, and real estate as the major asset classes.\nA strategic asset allocation results from combining the constraints and objectives articulated in the IPS and capital market expectations regarding the asset classes.\nAs time goes on, a client’s asset allocation will drift from the target allocation, and the amou",
+      "passages": [
+        {
+          "line_end": 44,
+          "line_start": 31,
+          "match_terms": [
+            "capital",
+            "liquidity",
+            "portfolio"
+          ],
+          "selection": "deterministic_keyword_window",
+          "text": "ESG considerations can be integrated into an investment policy by negative screening, positive screening, ESG integration, thematic investing, engagement/active ownership, and impact investing.\nRisk objectives are specifications for portfolio risk that reflect the risk tolerance of the client. Quantitative risk objectives can be absolute, relative, or a combination of the two.\nThe client’s overall risk tolerance is a function of both the client’s ability to accept risk and the client’s “risk attitude,” which can be considered the client’s willingness to take risk.\nThe client’s return objectives can be stated on an absolute or a relative basis. As an example of an absolute objective, the client may want to achieve a particular percentage rate of return. Alternatively, the return objective can be stated on a relative basis—for example, relative to a benchmark return.\nThe liquidity section of the IPS should state what the client’s requirements are to draw cash from the portfolio.\nThe time horizon section of the IPS should state the time horizon over which the investor is investing. This horizon may be the period during which the portfolio is accumulating before any assets need to be withdrawn.\nTax status varies among investors, and a client’s tax status should be stated in the IPS.\nThe IPS should state any legal or regulatory restrictions that constrain the investment of the portfolio.\nThe unique circumstances section of the IPS should cover any other aspect of a client’s circumstances that is likely to have a material impact on portfolio composition. Certain ESG implementation approaches may be discussed in this section.\nAsset classes are the building blocks of an asset allocation. An asset class is a category of assets that have similar characteristics, attributes, and risk–return relationships. Traditionally, investors have distinguished cash, equities, bonds, and real estate as the major asset classes.\nA strategic asset allocation results from combining the constraints and objectives articulated in the IPS and capital market expectations regarding the asset classes.\nAs time goes on, a client’s asset allocation will drift from the target allocation, and the amou",
+          "text_truncated": true
+        },
+        {
+          "line_end": 24,
+          "line_start": 11,
+          "match_terms": [
+            "liquidity",
+            "portfolio"
+          ],
+          "selection": "deterministic_keyword_window",
+          "text": "Access the Full Reading in the Learning Ecosystem\nIntroduction\nTo build a suitable portfolio for a client, investment advisers should first seek to understand the client’s investment goals, resources, circumstances, and constraints. Investors can be categorized into broad groups based on shared characteristics with respect to these factors (e.g., various types of individual investors and institutional investors). Even investors within a given type, however, will invariably have a number of distinctive requirements. In this reading, we consider in detail the planning for investment success based on an individualized understanding of the client.\nThis reading is organized as follows: Section 2 discusses the investment policy statement, a written document that captures the client’s investment objectives and the constraints. Section 3 discusses the portfolio construction process, including the first step of specifying a strategic asset allocation for the client. Section 4 concludes and summarizes the reading.\nLearning Outcomes\nThe candidate should be able to:\ndescribe the reasons for a written investment policy statement (IPS);\ndescribe the major components of an IPS describe risk and return objectives and how they may be developed for a client;\nexplain the difference between the willingness and the ability (capacity) to take risk in analyzing an investor’s financial risk tolerance;\ndescribe the investment constraints of liquidity, time horizon, tax concerns, legal and regulatory factors, and unique circumstances and their implications for the choice of portfolio assets;\nexplain the specification of asset classes in relation to asset allocation;\ndescribe the principles of portfolio construction and the role of asset allocation in relation to the IPS;\ndescribe how environmental, social, and governance (ESG) considerations may be integrated into portfolio planning and construction.\nSummary",
+          "text_truncated": false
+        }
+      ],
+      "reading_level": "targeted_passages",
+      "review_status": "extracted_for_role_review",
+      "scope": {
+        "pdf_pages": null,
+        "query": "short term withdrawal nominal capital protection liquidity linear programming portfolio",
+        "source_version": "57f7b740b596078d34339613bae7323104c5dfb128553b9edc723528e73ca5ca"
+      },
+      "source": {
+        "authority": "institutional_publisher_scope_to_review",
+        "kind": "captured_document",
+        "title": "Basics of Portfolio Planning and Construction | CFA Institute",
+        "url": "https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/basics-of-portfolio-planning-and-construction"
+      },
+      "source_id": "U341",
+      "version": 1
+    },
+    {
+      "capture": {
+        "path": "docs/recherche/finance/sources/boyd_convex.pdf",
+        "sha256": "40d976c83c18cce1900eff8c41bd5ad408c102b813af39d05ff85678ccf8d76e",
+        "text_path": "runtime/decision/research/9ef784e4ae3e9de3269a90fd6d8aa097e7eda3d55677449b2c1af127b7ce48d9.txt",
+        "text_sha256": "9ef784e4ae3e9de3269a90fd6d8aa097e7eda3d55677449b2c1af127b7ce48d9"
+      },
+      "id": "local-boyd_convex-40d976c83c18",
+      "known_at": "2026-11-15T13:55:11.974998+00:00",
+      "known_at_basis": "timestamp_of_exact_captured_version",
+      "limitations": [
+        "Passages extraits automatiquement ; pertinence et ancrage restent à examiner.",
+        "Date de capture conservatrice ; elle ne prouve pas la disponibilité de cette version à une date antérieure."
+      ],
+      "passage": "This problem can be transformed to an equivalent LP by ﬁrst forming the epigraph\nproblem,\nminimize t\nsubject to maxi=1,...,m(aT i x + bi) ≤ t,\n\n[PDF page 165]\n4.3 Linear optimization problems 151\nand then expressing the inequality as a set of m separate inequalities:\nminimize t\nsubject to aT i x + bi ≤ t, i = 1,...,m.\nThis is an LP (in inequality form), with variables x and t.\n4.3.2 Linear-fractional programming\nThe problem of minimizing a ratio of aﬃne functions over a polyhedron is called a\nlinear-fractional program:",
+      "passages": [
+        {
+          "line_end": 214,
+          "line_start": 201,
+          "match_terms": [
+            "linear",
+            "programming"
+          ],
+          "selection": "deterministic_keyword_window",
+          "text": "This problem can be transformed to an equivalent LP by ﬁrst forming the epigraph\nproblem,\nminimize t\nsubject to maxi=1,...,m(aT i x + bi) ≤ t,\n\n[PDF page 165]\n4.3 Linear optimization problems 151\nand then expressing the inequality as a set of m separate inequalities:\nminimize t\nsubject to aT i x + bi ≤ t, i = 1,...,m.\nThis is an LP (in inequality form), with variables x and t.\n4.3.2 Linear-fractional programming\nThe problem of minimizing a ratio of aﬃne functions over a polyhedron is called a\nlinear-fractional program:",
+          "text_truncated": false
+        },
+        {
+          "line_end": 254,
+          "line_start": 241,
+          "match_terms": [
+            "linear",
+            "programming"
+          ],
+          "selection": "deterministic_keyword_window",
+          "text": "in (4.32), with the same objective value f0(x) = cT y + dz. If (y,z) is feasible\nin (4.33) with z = 0, and x0 is feasible for (4.32), then x = x0 + ty is feasible\nin (4.32) for all t ≥ 0. Moreover, limt→∞ f0(x0 + ty) = cT y + dz, so we can ﬁnd\nfeasible points in (4.32) with objective values arbitrarily close to the objective value\nof (y,z). We conclude that the optimal value of (4.32) is less than or equal to the\noptimal value of (4.33).\n\n[PDF page 166]\n152 4 Convex optimization problems\nGeneralized linear-fractional programming\nA generalization of the linear-fractional program (4.32) is the generalized linear-\nfractional program in which\nf0(x) = max i=1,...,r\ncT i x + di",
+          "text_truncated": false
+        },
+        {
+          "line_end": 24,
+          "line_start": 11,
+          "match_terms": [
+            "linear"
+          ],
+          "selection": "deterministic_keyword_window",
+          "text": "2. Solve the convex feasibility problem (4.26).\n3. if (4.26) is feasible, u := t; else l := t.\nuntil u − l ≤ ǫ.\nThe interval [l,u] is guaranteed to contain p⋆, i.e., we have l ≤ p⋆ ≤ u at\neach step. In each iteration the interval is divided in two, i.e., bisected, so the\nlength of the interval after k iterations is 2−k(u − l), where u − l is the length of\nthe initial interval. It follows that exactly ⌈log2((u − l)/ǫ)⌉ iterations are required\nbefore the algorithm terminates. Each step involves solving the convex feasibility\nproblem (4.26).\n4.3 Linear optimization problems\nWhen the objective and constraint functions are all aﬃne, the problem is called a\nlinear program (LP). A general linear program has the form\nminimize cT x + d\nsubject to Gx ≼ h",
+          "text_truncated": false
+        }
+      ],
+      "reading_level": "targeted_passages",
+      "review_status": "extracted_for_role_review",
+      "scope": {
+        "pdf_pages": [
+          160,
+          161,
+          162,
+          163,
+          164,
+          165,
+          166
+        ],
+        "query": "short term withdrawal nominal capital protection liquidity linear programming portfolio",
+        "source_version": "40d976c83c18cce1900eff8c41bd5ad408c102b813af39d05ff85678ccf8d76e"
+      },
+      "source": {
+        "authority": "author_hosted_primary_text",
+        "kind": "captured_document",
+        "title": "Convex Optimization — Boyd et Vandenberghe, chapitre 4.3",
+        "url": "https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf"
+      },
+      "source_id": "boyd_convex",
+      "version": 1
+    },
+    {
+      "capture": {
+        "path": "docs/recherche/collecte/U050.html",
+        "sha256": "0a65c95f8fa2392733b6ea7df908e8dc693a9507eabad71e76d4f5e87f24b5fe",
+        "text_path": "runtime/decision/research/4fa4dc24ff9a272fe1124617a5fc4a2598a648beef1161adad36d7907c371395.txt",
+        "text_sha256": "4fa4dc24ff9a272fe1124617a5fc4a2598a648beef1161adad36d7907c371395"
+      },
+      "id": "local-U050-0a65c95f8fa2",
+      "known_at": "2026-11-15T13:53:13.443931+00:00",
+      "known_at_basis": "timestamp_of_exact_captured_version",
+      "limitations": [
+        "Passages extraits automatiquement ; pertinence et ancrage restent à examiner.",
+        "Date de capture conservatrice ; elle ne prouve pas la disponibilité de cette version à une date antérieure."
+      ],
+      "passage": "Star\n1.9k\n(\n1.9k\n)\nYou must be signed in to star a repository\nAbout\nLinear optimization software\nTopics\nhigh-performance\ninterior-point-method\nlinear-optimization\nmixed-integer-programming\nparallel",
+      "passages": [
+        {
+          "line_end": 24,
+          "line_start": 11,
+          "match_terms": [
+            "linear",
+            "programming"
+          ],
+          "selection": "deterministic_keyword_window",
+          "text": "Star\n1.9k\n(\n1.9k\n)\nYou must be signed in to star a repository\nAbout\nLinear optimization software\nTopics\nhigh-performance\ninterior-point-method\nlinear-optimization\nmixed-integer-programming\nparallel",
+          "text_truncated": false
+        },
+        {
+          "line_end": 169,
+          "line_start": 156,
+          "match_terms": [
+            "linear",
+            "programming"
+          ],
+          "selection": "deterministic_keyword_window",
+          "text": "Reference\nAbout HiGHS\nHiGHS is a high performance serial and parallel solver for large scale sparse\nlinear optimization problems of the form\n$$ \\min \\quad \\dfrac{1}{2}x^TQx + c^Tx \\qquad \\textrm{s.t.}~ \\quad L \\leq Ax \\leq U; \\quad l \\leq x \\leq u $$\nwhere\n$Q$\nmust be positive semi-definite and, if\n$Q$\nis zero, there may be a requirement that some of the variables take integer values. Thus HiGHS can solve linear programming (LP) problems, convex quadratic programming (QP) problems, and mixed integer programming (MIP) problems. It is mainly written in C++, but also has some C. It has been developed and tested on various Linux, MacOS and Windows installations. No third-party dependencies are required.\nHiGHS has primal and dual revised simplex solvers, originally written by Qi Huangfu and further developed by Julian Hall. It also has an interior point solver for LP written by Lukas Schork, an active set solver for QP written by Michael Feldmeier, and a MIP solver written by Leona Gottwald. Other features have been added by Julian Hall and Ivet Galabova, who manages the software engineering of HiGHS and interfaces to C, C#, FORTRAN, Julia and Python.\nFind out more about HiGHS at\nhttps://www.highs.dev\n.",
+          "text_truncated": false
+        },
+        {
+          "line_end": 439,
+          "line_start": 426,
+          "match_terms": [
+            "linear",
+            "programming"
+          ],
+          "selection": "deterministic_keyword_window",
+          "text": "not\nincluded in the default build. For more details, check out the documentation website\nhttps://ergo-code.github.io/HiGHS/\n.\nReference\nIf you use HiGHS in an academic context, please acknowledge this and cite the following article.\nParallelizing the dual revised simplex method\nQ. Huangfu and J. A. J. Hall\nMathematical Programming Computation, 10 (1), 119-142, 2018.\nDOI:\n10.1007/s12532-017-0130-5\nAbout\nLinear optimization software\nTopics",
+          "text_truncated": false
+        }
+      ],
+      "reading_level": "targeted_passages",
+      "review_status": "extracted_for_role_review",
+      "scope": {
+        "pdf_pages": null,
+        "query": "short term withdrawal nominal capital protection liquidity linear programming portfolio",
+        "source_version": "0a65c95f8fa2392733b6ea7df908e8dc693a9507eabad71e76d4f5e87f24b5fe"
+      },
+      "source": {
+        "authority": "software_repository_documentation",
+        "kind": "captured_document",
+        "title": "GitHub - ERGO-Code/HiGHS: Linear optimization software · GitHub",
+        "url": "https://github.com/ERGO-Code/HiGHS"
+      },
+      "source_id": "U050",
+      "version": 1
+    },
+    {
+      "capture": {
+        "path": "runtime/decision/research/09cbe2c6cc000c1a561de38bbc552c49edb6ddec6bad2b2d7bf937841e79400b.pdf",
+        "sha256": "09cbe2c6cc000c1a561de38bbc552c49edb6ddec6bad2b2d7bf937841e79400b",
+        "text_path": "runtime/decision/research/9082d03f15df0d3793037d8e8cf574e7626e0210014f94166a745aedf2772f74.txt",
+        "text_sha256": "9082d03f15df0d3793037d8e8cf574e7626e0210014f94166a745aedf2772f74"
+      },
+      "id": "web-09cbe2c6cc000c1a561d",
+      "known_at": "2026-11-15T19:01:18.210686+00:00",
+      "known_at_basis": "timestamp_of_exact_captured_version",
+      "limitations": [
+        "Capture et extraction ne prouvent ni l'exactitude ni l'applicabilité.",
+        "Métadonnées de publication à recouper ; elles ne rétrodatent pas la capture.",
+        "PDF : extraction bornée aux soixante premières pages, sans OCR."
+      ],
+      "passage": "handling any number of decision variables. Problems \ncontaining more than two or three variables cannot \nbe solved using graphs. Several standardized solu­\ntion procedures (known as algorithms) exist, how­\never, for solving large problems.15\nIn addition to handling as many decision variables \nas necessary, the linear programming model can ac­\ncommodate as many constraints as bank managers \nconsider relevant to the portfolio decision process. \nSpecifically, detailed and realistic sets of liquidity \nconstraints can be built into the model reflecting lia­\nbility and capital structures, cash flow patterns, sea­\nsonal fluctuations in loan demand, and miscellaneous \nrestrictions imposed by management on the basis of",
+      "passages": [
+        {
+          "line_end": 614,
+          "line_start": 601,
+          "match_terms": [
+            "capital",
+            "linear",
+            "liquidity",
+            "portfolio",
+            "programming"
+          ],
+          "selection": "deterministic_keyword_window",
+          "text": "handling any number of decision variables. Problems \ncontaining more than two or three variables cannot \nbe solved using graphs. Several standardized solu­\ntion procedures (known as algorithms) exist, how­\never, for solving large problems.15\nIn addition to handling as many decision variables \nas necessary, the linear programming model can ac­\ncommodate as many constraints as bank managers \nconsider relevant to the portfolio decision process. \nSpecifically, detailed and realistic sets of liquidity \nconstraints can be built into the model reflecting lia­\nbility and capital structures, cash flow patterns, sea­\nsonal fluctuations in loan demand, and miscellaneous \nrestrictions imposed by management on the basis of",
+          "text_truncated": false
+        },
+        {
+          "line_end": 649,
+          "line_start": 636,
+          "match_terms": [
+            "capital",
+            "linear",
+            "liquidity",
+            "portfolio",
+            "programming"
+          ],
+          "selection": "deterministic_keyword_window",
+          "text": "as for the current period. The reader should not \ninfer that management would, at some point, use the \nmodel to suggest desirable portfolios for, say, the next \nfive quarters, and then slavishly follow the prescrip­\ntions for each quarter as time passes. Obviously, the \nmodel should be updated and solved again as fore­\n15 The most widely used algorithm is the so-called “simplex” method. \nSee Baumol, op. cit., pp. 82-97.\n18 In their pioneering application of the linear programming method \nto bank portfolio management, Chambers and Charnes developed a \ndetailed system of capital adequacy-liquidity constraints using some \nof the bank examination criteria employed by the Federal Reserve \nSystem. See D. Chambers and A. Charnes, “ Inter-Temporal Analysis \nand Optimization of Bank Portfolios,” Management Science, 7 (July",
+          "text_truncated": false
+        },
+        {
+          "line_end": 14,
+          "line_start": 1,
+          "match_terms": [
+            "linear",
+            "liquidity",
+            "portfolio",
+            "programming"
+          ],
+          "selection": "deterministic_keyword_window",
+          "text": "[PDF page 1]\nFEDERAL RESERVE BANK OF RICHMOND\nMONTHLY \nREVIEW\nLinear Programming: A Nczu \nApproach To Bank Portfolio \nManagement\nCorporate Financing and Liquidity;: \n1968-1972\nI\\ i\nVolum e 58 \nNum ber 11 NOVEMBER 19 7 2\nDigitized for FRASER \nhttp://fraser.stlouisfed.org/",
+          "text_truncated": false
+        }
+      ],
+      "published_at_claim": null,
+      "reading_level": "targeted_passages",
+      "review_status": "extracted_for_role_review",
+      "scope": {
+        "query": "short term withdrawal nominal capital protection liquidity linear programming portfolio",
+        "source_version": "09cbe2c6cc000c1a561de38bbc552c49edb6ddec6bad2b2d7bf937841e79400b"
+      },
+      "search_index": {
+        "published_at_index_claim": null,
+        "snippet": "FEDERAL RESERVE BANK OF RICHMOND MONTHLY R E V I E W Linear Programming: A Nczu Approach To Bank Portfolio Management Corporate Financing and Liquidity;: 1968-1972 I\\ i Volum e 58 Num ber 11 N O V E M B E R  19 7 2 \n\nunderstood and effectively employed by bankers.1 One technique receiving considerable attention is lin­ ear programming. Linear programming is a basic analytical procedure, or “ model,” employed exten­ \n\nerally less liquid and riskier than assets having rela­ tively low yields, such as short-term government securities. The “Pooled-Funds” Approach During the early postwar period, funds were generally available to \n\nThe total funds constraint requires that the point representing the bank’s asset portfolio either fall on A A ' or within the shaded region below and to the left of A A '.9 Liquidity Constraint The bank recognizes that, \n\nThis constraint is depicted by Chart 3. The restriction requires the bank’s portfolio to fall on or to the right of line CC'. The mathematical statement of the constraint is : (4) L >  30 million. The Feasible Region \n\nChart 3 LOAN BALANCE CONSTRAINTS Securities ($ Millions) 100 80 60 40 20 20 40 60 Loans ($ Millions) 80 100 6 MONTHLY REVIEW, NOVEMBER 1972 Digitized for FRASER http://fraser.stlouisfed.org/ Federal Reserve Bank of St. Louis \n\nThis portfolio would yield $8.75 million of income during the period. The linear programming model has pro­ vided the bank an objective procedure for deter­ mining its optimal portfolio. The model has taken \n\nC h a rt 6 THE OPTIMAL ASSET PORTFOLIO Securities ($ M illio n s) Loans ($ M illion s) time deposits and $45 million of demand deposits, management considers a 20 percent liquidity ratio constraint adequate. \n\nobjective function in position QQ'. As indicated by G', the bank’s new income-maximizing portfolio con­ tains $88 million of loans and $22 million of securi- C h a rt 7 SOLUTION TO PROBLEM (10) Securities \n\nbank should define as many asset decision variables as there are assets of significantly different yield, liquid­ ity, and risk in its portfolio. The model is capable of handling any number of decision variables. Problems \n\nas necessary, the linear programming model can ac­ commodate as many constraints as bank managers consider relevant to the portfolio decision process. Specifically, detailed and realistic sets of liquidity ",
+        "title": "Economic Review",
+        "url": "https://fraser.stlouisfed.org/files/docs/publications/frbrichreview/rev_frbrich197211.pdf"
+      },
+      "source": {
+        "authority": "unclassified_requires_review",
+        "kind": "captured_document",
+        "resolved_url": "https://fraser.stlouisfed.org/files/docs/publications/frbrichreview/rev_frbrich197211.pdf",
+        "title": "Economic Review",
+        "url": "https://fraser.stlouisfed.org/files/docs/publications/frbrichreview/rev_frbrich197211.pdf"
+      },
+      "version": 1
+    },
+    {
+      "capture": {
+        "path": "runtime/decision/research/de6b11aa5d196fba2108a0a6d4d8bff758b4b43fb876b6d40c6107493bce87f8.pdf",
+        "sha256": "de6b11aa5d196fba2108a0a6d4d8bff758b4b43fb876b6d40c6107493bce87f8",
+        "text_path": "runtime/decision/research/1279d78c6283fffcc9a269a9648c6d79f1e2b433a5e4ec216e6040fbceb784bf.txt",
+        "text_sha256": "1279d78c6283fffcc9a269a9648c6d79f1e2b433a5e4ec216e6040fbceb784bf"
+      },
+      "id": "web-de6b11aa5d196fba2108",
+      "known_at": "2026-11-15T19:01:19.694520+00:00",
+      "known_at_basis": "timestamp_of_exact_captured_version",
+      "limitations": [
+        "Capture et extraction ne prouvent ni l'exactitude ni l'applicabilité.",
+        "Métadonnées de publication à recouper ; elles ne rétrodatent pas la capture.",
+        "PDF : extraction bornée aux soixante premières pages, sans OCR."
+      ],
+      "passage": "NBER working papers are circulated for discussion and comment purposes. They have not been peer-\nreviewed or been subject to the review by the NBER Board of Directors that accompanies official\nNBER publications.\n© 2013 by Vanya Horneff, Raimond Maurer, Olivia S. Mitchell, and Ralph Rogalla. All rights reserved.\nShort sections of text, not to exceed two paragraphs, may be quoted without explicit permission provided\nthat full credit, including © notice, is given to the source.\n\n[PDF page 2]\nOptimal Life Cycle Portfolio Choice with Variable Annuities Offering Liquidity and Investment\nDownside Protection\nVanya Horneff, Raimond Maurer, Olivia S. Mitchell, and Ralph Rogalla\nNBER Working Paper No. 19206\nJuly 2013\nJEL No. D1,D14,D91,G11,G22",
+      "passages": [
+        {
+          "line_end": 39,
+          "line_start": 26,
+          "match_terms": [
+            "liquidity",
+            "portfolio",
+            "protection",
+            "short"
+          ],
+          "selection": "deterministic_keyword_window",
+          "text": "NBER working papers are circulated for discussion and comment purposes. They have not been peer-\nreviewed or been subject to the review by the NBER Board of Directors that accompanies official\nNBER publications.\n© 2013 by Vanya Horneff, Raimond Maurer, Olivia S. Mitchell, and Ralph Rogalla. All rights reserved.\nShort sections of text, not to exceed two paragraphs, may be quoted without explicit permission provided\nthat full credit, including © notice, is given to the source.\n\n[PDF page 2]\nOptimal Life Cycle Portfolio Choice with Variable Annuities Offering Liquidity and Investment\nDownside Protection\nVanya Horneff, Raimond Maurer, Olivia S. Mitchell, and Ralph Rogalla\nNBER Working Paper No. 19206\nJuly 2013\nJEL No. D1,D14,D91,G11,G22",
+          "text_truncated": false
+        },
+        {
+          "line_end": 124,
+          "line_start": 111,
+          "match_terms": [
+            "capital",
+            "liquidity",
+            "portfolio",
+            "protection"
+          ],
+          "selection": "deterministic_keyword_window",
+          "text": "Salisbury, 2006). Typically, the consumer may withdraw a maximum percentage of her \npremium per year until the premium is completely recouped. Any remaining capital at the end \nof the deferral period can be converted either into a lifelong annuity or paid to the \n\n[PDF page 4]\n2 \n \npolicyholder in the form of a lump sum. In this way, the GMWB offers access to equity \ninvestments, downside protection against market risk, and the possibility of hedging longevity \nrisk via annuitization. Because of the withdraw al option, premiums are at least in part \nrefundable, so that GMWBs offer also liquidity which can help overcome consumer \nreluctance to voluntary annuitize retirement wealth.1  \nPrior literature on dynamic portfolio choi ce has examined household demand for life \nannuities and its welfare implications. 2 Though several authors study immediate and fixed",
+          "text_truncated": false
+        },
+        {
+          "line_end": 14,
+          "line_start": 1,
+          "match_terms": [
+            "liquidity",
+            "portfolio",
+            "protection"
+          ],
+          "selection": "deterministic_keyword_window",
+          "text": "[PDF page 1]\nNBER WORKING PAPER SERIES\nOPTIMAL LIFE CYCLE PORTFOLIO CHOICE WITH VARIABLE ANNUITIES\nOFFERING LIQUIDITY AND INVESTMENT DOWNSIDE PROTECTION\nVanya Horneff\nRaimond Maurer\nOlivia S. Mitchell\nRalph Rogalla\nWorking Paper 19206\nhttp://www.nber.org/papers/w19206\nNATIONAL BUREAU OF ECONOMIC RESEARCH\n1050 Massachusetts Avenue\nCambridge, MA 02138\nJuly 2013",
+          "text_truncated": false
+        }
+      ],
+      "published_at_claim": null,
+      "reading_level": "targeted_passages",
+      "review_status": "extracted_for_role_review",
+      "scope": {
+        "query": "short term withdrawal nominal capital protection liquidity linear programming portfolio",
+        "source_version": "de6b11aa5d196fba2108a0a6d4d8bff758b4b43fb876b6d40c6107493bce87f8"
+      },
+      "search_index": {
+        "published_at_index_claim": null,
+        "snippet": "that full credit, including © notice, is given to the source. Optimal Life Cycle Portfolio Choice with Variable Annuities Offering Liquidity and Investment Downside Protection Vanya Horneff, Raimond Maurer, Olivia S. Mitchell, and Ralph Rogalla \n\nNBER Working Paper No. 19206 July 2013 JEL No. D1,D14,D91,G11,G22 ABSTRACT We evaluate lifecycle consumption and portfolio allocation patterns resulting from access to Guaranteed Minimum Withdrawal Benefit (GMWB) variable annuities, one of the most rapidly-growing financial \n\nGermany rogalla@finance.uni-frankfurt.de Optimal Life Cycle Portfolio Choice with Variable Annuities Offering Liquidity and Investment Downside Protection 1. Introduction Defined contribution pensions are the most rapidly growing form of retirement saving \n\nAccount value. A key element of the GMWB is that the insurance company guarantees the policyholder that the sum of all possible (life contingent) withdrawals until the end of the deferral period is at least a certain amount, ∑ \n\nthe period. Hence the policyholder can decide in each period ݐ ൌ 2, … , ܭെ1 to withdraw an amount that satisfies the following limits: 0 ൑ܧ௧൑minሺܩ௧, ܧ୫ୟ୶ሻ. (3) At the end of the deferral period, at time ݐ ൌ ܭ, the remaining cash value of the GMWB is \n\ndistributed with a standard deviation of 18%; additionally the assumed risk-free interest rate is 2%. The maximum guaranteed yearly withdrawal from a GMWB purchased at time ݐ ( ݐ ൌ 1, … , ܭെ1 ) for a premium of ܣ௧ is given by ܧ௠௔௫ൌ \n\nAccounts, and withdrawal limits, or 75 accounts in total. Moreover, this also requires deciding how to optimally distribute withdrawals over the (potentially) 25 Fund Accounts. Explicitly keeping track of so many state and decision variables in a dynamic optimization model is \n\nwithdrawals (clear bars) from existing accounts, as well as the values of the Guarantee (solid line) and Fund Accounts (dashed line). Account values correspond to the left axis, while purchases and withdrawals refer to the right axis. \n\nwithdrawals from the GMWB, the Fund Account nevertheless continues to grow due to the expected return on stocks in which the assets are invested. The Guarantee Account increases to around age 50 because GMWB purchases exceed withdrawals. Thereafter, it declines ",
+        "title": "Microsoft Word - HMMR-GMWB 06-06-2013",
+        "url": "https://www.nber.org/system/files/working_papers/w19206/w19206.pdf"
+      },
+      "source": {
+        "authority": "unclassified_requires_review",
+        "kind": "captured_document",
+        "resolved_url": "https://www.nber.org/system/files/working_papers/w19206/w19206.pdf",
+        "title": "Microsoft Word - HMMR-GMWB 06-06-2013",
+        "url": "https://www.nber.org/system/files/working_papers/w19206/w19206.pdf"
+      },
+      "version": 1
+    }
+  ],
+  "events": [
+    {
+      "id": "ace894606baf474b9f6dc055919906ed",
+      "dossier_id": "eb3fe74c70594b83a273d11f89f23f95",
+      "kind": "request_received",
+      "actor": "human",
+      "revision": 1,
+      "payload": {
+        "facts": {},
+        "prompt": "Je souhaite préserver mon capital et financer un retrait dans douze mois. Je ne connais pas encore le montant à retirer et je ne fournis pas mon capital ni mes positions. Pouvez-vous conclure ?"
+      },
+      "created_at": "2026-11-15T19:01:01.126620+00:00"
+    },
+    {
+      "id": "918bb2913d5445b7a80a21b2dbea9c03",
+      "dossier_id": "eb3fe74c70594b83a273d11f89f23f95",
+      "kind": "agent_commit",
+      "actor": "agent0",
+      "revision": 2,
+      "payload": {
+        "invalidated": [],
+        "read_set": [
+          "request@1"
+        ],
+        "reason": "Demande transformée en problème financier typé.",
+        "run_id": "f9f0da23a748431fb04b48b06cc13680",
+        "task_id": "f9f0da23a748431fb04b48b06cc13680:0",
+        "writes": [
+          "fact.decision_type",
+          "fact.objective",
+          "fact.question",
+          "fact.unknowns",
+          "problem",
+          "qualification",
+          "questions.agent0"
+        ]
+      },
+      "created_at": "2026-11-15T19:01:16.845015+00:00"
+    },
+    {
+      "id": "ca9f57c854304a26a6d6fc215dbc39dd",
+      "dossier_id": "eb3fe74c70594b83a273d11f89f23f95",
+      "kind": "agent_commit",
+      "actor": "agent1",
+      "revision": 3,
+      "payload": {
+        "invalidated": [],
+        "read_set": [
+          "fact.decision_type@1",
+          "problem@1"
+        ],
+        "reason": "Documents récupérés, datés et confrontés au problème.",
+        "run_id": "f9f0da23a748431fb04b48b06cc13680",
+        "task_id": "f9f0da23a748431fb04b48b06cc13680:1",
+        "writes": [
+          "questions.agent1",
+          "research",
+          "research_review"
+        ]
+      },
+      "created_at": "2026-11-15T19:01:31.231399+00:00"
+    },
+    {
+      "id": "0085424415314946b062512f38f783c2",
+      "dossier_id": "eb3fe74c70594b83a273d11f89f23f95",
+      "kind": "agent_commit",
+      "actor": "agent0",
+      "revision": 4,
+      "payload": {
+        "invalidated": [
+          "problem@1",
+          "qualification@1",
+          "questions.agent0@1",
+          "questions.agent1@1",
+          "research_review@1"
+        ],
+        "read_set": [
+          "fact.decision_type@1",
+          "fact.objective@1",
+          "fact.question@1",
+          "fact.unknowns@1",
+          "request@1",
+          "research_review@1"
+        ],
+        "reason": "Formalisation et provenance des entrées ; clarification attendue.",
+        "run_id": "f9f0da23a748431fb04b48b06cc13680",
+        "task_id": "f9f0da23a748431fb04b48b06cc13680:2",
+        "writes": [
+          "problem",
+          "qualification",
+          "questions.agent0"
+        ]
+      },
+      "created_at": "2026-11-15T19:01:40.636495+00:00"
+    }
+  ],
+  "revisions": [
+    {
+      "dossier_id": "eb3fe74c70594b83a273d11f89f23f95",
+      "revision": 1,
+      "kind": "request_received",
+      "actor": "human",
+      "payload": {
+        "facts": {},
+        "prompt": "Je souhaite préserver mon capital et financer un retrait dans douze mois. Je ne connais pas encore le montant à retirer et je ne fournis pas mon capital ni mes positions. Pouvez-vous conclure ?"
+      },
+      "created_at": "2026-11-15T19:01:01.125983+00:00"
+    },
+    {
+      "dossier_id": "eb3fe74c70594b83a273d11f89f23f95",
+      "revision": 2,
+      "kind": "agent_commit",
+      "actor": "agent0",
+      "payload": {
+        "invalidated": [],
+        "read_set": [
+          "request@1"
+        ],
+        "reason": "Demande transformée en problème financier typé.",
+        "run_id": "f9f0da23a748431fb04b48b06cc13680",
+        "task_id": "f9f0da23a748431fb04b48b06cc13680:0",
+        "writes": [
+          "fact.decision_type",
+          "fact.objective",
+          "fact.question",
+          "fact.unknowns",
+          "problem",
+          "qualification",
+          "questions.agent0"
+        ]
+      },
+      "created_at": "2026-11-15T19:01:16.813358+00:00"
+    },
+    {
+      "dossier_id": "eb3fe74c70594b83a273d11f89f23f95",
+      "revision": 3,
+      "kind": "agent_commit",
+      "actor": "agent1",
+      "payload": {
+        "invalidated": [],
+        "read_set": [
+          "fact.decision_type@1",
+          "problem@1"
+        ],
+        "reason": "Documents récupérés, datés et confrontés au problème.",
+        "run_id": "f9f0da23a748431fb04b48b06cc13680",
+        "task_id": "f9f0da23a748431fb04b48b06cc13680:1",
+        "writes": [
+          "questions.agent1",
+          "research",
+          "research_review"
+        ]
+      },
+      "created_at": "2026-11-15T19:01:31.231236+00:00"
+    },
+    {
+      "dossier_id": "eb3fe74c70594b83a273d11f89f23f95",
+      "revision": 4,
+      "kind": "agent_commit",
+      "actor": "agent0",
+      "payload": {
+        "invalidated": [
+          "problem@1",
+          "qualification@1",
+          "questions.agent0@1",
+          "questions.agent1@1",
+          "research_review@1"
+        ],
+        "read_set": [
+          "fact.decision_type@1",
+          "fact.objective@1",
+          "fact.question@1",
+          "fact.unknowns@1",
+          "request@1",
+          "research_review@1"
+        ],
+        "reason": "Formalisation et provenance des entrées ; clarification attendue.",
+        "run_id": "f9f0da23a748431fb04b48b06cc13680",
+        "task_id": "f9f0da23a748431fb04b48b06cc13680:2",
+        "writes": [
+          "problem",
+          "qualification",
+          "questions.agent0"
+        ]
+      },
+      "created_at": "2026-11-15T19:01:40.636423+00:00"
+    }
+  ],
+  "runs": [
+    {
+      "id": "f9f0da23a748431fb04b48b06cc13680",
+      "dossier_id": "eb3fe74c70594b83a273d11f89f23f95",
+      "status": "waiting",
+      "current_role": null,
+      "request": {
+        "facts": {},
+        "kind": "initial",
+        "prompt": "Je souhaite préserver mon capital et financer un retrait dans douze mois. Je ne connais pas encore le montant à retirer et je ne fournis pas mon capital ni mes positions. Pouvez-vous conclure ?",
+        "request_ref": "request@1",
+        "software_manifest": {
+          "files": {
+            "alphaforge_app/analytics.py": "fbe8fbdb57080c2652169aea66c5d35fcb54e31087847d05ce72f5e3cbf92b4f",
+            "alphaforge_app/bedrock.py": "ca9241560d5cc0cd12fb5ea8b883b0a0b56cef6c9e36bfd112c3b11ab1f9be94",
+            "alphaforge_app/datasets.py": "ef920c0c6dc9bbe23f1e23c0c76047b45329497d4b5a8126b3314759cc523655",
+            "alphaforge_app/decision/__init__.py": "d1670f31cff060221afeb668b9f8ed2dbc27196308016e503922ccde0e93678f",
+            "alphaforge_app/decision/api.py": "6620f47c4c9e5d4c1f20ee68000b3d78557bb958abe98bfb3167badcd96736d5",
+            "alphaforge_app/decision/finance.py": "325ea095f309f11351d0972945730cf888fe108413f4f92b82a296dfc307c056",
+            "alphaforge_app/decision/inspection.py": "e5a6a693786514445322beb3bd9efe2a34fac812d43179b2a12c6caba948c7bb",
+            "alphaforge_app/decision/models.py": "2c09cefbed0c0de0a4f51ca930042a22284ca9a79559eec878c42b5cd27f9ede",
+            "alphaforge_app/decision/research.py": "58c3300b5a208e94b7000306fd994a333b5ad2521deed42614022ae2b39440b3",
+            "alphaforge_app/decision/service.py": "5b26228cc3077aa877242096153d53b05279ce7d8ce2c118306dc8dab8800bf8",
+            "alphaforge_app/decision/store.py": "26f4782f2a4a9c3b55bbf3f66b10b5eb794429bf98e66d0b19e9890a3c8dd726",
+            "alphaforge_app/decision/workflow.py": "4fff6263c7c750a31bbd309ccde3b68f6f08835fb292ac77ab4b8744561acd60",
+            "requirements.txt": "4b7600a3aa1f20da5d89530428b754c6e49c2a61b8986061cbf2111c1d3a9141"
+          },
+          "format": "sha256-source-files-v1"
+        },
+        "use_ai": true
+      },
+      "error": null,
+      "created_at": "2026-11-15T19:01:01.128837+00:00",
+      "updated_at": "2026-11-15T19:01:40.637724+00:00"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "f9f0da23a748431fb04b48b06cc13680:0",
+      "run_id": "f9f0da23a748431fb04b48b06cc13680",
+      "role": "agent0",
+      "step_index": 0,
+      "status": "complete",
+      "read_set": [
+        "request@1"
+      ],
+      "error": null,
+      "started_at": "2026-11-15T19:01:01.139875+00:00",
+      "finished_at": "2026-11-15T19:01:17.186696+00:00",
+      "output_refs": [
+        "fact.decision_type@1",
+        "fact.question@1",
+        "fact.objective@1",
+        "fact.unknowns@1",
+        "problem@1",
+        "qualification@1",
+        "questions.agent0@1"
+      ],
+      "reused_refs": [
+        "request@1"
+      ]
+    },
+    {
+      "id": "f9f0da23a748431fb04b48b06cc13680:1",
+      "run_id": "f9f0da23a748431fb04b48b06cc13680",
+      "role": "agent1",
+      "step_index": 1,
+      "status": "complete",
+      "read_set": [
+        "fact.decision_type@1",
+        "problem@1"
+      ],
+      "error": null,
+      "started_at": "2026-11-15T19:01:17.189181+00:00",
+      "finished_at": "2026-11-15T19:01:31.233598+00:00",
+      "output_refs": [
+        "research@1",
+        "research_review@1",
+        "questions.agent1@1"
+      ],
+      "reused_refs": [
+        "fact.decision_type@1",
+        "problem@1"
+      ]
+    },
+    {
+      "id": "f9f0da23a748431fb04b48b06cc13680:2",
+      "run_id": "f9f0da23a748431fb04b48b06cc13680",
+      "role": "agent0",
+      "step_index": 2,
+      "status": "complete",
+      "read_set": [
+        "fact.decision_type@1",
+        "fact.objective@1",
+        "fact.question@1",
+        "fact.unknowns@1",
+        "request@1",
+        "research_review@1"
+      ],
+      "error": null,
+      "started_at": "2026-11-15T19:01:31.237296+00:00",
+      "finished_at": "2026-11-15T19:01:40.637689+00:00",
+      "output_refs": [
+        "problem@2",
+        "qualification@2",
+        "questions.agent0@2"
+      ],
+      "reused_refs": [
+        "fact.decision_type@1",
+        "fact.objective@1",
+        "fact.question@1",
+        "fact.unknowns@1",
+        "request@1",
+        "research_review@1"
+      ]
+    }
+  ],
+  "attempts": [
+    {
+      "id": "e4e412291f2142ebb2371c19e39a72d0",
+      "task_id": "f9f0da23a748431fb04b48b06cc13680:0",
+      "role": "agent0",
+      "tool": "bedrock.converse",
+      "status": "complete",
+      "input_hash": "4b1375ee164a9c5baa146b9f07332be08df319c7d94a0f97537729574dc46669",
+      "error": null,
+      "started_at": "2026-11-15T19:01:01.148888+00:00",
+      "finished_at": "2026-11-15T19:01:16.630489+00:00",
+      "detail": {
+        "account_id": "471112821226",
+        "latency_ms": 15451,
+        "model": "global.openai.gpt-6-astra",
+        "parsed": {
+          "clarifications": [
+            {
+              "blocking": true,
+              "field": "capital_cad",
+              "question": "Quel capital en CAD sera concerné, lorsque cette information sera disponible ?"
+            },
+            {
+              "blocking": true,
+              "field": "holdings",
+              "question": "Quelles sont les positions actuelles et leurs poids dans ce capital ?"
+            },
+            {
+              "blocking": true,
+              "field": "withdrawal_cad",
+              "question": "Quel montant en CAD faudra-t-il retirer dans douze mois, une fois ce besoin déterminé ?"
+            },
+            {
+              "blocking": true,
+              "field": "scenario_loss_limit_cad",
+              "question": "Que signifie « préserver mon capital » : quelle perte maximale en CAD serait admissible, et cette préservation s’entend-elle avant ou après le retrait ?"
+            },
+            {
+              "blocking": true,
+              "field": "scenarios",
+              "question": "Quels scénarios hypothétiques explicites souhaitez-vous retenir, avec quels rendements par actif et sur quels horizons ?"
+            },
+            {
+              "blocking": true,
+              "field": "reserve_policy",
+              "question": "L’exercice doit-il être conditionnel à une réserve abstraite stable en valeur nominale, ou porter sur un instrument réel à préciser ?"
+            },
+            {
+              "blocking": true,
+              "field": "objective",
+              "question": "Souhaitez-vous minimiser le capital réalloué tout en respectant les contraintes de retrait et de perte admissible ?"
+            }
+          ],
+          "contradictions": [],
+          "interpretation": "Non, aucune conclusion sur la faisabilité n’est possible à ce stade. L’échéance de douze mois est connue, mais le capital, les positions et le montant du retrait manquent explicitement. La préservation du capital doit aussi être traduite en contraintes vérifiables. Aucune allocation ni garantie de préservation ne peut être déduite de ces seules informations.",
+          "updates": [
+            {
+              "field": "decision_type",
+              "origin": "assumed",
+              "quote": "",
+              "rationale": "La demande relève de la préparation d’un retrait avec préservation du capital, mais les données nécessaires à sa formalisation sont absentes.",
+              "value_json": "\"reserve_allocation\""
+            },
+            {
+              "field": "question",
+              "origin": "extracted",
+              "quote": "Je souhaite préserver mon capital et financer un retrait dans douze mois.",
+              "rationale": "L’unité de décision porte sur le financement du retrait sous une contrainte de préservation du capital à préciser.",
+              "value_json": "\"Peut-on conclure sur la préservation du capital et le financement d’un retrait dans douze mois avec les informations disponibles ?\""
+            },
+            {
+              "field": "withdrawal_months",
+              "origin": "extracted",
+              "quote": "financer un retrait dans douze mois",
+              "rationale": "L’échéance du retrait est explicitement fournie ; elle ne définit pas nécessairement l’horizon total d’investissement.",
+              "value_json": "12"
+            },
+            {
+              "field": "objective",
+              "origin": "assumed",
+              "quote": "",
+              "rationale": "La préservation du capital ne suffit pas à établir que l’objectif est de minimiser le capital réalloué.",
+              "value_json": "\"unknown\""
+            },
+            {
+              "field": "unknowns",
+              "origin": "assumed",
+              "quote": "",
+              "rationale": "Ces éléments restent nécessaires pour formaliser l’exercice sans remplacer les données absentes par des suppositions numériques.",
+              "value_json": "[\"Capital disponible en CAD\",\"Positions actuelles et poids\",\"Montant du retrait en CAD\",\"Définition de la préservation du capital et perte maximale admissible\",\"Scénarios hypothétiques, rendements par actif et horizons\",\"Nature et comportement de la réserve\",\"Confirmation de l’objectif de minimisation du capital réalloué\"]"
+            }
+          ]
+        },
+        "provider": "amazon-bedrock-runtime",
+        "region": "us-east-1",
+        "request_id": "02d3ceba-487a-4310-8896-096274c33f1e",
+        "server_latency_ms": 15253,
+        "stop_reason": "end_turn",
+        "text": "{\n  \"updates\": [\n    {\n      \"field\": \"decision_type\",\n      \"value_json\": \"\\\"reserve_allocation\\\"\",\n      \"quote\": \"\",\n      \"origin\": \"assumed\",\n      \"rationale\": \"La demande relève de la préparation d’un retrait avec préservation du capital, mais les données nécessaires à sa formalisation sont absentes.\"\n    },\n    {\n      \"field\": \"question\",\n      \"value_json\": \"\\\"Peut-on conclure sur la préservation du capital et le financement d’un retrait dans douze mois avec les informations disponibles ?\\\"\",\n      \"quote\": \"Je souhaite préserver mon capital et financer un retrait dans douze mois.\",\n      \"origin\": \"extracted\",\n      \"rationale\": \"L’unité de décision porte sur le financement du retrait sous une contrainte de préservation du capital à préciser.\"\n    },\n    {\n      \"field\": \"withdrawal_months\",\n      \"value_json\": \"12\",\n      \"quote\": \"financer un retrait dans douze mois\",\n      \"origin\": \"extracted\",\n      \"rationale\": \"L’échéance du retrait est explicitement fournie ; elle ne définit pas nécessairement l’horizon total d’investissement.\"\n    },\n    {\n      \"field\": \"objective\",\n      \"value_json\": \"\\\"unknown\\\"\",\n      \"quote\": \"\",\n      \"origin\": \"assumed\",\n      \"rationale\": \"La préservation du capital ne suffit pas à établir que l’objectif est de minimiser le capital réalloué.\"\n    },\n    {\n      \"field\": \"unknowns\",\n      \"value_json\": \"[\\\"Capital disponible en CAD\\\",\\\"Positions actuelles et poids\\\",\\\"Montant du retrait en CAD\\\",\\\"Définition de la préservation du capital et perte maximale admissible\\\",\\\"Scénarios hypothétiques, rendements par actif et horizons\\\",\\\"Nature et comportement de la réserve\\\",\\\"Confirmation de l’objectif de minimisation du capital réalloué\\\"]\",\n      \"quote\": \"\",\n      \"origin\": \"assumed\",\n      \"rationale\": \"Ces éléments restent nécessaires pour formaliser l’exercice sans remplacer les données absentes par des suppositions numériques.\"\n    }\n  ],\n  \"contradictions\": [],\n  \"clarifications\": [\n    {\n      \"field\": \"capital_cad\",\n      \"question\": \"Quel capital en CAD sera concerné, lorsque cette information sera disponible ?\",\n      \"blocking\": true\n    },\n    {\n      \"field\": \"holdings\",\n      \"question\": \"Quelles sont les positions actuelles et leurs poids dans ce capital ?\",\n      \"blocking\": true\n    },\n    {\n      \"field\": \"withdrawal_cad\",\n      \"question\": \"Quel montant en CAD faudra-t-il retirer dans douze mois, une fois ce besoin déterminé ?\",\n      \"blocking\": true\n    },\n    {\n      \"field\": \"scenario_loss_limit_cad\",\n      \"question\": \"Que signifie « préserver mon capital » : quelle perte maximale en CAD serait admissible, et cette préservation s’entend-elle avant ou après le retrait ?\",\n      \"blocking\": true\n    },\n    {\n      \"field\": \"scenarios\",\n      \"question\": \"Quels scénarios hypothétiques explicites souhaitez-vous retenir, avec quels rendements par actif et sur quels horizons ?\",\n      \"blocking\": true\n    },\n    {\n      \"field\": \"reserve_policy\",\n      \"question\": \"L’exercice doit-il être conditionnel à une réserve abstraite stable en valeur nominale, ou porter sur un instrument réel à préciser ?\",\n      \"blocking\": true\n    },\n    {\n      \"field\": \"objective\",\n      \"question\": \"Souhaitez-vous minimiser le capital réalloué tout en respectant les contraintes de retrait et de perte admissible ?\",\n      \"blocking\": true\n    }\n  ],\n  \"interpretation\": \"Non, aucune conclusion sur la faisabilité n’est possible à ce stade. L’échéance de douze mois est connue, mais le capital, les positions et le montant du retrait manquent explicitement. La préservation du capital doit aussi être traduite en contraintes vérifiables. Aucune allocation ni garantie de préservation ne peut être déduite de ces seules informations.\"\n}",
+        "tool_calls": [],
+        "usage": {
+          "cache_read_input_tokens": 0,
+          "cache_write_input_tokens": 1498,
+          "input_tokens": 2,
+          "output_tokens": 1157,
+          "total_tokens": 2657
+        }
+      },
+      "request_id": "02d3ceba-487a-4310-8896-096274c33f1e",
+      "usage": {
+        "cache_read_input_tokens": 0,
+        "cache_write_input_tokens": 1498,
+        "input_tokens": 2,
+        "output_tokens": 1157,
+        "total_tokens": 2657
+      },
+      "latency_ms": 15451,
+      "model": "global.openai.gpt-6-astra",
+      "provider": "amazon-bedrock-runtime",
+      "region": "us-east-1",
+      "account_id": "471112821226"
+    },
+    {
+      "id": "179c9f0585c2460394f25143e9bbb7f6",
+      "task_id": "f9f0da23a748431fb04b48b06cc13680:1",
+      "role": "agent1",
+      "tool": "research.retrieve",
+      "status": "complete",
+      "input_hash": "f2575cde923ac883f7b6e72d43a5554e99a2be6c0d27019f22f18cc70b83a4bc",
+      "error": null,
+      "started_at": "2026-11-15T19:01:17.190291+00:00",
+      "finished_at": "2026-11-15T19:01:22.743828+00:00",
+      "detail": {
+        "contradictions": [],
+        "evidence": [
+          {
+            "capture": {
+              "path": "docs/recherche/collecte/U341.html",
+              "sha256": "57f7b740b596078d34339613bae7323104c5dfb128553b9edc723528e73ca5ca",
+              "text_path": "runtime/decision/research/92c2ee9bf6639b02ce99e9a1e8c722a3d870c1f103ccba633c2a84f41c45158d.txt",
+              "text_sha256": "92c2ee9bf6639b02ce99e9a1e8c722a3d870c1f103ccba633c2a84f41c45158d"
+            },
+            "id": "local-U341-57f7b740b596",
+            "known_at": "2026-11-15T13:53:52.091977+00:00",
+            "known_at_basis": "timestamp_of_exact_captured_version",
+            "limitations": [
+              "Passages extraits automatiquement ; pertinence et ancrage restent à examiner.",
+              "Date de capture conservatrice ; elle ne prouve pas la disponibilité de cette version à une date antérieure."
+            ],
+            "passage": "ESG considerations can be integrated into an investment policy by negative screening, positive screening, ESG integration, thematic investing, engagement/active ownership, and impact investing.\nRisk objectives are specifications for portfolio risk that reflect the risk tolerance of the client. Quantitative risk objectives can be absolute, relative, or a combination of the two.\nThe client’s overall risk tolerance is a function of both the client’s ability to accept risk and the client’s “risk attitude,” which can be considered the client’s willingness to take risk.\nThe client’s return objectives can be stated on an absolute or a relative basis. As an example of an absolute objective, the client may want to achieve a particular percentage rate of return. Alternatively, the return objective can be stated on a relative basis—for example, relative to a benchmark return.\nThe liquidity section of the IPS should state what the client’s requirements are to draw cash from the portfolio.\nThe time horizon section of the IPS should state the time horizon over which the investor is investing. This horizon may be the period during which the portfolio is accumulating before any assets need to be withdrawn.\nTax status varies among investors, and a client’s tax status should be stated in the IPS.\nThe IPS should state any legal or regulatory restrictions that constrain the investment of the portfolio.\nThe unique circumstances section of the IPS should cover any other aspect of a client’s circumstances that is likely to have a material impact on portfolio composition. Certain ESG implementation approaches may be discussed in this section.\nAsset classes are the building blocks of an asset allocation. An asset class is a category of assets that have similar characteristics, attributes, and risk–return relationships. Traditionally, investors have distinguished cash, equities, bonds, and real estate as the major asset classes.\nA strategic asset allocation results from combining the constraints and objectives articulated in the IPS and capital market expectations regarding the asset classes.\nAs time goes on, a client’s asset allocation will drift from the target allocation, and the amou",
+            "passages": [
+              {
+                "line_end": 44,
+                "line_start": 31,
+                "match_terms": [
+                  "capital",
+                  "liquidity",
+                  "portfolio"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "ESG considerations can be integrated into an investment policy by negative screening, positive screening, ESG integration, thematic investing, engagement/active ownership, and impact investing.\nRisk objectives are specifications for portfolio risk that reflect the risk tolerance of the client. Quantitative risk objectives can be absolute, relative, or a combination of the two.\nThe client’s overall risk tolerance is a function of both the client’s ability to accept risk and the client’s “risk attitude,” which can be considered the client’s willingness to take risk.\nThe client’s return objectives can be stated on an absolute or a relative basis. As an example of an absolute objective, the client may want to achieve a particular percentage rate of return. Alternatively, the return objective can be stated on a relative basis—for example, relative to a benchmark return.\nThe liquidity section of the IPS should state what the client’s requirements are to draw cash from the portfolio.\nThe time horizon section of the IPS should state the time horizon over which the investor is investing. This horizon may be the period during which the portfolio is accumulating before any assets need to be withdrawn.\nTax status varies among investors, and a client’s tax status should be stated in the IPS.\nThe IPS should state any legal or regulatory restrictions that constrain the investment of the portfolio.\nThe unique circumstances section of the IPS should cover any other aspect of a client’s circumstances that is likely to have a material impact on portfolio composition. Certain ESG implementation approaches may be discussed in this section.\nAsset classes are the building blocks of an asset allocation. An asset class is a category of assets that have similar characteristics, attributes, and risk–return relationships. Traditionally, investors have distinguished cash, equities, bonds, and real estate as the major asset classes.\nA strategic asset allocation results from combining the constraints and objectives articulated in the IPS and capital market expectations regarding the asset classes.\nAs time goes on, a client’s asset allocation will drift from the target allocation, and the amou",
+                "text_truncated": true
+              },
+              {
+                "line_end": 24,
+                "line_start": 11,
+                "match_terms": [
+                  "liquidity",
+                  "portfolio"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "Access the Full Reading in the Learning Ecosystem\nIntroduction\nTo build a suitable portfolio for a client, investment advisers should first seek to understand the client’s investment goals, resources, circumstances, and constraints. Investors can be categorized into broad groups based on shared characteristics with respect to these factors (e.g., various types of individual investors and institutional investors). Even investors within a given type, however, will invariably have a number of distinctive requirements. In this reading, we consider in detail the planning for investment success based on an individualized understanding of the client.\nThis reading is organized as follows: Section 2 discusses the investment policy statement, a written document that captures the client’s investment objectives and the constraints. Section 3 discusses the portfolio construction process, including the first step of specifying a strategic asset allocation for the client. Section 4 concludes and summarizes the reading.\nLearning Outcomes\nThe candidate should be able to:\ndescribe the reasons for a written investment policy statement (IPS);\ndescribe the major components of an IPS describe risk and return objectives and how they may be developed for a client;\nexplain the difference between the willingness and the ability (capacity) to take risk in analyzing an investor’s financial risk tolerance;\ndescribe the investment constraints of liquidity, time horizon, tax concerns, legal and regulatory factors, and unique circumstances and their implications for the choice of portfolio assets;\nexplain the specification of asset classes in relation to asset allocation;\ndescribe the principles of portfolio construction and the role of asset allocation in relation to the IPS;\ndescribe how environmental, social, and governance (ESG) considerations may be integrated into portfolio planning and construction.\nSummary",
+                "text_truncated": false
+              }
+            ],
+            "reading_level": "targeted_passages",
+            "review_status": "extracted_for_role_review",
+            "scope": {
+              "pdf_pages": null,
+              "query": "short term withdrawal nominal capital protection liquidity linear programming portfolio",
+              "source_version": "57f7b740b596078d34339613bae7323104c5dfb128553b9edc723528e73ca5ca"
+            },
+            "source": {
+              "authority": "institutional_publisher_scope_to_review",
+              "kind": "captured_document",
+              "title": "Basics of Portfolio Planning and Construction | CFA Institute",
+              "url": "https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/basics-of-portfolio-planning-and-construction"
+            },
+            "source_id": "U341",
+            "version": 1
+          },
+          {
+            "capture": {
+              "path": "docs/recherche/finance/sources/boyd_convex.pdf",
+              "sha256": "40d976c83c18cce1900eff8c41bd5ad408c102b813af39d05ff85678ccf8d76e",
+              "text_path": "runtime/decision/research/9ef784e4ae3e9de3269a90fd6d8aa097e7eda3d55677449b2c1af127b7ce48d9.txt",
+              "text_sha256": "9ef784e4ae3e9de3269a90fd6d8aa097e7eda3d55677449b2c1af127b7ce48d9"
+            },
+            "id": "local-boyd_convex-40d976c83c18",
+            "known_at": "2026-11-15T13:55:11.974998+00:00",
+            "known_at_basis": "timestamp_of_exact_captured_version",
+            "limitations": [
+              "Passages extraits automatiquement ; pertinence et ancrage restent à examiner.",
+              "Date de capture conservatrice ; elle ne prouve pas la disponibilité de cette version à une date antérieure."
+            ],
+            "passage": "This problem can be transformed to an equivalent LP by ﬁrst forming the epigraph\nproblem,\nminimize t\nsubject to maxi=1,...,m(aT i x + bi) ≤ t,\n\n[PDF page 165]\n4.3 Linear optimization problems 151\nand then expressing the inequality as a set of m separate inequalities:\nminimize t\nsubject to aT i x + bi ≤ t, i = 1,...,m.\nThis is an LP (in inequality form), with variables x and t.\n4.3.2 Linear-fractional programming\nThe problem of minimizing a ratio of aﬃne functions over a polyhedron is called a\nlinear-fractional program:",
+            "passages": [
+              {
+                "line_end": 214,
+                "line_start": 201,
+                "match_terms": [
+                  "linear",
+                  "programming"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "This problem can be transformed to an equivalent LP by ﬁrst forming the epigraph\nproblem,\nminimize t\nsubject to maxi=1,...,m(aT i x + bi) ≤ t,\n\n[PDF page 165]\n4.3 Linear optimization problems 151\nand then expressing the inequality as a set of m separate inequalities:\nminimize t\nsubject to aT i x + bi ≤ t, i = 1,...,m.\nThis is an LP (in inequality form), with variables x and t.\n4.3.2 Linear-fractional programming\nThe problem of minimizing a ratio of aﬃne functions over a polyhedron is called a\nlinear-fractional program:",
+                "text_truncated": false
+              },
+              {
+                "line_end": 254,
+                "line_start": 241,
+                "match_terms": [
+                  "linear",
+                  "programming"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "in (4.32), with the same objective value f0(x) = cT y + dz. If (y,z) is feasible\nin (4.33) with z = 0, and x0 is feasible for (4.32), then x = x0 + ty is feasible\nin (4.32) for all t ≥ 0. Moreover, limt→∞ f0(x0 + ty) = cT y + dz, so we can ﬁnd\nfeasible points in (4.32) with objective values arbitrarily close to the objective value\nof (y,z). We conclude that the optimal value of (4.32) is less than or equal to the\noptimal value of (4.33).\n\n[PDF page 166]\n152 4 Convex optimization problems\nGeneralized linear-fractional programming\nA generalization of the linear-fractional program (4.32) is the generalized linear-\nfractional program in which\nf0(x) = max i=1,...,r\ncT i x + di",
+                "text_truncated": false
+              },
+              {
+                "line_end": 24,
+                "line_start": 11,
+                "match_terms": [
+                  "linear"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "2. Solve the convex feasibility problem (4.26).\n3. if (4.26) is feasible, u := t; else l := t.\nuntil u − l ≤ ǫ.\nThe interval [l,u] is guaranteed to contain p⋆, i.e., we have l ≤ p⋆ ≤ u at\neach step. In each iteration the interval is divided in two, i.e., bisected, so the\nlength of the interval after k iterations is 2−k(u − l), where u − l is the length of\nthe initial interval. It follows that exactly ⌈log2((u − l)/ǫ)⌉ iterations are required\nbefore the algorithm terminates. Each step involves solving the convex feasibility\nproblem (4.26).\n4.3 Linear optimization problems\nWhen the objective and constraint functions are all aﬃne, the problem is called a\nlinear program (LP). A general linear program has the form\nminimize cT x + d\nsubject to Gx ≼ h",
+                "text_truncated": false
+              }
+            ],
+            "reading_level": "targeted_passages",
+            "review_status": "extracted_for_role_review",
+            "scope": {
+              "pdf_pages": [
+                160,
+                161,
+                162,
+                163,
+                164,
+                165,
+                166
+              ],
+              "query": "short term withdrawal nominal capital protection liquidity linear programming portfolio",
+              "source_version": "40d976c83c18cce1900eff8c41bd5ad408c102b813af39d05ff85678ccf8d76e"
+            },
+            "source": {
+              "authority": "author_hosted_primary_text",
+              "kind": "captured_document",
+              "title": "Convex Optimization — Boyd et Vandenberghe, chapitre 4.3",
+              "url": "https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf"
+            },
+            "source_id": "boyd_convex",
+            "version": 1
+          },
+          {
+            "capture": {
+              "path": "docs/recherche/collecte/U050.html",
+              "sha256": "0a65c95f8fa2392733b6ea7df908e8dc693a9507eabad71e76d4f5e87f24b5fe",
+              "text_path": "runtime/decision/research/4fa4dc24ff9a272fe1124617a5fc4a2598a648beef1161adad36d7907c371395.txt",
+              "text_sha256": "4fa4dc24ff9a272fe1124617a5fc4a2598a648beef1161adad36d7907c371395"
+            },
+            "id": "local-U050-0a65c95f8fa2",
+            "known_at": "2026-11-15T13:53:13.443931+00:00",
+            "known_at_basis": "timestamp_of_exact_captured_version",
+            "limitations": [
+              "Passages extraits automatiquement ; pertinence et ancrage restent à examiner.",
+              "Date de capture conservatrice ; elle ne prouve pas la disponibilité de cette version à une date antérieure."
+            ],
+            "passage": "Star\n1.9k\n(\n1.9k\n)\nYou must be signed in to star a repository\nAbout\nLinear optimization software\nTopics\nhigh-performance\ninterior-point-method\nlinear-optimization\nmixed-integer-programming\nparallel",
+            "passages": [
+              {
+                "line_end": 24,
+                "line_start": 11,
+                "match_terms": [
+                  "linear",
+                  "programming"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "Star\n1.9k\n(\n1.9k\n)\nYou must be signed in to star a repository\nAbout\nLinear optimization software\nTopics\nhigh-performance\ninterior-point-method\nlinear-optimization\nmixed-integer-programming\nparallel",
+                "text_truncated": false
+              },
+              {
+                "line_end": 169,
+                "line_start": 156,
+                "match_terms": [
+                  "linear",
+                  "programming"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "Reference\nAbout HiGHS\nHiGHS is a high performance serial and parallel solver for large scale sparse\nlinear optimization problems of the form\n$$ \\min \\quad \\dfrac{1}{2}x^TQx + c^Tx \\qquad \\textrm{s.t.}~ \\quad L \\leq Ax \\leq U; \\quad l \\leq x \\leq u $$\nwhere\n$Q$\nmust be positive semi-definite and, if\n$Q$\nis zero, there may be a requirement that some of the variables take integer values. Thus HiGHS can solve linear programming (LP) problems, convex quadratic programming (QP) problems, and mixed integer programming (MIP) problems. It is mainly written in C++, but also has some C. It has been developed and tested on various Linux, MacOS and Windows installations. No third-party dependencies are required.\nHiGHS has primal and dual revised simplex solvers, originally written by Qi Huangfu and further developed by Julian Hall. It also has an interior point solver for LP written by Lukas Schork, an active set solver for QP written by Michael Feldmeier, and a MIP solver written by Leona Gottwald. Other features have been added by Julian Hall and Ivet Galabova, who manages the software engineering of HiGHS and interfaces to C, C#, FORTRAN, Julia and Python.\nFind out more about HiGHS at\nhttps://www.highs.dev\n.",
+                "text_truncated": false
+              },
+              {
+                "line_end": 439,
+                "line_start": 426,
+                "match_terms": [
+                  "linear",
+                  "programming"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "not\nincluded in the default build. For more details, check out the documentation website\nhttps://ergo-code.github.io/HiGHS/\n.\nReference\nIf you use HiGHS in an academic context, please acknowledge this and cite the following article.\nParallelizing the dual revised simplex method\nQ. Huangfu and J. A. J. Hall\nMathematical Programming Computation, 10 (1), 119-142, 2018.\nDOI:\n10.1007/s12532-017-0130-5\nAbout\nLinear optimization software\nTopics",
+                "text_truncated": false
+              }
+            ],
+            "reading_level": "targeted_passages",
+            "review_status": "extracted_for_role_review",
+            "scope": {
+              "pdf_pages": null,
+              "query": "short term withdrawal nominal capital protection liquidity linear programming portfolio",
+              "source_version": "0a65c95f8fa2392733b6ea7df908e8dc693a9507eabad71e76d4f5e87f24b5fe"
+            },
+            "source": {
+              "authority": "software_repository_documentation",
+              "kind": "captured_document",
+              "title": "GitHub - ERGO-Code/HiGHS: Linear optimization software · GitHub",
+              "url": "https://github.com/ERGO-Code/HiGHS"
+            },
+            "source_id": "U050",
+            "version": 1
+          },
+          {
+            "capture": {
+              "path": "runtime/decision/research/09cbe2c6cc000c1a561de38bbc552c49edb6ddec6bad2b2d7bf937841e79400b.pdf",
+              "sha256": "09cbe2c6cc000c1a561de38bbc552c49edb6ddec6bad2b2d7bf937841e79400b",
+              "text_path": "runtime/decision/research/9082d03f15df0d3793037d8e8cf574e7626e0210014f94166a745aedf2772f74.txt",
+              "text_sha256": "9082d03f15df0d3793037d8e8cf574e7626e0210014f94166a745aedf2772f74"
+            },
+            "id": "web-09cbe2c6cc000c1a561d",
+            "known_at": "2026-11-15T19:01:18.210686+00:00",
+            "known_at_basis": "timestamp_of_exact_captured_version",
+            "limitations": [
+              "Capture et extraction ne prouvent ni l'exactitude ni l'applicabilité.",
+              "Métadonnées de publication à recouper ; elles ne rétrodatent pas la capture.",
+              "PDF : extraction bornée aux soixante premières pages, sans OCR."
+            ],
+            "passage": "handling any number of decision variables. Problems \ncontaining more than two or three variables cannot \nbe solved using graphs. Several standardized solu­\ntion procedures (known as algorithms) exist, how­\never, for solving large problems.15\nIn addition to handling as many decision variables \nas necessary, the linear programming model can ac­\ncommodate as many constraints as bank managers \nconsider relevant to the portfolio decision process. \nSpecifically, detailed and realistic sets of liquidity \nconstraints can be built into the model reflecting lia­\nbility and capital structures, cash flow patterns, sea­\nsonal fluctuations in loan demand, and miscellaneous \nrestrictions imposed by management on the basis of",
+            "passages": [
+              {
+                "line_end": 614,
+                "line_start": 601,
+                "match_terms": [
+                  "capital",
+                  "linear",
+                  "liquidity",
+                  "portfolio",
+                  "programming"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "handling any number of decision variables. Problems \ncontaining more than two or three variables cannot \nbe solved using graphs. Several standardized solu­\ntion procedures (known as algorithms) exist, how­\never, for solving large problems.15\nIn addition to handling as many decision variables \nas necessary, the linear programming model can ac­\ncommodate as many constraints as bank managers \nconsider relevant to the portfolio decision process. \nSpecifically, detailed and realistic sets of liquidity \nconstraints can be built into the model reflecting lia­\nbility and capital structures, cash flow patterns, sea­\nsonal fluctuations in loan demand, and miscellaneous \nrestrictions imposed by management on the basis of",
+                "text_truncated": false
+              },
+              {
+                "line_end": 649,
+                "line_start": 636,
+                "match_terms": [
+                  "capital",
+                  "linear",
+                  "liquidity",
+                  "portfolio",
+                  "programming"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "as for the current period. The reader should not \ninfer that management would, at some point, use the \nmodel to suggest desirable portfolios for, say, the next \nfive quarters, and then slavishly follow the prescrip­\ntions for each quarter as time passes. Obviously, the \nmodel should be updated and solved again as fore­\n15 The most widely used algorithm is the so-called “simplex” method. \nSee Baumol, op. cit., pp. 82-97.\n18 In their pioneering application of the linear programming method \nto bank portfolio management, Chambers and Charnes developed a \ndetailed system of capital adequacy-liquidity constraints using some \nof the bank examination criteria employed by the Federal Reserve \nSystem. See D. Chambers and A. Charnes, “ Inter-Temporal Analysis \nand Optimization of Bank Portfolios,” Management Science, 7 (July",
+                "text_truncated": false
+              },
+              {
+                "line_end": 14,
+                "line_start": 1,
+                "match_terms": [
+                  "linear",
+                  "liquidity",
+                  "portfolio",
+                  "programming"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "[PDF page 1]\nFEDERAL RESERVE BANK OF RICHMOND\nMONTHLY \nREVIEW\nLinear Programming: A Nczu \nApproach To Bank Portfolio \nManagement\nCorporate Financing and Liquidity;: \n1968-1972\nI\\ i\nVolum e 58 \nNum ber 11 NOVEMBER 19 7 2\nDigitized for FRASER \nhttp://fraser.stlouisfed.org/",
+                "text_truncated": false
+              }
+            ],
+            "published_at_claim": null,
+            "reading_level": "targeted_passages",
+            "review_status": "extracted_for_role_review",
+            "scope": {
+              "query": "short term withdrawal nominal capital protection liquidity linear programming portfolio",
+              "source_version": "09cbe2c6cc000c1a561de38bbc552c49edb6ddec6bad2b2d7bf937841e79400b"
+            },
+            "search_index": {
+              "published_at_index_claim": null,
+              "snippet": "FEDERAL RESERVE BANK OF RICHMOND MONTHLY R E V I E W Linear Programming: A Nczu Approach To Bank Portfolio Management Corporate Financing and Liquidity;: 1968-1972 I\\ i Volum e 58 Num ber 11 N O V E M B E R  19 7 2 \n\nunderstood and effectively employed by bankers.1 One technique receiving considerable attention is lin­ ear programming. Linear programming is a basic analytical procedure, or “ model,” employed exten­ \n\nerally less liquid and riskier than assets having rela­ tively low yields, such as short-term government securities. The “Pooled-Funds” Approach During the early postwar period, funds were generally available to \n\nThe total funds constraint requires that the point representing the bank’s asset portfolio either fall on A A ' or within the shaded region below and to the left of A A '.9 Liquidity Constraint The bank recognizes that, \n\nThis constraint is depicted by Chart 3. The restriction requires the bank’s portfolio to fall on or to the right of line CC'. The mathematical statement of the constraint is : (4) L >  30 million. The Feasible Region \n\nChart 3 LOAN BALANCE CONSTRAINTS Securities ($ Millions) 100 80 60 40 20 20 40 60 Loans ($ Millions) 80 100 6 MONTHLY REVIEW, NOVEMBER 1972 Digitized for FRASER http://fraser.stlouisfed.org/ Federal Reserve Bank of St. Louis \n\nThis portfolio would yield $8.75 million of income during the period. The linear programming model has pro­ vided the bank an objective procedure for deter­ mining its optimal portfolio. The model has taken \n\nC h a rt 6 THE OPTIMAL ASSET PORTFOLIO Securities ($ M illio n s) Loans ($ M illion s) time deposits and $45 million of demand deposits, management considers a 20 percent liquidity ratio constraint adequate. \n\nobjective function in position QQ'. As indicated by G', the bank’s new income-maximizing portfolio con­ tains $88 million of loans and $22 million of securi- C h a rt 7 SOLUTION TO PROBLEM (10) Securities \n\nbank should define as many asset decision variables as there are assets of significantly different yield, liquid­ ity, and risk in its portfolio. The model is capable of handling any number of decision variables. Problems \n\nas necessary, the linear programming model can ac­ commodate as many constraints as bank managers consider relevant to the portfolio decision process. Specifically, detailed and realistic sets of liquidity ",
+              "title": "Economic Review",
+              "url": "https://fraser.stlouisfed.org/files/docs/publications/frbrichreview/rev_frbrich197211.pdf"
+            },
+            "source": {
+              "authority": "unclassified_requires_review",
+              "kind": "captured_document",
+              "resolved_url": "https://fraser.stlouisfed.org/files/docs/publications/frbrichreview/rev_frbrich197211.pdf",
+              "title": "Economic Review",
+              "url": "https://fraser.stlouisfed.org/files/docs/publications/frbrichreview/rev_frbrich197211.pdf"
+            },
+            "version": 1
+          },
+          {
+            "capture": {
+              "path": "runtime/decision/research/de6b11aa5d196fba2108a0a6d4d8bff758b4b43fb876b6d40c6107493bce87f8.pdf",
+              "sha256": "de6b11aa5d196fba2108a0a6d4d8bff758b4b43fb876b6d40c6107493bce87f8",
+              "text_path": "runtime/decision/research/1279d78c6283fffcc9a269a9648c6d79f1e2b433a5e4ec216e6040fbceb784bf.txt",
+              "text_sha256": "1279d78c6283fffcc9a269a9648c6d79f1e2b433a5e4ec216e6040fbceb784bf"
+            },
+            "id": "web-de6b11aa5d196fba2108",
+            "known_at": "2026-11-15T19:01:19.694520+00:00",
+            "known_at_basis": "timestamp_of_exact_captured_version",
+            "limitations": [
+              "Capture et extraction ne prouvent ni l'exactitude ni l'applicabilité.",
+              "Métadonnées de publication à recouper ; elles ne rétrodatent pas la capture.",
+              "PDF : extraction bornée aux soixante premières pages, sans OCR."
+            ],
+            "passage": "NBER working papers are circulated for discussion and comment purposes. They have not been peer-\nreviewed or been subject to the review by the NBER Board of Directors that accompanies official\nNBER publications.\n© 2013 by Vanya Horneff, Raimond Maurer, Olivia S. Mitchell, and Ralph Rogalla. All rights reserved.\nShort sections of text, not to exceed two paragraphs, may be quoted without explicit permission provided\nthat full credit, including © notice, is given to the source.\n\n[PDF page 2]\nOptimal Life Cycle Portfolio Choice with Variable Annuities Offering Liquidity and Investment\nDownside Protection\nVanya Horneff, Raimond Maurer, Olivia S. Mitchell, and Ralph Rogalla\nNBER Working Paper No. 19206\nJuly 2013\nJEL No. D1,D14,D91,G11,G22",
+            "passages": [
+              {
+                "line_end": 39,
+                "line_start": 26,
+                "match_terms": [
+                  "liquidity",
+                  "portfolio",
+                  "protection",
+                  "short"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "NBER working papers are circulated for discussion and comment purposes. They have not been peer-\nreviewed or been subject to the review by the NBER Board of Directors that accompanies official\nNBER publications.\n© 2013 by Vanya Horneff, Raimond Maurer, Olivia S. Mitchell, and Ralph Rogalla. All rights reserved.\nShort sections of text, not to exceed two paragraphs, may be quoted without explicit permission provided\nthat full credit, including © notice, is given to the source.\n\n[PDF page 2]\nOptimal Life Cycle Portfolio Choice with Variable Annuities Offering Liquidity and Investment\nDownside Protection\nVanya Horneff, Raimond Maurer, Olivia S. Mitchell, and Ralph Rogalla\nNBER Working Paper No. 19206\nJuly 2013\nJEL No. D1,D14,D91,G11,G22",
+                "text_truncated": false
+              },
+              {
+                "line_end": 124,
+                "line_start": 111,
+                "match_terms": [
+                  "capital",
+                  "liquidity",
+                  "portfolio",
+                  "protection"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "Salisbury, 2006). Typically, the consumer may withdraw a maximum percentage of her \npremium per year until the premium is completely recouped. Any remaining capital at the end \nof the deferral period can be converted either into a lifelong annuity or paid to the \n\n[PDF page 4]\n2 \n \npolicyholder in the form of a lump sum. In this way, the GMWB offers access to equity \ninvestments, downside protection against market risk, and the possibility of hedging longevity \nrisk via annuitization. Because of the withdraw al option, premiums are at least in part \nrefundable, so that GMWBs offer also liquidity which can help overcome consumer \nreluctance to voluntary annuitize retirement wealth.1  \nPrior literature on dynamic portfolio choi ce has examined household demand for life \nannuities and its welfare implications. 2 Though several authors study immediate and fixed",
+                "text_truncated": false
+              },
+              {
+                "line_end": 14,
+                "line_start": 1,
+                "match_terms": [
+                  "liquidity",
+                  "portfolio",
+                  "protection"
+                ],
+                "selection": "deterministic_keyword_window",
+                "text": "[PDF page 1]\nNBER WORKING PAPER SERIES\nOPTIMAL LIFE CYCLE PORTFOLIO CHOICE WITH VARIABLE ANNUITIES\nOFFERING LIQUIDITY AND INVESTMENT DOWNSIDE PROTECTION\nVanya Horneff\nRaimond Maurer\nOlivia S. Mitchell\nRalph Rogalla\nWorking Paper 19206\nhttp://www.nber.org/papers/w19206\nNATIONAL BUREAU OF ECONOMIC RESEARCH\n1050 Massachusetts Avenue\nCambridge, MA 02138\nJuly 2013",
+                "text_truncated": false
+              }
+            ],
+            "published_at_claim": null,
+            "reading_level": "targeted_passages",
+            "review_status": "extracted_for_role_review",
+            "scope": {
+              "query": "short term withdrawal nominal capital protection liquidity linear programming portfolio",
+              "source_version": "de6b11aa5d196fba2108a0a6d4d8bff758b4b43fb876b6d40c6107493bce87f8"
+            },
+            "search_index": {
+              "published_at_index_claim": null,
+              "snippet": "that full credit, including © notice, is given to the source. Optimal Life Cycle Portfolio Choice with Variable Annuities Offering Liquidity and Investment Downside Protection Vanya Horneff, Raimond Maurer, Olivia S. Mitchell, and Ralph Rogalla \n\nNBER Working Paper No. 19206 July 2013 JEL No. D1,D14,D91,G11,G22 ABSTRACT We evaluate lifecycle consumption and portfolio allocation patterns resulting from access to Guaranteed Minimum Withdrawal Benefit (GMWB) variable annuities, one of the most rapidly-growing financial \n\nGermany rogalla@finance.uni-frankfurt.de Optimal Life Cycle Portfolio Choice with Variable Annuities Offering Liquidity and Investment Downside Protection 1. Introduction Defined contribution pensions are the most rapidly growing form of retirement saving \n\nAccount value. A key element of the GMWB is that the insurance company guarantees the policyholder that the sum of all possible (life contingent) withdrawals until the end of the deferral period is at least a certain amount, ∑ \n\nthe period. Hence the policyholder can decide in each period ݐ ൌ 2, … , ܭെ1 to withdraw an amount that satisfies the following limits: 0 ൑ܧ௧൑minሺܩ௧, ܧ୫ୟ୶ሻ. (3) At the end of the deferral period, at time ݐ ൌ ܭ, the remaining cash value of the GMWB is \n\ndistributed with a standard deviation of 18%; additionally the assumed risk-free interest rate is 2%. The maximum guaranteed yearly withdrawal from a GMWB purchased at time ݐ ( ݐ ൌ 1, … , ܭെ1 ) for a premium of ܣ௧ is given by ܧ௠௔௫ൌ \n\nAccounts, and withdrawal limits, or 75 accounts in total. Moreover, this also requires deciding how to optimally distribute withdrawals over the (potentially) 25 Fund Accounts. Explicitly keeping track of so many state and decision variables in a dynamic optimization model is \n\nwithdrawals (clear bars) from existing accounts, as well as the values of the Guarantee (solid line) and Fund Accounts (dashed line). Account values correspond to the left axis, while purchases and withdrawals refer to the right axis. \n\nwithdrawals from the GMWB, the Fund Account nevertheless continues to grow due to the expected return on stocks in which the assets are invested. The Guarantee Account increases to around age 50 because GMWB purchases exceed withdrawals. Thereafter, it declines ",
+              "title": "Microsoft Word - HMMR-GMWB 06-06-2013",
+              "url": "https://www.nber.org/system/files/working_papers/w19206/w19206.pdf"
+            },
+            "source": {
+              "authority": "unclassified_requires_review",
+              "kind": "captured_document",
+              "resolved_url": "https://www.nber.org/system/files/working_papers/w19206/w19206.pdf",
+              "title": "Microsoft Word - HMMR-GMWB 06-06-2013",
+              "url": "https://www.nber.org/system/files/working_papers/w19206/w19206.pdf"
+            },
+            "version": 1
+          }
+        ],
+        "gaps": [
+          {
+            "code": "real_reserve_not_qualified",
+            "effect": "blocks_real_instrument_claim",
+            "message": "Aucun contrat d'instrument réel n'a été qualifié pour assurer disponibilité et nominal du retrait."
+          },
+          {
+            "code": "document_access_incomplete",
+            "execution_refs": [
+              "ea5b9c12486974288b395a15"
+            ],
+            "message": "Certaines recherches ou captures ont échoué ; les reçus indiquent lesquelles."
+          }
+        ],
+        "knowledge_date": null,
+        "limitations": [
+          "La collecte fournit des passages à examiner ; elle ne certifie pas leur soutien à une assertion.",
+          "Aucun score ESG, rendement attendu ou propriété contractuelle n'est imputé."
+        ],
+        "methods": [
+          {
+            "executable_admission": false,
+            "id": "linear_programming",
+            "limitations": [
+              "La pertinence, l'implémentation et les contrôles doivent être qualifiés séparément."
+            ],
+            "name": "Programmation linéaire sous contraintes explicites",
+            "source_refs": [
+              "local-boyd_convex-40d976c83c18"
+            ],
+            "status": "documented_candidate",
+            "version": 1
+          }
+        ],
+        "query": "short term withdrawal nominal capital protection liquidity linear programming portfolio",
+        "receipts": [
+          {
+            "capture_sha256": "57f7b740b596078d34339613bae7323104c5dfb128553b9edc723528e73ca5ca",
+            "execution_id": "ee4736f460e4b7dd76f78865",
+            "finished_at": "2026-11-15T19:01:17.207954+00:00",
+            "output_refs": [
+              "local-U341-57f7b740b596"
+            ],
+            "parameters": {
+              "source_id": "U341"
+            },
+            "started_at": "2026-11-15T19:01:17.190462+00:00",
+            "status": "success",
+            "tool_id": "local_corpus_read",
+            "version": "1.0"
+          },
+          {
+            "capture_sha256": "40d976c83c18cce1900eff8c41bd5ad408c102b813af39d05ff85678ccf8d76e",
+            "execution_id": "4c24aeacb09e50c6513db832",
+            "finished_at": "2026-11-15T19:01:17.448763+00:00",
+            "output_refs": [
+              "local-boyd_convex-40d976c83c18"
+            ],
+            "parameters": {
+              "source_id": "boyd_convex"
+            },
+            "started_at": "2026-11-15T19:01:17.207967+00:00",
+            "status": "success",
+            "tool_id": "local_corpus_read",
+            "version": "1.0"
+          },
+          {
+            "capture_sha256": "0a65c95f8fa2392733b6ea7df908e8dc693a9507eabad71e76d4f5e87f24b5fe",
+            "execution_id": "24b55992958f5d7196ca73c8",
+            "finished_at": "2026-11-15T19:01:17.496780+00:00",
+            "output_refs": [
+              "local-U050-0a65c95f8fa2"
+            ],
+            "parameters": {
+              "source_id": "U050"
+            },
+            "started_at": "2026-11-15T19:01:17.448782+00:00",
+            "status": "success",
+            "tool_id": "local_corpus_read",
+            "version": "1.0"
+          },
+          {
+            "account_id": "471112821226",
+            "execution_id": "d38ce4fb680780d65f1f06f3",
+            "finished_at": "2026-11-15T19:01:17.644686+00:00",
+            "profile": "alphaforge",
+            "provider_request_id": "0d36b518-6ba8-4e1e-99e3-9c6ccbaab245",
+            "region": "us-east-1",
+            "started_at": "2026-11-15T19:01:17.496800+00:00",
+            "status": "success",
+            "tool_id": "aws_sts_identity",
+            "version": "1.0"
+          },
+          {
+            "account_id": "471112821226",
+            "discarded_domain_count": 0,
+            "execution_id": "9c1502f0ff1dc9b57ce9f60a",
+            "finished_at": "2026-11-15T19:01:18.210668+00:00",
+            "measured_cost": null,
+            "mode": "ranked_search_no_WebAnswer",
+            "parameters": {
+              "maxResults": 3,
+              "searchQuery": "short term withdrawal nominal capital protection liquidity linear programming portfolio",
+              "webSearchId": "web-search.v1"
+            },
+            "profile": "alphaforge",
+            "provider_request_id": "e28a68e4-4629-4304-98ef-c5d5b9551d78",
+            "raw_result_count": 3,
+            "region": "us-east-1",
+            "result_count": 3,
+            "results": [
+              {
+                "published_at_index_claim": null,
+                "snippet": "FEDERAL RESERVE BANK OF RICHMOND MONTHLY R E V I E W Linear Programming: A Nczu Approach To Bank Portfolio Management Corporate Financing and Liquidity;: 1968-1972 I\\ i Volum e 58 Num ber 11 N O V E M B E R  19 7 2 \n\nunderstood and effectively employed by bankers.1 One technique receiving considerable attention is lin­ ear programming. Linear programming is a basic analytical procedure, or “ model,” employed exten­ \n\nerally less liquid and riskier than assets having rela­ tively low yields, such as short-term government securities. The “Pooled-Funds” Approach During the early postwar period, funds were generally available to \n\nThe total funds constraint requires that the point representing the bank’s asset portfolio either fall on A A ' or within the shaded region below and to the left of A A '.9 Liquidity Constraint The bank recognizes that, \n\nThis constraint is depicted by Chart 3. The restriction requires the bank’s portfolio to fall on or to the right of line CC'. The mathematical statement of the constraint is : (4) L >  30 million. The Feasible Region \n\nChart 3 LOAN BALANCE CONSTRAINTS Securities ($ Millions) 100 80 60 40 20 20 40 60 Loans ($ Millions) 80 100 6 MONTHLY REVIEW, NOVEMBER 1972 Digitized for FRASER http://fraser.stlouisfed.org/ Federal Reserve Bank of St. Louis \n\nThis portfolio would yield $8.75 million of income during the period. The linear programming model has pro­ vided the bank an objective procedure for deter­ mining its optimal portfolio. The model has taken \n\nC h a rt 6 THE OPTIMAL ASSET PORTFOLIO Securities ($ M illio n s) Loans ($ M illion s) time deposits and $45 million of demand deposits, management considers a 20 percent liquidity ratio constraint adequate. \n\nobjective function in position QQ'. As indicated by G', the bank’s new income-maximizing portfolio con­ tains $88 million of loans and $22 million of securi- C h a rt 7 SOLUTION TO PROBLEM (10) Securities \n\nbank should define as many asset decision variables as there are assets of significantly different yield, liquid­ ity, and risk in its portfolio. The model is capable of handling any number of decision variables. Problems \n\nas necessary, the linear programming model can ac­ commodate as many constraints as bank managers consider relevant to the portfolio decision process. Specifically, detailed and realistic sets of liquidity ",
+                "title": "Economic Review",
+                "url": "https://fraser.stlouisfed.org/files/docs/publications/frbrichreview/rev_frbrich197211.pdf"
+              },
+              {
+                "published_at_index_claim": null,
+                "snippet": "that full credit, including © notice, is given to the source. Optimal Life Cycle Portfolio Choice with Variable Annuities Offering Liquidity and Investment Downside Protection Vanya Horneff, Raimond Maurer, Olivia S. Mitchell, and Ralph Rogalla \n\nNBER Working Paper No. 19206 July 2013 JEL No. D1,D14,D91,G11,G22 ABSTRACT We evaluate lifecycle consumption and portfolio allocation patterns resulting from access to Guaranteed Minimum Withdrawal Benefit (GMWB) variable annuities, one of the most rapidly-growing financial \n\nGermany rogalla@finance.uni-frankfurt.de Optimal Life Cycle Portfolio Choice with Variable Annuities Offering Liquidity and Investment Downside Protection 1. Introduction Defined contribution pensions are the most rapidly growing form of retirement saving \n\nAccount value. A key element of the GMWB is that the insurance company guarantees the policyholder that the sum of all possible (life contingent) withdrawals until the end of the deferral period is at least a certain amount, ∑ \n\nthe period. Hence the policyholder can decide in each period ݐ ൌ 2, … , ܭെ1 to withdraw an amount that satisfies the following limits: 0 ൑ܧ௧൑minሺܩ௧, ܧ୫ୟ୶ሻ. (3) At the end of the deferral period, at time ݐ ൌ ܭ, the remaining cash value of the GMWB is \n\ndistributed with a standard deviation of 18%; additionally the assumed risk-free interest rate is 2%. The maximum guaranteed yearly withdrawal from a GMWB purchased at time ݐ ( ݐ ൌ 1, … , ܭെ1 ) for a premium of ܣ௧ is given by ܧ௠௔௫ൌ \n\nAccounts, and withdrawal limits, or 75 accounts in total. Moreover, this also requires deciding how to optimally distribute withdrawals over the (potentially) 25 Fund Accounts. Explicitly keeping track of so many state and decision variables in a dynamic optimization model is \n\nwithdrawals (clear bars) from existing accounts, as well as the values of the Guarantee (solid line) and Fund Accounts (dashed line). Account values correspond to the left axis, while purchases and withdrawals refer to the right axis. \n\nwithdrawals from the GMWB, the Fund Account nevertheless continues to grow due to the expected return on stocks in which the assets are invested. The Guarantee Account increases to around age 50 because GMWB purchases exceed withdrawals. Thereafter, it declines ",
+                "title": "Microsoft Word - HMMR-GMWB 06-06-2013",
+                "url": "https://www.nber.org/system/files/working_papers/w19206/w19206.pdf"
+              },
+              {
+                "published_at_index_claim": null,
+                "snippet": "I. CURRENT APPROACHES The typical bank's balance sheet lists a variety of assets and liabilities. Liabilities, such as demand and savings deposits, are sources of bank funds. Assets, such as business loans, consumer installment loans, and government securities, are uses of bank funds. The essence of the asset management problem is the need to achieve a proper balance between (1) income, (2) adequate liquidity to meet such contingencies as unanticipated loan demand and deposit withdrawals, and (3) the risk of default. The problem arises because assets carrying relatively high yields, such as consumer installment loans, are generally less liquid and riskier than assets having relatively low yields, such as short-term government securities. \n\nLiquidity Constraint The bank recognizes that, because loans cannot be liquidated during the time period under consideration, some quantity of negotiable securities must be held to meet unanticipated deposit withdrawals. Therefore, the bank makes it a rule always to maintain some minimum ratio of securities to total assets. Assume that, with \\$45 million of demand deposits and \\$45 million of time deposits, the bank always maintains a securities balance equal to or greater than 25 percent of total \n\nIn addition to handling as many decision variables as necessary, the linear programming model can accommodate as many constraints as bank managers consider relevant to the portfolio decision process. Specifically, detailed and realistic sets of liquidity constraints can be built into the model reflecting liability and capital structures, cash flow patterns, seasonal fluctuations in loan demand, and miscellaneous restrictions imposed by management on the basis of experience. ( ^{16} )  A variety of other constraints are conceivable, taking account of such operating factors as legal reserve requirements, corresponding balances, and the use of certain assets as collateral to support government deposits. ",
+                "title": "Economic Review",
+                "url": "http://fraser.stlouisfed.org/docs/publications/frbrichreview/rev_frbrich197211.pdf"
+              }
+            ],
+            "started_at": "2026-11-15T19:01:17.496800+00:00",
+            "status": "success",
+            "tool_id": "aws_invoke_web_search",
+            "version": "1.0"
+          },
+          {
+            "capture_sha256": "09cbe2c6cc000c1a561de38bbc552c49edb6ddec6bad2b2d7bf937841e79400b",
+            "execution_id": "5c5cc70998cb24d4108817ca",
+            "finished_at": "2026-11-15T19:01:19.694488+00:00",
+            "output_refs": [
+              "web-09cbe2c6cc000c1a561d"
+            ],
+            "parameters": {
+              "url": "https://fraser.stlouisfed.org/files/docs/publications/frbrichreview/rev_frbrich197211.pdf"
+            },
+            "resolved_url": "https://fraser.stlouisfed.org/files/docs/publications/frbrichreview/rev_frbrich197211.pdf",
+            "started_at": "2026-11-15T19:01:18.210686+00:00",
+            "status": "success",
+            "tool_id": "http_document_capture",
+            "version": "1.0"
+          },
+          {
+            "capture_sha256": "de6b11aa5d196fba2108a0a6d4d8bff758b4b43fb876b6d40c6107493bce87f8",
+            "execution_id": "fc51e4a6c2e3c5e62b33713e",
+            "finished_at": "2026-11-15T19:01:22.738305+00:00",
+            "output_refs": [
+              "web-de6b11aa5d196fba2108"
+            ],
+            "parameters": {
+              "url": "https://www.nber.org/system/files/working_papers/w19206/w19206.pdf"
+            },
+            "resolved_url": "https://www.nber.org/system/files/working_papers/w19206/w19206.pdf",
+            "started_at": "2026-11-15T19:01:19.694520+00:00",
+            "status": "success",
+            "tool_id": "http_document_capture",
+            "version": "1.0"
+          },
+          {
+            "error_code": "PublicHTTPSRequired",
+            "execution_id": "ea5b9c12486974288b395a15",
+            "finished_at": "2026-11-15T19:01:22.743027+00:00",
+            "parameters": {
+              "url": "http://fraser.stlouisfed.org/docs/publications/frbrichreview/rev_frbrich197211.pdf"
+            },
+            "started_at": "2026-11-15T19:01:22.738339+00:00",
+            "status": "failed",
+            "tool_id": "http_document_capture",
+            "version": "1.0"
+          }
+        ]
+      }
+    },
+    {
+      "id": "35874885840a4726b69bcd53a8f1254d",
+      "task_id": "f9f0da23a748431fb04b48b06cc13680:1",
+      "role": "agent1",
+      "tool": "bedrock.converse",
+      "status": "complete",
+      "input_hash": "2176006e53c5d3fcd27739ebc2db70ab3f59546a89788434f8b952ad3b14da61",
+      "error": null,
+      "started_at": "2026-11-15T19:01:22.746646+00:00",
+      "finished_at": "2026-11-15T19:01:31.228677+00:00",
+      "detail": {
+        "account_id": "471112821226",
+        "latency_ms": 8479,
+        "model": "global.openai.gpt-6-astra",
+        "parsed": {
+          "decision": "clarify",
+          "evidence_ids": [
+            "local-U341-57f7b740b596",
+            "local-boyd_convex-40d976c83c18",
+            "local-U050-0a65c95f8fa2"
+          ],
+          "method_ids": [
+            "linear_programming"
+          ],
+          "reason": "Non, les informations disponibles ne permettent pas de conclure. Le périmètre lui-même est ambigu : préservation avant ou après retrait, réserve abstraite ou produit réel, objectif à retenir. Le CFA étaye la nécessité de préciser les contraintes ; Boyd étaye une formulation linéaire si les fonctions sont affines ; HiGHS documente des capacités logicielles, sans valider ce cas. L’article bancaire de novembre 1972 et le working paper NBER de juillet 2013 sur les rentes GMWB, non évalué par les pairs selon l’extrait, ne qualifient aucun instrument adapté au retrait envisagé. Cette appréciation repose sur les passages capturés fournis, non sur les seuls extraits de recherche web.",
+          "unresolved": [
+            "Définir la préservation du capital : nominal visé, perte admissible et mesure avant ou après retrait.",
+            "Déterminer si le périmètre concerne une réserve abstraite hypothétique ou un instrument réel, et préciser l’objectif d’allocation.",
+            "Fournir le capital, les positions et leurs poids, le montant du retrait, les scénarios et leurs horizons. Douze mois sont indiqués dans la question, mais le champ structuré correspondant reste vide.",
+            "Aucun contrat d’instrument réel ne démontre la disponibilité des fonds et la protection du nominal à la date du retrait ; les conditions, frais, restrictions et risques restent à qualifier.",
+            "La programmation linéaire reste une méthode candidate non admise à l’exécution : vérifier le caractère affine du modèle, son implémentation et ses contrôles.",
+            "La date de connaissance cible n’est pas renseignée. Les captures du 15 novembre 2026 ne prouvent pas la disponibilité antérieure des versions.",
+            "Les passages examinés ne révèlent pas de contradiction directe, mais leur couverture est limitée. Une capture HTTP a échoué ; la capture HTTPS du même article historique a réussi."
+          ]
+        },
+        "provider": "amazon-bedrock-runtime",
+        "region": "us-east-1",
+        "request_id": "128116ca-1118-4fd6-a0f6-8a795c002319",
+        "server_latency_ms": 8123,
+        "stop_reason": "end_turn",
+        "text": "{\n  \"evidence_ids\": [\n    \"local-U341-57f7b740b596\",\n    \"local-boyd_convex-40d976c83c18\",\n    \"local-U050-0a65c95f8fa2\"\n  ],\n  \"method_ids\": [\n    \"linear_programming\"\n  ],\n  \"unresolved\": [\n    \"Définir la préservation du capital : nominal visé, perte admissible et mesure avant ou après retrait.\",\n    \"Déterminer si le périmètre concerne une réserve abstraite hypothétique ou un instrument réel, et préciser l’objectif d’allocation.\",\n    \"Fournir le capital, les positions et leurs poids, le montant du retrait, les scénarios et leurs horizons. Douze mois sont indiqués dans la question, mais le champ structuré correspondant reste vide.\",\n    \"Aucun contrat d’instrument réel ne démontre la disponibilité des fonds et la protection du nominal à la date du retrait ; les conditions, frais, restrictions et risques restent à qualifier.\",\n    \"La programmation linéaire reste une méthode candidate non admise à l’exécution : vérifier le caractère affine du modèle, son implémentation et ses contrôles.\",\n    \"La date de connaissance cible n’est pas renseignée. Les captures du 15 novembre 2026 ne prouvent pas la disponibilité antérieure des versions.\",\n    \"Les passages examinés ne révèlent pas de contradiction directe, mais leur couverture est limitée. Une capture HTTP a échoué ; la capture HTTPS du même article historique a réussi.\"\n  ],\n  \"decision\": \"clarify\",\n  \"reason\": \"Non, les informations disponibles ne permettent pas de conclure. Le périmètre lui-même est ambigu : préservation avant ou après retrait, réserve abstraite ou produit réel, objectif à retenir. Le CFA étaye la nécessité de préciser les contraintes ; Boyd étaye une formulation linéaire si les fonctions sont affines ; HiGHS documente des capacités logicielles, sans valider ce cas. L’article bancaire de novembre 1972 et le working paper NBER de juillet 2013 sur les rentes GMWB, non évalué par les pairs selon l’extrait, ne qualifient aucun instrument adapté au retrait envisagé. Cette appréciation repose sur les passages capturés fournis, non sur les seuls extraits de recherche web.\"\n}",
+        "tool_calls": [],
+        "usage": {
+          "cache_read_input_tokens": 0,
+          "cache_write_input_tokens": 11493,
+          "input_tokens": 2,
+          "output_tokens": 576,
+          "total_tokens": 12071
+        }
+      },
+      "request_id": "128116ca-1118-4fd6-a0f6-8a795c002319",
+      "usage": {
+        "cache_read_input_tokens": 0,
+        "cache_write_input_tokens": 11493,
+        "input_tokens": 2,
+        "output_tokens": 576,
+        "total_tokens": 12071
+      },
+      "latency_ms": 8479,
+      "model": "global.openai.gpt-6-astra",
+      "provider": "amazon-bedrock-runtime",
+      "region": "us-east-1",
+      "account_id": "471112821226"
+    },
+    {
+      "id": "397fd7ac260544f68956b725569009e5",
+      "task_id": "f9f0da23a748431fb04b48b06cc13680:2",
+      "role": "agent0",
+      "tool": "bedrock.converse",
+      "status": "complete",
+      "input_hash": "576362d940c5715d4f868f750ac77f10e62e4219b87754ba2bef955cb92d5810",
+      "error": null,
+      "started_at": "2026-11-15T19:01:31.240256+00:00",
+      "finished_at": "2026-11-15T19:01:40.634358+00:00",
+      "detail": {
+        "account_id": "471112821226",
+        "latency_ms": 9389,
+        "model": "global.openai.gpt-6-astra",
+        "parsed": {
+          "clarifications": [
+            {
+              "blocking": true,
+              "field": "scenario_loss_limit_cad",
+              "question": "Que signifie préserver le capital : quel montant doit être maintenu, à quelle échéance, avant ou après le retrait, et avec quelle perte maximale admissible ?"
+            },
+            {
+              "blocking": true,
+              "field": "reserve_policy",
+              "question": "Souhaitez-vous un exercice conditionnel sous réserve abstraite nominale, ou l’étude d’un instrument réel dont les conditions de disponibilité et de protection restent à préciser ?"
+            },
+            {
+              "blocking": true,
+              "field": "objective",
+              "question": "L’objectif est-il de minimiser le capital réalloué sous contraintes de préservation et de financement du retrait, ou souhaitez-vous un autre critère ?"
+            },
+            {
+              "blocking": true,
+              "field": "scenarios",
+              "question": "Quels scénarios hypothétiques explicites, avec quels rendements par actif et quels horizons, doivent encadrer l’exercice ?"
+            }
+          ],
+          "contradictions": [],
+          "interpretation": "Non, il n’est pas possible de conclure à la préservation du capital ni au financement du retrait. Seule l’échéance de douze mois est précisée. Le capital, les positions et le montant du retrait sont explicitement indisponibles ; ils restent nécessaires à toute vérification chiffrée, sans être redemandés ici. L’unité de décision reste une allocation de réserve à qualifier, sans objectif de minimisation confirmé. Une éventuelle conclusion sous réserve abstraite et scénarios explicites serait conditionnelle, non une garantie réelle.",
+          "updates": [
+            {
+              "field": "withdrawal_months",
+              "origin": "extracted",
+              "quote": "financer un retrait dans douze mois",
+              "rationale": "L’échéance du retrait est explicite ; elle ne définit pas à elle seule l’horizon de préservation du capital.",
+              "value_json": "12"
+            }
+          ]
+        },
+        "provider": "amazon-bedrock-runtime",
+        "region": "us-east-1",
+        "request_id": "4968d11a-816c-4230-8bed-c6c2dbaeb7a4",
+        "server_latency_ms": 9297,
+        "stop_reason": "end_turn",
+        "text": "{\n  \"updates\": [\n    {\n      \"field\": \"withdrawal_months\",\n      \"value_json\": \"12\",\n      \"quote\": \"financer un retrait dans douze mois\",\n      \"origin\": \"extracted\",\n      \"rationale\": \"L’échéance du retrait est explicite ; elle ne définit pas à elle seule l’horizon de préservation du capital.\"\n    }\n  ],\n  \"contradictions\": [],\n  \"clarifications\": [\n    {\n      \"field\": \"scenario_loss_limit_cad\",\n      \"question\": \"Que signifie préserver le capital : quel montant doit être maintenu, à quelle échéance, avant ou après le retrait, et avec quelle perte maximale admissible ?\",\n      \"blocking\": true\n    },\n    {\n      \"field\": \"reserve_policy\",\n      \"question\": \"Souhaitez-vous un exercice conditionnel sous réserve abstraite nominale, ou l’étude d’un instrument réel dont les conditions de disponibilité et de protection restent à préciser ?\",\n      \"blocking\": true\n    },\n    {\n      \"field\": \"objective\",\n      \"question\": \"L’objectif est-il de minimiser le capital réalloué sous contraintes de préservation et de financement du retrait, ou souhaitez-vous un autre critère ?\",\n      \"blocking\": true\n    },\n    {\n      \"field\": \"scenarios\",\n      \"question\": \"Quels scénarios hypothétiques explicites, avec quels rendements par actif et quels horizons, doivent encadrer l’exercice ?\",\n      \"blocking\": true\n    }\n  ],\n  \"interpretation\": \"Non, il n’est pas possible de conclure à la préservation du capital ni au financement du retrait. Seule l’échéance de douze mois est précisée. Le capital, les positions et le montant du retrait sont explicitement indisponibles ; ils restent nécessaires à toute vérification chiffrée, sans être redemandés ici. L’unité de décision reste une allocation de réserve à qualifier, sans objectif de minimisation confirmé. Une éventuelle conclusion sous réserve abstraite et scénarios explicites serait conditionnelle, non une garantie réelle.\"\n}",
+        "tool_calls": [],
+        "usage": {
+          "cache_read_input_tokens": 0,
+          "cache_write_input_tokens": 2072,
+          "input_tokens": 2,
+          "output_tokens": 661,
+          "total_tokens": 2735
+        }
+      },
+      "request_id": "4968d11a-816c-4230-8bed-c6c2dbaeb7a4",
+      "usage": {
+        "cache_read_input_tokens": 0,
+        "cache_write_input_tokens": 2072,
+        "input_tokens": 2,
+        "output_tokens": 661,
+        "total_tokens": 2735
+      },
+      "latency_ms": 9389,
+      "model": "global.openai.gpt-6-astra",
+      "provider": "amazon-bedrock-runtime",
+      "region": "us-east-1",
+      "account_id": "471112821226"
+    }
+  ],
+  "comparison": null,
+  "route": {
+    "provider": "amazon-bedrock-runtime",
+    "model": "global.openai.gpt-6-astra",
+    "entry_region": "us-east-1",
+    "residency": "global; aucune résidence canadienne revendiquée",
+    "verified_requests": [
+      "02d3ceba-487a-4310-8896-096274c33f1e",
+      "128116ca-1118-4fd6-a0f6-8a795c002319",
+      "4968d11a-816c-4230-8bed-c6c2dbaeb7a4"
+    ]
+  },
+  "limitations": [
+    "Conseil simulé sur données et hypothèses explicites.",
+    "Une reprise réutilise les résultats enregistrés ; un appel AWS interrompu avant réception peut nécessiter une nouvelle tentative facturée."
+  ]
+}

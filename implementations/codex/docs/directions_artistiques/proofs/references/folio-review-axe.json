@@ -1,0 +1,68 @@
+{
+  "at": "2026-11-15T20:26:18.711Z",
+  "version": "4.14.0",
+  "results": [
+    {
+      "mode": "essential",
+      "violations": [
+        {
+          "id": "landmark-unique",
+          "impact": "moderate",
+          "description": "Ensure landmarks are unique",
+          "nodes": [
+            {
+              "target": [
+                ".editorial-grid:nth-child(2) > .margin-note"
+              ],
+              "failureSummary": "Fix any of the following:\n  The landmark must have a unique aria-label, aria-labelledby, or title to make landmarks distinguishable"
+            }
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "nodes": [
+            {
+              "target": [
+                ".reading-level"
+              ],
+              "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 1
+        },
+        {
+          "id": "color-contrast",
+          "nodes": 106
+        }
+      ],
+      "passes": 43
+    },
+    {
+      "mode": "proof",
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "description": "Ensure elements that have scrollable content are accessible by keyboard in Safari",
+          "nodes": [
+            {
+              "target": [
+                "details:nth-child(14) > pre"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ],
+      "incomplete": [],
+      "passes": 22
+    }
+  ]
+}

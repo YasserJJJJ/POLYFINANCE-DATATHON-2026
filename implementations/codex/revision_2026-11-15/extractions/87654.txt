@@ -1,0 +1,135 @@
+
+
+## PAGE 1
+
+Event dashboard
+Accès AWS CLI et SDK
+Accès AWS CLI et SDK
+L'interface de ligne de commande AWS (AWS CLI) 
+ est un outil unique qui pilote tous les services AWS. Pendant le Datathon, elle est souvent plus rapide que la
+console : une commande collée dans la discussion d'équipe se partage plus facilement qu'une description de l'endroit où cliquer.
+Le moyen le plus rapide de commencer est AWS CloudShell 
+, un terminal dans le navigateur qui s'exécute dans la console et hérite de l'identité avec laquelle vous
+êtes connecté. Il n'y a donc aucun identiﬁant à long terme à créer ou à risquer de divulguer. CloudShell tourne sous Amazon Linux 2023, inclut l'AWS CLI, Python et
+git, et conserve les ﬁchiers de votre répertoire personnel d'une session à l'autre.
+Pour l'ouvrir depuis la console, utilisez le lien ci-dessus ou l'icône de raccourci :
+Si vous voulez un environnement de développement complet dans le navigateur (notebooks, éditeur de code), utilisez JupyterLab ou Code Editor dans SageMaker
+Uniﬁed Studio.
+Amazon Bedrock 
+ : modèles, garde-fous, proﬁls d'inférence
+Amazon Bedrock Runtime 
+ : appeler un modèle (converse, invoke-model)
+Amazon Bedrock Agent 
+ : bases de connaissances
+Amazon Bedrock Data Automation Runtime 
+ : extraire des données structurées de documents, d'images, d'audio et de vidéo
+Amazon S3 
+ : commandes de type ﬁchier (cp, sync, ls)
+API Amazon S3 
+ : opérations de plus bas niveau sur les compartiments et les objets
+Amazon Athena 
+ : SQL sur des ﬁchiers dans S3
+AWS Glue 
+ : catalogue de données et ETL
+Amazon Textract 
+ : texte et tableaux de documents, par exemple un rapport annuel en PDF
+Amazon Transcribe 
+ : parole en texte, par exemple l'enregistrement d'une conférence téléphonique sur les résultats
+AWS IAM 
+ : identités et permissions
+AWS Lambda 
+ : exécuter du code sans serveur
+La référence complète des commandes AWS CLI 
+ couvre tous les services.
+--query réduit la sortie. La plupart des commandes AWS renvoient beaucoup plus de JSON que nécessaire. --query utilise JMESPath 
+ pour n'extraire que la
+partie utile :
+help fonctionne partout. aws bedrock-runtime help liste les commandes disponibles, et aws bedrock-runtime converse help documente chaque paramètre.
+C'est plus rapide qu'une recherche sur le Web, et cela correspond toujours à la version de la CLI que vous avez réellement.
+Les SDK AWS 
+ offrent les mêmes possibilités depuis votre application, dans plus d'une douzaine de langages. Pour un projet d'IA générative, les deux que vous
+utiliserez le plus probablement :
+Python : boto3. Préinstallé dans CloudShell. C'est le langage de la plupart des exemples Bedrock et du reste de cet atelier.
+TypeScript / JavaScript : @aws-sdk/client-bedrock-runtime. Le bon choix si votre démo est une application Web.
+CloudShell est déjà authentiﬁé. Pour travailler depuis votre portable, récupérez des identiﬁants sur la page de l'événement Workshop Studio : la page qui sert à
+ouvrir la console contient aussi un lien vers les identiﬁants CLI du compte de votre équipe. Copiez-les dans ~/.aws/credentials ou exportez-les comme variables
+d'environnement, puis déﬁnissez la région :
+AWS CLI
+Le stockage du répertoire personnel de CloudShell est limité (1 Go) et propre à chaque région. Si vous changez de région, vous obtenez un autre répertoire personnel, ce qui
+surprend souvent. Restez dans us-east-1, et poussez dans Git tout ce qui compte pour vous.
+Références de commandes utiles
+Deux habitudes utiles avec la CLI
+# Tout (un mur de JSON)
+aws s3api list-buckets
+# Seulement les noms
+aws s3api list-buckets --query 'Buckets[].Name' --output text
+# Seulement le texte de la réponse d'un modèle, même s'il renvoie d'abord un bloc de raisonnement
+aws bedrock-runtime converse \
+  --model-id global.amazon.nova-2-lite-v1:0 \
+  --messages '[{"role":"user","content":[{"text":"Définissez la volatilité en une phrase."}]}]' \
+  --region us-east-1 \
+  --query 'output.message.content[?text].text' --output text
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+AWS SDK
+# Python : déjà présent dans CloudShell, sinon
+pip install boto3
+# Node.js
+npm install @aws-sdk/client-bedrock-runtime
+1
+2
+3
+4
+5
+Il y a une différence importante entre la CLI et les SDK : les réponses en continu (streaming) ne sont disponibles que dans un SDK. L'AWS CLI n'a pas de commande converse-
+stream. Si vous voulez que le texte apparaisse au fur et à mesure dans votre démo, il vous faut boto3 ou le SDK JavaScript. Voir Votre premier appel de modèle.
+Authentification en dehors de CloudShell
+export AWS_REGION=us-east-1
+aws sts get-caller-identity   # vérifie que tout fonctionne
+1
+2
+Ces identiﬁants sont temporaires et expirent. Quand des commandes se mettent soudain à échouer avec ExpiredToken ou InvalidClientTokenId, retournez sur la page
+Workshop Studio et copiez-en de nouveaux. C'est normal, votre conﬁguration n'est pas brisée. Ne les mettez jamais dans votre code ni dans GitHub.
+Previous
+Next
+Introduction à AWS
+Amazon Bedrock
+Kiro
+Outils de développement
+Amazon Quick
+AWS Lambda
+Amazon S3
+AWS IAM
+AWS Glue
+Amazon Athena
+Accès AWS CLI et SDK
+L'IA générative sur AWS
+Construire des agents
+Démarrages rapides
+Données ﬁnancières publiques
+Nettoyage et exportation
+Ressources
+AWS account access
+Open AWS console
+(us-east-1)
+Get AWS CLI credentials
+Share feedback
+Workshop catalog in AWS Builder
+Center
+Exit event
+AWS Workshop Studio
+adamlarhlimi2006
+© 2008 - 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+Privacy policy
+Terms of use
+Cookie preferences

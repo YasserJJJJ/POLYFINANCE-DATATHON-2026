@@ -1,0 +1,377 @@
+
+
+## PAGE 1
+
+Event dashboard
+Introduction à AWS
+AWS Lambda
+AWS Lambda
+Lambda exécute une fonction de votre code quand quelque chose l'appelle. Aucun serveur à créer, et rien ne tourne quand personne ne l'utilise.
+Pendant le Datathon, Lambda règle surtout un problème : donner à votre démo une URL qui fonctionne depuis l'ordinateur de quelqu'un d'autre. C'est utile pour le
+livrable « prototype démontrable ».
+Le jury doit pouvoir l'essayer
+Une URL de fonction (Function URL) donne un endpoint HTTPS en une commande
+Un autre système vous appelle
+Un webhook provenant d'un formulaire, d'un outil de clavardage, d'une API externe
+Un traitement qui se fait plus tard
+Traiter un ﬁchier déposé dans S3, rafraîchir des prix chaque jour
+Un petit morceau de code de liaison
+Reformater des données, appeler Bedrock, écrire dans une base de données
+Et quand ce n'est pas le bon outil :
+Une démo que vous pilotez vous-même
+streamlit run app.py sur votre portable
+Un agent que vous lancez depuis un notebook
+Exécutez-le localement. Voir Construire des agents
+Un traitement de plus de 15 minutes par appel
+Lambda est limité à 15 minutes
+Cette fonction reçoit un actif et un persona, puis demande à Amazon Nova 2 Lite d'expliquer les principaux risques pour ce proﬁl d'investisseur ﬁctif. Enregistrez-la
+sous lambda_function.py.
+Trois étapes, à exécuter dans CloudShell depuis le dossier qui contient lambda_function.py.
+create-function-url-config renvoie la FunctionUrl. C'est le lien à mettre dans votre README et dans votre présentation. Pour le tester :
+La boucle que vous utiliserez réellement :
+Le délai d'expiration par défaut est de 3 secondes. Un appel à Bedrock prend plus de temps, donc votre premier appel expire et le message d'erreur n'aide pas.
+Déﬁnissez --timeout 60 à la création de la fonction, comme plus haut.
+boto3 est déjà là, la plupart des autres bibliothèques non. L'environnement d'exécution Python de Lambda inclut boto3 : appeler Bedrock ne demande aucun
+empaquetage. Tout le reste (strands-agents, requests, pandas) doit être installé dans le ﬁchier zip. Les options --platform et --only-binary téléchargent les
+versions Linux des bibliothèques compilées, ce qui compte si vous empaquetez depuis macOS ou Windows :
+Avec strands-agents, le zip pèse environ 40 Mo. Au-delà de 50 Mo, il faut téléverser le zip dans S3 et le passer avec --s3-bucket et --s3-key plutôt que --zip-
+file. La limite de 250 Mo une fois décompressé s'applique dans tous les cas.
+Lisez les journaux. Chaque print() est envoyé à CloudWatch, et c'est la seule façon de voir ce qui s'est passé :
+Les comptes sont détruits le lundi 16 novembre. Si vous voulez fermer l'URL publique plus tôt :
+Guide du développeur AWS Lambda 
+URL de fonctions Lambda 
+Contrôler l'accès aux URL de fonctions 
+Environnement d'exécution Python et bibliothèques incluses 
+AWS Lambda
+Vous n'en avez peut-être pas besoin. Si votre démo est une application Streamlit qui tourne sur votre machine et que vous présentez depuis cette machine, c'est réglé : passez
+cette page. Lambda devient utile quand un membre du jury doit pouvoir cliquer sur un lien, quand un autre système doit vous appeler, ou quand une tâche doit s'exécuter selon un
+horaire.
+Quand Lambda est utile
+Situation
+Pourquoi Lambda
+Situation
+Faites plutôt ceci
+Un exemple : expliquer les risques d'un actif selon un persona
+import base64
+import json
+import boto3
+bedrock = boto3.client("bedrock-runtime", region_name="us-east-1")
+# Modèle peu coûteux : l'URL est publique, chaque appel est facturé à votre compte
+MODEL_ID = "global.amazon.nova-2-lite-v1:0"
+PERSONAS = {
+    "prudent": "Prudent (tolérance au risque faible)",
+    "equilibre": "Équilibré (tolérance au risque modérée)",
+    "audacieux": "Audacieux (tolérance au risque élevée)",
+}
+def lambda_handler(event, context):
+    body = event.get("body") or "{}"
+    if event.get("isBase64Encoded"):
+        body = base64.b64decode(body).decode("utf-8")
+    try:
+        data = json.loads(body)
+    except json.JSONDecodeError:
+        return _reponse(400, {"erreur": "Le corps de la requête doit être du JSON."})
+    actif = str(data.get("actif", "")).strip()[:20]
+    persona = str(data.get("persona", "")).strip().lower().replace("é", "e")
+    if not actif or persona not in PERSONAS:
+        return _reponse(400, {
+            "erreur": "Champs attendus : actif (ex. XIU.TO) et persona (prudent, equilibre ou audacieux)."
+        })
+    prompt = (
+        f"Expliquez en 5 phrases au plus les principaux risques de l'actif {actif} "
+        f"pour un investisseur fictif au profil {PERSONAS[persona]}. "
+        "Distinguez les faits généraux des hypothèses. "
+        "Ne donnez aucune recommandation d'achat ou de vente et ne citez aucun prix."
+    )
+    response = bedrock.converse(
+        modelId=MODEL_ID,
+        messages=[{"role": "user", "content": [{"text": prompt}]}],
+        inferenceConfig={"maxTokens": 400},
+    )
+    # Concaténer les blocs de texte : certains modèles renvoient d'abord un bloc de raisonnement
+    blocs = response["output"]["message"]["content"]
+    explication = "".join(b["text"] for b in blocs if "text" in b)
+    print(json.dumps({"actif": actif, "persona": persona, "usage": response["usage"]}))
+    return _reponse(200, {
+        "actif": actif,
+        "persona": persona,
+        "explication": explication,
+        "avertissement": "Simulation éducative. Ceci n'est pas un conseil financier.",
+    })
+def _reponse(code, contenu):
+    return {
+        "statusCode": code,
+        "headers": {"Content-Type": "application/json; charset=utf-8"},
+        "body": json.dumps(contenu, ensure_ascii=False),
+    }
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+Le modèle répond de mémoire et peut se tromper. Lors de nos tests, il a affirmé qu'un FNB d'actions canadiennes ne versait pas de distributions, ce qui est faux. Pour votre
+prototype, fournissez au modèle des données sourcées (prix, rapports, données macro) et citez vos sources dans la réponse. Voir Bases de connaissances et RAG et Construire
+des agents.
+Le chemin le plus court : une fonction avec une URL publique
+ACCOUNT=$(aws sts get-caller-identity --query Account --output text)
+# 1. Un rôle d'exécution. Les comptes Workshop Studio permettent de le créer.
+cat > /tmp/lambda-trust.json <<'EOF'
+{"Version":"2012-10-17","Statement":[{"Effect":"Allow",
+ "Principal":{"Service":"lambda.amazonaws.com"},"Action":"sts:AssumeRole"}]}
+EOF
+aws iam create-role --role-name datathon-lambda \
+  --assume-role-policy-document file:///tmp/lambda-trust.json
+aws iam attach-role-policy --role-name datathon-lambda \
+  --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+# Permission d'appeler les modèles Bedrock, et rien d'autre dans Bedrock
+cat > /tmp/lambda-bedrock.json <<'EOF'
+{"Version":"2012-10-17","Statement":[{"Effect":"Allow",
+ "Action":["bedrock:InvokeModel","bedrock:InvokeModelWithResponseStream"],
+ "Resource":"*"}]}
+EOF
+aws iam put-role-policy --role-name datathon-lambda \
+  --policy-name bedrock-invoke \
+  --policy-document file:///tmp/lambda-bedrock.json
+sleep 10   # IAM a besoin d'un moment pour propager le rôle
+# 2. La fonction
+zip function.zip lambda_function.py
+aws lambda create-function \
+  --function-name datathon-demo \
+  --runtime python3.13 \
+  --role "arn:aws:iam::${ACCOUNT}:role/datathon-lambda" \
+  --handler lambda_function.lambda_handler \
+  --zip-file fileb://function.zip \
+  --timeout 60 \
+  --memory-size 512 \
+  --region us-east-1
+# 3. Une URL HTTPS publique
+aws lambda create-function-url-config \
+  --function-name datathon-demo \
+  --auth-type NONE \
+  --region us-east-1
+# Deux autorisations distinctes sont nécessaires, sinon l'URL renvoie 403 Forbidden
+aws lambda add-permission \
+  --function-name datathon-demo \
+  --statement-id public-url \
+  --action lambda:InvokeFunctionUrl \
+  --principal '*' \
+  --function-url-auth-type NONE \
+  --region us-east-1
+aws lambda add-permission \
+  --function-name datathon-demo \
+  --statement-id public-url-invoke \
+  --action lambda:InvokeFunction \
+  --principal '*' \
+  --invoked-via-function-url \
+  --region us-east-1
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+URL=$(aws lambda get-function-url-config --function-name datathon-demo \
+  --query FunctionUrl --output text --region us-east-1)
+curl -s -X POST "$URL" \
+  -H 'Content-Type: application/json' \
+  -d '{"actif":"XIU.TO","persona":"prudent"}'
+1
+2
+3
+4
+5
+6
+--auth-type NONE signiﬁe que toute personne qui possède le lien peut appeler la fonction, et chaque appel est facturé à votre compte. C'est ce qui la rend pratique pour une
+démo. N'y mettez donc jamais d'identiﬁants, de données personnelles ou de boucle d'appels coûteuse : gardez un modèle peu coûteux, une limite maxTokens et une validation des
+entrées, comme dans l'exemple. Si le jury n'a pas besoin de cliquer sur le lien, l'option privée est plus sûre : présentez depuis votre portable, ou utilisez --auth-type AWS_IAM (les
+appels doivent alors être signés avec des identiﬁants AWS). Supprimez l'URL publique dès qu'elle n'est plus utile.
+L'URL cesse de fonctionner le lundi 16 novembre à 13 h 59, quand les comptes sont fermés et les données détruites. Montrez la démo dans votre vidéo et gardez le code dans
+GitHub : ce sont eux qui restent.
+Mettre à jour votre code
+zip function.zip lambda_function.py
+aws lambda update-function-code \
+  --function-name datathon-demo --zip-file fileb://function.zip --region us-east-1
+1
+2
+3
+Trois pièges qui font perdre du temps
+pip install --target ./package \
+  --platform manylinux2014_x86_64 --implementation cp \
+  --python-version 3.13 --only-binary=:all: \
+  strands-agents
+cd package && zip -r ../function.zip . && cd ..
+zip function.zip lambda_function.py
+1
+2
+3
+4
+5
+6
+aws logs tail /aws/lambda/datathon-demo --follow --region us-east-1
+1
+Nettoyage
+aws lambda delete-function --function-name datathon-demo --region us-east-1
+aws iam delete-role-policy --role-name datathon-lambda --policy-name bedrock-invoke
+aws iam detach-role-policy --role-name datathon-lambda \
+  --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+aws iam delete-role --role-name datathon-lambda
+1
+2
+3
+4
+5
+Pour aller plus loin
+Previous
+Next
+Polyfinances 2026
+Datathon PolyFinances 2026
+Commencer
+Utilisation responsable
+SageMaker Uniﬁed Studio et
+notebook d'introduction
+Introduction à AWS
+Amazon Bedrock
+Kiro
+Outils de développement
+Amazon Quick
+AWS Lambda
+Amazon S3
+AWS IAM
+AWS Glue
+Amazon Athena
+Accès AWS CLI et SDK
+L'IA générative sur AWS
+Construire des agents
+Démarrages rapides
+Données ﬁnancières publiques
+Nettoyage et exportation
+Ressources
+AWS account access
+Open AWS console
+(us-east-1)
+Get AWS CLI credentials
+Share feedback
+Workshop catalog in AWS Builder
+Center
+Exit event
+AWS Workshop Studio
+adamlarhlimi2006
+© 2008 - 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+Privacy policy
+Terms of use
+Cookie preferences

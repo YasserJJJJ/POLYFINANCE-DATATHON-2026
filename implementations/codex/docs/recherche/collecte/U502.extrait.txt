@@ -1,0 +1,151 @@
+Vue d’ensemble - Amazon Bedrock AgentCore 
+
+ View a markdown version of this page 
+
+ Vue d’ensemble - Amazon Bedrock AgentCore 
+
+ Documentation Amazon Bedrock AgentCore Guide du développeur 
+
+ Qu'est-ce qu'Amazon Bedrock ? AgentCore Les principaux services d'Amazon Bedrock AgentCore Que pouvez-vous créer avec Amazon Bedrock ? AgentCore Tarification d'Amazon Bedrock AgentCore Étapes suivantes 
+
+Les traductions sont fournies par des outils de traduction automatique. En cas de conflit entre le contenu d'une traduction et celui de la version originale en anglais, la version anglaise prévaudra.
+ 
+Vue d’ensemble
+
+Qu'est-ce qu'Amazon Bedrock ? AgentCore
+
+Amazon Bedrock AgentCore est une plateforme agentique permettant de créer, de déployer et d'exploiter des agents hautement efficaces en toute sécurité et à grande échelle, en utilisant n'importe quel framework et modèle de base. Vous pouvez ainsi permettre aux agents de prendre des mesures sur les outils et les données avec les autorisations et la gouvernance appropriées, d'exécuter les agents en toute sécurité à grande échelle et de surveiller les performances et la qualité des agents en production, le tout sans aucune gestion d'infrastructure. AgentCore AgentCore les services fonctionnent ensemble ou indépendamment avec n'importe quel framework open source tel que CrewAI, LangGraph LlamaIndex, et Strands Agents et avec n'importe quel modèle de base. Vous n'avez donc pas à choisir entre la flexibilité open source et une sécurité et une fiabilité de niveau entreprise.
+
+Les principaux services d'Amazon Bedrock AgentCore
+
+Amazon Bedrock AgentCore inclut les services et fonctionnalités modulaires suivants que vous pouvez utiliser ensemble ou indépendamment :
+
+ Service 
+ Description 
+ Intégrations 
+
+ Harnais 
+
+Une boucle d'agent gérée qui vous permet de définir et d'invoquer des agents d'intelligence artificielle avec un seul appel d'API. Spécifiez un modèle, une invite système et des outils intégrés. Harness gère l'orchestration, l'exécution des outils, la gestion de la mémoire et la génération de réponses. Chaque session s'exécute dans une microVM isolée avec accès au système de fichiers et au shell, prenant en charge des cas d'utilisation tels que la génération de code, l'analyse de données et la recherche approfondie. Apportez votre propre image de conteneur pour les environnements personnalisés avec des dépendances supplémentaires.
+
+AgentCore Harness fonctionne avec Amazon Bedrock, OpenAI, Google Gemini et OpenAI-compatible n'importe quel fournisseur de modèles. S'intègre à AgentCore la mémoire, à la passerelle, au navigateur, à l'interpréteur de code et à l'observabilité. Prend en charge les serveurs MCP distants, les fonctions en ligne et les environnements de conteneurs personnalisés.
+
+ Exécution 
+
+Un environnement d'exécution sécurisé et sans serveur spécialement conçu pour le déploiement et le dimensionnement d'agents et d'outils d'IA dynamiques. Runtime fournit des démarrages à froid rapides pour les interactions en temps réel, une prise en charge étendue de l'exécution pour les agents asynchrones, une véritable isolation des sessions, une identité intégrée et une prise en charge des charges de travail agentiques multimodales et multi-agents.
+
+AgentCore Runtime fonctionne avec des frameworks personnalisés et n'importe quel framework open source, notamment CrewAI, Google ADK LangGraph LlamaIndex, OpenAI Agents SDK et Strands Agents, tout modèle de base intégré ou extérieur à Amazon Bedrock, notamment OpenAI, Gemini de Google, Claude d'Anthropic, Amazon Nova, Meta Llama et Mistral, ainsi que des protocoles populaires tels que MCP et A2A.
+
+ Mémoire 
+
+Un moyen de créer des agents sensibles au contexte avec un contrôle total sur ce dont ils se souviennent et apprennent. Supporte à la fois la mémoire à court terme pour les conversations à plusieurs tours et la mémoire à long terme qui persiste d'une session à l'autre, avec la possibilité non seulement de partager des mémoires entre agents, mais également de tirer des leçons des expériences.
+
+AgentCore La mémoire fonctionne avec LangGraph LangChain, Strands, LlamaIndex
+
+ Passerelle 
+
+Un moyen sécurisé de convertir vos API, vos fonctions Lambda et vos services existants en outils compatibles avec le Model Context Protocol (MCP) et de vous connecter à des serveurs MCP préexistants, en les mettant à la disposition des agents d'intelligence artificielle via des points de terminaison Gateway en quelques lignes de code.
+
+Toutes les API, les outils MCP, Lambda et les intégrations populaires, notamment Salesforce, Zoom, JIRA, Slack, etc.
+
+ Identité 
+
+Un service de gestion de l'identité, de l'accès et de l'authentification des agents sécurisé et évolutif, compatible avec les fournisseurs d'identité existants, qui élimine le besoin de migration des utilisateurs ou de reconstruction des flux d'authentification.
+
+Tous les fournisseurs d'IdP et d'identifiants tels qu'Amazon Cognito, Okta, Microsoft Azure Entra ID, Auth0, etc.
+
+ Interprète de code 
+
+Un environnement sandbox isolé permettant aux agents d'exécuter du code, d'améliorer leur précision et d'étendre leur capacité à résoudre des tâches complexes de bout en bout.
+
+Plusieurs langages, dont Python, JavaScript et TypeScript
+
+ Navigateur 
+
+Un environnement d'exécution de navigateur basé sur le cloud rapide et sécurisé permettant aux agents d'intelligence artificielle d'interagir avec des applications Web, de remplir des formulaires, de naviguer sur des sites Web et d'extraire des informations dans un environnement entièrement géré.
+
+Tout modèle de base ou framework d'automatisation de navigateur populaire, y compris Playwright et BrowserUse
+
+ Observabilité 
+
+Une vue unifiée pour suivre, déboguer et surveiller les performances des agents en production. Il propose des visualisations détaillées de chaque étape du flux de travail des agents, ce qui vous permet d'inspecter le chemin d'exécution d'un agent, d'auditer les sorties intermédiaires et de corriger les problèmes de performance et les défaillances.
+
+Toute pile de surveillance et d'observabilité qui s'intègre aux données de télémétrie émises dans un format standardisé OpenTelemetry (OTEL) compatible
+
+ Paiements 
+
+Un service entièrement géré qui permet aux agents d'intelligence artificielle d'accéder aux API payantes, aux serveurs MCP et au contenu à l'aide du protocole x402 et du protocole MPP (Machine Payments Protocol). Payments permet l'intégration du portefeuille, des limites de dépenses configurables et une observabilité de bout en bout pour les opérations de paiement des agents.
+
+AgentCore payments prend en charge les fournisseurs de portefeuilles Coinbase CDP et Stripe (Privy), AgentCore Gateway, Strands Agents, tout point de MPP-compatible terminaison ou compatible x402, Identity AgentCore and Observability AgentCore optimisés par Amazon pour une surveillance unifiée. CloudWatch 
+
+ Évaluations 
+
+Un service d'évaluation spécialement conçu pour une évaluation des agents automatisée, cohérente et basée sur les données. AgentCore Les évaluations mesurent dans quelle mesure vos agents et vos outils exécutent les tâches, traitent les cas critiques et garantissent la fiabilité des résultats dans divers contextes et entrées. Les évaluations fournissent des signaux de qualité mesurables, aident les équipes à optimiser les performances grâce à des informations structurées et garantissent que votre agent respecte les normes fonctionnelles et comportementales avant et après le déploiement.
+
+AgentCore Les évaluations prennent en charge les évaluations des sessions, des traces et des intervalles générés à partir de Strands Agent ou de LangGraph frameworks, et instrumentées à l'aide OpenTelemetry de ou. OpenInference Tous les résultats sont intégrés dans AgentCore Observability, développé par Amazon CloudWatch pour une surveillance unifiée.
+
+ Optimisation 
+
+Un service d'amélioration continue qui utilise des AI-generated recommandations, des ensembles de configuration versionnés et des A/B tests pour améliorer les performances des agents grâce à des modifications de configuration basées sur les données. Au lieu d'une optimisation manuelle basée sur des conjectures, vous orientez le service vers les traces des agents pour générer des améliorations et les valider à l'aide d'expériences contrôlées.
+
+AgentCore l'optimisation s'appuie sur les AgentCore évaluations et fonctionne avec des agents instrumentés OpenTelemetry via AgentCore Observability. Prend en charge l'optimisation des instructions du système et de la description des outils grâce à la division du trafic via AgentCore Gateway à des fins de A/B test.
+
+ Stratégie 
+
+Une fonctionnalité qui fournit un contrôle déterministe pour garantir que les agents opèrent dans le respect des limites définies et des règles métier sans les ralentir. Créez facilement des règles précises à l'aide d'un langage naturel ou d'un langage politique, Dogwood , compatible avec le langage de politique open source AWS de Cedar ().
+
+S'intègre à AgentCore Gateway pour intercepter chaque appel d'outil avant son exécution. Vous pouvez définir les outils auxquels les agents peuvent accéder, les actions qu'ils peuvent effectuer et dans quelles conditions.
+
+ Registre 
+
+Un catalogue centralisé pour découvrir et gérer les agents, les serveurs MCP, les outils, les compétences et les ressources personnalisées au sein de votre organisation. Registry fournit un flux de travail régi pour la publication, la révision et l'approbation des ressources, avec une sémantique hybride et une recherche par mot clé afin que les agents et les développeurs puissent trouver les bons outils.
+
+AgentCore Le registre fonctionne avec n'importe quel serveur, agent, compétence ou ressource personnalisée MCP, déployé sur AWS On-Prem ou sur tout autre environnement cloud.
+
+Que pouvez-vous créer avec Amazon Bedrock ? AgentCore
+
+Avec Amazon Bedrock AgentCore, les développeurs peuvent accélérer la mise en production des agents d'intelligence artificielle grâce à l'évolutivité, à la fiabilité et à la sécurité indispensables à un déploiement dans le monde réel. Voici quelques cas d'utilisation courants pour lesquels vous devez envisager de tirer parti AgentCore  :
+
+ Agents 
+
+Créez des applications d'IA autonomes qui raisonnent, utilisent des outils et maintiennent le contexte. Déployez des agents pour le support client, l'automatisation des flux de travail, l'analyse des données ou l'assistance au codage. Votre agent fonctionne sans serveur avec des sessions isolées, une mémoire persistante et une observabilité intégrée.
+
+ Outils et serveurs MCP (Model Context Protocol) 
+
+Transformez les API, les bases de données ou les services existants en outils utilisables par tous les MCP-compatible agents. Déployez une passerelle qui intègre vos fonctions Lambda ou vos spécifications OpenAPI pour rendre votre backend instantanément accessible aux agents sans avoir à réécrire le code.
+
+ Plateformes d'agents 
+
+Fournissez à vos développeurs internes ou à vos clients une voie pavée pour créer et déployer des agents à l'aide d'outils approuvés, de magasins de mémoire partagée et d'un accès régi aux services d'entreprise. Centralisez l'observabilité, l'authentification et la conformité tout en permettant aux équipes de déployer plus rapidement des fonctionnalités pilotées par des agents.
+
+Tarification d'Amazon Bedrock AgentCore
+
+AgentCore propose une tarification flexible basée sur la consommation, sans engagement initial ni frais minimaux. Pour plus d'informations, consultez AgentCore les tarifs . AgentCore peut utiliser et stocker votre contenu pour améliorer votre expérience ou vos performances en matière de service. Ces améliorations seront destinées à votre usage personnel AgentCore et non à celui des autres clients.
+
+Étapes suivantes
+
+Si vous utilisez Amazon Bedrock pour la première fois AgentCore, nous vous recommandons de commencer par lire les sections suivantes :
+
+ Commencez avec la AgentCore CLI 
+
+ Comprendre les interfaces disponibles pour utiliser Amazon Bedrock AgentCore 
+
+ JavaScript est désactivé ou n'est pas disponible dans votre navigateur. 
+
+Pour que vous puissiez utiliser la documentation AWS, Javascript doit être activé. Vous trouverez des instructions sur les pages d'aide de votre navigateur.
+
+ Conventions de rédaction 
+
+ AWS Régions prises en charge
+
+Cette page vous a-t-elle été utile ? - Oui
+
+Merci de nous avoir fait part de votre satisfaction.
+
+Si vous avez quelques minutes à nous consacrer, merci de nous indiquer ce qui vous a plu afin que nous puissions nous améliorer davantage.
+
+Cette page vous a-t-elle été utile ? - Non
+
+Merci de nous avoir avertis que cette page avait besoin d'être retravaillée. Nous sommes désolés de ne pas avoir répondu à vos attentes.
+
+Si vous avez quelques minutes à nous consacrer, merci de nous indiquer comment nous pourrions améliorer cette documentation.

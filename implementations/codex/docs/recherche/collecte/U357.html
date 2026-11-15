@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Get started with Amazon Bedrock AgentCore - Amazon Bedrock AgentCore</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="agentcore-get-started-cli" /><meta name="default_state" content="agentcore-get-started-cli" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html" /><link rel="alternate" type="text/markdown" href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.md" title="Markdown version" /><meta name="description" content="This quickstart gets you from zero to a running agent in a few minutes using the AgentCore CLI. You will install the CLI, scaffold a project, test locally, deploy to AWS, and invoke your agent." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon Bedrock AgentCore" /><meta name="guide" content="Developer Guide" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html" hreflang="id-id" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html" hreflang="id" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html" hreflang="de-de" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html" hreflang="de" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html" hreflang="en-us" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html" hreflang="en" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html" hreflang="es-es" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html" hreflang="es" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html" hreflang="fr-fr" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html" hreflang="fr" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html" hreflang="it-it" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html" hreflang="it" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html" hreflang="ja-jp" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html" hreflang="ja" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html" hreflang="ko-kr" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html" hreflang="ko" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html" hreflang="pt-br" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html" hreflang="pt" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_cn/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html" hreflang="zh-cn" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_tw/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html" hreflang="zh-tw" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html" hreflang="x-default" /><meta name="feedback-item" content="bedrock-agentcore" /><meta name="this_doc_product" content="Amazon Bedrock AgentCore" /><meta name="this_doc_guide" content="Developer Guide" /><head xmlns="http://www.w3.org/1999/xhtml"> <script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"/></head>
+<script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'bedrock-agentcore'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Get started with Amazon Bedrock AgentCore" /><meta name="uiVersion" content="2024.10" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><p><a href="agentcore-get-started-cli.md">View a markdown version of this page</a></p><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Get started with Amazon Bedrock AgentCore - Amazon Bedrock AgentCore</title><meta name="pdf" content="/pdfs/bedrock-agentcore/latest/devguide/bedrock-agentcore-dg.pdf#agentcore-get-started-cli" /><meta name="rss" content="bedrock-agentcore-dg.rss" /><meta name="forums" content="https://repost.aws/search/content?globalSearch=Amazon Bedrock AgentCore" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=bedrock-agentcore&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon Bedrock AgentCore",
+        "item" : "https://docs.aws.amazon.com/bedrock-agentcore/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Get started with Amazon Bedrock AgentCore",
+        "item" : "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/bedrock-agentcore/latest/devguide/bedrock-agentcore-dg.pdf#agentcore-get-started-cli" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/bedrock-agentcore/index.html">Amazon Bedrock AgentCore</a><a href="what-is-bedrock-agentcore.html">Developer Guide</a></div><div id="page-toc-src"><a href="#sign_up_for_an_shared_id_aws_account">Sign up for an AWS account</a><a href="#agentcore-get-started-cli-prerequisites">Prerequisites</a><a href="#agentcore-get-started-cli-install">Step 1: Install the AgentCore CLI</a><a href="#agentcore-get-started-cli-create">Step 2: Create your project</a><a href="#agentcore-get-started-cli-test">Step 3: Test locally</a><a href="#agentcore-get-started-cli-deploy">Step 4: Deploy your agent</a><a href="#agentcore-get-started-cli-invoke">Step 5: Invoke your deployed agent</a><a href="#agentcore-get-started-cli-add-capabilities">Add capabilities to your project</a><a href="#agentcore-get-started-cli-logs">View logs and traces</a><a href="#agentcore-get-started-cli-troubleshoot">Troubleshoot</a><a href="#agentcore-get-started-cli-cleanup">Clean up</a><a href="#agentcore-get-started-cli-next-steps">Next steps</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="agentcore-get-started-cli">Get started with Amazon Bedrock AgentCore</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>This quickstart gets you from zero to a running agent in a few minutes using the AgentCore CLI. You will install the CLI, scaffold a project, test locally, deploy to AWS, and invoke your agent.</p><p>Two ways to build an agent on AgentCore, same CLI:</p><div class="itemizedlist">
+       
+       
+   <ul class="itemizedlist"><li class="listitem">
+         <p>
+            <strong>Managed harness</strong>. You declare the agent in a config file (model, prompt, tools, memory) and AgentCore runs the loop for you. No framework, no orchestration code. Good path when you want the fastest route from idea to a running agent. <a href="./harness.html">Learn more</a>.</p>
+      </li><li class="listitem">
+         <p>
+            <strong>Code-based agent</strong>. You write the agent loop in Python or TypeScript using a framework you already know (Strands, LangChain, or the Vercel AI SDK), and deploy it to AgentCore Runtime. Full control over orchestration logic.</p>
+      </li></ul></div><p>This page walks through the code-based flow. For harness, see <a href="./harness.html">What is the AgentCore harness</a>.</p>
+   <h2 id="sign_up_for_an_shared_id_aws_account">Sign up for an AWS account</h2>
+    
+      <h3 id="sign-up-for-aws">Sign up for an AWS account</h3>
+      <p>To get started with AWS, you need an AWS account. For information about creating an AWS account, see <a href="https://docs.aws.amazon.com/accounts/latest/reference/getting-started.html">Getting started with an AWS account</a> in the <em>
+            AWS Account Management Reference Guide</em>.</p>
+    
+ 
+      <h2 id="agentcore-get-started-cli-prerequisites">Prerequisites</h2>
+      <div class="itemizedlist">
+          
+          
+          
+          
+          
+          
+          
+          
+      <ul class="itemizedlist"><li class="listitem">
+            <p>
+               <strong>Node.js 20.12 or later.</strong> The AgentCore CLI is distributed as an npm package. Check with <code class="code">node --version</code>. Install from <a href="https://nodejs.org" rel="noopener noreferrer" target="_blank"><span>nodejs.org</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> if needed.</p>
+         </li><li class="listitem">
+            <p>
+               <strong>npm.</strong> Included with Node.js.</p>
+         </li><li class="listitem">
+            <p>
+               <strong>An AWS account with credentials configured.</strong> Configure via AWS CLI, environment variables, or an AWS profile. See <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html">Configuring the AWS CLI</a>.</p>
+         </li><li class="listitem">
+            <p>
+               <strong>Python 3.10 or later</strong> (for agent code). Check with <code class="code">python3 --version</code>.</p>
+         </li><li class="listitem">
+            <p>
+               <strong>uv.</strong> The generated Python project uses <code class="code">uv</code> to install and manage dependencies. See <a href="https://docs.astral.sh/uv/getting-started/installation/" rel="noopener noreferrer" target="_blank"><span>Installing uv</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+         </li><li class="listitem">
+            <p>
+               <strong>IAM permissions.</strong> Your identity needs permissions to make AgentCore API calls and to assume the CDK bootstrap roles used during deployment. See <a href="./runtime-permissions.html#runtime-permissions-cli">Use the AgentCore CLI</a>.</p>
+         </li><li class="listitem">
+            <p>
+               <strong>Model access.</strong> Amazon Bedrock enables access to foundation models by default. Available models include Amazon Nova, Anthropic Claude, Meta Llama, and Mistral AI models. To use non-foundation models, follow the <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html#model-access-sdk-step4">model access steps</a>.</p>
+         </li><li class="listitem">
+            <p>
+               <strong>Container engine (for local container development only).</strong> Docker, Podman, or Finch is required to run <code class="code">agentcore dev</code> with the <code class="code">agent-python-strands-container</code> template. Cloud container builds and deployments use AWS CodeBuild and do not require a local container engine. The <code class="code">agent-python-strands</code> template in this quickstart uses a <code class="code">CodeZip</code> build.</p>
+         </li></ul></div>
+      <p>This quickstart uses Amazon Bedrock and AgentCore Memory. The CLI’s default recipe does not apply to China Regions. For the CLI-specific alternatives and restrictions, see <a href="#agentcore-get-started-cli-china">CLI project scope in China Regions</a>.</p>
+    
+      <h2 id="agentcore-get-started-cli-install">Step 1: Install the AgentCore CLI</h2>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (bash)--><code class="bash ">npm install -g @aws/agentcore</code></pre>
+      <p>Verify:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (bash)--><code class="bash ">agentcore --version</code></pre>
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If this reports an error instead of a version number, an older Python <code class="code">agentcore</code> command is shadowing the npm one on your <code class="code">PATH</code>. This happens if you previously installed the <code class="code">bedrock-agentcore-starter-toolkit</code> pip package, and is most common on Windows. Run <code class="code">pip uninstall bedrock-agentcore-starter-toolkit</code>, then open a new terminal and try again.</p></div></div>
+      <p>To update later, rerun the install command or <code class="code">agentcore update</code>. Source and issues: <a href="https://github.com/aws/agentcore-cli" rel="noopener noreferrer" target="_blank"><span>agentcore-cli on GitHub</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+      <p>Run <code class="code">agentcore</code> without arguments to browse commands interactively. Type to filter the list, then select a command to open its workflow or command-line help.</p>
+      <div class="mediaobject">
+          
+            <img src="/images/bedrock-agentcore/latest/devguide/images/tui/commands-home.gif" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="Filtering the AgentCore CLI command picker." />
+          
+          
+      </div>
+    
+      <h2 id="agentcore-get-started-cli-create">Step 2: Create your project</h2>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (bash)--><code class="bash ">agentcore create \
+  --name MyProject \
+  --template agent-python-strands</code></pre>
+      <p>The <code class="code">--template agent-python-strands</code> option creates a code-based Python agent that uses the Strands Agents SDK and Amazon Bedrock. The CLI also:</p>
+      <div class="itemizedlist">
+          
+          
+          
+          
+      <ul class="itemizedlist"><li class="listitem">
+            <p>Creates the <code class="code">agent</code> Runtime and its application code.</p>
+         </li><li class="listitem">
+            <p>Adds an AgentCore Memory resource.</p>
+         </li><li class="listitem">
+            <p>Installs the CDK and Python dependencies with <code class="code">npm install</code> and <code class="code">uv sync</code>.</p>
+         </li><li class="listitem">
+            <p>Initializes a Git repository.</p>
+         </li></ul></div>
+      <p>Run <code class="code">agentcore create</code> without flags to use the interactive wizard. The wizard defaults to a managed harness. For a code-based project, choose <strong>code-based</strong>, a template, and, for templates that support it, a model provider and model before reviewing the configuration. Passing only <code class="code">--name</code> creates a managed harness project, so specify <code class="code">--template</code> when creating a code-based project non-interactively.</p>
+      <div class="mediaobject">
+          
+            <img src="/images/bedrock-agentcore/latest/devguide/images/tui/project-create-code.gif" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="Creating a code-based project by choosing its name, type, template, model provider, and model." />
+          
+          
+      </div>
+      <p>For all available commands and options, see <a href="./agentcore-cli-way-to-interact.html">AgentCore CLI</a>.</p>
+       
+         <h3 id="agentcore-get-started-cli-build-types">Build types</h3>
+         <p>The <code class="code">agent-python-strands</code> template creates a <code class="code">CodeZip</code> Runtime. This build type packages your code in a zip file and does not require Docker.</p>
+         <p>To create the same Strands agent as a container image instead, use the container template:</p>
+         <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (bash)--><code class="bash ">agentcore create \
+  --name MyProject \
+  --template agent-python-strands-container</code></pre>
+         <p>The CDK application uploads the container source and uses AWS CodeBuild to build the image and push it to Amazon ECR during deployment. You need a running Docker, Podman, or Finch engine only when testing this container locally with <code class="code">agentcore dev</code>.</p>
+       
+       
+         <h3 id="agentcore-get-started-cli-model-providers">Choose a Runtime model provider</h3>
+         <p>The Python Strands, Python Strands container, A2A Python Strands, AG-UI Python Strands, and TypeScript Strands templates support model-provider choices in the interactive <code class="code">agentcore create</code> wizard. Run <code class="code">agentcore create</code> without flags, choose <strong>code-based</strong>, and then choose the template, provider, model, and API-key file.</p>
+         <p>The noninteractive <code class="code">agentcore create --template &lt;template&gt;</code> command uses the template’s default model provider. It does not accept model-provider flags. The <code class="code">agentcore add runtime</code> command is for code that you write yourself. It does not select a model provider or generate model integration code.</p>
+         <p>The wizard supports the following model providers for templates that implement them:</p>
+         <div class="itemizedlist">
+             
+             
+             
+             
+             
+             
+         <ul class="itemizedlist"><li class="listitem">
+               <p>Amazon Bedrock</p>
+            </li><li class="listitem">
+               <p>Anthropic</p>
+            </li><li class="listitem">
+               <p>OpenAI</p>
+            </li><li class="listitem">
+               <p>Gemini</p>
+            </li><li class="listitem">
+               <p>LiteLLM</p>
+            </li><li class="listitem">
+               <p>OpenAI-compatible endpoints</p>
+            </li></ul></div>
+         <p>TypeScript Strands does not support LiteLLM. Use an OpenAI-compatible endpoint instead. Amazon Bedrock uses AWS credentials. For providers that need an API key, select a local key file or stdin in the wizard. The CLI stores the key in <code class="code">agentcore/.env.local</code>. Do not commit that file or the source key file.</p>
+         <p>An OpenAI-compatible provider requires an endpoint URL, an explicit model ID served by that endpoint, and an API key. Use only a trusted endpoint because it receives the API key. The wizard shows provider defaults and model-catalog links. Confirm model access with your provider.</p>
+         <p>Harness model configuration uses a different set of options. See <a href="./harness-models.html">Models and instructions</a>.</p>
+       
+       
+         <h3 id="agentcore-get-started-cli-china">CLI project scope in China Regions</h3>
+         <p>In <code class="code">cn-north-1</code> and <code class="code">cn-northwest-1</code>, this CLI release supports the following project additions:</p>
+         <div class="itemizedlist">
+             
+             
+             
+         <ul class="itemizedlist"><li class="listitem">
+               <p>Runtimes and runtime endpoints</p>
+            </li><li class="listitem">
+               <p>Credentials</p>
+            </li><li class="listitem">
+               <p>Gateways and nonconnector gateway targets</p>
+            </li></ul></div>
+         <p>It blocks these project resources and templates:</p>
+         <div class="itemizedlist">
+             
+             
+             
+             
+         <ul class="itemizedlist"><li class="listitem">
+               <p>Harnesses</p>
+            </li><li class="listitem">
+               <p>Memory</p>
+            </li><li class="listitem">
+               <p>Gateway connector targets</p>
+            </li><li class="listitem">
+               <p>The <code class="code">environment-python-bma</code> template</p>
+            </li></ul></div>
+         <p>In the interactive create wizard, you can choose an OpenAI-compatible endpoint with an explicit endpoint, model ID, and key. With Python templates, you can also choose LiteLLM with an explicit model ID that does not use the <code class="code">bedrock/</code> prefix. Provider-free templates such as <code class="code">agent-python-minimal</code> and <code class="code">mcp-python-fastmcp</code> are another alternative. The CLI omits default Memory when scaffolding an allowed template in a China Region.</p>
+         <p>You can also use <code class="code">agentcore add runtime</code> to register Python or TypeScript code that you write yourself. Because the CLI does not generate or inspect your model integration, verify that your code calls a model or endpoint that is reachable from the target China Region.</p>
+         <p>These are CLI validation rules, not a guarantee of model or endpoint reachability from China or a complete list of regional service availability. Verify access to your chosen endpoint and the services that your application uses.</p>
+       
+       
+         <h3 id="agentcore-get-started-cli-project-structure">Project structure</h3>
+         <p>The create command generates the following code-based project:</p>
+         <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (text)--><code class="text ">MyProject/
+├── .gitignore
+├── agentcore/
+│   ├── .env.local
+│   ├── agentcore.json
+│   ├── aws-targets.json
+│   └── cdk/
+└── app/
+    └── agent/
+        ├── .gitignore
+        ├── README.md
+        ├── main.py
+        ├── memory/
+        │   ├── __init__.py
+        │   └── session.py
+        ├── model/
+        │   ├── __init__.py
+        │   └── load.py
+        ├── parse.py
+        └── pyproject.toml</code></pre>
+         <p>Key files:</p>
+         <div class="itemizedlist">
+             
+             
+             
+             
+             
+             
+             
+         <ul class="itemizedlist"><li class="listitem">
+               <p>
+                  <code class="code">agentcore/agentcore.json</code> - The project specification. It defines your runtimes, harnesses, memory stores, gateways, credentials, and other resources. The <code class="code">agentcore add</code> and <code class="code">agentcore remove</code> commands manage this file.</p>
+            </li><li class="listitem">
+               <p>
+                  <code class="code">agentcore/aws-targets.json</code> - The AWS accounts and Regions for deployment.</p>
+            </li><li class="listitem">
+               <p>
+                  <code class="code">agentcore/.env.local</code> - Local secrets, such as API keys for Runtime model providers and project-managed Harness credentials.</p>
+            </li><li class="listitem">
+               <p>
+                  <code class="code">agentcore/cdk/</code> - The CDK application that builds and deploys the project resources. See <a href="./customize-project-cdk-code.html">Customize the project’s CDK code</a> to add resources beyond the project specification.</p>
+            </li><li class="listitem">
+               <p>
+                  <code class="code">app/agent/main.py</code> - The Runtime entrypoint and Strands agent implementation.</p>
+            </li><li class="listitem">
+               <p>
+                  <code class="code">app/agent/model/load.py</code> - The model that the agent uses.</p>
+            </li><li class="listitem">
+               <p>
+                  <code class="code">app/agent/memory/session.py</code> - The AgentCore Memory session manager and retrieval settings.</p>
+            </li></ul></div>
+       
+    
+      <h2 id="agentcore-get-started-cli-test">Step 3: Test locally</h2>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (bash)--><code class="bash ">cd MyProject
+agentcore dev --mode browser</code></pre>
+      <p>The command starts the Runtime locally with hot reload and opens the <strong>agent inspector</strong> in your browser so you can chat with the agent and inspect local traces. The create command installed the dependencies and created the Python virtual environment in Step 2.</p>
+      <p>Without <code class="code">--mode browser</code>, <code class="code">agentcore dev</code> defaults to headless mode and streams the Runtime output to your terminal.</p>
+    
+      <h2 id="agentcore-get-started-cli-deploy">Step 4: Deploy your agent</h2>
+      <p>Build the deployable artifacts and validate the project before deploying:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (bash)--><code class="bash ">agentcore build</code></pre>
+      <p>Deploy the project:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (bash)--><code class="bash ">agentcore deploy</code></pre>
+      <p>The deploy command does the following:</p>
+      <div class="orderedlist">
+          
+          
+          
+          
+      <ol style="list-style-type:arabic ! important;"><li>
+            <p>Packages your code into a zip artifact</p>
+         </li><li>
+            <p>Uses AWS CDK under the hood to synthesize and provision resources</p>
+         </li><li>
+            <p>Creates an AgentCore Runtime endpoint for your agent</p>
+         </li><li>
+            <p>Configures CloudWatch logging and observability</p>
+         </li></ol></div>
+      <p>First deploy takes a few minutes while CDK bootstraps your account. Subsequent deploys are faster.</p>
+      <p>Check status:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (bash)--><code class="bash ">agentcore status</code></pre>
+    
+      <h2 id="agentcore-get-started-cli-invoke">Step 5: Invoke your deployed agent</h2>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (bash)--><code class="bash ">agentcore invoke --runtime agent \
+  --payload '<span>{</span>"prompt":"Hello, what can you do?"}'</code></pre>
+      <p>To iterate, edit <code class="code">app/agent/main.py</code>, test with <code class="code">agentcore dev --mode browser</code>, deploy with <code class="code">agentcore deploy</code>, and invoke with <code class="code">agentcore invoke --runtime agent</code>.</p>
+    
+      <h2 id="agentcore-get-started-cli-add-capabilities">Add capabilities to your project</h2>
+      <p>
+         <code class="code">agentcore add</code> manages resources in <code class="code">agentcore.json</code>. Run it without arguments for the interactive menu, or target a resource directly. Each resource opens a wizard when you run it without options.</p>
+      <p>For example, <code class="code">agentcore add runtime</code> prompts for a name, language, and protocol, and then displays the configuration for review. It registers a Runtime for code that you write yourself. The command creates <code class="code">app/&lt;name&gt;/README.md</code> and <code class="code">app/&lt;name&gt;/AGENTS.md</code> with the selected protocol contract, but it does not generate application code or dependencies and does not overwrite files already in the directory.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (bash)--><code class="bash ">agentcore add memory    # Store conversation context
+agentcore add runtime   # Add another Runtime
+agentcore add gateway   # Connect APIs and tools through Gateway</code></pre>
+      <p>To add a Runtime without the wizard, pass its language and protocol:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (bash)--><code class="bash ">agentcore add runtime \
+  --name worker \
+  --language python \
+  --protocol HTTP</code></pre>
+      <p>The Runtime starts as a direct code (<code class="code">CodeZip</code>) build with <code class="code">main.py</code> for Python or <code class="code">main.js</code> for TypeScript. Follow the generated README to add the entrypoint and dependency manifest. When you run <code class="code">agentcore dev</code>, <code class="code">agentcore build</code>, or <code class="code">agentcore deploy</code>, the CLI synchronizes <code class="code">agentcore.json</code> with the code. A <code class="code">Dockerfile</code> switches the Runtime to a container build. For Python, <code class="code">requires-python</code> in <code class="code">pyproject.toml</code> constrains the managed runtime version and <code class="code">[tool.agentcore].entrypoint</code> can select another entrypoint. For TypeScript, <code class="code">engines.node</code> constrains the Node.js version and the CLI bundles <code class="code">main.ts</code>.</p>
+      <p>To translate an existing agent from <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html">Agents for Amazon Bedrock</a> into Amazon Bedrock AgentCore Runtime code, pass its agent ID instead. Do not pass <code class="code">--language</code> or <code class="code">--protocol</code> with an import.</p>
+      <p>Replace <code class="code">&lt;bedrock-agent-id&gt;</code> with your agent ID and <code class="code">&lt;prepared-agent-alias-id&gt;</code> with your prepared alias ID:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (bash)--><code class="bash ">agentcore add runtime \
+  --name imported_agent \
+  --agent-id &lt;bedrock-agent-id&gt; \
+  --agent-alias-id &lt;prepared-agent-alias-id&gt; \
+  --framework strands</code></pre>
+      <p>To add another kind of resource without its wizard, pass its options on the command line. Run <code class="code">agentcore add &lt;resource&gt; --help</code> to see the options.</p>
+      <p>After adding resources, run <code class="code">agentcore deploy</code> to provision them.</p>
+      <p>Deep dives for the capabilities you can attach:</p>
+      <div class="itemizedlist">
+          
+          
+          
+          
+          
+          
+          
+          
+      <ul class="itemizedlist"><li class="listitem">
+            <p>
+               <a href="./memory.html">AgentCore Memory</a> - short-term and long-term memory, retrieval strategies</p>
+         </li><li class="listitem">
+            <p>
+               <a href="./gateway.html">AgentCore Gateway</a> - governed connectivity to APIs and MCP servers</p>
+         </li><li class="listitem">
+            <p>
+               <a href="./browser-tool.html">AgentCore Browser</a> - managed web browsing for agents</p>
+         </li><li class="listitem">
+            <p>
+               <a href="./code-interpreter-tool.html">AgentCore Code Interpreter</a> - sandboxed code execution</p>
+         </li><li class="listitem">
+            <p>
+               <a href="./identity.html">AgentCore Identity</a> - OAuth, API key credential providers, workload identity</p>
+         </li><li class="listitem">
+            <p>
+               <a href="./observability.html">AgentCore Observability</a> - traces, logs, and metrics in CloudWatch</p>
+         </li><li class="listitem">
+            <p>
+               <a href="./agentcore-vpc.html">AgentCore VPC</a> - run agents inside your VPC</p>
+         </li><li class="listitem">
+            <p>
+               <a href="./payments.html">AgentCore Payments</a> - microtransaction payments for agents via x402</p>
+         </li></ul></div>
+    
+      <h2 id="agentcore-get-started-cli-logs">View logs and traces</h2>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (bash)--><code class="bash "># Stream Runtime logs
+agentcore logs runtime
+
+# Search a past window
+agentcore logs runtime --since 30m --level error
+agentcore logs runtime --since 1h --query "timeout"
+
+# List recent Runtime traces
+agentcore traces runtime list --since 30m
+
+# Download a specific trace
+agentcore traces runtime get &lt;trace-id&gt;</code></pre>
+    
+      <h2 id="agentcore-get-started-cli-troubleshoot">Troubleshoot</h2>
+      <div class="variablelist">
+          
+          
+          
+          
+          
+      <dl>
+            <dt><span class="term">
+               <strong>Permission denied errors</strong>
+            </span></dt>
+            <dd>
+               <p>Verify your credentials with <code class="code">aws sts get-caller-identity</code>. Make sure that your identity has the permissions in <a href="./runtime-permissions.html#runtime-permissions-cli">Use the AgentCore CLI</a>.</p>
+            </dd>
+          
+            <dt><span class="term">
+               <strong>Model access denied</strong>
+            </span></dt>
+            <dd>
+               <p>Amazon Bedrock enables access to foundation models by default. To use a non-foundation model, follow the <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html#model-access-sdk-step4">model access steps</a>.</p>
+            </dd>
+          
+            <dt><span class="term">
+               <strong>Port already in use</strong>
+            </span></dt>
+            <dd>
+               <p>Run <code class="code">agentcore dev --port 8081</code> to use a different local port for the Runtime, or add <code class="code">--ui-port</code> to change the Agent Inspector port. When you invoke locally, pass the same port with <code class="code">agentcore invoke --runtime agent --local --port 8081</code>.</p>
+            </dd>
+          
+            <dt><span class="term">
+               <strong>Deployment errors</strong>
+            </span></dt>
+            <dd>
+               <p>Run <code class="code">agentcore build --debug</code> to rebuild the deployable artifacts with debug logging before retrying <code class="code">agentcore deploy --debug</code>.</p>
+            </dd>
+          
+            <dt><span class="term">
+               <strong>Configuration validation errors</strong>
+            </span></dt>
+            <dd>
+               <p>Run <code class="code">agentcore build</code> to validate the project specification and build its deployable artifacts.</p>
+            </dd>
+         </dl></div>
+      <p>For more information, see <a href="./runtime-troubleshooting.html">Troubleshoot Amazon Bedrock AgentCore Runtime</a>.</p>
+    
+      <h2 id="agentcore-get-started-cli-cleanup">Clean up</h2>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (bash)--><code class="bash ">agentcore remove all --yes
+agentcore deploy --yes</code></pre>
+      <p>
+         <code class="code">remove all</code> removes every resource from the project specification. The follow-up deploy detects the empty state and tears down the project’s deployed stack. The <code class="code">--yes</code> option confirms the teardown without an interactive prompt.</p>
+    
+      <h2 id="agentcore-get-started-cli-next-steps">Next steps</h2>
+      <div class="itemizedlist">
+          
+          
+      <ul class="itemizedlist"><li class="listitem">
+            <p>
+               <a href="./harness.html">What is the AgentCore harness</a> - the config-based path to a running agent. Use any model, connect to tools, persist state, deploy in your VPC, and graduate to code when you need it.</p>
+         </li><li class="listitem">
+            <p>
+               <a href="https://github.com/awslabs/amazon-bedrock-agentcore-samples" rel="noopener noreferrer" target="_blank"><span>AgentCore code samples</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> - end-to-end examples across frameworks and capabilities.</p>
+         </li></ul></div>
+   <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./agentcore-regions.html">Supported AWS Regions</div><div id="next" class="next-link" accesskey="n" href="./develop-agents.html">Understand the available interfaces for using AgentCore</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=bedrock-agentcore&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=bedrock-agentcore&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

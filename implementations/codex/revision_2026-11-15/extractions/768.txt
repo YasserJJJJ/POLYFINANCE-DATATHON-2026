@@ -1,0 +1,117 @@
+
+
+## PAGE 1
+
+Event dashboard
+Introduction à AWS
+Outils de développement
+Outils de développement
+Où écrire votre code, quoi installer et comment conserver votre travail. Réglez ces questions dans la première heure du Datathon pour consacrer le reste du temps
+au projet.
+Vous avez quatre options réalistes. Choisissez-en une tôt et n'y pensez plus.
+Votre
+ordinateur
+portable
+Presque tout le monde. Le plus rapide, le plus familier, et votre
+démo tourne localement
+Installez Python et un éditeur, puis récupérez les identiﬁants AWS sur la page de
+l'événement Workshop Studio
+AWS CloudShell
+Le travail rapide en ligne de commande, et quiconque ne peut
+rien installer
+Rien : c'est un onglet du navigateur, déjà authentiﬁé. Voir Accès AWS CLI et SDK
+SageMaker
+Uniﬁed Studio
+Les équipes qui préfèrent les notebooks, ou qui veulent un
+environnement commun dans le navigateur
+Un domaine créé par l'équipe en 1 à 2 minutes, avec JupyterLab, Code Editor et le
+notebook d'introduction. Voir SageMaker Uniﬁed Studio
+Kiro Web
+Un ordinateur de laboratoire verrouillé ou un portable emprunté
+Un navigateur et un compte Kiro. Voir Kiro
+Une installation locale minimale :
+streamlit mérite d'être signalé : il transforme un script Python en interface Web fonctionnelle en quelques lignes. C'est la façon la plus rapide de passer de « mon
+code fonctionne » à « ma démo ressemble à un produit ». Lancez-le avec streamlit run app.py.
+yfinance télécharge des historiques de prix publics (par exemple XIU.TO ou SPY). La page Données ﬁnancières publiques présente d'autres sources. Vériﬁez les
+conditions d'utilisation de chaque source que vous utilisez.
+Les outils les plus utiles de votre trousse. Ils ont leur propre section :
+Kiro : piloté par les spéciﬁcations
+Claude Code sur Bedrock : dans le terminal, fonctionne avec le compte AWS de votre équipe
+Codex sur Bedrock : même principe, avec les modèles d'OpenAI
+Ne versionnez jamais d'identiﬁants. Si vous poussez par erreur une clé d'accès AWS, prévenez immédiatement un mentor ou un organisateur : les clés publiées sur
+GitHub sont repérées et utilisées frauduleusement en quelques minutes.
+AWS SDK pour Python (boto3) 
+Documentation de Streamlit 
+Référence des commandes AWS CLI 
+Outils de développement
+Où écrire votre code
+Option
+Pour qui
+Mise en place
+Travaillez localement, sauf si vous avez une raison de faire autrement. Votre démo est plus ﬁable quand elle tourne sur une machine que vous contrôlez, sur un réseau que vous
+avez testé. Si vous développez dans le nuage, gardez une copie de votre code dans GitHub : le compte AWS et tout ce qu'il contient sont détruits le lundi 16 novembre à 13 h 59.
+python3 -m venv .venv
+source .venv/bin/activate          # Windows : .venv\Scripts\activate
+pip install boto3 streamlit strands-agents yfinance
+export AWS_REGION=us-east-1
+aws sts get-caller-identity        # vérifie que vos identifiants fonctionnent
+1
+2
+3
+4
+5
+6
+Assistants de programmation par IA
+Gestion de versions
+Poussez votre code dans un dépôt GitHub de votre équipe dès la première heure. Le compte AWS est fermé et toutes ses données détruites le lundi 16 novembre à 13 h 59. Le
+dépôt de code avec README fait aussi partie des livrables, à déposer au plus tard le dimanche 15 novembre à 23 h 59. Il vous servira ensuite à montrer votre travail à un recruteur.
+git init
+git add .
+git commit -m "Premier prototype"
+git remote add origin https://github.com/VOTRE_EQUIPE/votre-projet.git
+git push -u origin main
+1
+2
+3
+4
+5
+Ressources utiles
+Previous
+Next
+Polyfinances 2026
+Datathon PolyFinances 2026
+Commencer
+Utilisation responsable
+SageMaker Uniﬁed Studio et
+notebook d'introduction
+Introduction à AWS
+Amazon Bedrock
+Kiro
+Outils de développement
+Amazon Quick
+AWS Lambda
+Amazon S3
+AWS IAM
+AWS Glue
+Amazon Athena
+Accès AWS CLI et SDK
+L'IA générative sur AWS
+Construire des agents
+Démarrages rapides
+Données ﬁnancières publiques
+Nettoyage et exportation
+Ressources
+AWS account access
+Open AWS console
+(us-east-1)
+Get AWS CLI credentials
+Share feedback
+Workshop catalog in AWS Builder
+Center
+Exit event
+AWS Workshop Studio
+adamlarhlimi2006
+© 2008 - 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+Privacy policy
+Terms of use
+Cookie preferences

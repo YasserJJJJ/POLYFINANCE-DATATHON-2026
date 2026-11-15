@@ -1,0 +1,522 @@
+{
+  "robert-initial": {
+    "path": "docs/implementation/proofs/final_demo/robert-initial.json",
+    "saved_dossier_sha256": "39c551a78b6d45dd633aa5d1ac4f8557930d01d6657f045a0f3aa33a22d53566",
+    "capture_checks": [
+      {
+        "id": "local-U341-57f7b740b596",
+        "source_url": "https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/basics-of-portfolio-planning-and-construction",
+        "known_at": "2026-11-15T13:53:52.091977+00:00",
+        "reading_level": "targeted_passages",
+        "raw_capture_exists_and_hash_matches": true,
+        "extracted_text_hash_matches": true,
+        "passages_match_declared_line_windows": [
+          true,
+          true
+        ],
+        "selected_by_agent1": true
+      },
+      {
+        "id": "local-boyd_convex-40d976c83c18",
+        "source_url": "https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf",
+        "known_at": "2026-11-15T13:55:11.974998+00:00",
+        "reading_level": "targeted_passages",
+        "raw_capture_exists_and_hash_matches": true,
+        "extracted_text_hash_matches": true,
+        "passages_match_declared_line_windows": [
+          true,
+          true,
+          true
+        ],
+        "selected_by_agent1": true
+      },
+      {
+        "id": "local-U050-0a65c95f8fa2",
+        "source_url": "https://github.com/ERGO-Code/HiGHS",
+        "known_at": "2026-11-15T13:53:13.443931+00:00",
+        "reading_level": "targeted_passages",
+        "raw_capture_exists_and_hash_matches": true,
+        "extracted_text_hash_matches": true,
+        "passages_match_declared_line_windows": [
+          true,
+          true,
+          true
+        ],
+        "selected_by_agent1": true
+      },
+      {
+        "id": "web-09cbe2c6cc000c1a561d",
+        "source_url": "https://fraser.stlouisfed.org/files/docs/publications/frbrichreview/rev_frbrich197211.pdf",
+        "known_at": "2026-11-15T17:54:07.342868+00:00",
+        "reading_level": "targeted_passages",
+        "raw_capture_exists_and_hash_matches": true,
+        "extracted_text_hash_matches": true,
+        "passages_match_declared_line_windows": [
+          true,
+          true,
+          true
+        ],
+        "selected_by_agent1": false
+      },
+      {
+        "id": "web-de6b11aa5d196fba2108",
+        "source_url": "https://www.nber.org/system/files/working_papers/w19206/w19206.pdf",
+        "known_at": "2026-11-15T17:54:08.515227+00:00",
+        "reading_level": "targeted_passages",
+        "raw_capture_exists_and_hash_matches": true,
+        "extracted_text_hash_matches": true,
+        "passages_match_declared_line_windows": [
+          true,
+          true,
+          true
+        ],
+        "selected_by_agent1": false
+      }
+    ],
+    "claim_checks": [
+      {
+        "id": "minimum_reallocation",
+        "text_matches_calculation": true,
+        "pointers_resolve": [
+          {
+            "pointer": "/options/1/metrics/turnover_cad/value",
+            "value": 30000.0
+          }
+        ]
+      },
+      {
+        "id": "reserve_scope",
+        "text_matches_calculation": true,
+        "pointers_resolve": []
+      },
+      {
+        "id": "multiple_optima",
+        "text_matches_calculation": true,
+        "pointers_resolve": [
+          {
+            "pointer": "/optimal_face/non_unique_witness_found",
+            "value": true
+          }
+        ]
+      }
+    ],
+    "same_claim_text_from_direct_finance_without_agents": true,
+    "citation_count": 5,
+    "agent1_selected_count": 3,
+    "review_unresolved_verbatim_in_view_limits": [
+      {
+        "text": "Aucun instrument réel ne justifie la disponibilité ni la préservation du nominal à douze mois. La réserve reste exclusivement une hypothèse fictive.",
+        "present": false
+      },
+      {
+        "text": "La programmation linéaire est documentée mais non admise à l’exécution : qualifier la formulation, l’implémentation et les contrôles de faisabilité et d’optimalité.",
+        "present": false
+      },
+      {
+        "text": "Expliciter la mesure du capital réalloué, sans double comptage des ventes et achats, ainsi que l’articulation entre pertes de scénario, réserve et retrait à douze mois.",
+        "present": false
+      },
+      {
+        "text": "Les passages capturés le 15 novembre 2026 ne prouvent pas la disponibilité de ces versions à une date antérieure. L’examen reste limité aux extraits fournis.",
+        "present": false
+      },
+      {
+        "text": "Une capture HTTP a échoué ; une capture HTTPS du même article apparent est disponible, sans établir l’identité des deux versions.",
+        "present": false
+      }
+    ],
+    "research_conflicts": [],
+    "independent_historical_endpoints": null,
+    "limitations_of_audit": [
+      "No new inference; recomputation uses the current deterministic finance implementation.",
+      "A changed local technical note may no longer hash to the historical evidence capture.",
+      "Identical finance results do not measure decision quality, user understanding or retrieval recall."
+    ]
+  },
+  "robert-revised": {
+    "path": "docs/implementation/proofs/final_demo/robert-revised.json",
+    "saved_dossier_sha256": "863ae72f269d81f7eab0dd364590d6500623892cb290653fbf6063265075a043",
+    "capture_checks": [
+      {
+        "id": "local-U341-57f7b740b596",
+        "source_url": "https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/basics-of-portfolio-planning-and-construction",
+        "known_at": "2026-11-15T13:53:52.091977+00:00",
+        "reading_level": "targeted_passages",
+        "raw_capture_exists_and_hash_matches": true,
+        "extracted_text_hash_matches": true,
+        "passages_match_declared_line_windows": [
+          true,
+          true
+        ],
+        "selected_by_agent1": true
+      },
+      {
+        "id": "local-boyd_convex-40d976c83c18",
+        "source_url": "https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf",
+        "known_at": "2026-11-15T13:55:11.974998+00:00",
+        "reading_level": "targeted_passages",
+        "raw_capture_exists_and_hash_matches": true,
+        "extracted_text_hash_matches": true,
+        "passages_match_declared_line_windows": [
+          true,
+          true,
+          true
+        ],
+        "selected_by_agent1": true
+      },
+      {
+        "id": "local-U050-0a65c95f8fa2",
+        "source_url": "https://github.com/ERGO-Code/HiGHS",
+        "known_at": "2026-11-15T13:53:13.443931+00:00",
+        "reading_level": "targeted_passages",
+        "raw_capture_exists_and_hash_matches": true,
+        "extracted_text_hash_matches": true,
+        "passages_match_declared_line_windows": [
+          true,
+          true,
+          true
+        ],
+        "selected_by_agent1": true
+      },
+      {
+        "id": "web-09cbe2c6cc000c1a561d",
+        "source_url": "https://fraser.stlouisfed.org/files/docs/publications/frbrichreview/rev_frbrich197211.pdf",
+        "known_at": "2026-11-15T17:54:07.342868+00:00",
+        "reading_level": "targeted_passages",
+        "raw_capture_exists_and_hash_matches": true,
+        "extracted_text_hash_matches": true,
+        "passages_match_declared_line_windows": [
+          true,
+          true,
+          true
+        ],
+        "selected_by_agent1": false
+      },
+      {
+        "id": "web-de6b11aa5d196fba2108",
+        "source_url": "https://www.nber.org/system/files/working_papers/w19206/w19206.pdf",
+        "known_at": "2026-11-15T17:54:08.515227+00:00",
+        "reading_level": "targeted_passages",
+        "raw_capture_exists_and_hash_matches": true,
+        "extracted_text_hash_matches": true,
+        "passages_match_declared_line_windows": [
+          true,
+          true,
+          true
+        ],
+        "selected_by_agent1": false
+      }
+    ],
+    "claim_checks": [
+      {
+        "id": "minimum_reallocation",
+        "text_matches_calculation": true,
+        "pointers_resolve": [
+          {
+            "pointer": "/options/1/metrics/turnover_cad/value",
+            "value": 40000.0
+          }
+        ]
+      },
+      {
+        "id": "reserve_scope",
+        "text_matches_calculation": true,
+        "pointers_resolve": []
+      },
+      {
+        "id": "multiple_optima",
+        "text_matches_calculation": true,
+        "pointers_resolve": [
+          {
+            "pointer": "/optimal_face/non_unique_witness_found",
+            "value": true
+          }
+        ]
+      }
+    ],
+    "same_claim_text_from_direct_finance_without_agents": true,
+    "citation_count": 5,
+    "agent1_selected_count": 3,
+    "review_unresolved_verbatim_in_view_limits": [
+      {
+        "text": "Aucun instrument réel de réserve n’est qualifié : disponibilité à douze mois et protection du nominal restent non démontrées hors de l’hypothèse abstraite.",
+        "present": false
+      },
+      {
+        "text": "La programmation linéaire reste une méthode candidate, non admise à l’exécution. Il faut qualifier la formulation du capital déplacé, la comptabilisation du retrait dans les pertes et les contrôles de faisabilité et d’optimalité.",
+        "present": false
+      },
+      {
+        "text": "Les deux chocs synthétiques à douze mois ne décrivent ni une distribution de probabilités ni le risque sur l’horizon complet de quatre ans.",
+        "present": false
+      },
+      {
+        "text": "Les versions capturées sont connues au 15 novembre 2026 ; ces captures ne démontrent pas leur disponibilité antérieure. La collecte reste partielle, notamment du fait de l’échec de capture de l’URL HTTP FRASER.",
+        "present": false
+      }
+    ],
+    "research_conflicts": [],
+    "independent_historical_endpoints": null,
+    "limitations_of_audit": [
+      "No new inference; recomputation uses the current deterministic finance implementation.",
+      "A changed local technical note may no longer hash to the historical evidence capture.",
+      "Identical finance results do not measure decision quality, user understanding or retrieval recall."
+    ]
+  },
+  "amira-initial": {
+    "path": "docs/implementation/proofs/final_demo/amira-initial.json",
+    "saved_dossier_sha256": "939c496581aec7b8fb06f38722f4b0ad536f5c182b55e4c645e7cd0dcec67b26",
+    "capture_checks": [
+      {
+        "id": "implementation-10f6db372bfb",
+        "source_url": "docs/methodology.md",
+        "known_at": "2026-11-15T11:57:51.015703+00:00",
+        "reading_level": "full_text",
+        "raw_capture_exists_and_hash_matches": true,
+        "extracted_text_hash_matches": null,
+        "passages_match_declared_line_windows": [],
+        "selected_by_agent1": true
+      },
+      {
+        "id": "implementation-b6e77cf12090",
+        "source_url": "docs/implementation/finance.md",
+        "known_at": "2026-11-15T17:39:03.122887+00:00",
+        "reading_level": "targeted_passages",
+        "raw_capture_exists_and_hash_matches": true,
+        "extracted_text_hash_matches": null,
+        "passages_match_declared_line_windows": [],
+        "selected_by_agent1": true
+      },
+      {
+        "id": "local-U341-57f7b740b596",
+        "source_url": "https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/basics-of-portfolio-planning-and-construction",
+        "known_at": "2026-11-15T13:53:52.091977+00:00",
+        "reading_level": "targeted_passages",
+        "raw_capture_exists_and_hash_matches": true,
+        "extracted_text_hash_matches": true,
+        "passages_match_declared_line_windows": [
+          true,
+          true,
+          true
+        ],
+        "selected_by_agent1": false
+      },
+      {
+        "id": "local-U001-69209d87100d",
+        "source_url": "https://ideas.repec.org/a/oup/rfinst/v22y2009i5p1915-1953.html",
+        "known_at": "2026-11-15T13:53:02.863379+00:00",
+        "reading_level": "targeted_passages",
+        "raw_capture_exists_and_hash_matches": true,
+        "extracted_text_hash_matches": true,
+        "passages_match_declared_line_windows": [
+          true,
+          true,
+          true
+        ],
+        "selected_by_agent1": true
+      },
+      {
+        "id": "local-U002-7b20198165e6",
+        "source_url": "https://ideas.repec.org/a/taf/ufajxx/v66y2010i2p31-39.html",
+        "known_at": "2026-11-15T13:53:02.862462+00:00",
+        "reading_level": "targeted_passages",
+        "raw_capture_exists_and_hash_matches": true,
+        "extracted_text_hash_matches": true,
+        "passages_match_declared_line_windows": [
+          true,
+          true,
+          true
+        ],
+        "selected_by_agent1": true
+      },
+      {
+        "id": "local-U003-66e265733983",
+        "source_url": "https://www.cambridge.org/core/journals/journal-of-financial-and-quantitative-analysis/article/its-all-in-the-timing-simple-active-portfolio-strategies-that-outperform-naive-diversification/05D18E04B226C6E9B8441482CC92F943",
+        "known_at": "2026-11-15T13:53:02.863933+00:00",
+        "reading_level": "targeted_passages",
+        "raw_capture_exists_and_hash_matches": true,
+        "extracted_text_hash_matches": true,
+        "passages_match_declared_line_windows": [
+          true,
+          true,
+          true
+        ],
+        "selected_by_agent1": true
+      },
+      {
+        "id": "local-U342-657a349d1b5c",
+        "source_url": "https://www.bankofcanada.ca/rates/exchange/background-information-on-foreign-exchange-rates/",
+        "known_at": "2026-11-15T13:53:52.102543+00:00",
+        "reading_level": "targeted_passages",
+        "raw_capture_exists_and_hash_matches": true,
+        "extracted_text_hash_matches": true,
+        "passages_match_declared_line_windows": [
+          true,
+          true,
+          true
+        ],
+        "selected_by_agent1": true
+      },
+      {
+        "id": "local-fred_realtime-b8ebb64abad4",
+        "source_url": "https://fred.stlouisfed.org/docs/api/fred/realtime_period.html",
+        "known_at": "2026-11-15T13:55:12.879315+00:00",
+        "reading_level": "targeted_passages",
+        "raw_capture_exists_and_hash_matches": true,
+        "extracted_text_hash_matches": true,
+        "passages_match_declared_line_windows": [
+          true
+        ],
+        "selected_by_agent1": false
+      },
+      {
+        "id": "web-1e7a44580f7ed5cfb302",
+        "source_url": "https://arxiv.org/pdf/2505.06383.pdf",
+        "known_at": "2026-11-15T17:54:07.437332+00:00",
+        "reading_level": "targeted_passages",
+        "raw_capture_exists_and_hash_matches": true,
+        "extracted_text_hash_matches": true,
+        "passages_match_declared_line_windows": [
+          true,
+          true,
+          true
+        ],
+        "selected_by_agent1": false
+      },
+      {
+        "id": "web-1b3dd228e44d5b356ef4",
+        "source_url": "https://arxiv.org/pdf/1811.08255v1",
+        "known_at": "2026-11-15T17:54:08.897964+00:00",
+        "reading_level": "targeted_passages",
+        "raw_capture_exists_and_hash_matches": true,
+        "extracted_text_hash_matches": true,
+        "passages_match_declared_line_windows": [
+          true,
+          true,
+          true
+        ],
+        "selected_by_agent1": false
+      },
+      {
+        "id": "web-90b2031891a7b2d33f85",
+        "source_url": "https://en.wikipedia.org/wiki/Backtesting",
+        "known_at": "2026-11-15T17:54:11.493306+00:00",
+        "reading_level": "targeted_passages",
+        "raw_capture_exists_and_hash_matches": true,
+        "extracted_text_hash_matches": true,
+        "passages_match_declared_line_windows": [
+          true,
+          true,
+          true
+        ],
+        "selected_by_agent1": false
+      }
+    ],
+    "claim_checks": [
+      {
+        "id": "historical_return_baseline",
+        "text_matches_calculation": true,
+        "pointers_resolve": [
+          {
+            "pointer": "/options/0/metrics/total_return_pct/value",
+            "value": 78.063006
+          },
+          {
+            "pointer": "/method/metadata/start",
+            "value": "2021-11-12"
+          },
+          {
+            "pointer": "/method/metadata/end",
+            "value": "2026-11-12"
+          }
+        ]
+      },
+      {
+        "id": "historical_return_target_variant",
+        "text_matches_calculation": true,
+        "pointers_resolve": [
+          {
+            "pointer": "/options/1/metrics/total_return_pct/value",
+            "value": 87.496089
+          },
+          {
+            "pointer": "/method/metadata/start",
+            "value": "2021-11-12"
+          },
+          {
+            "pointer": "/method/metadata/end",
+            "value": "2026-11-12"
+          }
+        ]
+      }
+    ],
+    "same_claim_text_from_direct_finance_without_agents": false,
+    "citation_count": 11,
+    "agent1_selected_count": 6,
+    "review_unresolved_verbatim_in_view_limits": [
+      {
+        "text": "Contrôles à confirmer lors du calcul : empreintes des fichiers, dates d’acquisition, grille commune admissible, conversion USD vers CAD et reports de change uniquement antérieurs ou contemporains, limités à sept jours.",
+        "present": false
+      },
+      {
+        "text": "La qualité économique des cours et l’existence d’un univers point-in-time ne sont pas établies. Les prix ajustés acquis en 2026 ne reconstruisent pas les informations disponibles en 2021.",
+        "present": false
+      },
+      {
+        "text": "Les taux de change sont des moyennes indicatives, non des prix exécutables synchronisés avec les clôtures ; les heures exactes de publication restent inconnues.",
+        "present": false
+      },
+      {
+        "text": "Les compositions des FNB, leur chevauchement avec TSLA et leurs exclusions ESG ne sont pas établis. La concentration par instrument ne mesure pas ces expositions sous-jacentes.",
+        "present": false
+      },
+      {
+        "text": "Les publications sur l’optimisation ne sont examinées ici qu’au niveau des résumés et passages fournis, dont certains sont tronqués. Leurs résultats dépendent des protocoles et ne prouvent aucune supériorité applicable à ces allocations.",
+        "present": false
+      },
+      {
+        "text": "Aucune performance à quinze ans ni convenance personnelle n’est établie ; les frais de transaction, de change et la fiscalité restent non modélisés.",
+        "present": false
+      }
+    ],
+    "research_conflicts": [
+      {
+        "code": "optimization_empirical_results_differ",
+        "message": "Les conclusions empiriques sur optimisation et diversification diffèrent selon méthodes et protocoles ; aucune supériorité universelle n'est établie.",
+        "source_refs": [
+          "local-U001-69209d87100d",
+          "local-U002-7b20198165e6"
+        ],
+        "status": "context_dependent"
+      }
+    ],
+    "independent_historical_endpoints": {
+      "method": "V0 × sum(initial_weight × endpoint_CAD_adjusted_price / initial_CAD_adjusted_price)",
+      "data_directory": "/Users/vpro/Documents/ChatGPT/CALIBRE/Datathon_AlphaForge/data/alphaforge_starter",
+      "start": "2021-11-12",
+      "end": "2026-11-12",
+      "checks": [
+        {
+          "option": "baseline",
+          "independent_ending_cad": 44515.75141219115,
+          "recorded_ending_cad": 44515.75,
+          "absolute_error_cad": 0.0014121911517577246,
+          "independent_return_pct": 78.0630056487646
+        },
+        {
+          "option": "target_variant",
+          "independent_ending_cad": 46874.02232082809,
+          "recorded_ending_cad": 46874.02,
+          "absolute_error_cad": 0.0023208280908875167,
+          "independent_return_pct": 87.49608928331236
+        }
+      ],
+      "scope": "Saved adjusted-price convention only; no proof of provider data economics or future performance."
+    },
+    "limitations_of_audit": [
+      "No new inference; recomputation uses the current deterministic finance implementation.",
+      "A changed local technical note may no longer hash to the historical evidence capture.",
+      "Identical finance results do not measure decision quality, user understanding or retrieval recall."
+    ]
+  }
+}

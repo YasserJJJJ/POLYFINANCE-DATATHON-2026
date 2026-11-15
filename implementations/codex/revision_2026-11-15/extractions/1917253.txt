@@ -1,0 +1,167 @@
+
+
+## PAGE 1
+
+Event dashboard
+Construire des agents
+MCP
+MCP
+MCP est un standard ouvert pour exposer des outils à des agents IA. Vous pointez votre agent vers un serveur MCP, et le serveur lui fournit un ensemble d'outils
+prêts à l'emploi pour le système qui se trouve derrière.
+L'intérêt pendant le Datathon : quelqu'un a déjà écrit l'intégration. Il existe des serveurs MCP pour la documentation AWS, des bases de données, des systèmes de
+ﬁchiers, GitHub, des navigateurs et bien d'autres. Connectez-en un et votre agent gagne ces capacités en quelques lignes de conﬁguration.
+Serveur MCP
+Un processus qui expose des outils (et parfois des données) via le protocole
+Client MCP
+Votre agent, connecté à un ou plusieurs serveurs
+Transport
+Le moyen de communication : stdio pour un sous-processus local, HTTP en streaming pour un serveur distant
+Votre agent demande au serveur la liste de ses outils, puis les appelle. Vous n'écrivez jamais les schémas des outils : le serveur les publie.
+Strands prend en charge MCP directement. Le cas le plus simple est un serveur distant en HTTP :
+Pour un serveur qui tourne comme sous-processus local (le cas le plus fréquent), passez une fonction de transport :
+Quand vous connectez plusieurs serveurs, ou un serveur qui a des dizaines d'outils, deux paramètres simpliﬁent les choses :
+Avec ce préﬁxe, l'agent voit les outils docs_search_documentation et docs_read_documentation. Les noms de tool_filters sont ceux du serveur, sans le
+préﬁxe.
+Le ﬁltrage compte plus qu'il n'y paraît. Un agent qui reçoit quarante outils choisit mal. Exposez les trois dont il a besoin.
+Cela vaut la peine si votre équipe a une API ou une base de données que plusieurs agents doivent utiliser, par exemple un service interne qui calcule les indicateurs
+de risque de vos personas. Pour un seul agent avec trois outils, de simples fonctions @tool dans Strands sont plus simples et plus rapides. Choisissez en
+conséquence.
+C'est l'usage de MCP le plus rentable et le moins coûteux en effort pendant le Datathon, et il n'a rien à voir avec l'agent que vous construisez. Votre assistant de
+programmation peut aussi utiliser des serveurs MCP. Pointez-le vers le serveur de documentation AWS et il cesse de deviner la forme des API :
+Kiro et Claude Code lisent tous deux une conﬁguration de cette forme. Voir Assistants de programmation IA pour l'emplacement du ﬁchier.
+Si votre projet a déjà une API REST ou une fonction Lambda, AgentCore Gateway la transforme en serveur MCP pour vous, sans code serveur à écrire. C'est la voie
+prévue pour connecter un agent à des systèmes que vous exploitez déjà. Voir AgentCore.
+Outils MCP dans Strands 
+Spéciﬁcation du Model Context Protocol 
+Serveurs MCP d'AWS sur GitHub 
+MCP : Model Context Protocol
+Le principe
+Terme
+Signiﬁcation
+Se connecter depuis Strands
+from strands import Agent
+from strands.tools.mcp import MCPClient
+mcp_client = MCPClient(url="http://localhost:8000/mcp")
+agent = Agent(model="global.amazon.nova-2-lite-v1:0", tools=[mcp_client])
+agent("Quels outils avez-vous à votre disposition ?")
+1
+2
+3
+4
+5
+6
+7
+from mcp import stdio_client, StdioServerParameters
+from strands import Agent
+from strands.tools.mcp import MCPClient
+# Le serveur MCP de documentation AWS, lancé à la demande avec uvx
+aws_docs = MCPClient(lambda: stdio_client(
+    StdioServerParameters(
+        command="uvx",
+        args=["awslabs.aws-documentation-mcp-server@latest"],
+    )
+))
+agent = Agent(model="global.amazon.nova-2-lite-v1:0", tools=[aws_docs])
+agent("Quels modèles peut-on utiliser avec Amazon Bedrock AgentCore Runtime ? "
+      "Répondez en trois phrases et citez l'URL de la documentation.")
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+Passer le MCPClient directement dans Agent(tools=[...]) laisse Strands gérer le cycle de vie de la connexion. Si vous ouvrez plutôt le client manuellement avec with
+mcp_client:, chaque appel à l'agent doit se faire à l'intérieur de ce bloc ; sinon vous obtenez MCPClientInitializationError. C'est l'erreur MCP la plus courante.
+Options utiles
+from mcp import stdio_client, StdioServerParameters
+from strands.tools.mcp import MCPClient
+aws_docs = MCPClient(
+    lambda: stdio_client(StdioServerParameters(
+        command="uvx", args=["awslabs.aws-documentation-mcp-server@latest"],
+    )),
+    prefix="docs",                                                       # évite les conflits de noms entre serveurs
+    tool_filters={"allowed": ["search_documentation", "read_documentation"]},   # masque les autres outils
+    startup_timeout=30,
+)
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+Écrire votre propre serveur MCP
+Si vous lancez un serveur MCP sur votre ordinateur, faites-le écouter sur 127.0.0.1 et non sur 0.0.0.0 : sinon il est joignable depuis le réseau Wi-Fi de l'événement.
+MCP dans votre assistant de programmation
+{
+  "mcpServers": {
+    "aws-docs": {
+      "command": "uvx",
+      "args": ["awslabs.aws-documentation-mcp-server@latest"]
+    },
+    "strands-agents": {
+      "command": "uvx",
+      "args": ["strands-agents-mcp-server"]
+    }
+  }
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+uvx fait partie de uv, un gestionnaire de paquets Python. Installez-le avec curl -LsSf https://astral.sh/uv/install.sh | sh si vous ne l'avez pas.
+AgentCore Gateway
+Pour aller plus loin
+Previous
+Next
+Accès AWS CLI et SDK
+L'IA générative sur AWS
+Votre premier appel de modèle
+Choisir un modèle
+Garde-fous
+Bases de connaissances et RAG
+Data Automation
+Construire des agents
+Fonctionnement des agents
+Strands Agents
+Amazon Bedrock AgentCore
+MCP
+Démarrages rapides
+Données ﬁnancières publiques
+Nettoyage et exportation
+Ressources
+AWS account access
+Open AWS console
+(us-east-1)
+Get AWS CLI credentials
+Share feedback
+Workshop catalog in AWS Builder
+Center
+Exit event
+AWS Workshop Studio
+adamlarhlimi2006
+© 2008 - 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+Privacy policy
+Terms of use
+Cookie preferences

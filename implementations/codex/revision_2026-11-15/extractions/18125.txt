@@ -1,0 +1,221 @@
+
+
+## PAGE 1
+
+Event dashboard
+Démarrages rapides
+Assistants de code IA
+Assistants de code IA
+Vous décrivez un résultat en langage courant. L'assistant planiﬁe, écrit les ﬁchiers, installe les dépendances, exécute le programme, lit les messages d'erreur et les
+corrige. Vous dirigez, il tape.
+Kiro
+Transformer une idée ﬂoue en plan, puis en application. Produit des exigences et une
+conception réutilisables dans votre documentation technique
+Niveau gratuit avec 50 crédits par mois, sur votre compte personnel.
+Lisez la page avant de compter dessus
+Claude
+Code
+Travail dans le terminal, changements plus importants, pilotage d'AWS par la CLI
+Facturé au token dans le compte AWS de l'équipe. Aucune
+inscription
+Codex
+Même usage que Claude Code, avec les modèles OpenAI sur Bedrock
+Facturé au token dans le compte AWS de l'équipe. Aucune
+inscription
+Le moins de conﬁguration : Claude Code ou Codex. Ils utilisent les identiﬁants AWS de votre équipe et facturent directement le compte de l'événement : pas
+d'abonnement, pas de licence, pas de budget de crédits à gérer.
+Le meilleur pour planiﬁer : Kiro. Utilisez-le pour produire les exigences et la conception, puis construisez avec l'un des trois.
+Les trois prennent en charge MCP, qui leur donne un accès direct à la documentation AWS. Ils cessent alors de deviner la forme des API. Faites-le : la qualité du code
+produit s'en ressent.
+Un parcours complet, à suivre tel quel. Chaque bloc est soit une commande à coller, soit un prompt à coller : vous n'écrivez aucune ligne de Python.
+Prévoyez environ 30 minutes pour une première version qui fonctionne.
+Travaillez sur votre ordinateur. L'application de ce parcours est une page web Streamlit, et CloudShell n'accepte aucune connexion entrante 
+ : vous ne pourriez pas
+l'ouvrir dans votre navigateur. CloudShell reste pratique pour des scripts et des commandes AWS.
+Dans la page de l'événement Workshop Studio, copiez les identiﬁants AWS CLI temporaires de votre compte et collez les commandes export dans votre terminal.
+Installez ensuite Claude Code (Node.js 22 ou plus récent) :
+S'il s'agit du premier appel à un modèle Anthropic dans votre compte, voir Claude Code sur Bedrock : une étape unique est nécessaire pour le compte, et un mentor
+AWS peut la faire en une minute.
+Vous préférez Kiro ou Codex ? Les prompts ci-dessous sont les mêmes. Remplacez seulement le nom du ﬁchier de règles de l'étape 2 : .kiro/steering/project.md
+pour Kiro, AGENTS.md pour Codex.
+Collez ceci comme premier message. Vous n'aurez pas à les répéter dans chaque prompt :
+Toute la construction tient en un prompt :
+Une fois l'application lancée, utilisez-la comme le ferait un investisseur et décrivez ce qui ne va pas. Exemples de prompts de suivi :
+Aucun de ces prompts ne parle de Python, de fonctions ou de ﬁchiers. Décrire le comportement voulu suffit.
+Avant la démo, demandez :
+Le dépôt de code avec README fait partie des livrables :
+Poussez-le ensuite dans le dépôt GitHub de votre équipe. Votre compte AWS est fermé le lundi 16 novembre à 13 h 59 ; votre dépôt GitHub reste. Voir Nettoyage et
+exportation.
+Décrivez le résultat, pas l'implémentation. « Une page où l'on choisit un persona et voit la volatilité d'un FNB en dollars canadiens » fonctionne. « Écris une fonction
+qui parcourt un DataFrame » fonctionne moins bien.
+Avancez par petites étapes et vériﬁez chacune. Demandez un comportement, testez-le, validez, faites un commit. Une session de 45 minutes sans supervision
+produit beaucoup de code qui ne fonctionne pas et que personne dans l'équipe ne comprend.
+Faites un commit avant chaque demande importante. Tout changement de l'IA devient facile à annuler, et vous pouvez demander de gros changements sans crainte.
+Quand l'assistant tourne en rond, ouvrez une nouvelle conversation. Les longues conversations accumulent de fausses hypothèses. Redécrivez l'objectif
+proprement au lieu d'argumenter.
+Donnez-lui la documentation. Connectez le serveur MCP de la documentation AWS : il cesse d'inventer des signatures d'API.
+Vériﬁez les chiffres. Un assistant peut se tromper dans un calcul de rendement ou de volatilité. Recalculez au moins un chiffre à la main ou dans un notebook avant
+de le montrer au jury.
+Assistants de code IA
+Si vous ne lisez qu'une page de cet atelier, lisez celle-ci. Construire un prototype en un week-end demande deux compétences : décrire ce que vous voulez et juger si le résultat
+est correct. Votre équipe a déjà les deux. L'assistant écrit le code.
+Lequel choisir
+Outil
+Idéal pour
+Ce qu'il vous coûte
+Construire une application sans écrire de code
+Étape 1 : un terminal et un assistant
+npm install -g @anthropic-ai/claude-code
+export CLAUDE_CODE_USE_BEDROCK=1
+export AWS_REGION=us-east-1
+export ANTHROPIC_MODEL='global.anthropic.claude-sonnet-5'
+mkdir alphaforge-demo && cd alphaforge-demo
+claude
+1
+2
+3
+4
+5
+6
+7
+Étape 2 : donner les règles du projet, une seule fois
+Crée un fichier CLAUDE.md dans ce dossier avec ces règles de projet :
+- La région AWS est toujours us-east-1.
+- Utilise Amazon Bedrock via boto3 et l'API Converse. N'utilise jamais InvokeModel.
+- Modèle par défaut : global.amazon.nova-2-lite-v1:0
+- Pour les étapes qui demandent plus de raisonnement : global.anthropic.claude-sonnet-5
+- Dans une réponse Converse, ne lis jamais content[0]["text"] : concatène tous les
+  blocs qui contiennent "text". Certains modèles renvoient d'abord un bloc de raisonnement.
+- Données de marché : yfinance pour les prix, API Valet de la Banque du Canada pour FXUSDCAD.
+  Mets les données téléchargées en cache dans data/ (CSV) pour que la démo fonctionne
+  même si le réseau est lent.
+- Chaque chiffre affiché indique sa source et sa date.
+- Les profils d'investisseurs (Prudent, Équilibré, Audacieux) sont fictifs et vivent
+  dans profiles.py.
+- Simulation uniquement : aucune transaction réelle, aucun conseil financier personnalisé.
+  L'application affiche un avertissement en ce sens.
+- Prototype de datathon : une démo qui fonctionne passe avant les couches d'abstraction.
+- La démo se lance avec : streamlit run app.py --server.address localhost
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+Étape 3 : demander l'application
+Construis une application Streamlit app.py qui aide à comprendre le risque d'un actif
+selon un profil d'investisseur.
+Comportement :
+- Un sélecteur de persona (Prudent, Équilibré, Audacieux) et une zone de texte où
+  l'utilisateur pose une question, par exemple « XIU.TO ou SPY pour un profil prudent
+  sur 3 ans ? Compare en dollars canadiens. »
+- Appelle Amazon Bedrock avec l'API Converse et donne au modèle deux outils :
+    get_risk_metrics(symbol, years) -> rendement annualisé, volatilité annualisée et
+      perte maximale, calculés sur la clôture ajustée (yfinance)
+    get_usdcad(date) -> taux FXUSDCAD de la Banque du Canada à cette date ou avant
+- Le modèle explique ce que les chiffres signifient pour le persona choisi, en séparant
+  les faits (chiffres calculés), les hypothèses et les limites.
+- Affiche la réponse, puis en dessous les outils appelés, leurs arguments et leurs
+  résultats, pour qu'on voie d'où viennent les chiffres.
+- Gère les erreurs (symbole inconnu, réseau indisponible) sans afficher de trace brute.
+Crée requirements.txt, installe les dépendances, puis lance l'application et corrige
+tout ce qui casse jusqu'à ce qu'elle fonctionne.
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+La dernière phrase est la plus importante. « Lance-la et corrige tout ce qui casse » permet à l'assistant de boucler seul : il exécute le code, lit la vraie erreur et la répare. Sans cette
+consigne, c'est vous qui transportez les messages d'erreur, et c'est là que les équipes se découragent.
+Étape 4 : l'essayer, puis l'améliorer en langage courant
+La réponse est trop longue. Limite-la à cinq phrases et cite toujours la période et la source des chiffres.
+1
+Ajoute une vue qui compare côte à côte la réponse pour le persona Prudent et pour le
+persona Audacieux sur la même question, pour montrer ce qui change selon le profil.
+1
+2
+Quand une donnée manque ou qu'un symbole n'existe pas, dis-le clairement et propose
+de reformuler, au lieu d'inventer un chiffre.
+1
+2
+Étape 5 : comprendre ce que vous avez construit
+Explique ce que fait cette application, fichier par fichier, pour une personne non technique.
+Puis liste les trois choses les plus susceptibles de casser pendant une démo en direct.
+1
+2
+Le jury vous demandera comment ça marche. « L'IA l'a écrit » est une mauvaise réponse. L'assistant est un bon tuteur : faites-vous expliquer votre propre projet jusqu'à pouvoir le
+présenter avec assurance.
+Étape 6 : le sauvegarder et préparer le dépôt
+Initialise un dépôt git, ajoute un .gitignore adapté à Python (exclus data/ et tout
+fichier d'identifiants), et fais un premier commit. Puis écris un README.md avec : le
+problème traité, les dépendances, les sources de données et leurs licences, la
+configuration (région, modèles) et les instructions pour lancer la démo.
+1
+2
+3
+4
+Les habitudes qui font la différence
+Ne collez jamais de données bancaires ou personnelles réelles, d'identiﬁants ou de clés d'accès dans un assistant IA. Voir Utilisation responsable.
+Previous
+Next
+Accès AWS CLI et SDK
+L'IA générative sur AWS
+Votre premier appel de modèle
+Choisir un modèle
+Garde-fous
+Bases de connaissances et RAG
+Data Automation
+Construire des agents
+Fonctionnement des agents
+Strands Agents
+Amazon Bedrock AgentCore
+MCP
+Démarrages rapides
+Bucket S3
+Assistants de code IA
+Kiro
+Claude Code sur Bedrock
+Codex sur Bedrock
+Données ﬁnancières publiques
+Nettoyage et exportation
+Ressources
+AWS account access
+Open AWS console
+(us-east-1)
+Get AWS CLI credentials
+Share feedback
+Workshop catalog in AWS Builder
+Center
+Exit event
+AWS Workshop Studio
+adamlarhlimi2006
+© 2008 - 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+Privacy policy
+Terms of use
+Cookie preferences

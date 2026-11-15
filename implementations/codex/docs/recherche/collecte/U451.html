@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta content="Learn about the AWS CLI 2.40.3 lambda commands." name="description" />
+
+  
+    <title>lambda &#8212; AWS CLI 2.40.3 Command Reference</title>
+  <link rel="stylesheet" type="text/css" href="../../_static/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/override.css" />
+  <script src="/SdkStatic/sdk-priv.js" async="true"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/guzzle.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="add-layer-version-permission" href="add-layer-version-permission.html" />
+    <link rel="prev" title="update-table-storage-optimizer" href="../lakeformation/update-table-storage-optimizer.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-responsive.min.css" />
+  
+   
+
+<link rel="alternate" type="text/markdown" href="index.md" title="Markdown version" />
+  </head><body>
+  <div class="navbar navbar-fixed-top ">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="../../index.html">AWS CLI Command Reference</a>
+        <ul class="nav">
+<li><a class="nav-link" href="../../index.html">Home</a></li>
+<li><a class="nav-link" href="https://docs.aws.amazon.com/cli/latest/userguide/">User Guide</a></li>
+<li><a class="nav-link" href="https://forums.aws.amazon.com/forum.jspa?forumID=150">Forum</a></li>
+<li><a class="nav-link" href="https://github.com/aws/aws-cli">GitHub</a></li>
+        </ul>
+        <div class="pull-right" id="github-stars">
+          <iframe src="https://ghbtns.com/github-btn.html?user=aws&repo=aws-cli&type=watch&count=true&size=small"
+                  allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20px"  sandbox="allow-scripts"
+                  title="GitHub button showing the number of project stars."></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--REGION_DISCLAIMER_DO_NOT_REMOVE-->
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="add-layer-version-permission.html" title="add-layer-version-permission"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../lakeformation/update-table-storage-optimizer.html" title="update-table-storage-optimizer"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">AWS CLI 2.40.3 Command Reference</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">aws</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">lambda</a></li> 
+      </ul>
+    </div>
+    <div class="container">
+        
+    <div class="top-links">
+      <ul class="breadcrumb pull-right">
+        <li>
+          <a href="../lakeformation/update-table-storage-optimizer.html" title="previous chapter (use the left arrow)">&larr; update-table-storage-optimizer</a>
+          <span class="divider">/</span>
+          
+        </li>
+          <li><a href="add-layer-version-permission.html" title="next chapter (use the right arrow)">add-layer-version-permission &rarr;</a></li>
+      </ul>
+    </div>
+  
+        <div class="document clearer">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo left-bar-other">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/logo.png" alt="Amazon Web Services logo" height="63" />
+  </a>
+</p>
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">lambda</a><ul>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#available-commands">Available Commands</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+<div id="searchbox" style="display: none">
+    <h3>Quick search</h3>
+    <form class="form-search margin-top-1em" action="../../search.html" method="get">
+        <label for="searchbox">Search box</label>
+        <input id="searchbox" type="search" name="q" style="width: 105px" class="input-small search-query" autocomplete="off" />
+        <button type="submit" class="btn btn-small">Search</button>
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script src="../../_static/searchbox.js"></script><div class="left-bar-other">
+  <h3>Feedback</h3>
+  <p class="feedback">Did you find this page useful? Do you have a suggestion to improve the documentation? <a href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=AWS%20Command%20Line%20Interface&hidden_guide_name=Reference&topic_url=https%3A%2F%2Fdocs.aws.amazon.com%2Fcli%2Flatest%2Freference/lambda/index.html">Give us feedback</a>.
+    <br />
+    If you would like to suggest an improvement or fix for the AWS CLI, check out our <a href="https://github.com/aws/aws-cli/blob/v2/CONTRIBUTING.rst">contributing guide</a> on GitHub.</p>
+</div><div class="left-bar-other">
+  <h3>User Guide</h3>
+  <p>First time using the AWS CLI? See the
+  <a href="https://docs.aws.amazon.com/cli/latest/userguide/">User Guide</a> for
+  help getting started.</p>
+</div>
+        </div>
+      </div>
+            <div class="body">
+              
+  <p>[ <a class="reference internal" href="../index.html#cli-aws"><span class="std std-ref">aws</span></a> ]</p>
+<div class="section" id="lambda">
+<span id="cli-aws-lambda"></span><h1>lambda<a class="headerlink" href="#lambda" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<blockquote>
+<div><strong>Overview</strong></div></blockquote>
+<p>Lambda is a compute service that lets you run code without provisioning or managing servers. Lambda runs your code on a high-availability compute infrastructure and performs all of the administration of the compute resources, including server and operating system maintenance, capacity provisioning and automatic scaling, code monitoring and logging. With Lambda, you can run code for virtually any type of application or backend service. For more information about the Lambda service, see <a class="reference external" href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">What is Lambda</a> in the <strong>Lambda Developer Guide</strong> .</p>
+<p>Lambda Event Functions, previously known as Lambda functions, run your code in response to events and API calls. In the Lambda API, the Amazon Web Services SDKs, and the CLI, Event Functions are still called <em>functions</em> , for example in <code class="docutils literal notranslate"><span class="pre">CreateFunction</span></code> and <code class="docutils literal notranslate"><span class="pre">Invoke</span></code> . You don’t need to change any existing code.</p>
+<p>The <em>Lambda API Reference</em> provides information about each of the API methods for Lambda Event Functions, including details about the parameters in each API request and response.</p>
+<p>You can use Software Development Kits (SDKs), Integrated Development Environment (IDE) Toolkits, and command line tools to access the API. For installation instructions, see <a class="reference external" href="http://aws.amazon.com/tools/">Tools for Amazon Web Services</a> .</p>
+<p>For a list of Region-specific endpoints that Lambda supports, see <a class="reference external" href="https://docs.aws.amazon.com/general/latest/gr/lambda-service.html">Lambda endpoints and quotas</a> in the <em>Amazon Web Services General Reference.</em> .</p>
+<p>When making the API calls, you will need to authenticate your request by providing a signature. Lambda supports signature version 4. For more information, see <a class="reference external" href="https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html">Signature Version 4 signing process</a> in the <em>Amazon Web Services General Reference.</em> .</p>
+<blockquote>
+<div><strong>CA certificates</strong></div></blockquote>
+<p>Because Amazon Web Services SDKs use the CA certificates from your computer, changes to the certificates on the Amazon Web Services servers can cause connection failures when you attempt to use an SDK. You can prevent these failures by keeping your computer’s CA certificates and operating system up-to-date. If you encounter this issue in a corporate environment and do not manage your own computer, you might need to ask an administrator to assist with the update process. The following list shows minimum operating system and Java versions:</p>
+<ul class="simple">
+<li>Microsoft Windows versions that have updates from January 2005 or later installed contain at least one of the required CAs in their trust list.</li>
+<li>Mac OS X 10.4 with Java for Mac OS X 10.4 Release 5 (February 2007), Mac OS X 10.5 (October 2007), and later versions contain at least one of the required CAs in their trust list.</li>
+<li>Red Hat Enterprise Linux 5 (March 2007), 6, and 7 and CentOS 5, 6, and 7 all contain at least one of the required CAs in their default trusted CA list.</li>
+<li>Java 1.4.2_12 (May 2006), 5 Update 2 (March 2005), and all later versions, including Java 6 (December 2006), 7, and 8, contain at least one of the required CAs in their default trusted CA list.</li>
+</ul>
+<p>When accessing the Lambda management console or Lambda API endpoints, whether through browsers or programmatically, you will need to ensure your client machines support any of the following CAs:</p>
+<ul class="simple">
+<li>Amazon Root CA 1</li>
+<li>Starfield Services Root Certificate Authority - G2</li>
+<li>Starfield Class 2 Certification Authority</li>
+</ul>
+<p>Root certificates from the first two authorities are available from <a class="reference external" href="https://www.amazontrust.com/repository/">Amazon trust services</a> , but keeping your computer up-to-date is the more straightforward solution. To learn more about ACM-provided certificates, see <a class="reference external" href="http://aws.amazon.com/certificate-manager/faqs/#certificates">Amazon Web Services Certificate Manager FAQs.</a></p>
+</div>
+<div class="section" id="available-commands">
+<h2>Available Commands<a class="headerlink" href="#available-commands" title="Permalink to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="add-layer-version-permission.html">add-layer-version-permission</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add-permission.html">add-permission</a></li>
+<li class="toctree-l1"><a class="reference internal" href="checkpoint-durable-execution.html">checkpoint-durable-execution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-alias.html">create-alias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-capacity-provider.html">create-capacity-provider</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-code-signing-config.html">create-code-signing-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-event-source-mapping.html">create-event-source-mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-function.html">create-function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-function-url-config.html">create-function-url-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-alias.html">delete-alias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-capacity-provider.html">delete-capacity-provider</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-code-signing-config.html">delete-code-signing-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-event-source-mapping.html">delete-event-source-mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-function.html">delete-function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-function-code-signing-config.html">delete-function-code-signing-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-function-concurrency.html">delete-function-concurrency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-function-event-invoke-config.html">delete-function-event-invoke-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-function-url-config.html">delete-function-url-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-layer-version.html">delete-layer-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-provisioned-concurrency-config.html">delete-provisioned-concurrency-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-resource-policy.html">delete-resource-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-account-settings.html">get-account-settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-alias.html">get-alias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-capacity-provider.html">get-capacity-provider</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-code-signing-config.html">get-code-signing-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-durable-execution.html">get-durable-execution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-durable-execution-history.html">get-durable-execution-history</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-durable-execution-state.html">get-durable-execution-state</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-event-source-mapping.html">get-event-source-mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-function.html">get-function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-function-code-signing-config.html">get-function-code-signing-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-function-concurrency.html">get-function-concurrency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-function-configuration.html">get-function-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-function-event-invoke-config.html">get-function-event-invoke-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-function-recursion-config.html">get-function-recursion-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-function-scaling-config.html">get-function-scaling-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-function-url-config.html">get-function-url-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-layer-version.html">get-layer-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-layer-version-by-arn.html">get-layer-version-by-arn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-layer-version-policy.html">get-layer-version-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-policy.html">get-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-provisioned-concurrency-config.html">get-provisioned-concurrency-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-resource-policy.html">get-resource-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-runtime-management-config.html">get-runtime-management-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="invoke.html">invoke</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-aliases.html">list-aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-capacity-providers.html">list-capacity-providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-code-signing-configs.html">list-code-signing-configs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-durable-executions-by-function.html">list-durable-executions-by-function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-event-source-mappings.html">list-event-source-mappings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-function-event-invoke-configs.html">list-function-event-invoke-configs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-function-url-configs.html">list-function-url-configs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-function-versions-by-capacity-provider.html">list-function-versions-by-capacity-provider</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-functions.html">list-functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-functions-by-code-signing-config.html">list-functions-by-code-signing-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-layer-versions.html">list-layer-versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-layers.html">list-layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-provisioned-concurrency-configs.html">list-provisioned-concurrency-configs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-tags.html">list-tags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-versions-by-function.html">list-versions-by-function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="publish-layer-version.html">publish-layer-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="publish-version.html">publish-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-function-code-signing-config.html">put-function-code-signing-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-function-concurrency.html">put-function-concurrency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-function-event-invoke-config.html">put-function-event-invoke-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-function-recursion-config.html">put-function-recursion-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-function-scaling-config.html">put-function-scaling-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-provisioned-concurrency-config.html">put-provisioned-concurrency-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-resource-policy.html">put-resource-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-runtime-management-config.html">put-runtime-management-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="remove-layer-version-permission.html">remove-layer-version-permission</a></li>
+<li class="toctree-l1"><a class="reference internal" href="remove-permission.html">remove-permission</a></li>
+<li class="toctree-l1"><a class="reference internal" href="send-durable-execution-callback-failure.html">send-durable-execution-callback-failure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="send-durable-execution-callback-heartbeat.html">send-durable-execution-callback-heartbeat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="send-durable-execution-callback-success.html">send-durable-execution-callback-success</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stop-durable-execution.html">stop-durable-execution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tag-resource.html">tag-resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="untag-resource.html">untag-resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-alias.html">update-alias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-capacity-provider.html">update-capacity-provider</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-code-signing-config.html">update-code-signing-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-event-source-mapping.html">update-event-source-mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-function-code.html">update-function-code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-function-configuration.html">update-function-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-function-event-invoke-config.html">update-function-event-invoke-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-function-url-config.html">update-function-url-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wait/index.html">wait</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wizard/index.html">wizard</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+            </div>
+          <div class="clearfix"></div>
+        </div>
+        
+    <div class="footer-links">
+      <ul class="breadcrumb pull-right">
+        <li>
+          <a href="../lakeformation/update-table-storage-optimizer.html" title="previous chapter (use the left arrow)">&larr; update-table-storage-optimizer</a>
+          <span class="divider">/</span>
+          
+        </li>
+          <li><a href="add-layer-version-permission.html" title="next chapter (use the right arrow)">add-layer-version-permission &rarr;</a></li>
+      </ul>
+    </div>
+  
+
+    </div>
+  <script type="text/javascript" src="https://media.amazonwebservices.com/js/sitecatalyst/s_code.min.js"></script>
+  <script type="text/javascript" src="../../_static/analytics.js"></script>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="add-layer-version-permission.html" title="add-layer-version-permission"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../lakeformation/update-table-storage-optimizer.html" title="update-table-storage-optimizer"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">AWS CLI 2.40.3 Command Reference</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >aws</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">lambda</a></li> 
+      </ul>
+    </div>
+  <div class="footer container">
+    &copy; Copyright 2026, Amazon Web Services. Created using <a href="https://www.sphinx-doc.org/">Sphinx</a>.
+  </div>
+
+
+
+  
+    
+  
+  </body>
+</html>

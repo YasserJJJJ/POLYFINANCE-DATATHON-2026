@@ -1,0 +1,426 @@
+GitHub - virattt/ai-hedge-fund: An AI Hedge Fund Team · GitHub 
+
+ Skip to content 
+
+Navigation Menu
+
+ Sign in 
+
+ Products 
+
+ Platform 
+ GitHub Repository hosting, code review, and collaboration 
+
+ Copilot AI coding agent for tasks, projects, and automated work 
+
+ Build & Ship 
+ Actions CI/CD and automation 
+
+ Code Quality Quality analysis, fixes, and enforcement 
+
+ Codespaces Cloud development environments 
+
+ Secure 
+ Code Security Vulnerability detection and remediation 
+
+ Secret Protection Secret scanning and leak prevention 
+
+ All Features 
+
+ Developers 
+
+ Learn 
+ Documentation 
+
+ Training 
+
+ Certifications 
+
+ Build 
+ Build with Copilot 
+
+ Customize Copilot 
+
+ Integrations 
+
+ Explore 
+ Trending repos 
+
+ GitHub Sponsors 
+
+ Developer articles 
+
+ Changelog 
+ Changelog Your source for the latest features, improvements, and fixes across GitHub products, all in one place. 
+
+ Businesses 
+
+ By Stage 
+ Enterprises 
+
+ Team 
+
+ Startups 
+
+ Nonprofits 
+
+ By Industry 
+ Healthcare 
+
+ Financial services 
+
+ Manufacturing 
+
+ Government 
+
+ See all industries 
+
+ Evaluate GitHub 
+ Why GitHub 
+
+ Customer Stories 
+
+ Business insights 
+
+ Trust Center 
+
+ Add-ons 
+ GitHub Advanced Security Enterprise-grade code security 
+
+ Copilot for business Enterprise-grade AI features 
+
+ Premium Support Enterprise-grade 24/7 support 
+
+ Resources 
+
+ Learn & Connect 
+ Documentation 
+
+ Resource center 
+
+ Blog 
+
+ Events & webinars 
+
+ Community Forum 
+
+ Customer Stories 
+
+ Integrations 
+
+ Support 
+ Customer support 
+
+ Training 
+
+ GitHub Status 
+
+ Company 
+ About 
+
+ Partners 
+
+ Changelog 
+
+ GitHub Universe 
+ GitHub Universe The event for developers, by developers — talks, workshops, and what’s next for GitHub. 
+
+ Pricing 
+
+ Search / 
+
+ Sign in 
+ Sign up 
+Appearance settings
+
+ You signed in with another tab or window. Reload to refresh your session. 
+ You signed out in another tab or window. Reload to refresh your session. 
+ You switched accounts on another tab or window. Reload to refresh your session. 
+
+ Dismiss alert 
+
+{{ message }}
+
+ virattt 
+
+ ai-hedge-fund 
+
+Repository navigation
+
+ Code 
+
+ Issues 64  ( 64 ) 
+
+ Pull requests 129  ( 129 ) 
+
+ Actions 
+
+ Projects 
+
+ Security and quality 
+
+ Insights 
+
+ More items 
+
+ ai-hedge-fund 
+ Public 
+
+ Notifications You must be signed in to change notification settings 
+
+ Fork 11.4k  ( 11.4k ) 
+
+ Star 64.7k  ( 64.7k ) You must be signed in to star a repository 
+
+ About 
+
+An AI Hedge Fund Team
+
+ Resources 
+
+ Readme 
+
+ MIT license 
+
+ Activity 
+
+ Stars 
+
+ 64.7k stars 
+
+ Watchers 
+
+ 657 watching 
+
+ Forks 
+
+ 11.4k forks 
+
+ Report repository 
+
+ main 
+
+ Branches Tags 
+
+ Go to file 
+
+ Code 
+ Open more actions menu 
+
+Latest commit
+
+History
+ 964 Commits 
+
+ 964 Commits 
+
+Folders and files
+
+ Name Name 
+ Last commit message 
+ 
+ Last commit date 
+
+ .github/ ISSUE_TEMPLATE 
+
+ .github/ ISSUE_TEMPLATE 
+
+ assets 
+
+ assets 
+
+ hedge_fund 
+
+ hedge_fund 
+
+ .env.example 
+
+ .env.example 
+
+ .gitignore 
+
+ .gitignore 
+
+ LICENSE 
+
+ LICENSE 
+
+ Makefile 
+
+ Makefile 
+
+ README.md 
+
+ README.md 
+
+ ROADMAP.md 
+
+ ROADMAP.md 
+
+ VISION.md 
+
+ VISION.md 
+
+ poetry.lock 
+
+ poetry.lock 
+
+ pyproject.toml 
+
+ pyproject.toml 
+
+ View all files 
+
+Repository files navigation
+
+ README 
+
+ MIT license 
+
+ More items 
+
+AI Hedge Fund
+
+This is a proof of concept for an AI-powered hedge fund. The goal of this project is to explore the use of AI to make trading decisions. This project is for educational purposes only and is not intended for real trading or investment.
+
+Note: the system does not actually make any trades.
+
+Disclaimer
+
+This project is for educational and research purposes only .
+
+Not intended for real trading or investment
+
+No investment advice or guarantees provided
+
+Creator assumes no liability for financial losses
+
+Consult a financial advisor for investment decisions
+
+Past performance does not indicate future results
+
+By using this software, you agree to use it solely for learning purposes.
+
+How to Install
+
+ pipx install aihf 
+
+(or uv tool install aihf , or pip install aihf into an environment of your choice)
+
+Then run it from anywhere:
+
+ aihf 
+
+API keys
+
+The app asks for keys the first time it needs them and saves them to ~/.hedge-fund/.env — nothing to configure up front. It needs:
+
+A Financial Datasets API key, for prices, fundamentals, and earnings. Or, instead of a key, the private key of a Base wallet holding USDC: every call then pays for itself with x402 ( pip install 'aihf[x402]' ; last 365 days of data, non-professional use).
+
+One model API key for the investor agents. Supported providers: Anthropic, OpenAI, DeepSeek, Google, xAI, Kimi, TypeSafe (Jev).
+
+Keys exported in your shell always win over the saved file.
+
+How to Run
+
+Interactive app
+
+ aihf 
+
+With no arguments, this launches the interactive terminal app. It has two modes:
+
+ Paper trading — your funds, each with a ledger of real market days and fake money. Highlight a fund to see what its next run will do; press enter to run it through the next completed session (an approval step shows the exact decision about to execute before anything trades), s for its full session history, h / r for the kill switch. Build a new fund from the same list: strategies, capital, cadence, tickers, and it is live. Every session is appended to a hash-chained ledger in ~/.hedge-fund/paper/<name>/ , so NAV is a track record, not a reset.
+
+ Backtesting — replay a fund over history and watch its equity curve draw against its benchmark. Results are saved to ~/.hedge-fund/research/ . Fund definitions live in ~/.hedge-fund/mandates/ and carry no tickers; you pick the universe per backtest.
+
+Development
+
+ git clone https://github.com/virattt/ai-hedge-fund.git
+ cd ai-hedge-fund
+poetry install
+poetry run aihf
+poetry run pytest hedge_fund 
+
+How to Contribute
+
+Fork the repository
+
+Create a feature branch
+
+Commit your changes
+
+Push to the branch
+
+Create a Pull Request
+
+ Important : Please keep your pull requests small and focused. This will make it easier to review and merge.
+
+Feature Requests
+
+If you have a feature request, please open an issue and make sure it is tagged with enhancement .
+
+License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+ About 
+
+An AI Hedge Fund Team
+
+ Resources 
+
+ Readme 
+
+ MIT license 
+
+ Activity 
+
+ Stars 
+
+ 64.7k stars 
+
+ Watchers 
+
+ 657 watching 
+
+ Forks 
+
+ 11.4k forks 
+
+ Report repository 
+
+ Releases 
+
+ Packages 
+
+ Used by 
+
+ Contributors 
+
+ Languages 
+
+Footer
+
+ © 2026 GitHub, Inc.
+
+Footer navigation
+
+ Terms 
+
+ Privacy 
+
+ Security 
+
+ Status 
+
+ Community 
+
+ Docs 
+
+ Contact 
+
+ Manage cookies
+
+ Do not share my personal information
+
+ You can’t perform that action at this time.

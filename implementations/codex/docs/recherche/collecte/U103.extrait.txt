@@ -1,0 +1,380 @@
+GitHub - coinmetrics/data: Archives of data produced by coinmetrics.io · GitHub 
+
+ Skip to content 
+
+Navigation Menu
+
+ Sign in 
+
+ Products 
+
+ Platform 
+ GitHub Repository hosting, code review, and collaboration 
+
+ Copilot AI coding agent for tasks, projects, and automated work 
+
+ Build & Ship 
+ Actions CI/CD and automation 
+
+ Code Quality Quality analysis, fixes, and enforcement 
+
+ Codespaces Cloud development environments 
+
+ Secure 
+ Code Security Vulnerability detection and remediation 
+
+ Secret Protection Secret scanning and leak prevention 
+
+ All Features 
+
+ Developers 
+
+ Learn 
+ Documentation 
+
+ Training 
+
+ Certifications 
+
+ Build 
+ Build with Copilot 
+
+ Customize Copilot 
+
+ Integrations 
+
+ Explore 
+ Trending repos 
+
+ GitHub Sponsors 
+
+ Developer articles 
+
+ Changelog 
+ Changelog Your source for the latest features, improvements, and fixes across GitHub products, all in one place. 
+
+ Businesses 
+
+ By Stage 
+ Enterprises 
+
+ Team 
+
+ Startups 
+
+ Nonprofits 
+
+ By Industry 
+ Healthcare 
+
+ Financial services 
+
+ Manufacturing 
+
+ Government 
+
+ See all industries 
+
+ Evaluate GitHub 
+ Why GitHub 
+
+ Customer Stories 
+
+ Business insights 
+
+ Trust Center 
+
+ Add-ons 
+ GitHub Advanced Security Enterprise-grade code security 
+
+ Copilot for business Enterprise-grade AI features 
+
+ Premium Support Enterprise-grade 24/7 support 
+
+ Resources 
+
+ Learn & Connect 
+ Documentation 
+
+ Resource center 
+
+ Blog 
+
+ Events & webinars 
+
+ Community Forum 
+
+ Customer Stories 
+
+ Integrations 
+
+ Support 
+ Customer support 
+
+ Training 
+
+ GitHub Status 
+
+ Company 
+ About 
+
+ Partners 
+
+ Changelog 
+
+ GitHub Universe 
+ GitHub Universe The event for developers, by developers — talks, workshops, and what’s next for GitHub. 
+
+ Pricing 
+
+ Search / 
+
+ Sign in 
+ Sign up 
+Appearance settings
+
+ You signed in with another tab or window. Reload to refresh your session. 
+ You signed out in another tab or window. Reload to refresh your session. 
+ You switched accounts on another tab or window. Reload to refresh your session. 
+
+ Dismiss alert 
+
+{{ message }}
+
+ coinmetrics 
+
+ data 
+
+Repository navigation
+
+ Code 
+
+ Issues 2  ( 2 ) 
+
+ Pull requests 
+
+ Actions 
+
+ Projects 
+
+ Security and quality 
+
+ Insights 
+
+ More items 
+
+ data 
+ Public 
+
+ Notifications You must be signed in to change notification settings 
+
+ Fork 24  ( 24 ) 
+
+ Star 59  ( 59 ) You must be signed in to star a repository 
+
+ About 
+
+Archives of data produced by coinmetrics.io
+
+ Topics 
+
+ blockchain 
+
+ Resources 
+
+ Readme 
+
+ License 
+
+ Activity 
+
+ Custom properties 
+
+ Stars 
+
+ 59 stars 
+
+ Watchers 
+
+ 3 watching 
+
+ Forks 
+
+ 24 forks 
+
+ Report repository 
+
+ master 
+
+ Branches Tags 
+
+ Go to file 
+
+ Code 
+ Open more actions menu 
+
+Latest commit
+
+History
+ 65 Commits 
+
+ 65 Commits 
+
+Folders and files
+
+ Name Name 
+ Last commit message 
+ 
+ Last commit date 
+
+ .idea 
+
+ .idea 
+
+ csv 
+
+ csv 
+
+ scripts 
+
+ scripts 
+
+ .gitignore 
+
+ .gitignore 
+
+ .gitlab-ci.yml 
+
+ .gitlab-ci.yml 
+
+ LICENSE 
+
+ LICENSE 
+
+ README.md 
+
+ README.md 
+
+ View all files 
+
+Repository files navigation
+
+ README 
+
+ License 
+
+ More items 
+
+Free Coin Metrics data archives
+
+These data archives are produced using free Community tier of Coin Metrics API .
+
+Scripts for data generation are in scripts directory.
+
+Available data
+
+CSV archives
+
+This data is similar to Coin Metrics Community Data Downloads .
+
+Files:
+
+ csv/<coin>.csv - CSV file per coin with all available free metrics
+
+ https://github.com/coinmetrics/data/archive/refs/heads/master.zip - All CSV files in a zip archive
+
+The archives are updated daily.
+
+Stability
+
+We will try to keep the layout and file formats of this repository stable, but there is no guarantee. In particular, sets of available assets and metrics can be changed at any time.
+
+Environment variables
+
+ OUT - required - the output folder
+
+ THROTTLE - when set, throttles the requests to honor the rate limit
+
+ VERBOSE - when set, emits additional messages to STDOUT
+
+ ASSETS - generate files for the comma-separated list of assets (default: all assets)
+
+Example of a full local debug invocation to generate only BTC and ETH:
+
+ yarn --cwd scripts
+mkdir test 
+OUT=./test THROTTLE=1 VERBOSE=1 ASSETS=btc,eth node ./scripts/generate.js 
+
+License
+
+This data is published in the hope it will be useful, but without any warranty. You are using it at your own risk.
+
+Data is made available under the CC BY-NC 4.0 license.
+
+ About 
+
+Archives of data produced by coinmetrics.io
+
+ Topics 
+
+ blockchain 
+
+ Resources 
+
+ Readme 
+
+ License 
+
+ Activity 
+
+ Custom properties 
+
+ Stars 
+
+ 59 stars 
+
+ Watchers 
+
+ 3 watching 
+
+ Forks 
+
+ 24 forks 
+
+ Report repository 
+
+ Releases 
+
+ Packages 
+
+ Used by 
+
+ Contributors 
+
+ Languages 
+
+Footer
+
+ © 2026 GitHub, Inc.
+
+Footer navigation
+
+ Terms 
+
+ Privacy 
+
+ Security 
+
+ Status 
+
+ Community 
+
+ Docs 
+
+ Contact 
+
+ Manage cookies
+
+ Do not share my personal information
+
+ You can’t perform that action at this time.

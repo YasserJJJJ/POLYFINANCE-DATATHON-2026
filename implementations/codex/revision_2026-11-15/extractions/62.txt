@@ -1,0 +1,127 @@
+
+
+## PAGE 1
+
+Event dashboard
+Introduction à AWS
+Introduction à AWS
+Des pages de référence sur les services AWS que vous risquez le plus d'utiliser pendant le Datathon. Chacune explique ce qu'est le service, à quoi il peut servir pour le
+déﬁ et où trouver la documentation officielle.
+Une région est un lieu physique. us-east-1 correspond à la Virginie du Nord. Vos données, vos modèles et vos compartiments S3 sont dans une région, et par
+défaut, les ressources de régions différentes ne se voient pas. Restez dans us-east-1.
+Tout est une API. La console est un site Web qui appelle les mêmes API que l'AWS CLI et les SDK. Tout ce que vous pouvez faire en cliquant, vous pouvez le scripter.
+C'est pourquoi cet atelier vous montre des commandes plutôt que des captures d'écran. Une commande se partage aussi plus facilement avec un coéquipier qu'une
+explication de l'endroit où cliquer.
+Les permissions sont explicites et refusées par défaut. IAM décide qui peut faire quoi. Le compte de votre équipe dispose de permissions larges, donc IAM vous
+gênera rarement. Quand une commande échoue avec « not authorized », la réponse se trouve dans IAM.
+Classés selon la probabilité que vous en ayez besoin pendant le Datathon, pas par ordre alphabétique.
+Commencez ici
+Amazon Bedrock
+Des modèles de fondation derrière une seule API. Le cœur de la plupart des projets
+Bedrock
+Kiro
+L'agent d'IA d'AWS pour développer du logiciel. La façon dont beaucoup d'équipes écriront leur code
+Kiro
+Outils de développement
+Poste local, Streamlit, Claude Code, Codex, gestion de versions
+Outils de développement
+SageMaker Uniﬁed Studio
+JupyterLab et Code Editor dans le navigateur, avec le notebook d'introduction du Datathon
+SageMaker Uniﬁed Studio
+Quand votre projet le demande
+Amazon Quick
+Tableaux de bord et informatique décisionnelle avec agents (anciennement QuickSight)
+Quick
+AWS Lambda
+Exécuter du code sans serveur. La façon la plus rapide de donner une URL à votre démo
+Lambda
+Amazon S3
+Stockage d'objets. L'endroit où vivent vos données et vos ﬁchiers
+S3
+AWS IAM
+Qui a le droit de faire quoi
+IAM
+Probablement pas en 28 heures
+Présentés ici à titre de référence, et parce qu'un mentor pourrait vous y renvoyer. Les deux supposent un volume de données qu'un projet de ﬁn de semaine atteint
+rarement.
+AWS Glue
+Découvrir, cataloguer et transformer des données
+Glue
+Amazon Athena
+Exécuter du SQL directement sur des ﬁchiers dans S3
+Athena
+Appeler un modèle, garde-fous, RAG, extraction de documents et d'images
+L'IA générative sur AWS
+Strands, AgentCore, MCP
+Construire des agents
+Sources de données ﬁnancières publiques
+Données ﬁnancières publiques
+CloudShell, l'AWS CLI et les SDK
+Accès AWS CLI et SDK
+Mieux vaut le dire clairement : en environ 28 heures de travail, vous n'avez presque certainement pas besoin de provisionner un entrepôt de données, un cluster
+Spark, un cluster Kubernetes ou une tâche d'entraînement sur GPU. Les services gérés sans serveur (Bedrock, Lambda, S3) vous mènent beaucoup plus vite à une
+démo fonctionnelle, et le jury n'évalue pas votre infrastructure.
+Si vous attendez qu'un cluster démarre, arrêtez-vous et demandez à un mentor s'il existe un chemin plus court. C'est presque toujours le cas.
+Deux fonctionnalités de Bedrock méritent d'être connues, pour que vous puissiez les écarter en connaissance de cause :
+Bedrock Flows permet de relier des prompts, des bases de connaissances et des fonctions Lambda sur un canevas visuel. L'outil semble fait pour les personnes qui
+ne codent pas, et il l'est parfois. Mais il partage l'espace de noms d'API de Bedrock Agents Classic, fermé aux nouveaux clients en juillet 2026 : nous ne pouvons pas
+garantir qu'un compte fraîchement créé vous laissera en créer un. Demandez à un mentor de le tester avant de bâtir votre projet dessus. Un assistant de
+programmation par IA combiné à Strands vous mènera plus loin, avec moins d'inconnues.
+Bedrock Agents Classic, le service d'agents original de 2023, est en maintenance et fermé aux nouveaux clients. Si vous appelez CreateAgent depuis le compte de
+votre équipe, vous obtiendrez très probablement une AccessDeniedException. Utilisez plutôt AgentCore ou Strands seul.
+Introduction à AWS
+Ce sont des pages de référence, pas des tutoriels. Pour construire quelque chose, le code fonctionnel se trouve dans les sections L'IA générative sur AWS et Construire des agents.
+Les trois notions à retenir
+Les services de cette section
+Service
+En une ligne
+Page
+Service
+En une ligne
+Page
+Service
+En une ligne
+Page
+Sujets traités ailleurs dans l'atelier
+Sujet
+Où
+Ce dont vous n'avez probablement pas besoin
+Previous
+Next
+Polyfinances 2026
+Datathon PolyFinances 2026
+Commencer
+Utilisation responsable
+SageMaker Uniﬁed Studio et
+notebook d'introduction
+Introduction à AWS
+Amazon Bedrock
+Kiro
+Outils de développement
+Amazon Quick
+AWS Lambda
+Amazon S3
+AWS IAM
+AWS Glue
+Amazon Athena
+Accès AWS CLI et SDK
+L'IA générative sur AWS
+Construire des agents
+Démarrages rapides
+Données ﬁnancières publiques
+Nettoyage et exportation
+Ressources
+AWS account access
+Open AWS console
+(us-east-1)
+Get AWS CLI credentials
+Share feedback
+Workshop catalog in AWS Builder
+Center
+Exit event
+AWS Workshop Studio
+adamlarhlimi2006
+© 2008 - 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+Privacy policy
+Terms of use
+Cookie preferences

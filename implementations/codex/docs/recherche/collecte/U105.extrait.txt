@@ -1,0 +1,701 @@
+GitHub - bashtage/arch: ARCH models in Python · GitHub 
+
+ Skip to content 
+
+Navigation Menu
+
+ Sign in 
+
+ Products 
+
+ Platform 
+ GitHub Repository hosting, code review, and collaboration 
+
+ Copilot AI coding agent for tasks, projects, and automated work 
+
+ Build & Ship 
+ Actions CI/CD and automation 
+
+ Code Quality Quality analysis, fixes, and enforcement 
+
+ Codespaces Cloud development environments 
+
+ Secure 
+ Code Security Vulnerability detection and remediation 
+
+ Secret Protection Secret scanning and leak prevention 
+
+ All Features 
+
+ Developers 
+
+ Learn 
+ Documentation 
+
+ Training 
+
+ Certifications 
+
+ Build 
+ Build with Copilot 
+
+ Customize Copilot 
+
+ Integrations 
+
+ Explore 
+ Trending repos 
+
+ GitHub Sponsors 
+
+ Developer articles 
+
+ Changelog 
+ Changelog Your source for the latest features, improvements, and fixes across GitHub products, all in one place. 
+
+ Businesses 
+
+ By Stage 
+ Enterprises 
+
+ Team 
+
+ Startups 
+
+ Nonprofits 
+
+ By Industry 
+ Healthcare 
+
+ Financial services 
+
+ Manufacturing 
+
+ Government 
+
+ See all industries 
+
+ Evaluate GitHub 
+ Why GitHub 
+
+ Customer Stories 
+
+ Business insights 
+
+ Trust Center 
+
+ Add-ons 
+ GitHub Advanced Security Enterprise-grade code security 
+
+ Copilot for business Enterprise-grade AI features 
+
+ Premium Support Enterprise-grade 24/7 support 
+
+ Resources 
+
+ Learn & Connect 
+ Documentation 
+
+ Resource center 
+
+ Blog 
+
+ Events & webinars 
+
+ Community Forum 
+
+ Customer Stories 
+
+ Integrations 
+
+ Support 
+ Customer support 
+
+ Training 
+
+ GitHub Status 
+
+ Company 
+ About 
+
+ Partners 
+
+ Changelog 
+
+ GitHub Universe 
+ GitHub Universe The event for developers, by developers — talks, workshops, and what’s next for GitHub. 
+
+ Pricing 
+
+ Search / 
+
+ Sign in 
+ Sign up 
+Appearance settings
+
+ You signed in with another tab or window. Reload to refresh your session. 
+ You signed out in another tab or window. Reload to refresh your session. 
+ You switched accounts on another tab or window. Reload to refresh your session. 
+
+ Dismiss alert 
+
+{{ message }}
+
+ bashtage 
+
+ arch 
+
+Repository navigation
+
+ Code 
+
+ Issues 21  ( 21 ) 
+
+ Pull requests 11  ( 11 ) 
+
+ Actions 
+
+ Projects 
+
+ Wiki 
+
+ Security and quality 
+
+ Insights 
+
+ More items 
+
+ arch 
+ Public 
+
+ Notifications You must be signed in to change notification settings 
+
+ Fork 323  ( 323 ) 
+
+ Star 1.7k  ( 1.7k ) You must be signed in to star a repository 
+
+ About 
+
+ARCH models in Python
+
+ bashtage.github.io/arch/ 
+
+ Topics 
+
+ adf arch bootstrap df-gls dickey-fuller finance financial-econometrics forecasting garch model-confidence-set multiple-comparison-procedures phillips-perron reality-check risk spa time-series unit-root variance volatility 
+
+ Resources 
+
+ Readme 
+
+ License 
+
+ Security policy 
+
+ Security policy 
+
+ Activity 
+
+ Stars 
+
+ 1.7k stars 
+
+ Watchers 
+
+ 47 watching 
+
+ Forks 
+
+ 323 forks 
+
+ Report repository 
+
+ main 
+
+ Branches Tags 
+
+ Go to file 
+
+ Code 
+ Open more actions menu 
+
+Latest commit
+
+History
+ 2,121 Commits 
+
+ 2,121 Commits 
+
+Folders and files
+
+ Name Name 
+ Last commit message 
+ 
+ Last commit date 
+
+ .github 
+
+ .github 
+
+ arch 
+
+ arch 
+
+ ci 
+
+ ci 
+
+ doc 
+
+ doc 
+
+ examples 
+
+ examples 
+
+ .codacy.yml 
+
+ .codacy.yml 
+
+ .gitignore 
+
+ .gitignore 
+
+ LICENSE.md 
+
+ LICENSE.md 
+
+ README.md 
+
+ README.md 
+
+ SECURITY.md 
+
+ SECURITY.md 
+
+ azure-pipelines.yml 
+
+ azure-pipelines.yml 
+
+ codecov.yml 
+
+ codecov.yml 
+
+ meson.build 
+
+ meson.build 
+
+ meson.options 
+
+ meson.options 
+
+ pyproject.toml 
+
+ pyproject.toml 
+
+ View all files 
+
+Repository files navigation
+
+ README 
+
+ License 
+
+ Security 
+
+ More items 
+
+arch
+
+Autoregressive Conditional Heteroskedasticity (ARCH) and other tools for
+financial econometrics, written in Python (with Cython and/or Numba used
+to improve performance)
+
+ Metric 
+
+ Latest Release 
+
+ Continuous Integration 
+
+ Coverage 
+
+ Code Quality 
+
+ Citation 
+
+ Documentation 
+
+Module Contents
+
+ Univariate ARCH Models 
+
+ Unit Root Tests 
+
+ Cointegration Testing and Analysis 
+
+ Bootstrapping 
+
+ Multiple Comparison Tests 
+
+ Long-run Covariance Estimation 
+
+Python 3
+
+ arch is Python 3 only. Version 4.8 is the final version that supported Python 2.7.
+
+Documentation
+
+Documentation for the latest release is hosted on
+ GitHub Pages , and documentation from the
+main branch is at bashtage.github.io/arch/devel .
+
+More about ARCH
+
+More information about ARCH and related models is available in the notes and
+research available at Kevin Sheppard's site .
+
+Contributing
+
+Contributions are welcome. There are opportunities at many levels to contribute:
+
+Implement new volatility processes, distributions or tests
+
+Improve docstrings where unclear or with typos
+
+Provide examples, preferably in the form of IPython notebooks
+
+Examples
+
+Volatility Modeling
+
+Mean models
+
+Constant mean
+
+Heterogeneous Autoregression (HAR)
+
+Autoregression (AR)
+
+Moving Average (MA)
+
+Zero mean
+
+ARCH-in-mean
+
+Models with and without exogenous regressors
+
+Volatility models
+
+ARCH
+
+GARCH
+
+TARCH
+
+EGARCH
+
+APARCH
+
+NGARCH
+
+FIGARCH and FIAPARCH
+
+HARCH
+
+MIDAS Hyperbolic
+
+EWMA/RiskMetrics and RiskMetrics 2006
+
+Distributions
+
+Normal
+
+Student's T
+
+Skewed Student's T
+
+Generalized Error Distribution
+
+Diagnostics
+
+Residual diagnostics: excess kurtosis, Hill estimator and VaR ratio
+
+VaR backtests: Kupiec, Christoffersen and the Basel traffic light
+
+See the univariate volatility example notebook for a more complete overview.
+
+ import arch . data . sp500 
+ data = arch . data . sp500 . load ()
+ returns = 100 * data [ 'Adj Close' ]. pct_change (). dropna ()
+
+ from arch import arch_model 
+ am = arch_model ( returns )
+ res = am . fit () 
+
+Unit Root Tests
+
+Augmented Dickey-Fuller
+
+Dickey-Fuller GLS
+
+Phillips-Perron
+
+KPSS
+
+Zivot-Andrews
+
+Variance Ratio tests
+
+See the unit root testing example notebook 
+for examples of testing series for unit roots.
+
+Cointegration Testing and Analysis
+
+Tests
+
+Engle-Granger Test
+
+Phillips-Ouliaris Test
+
+Cointegration Vector Estimation
+
+Canonical Cointegrating Regression
+
+Dynamic OLS
+
+Fully Modified OLS
+
+See the cointegration testing example notebook 
+for examples of testing series for cointegration.
+
+Bootstrap
+
+Bootstraps
+
+IID Bootstrap
+
+Stationary Bootstrap
+
+Circular Block Bootstrap
+
+Moving Block Bootstrap
+
+Local Block Bootstrap
+
+Methods
+
+Confidence interval construction
+
+Covariance estimation
+
+Apply method to estimate model across bootstraps
+
+Generic Bootstrap iterator
+
+See the bootstrap example notebook 
+for examples of bootstrapping the Sharpe ratio and a Probit model from statsmodels.
+
+ # Import data 
+ import pandas as pd 
+ import numpy as np 
+ import arch . data . sp500 
+ sp500 = arch . data . sp500 . load ()
+ start = sp500 . index . min ()
+ end = sp500 . index . max ()
+ monthly_dates = pd . date_range ( start , end , freq = 'ME' )
+ monthly = sp500 . reindex ( monthly_dates , method = 'ffill' )
+ returns = 100 * monthly [ 'Adj Close' ]. pct_change (). dropna ()
+
+ # Function to compute parameters 
+ def sharpe_ratio ( x ):
+ mu , sigma = 12 * x . mean (), np . sqrt ( 12 * x . var ())
+ return np . array ([ mu , sigma , mu / sigma ])
+
+ # Bootstrap confidence intervals 
+ from arch . bootstrap import IIDBootstrap 
+ bs = IIDBootstrap ( returns )
+ ci = bs . conf_int ( sharpe_ratio , 1000 , method = 'percentile' ) 
+
+Multiple Comparison Procedures
+
+Test of Superior Predictive Ability (SPA), also known as the Reality
+Check or Bootstrap Data Snooper
+
+Stepwise (StepM)
+
+Model Confidence Set (MCS)
+
+See the multiple comparison example notebook 
+for examples of the multiple comparison procedures.
+
+Long-run Covariance Estimation
+
+Kernel-based estimators of long-run covariance including the
+Bartlett kernel which is known as Newey-West in econometrics.
+Automatic bandwidth selection, using the methods of Newey and West
+(1994) or Andrews (1991), is available for all of the covariance
+estimators. VAR-HAC and pre-whitened recolored estimators are also
+available.
+
+ from arch . covariance . kernel import Bartlett 
+ from arch . data import nasdaq 
+ data = nasdaq . load ()
+ returns = data [[ "Adj Close" ]]. pct_change (). dropna ()
+
+ cov_est = Bartlett ( returns ** 2 )
+ # Get the long-run covariance 
+ cov_est . cov . long_run 
+
+Requirements
+
+These requirements reflect the testing environment. It is possible
+that arch will work with older versions.
+
+Python (3.10-3.15)
+
+NumPy (1.22.3+)
+
+SciPy (1.8+)
+
+pandas (1.4+)
+
+statsmodels (0.13.1+)
+
+matplotlib (3+), optional
+
+arch 9.0 is the last release that supports Python 3.10 and NumPy 1.x. Later
+releases will raise the other minimum versions accordingly.
+
+Optional Requirements
+
+Numba (0.55+) will be used if available and when arch is installed without building the binary modules. To make sure that they are not built, install from the source distribution with the no-binary build option:
+
+ python -m pip install arch --no-binary arch -Csetup-args= " -Dno-binary=true " 
+
+jupyter and notebook are required to run the notebooks
+
+Installing
+
+Wheels are available for Linux, macOS and Windows, so installing with
+ pip does not need a compiler. Building from source needs a C compiler;
+ pip installs the build requirements (Cython, meson-python and NumPy)
+automatically.
+
+pip
+
+Releases are available PyPI and can be installed with pip .
+
+ pip install arch 
+
+You can alternatively install the latest version from GitHub
+
+ pip install git+https://github.com/bashtage/arch.git 
+
+Adding -Csetup-args="-Dno-binary=true" to the pip install command
+disables compilation of the extensions.
+
+Anaconda
+
+ conda users can install from conda-forge,
+
+ conda install arch-py -c conda-forge 
+
+ Note : The conda-forge name is arch-py .
+
+Windows
+
+Building the extensions from source needs the Visual Studio Build Tools
+(the free community edition is enough).
+
+Developing
+
+The development requirements are dependency groups in pyproject.toml ,
+which pip 25.1 or later installs. From a clone of the repository,
+
+ python -m pip install --group dev
+python -m pip install -e . --no-build-isolation 
+
+installs the tools to build (Cython 3.1+, meson-python and ninja), test
+(pytest 9+) and lint arch, and then arch itself. Adding --group doc to the
+first command also installs what the documentation needs (sphinx,
+sphinx-immaterial and nbsphinx). doc/source/contributing.rst lists the
+commands that check the code.
+
+Installation Notes
+
+Building without the binary modules ( -Csetup-args="-Dno-binary=true" )
+still needs a C compiler and Cython, since the build checks for them.
+The recursions then run in numba if it is installed, and in pure
+Python otherwise, which is much slower.
+
+ About 
+
+ARCH models in Python
+
+ bashtage.github.io/arch/ 
+
+ Topics 
+
+ adf arch bootstrap df-gls dickey-fuller finance financial-econometrics forecasting garch model-confidence-set multiple-comparison-procedures phillips-perron reality-check risk spa time-series unit-root variance volatility 
+
+ Resources 
+
+ Readme 
+
+ License 
+
+ Security policy 
+
+ Security policy 
+
+ Activity 
+
+ Stars 
+
+ 1.7k stars 
+
+ Watchers 
+
+ 47 watching 
+
+ Forks 
+
+ 323 forks 
+
+ Report repository 
+
+ Releases 
+
+ Packages 
+
+ Used by 
+
+ Contributors 
+
+ Languages 
+
+Footer
+
+ © 2026 GitHub, Inc.
+
+Footer navigation
+
+ Terms 
+
+ Privacy 
+
+ Security 
+
+ Status 
+
+ Community 
+
+ Docs 
+
+ Contact 
+
+ Manage cookies
+
+ Do not share my personal information
+
+ You can’t perform that action at this time.

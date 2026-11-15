@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Service quotas and restrictions for AWS CloudShell - AWS CloudShell</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="limits" /><meta name="default_state" content="limits" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/cloudshell/latest/userguide/limits.html" /><link rel="alternate" type="text/markdown" href="https://docs.aws.amazon.com/cloudshell/latest/userguide/limits.md" title="Markdown version" /><meta name="description" content="Describes the service quotas and restrictions for AWS CloudShell." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS CloudShell" /><meta name="guide" content="User Guide" /><meta name="abstract" content="This is official Amazon Web Services (AWS) documentation for AWS CloudShell. AWS CloudShell is a browser-based, pre-authenticated shell that you can launch directly from the AWS Management Console. You can run AWS CLI commands against AWS services using your preferred shell (Bash, PowerShell, or Z shell). And you can do this without needing to download or install command line tools. This guide explains how to use AWS CloudShell. This documentation is offered for free here as a Kindle book, or you can read it online or in PDF format at https://aws.amazon.com/documentation/cloud9/." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/cloudshell/latest/userguide/limits.html" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/cloudshell/latest/userguide/limits.html" hreflang="id-id" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/cloudshell/latest/userguide/limits.html" hreflang="id" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/cloudshell/latest/userguide/limits.html" hreflang="de-de" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/cloudshell/latest/userguide/limits.html" hreflang="de" /><link rel="alternate" href="https://docs.aws.amazon.com/cloudshell/latest/userguide/limits.html" hreflang="en-us" /><link rel="alternate" href="https://docs.aws.amazon.com/cloudshell/latest/userguide/limits.html" hreflang="en" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/cloudshell/latest/userguide/limits.html" hreflang="es-es" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/cloudshell/latest/userguide/limits.html" hreflang="es" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/cloudshell/latest/userguide/limits.html" hreflang="fr-fr" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/cloudshell/latest/userguide/limits.html" hreflang="fr" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/cloudshell/latest/userguide/limits.html" hreflang="it-it" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/cloudshell/latest/userguide/limits.html" hreflang="it" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/cloudshell/latest/userguide/limits.html" hreflang="ja-jp" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/cloudshell/latest/userguide/limits.html" hreflang="ja" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/cloudshell/latest/userguide/limits.html" hreflang="ko-kr" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/cloudshell/latest/userguide/limits.html" hreflang="ko" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/cloudshell/latest/userguide/limits.html" hreflang="pt-br" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/cloudshell/latest/userguide/limits.html" hreflang="pt" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_cn/cloudshell/latest/userguide/limits.html" hreflang="zh-cn" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_tw/cloudshell/latest/userguide/limits.html" hreflang="zh-tw" /><link rel="alternate" href="https://docs.aws.amazon.com/cloudshell/latest/userguide/limits.html" hreflang="x-default" /><meta name="feedback-item" content="Cloudshell" /><meta name="this_doc_product" content="AWS CloudShell" /><meta name="this_doc_guide" content="User Guide" /><head xmlns="http://www.w3.org/1999/xhtml"> <script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"/></head>
+<script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'cloudshell'}"></script><meta id="panorama-serviceSubSection" value="User Guide" /><meta id="panorama-serviceConsolePage" value="Service quotas and restrictions for AWS CloudShell" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><p><a href="limits.md">View a markdown version of this page</a></p><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Service quotas and restrictions for AWS CloudShell - AWS CloudShell</title><meta name="pdf" content="/pdfs/cloudshell/latest/userguide/awscloudshell.pdf#limits" /><meta name="rss" content="awscloudshell.pdf.rss" /><meta name="forums" content="https://repost.aws/tags/TA5ZaPf1NkT4uNitnWVitlyQ" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Cloudshell&amp;topic_url=https://docs.aws.amazon.com/en_us/cloudshell/latest/userguide/limits.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/cloudshell/latest/userguide/limits.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/cloudshell/latest/userguide/limits.html" /><meta name="keywords" content="AWS CloudShell,CloudShell,service quotas,restrictions,limits" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS CloudShell",
+        "item" : "https://docs.aws.amazon.com/cloudshell/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "User Guide",
+        "item" : "https://docs.aws.amazon.com/cloudshell/latest/userguide"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Service quotas and restrictions for AWS CloudShell",
+        "item" : "https://docs.aws.amazon.com/cloudshell/latest/userguide/limits.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/cloudshell/latest/userguide/awscloudshell.pdf#limits" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/cloudshell/index.html">AWS CloudShell</a><a href="welcome.html">User Guide</a></div><div id="page-toc-src"><a href="#persistent-storage-limitations">Persistent storage</a><a href="#shell-limits-per-month">Monthly usage</a><a href="#shell-limits-per-region">Concurrent shells</a><a href="#character-limits">Command size</a><a href="#session-lifecycle-limitations">Shell sessions</a><a href="#vpc-environments-limitations">VPC environments</a><a href="#network-data-limitations">Network access and data transfer</a><a href="#system-files-page-refresh">Restrictions on system files and page reloads</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="limits">Service quotas and restrictions for AWS CloudShell</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>This page describes the Service quotas and restrictions that apply to the following
+      areas:</p><div class="itemizedlist">
+       
+       
+      
+       
+      
+       
+     
+       
+      
+       
+      
+       
+       
+   <ul class="itemizedlist"><li class="listitem">
+         <p><a href="#persistent-storage-limitations">Persistent storage</a></p>
+      </li><li class="listitem">
+         <p><a href="#shell-limits-per-month">Monthly usage</a></p>
+      </li><li class="listitem">
+         <p><a href="#shell-limits-per-region">Concurrent shells</a></p>
+      </li><li class="listitem">
+         <p><a href="#character-limits">Command size</a></p>
+      </li><li class="listitem">
+         <p><a href="#session-lifecycle-limitations">Shell sessions</a></p>
+      </li><li class="listitem">
+         <p><a href="#vpc-environments-limitations">VPC environments</a></p>
+      </li><li class="listitem">
+         <p><a href="#network-data-limitations">Network access and data
+            transfer</a></p>
+      </li><li class="listitem">
+         <p><a href="#system-files-page-refresh">System files and page reloads</a></p>
+      </li></ul></div>
+      <h2 id="persistent-storage-limitations">Persistent storage</h2>
+      <p>With AWS CloudShell, you have persistent storage of 1 GB for each AWS Region at no cost.
+         Persistent storage is located in your home directory ($HOME) and is private to you. Unlike
+         ephemeral environment resources that are recycled after each shell session ends, data in
+         your home directory persists between sessions.</p>
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p> CloudShell VPC environments do not have persistent storage. The $HOME directory
+            is deleted when your VPC environment times out, or
+            when you delete your environment. Environments time out after 20–30 minutes of inactivity.
+            In AWS GovCloud (US) Regions, environments time out after 10 minutes of inactivity. </p></div></div>
+      <p>If you stop using AWS CloudShell in an AWS Region, data is retained in the persistent
+         storage of that Region for <b>120 days</b> after the end of your
+         last session. After 120 days, unless you take action, your data is automatically deleted
+         from the persistent storage of that Region. You can prevent removal by launching AWS CloudShell
+         again in that AWS Region. For more information, see <a href="./getting-started.html#launch-region-shell">Step 2: Select a Region, launch AWS CloudShell, and choose a shell</a>.</p>
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p><b>Usage scenario</b></p><p>Márcia has used AWS CloudShell to store files in her home directories in two AWS Regions:
+            US East (N. Virginia) and Europe (Ireland). She then started using AWS CloudShell exclusively
+            in Europe (Ireland) and stopped launching shell sessions in US East (N. Virginia).</p><p>Before the deadline for deleting data in US East (N. Virginia), Márcia decides to
+            prevent her home directory from being recycled by launching AWS CloudShell and selecting the
+            US East (N. Virginia) Region again. Because she has continually used Europe (Ireland) for
+            shell sessions, her persistent storage in that Region isn't affected.</p></div></div>
+    
+      <h2 id="shell-limits-per-month">Monthly usage</h2>
+      <p>Each AWS Region
+         in your AWS account has a monthly usage quota for AWS CloudShell. This quota combines the total
+         time spent using CloudShell by all IAM principals in that
+         Region.
+         If you attempt to access
+         CloudShell
+         after you reached the monthly quota for that Region, a message displays to explain why the
+         shell environment can't be started. </p>
+      
+      <p><b>To request an increase using the Service Quotas
+         console</b></p>
+      <p>You can request an increase for your monthly usage quotas by opening the <a href="https://eu-west-1.console.aws.amazon.com/servicequotas/home/services/cloudshell/quotas?region=eu-west-1" rel="noopener noreferrer" target="_blank"><span>Service Quotas console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. For more information, see <a href="https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html">Requesting a quota increase</a> in the <em>Service Quotas User
+            Guide</em>.</p>
+      
+      
+    
+      <h2 id="shell-limits-per-region">Concurrent shells</h2>
+      <p>You can run up to 10 shells at the same time in each AWS Region for your
+         account.</p>
+      <p><b>To request an increase using the Service Quotas
+         console</b></p>
+      <p>You can request an quota increase for each Region by opening the <a href="https://eu-west-1.console.aws.amazon.com/servicequotas/home/services/cloudshell/quotas?region=eu-west-1" rel="noopener noreferrer" target="_blank"><span>Service Quotas console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. For more information, see <a href="https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html">Requesting a quota increase</a> in the <em>Service Quotas
+               User Guide</em>.</p>
+    
+      <h2 id="character-limits">Command size</h2>
+      <p>The command size cannot exceed 65412 characters.</p>
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If you intend to execute the command that exceeds 65412 characters, then create a
+            script with the language of your choice, and then execute it from the command line
+            interface. For more information about the range of pre-installed software that can be
+            accessed from the command line interface, see <a href="./vm-specs.html#pre-installed-software">Pre-installed software</a>.</p><p>To see as an example of how to create a script, and then execute it from the command
+            line interface, see <a href="./getting-started.html">Tutorial: Getting started with
+               AWS CloudShell</a>.</p></div></div>
+    
+      <h2 id="session-lifecycle-limitations">Shell sessions</h2>
+      <div class="itemizedlist">
+          
+          
+      <ul class="itemizedlist"><li class="listitem">
+            <p><b>Inactive sessions</b>: AWS CloudShell is an interactive
+               shell environment—if you don't interact with it using your keyboard or pointer
+               for <b>20–30 minutes</b>, your shell session ends.
+               In AWS GovCloud (US) Regions, your shell session ends after <b>10 minutes</b>
+               of inactivity.
+               Running processes don't count as interactions.</p>
+            
+            <p>If you want to perform terminal-based tasks using an AWS service with more
+               flexible timeouts, we recommend launching and <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connect-to-linux-instance.html">connecting to an Amazon EC2 instance</a>.</p>
+            
+         </li><li class="listitem">
+            <p><b>Long-running sessions</b>: A shell session that runs
+               continuously for approximately 12 hours automatically end even if the user is
+               regularly interacting with it during that period.</p>
+         </li></ul></div>
+    
+      <h2 id="vpc-environments-limitations">VPC environments</h2>
+      <p>You
+         can only create up to two VPC environments per IAM
+         principal.</p>
+      
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>There is no charge to connect to your private VPC and access the resources
+            within it. Data transfers within your Private VPC is included in your VPC billing,
+            and data transfers between your VPCs through CloudShell are charged at the same
+            cost as your current CloudShell.</p></div></div>
+    
+      <h2 id="network-data-limitations">Network access and data transfer</h2>
+      <p>The following restrictions apply to both the inbound and outbound traffic of your
+         AWS CloudShell environment:</p>
+      <div class="itemizedlist">
+          
+          
+      <ul class="itemizedlist"><li class="listitem">
+            <p><b>Outbound</b>: You can access the public
+               internet.</p>
+         </li><li class="listitem">
+            <p><b>Inbound</b>: You can’t access inbound ports. No
+               public IP address is available. </p>
+         </li></ul></div>
+      <div class="awsdocs-note awsdocs-warning"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Warning</h6></div><div class="awsdocs-note-text"><p>With access to the public internet, there's a risk that certain users might export
+            data from the AWS CloudShell environment. We recommend that IAM administrators manage the
+            allow list of trusted AWS CloudShell users through IAM tools. For information about how
+            specific users can be explicitly denied access, see <a href="./sec-auth-with-identities.html#restricting-actions">Managing allowable actions in AWS CloudShell using custom policies</a>.</p></div></div>
+      <p><b>Data transfer</b>: Uploading and downloading files to and
+         from AWS CloudShell might be slow for large files. Alternatively, you can transfer files to your
+         environment from an Amazon S3 bucket using the command line interface of the shell.</p>
+    
+      <h2 id="system-files-page-refresh">Restrictions on system files and page reloads</h2>
+      <div class="itemizedlist">
+          
+          
+      <ul class="itemizedlist"><li class="listitem">
+            <p><b>System files</b>: If you incorrectly modify files
+               that are required by the compute environment, you might experience problems when
+               accessing or using the AWS CloudShell environment. If this occurs, you might need to <a href="./getting-started.html#delete-shell-session">deleting your home directory</a> to regain
+               access.</p>
+         </li><li class="listitem">
+            <p><b>Reloading pages</b>: To reload the AWS CloudShell
+               interface, use the refresh button in your browser instead of the default shortcut key
+               sequence for your operating system.</p>
+         </li></ul></div>
+   <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./supported-aws-regions.html">Supported Regions</div><div id="next" class="next-link" accesskey="n" href="./history.html">Document history</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Cloudshell&amp;topic_url=https://docs.aws.amazon.com/en_us/cloudshell/latest/userguide/limits.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Cloudshell&amp;topic_url=https://docs.aws.amazon.com/en_us/cloudshell/latest/userguide/limits.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

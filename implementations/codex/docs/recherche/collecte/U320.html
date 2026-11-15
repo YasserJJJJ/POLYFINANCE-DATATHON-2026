@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases - Amazon Bedrock</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="knowledge-base" /><meta name="default_state" content="knowledge-base" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html" /><link rel="alternate" type="text/markdown" href="https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.md" title="Markdown version" /><meta name="description" content="Learn about knowledge bases in Amazon Bedrock for Retrieval Augmented Generation (RAG) using your own data." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon Bedrock" /><meta name="guide" content="User Guide" /><meta name="abstract" content="User Guide for the Amazon Bedrock service." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/bedrock/latest/userguide/knowledge-base.html" hreflang="id-id" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/bedrock/latest/userguide/knowledge-base.html" hreflang="id" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/bedrock/latest/userguide/knowledge-base.html" hreflang="de-de" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/bedrock/latest/userguide/knowledge-base.html" hreflang="de" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html" hreflang="en-us" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html" hreflang="en" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/bedrock/latest/userguide/knowledge-base.html" hreflang="es-es" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/bedrock/latest/userguide/knowledge-base.html" hreflang="es" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/knowledge-base.html" hreflang="fr-fr" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/knowledge-base.html" hreflang="fr" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/bedrock/latest/userguide/knowledge-base.html" hreflang="it-it" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/bedrock/latest/userguide/knowledge-base.html" hreflang="it" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/knowledge-base.html" hreflang="ja-jp" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/knowledge-base.html" hreflang="ja" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/bedrock/latest/userguide/knowledge-base.html" hreflang="ko-kr" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/bedrock/latest/userguide/knowledge-base.html" hreflang="ko" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/bedrock/latest/userguide/knowledge-base.html" hreflang="pt-br" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/bedrock/latest/userguide/knowledge-base.html" hreflang="pt" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_cn/bedrock/latest/userguide/knowledge-base.html" hreflang="zh-cn" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_tw/bedrock/latest/userguide/knowledge-base.html" hreflang="zh-tw" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html" hreflang="x-default" /><meta name="feedback-folder" content="2d8c2a09-1dac-41bf-9893-c0333d272b2c" /><meta name="feedback-item" content="Bedrock" /><meta name="this_doc_product" content="Amazon Bedrock" /><meta name="this_doc_guide" content="User Guide" /><head xmlns="http://www.w3.org/1999/xhtml"> <script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"/></head>
+<script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'bedrock'}"></script><meta id="panorama-serviceSubSection" value="User Guide" /><meta id="panorama-serviceConsolePage" value="Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><p><a href="knowledge-base.md">View a markdown version of this page</a></p><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases - Amazon Bedrock</title><meta name="pdf" content="/pdfs/bedrock/latest/userguide/bedrock-ug.pdf#knowledge-base" /><meta name="rss" content="bedrock-ug.rss" /><meta name="forums" content="https://repost.aws/tags/TAQeKlaPaNRQ2tWB6P7KrMag" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=2d8c2a09-1dac-41bf-9893-c0333d272b2c&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/knowledge-base.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/knowledge-base.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/knowledge-base.html" /><meta name="keywords" content="Amazon Bedrock,bedrock,Additional capabilities,Bedrock features,retrieval augmented generation,RAG,generative AI,Bedrock knowledge bases" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon Bedrock",
+        "item" : "https://docs.aws.amazon.com/bedrock/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "User Guide",
+        "item" : "https://docs.aws.amazon.com/bedrock/latest/userguide"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Additional capabilities",
+        "item" : "https://docs.aws.amazon.com/bedrock/latest/userguide/additional-capabilities.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases",
+        "item" : "https://docs.aws.amazon.com/bedrock/latest/userguide/additional-capabilities.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/bedrock/latest/userguide/bedrock-ug.pdf#knowledge-base" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/bedrock/index.html">Amazon Bedrock</a><a href="what-is-bedrock.html">User Guide</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="knowledge-base">Retrieve data and generate AI responses with Amazon Bedrock Knowledge Bases</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>While foundation models have general knowledge, you can further improve their responses by
+        using Retrieval Augmented Generation (RAG). RAG is a technique that uses information from
+        data sources to improve the relevancy and accuracy of generated responses. With Amazon Bedrock Knowledge Bases, you
+        can integrate proprietary information into your generative-AI applications. When a query is
+        made, a knowledge base searches your data to find relevant information to answer the query.
+        The retrieved information can then be used to improve generated responses. Amazon Bedrock Knowledge Bases helps build
+        secure, enterprise-grade agentic AI applications by leveraging retrieval securely over
+        large-scale datasets.</p><div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>For optimized retrieval accuracy and a managed experience, we recommend <a href="./kb-build-managed.html">Amazon Bedrock Managed Knowledge Base</a>.</p></div></div><p>Amazon Bedrock Knowledge Bases offers two types of knowledge bases:</p><div class="itemizedlist">
+         
+         
+    <ul class="itemizedlist"><li class="listitem">
+            <p><b>Managed Knowledge Base</b> – Amazon Bedrock manages the
+                underlying data ingestion, indexing, storage, and retrieval infrastructure so you
+                can focus on your application and agent logic. Managed Knowledge Base offers advanced
+                capabilities including ingestion of multi-modal data, storage auto-scaling, agentic
+                retrieval for multi-hop reasoning and more while continuing to offer key
+                customizations so you can tailor agents to your use case. You connect your data
+                sources and Amazon Bedrock manages embedding, re-ranking, and reasoning with service-managed
+                models by default (with option to choose your own models). Managed Knowledge Base
+                integrates natively with AgentCore Gateway so any MCP-compatible agent framework can
+                discover and invoke your Knowledge Base as a tool without custom code. Managed
+                Knowledge offers connectors for Amazon S3, SharePoint, Confluence, Google Drive, OneDrive,
+                Web Crawler, along with document-level permission filtering using Access Control
+                Lists (except for Web Crawler) at retrieval time. The Smart Parsing feature
+                auto-selects parsing strategy per document type including PDFs, PPTX, DOCX, documents
+                with embedded visuals, audio, video, and scanned documents. Agentic Retrieval
+                supports multi-hop reasoning, decomposes complex queries into sub-queries, retrieves
+                iteratively across multiple knowledge bases, and evaluates sufficiency of responses.
+                Native integration with AgentCore Observability offers built-in monitoring, retrieval
+                traces, agentic traces, and per-knowledge base metrics.</p>
+        </li><li class="listitem">
+            <p><b>Customer-managed Knowledge Base</b> – This enables
+                you set up and manage your own RAG pipeline, including the vector store (such as
+                Amazon OpenSearch Serverless, Amazon Aurora, and Amazon Neptune), and have full control over data ingestion,
+                parsing, indexing and storage configurations. You will need to setup and manage
+                related infrastructure and configurations such as parsing for multimodal data. Note
+                that several capabilities such as third-party connectors, document-level permissions
+                and native AgentCore Gateway integration are only available for Managed Knowledge
+                Bases.</p>
+        </li></ul></div><p>With Amazon Bedrock Knowledge Bases, you can:</p><div class="itemizedlist">
+         
+         
+         
+         
+         
+         
+         
+    <ul class="itemizedlist"><li class="listitem">
+            <p>Answer user queries by returning relevant information from data sources.</p>
+        </li><li class="listitem">
+            <p>Use retrieved information from data sources to help generate an accurate and
+                relevant response to user queries.</p>
+        </li><li class="listitem">
+            <p>Augment your own prompts by feeding the returned relevant information into the
+                prompt.</p>
+        </li><li class="listitem">
+            <p>Include citations in the generated response so the original data source can be
+                referenced and accuracy can be checked.</p>
+        </li><li class="listitem">
+            <p>Include documents with copious visual resources, from which images can be
+                extracted and retrieved in responses to queries. If you generate a response based on
+                the retrieved data, the model can deliver additional insights based on these
+                images.</p>
+        </li><li class="listitem">
+            <p>Search using images as queries to find visually similar content, or combine text and images in queries for more precise results using multimodal embedding models.</p>
+        </li><li class="listitem">
+            <p>Use reranking models to influence the results that are retrieved from your data
+                source.</p>
+        </li></ul></div><div class="highlights"><h6>Topics</h6><ul><li><p><a href="./kb-how-it-works.html">How knowledge bases work</a></p></li><li><p><a href="./knowledge-base-supported.html">Supported models and Regions</a></p></li><li><p><a href="./knowledge-base-chatdoc.html">Query a document without a knowledge base</a></p></li><li><p><a href="./knowledge-base-prereq-permissions-general.html">Set up permissions to create and manage knowledge bases</a></p></li><li><p><a href="./kb-build-managed.html">Build a managed knowledge
+            base</a></p></li><li><p><a href="./knowledge-base-build.html">Build a knowledge base with vector stores</a></p></li><li><p><a href="./knowledge-base-build-structured.html">Build a knowledge base by connecting to a structured data store</a></p></li><li><p><a href="./knowledge-base-build-kendra-genai-index.html">Build a knowledge base
+			with an Amazon Kendra GenAI index</a></p></li><li><p><a href="./knowledge-base-build-graphs.html">Build a knowledge base with Amazon Neptune Analytics graphs</a></p></li><li><p><a href="./knowledge-base-test.html">Test your knowledge base with queries and responses</a></p></li><li><p><a href="./knowledge-base-deploy.html">Deploy your knowledge base for your application</a></p></li><li><p><a href="./kb-info.html">View information about a knowledge base</a></p></li><li><p><a href="./kb-update.html">Modify a knowledge base</a></p></li><li><p><a href="./kb-delete.html">Delete a knowledge base</a></p></li></ul></div><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./bda-document-processing-examples.html">Processing use cases</div><div id="next" class="next-link" accesskey="n" href="./kb-how-it-works.html">How knowledge bases work</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=2d8c2a09-1dac-41bf-9893-c0333d272b2c&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/knowledge-base.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=2d8c2a09-1dac-41bf-9893-c0333d272b2c&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/knowledge-base.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

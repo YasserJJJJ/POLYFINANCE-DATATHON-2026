@@ -1,0 +1,323 @@
+Quick Spec - Specs - Features - Docs - Kiro 
+ 
+ Skip to main content 
+
+Get Started
+
+ Installation Authentication Your first project 
+
+Models
+
+ Overview Available models Reasoning effort AWS GovCloud (US) models 
+
+Features
+
+ How Kiro works Local command sandbox ACP integrations 
+
+ Specs 
+
+ Feature Specs 
+
+ Bugfix Specs 
+
+ Quick Spec 
+
+ Plan mode 
+
+ Analyze Requirements 
+
+ Correctness 
+
+ Best practices 
+
+ Steering 
+
+ Hooks 
+
+ MCP 
+
+ Permissions 
+
+ Custom agents 
+
+ Workflows 
+
+ Agent Skills 
+
+ Powers 
+
+ Cloud sessions Memory Compaction Kiroignore Checkpoints and rewind 
+
+ Built-in tools 
+
+ Configuration scopes 
+
+IDE 1.x
+
+ What's new in 1.0 
+
+ Setup & First Run 
+
+ Editor 
+
+ Chat 
+
+ Experimental 
+
+ Troubleshooting 0.x reference 
+
+CLI
+
+ Setup & First Run Choose an agent harness 
+
+ Terminal UI 
+
+ Chat 
+
+ Fullscreen mode Voice mode Headless mode ACP Auto complete 
+
+ Experimental 
+
+ Troubleshooting 
+
+ Upgrade from CLI 2.x 
+
+ 2.x reference 
+
+Crew
+
+ Quick start Installation Kiro Crew LTS Running 24/7 
+
+ Bots 
+
+ Chat 
+
+ Agent Capabilities 
+
+ Features 
+
+ Interfaces 
+
+ Apps 
+
+ System & storage Configuration Security Troubleshooting 
+
+Web
+
+ Setup & First Run Identity Center 
+
+ Connect your repositories 
+
+ Working with the agent 
+
+ Autonomous mode Schedule Configuration Sync 
+
+ Sandbox 
+
+Mobile
+
+ Overview Setup & First Run Working with sessions Settings 
+
+Commands and Reference
+
+ CLI commands Slash commands Built-in tools Exit codes Settings 
+
+Billing
+
+ Overview Managing your subscription Upgrading your plan Downgrading your plan Cancelling your plan Purchasing add-on credits Managing your payments Managing usage notifications Managing your taxes Contacting billing support Deleting your account Related questions 
+
+Enterprise
+
+ Concepts Onboarding quickstart 
+
+ Connecting your identity provider 
+
+ Deployment options Subscribe your team Manage subscriptions 
+
+ Credit pooling 
+
+ Governance 
+
+ Enterprise Management (preview) 
+
+ Monitor and track 
+
+ Settings Managed updates TLS inspection compatibility Billing Support IAM Supported regions 
+
+ AWS GovCloud (US) 
+
+Privacy and Security
+
+ Overview Data protection Code references Compliance validation Infrastructure security IAM permissions Firewalls, proxies, and data perimeters VPC endpoints (AWS PrivateLink) 
+
+Guides
+
+ Overview Running Kiro in the cloud 
+
+ Language support 
+
+ Learn by playing 
+
+Migration
+
+ Migrating from Q Developer Migrating from VSCode Upgrading from Q CLI 
+
+ Docs 
+
+ Features 
+
+ Specs 
+
+ Quick Spec 
+
+ Copy page View as Markdown 
+
+Quick Spec
+
+Quick Spec is a session mode that auto-generates requirements, design, and tasks in a single pass. Instead of approving each phase before the next begins, you answer clarifying questions up front and land directly on an actionable task list.
+
+When to use Quick Spec
+
+Quick Spec is best for:
+
+ Well-understood features where you trust Kiro's output and don't need to iterate on requirements or design
+
+ Rapid prototyping where speed matters more than review
+
+Use standard Feature Specs when you're exploring unfamiliar territory, when requirements need iteration, or when the review gates genuinely add value for your team.
+
+How it works
+
+Choose Quick Spec from the workflow options on the "Let's build" screen when starting a new session. To switch mid-session, click the agent name in the bottom bar of the chat input and select Quick Spec from the agent picker.
+
+Kiro asks a set of clarifying questions up front - scope, constraints, edge cases, and anything else that affects the output.
+
+Using your answers, Kiro auto-generates requirements.md , design.md , and tasks.md in sequence, with no approval gates between phases.
+
+You land on the task list, ready to review or begin implementation.
+
+The clarifying questions are the key interaction point. Instead of reviewing and approving each artifact, you front-load your input so Kiro has enough context to produce high-quality specs autonomously.
+
+Artifacts
+
+Quick Spec produces the same artifacts as a standard Spec session, saved to .kiro/specs/ :
+
+ requirements.md - user stories and acceptance criteria in EARS notation
+
+ design.md - technical architecture and implementation approach
+
+ tasks.md - discrete, trackable implementation tasks
+
+You can review and edit any of them after the fact, the same as in a standard Spec session.
+
+FAQ
+
+How is Quick Spec different from Vibe mode?
+
+Vibe mode is conversational and unstructured - there are no artifacts saved to .kiro/specs/ . Quick Spec still produces the full Spec artifacts (requirements, design, tasks), just without approval gates between phases.
+
+Can I switch from Quick Spec to a standard Feature Spec?
+
+There's no explicit mode switch, but the artifacts are identical in format to a standard Feature Spec - you can continue working with them using any Spec workflow, refine them, regenerate tasks, or reference them with #spec in chat.
+
+What if the auto-generated requirements miss something important?
+
+Edit requirements.md directly, or ask Kiro in a spec chat session to add or refine specific requirements. Then regenerate tasks using Sync Files .
+
+Should I use Quick Spec for complex features?
+
+Use your judgment. For features where requirements quality is critical - compliance-sensitive domains, high-stakes systems, unfamiliar territory - a standard Feature Spec with explicit review gates is usually the better fit. For features you've built variants of many times, Quick Spec is faster without losing much.
+
+ Page updated: August 4, 2026 
+
+ Bugfix Specs 
+
+ Plan mode 
+
+ Copy page View as Markdown 
+
+ Loading image... 
+
+Product
+ 
+ About Kiro 
+
+ Agents 
+
+ IDE 
+
+ CLI 
+
+ Web 
+
+ Mobile 
+
+ Crew 
+
+ Pricing 
+
+ Downloads 
+
+For
+ 
+ Enterprise 
+
+ Startups 
+
+ Students 
+
+Community
+ 
+ Overview 
+
+ Ambassadors 
+
+ Case studies 
+
+ Discord 
+
+ Events 
+
+ Registry 
+
+ Shop 
+
+ Showcase 
+
+ Stories 
+
+Resources
+ 
+ Docs 
+
+ Blog 
+
+ Changelog 
+
+ FAQs 
+
+ Videos 
+
+ Support 
+
+Social
+
+ English 
+
+ Site Terms License Responsible AI Policy Legal Privacy Policy Cookie Preferences English 
+
+ Agents 
+
+ Apps 
+
+ Enterprise 
+
+ Pricing 
+
+ Docs 
+
+ Community 
+
+ Resources 
+
+ SIGN IN DOWNLOADS

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Create tables in Athena - Amazon Athena</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="creating-tables" /><meta name="default_state" content="creating-tables" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/athena/latest/ug/creating-tables.html" /><link rel="alternate" type="text/markdown" href="https://docs.aws.amazon.com/athena/latest/ug/creating-tables.md" title="Markdown version" /><meta name="description" content="Learn how to create tables in Athena." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon Athena" /><meta name="guide" content="User Guide" /><meta name="abstract" content="Use Athena to analyze data in Amazon S3 using standard SQL. Athena is serverless, so there is no infrastructure to manage, and you pay only for the queries that you run." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/athena/latest/ug/creating-tables.html" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/athena/latest/ug/creating-tables.html" hreflang="id-id" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/athena/latest/ug/creating-tables.html" hreflang="id" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/athena/latest/ug/creating-tables.html" hreflang="de-de" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/athena/latest/ug/creating-tables.html" hreflang="de" /><link rel="alternate" href="https://docs.aws.amazon.com/athena/latest/ug/creating-tables.html" hreflang="en-us" /><link rel="alternate" href="https://docs.aws.amazon.com/athena/latest/ug/creating-tables.html" hreflang="en" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/athena/latest/ug/creating-tables.html" hreflang="es-es" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/athena/latest/ug/creating-tables.html" hreflang="es" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/athena/latest/ug/creating-tables.html" hreflang="fr-fr" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/athena/latest/ug/creating-tables.html" hreflang="fr" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/athena/latest/ug/creating-tables.html" hreflang="it-it" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/athena/latest/ug/creating-tables.html" hreflang="it" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/athena/latest/ug/creating-tables.html" hreflang="ja-jp" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/athena/latest/ug/creating-tables.html" hreflang="ja" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/athena/latest/ug/creating-tables.html" hreflang="ko-kr" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/athena/latest/ug/creating-tables.html" hreflang="ko" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/athena/latest/ug/creating-tables.html" hreflang="pt-br" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/athena/latest/ug/creating-tables.html" hreflang="pt" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_cn/athena/latest/ug/creating-tables.html" hreflang="zh-cn" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_tw/athena/latest/ug/creating-tables.html" hreflang="zh-tw" /><link rel="alternate" href="https://docs.aws.amazon.com/athena/latest/ug/creating-tables.html" hreflang="x-default" /><meta name="feedback-item" content="Athena" /><meta name="this_doc_product" content="Amazon Athena" /><meta name="this_doc_guide" content="User Guide" /><head xmlns="http://www.w3.org/1999/xhtml"> <script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"/></head>
+<script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'athena'}"></script><meta id="panorama-serviceSubSection" value="User Guide" /><meta id="panorama-serviceConsolePage" value="Create tables in Athena" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><p><a href="creating-tables.md">View a markdown version of this page</a></p><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Create tables in Athena - Amazon Athena</title><meta name="pdf" content="/pdfs/athena/latest/ug/athena-ug.pdf#creating-tables" /><meta name="rss" content="amazon-athena-release-notes.rss" /><meta name="forums" content="https://repost.aws/tags/TA78iVOM7gR62_QqDe2-CmiA" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Athena&amp;topic_url=https://docs.aws.amazon.com/en_us/athena/latest/ug/creating-tables.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/athena/latest/ug/creating-tables.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/athena/latest/ug/creating-tables.html" /><meta name="keywords" content="Amazon Athena,Athena" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon Athena",
+        "item" : "https://docs.aws.amazon.com/athena/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "User Guide",
+        "item" : "https://docs.aws.amazon.com/athena/latest/ug"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Use Athena SQL",
+        "item" : "https://docs.aws.amazon.com/athena/latest/ug/using-athena-sql.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Create databases and tables",
+        "item" : "https://docs.aws.amazon.com/athena/latest/ug/work-with-data.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Create tables in Athena",
+        "item" : "https://docs.aws.amazon.com/athena/latest/ug/work-with-data.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/athena/latest/ug/athena-ug.pdf#creating-tables" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/athena/index.html">Amazon Athena</a><a href="what-is.html">User Guide</a></div><div id="page-toc-src"><a href="#creating-tables-considerations-and-limitations">Considerations and limitations</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="creating-tables">Create tables in Athena</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>To create tables, you can run DDL statements in the Athena console, use the Athena <a href="./creating-tables-how-to.html#to-create-a-table-using-the-wizard">Create table
+            form</a>, or use a JDBC or an ODBC driver. Athena uses Apache Hive to define tables
+        and create databases, which are essentially a logical namespace of tables. Athena supports a
+        variety of serializer-deserializer (SerDe) libraries for creating tables for specific data
+        formats. For a list of supported SerDe libraries, see <a href="./supported-serdes.html">Choose a SerDe for your data</a>.</p><p>When you create a database and table in Athena, you are simply describing the schema and
+        the location where the table data are located in Amazon S3 for read-time querying. Athena does not
+        modify your data in Amazon S3. Database and table, therefore, have a slightly different meaning
+        than they do for traditional relational database systems because the data isn't stored along
+        with the schema definition for the database and table. </p><p>Athena stores the schema in the AWS Glue Data Catalog and uses it to read the data when you query the
+        table using SQL. This <em>schema-on-read</em> approach, which projects a schema
+        onto your data when you run a query, eliminates the need for data loading or
+        transformation.</p>
+        <h2 id="creating-tables-considerations-and-limitations">Considerations and limitations</h2>
+        <p>Following are some important limitations and considerations for tables in
+            Athena.</p>
+         
+            <h3 id="s3-considerations">Amazon S3 considerations</h3>
+            <p>When you create a table, you specify an Amazon S3 bucket location for the underlying
+                data using the <code class="code">LOCATION</code> clause. Consider the following:</p>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>Athena can only query the latest version of data on a versioned Amazon S3
+                        bucket, and cannot query previous versions of the data.</p>
+                </li><li class="listitem">
+                    <p>You must have permissions to work with data in the Amazon S3 location. For more
+                        information, see <a href="./s3-permissions.html">Control access to Amazon S3 from Athena</a>.</p>
+                </li><li class="listitem">
+                    <p>Athena supports querying objects that are stored with multiple storage
+                        classes in the same bucket specified by the <code class="code">LOCATION</code> clause.
+                        For example, you can query data in objects that are stored in different
+                        Storage classes (Standard, Standard-IA and Intelligent-Tiering) in
+                        Amazon S3.</p>
+                </li><li class="listitem">
+                    <p>Athena supports <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/RequesterPaysBuckets.html">Requester Pays buckets</a>. For information how to enable Requester
+                        Pays for buckets with source data you intend to query in Athena, see <a href="./creating-workgroups.html">Create a workgroup</a>.</p>
+                </li><li class="listitem">
+                    <p>You can use Athena to query restored objects from the Amazon Glacier Flexible
+                        Retrieval (formerly Glacier) and Amazon Glacier Deep Archive <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html#sc-glacier">Amazon S3
+                            storage classes</a> but you must enable the capability on a
+                        per-table basis. If you do not enable the feature on a table before you run
+                        a query, Athena skips all of the table's Amazon Glacier Flexible Retrieval and Amazon Glacier
+                        Deep Archive objects during query execution. For more information, see <a href="./querying-glacier.html">Query restored Amazon Glacier objects</a>.</p>
+                    <p>For information about storage classes, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html">Storage classes</a>, <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/ChgStoClsOfObj.html">Changing
+                            the storage class of an object in amazon S3</a>, <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html#before-deciding-to-archive-objects">Transitioning to the GLACIER storage class (object archival)</a>,
+                        and <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html">Requester Pays buckets</a> in the
+                            <em>Amazon Simple Storage Service User Guide</em>.</p>
+                </li><li class="listitem">
+                    <p>If you issue queries against Amazon S3 buckets with a large number of objects
+                        and the data is not partitioned, such queries may affect the Get request
+                        rate limits in Amazon S3 and lead to Amazon S3 exceptions. To prevent errors,
+                        partition your data. Additionally, consider tuning your Amazon S3 request rates.
+                        For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/request-rate-perf-considerations.html">Request rate and performance considerations</a>.</p>
+                </li></ul></div>
+            <p>For more information about specifying a location for your data in Amazon S3, see <a href="./tables-location-format.html">Specify a table location in Amazon S3</a>.</p>
+         
+         
+            <h3 id="creating-tables-other-considerations">Other considerations</h3>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p><span class="topcom">Transactional data transformations not
+                            supported</span> – Athena does not support transaction-based
+                        operations (such as the ones found in Hive or Presto) on table data. For a
+                        full list of keywords not supported, see <a href="./unsupported-ddl.html">Unsupported DDL</a>.</p>
+                </li><li class="listitem">
+                    <p><span class="topcom">Operations on tables are ACID</span> – When
+                        you create, update, or delete tables, those operations are guaranteed
+                        ACID-compliant. For example, if multiple users or clients attempt to create
+                        or alter an existing table at the same time, only one will be
+                        successful.</p>
+                </li><li class="listitem">
+                    <p><span class="topcom">Tables are EXTERNAL</span> – Except when
+                        creating <a href="./querying-iceberg-creating-tables.html">Iceberg</a> tables,
+                        always use the <code class="code">EXTERNAL</code> keyword. If you use <code class="code">CREATE
+                            TABLE</code> without the <code class="code">EXTERNAL</code> keyword for non-Iceberg
+                        tables, Athena issues an error. When you drop a table in Athena, only the
+                        table metadata is removed; the data remains in Amazon S3.</p>
+                </li><li class="listitem">
+                    <p><span class="topcom">Maximum query string length</span> – The
+                        maximum query string length is 256 KB.</p>
+                </li><li class="listitem"><p>If you use the AWS Glue <a href="https://docs.aws.amazon.com/glue/latest/webapi/API_CreateTable.html">CreateTable</a> API operation
+                or the CloudFormation <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-glue-table.html"><code class="code">AWS::Glue::Table</code></a> template to create a table for use in Athena without
+                specifying the <code class="code">TableType</code> property and then run a DDL query like
+                    <code class="code">SHOW CREATE TABLE</code> or <code class="code">MSCK REPAIR TABLE</code>, you can
+                receive the error message <strong class="errortext"><code>FAILED: NullPointerException Name is
+                    null</code></strong>. </p>
+            <p>To resolve the error, specify a value for the <a href="https://docs.aws.amazon.com/glue/latest/webapi/API_TableInput.html">TableInput</a>
+                <code class="code">TableType</code> attribute as part of the AWS Glue <code class="code">CreateTable</code> API
+                call or <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-glue-table-tableinput.html">CloudFormation template</a>. Possible values for <code class="code">TableType</code> include
+                    <code class="code">EXTERNAL_TABLE</code> or <code class="code">VIRTUAL_VIEW</code>.</p>
+            <p>This requirement applies only when you create a table using the AWS Glue
+                    <code class="code">CreateTable</code> API operation or the <code class="code">AWS::Glue::Table</code>
+                template. If you create a table for Athena by using a DDL statement or an AWS Glue
+                crawler, the <code class="code">TableType</code> property is defined for
+                you automatically. </p></li></ul></div>
+         
+    <div class="highlights"><h6>Topics</h6><ul><li><p><a href="./creating-tables-how-to.html">Create tables using AWS Glue or the Athena console</a></p></li><li><p><a href="./tables-location-format.html">Specify a table location in Amazon S3</a></p></li><li><p><a href="./creating-tables-showing-table-information.html">Show table information after creation</a></p></li></ul></div><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./creating-databases-query-editor.html">Create a database</div><div id="next" class="next-link" accesskey="n" href="./creating-tables-how-to.html">Use AWS Glue or the Athena console</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Athena&amp;topic_url=https://docs.aws.amazon.com/en_us/athena/latest/ug/creating-tables.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Athena&amp;topic_url=https://docs.aws.amazon.com/en_us/athena/latest/ug/creating-tables.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

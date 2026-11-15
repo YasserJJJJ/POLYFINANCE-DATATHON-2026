@@ -1,0 +1,737 @@
+GitHub - apache/hamilton: Apache Hamilton helps data scientists and engineers define testable, modular, self-documenting dataflows, that encode lineage/tracing and metadata. Runs and scales everywhere python does. · GitHub 
+
+ Skip to content 
+
+Navigation Menu
+
+ Sign in 
+
+ Products 
+
+ Platform 
+ GitHub Repository hosting, code review, and collaboration 
+
+ Copilot AI coding agent for tasks, projects, and automated work 
+
+ Build & Ship 
+ Actions CI/CD and automation 
+
+ Code Quality Quality analysis, fixes, and enforcement 
+
+ Codespaces Cloud development environments 
+
+ Secure 
+ Code Security Vulnerability detection and remediation 
+
+ Secret Protection Secret scanning and leak prevention 
+
+ All Features 
+
+ Developers 
+
+ Learn 
+ Documentation 
+
+ Training 
+
+ Certifications 
+
+ Build 
+ Build with Copilot 
+
+ Customize Copilot 
+
+ Integrations 
+
+ Explore 
+ Trending repos 
+
+ GitHub Sponsors 
+
+ Developer articles 
+
+ Changelog 
+ Changelog Your source for the latest features, improvements, and fixes across GitHub products, all in one place. 
+
+ Businesses 
+
+ By Stage 
+ Enterprises 
+
+ Team 
+
+ Startups 
+
+ Nonprofits 
+
+ By Industry 
+ Healthcare 
+
+ Financial services 
+
+ Manufacturing 
+
+ Government 
+
+ See all industries 
+
+ Evaluate GitHub 
+ Why GitHub 
+
+ Customer Stories 
+
+ Business insights 
+
+ Trust Center 
+
+ Add-ons 
+ GitHub Advanced Security Enterprise-grade code security 
+
+ Copilot for business Enterprise-grade AI features 
+
+ Premium Support Enterprise-grade 24/7 support 
+
+ Resources 
+
+ Learn & Connect 
+ Documentation 
+
+ Resource center 
+
+ Blog 
+
+ Events & webinars 
+
+ Community Forum 
+
+ Customer Stories 
+
+ Integrations 
+
+ Support 
+ Customer support 
+
+ Training 
+
+ GitHub Status 
+
+ Company 
+ About 
+
+ Partners 
+
+ Changelog 
+
+ GitHub Universe 
+ GitHub Universe The event for developers, by developers — talks, workshops, and what’s next for GitHub. 
+
+ Pricing 
+
+ Search / 
+
+ Sign in 
+ Sign up 
+Appearance settings
+
+ You signed in with another tab or window. Reload to refresh your session. 
+ You signed out in another tab or window. Reload to refresh your session. 
+ You switched accounts on another tab or window. Reload to refresh your session. 
+
+ Dismiss alert 
+
+{{ message }}
+
+ apache 
+
+ hamilton 
+
+Repository navigation
+
+ Code 
+
+ Issues 110  ( 110 ) 
+
+ Pull requests 75  ( 75 ) 
+
+ Discussions 
+
+ Actions 
+
+ Projects 
+
+ Security and quality 
+
+ Insights 
+
+ More items 
+
+ hamilton 
+ Public 
+
+ Notifications You must be signed in to change notification settings 
+
+ Fork 230  ( 230 ) 
+
+ Star 2.6k  ( 2.6k ) You must be signed in to star a repository 
+
+ About 
+
+Apache Hamilton helps data scientists and engineers define testable, modular, self-documenting dataflows, that encode lineage/tracing and metadata. Runs and scales everywhere python does.
+
+ hamilton.apache.org/ 
+
+ Topics 
+
+ dag data-analysis data-engineering data-science dataframe etl etl-framework etl-pipeline feature-engineering hacktoberfest lineage llmops machine-learning mlops orchestration pandas python rag software-engineering 
+
+ Resources 
+
+ Readme 
+
+ Apache-2.0 license 
+
+ Code of conduct 
+
+ Code of conduct 
+
+ Contributing 
+
+ Contributing 
+
+ Security policy 
+
+ Security policy 
+
+ Activity 
+
+ Custom properties 
+
+ Stars 
+
+ 2.6k stars 
+
+ Watchers 
+
+ 16 watching 
+
+ Forks 
+
+ 230 forks 
+
+ Report repository 
+
+ main 
+
+ Branches Tags 
+
+ Go to file 
+
+ Code 
+ Open more actions menu 
+
+Latest commit
+
+History
+ 2,158 Commits 
+
+ 2,158 Commits 
+
+Folders and files
+
+ Name Name 
+ Last commit message 
+ 
+ Last commit date 
+
+ .claude-plugin 
+
+ .claude-plugin 
+
+ .github 
+
+ .github 
+
+ assets 
+
+ assets 
+
+ contrib 
+
+ contrib 
+
+ dev_tools 
+
+ dev_tools 
+
+ docs 
+
+ docs 
+
+ examples 
+
+ examples 
+
+ hamilton 
+
+ hamilton 
+
+ plugin_tests 
+
+ plugin_tests 
+
+ scripts 
+
+ scripts 
+
+ sf-hamilton-contrib-redirect 
+
+ sf-hamilton-contrib-redirect 
+
+ sf-hamilton-lsp-redirect 
+
+ sf-hamilton-lsp-redirect 
+
+ sf-hamilton-redirect 
+
+ sf-hamilton-redirect 
+
+ sf-hamilton-sdk-redirect 
+
+ sf-hamilton-sdk-redirect 
+
+ sf-hamilton-ui-redirect 
+
+ sf-hamilton-ui-redirect 
+
+ tests 
+
+ tests 
+
+ ui 
+
+ ui 
+
+ writeups 
+
+ writeups 
+
+ .asf.yaml 
+
+ .asf.yaml 
+
+ .git-blame-ignore-revs 
+
+ .git-blame-ignore-revs 
+
+ .gitattributes 
+
+ .gitattributes 
+
+ .gitignore 
+
+ .gitignore 
+
+ .pre-commit-config.yaml 
+
+ .pre-commit-config.yaml 
+
+ .rat-excludes 
+
+ .rat-excludes 
+
+ .readthedocs.yaml 
+
+ .readthedocs.yaml 
+
+ CONTRIBUTING.md 
+
+ CONTRIBUTING.md 
+
+ DISCLAIMER 
+
+ DISCLAIMER 
+
+ LICENSE 
+
+ LICENSE 
+
+ NOTICE 
+
+ NOTICE 
+
+ README.md 
+
+ README.md 
+
+ SECURITY.md 
+
+ SECURITY.md 
+
+ ellipsis.yaml 
+
+ ellipsis.yaml 
+
+ pyproject.toml 
+
+ pyproject.toml 
+
+ View all files 
+
+Repository files navigation
+
+ README 
+
+ Code of conduct 
+
+ Contributing 
+
+ Apache-2.0 license 
+
+ Security 
+
+ More items 
+
+ Apache Hamilton — portable & expressive 
+ data transformation DAGs
+
+ Disclaimer 
+
+Apache Hamilton is an effort undergoing incubation at the Apache Software Foundation (ASF), sponsored by the Apache Incubator PMC.
+
+Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects.
+
+While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.
+
+Apache Hamilton (incubating) is a lightweight Python library for directed acyclic graphs (DAGs) of data transformations. Your DAG is portable ; it runs anywhere Python runs, whether it's a script, notebook, Airflow pipeline, FastAPI server, etc. Your DAG is expressive ; Apache Hamilton has extensive features to define and modify the execution of a DAG (e.g., data validation, experiment tracking, remote execution).
+
+To create a DAG, write regular Python functions that specify their dependencies with their parameters. As shown below, it results in readable code that can always be visualized. Apache Hamilton loads that definition and automatically builds the DAG for you!
+
+ Functions B() and C() refer to function A via their parameters
+
+Apache Hamilton brings modularity and structure to any Python application moving data: ETL pipelines, ML workflows, LLM applications, RAG systems, BI dashboards, and the Apache Hamilton UI allows you to automatically visualize, catalog, and monitor execution.
+
+Apache Hamilton is great for DAGs, but if you need loops or conditional logic to create an LLM agent or a simulation, take a look at our sister library Burr 🤖 .
+
+Installation
+
+Apache Hamilton supports Python 3.11+. We include the optional visualization dependency to display our Apache Hamilton DAG. For visualizations, Graphviz needs to be installed on your system separately.
+
+ pip install " apache-hamilton[visualization] " 
+
+To use the Apache Hamilton UI, install the ui and sdk dependencies.
+
+ pip install " apache-hamilton[ui,sdk] " 
+
+To try Apache Hamilton in the browser, visit www.tryhamilton.dev 
+
+Why use Apache Hamilton?
+
+Data teams write code to deliver business value, but few have the resources to standardize practices and provide quality assurance. Moving from proof-of-concept to production and cross-function collaboration (e.g., data science, engineering, ops) remain challenging for teams, big or small. Apache Hamilton is designed to help throughout a project's lifecycle:
+
+ Separation of concerns . Apache Hamilton separates the DAG "definition" and "execution" which lets data scientists focus on solving problems and engineers manage production pipelines.
+
+ Effective collaboration . The Apache Hamilton UI provides a shared interface for teams to inspect results and debug failures throughout the development cycle.
+
+ Low-friction dev to prod . Use @config.when() to modify your DAG between execution environments instead of error-prone if/else feature flags. The notebook extension prevents the pain of migrating code from a notebook to a Python module.
+
+ Portable transformations . Your DAG is independent of infrastructure or orchestration , meaning you can develop and debug locally and reuse code across contexts (local, Airflow, FastAPI, etc.).
+
+ Maintainable DAG definition . Apache Hamilton automatically builds the DAG from a single line of code whether it has 10 or 1000 nodes . It can also assemble multiple Python modules into a pipeline, encouraging modularity.
+
+ Expressive DAGs . Function modifiers are a unique feature to keep your code DRY and reduce the complexity of maintaining large DAGs. Other frameworks inevitably lead to code redundancy or bloated functions.
+
+ Built-in coding style . The Apache Hamilton DAG is defined using Python functions , encouraging modular, easy-to-read, self-documenting, and unit testable code.
+
+ Data and schema validation . Decorate functions with @check_output to validate output properties, and raise warnings or exceptions. Add the SchemaValidator() adapter to automatically inspect dataframe-like objects (pandas, polars, Ibis, etc.) to track and validate their schema.
+
+ Built for plugins . Apache Hamilton is designed to play nice with all tools and provides the right abstractions to create custom integrations with your stack. Our lively community will help you build what you need!
+
+Apache Hamilton UI
+
+You can track the execution of your Apache Hamilton DAG in the Apache Hamilton UI . It automatically populates a data catalog with lineage / tracing and provides execution observability to inspect results and debug errors. You can run it as a local server or a self-hosted application using Docker .
+
+ DAG catalog, automatic dataset profiling, and execution tracking 
+
+Get started with the Apache Hamilton UI
+
+To use the Apache Hamilton UI, install the dependencies (see Installation section) and start the server with
+
+ hamilton ui 
+
+On the first connection, create a username and a new project (the project_id should be 1 ).
+
+Track your Apache Hamilton DAG by creating a HamiltonTracker object with your username and project_id and adding it to your Builder . Now, your DAG will appear in the UI's catalog and all executions will be tracked!
+
+ from hamilton import driver 
+ from hamilton_sdk . adapters import HamiltonTracker 
+ import my_dag 
+
+ # use your `username` and `project_id` 
+ tracker = HamiltonTracker (
+ username = "my_username" ,
+ project_id = 1 ,
+ dag_name = "hello_world" ,
+)
+
+ # adding the tracker to the `Builder` will add the DAG to the catalog 
+ dr = (
+ driver . Builder ()
+ . with_modules ( my_dag )
+ . with_adapters ( tracker ) # add your tracker here 
+ . build ()
+)
+
+ # executing the `Driver` will track results 
+ dr . execute ([ "C" ]) 
+
+Documentation & learning resources
+
+📚 See the official documentation to learn about the core concepts of Apache Hamilton.
+
+👨‍🏫 Consult the examples on GitHub to learn about specific features or integrations with other frameworks.
+
+📰 The DAGWorks blog includes guides about how to build a data platform and narrative tutorials.
+
+📺 Find video tutorials on the DAGWorks YouTube channel 
+
+📣 Reach out via the Apache Hamilton Slack community for help and troubleshooting
+
+How does Apache Hamilton compare to X?
+
+Apache Hamilton is not an orchestrator ( you might not need one ), nor a feature store ( but you can use it to build one! ). Its purpose is to help you structure and manage data transformations. If you know dbt, Apache Hamilton does for Python what dbt does for SQL.
+
+Another way to frame it is to think about the different layers of a data stack. Apache Hamilton is at the asset layer . It helps you organize data transformations code (the expression layer ), manage changes, and validate & test data.
+
+ Layer 
+ Purpose 
+ Example Tools 
+
+ Orchestration 
+ Operational system for the creation of assets 
+ Airflow, Metaflow, Prefect, Dagster 
+
+ Asset 
+ Organize expressions into meaningful units 
+ (e.g., dataset, ML model, table) 
+ Apache Hamilton , dbt, dlt, SQLMesh, Burr 
+
+ Expression 
+ Language to write data transformations 
+ pandas, SQL, polars, Ibis, LangChain 
+
+ Execution 
+ Perform data transformations 
+ Spark, Snowflake, DuckDB, RAPIDS 
+
+ Data 
+ Physical representation of data, inputs and outputs 
+ S3, Postgres, file system, Snowflake 
+
+See our page on Why use Apache Hamilton? and framework code comparisons for more information.
+
+📑 License
+
+Apache Hamilton is released under the Apache 2.0 License. See LICENSE for details.
+
+🌎 Community
+
+👨‍💻 Contributing
+
+We're very supportive of changes by new contributors, big or small! Make sure to discuss potential changes by creating an issue or commenting on an existing one before opening a pull request. Good first contributions include creating an example or an integration with your favorite Python library!
+
+To contribute, checkout our contributing guidelines , our developer setup guide , and our Code of Conduct .
+
+😎 Used by
+
+Apache Hamilton was started at Stitch Fix before the original creators founded DAGWorks Inc! The library is battle-tested and has been supporting production use cases since 2019.
+
+Read more about the origin story .
+
+ Stitch Fix — Time series forecasting
+
+ UK Government Digital Services — National feedback pipeline (processing & analysis)
+
+ IBM — Internal search and ML pipelines
+
+ Opendoor — Manage PySpark pipelines
+
+ Lexis Nexis — Feature processing and lineage
+
+ Adobe — Prompt engineering research
+
+ WrenAI — async text-to-SQL workflows
+
+ British Cycling — Telemetry analysis
+
+ Oak Ridge & PNNL — Naturf project
+
+ ORNL 
+
+ Federal Reserve Board 
+
+ Joby Aviation — Flight data processing
+
+ Two 
+
+ Transfix — Online featurization and prediction
+
+ Railofy — Orchestrate pandas code
+
+ Habitat Energy — Time-series feature engineering
+
+ KI-Insurance — Feature engineering
+
+ Ascena Retail — Feature engineering
+
+ NaroHQ 
+
+ EquipmentShare 
+
+ Everstream.ai 
+
+ Flectere 
+
+ F33.ai 
+
+ Kora Money 
+
+ Capitec Bank 
+
+ Best Egg 
+
+ RTV Euro AGD 
+
+ Wealth.com 
+
+ wren.ai 
+
+🤝 Code Contributors
+
+🙌 Special Mentions & 🦟 Bug Hunters
+
+Thanks to our awesome community and their active involvement in the Apache Hamilton library.
+
+ Nils Olsson , Michał Siedlaczek , Alaa Abedrabbo , Shreya Datar , Baldo Faieta , Anwar Brini , Gourav Kumar , Amos Aikman , Ankush Kundaliya , David Weselowski , Peter Robinson , Seth Stokes , Louis Maddox , Stephen Bias , Anup Joseph , Jan Hurst , Flavia Santos , Nicolas Huray , Manabu Niseki , Kyle Pounder , Alex Bustos , Andy Day , Alexander Cai , Nils Müller-Wendt , Paul Larsen , 
+Kemal Eren , Jernej Frank , Noah Ridge 
+
+🎓 Citations
+
+We'd appreciate citing Apache Hamilton by referencing one of the following:
+
+ @inproceedings { DBLP:conf/vldb/KrawczykI22 ,
+ title = { Hamilton: a modular open source declarative paradigm for high level 
+ modeling of dataflows } ,
+ author = { Stefan Krawczyk and Elijah ben Izzy } ,
+ editor = { Satyanarayana R. Valluri and Mohamed Za{\"{\i}}t } ,
+ booktitle = { 1st International Workshop on Composable Data Management Systems, 
+ CDMS @ VLDB 2022, Sydney, Australia, September 9, 2022 } ,
+ year = { 2022 } ,
+ url = { https://cdmsworkshop.github.io/2022/Proceedings/ShortPapers/Paper6\_StefanKrawczyk.pdf } ,
+ timestamp = { Wed, 19 Oct 2022 16:20:48 +0200 } ,
+ biburl = { https://dblp.org/rec/conf/vldb/KrawczykI22.bib } ,
+ bibsource = { dblp computer science bibliography, https://dblp.org } 
+} 
+
+ @inproceedings { CEURWS:conf/vldb/KrawczykIQ22 ,
+ title = { Hamilton: enabling software engineering best practices for data transformations via generalized dataflow graphs } ,
+ author = { Stefan Krawczyk and Elijah ben Izzy and Danielle Quinn } ,
+ editor = { Cinzia Cappiello and Sandra Geisler and Maria-Esther Vidal } ,
+ booktitle = { 1st International Workshop on Data Ecosystems co-located with 48th International Conference on Very Large Databases (VLDB 2022) } ,
+ pages = { 41--50 } ,
+ url = { https://ceur-ws.org/Vol-3306/paper5.pdf } ,
+ year = { 2022 } 
+} 
+
+📚 Libraries built on / for Apache Hamilton
+
+ Hypster - hyperparameter management
+
+ DSP Decision Engine - decision trees
+
+ NaturF - library for data transformation for weather forecasting
+
+ WrenAI - RAG
+
+ FlowerPower - Scheduler for Apache Hamilton
+
+ About 
+
+Apache Hamilton helps data scientists and engineers define testable, modular, self-documenting dataflows, that encode lineage/tracing and metadata. Runs and scales everywhere python does.
+
+ hamilton.apache.org/ 
+
+ Topics 
+
+ dag data-analysis data-engineering data-science dataframe etl etl-framework etl-pipeline feature-engineering hacktoberfest lineage llmops machine-learning mlops orchestration pandas python rag software-engineering 
+
+ Resources 
+
+ Readme 
+
+ Apache-2.0 license 
+
+ Code of conduct 
+
+ Code of conduct 
+
+ Contributing 
+
+ Contributing 
+
+ Security policy 
+
+ Security policy 
+
+ Activity 
+
+ Custom properties 
+
+ Stars 
+
+ 2.6k stars 
+
+ Watchers 
+
+ 16 watching 
+
+ Forks 
+
+ 230 forks 
+
+ Report repository 
+
+ Releases 
+
+ Packages 
+
+ Used by 
+
+ Contributors 
+
+ Languages 
+
+Footer
+
+ © 2026 GitHub, Inc.
+
+Footer navigation
+
+ Terms 
+
+ Privacy 
+
+ Security 
+
+ Status 
+
+ Community 
+
+ Docs 
+
+ Contact 
+
+ Manage cookies
+
+ Do not share my personal information
+
+ You can’t perform that action at this time.

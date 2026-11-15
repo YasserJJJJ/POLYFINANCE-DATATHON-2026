@@ -1,0 +1,256 @@
+{
+  "checked_at": "2026-11-15T20:48:43.988804+00:00",
+  "revisions": [
+    {
+      "revision": 10,
+      "withdrawal_cad": 40000,
+      "loss_limit_cad": 15000,
+      "minimum_cad": 40000.0,
+      "audit_scenario_error": false,
+      "error_scope": null,
+      "run_id": "3bf236715a984759bb3f668a25fdc938",
+      "aws_request_ids": [
+        "44f511c1-884d-4d1c-bfaf-767a11650ffc",
+        "9922f911-3929-402e-af02-684ec259f6f3",
+        "d8a03c6b-4dcb-4a17-880b-87d6572602c8",
+        "40b36715-52a1-47ff-864d-e19c5f5e9893"
+      ],
+      "independent_arithmetic": [
+        {
+          "id": "baseline",
+          "turnover_cad": 0.0,
+          "losses_cad": {
+            "actions": 18250.0,
+            "obligations": 13900.000000000002
+          },
+          "admissible": false
+        },
+        {
+          "id": "minimum_turnover",
+          "turnover_cad": 40000.0,
+          "losses_cad": {
+            "actions": 9500.000000000002,
+            "obligations": 6400.0
+          },
+          "admissible": true
+        },
+        {
+          "id": "alternative_minimum",
+          "turnover_cad": 40000.0,
+          "losses_cad": {
+            "actions": 2749.9999999999995,
+            "obligations": 6150.0
+          },
+          "admissible": true
+        }
+      ],
+      "changes": {
+        "changed_fields": [
+          "fact.withdrawal_cad"
+        ],
+        "invalidated": [
+          "analysis@1",
+          "analysis_review@1",
+          "fact.withdrawal_cad@1",
+          "problem@1",
+          "qualification@1",
+          "questions.agent0@1",
+          "questions.agent1@1",
+          "questions.agent2@1",
+          "questions.agent3@1",
+          "request@1",
+          "research_review@1",
+          "view@1"
+        ],
+        "reused": [
+          "baseline_stress@1",
+          "fact.assumptions@1",
+          "fact.capital_cad@1",
+          "fact.clarifications@1",
+          "fact.comparison@1",
+          "fact.currency@1",
+          "fact.decision_type@1",
+          "fact.holdings@1",
+          "fact.horizon_years@1",
+          "fact.knowledge_date@1",
+          "fact.max_asset_weights@1",
+          "fact.objective@1",
+          "fact.question@1",
+          "fact.reserve_policy@1",
+          "fact.scenario_loss_limit_cad@1",
+          "fact.scenarios@1",
+          "fact.unknowns@1",
+          "fact.withdrawal_months@1",
+          "request_source.874af537a0be4dd680e180fc75475071@1",
+          "research@1"
+        ]
+      }
+    },
+    {
+      "revision": 15,
+      "withdrawal_cad": 1000,
+      "loss_limit_cad": 15000,
+      "minimum_cad": 14999.999999999996,
+      "audit_scenario_error": true,
+      "error_scope": "Le relecteur a modifié le retrait au lieu de la perte admise ; corrigé en r20.",
+      "run_id": "2dd45683d76b4d2199afdc4101a0750d",
+      "aws_request_ids": [
+        "7c79e389-628d-448e-92ec-7ec595cc8be4",
+        "b430fdad-40c5-48f0-bcd8-be70782b03d6",
+        "931f9520-6aa0-4025-a5e6-1068009fd23f",
+        "5b08ac8a-0ae9-49bd-9133-5c2b1c2ff13a"
+      ],
+      "independent_arithmetic": [
+        {
+          "id": "baseline",
+          "turnover_cad": 0.0,
+          "losses_cad": {
+            "actions": 18250.0,
+            "obligations": 13900.000000000002
+          },
+          "admissible": false
+        },
+        {
+          "id": "minimum_turnover",
+          "turnover_cad": 14999.999999999996,
+          "losses_cad": {
+            "actions": 11450.0,
+            "obligations": 12249.999999999998
+          },
+          "admissible": true
+        },
+        {
+          "id": "alternative_minimum",
+          "turnover_cad": 15000.000099999994,
+          "losses_cad": {
+            "actions": 10749.999950000003,
+            "obligations": 10429.999977000001
+          },
+          "admissible": true
+        }
+      ],
+      "changes": {
+        "changed_fields": [
+          "fact.withdrawal_cad"
+        ],
+        "invalidated": [
+          "analysis@2",
+          "analysis_review@2",
+          "fact.withdrawal_cad@2",
+          "problem@2",
+          "qualification@2",
+          "questions.agent0@2",
+          "questions.agent1@2",
+          "questions.agent2@2",
+          "questions.agent3@2",
+          "request@2",
+          "research_review@2",
+          "view@2"
+        ],
+        "reused": [
+          "baseline_stress@1",
+          "fact.assumptions@1",
+          "fact.capital_cad@1",
+          "fact.clarifications@1",
+          "fact.comparison@1",
+          "fact.currency@1",
+          "fact.decision_type@1",
+          "fact.holdings@1",
+          "fact.horizon_years@1",
+          "fact.knowledge_date@1",
+          "fact.max_asset_weights@1",
+          "fact.objective@1",
+          "fact.question@1",
+          "fact.reserve_policy@1",
+          "fact.scenario_loss_limit_cad@1",
+          "fact.scenarios@1",
+          "fact.unknowns@1",
+          "fact.withdrawal_months@1",
+          "request_source.3bf236715a984759bb3f668a25fdc938@1",
+          "request_source.874af537a0be4dd680e180fc75475071@1",
+          "research@1"
+        ]
+      }
+    },
+    {
+      "revision": 20,
+      "withdrawal_cad": 40000,
+      "loss_limit_cad": 1000,
+      "minimum_cad": 74400.0,
+      "audit_scenario_error": false,
+      "error_scope": null,
+      "run_id": "3565a73fd7c3465db66cce1d15183b72",
+      "aws_request_ids": [
+        "fb50869c-4811-4a38-87ab-9a09412dca01",
+        "00391eb1-d082-4012-9617-32e74cf97e19",
+        "17dd616a-87cc-4d42-a692-13232ae340cf",
+        "100b77a4-9084-424a-9d2a-f75b25516f50"
+      ],
+      "independent_arithmetic": [
+        {
+          "id": "baseline",
+          "turnover_cad": 0.0,
+          "losses_cad": {
+            "actions": 18250.0,
+            "obligations": 13900.000000000002
+          },
+          "admissible": false
+        },
+        {
+          "id": "minimum_turnover",
+          "turnover_cad": 74400.0,
+          "losses_cad": {
+            "actions": 1000.0,
+            "obligations": 1000.0
+          },
+          "admissible": true
+        }
+      ],
+      "changes": {
+        "changed_fields": [
+          "fact.scenario_loss_limit_cad",
+          "fact.withdrawal_cad"
+        ],
+        "invalidated": [
+          "analysis@3",
+          "analysis_review@3",
+          "fact.scenario_loss_limit_cad@1",
+          "fact.withdrawal_cad@3",
+          "problem@3",
+          "qualification@3",
+          "questions.agent0@3",
+          "questions.agent1@3",
+          "questions.agent2@3",
+          "questions.agent3@3",
+          "request@3",
+          "research_review@3",
+          "view@3"
+        ],
+        "reused": [
+          "baseline_stress@1",
+          "fact.assumptions@1",
+          "fact.capital_cad@1",
+          "fact.clarifications@1",
+          "fact.comparison@1",
+          "fact.currency@1",
+          "fact.decision_type@1",
+          "fact.holdings@1",
+          "fact.horizon_years@1",
+          "fact.knowledge_date@1",
+          "fact.max_asset_weights@1",
+          "fact.objective@1",
+          "fact.question@1",
+          "fact.reserve_policy@1",
+          "fact.scenarios@1",
+          "fact.unknowns@1",
+          "fact.withdrawal_months@1",
+          "request_source.2dd45683d76b4d2199afdc4101a0750d@1",
+          "request_source.3bf236715a984759bb3f668a25fdc938@1",
+          "request_source.874af537a0be4dd680e180fc75475071@1",
+          "research@1"
+        ]
+      }
+    }
+  ],
+  "scope": "Arithmétique et admissibilité recalculées indépendamment. Le minimum global de r20 dépend du certificat du solveur ; ce script ne constitue pas une seconde résolution indépendante du LP."
+}

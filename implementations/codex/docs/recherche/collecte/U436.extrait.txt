@@ -1,0 +1,1923 @@
+AWS Glue API - AWS Glue 
+
+ View a markdown version of this page 
+
+ AWS Glue API - AWS Glue 
+
+ Documentation AWS Glue User Guide 
+
+AWS Glue API
+
+This section describes data types and primitives used by AWS Glue SDKs and Tools. There are three general ways to interact with AWS Glue programmatically outside of the AWS Management Console, each with its own
+ documentation: 
+
+ Language SDK libraries allow you to access AWS
+ resources from common programming languages. Find more information at Tools to Build on AWS . 
+
+ The AWS CLI allows you to access AWS resources from the command line. Find more information at AWS CLI Command Reference . 
+
+ CloudFormation allows you to define a set of AWS resources to be provisioned together consistently. Find more information
+ at CloudFormation: AWS Glue resource type reference .
+
+ This section documents shared primitives independently of these SDKs
+ and Tools. Tools use the AWS Glue Web API Reference to communicate with AWS. 
+
+Contents
+
+ Security APIs in AWS Glue 
+
+ Data types 
+
+ DataCatalogEncryptionSettings structure 
+
+ EncryptionAtRest structure 
+
+ ConnectionPasswordEncryption structure 
+
+ EncryptionConfiguration structure 
+
+ S3Encryption structure 
+
+ CloudWatchEncryption structure 
+
+ JobBookmarksEncryption structure 
+
+ SecurityConfiguration structure 
+
+ GluePolicy structure 
+
+ DataQualityEncryption structure 
+
+ Operations 
+
+ GetDataCatalogEncryptionSettings action (Python: get_data_catalog_encryption_settings) 
+
+ PutDataCatalogEncryptionSettings action (Python: put_data_catalog_encryption_settings) 
+
+ PutResourcePolicy action (Python: put_resource_policy) 
+
+ GetResourcePolicy action (Python: get_resource_policy) 
+
+ DeleteResourcePolicy action (Python: delete_resource_policy) 
+
+ CreateSecurityConfiguration action (Python: create_security_configuration) 
+
+ DeleteSecurityConfiguration action (Python: delete_security_configuration) 
+
+ GetSecurityConfiguration action (Python: get_security_configuration) 
+
+ GetSecurityConfigurations action (Python: get_security_configurations) 
+
+ GetResourcePolicies action (Python: get_resource_policies) 
+
+ Catalog objects API 
+
+ Catalogs API 
+
+ Data types 
+
+ Catalog structure 
+
+ CatalogInput structure 
+
+ TargetRedshiftCatalog structure 
+
+ CatalogProperties structure 
+
+ CatalogPropertiesOutput structure 
+
+ DataLakeAccessProperties structure 
+
+ IcebergOptimizationProperties structure 
+
+ DataLakeAccessPropertiesOutput structure 
+
+ IcebergOptimizationPropertiesOutput structure 
+
+ FederatedCatalog structure 
+
+ Operations 
+
+ CreateCatalog action (Python: create_catalog) 
+
+ UpdateCatalog action (Python: update_catalog) 
+
+ DeleteCatalog action (Python: delete_catalog) 
+
+ GetCatalog action (Python: get_catalog) 
+
+ GetCatalogs action (Python: get_catalogs) 
+
+ Business context APIs 
+
+ Data types 
+
+ AssetFormEntry structure 
+
+ AssetTypeFormReference structure 
+
+ IterableFormEntry structure 
+
+ IterableFormItem structure 
+
+ IterableFormListItem structure 
+
+ SearchResultItem structure 
+
+ SearchSort structure 
+
+ SearchFilterClause structure 
+
+ SearchAttributeFilter structure 
+
+ SearchMapFilter structure 
+
+ SearchMapFilterValue structure 
+
+ SearchFilterValue structure 
+
+ ItemError structure 
+
+ AssetTypeItem structure 
+
+ FormTypeItem structure 
+
+ GlossaryItem structure 
+
+ GlossaryTermItem structure 
+
+ GetAssetOutput structure 
+
+ SearchAssetsOutput structure 
+
+ ExportEncryptionConfiguration structure 
+
+ GetDataCatalogExportConfigurationOutput structure 
+
+ PutDataCatalogExportConfigurationOutput structure 
+
+ Operations 
+
+ GetAsset action (Python: get_asset) 
+
+ PutAsset action (Python: put_asset) 
+
+ DeleteAsset action (Python: delete_asset) 
+
+ PutAssetType action (Python: put_asset_type) 
+
+ GetAssetType action (Python: get_asset_type) 
+
+ DeleteAssetType action (Python: delete_asset_type) 
+
+ ListAssetTypes action (Python: list_asset_types) 
+
+ PutFormType action (Python: put_form_type) 
+
+ GetFormType action (Python: get_form_type) 
+
+ DeleteFormType action (Python: delete_form_type) 
+
+ ListFormTypes action (Python: list_form_types) 
+
+ PutAttachment action (Python: put_attachment) 
+
+ DeleteAttachment action (Python: delete_attachment) 
+
+ ListIterableForms action (Python: list_iterable_forms) 
+
+ BatchGetIterableForms action (Python: batch_get_iterable_forms) 
+
+ CreateGlossary action (Python: create_glossary) 
+
+ GetGlossary action (Python: get_glossary) 
+
+ UpdateGlossary action (Python: update_glossary) 
+
+ DeleteGlossary action (Python: delete_glossary) 
+
+ ListGlossaries action (Python: list_glossaries) 
+
+ CreateGlossaryTerm action (Python: create_glossary_term) 
+
+ GetGlossaryTerm action (Python: get_glossary_term) 
+
+ UpdateGlossaryTerm action (Python: update_glossary_term) 
+
+ DeleteGlossaryTerm action (Python: delete_glossary_term) 
+
+ ListGlossaryTerms action (Python: list_glossary_terms) 
+
+ AssociateGlossaryTerms action (Python: associate_glossary_terms) 
+
+ DisassociateGlossaryTerms action (Python: disassociate_glossary_terms) 
+
+ SearchAssets action (Python: search_assets) 
+
+ GetDataCatalogExportConfiguration action (Python: get_data_catalog_export_configuration) 
+
+ PutDataCatalogExportConfiguration action (Python: put_data_catalog_export_configuration) 
+
+ Database API 
+
+ Data types 
+
+ Database structure 
+
+ DatabaseInput structure 
+
+ PrincipalPermissions structure 
+
+ DataLakePrincipal structure 
+
+ DatabaseIdentifier structure 
+
+ FederatedDatabase structure 
+
+ Operations 
+
+ CreateDatabase action (Python: create_database) 
+
+ UpdateDatabase action (Python: update_database) 
+
+ DeleteDatabase action (Python: delete_database) 
+
+ GetDatabase action (Python: get_database) 
+
+ GetDatabases action (Python: get_databases) 
+
+ Table API 
+
+ Data types 
+
+ Table structure 
+
+ TableInput structure 
+
+ FederatedTable structure 
+
+ Column structure 
+
+ StorageDescriptor structure 
+
+ SchemaReference structure 
+
+ SerDeInfo structure 
+
+ Order structure 
+
+ SkewedInfo structure 
+
+ TableVersion structure 
+
+ TableError structure 
+
+ TableVersionError structure 
+
+ SortCriterion structure 
+
+ TableIdentifier structure 
+
+ KeySchemaElement structure 
+
+ PartitionIndex structure 
+
+ PartitionIndexDescriptor structure 
+
+ BackfillError structure 
+
+ IcebergInput structure 
+
+ OpenTableFormatInput structure 
+
+ ViewDefinition structure 
+
+ ViewDefinitionInput structure 
+
+ ViewRepresentation structure 
+
+ ViewRepresentationInput structure 
+
+ UpdateOpenTableFormatInput structure 
+
+ UpdateIcebergInput structure 
+
+ CreateIcebergTableInput structure 
+
+ UpdateIcebergTableInput structure 
+
+ IcebergSortOrder structure 
+
+ IcebergSortField structure 
+
+ IcebergPartitionSpec structure 
+
+ IcebergPartitionField structure 
+
+ IcebergSchema structure 
+
+ IcebergStructField structure 
+
+ IcebergTableUpdate structure 
+
+ IcebergTableMetadata structure 
+
+ IcebergEncryptedKey structure 
+
+ TableStatus structure 
+
+ StatusDetails structure 
+
+ ViewValidation structure 
+
+ AuditContext structure 
+
+ Operations 
+
+ CreateTable action (Python: create_table) 
+
+ UpdateTable action (Python: update_table) 
+
+ DeleteTable action (Python: delete_table) 
+
+ BatchDeleteTable action (Python: batch_delete_table) 
+
+ GetTable action (Python: get_table) 
+
+ GetTables action (Python: get_tables) 
+
+ GetTableVersion action (Python: get_table_version) 
+
+ GetTableVersions action (Python: get_table_versions) 
+
+ DeleteTableVersion action (Python: delete_table_version) 
+
+ BatchDeleteTableVersion action (Python: batch_delete_table_version) 
+
+ SearchTables action (Python: search_tables) 
+
+ GetPartitionIndexes action (Python: get_partition_indexes) 
+
+ CreatePartitionIndex action (Python: create_partition_index) 
+
+ DeletePartitionIndex action (Python: delete_partition_index) 
+
+ GetColumnStatisticsForTable action (Python: get_column_statistics_for_table) 
+
+ UpdateColumnStatisticsForTable action (Python: update_column_statistics_for_table) 
+
+ DeleteColumnStatisticsForTable action (Python: delete_column_statistics_for_table) 
+
+ Materialized view API 
+
+ Data types 
+
+ MaterializedViewRefreshTaskRun structure 
+
+ Operations 
+
+ StartMaterializedViewRefreshTaskRun action (Python: start_materialized_view_refresh_task_run) 
+
+ StopMaterializedViewRefreshTaskRun action (Python: stop_materialized_view_refresh_task_run) 
+
+ GetMaterializedViewRefreshTaskRun action (Python: get_materialized_view_refresh_task_run) 
+
+ ListMaterializedViewRefreshTaskRuns action (Python: list_materialized_view_refresh_task_runs) 
+
+ Exceptions 
+
+ MaterializedViewRefreshTaskRunningException structure 
+
+ MaterializedViewRefreshTaskNotRunningException structure 
+
+ MaterializedViewRefreshTaskStoppingException structure 
+
+ Partition API 
+
+ Data types 
+
+ Partition structure 
+
+ PartitionInput structure 
+
+ PartitionSpecWithSharedStorageDescriptor structure 
+
+ PartitionListComposingSpec structure 
+
+ PartitionSpecProxy structure 
+
+ PartitionValueList structure 
+
+ Segment structure 
+
+ PartitionError structure 
+
+ BatchUpdatePartitionFailureEntry structure 
+
+ BatchUpdatePartitionRequestEntry structure 
+
+ StorageDescriptor structure 
+
+ SchemaReference structure 
+
+ SerDeInfo structure 
+
+ SkewedInfo structure 
+
+ Operations 
+
+ CreatePartition action (Python: create_partition) 
+
+ BatchCreatePartition action (Python: batch_create_partition) 
+
+ UpdatePartition action (Python: update_partition) 
+
+ DeletePartition action (Python: delete_partition) 
+
+ BatchDeletePartition action (Python: batch_delete_partition) 
+
+ GetPartition action (Python: get_partition) 
+
+ GetPartitions action (Python: get_partitions) 
+
+ BatchGetPartition action (Python: batch_get_partition) 
+
+ BatchUpdatePartition action (Python: batch_update_partition) 
+
+ GetColumnStatisticsForPartition action (Python: get_column_statistics_for_partition) 
+
+ UpdateColumnStatisticsForPartition action (Python: update_column_statistics_for_partition) 
+
+ DeleteColumnStatisticsForPartition action (Python: delete_column_statistics_for_partition) 
+
+ Connections API 
+
+ Connection API 
+
+ Data types 
+
+ Connection structure 
+
+ ConnectionInput structure 
+
+ TestConnectionInput structure 
+
+ PhysicalConnectionRequirements structure 
+
+ GetConnectionsFilter structure 
+
+ AuthenticationConfiguration structure 
+
+ AuthenticationConfigurationInput structure 
+
+ OAuth2Properties structure 
+
+ OAuth2PropertiesInput structure 
+
+ OAuth2ClientApplication structure 
+
+ AuthorizationCodeProperties structure 
+
+ BasicAuthenticationCredentials structure 
+
+ OAuth2Credentials structure 
+
+ Operations 
+
+ CreateConnection action (Python: create_connection) 
+
+ DeleteConnection action (Python: delete_connection) 
+
+ GetConnection action (Python: get_connection) 
+
+ GetConnections action (Python: get_connections) 
+
+ UpdateConnection action (Python: update_connection) 
+
+ TestConnection action (Python: test_connection) 
+
+ BatchDeleteConnection action (Python: batch_delete_connection) 
+
+ Connection Type API 
+
+ Connection management APIs 
+
+ RegisterConnectionType action (Python: register_connection_type) 
+
+ DeleteConnectionType action (Python: delete_connection_type) 
+
+ DescribeConnectionType action (Python: describe_connection_type) 
+
+ ListConnectionTypes action (Python: list_connection_types) 
+
+ ConnectionTypeBrief structure 
+
+ ConnectionTypeVariant structure 
+
+ datatypes 
+
+ Validation structure 
+
+ AuthConfiguration structure 
+
+ Capabilities structure 
+
+ Property structure 
+
+ AllowedValue structure 
+
+ ComputeEnvironmentConfiguration structure 
+
+ Custom connector data types 
+
+ ConnectionPropertiesConfiguration structure 
+
+ ConnectorAuthenticationConfiguration structure 
+
+ ConnectorProperty structure 
+
+ RestConfiguration structure 
+
+ SourceConfiguration structure 
+
+ EntityConfiguration structure 
+
+ ResponseConfiguration structure 
+
+ ResponseExtractionMapping structure 
+
+ PaginationConfiguration structure 
+
+ CursorConfiguration structure 
+
+ OffsetConfiguration structure 
+
+ ExtractedParameter structure 
+
+ FieldDefinition structure 
+
+ ConnectorOAuth2Properties structure 
+
+ ClientCredentialsProperties structure 
+
+ JWTBearerProperties structure 
+
+ ConnectorAuthorizationCodeProperties structure 
+
+ BasicAuthenticationProperties structure 
+
+ CustomAuthenticationProperties structure 
+
+ FilterConfiguration structure 
+
+ FilterOverrides structure 
+
+ BetweenConfiguration structure 
+
+ FilterStringConfiguration structure 
+
+ Connection Metadata and Preview API 
+
+ Data types 
+
+ Entity structure 
+
+ Field structure 
+
+ Operations 
+
+ ListEntities action (Python: list_entities) 
+
+ DescribeEntity action (Python: describe_entity) 
+
+ GetEntityRecords action (Python: get_entity_records) 
+
+ User-defined Function API 
+
+ Data types 
+
+ UserDefinedFunction structure 
+
+ UserDefinedFunctionInput structure 
+
+ Operations 
+
+ CreateUserDefinedFunction action (Python: create_user_defined_function) 
+
+ UpdateUserDefinedFunction action (Python: update_user_defined_function) 
+
+ DeleteUserDefinedFunction action (Python: delete_user_defined_function) 
+
+ GetUserDefinedFunction action (Python: get_user_defined_function) 
+
+ GetUserDefinedFunctions action (Python: get_user_defined_functions) 
+
+ Importing an Athena catalog to AWS Glue 
+
+ Data types 
+
+ CatalogImportStatus structure 
+
+ Operations 
+
+ ImportCatalogToGlue action (Python: import_catalog_to_glue) 
+
+ GetCatalogImportStatus action (Python: get_catalog_import_status) 
+
+ Table optimizer API 
+
+ Data types 
+
+ TableOptimizer structure 
+
+ TableOptimizerConfiguration structure 
+
+ TableOptimizerVpcConfiguration structure 
+
+ CompactionConfiguration structure 
+
+ IcebergCompactionConfiguration structure 
+
+ TableOptimizerRun structure 
+
+ BatchGetTableOptimizerEntry structure 
+
+ BatchTableOptimizer structure 
+
+ BatchGetTableOptimizerError structure 
+
+ RetentionConfiguration structure 
+
+ IcebergRetentionConfiguration structure 
+
+ OrphanFileDeletionConfiguration structure 
+
+ IcebergOrphanFileDeletionConfiguration structure 
+
+ CompactionMetrics structure 
+
+ RetentionMetrics structure 
+
+ OrphanFileDeletionMetrics structure 
+
+ IcebergCompactionMetrics structure 
+
+ IcebergRetentionMetrics structure 
+
+ IcebergOrphanFileDeletionMetrics structure 
+
+ RunMetrics structure 
+
+ Operations 
+
+ GetTableOptimizer action (Python: get_table_optimizer) 
+
+ BatchGetTableOptimizer action (Python: batch_get_table_optimizer) 
+
+ ListTableOptimizerRuns action (Python: list_table_optimizer_runs) 
+
+ CreateTableOptimizer action (Python: create_table_optimizer) 
+
+ DeleteTableOptimizer action (Python: delete_table_optimizer) 
+
+ UpdateTableOptimizer action (Python: update_table_optimizer) 
+
+ Crawlers and classifiers API 
+
+ Classifier API 
+
+ Data types 
+
+ Classifier structure 
+
+ GrokClassifier structure 
+
+ XMLClassifier structure 
+
+ JsonClassifier structure 
+
+ CsvClassifier structure 
+
+ CreateGrokClassifierRequest structure 
+
+ UpdateGrokClassifierRequest structure 
+
+ CreateXMLClassifierRequest structure 
+
+ UpdateXMLClassifierRequest structure 
+
+ CreateJsonClassifierRequest structure 
+
+ UpdateJsonClassifierRequest structure 
+
+ CreateCsvClassifierRequest structure 
+
+ UpdateCsvClassifierRequest structure 
+
+ Operations 
+
+ CreateClassifier action (Python: create_classifier) 
+
+ DeleteClassifier action (Python: delete_classifier) 
+
+ GetClassifier action (Python: get_classifier) 
+
+ GetClassifiers action (Python: get_classifiers) 
+
+ UpdateClassifier action (Python: update_classifier) 
+
+ Crawler API 
+
+ Data types 
+
+ Crawler structure 
+
+ Schedule structure 
+
+ CrawlerTargets structure 
+
+ S3Target structure 
+
+ S3DeltaCatalogTarget structure 
+
+ S3DeltaDirectTarget structure 
+
+ JdbcTarget structure 
+
+ MongoDBTarget structure 
+
+ DynamoDBTarget structure 
+
+ DeltaTarget structure 
+
+ IcebergTarget structure 
+
+ HudiTarget structure 
+
+ CatalogTarget structure 
+
+ CrawlerMetrics structure 
+
+ CrawlerHistory structure 
+
+ CrawlsFilter structure 
+
+ SchemaChangePolicy structure 
+
+ LastCrawlInfo structure 
+
+ RecrawlPolicy structure 
+
+ LineageConfiguration structure 
+
+ LakeFormationConfiguration structure 
+
+ Operations 
+
+ CreateCrawler action (Python: create_crawler) 
+
+ DeleteCrawler action (Python: delete_crawler) 
+
+ GetCrawler action (Python: get_crawler) 
+
+ GetCrawlers action (Python: get_crawlers) 
+
+ GetCrawlerMetrics action (Python: get_crawler_metrics) 
+
+ UpdateCrawler action (Python: update_crawler) 
+
+ StartCrawler action (Python: start_crawler) 
+
+ StopCrawler action (Python: stop_crawler) 
+
+ BatchGetCrawlers action (Python: batch_get_crawlers) 
+
+ ListCrawlers action (Python: list_crawlers) 
+
+ ListCrawls action (Python: list_crawls) 
+
+ Column statistics API 
+
+ Data types 
+
+ ColumnStatisticsTaskRun structure 
+
+ ColumnStatisticsTaskSettings structure 
+
+ ExecutionAttempt structure 
+
+ Operations 
+
+ StartColumnStatisticsTaskRun action (Python: start_column_statistics_task_run) 
+
+ GetColumnStatisticsTaskRun action (Python: get_column_statistics_task_run) 
+
+ GetColumnStatisticsTaskRuns action (Python: get_column_statistics_task_runs) 
+
+ ListColumnStatisticsTaskRuns action (Python: list_column_statistics_task_runs) 
+
+ StopColumnStatisticsTaskRun action (Python: stop_column_statistics_task_run) 
+
+ CreateColumnStatisticsTaskSettings action (Python: create_column_statistics_task_settings) 
+
+ UpdateColumnStatisticsTaskSettings action (Python: update_column_statistics_task_settings) 
+
+ GetColumnStatisticsTaskSettings action (Python: get_column_statistics_task_settings) 
+
+ DeleteColumnStatisticsTaskSettings action (Python: delete_column_statistics_task_settings) 
+
+ StartColumnStatisticsTaskRunSchedule action (Python: start_column_statistics_task_run_schedule) 
+
+ StopColumnStatisticsTaskRunSchedule action (Python: stop_column_statistics_task_run_schedule) 
+
+ Exceptions 
+
+ ColumnStatisticsTaskRunningException structure 
+
+ ColumnStatisticsTaskNotRunningException structure 
+
+ ColumnStatisticsTaskStoppingException structure 
+
+ ColumnStatisticsTaskAutoConcurrencyLimitException structure 
+
+ InvalidCatalogSettingException structure 
+
+ Crawler scheduler API 
+
+ Data types 
+
+ Schedule structure 
+
+ Operations 
+
+ UpdateCrawlerSchedule action (Python: update_crawler_schedule) 
+
+ StartCrawlerSchedule action (Python: start_crawler_schedule) 
+
+ StopCrawlerSchedule action (Python: stop_crawler_schedule) 
+
+ Autogenerating ETL Scripts API 
+
+ Data types 
+
+ CodeGenNode structure 
+
+ CodeGenNodeArg structure 
+
+ CodeGenEdge structure 
+
+ Location structure 
+
+ CatalogEntry structure 
+
+ MappingEntry structure 
+
+ Operations 
+
+ CreateScript action (Python: create_script) 
+
+ GetDataflowGraph action (Python: get_dataflow_graph) 
+
+ GetMapping action (Python: get_mapping) 
+
+ GetPlan action (Python: get_plan) 
+
+ Visual job API 
+
+ Data types 
+
+ CodeGenConfigurationNode structure 
+
+ JDBCConnectorOptions structure 
+
+ StreamingDataPreviewOptions structure 
+
+ AthenaConnectorSource structure 
+
+ JDBCConnectorSource structure 
+
+ SparkConnectorSource structure 
+
+ CatalogSource structure 
+
+ MySQLCatalogSource structure 
+
+ PostgreSQLCatalogSource structure 
+
+ OracleSQLCatalogSource structure 
+
+ MicrosoftSQLServerCatalogSource structure 
+
+ CatalogKinesisSource structure 
+
+ DirectKinesisSource structure 
+
+ KinesisStreamingSourceOptions structure 
+
+ CatalogKafkaSource structure 
+
+ DirectKafkaSource structure 
+
+ KafkaStreamingSourceOptions structure 
+
+ RedshiftSource structure 
+
+ AmazonRedshiftSource structure 
+
+ AmazonRedshiftNodeData structure 
+
+ AmazonRedshiftAdvancedOption structure 
+
+ Option structure 
+
+ S3CatalogSource structure 
+
+ S3SourceAdditionalOptions structure 
+
+ S3CsvSource structure 
+
+ DirectJDBCSource structure 
+
+ S3DirectSourceAdditionalOptions structure 
+
+ S3JsonSource structure 
+
+ S3ParquetSource structure 
+
+ S3DeltaSource structure 
+
+ S3CatalogDeltaSource structure 
+
+ CatalogDeltaSource structure 
+
+ S3HudiSource structure 
+
+ S3CatalogHudiSource structure 
+
+ S3ExcelSource structure 
+
+ CatalogHudiSource structure 
+
+ DynamoDBCatalogSource structure 
+
+ RelationalCatalogSource structure 
+
+ JDBCConnectorTarget structure 
+
+ SparkConnectorTarget structure 
+
+ BasicCatalogTarget structure 
+
+ MySQLCatalogTarget structure 
+
+ PostgreSQLCatalogTarget structure 
+
+ OracleSQLCatalogTarget structure 
+
+ MicrosoftSQLServerCatalogTarget structure 
+
+ RedshiftTarget structure 
+
+ AmazonRedshiftTarget structure 
+
+ UpsertRedshiftTargetOptions structure 
+
+ S3CatalogTarget structure 
+
+ S3GlueParquetTarget structure 
+
+ CatalogSchemaChangePolicy structure 
+
+ S3DirectTarget structure 
+
+ S3HudiCatalogTarget structure 
+
+ S3HudiDirectTarget structure 
+
+ S3DeltaCatalogTarget structure 
+
+ S3DeltaDirectTarget structure 
+
+ S3HyperDirectTarget structure 
+
+ S3IcebergDirectTarget structure 
+
+ DirectSchemaChangePolicy structure 
+
+ ApplyMapping structure 
+
+ Mapping structure 
+
+ SelectFields structure 
+
+ DropFields structure 
+
+ RenameField structure 
+
+ Spigot structure 
+
+ Join structure 
+
+ JoinColumn structure 
+
+ SplitFields structure 
+
+ SelectFromCollection structure 
+
+ FillMissingValues structure 
+
+ Filter structure 
+
+ FilterExpression structure 
+
+ FilterValue structure 
+
+ CustomCode structure 
+
+ SparkSQL structure 
+
+ SqlAlias structure 
+
+ DropNullFields structure 
+
+ NullCheckBoxList structure 
+
+ NullValueField structure 
+
+ Datatype structure 
+
+ Merge structure 
+
+ Union structure 
+
+ PIIDetection structure 
+
+ Aggregate structure 
+
+ DropDuplicates structure 
+
+ GovernedCatalogTarget structure 
+
+ GovernedCatalogSource structure 
+
+ AggregateOperation structure 
+
+ GlueSchema structure 
+
+ GlueStudioSchemaColumn structure 
+
+ GlueStudioColumn structure 
+
+ DynamicTransform structure 
+
+ TransformConfigParameter structure 
+
+ EvaluateDataQuality structure 
+
+ DQResultsPublishingOptions structure 
+
+ DQStopJobOnFailureOptions structure 
+
+ EvaluateDataQualityMultiFrame structure 
+
+ Recipe structure 
+
+ RecipeReference structure 
+
+ SnowflakeNodeData structure 
+
+ SnowflakeSource structure 
+
+ SnowflakeTarget structure 
+
+ ConnectorDataSource structure 
+
+ ConnectorDataTarget structure 
+
+ RecipeStep structure 
+
+ RecipeAction structure 
+
+ ConditionExpression structure 
+
+ S3CatalogIcebergSource structure 
+
+ CatalogIcebergSource structure 
+
+ S3IcebergCatalogTarget structure 
+
+ DynamoDBELTConnectorSource structure 
+
+ DDBELTConnectionOptions structure 
+
+ DDBELTCatalogAdditionalOptions structure 
+
+ Route structure 
+
+ GroupFilters structure 
+
+ AutoDataQuality structure 
+
+ Jobs API 
+
+ Jobs 
+
+ Data types 
+
+ Job structure 
+
+ ExecutionProperty structure 
+
+ NotificationProperty structure 
+
+ JobCommand structure 
+
+ ConnectionsList structure 
+
+ JobUpdate structure 
+
+ SourceControlDetails structure 
+
+ AutoUpgradeMetadata structure 
+
+ Operations 
+
+ CreateJob action (Python: create_job) 
+
+ UpdateJob action (Python: update_job) 
+
+ GetJob action (Python: get_job) 
+
+ GetJobs action (Python: get_jobs) 
+
+ DeleteJob action (Python: delete_job) 
+
+ ListJobs action (Python: list_jobs) 
+
+ BatchGetJobs action (Python: batch_get_jobs) 
+
+ Job runs 
+
+ Data types 
+
+ JobRun structure 
+
+ Predecessor structure 
+
+ JobBookmarkEntry structure 
+
+ BatchStopJobRunSuccessfulSubmission structure 
+
+ BatchStopJobRunError structure 
+
+ NotificationProperty structure 
+
+ Operations 
+
+ StartJobRun action (Python: start_job_run) 
+
+ BatchStopJobRun action (Python: batch_stop_job_run) 
+
+ GetJobRun action (Python: get_job_run) 
+
+ GetJobRuns action (Python: get_job_runs) 
+
+ GetSystemLogsForJobRun action (Python: get_system_logs_for_job_run) 
+
+ GetJobBookmark action (Python: get_job_bookmark) 
+
+ GetJobBookmarks action (Python: get_job_bookmarks) 
+
+ ResetJobBookmark action (Python: reset_job_bookmark) 
+
+ Triggers 
+
+ Data types 
+
+ Trigger structure 
+
+ TriggerUpdate structure 
+
+ Predicate structure 
+
+ Condition structure 
+
+ Action structure 
+
+ EventBatchingCondition structure 
+
+ Operations 
+
+ CreateTrigger action (Python: create_trigger) 
+
+ StartTrigger action (Python: start_trigger) 
+
+ GetTrigger action (Python: get_trigger) 
+
+ GetTriggers action (Python: get_triggers) 
+
+ UpdateTrigger action (Python: update_trigger) 
+
+ StopTrigger action (Python: stop_trigger) 
+
+ DeleteTrigger action (Python: delete_trigger) 
+
+ ListTriggers action (Python: list_triggers) 
+
+ BatchGetTriggers action (Python: batch_get_triggers) 
+
+ Upgrade analysis 
+
+ Operations 
+
+ GetJobUpgradeAnalysis action (Python: get_job_upgrade_analysis) 
+
+ StartJobUpgradeAnalysis action (Python: start_job_upgrade_analysis) 
+
+ StopJobUpgradeAnalysis action (Python: stop_job_upgrade_analysis) 
+
+ Integration APIs in AWS Glue 
+
+ Data types 
+
+ Integration structure 
+
+ IntegrationConfig structure 
+
+ IntegrationPartition structure 
+
+ IntegrationError structure 
+
+ IntegrationFilter structure 
+
+ InboundIntegration structure 
+
+ SourceProcessingProperties structure 
+
+ TargetProcessingProperties structure 
+
+ SourceTableConfig structure 
+
+ TargetTableConfig structure 
+
+ Operations 
+
+ CreateIntegration action (Python: create_integration) 
+
+ ModifyIntegration action (Python: modify_integration) 
+
+ DescribeIntegrations action (Python: describe_integrations) 
+
+ DeleteIntegration action (Python: delete_integration) 
+
+ DescribeInboundIntegrations action (Python: describe_inbound_integrations) 
+
+ CreateIntegrationTableProperties action (Python: create_integration_table_properties) 
+
+ UpdateIntegrationTableProperties action (Python: update_integration_table_properties) 
+
+ GetIntegrationTableProperties action (Python: get_integration_table_properties) 
+
+ DeleteIntegrationTableProperties action (Python: delete_integration_table_properties) 
+
+ CreateIntegrationResourceProperty action (Python: create_integration_resource_property) 
+
+ UpdateIntegrationResourceProperty action (Python: update_integration_resource_property) 
+
+ GetIntegrationResourceProperty action (Python: get_integration_resource_property) 
+
+ UntagResource action (Python: untag_resource) 
+
+ ListTagsForResource action (Python: list_tags_for_resource) 
+
+ Exceptions 
+
+ ResourceNotFoundException structure 
+
+ InternalServerException structure 
+
+ IntegrationAlreadyExistsFault structure 
+
+ IntegrationConflictOperationFault structure 
+
+ IntegrationQuotaExceededFault structure 
+
+ KMSKeyNotAccessibleFault structure 
+
+ IntegrationNotFoundFault structure 
+
+ TargetResourceNotFound structure 
+
+ InvalidIntegrationStateFault structure 
+
+ Interactive sessions API 
+
+ Data types 
+
+ Session structure 
+
+ SessionCommand structure 
+
+ Statement structure 
+
+ StatementOutput structure 
+
+ StatementOutputData structure 
+
+ ConnectionsList structure 
+
+ SessionEndpoint structure 
+
+ Operations 
+
+ CreateSession action (Python: create_session) 
+
+ StopSession action (Python: stop_session) 
+
+ DeleteSession action (Python: delete_session) 
+
+ GetSession action (Python: get_session) 
+
+ ListSessions action (Python: list_sessions) 
+
+ RunStatement action (Python: run_statement) 
+
+ CancelStatement action (Python: cancel_statement) 
+
+ GetStatement action (Python: get_statement) 
+
+ ListStatements action (Python: list_statements) 
+
+ GetGlueIdentityCenterConfiguration action (Python: get_glue_identity_center_configuration) 
+
+ UpdateGlueIdentityCenterConfiguration action (Python: update_glue_identity_center_configuration) 
+
+ CreateGlueIdentityCenterConfiguration action (Python: create_glue_identity_center_configuration) 
+
+ DeleteGlueIdentityCenterConfiguration action (Python: delete_glue_identity_center_configuration) 
+
+ GetSessionEndpoint action (Python: get_session_endpoint) 
+
+ GetSystemLogsForSession action (Python: get_system_logs_for_session) 
+
+ GetDashboardUrl action (Python: get_dashboard_url) 
+
+ Development endpoints API 
+
+ Data types 
+
+ DevEndpoint structure 
+
+ DevEndpointCustomLibraries structure 
+
+ Operations 
+
+ CreateDevEndpoint action (Python: create_dev_endpoint) 
+
+ UpdateDevEndpoint action (Python: update_dev_endpoint) 
+
+ DeleteDevEndpoint action (Python: delete_dev_endpoint) 
+
+ GetDevEndpoint action (Python: get_dev_endpoint) 
+
+ GetDevEndpoints action (Python: get_dev_endpoints) 
+
+ BatchGetDevEndpoints action (Python: batch_get_dev_endpoints) 
+
+ ListDevEndpoints action (Python: list_dev_endpoints) 
+
+ Schema registry 
+
+ Data types 
+
+ RegistryId structure 
+
+ RegistryListItem structure 
+
+ MetadataInfo structure 
+
+ OtherMetadataValueListItem structure 
+
+ SchemaListItem structure 
+
+ SchemaVersionListItem structure 
+
+ MetadataKeyValuePair structure 
+
+ SchemaVersionErrorItem structure 
+
+ ErrorDetails structure 
+
+ SchemaVersionNumber structure 
+
+ SchemaId structure 
+
+ Operations 
+
+ CreateRegistry action (Python: create_registry) 
+
+ CreateSchema action (Python: create_schema) 
+
+ GetSchema action (Python: get_schema) 
+
+ ListSchemaVersions action (Python: list_schema_versions) 
+
+ GetSchemaVersion action (Python: get_schema_version) 
+
+ GetSchemaVersionsDiff action (Python: get_schema_versions_diff) 
+
+ ListRegistries action (Python: list_registries) 
+
+ ListSchemas action (Python: list_schemas) 
+
+ RegisterSchemaVersion action (Python: register_schema_version) 
+
+ UpdateSchema action (Python: update_schema) 
+
+ CheckSchemaVersionValidity action (Python: check_schema_version_validity) 
+
+ UpdateRegistry action (Python: update_registry) 
+
+ GetSchemaByDefinition action (Python: get_schema_by_definition) 
+
+ GetRegistry action (Python: get_registry) 
+
+ PutSchemaVersionMetadata action (Python: put_schema_version_metadata) 
+
+ QuerySchemaVersionMetadata action (Python: query_schema_version_metadata) 
+
+ RemoveSchemaVersionMetadata action (Python: remove_schema_version_metadata) 
+
+ DeleteRegistry action (Python: delete_registry) 
+
+ DeleteSchema action (Python: delete_schema) 
+
+ DeleteSchemaVersions action (Python: delete_schema_versions) 
+
+ Workflows 
+
+ Data types 
+
+ JobNodeDetails structure 
+
+ CrawlerNodeDetails structure 
+
+ TriggerNodeDetails structure 
+
+ Crawl structure 
+
+ Node structure 
+
+ Edge structure 
+
+ Workflow structure 
+
+ WorkflowGraph structure 
+
+ WorkflowRun structure 
+
+ WorkflowRunStatistics structure 
+
+ StartingEventBatchCondition structure 
+
+ Blueprint structure 
+
+ BlueprintDetails structure 
+
+ LastActiveDefinition structure 
+
+ BlueprintRun structure 
+
+ Operations 
+
+ CreateWorkflow action (Python: create_workflow) 
+
+ UpdateWorkflow action (Python: update_workflow) 
+
+ DeleteWorkflow action (Python: delete_workflow) 
+
+ GetWorkflow action (Python: get_workflow) 
+
+ ListWorkflows action (Python: list_workflows) 
+
+ BatchGetWorkflows action (Python: batch_get_workflows) 
+
+ GetWorkflowRun action (Python: get_workflow_run) 
+
+ GetWorkflowRuns action (Python: get_workflow_runs) 
+
+ GetWorkflowRunProperties action (Python: get_workflow_run_properties) 
+
+ PutWorkflowRunProperties action (Python: put_workflow_run_properties) 
+
+ CreateBlueprint action (Python: create_blueprint) 
+
+ UpdateBlueprint action (Python: update_blueprint) 
+
+ DeleteBlueprint action (Python: delete_blueprint) 
+
+ ListBlueprints action (Python: list_blueprints) 
+
+ BatchGetBlueprints action (Python: batch_get_blueprints) 
+
+ StartBlueprintRun action (Python: start_blueprint_run) 
+
+ GetBlueprintRun action (Python: get_blueprint_run) 
+
+ GetBlueprintRuns action (Python: get_blueprint_runs) 
+
+ StartWorkflowRun action (Python: start_workflow_run) 
+
+ StopWorkflowRun action (Python: stop_workflow_run) 
+
+ ResumeWorkflowRun action (Python: resume_workflow_run) 
+
+ Usage profiles 
+
+ Data types 
+
+ ProfileConfiguration structure 
+
+ ConfigurationObject structure 
+
+ UsageProfileDefinition structure 
+
+ Operations 
+
+ CreateUsageProfile action (Python: create_usage_profile) 
+
+ GetUsageProfile action (Python: get_usage_profile) 
+
+ UpdateUsageProfile action (Python: update_usage_profile) 
+
+ DeleteUsageProfile action (Python: delete_usage_profile) 
+
+ ListUsageProfiles action (Python: list_usage_profiles) 
+
+ Machine learning API 
+
+ Data types 
+
+ TransformParameters structure 
+
+ EvaluationMetrics structure 
+
+ MLTransform structure 
+
+ FindMatchesParameters structure 
+
+ FindMatchesMetrics structure 
+
+ ConfusionMatrix structure 
+
+ GlueTable structure 
+
+ TaskRun structure 
+
+ TransformFilterCriteria structure 
+
+ TransformSortCriteria structure 
+
+ TaskRunFilterCriteria structure 
+
+ TaskRunSortCriteria structure 
+
+ TaskRunProperties structure 
+
+ FindMatchesTaskRunProperties structure 
+
+ ImportLabelsTaskRunProperties structure 
+
+ ExportLabelsTaskRunProperties structure 
+
+ LabelingSetGenerationTaskRunProperties structure 
+
+ SchemaColumn structure 
+
+ TransformEncryption structure 
+
+ MLUserDataEncryption structure 
+
+ ColumnImportance structure 
+
+ Operations 
+
+ CreateMLTransform action (Python: create_ml_transform) 
+
+ UpdateMLTransform action (Python: update_ml_transform) 
+
+ DeleteMLTransform action (Python: delete_ml_transform) 
+
+ GetMLTransform action (Python: get_ml_transform) 
+
+ GetMLTransforms action (Python: get_ml_transforms) 
+
+ ListMLTransforms action (Python: list_ml_transforms) 
+
+ StartMLEvaluationTaskRun action (Python: start_ml_evaluation_task_run) 
+
+ StartMLLabelingSetGenerationTaskRun action (Python: start_ml_labeling_set_generation_task_run) 
+
+ GetMLTaskRun action (Python: get_ml_task_run) 
+
+ GetMLTaskRuns action (Python: get_ml_task_runs) 
+
+ CancelMLTaskRun action (Python: cancel_ml_task_run) 
+
+ StartExportLabelsTaskRun action (Python: start_export_labels_task_run) 
+
+ StartImportLabelsTaskRun action (Python: start_import_labels_task_run) 
+
+ Data Quality API 
+
+ Data types 
+
+ DataSource structure 
+
+ DataQualityRulesetListDetails structure 
+
+ DataQualityTargetTable structure 
+
+ DataQualityRulesetEvaluationRunDescription structure 
+
+ DataQualityRulesetEvaluationRunFilter structure 
+
+ DataQualityRulesetEvaluationRun structure 
+
+ DataQualityEvaluationRunAdditionalRunOptions structure 
+
+ DataQualityRuleRecommendationRunDescription structure 
+
+ DataQualityRuleRecommendationRunFilter structure 
+
+ DataQualityResult structure 
+
+ DataQualityAnalyzerResult structure 
+
+ DataQualityObservation structure 
+
+ MetricBasedObservation structure 
+
+ DataQualityMetricValues structure 
+
+ DataQualityRuleResult structure 
+
+ DataQualityResultDescription structure 
+
+ DataQualityResultFilterCriteria structure 
+
+ DataQualityRulesetFilterCriteria structure 
+
+ DataQualityAggregatedMetrics structure 
+
+ StatisticAnnotation structure 
+
+ TimestampedInclusionAnnotation structure 
+
+ AnnotationError structure 
+
+ DatapointInclusionAnnotation structure 
+
+ StatisticSummaryList list 
+
+ StatisticSummary structure 
+
+ RunIdentifier structure 
+
+ StatisticModelResult structure 
+
+ DataQualityGlueTable structure 
+
+ DataQualityRuleRecommendationRunAdditionalRunOptions structure 
+
+ DataQualityRuleResultsOptions structure 
+
+ DistributionData structure 
+
+ ObservationResultsOptions structure 
+
+ ProfilingResultsOptions structure 
+
+ RowLevelResultsOptions structure 
+
+ CatalogTableConfigOptions structure 
+
+ DistributionResultsOptions structure 
+
+ Operations 
+
+ StartDataQualityRulesetEvaluationRun action (Python: start_data_quality_ruleset_evaluation_run) 
+
+ CancelDataQualityRulesetEvaluationRun action (Python: cancel_data_quality_ruleset_evaluation_run) 
+
+ GetDataQualityRulesetEvaluationRun action (Python: get_data_quality_ruleset_evaluation_run) 
+
+ ListDataQualityRulesetEvaluationRuns action (Python: list_data_quality_ruleset_evaluation_runs) 
+
+ BatchGetDataQualityRulesetEvaluationRun action (Python: batch_get_data_quality_ruleset_evaluation_run) 
+
+ StartDataQualityRuleRecommendationRun action (Python: start_data_quality_rule_recommendation_run) 
+
+ CancelDataQualityRuleRecommendationRun action (Python: cancel_data_quality_rule_recommendation_run) 
+
+ GetDataQualityRuleRecommendationRun action (Python: get_data_quality_rule_recommendation_run) 
+
+ ListDataQualityRuleRecommendationRuns action (Python: list_data_quality_rule_recommendation_runs) 
+
+ GetDataQualityResult action (Python: get_data_quality_result) 
+
+ BatchGetDataQualityResult action (Python: batch_get_data_quality_result) 
+
+ ListDataQualityResults action (Python: list_data_quality_results) 
+
+ CreateDataQualityRuleset action (Python: create_data_quality_ruleset) 
+
+ DeleteDataQualityRuleset action (Python: delete_data_quality_ruleset) 
+
+ GetDataQualityRuleset action (Python: get_data_quality_ruleset) 
+
+ ListDataQualityRulesets action (Python: list_data_quality_rulesets) 
+
+ UpdateDataQualityRuleset action (Python: update_data_quality_ruleset) 
+
+ ListDataQualityStatistics action (Python: list_data_quality_statistics) 
+
+ TimestampFilter structure 
+
+ CreateDataQualityRulesetRequest structure 
+
+ GetDataQualityRulesetResponse structure 
+
+ GetDataQualityResultResponse structure 
+
+ StartDataQualityRuleRecommendationRunRequest structure 
+
+ GetDataQualityRuleRecommendationRunResponse structure 
+
+ BatchPutDataQualityStatisticAnnotation action (Python: batch_put_data_quality_statistic_annotation) 
+
+ GetDataQualityModel action (Python: get_data_quality_model) 
+
+ GetDataQualityModelResult action (Python: get_data_quality_model_result) 
+
+ ListDataQualityStatisticAnnotations action (Python: list_data_quality_statistic_annotations) 
+
+ PutDataQualityProfileAnnotation action (Python: put_data_quality_profile_annotation) 
+
+ Sensitive data detection API 
+
+ Data types 
+
+ CustomEntityType structure 
+
+ Operations 
+
+ CreateCustomEntityType action (Python: create_custom_entity_type) 
+
+ DeleteCustomEntityType action (Python: delete_custom_entity_type) 
+
+ GetCustomEntityType action (Python: get_custom_entity_type) 
+
+ BatchGetCustomEntityTypes action (Python: batch_get_custom_entity_types) 
+
+ ListCustomEntityTypes action (Python: list_custom_entity_types) 
+
+ Tagging APIs in AWS Glue 
+
+ Data types 
+
+ Tag structure 
+
+ Operations 
+
+ TagResource action (Python: tag_resource) 
+
+ UntagResource action (Python: untag_resource) 
+
+ GetTags action (Python: get_tags) 
+
+ Common data types 
+
+ Tag structure 
+
+ DecimalNumber structure 
+
+ ErrorDetail structure 
+
+ PropertyPredicate structure 
+
+ ResourceUri structure 
+
+ ColumnStatistics structure 
+
+ ColumnStatisticsError structure 
+
+ ColumnError structure 
+
+ ColumnStatisticsData structure 
+
+ BooleanColumnStatisticsData structure 
+
+ DateColumnStatisticsData structure 
+
+ DecimalColumnStatisticsData structure 
+
+ DoubleColumnStatisticsData structure 
+
+ LongColumnStatisticsData structure 
+
+ StringColumnStatisticsData structure 
+
+ BinaryColumnStatisticsData structure 
+
+ String patterns 
+
+ Exceptions 
+
+ AccessDeniedException structure 
+
+ AlreadyExistsException structure 
+
+ ConcurrentModificationException structure 
+
+ ConcurrentRunsExceededException structure 
+
+ CrawlerNotRunningException structure 
+
+ CrawlerRunningException structure 
+
+ CrawlerStoppingException structure 
+
+ EntityNotFoundException structure 
+
+ FederationSourceException structure 
+
+ FederationSourceRetryableException structure 
+
+ GlueEncryptionException structure 
+
+ IdempotentParameterMismatchException structure 
+
+ IllegalWorkflowStateException structure 
+
+ InternalServiceException structure 
+
+ InvalidExecutionEngineException structure 
+
+ InvalidInputException structure 
+
+ InvalidStateException structure 
+
+ InvalidTaskStatusTransitionException structure 
+
+ JobDefinitionErrorException structure 
+
+ JobRunInTerminalStateException structure 
+
+ JobRunInvalidStateTransitionException structure 
+
+ JobRunNotInTerminalStateException structure 
+
+ LateRunnerException structure 
+
+ NoScheduleException structure 
+
+ OperationTimeoutException structure 
+
+ ResourceNotReadyException structure 
+
+ ResourceNumberLimitExceededException structure 
+
+ SchedulerNotRunningException structure 
+
+ SchedulerRunningException structure 
+
+ SchedulerTransitioningException structure 
+
+ UnrecognizedRunnerException structure 
+
+ ValidationException structure 
+
+ VersionMismatchException structure 
+
+ Javascript is disabled or is unavailable in your browser. 
+
+To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.
+
+ Document Conventions 
+
+Working with AWS SDKs
+
+Security
+
+Did this page help you? - Yes
+
+Thanks for letting us know we're doing a good job!
+
+If you've got a moment, please tell us what we did right so we can do more of it.
+
+Did this page help you? - No
+
+Thanks for letting us know this page needs work. We're sorry we let you down.
+
+If you've got a moment, please tell us how we can make the documentation better.

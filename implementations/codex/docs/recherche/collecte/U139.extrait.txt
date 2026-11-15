@@ -1,0 +1,479 @@
+We use cookies to improve your browsing experience and to analyze our website traffic. By clicking “Accept All” you agree to our use of cookies. Privacy policy .
+
+ Reject All Accept All 
+
+ Home Publications Programs Contributors 
+
+ Log in Sign up 
+
+ Start publication Home Publications Programs Contributors 
+
+Table of contents
+
+Code
+
+Datasets
+
+Files
+
+ About Docs Privacy Copyright Contact Support © Ready Tensor, Inc. 
+
+ Agentic Robo-Advisor — Intelligent Wealth Platform 
+
+ Back to publications 
+ Oct 29, 2025 ● 29 reads 
+
+ Certified under the Production-Grade Agentic System module in the Agentic AI In Production program. 
+
+Agentic Robo-Advisor — Intelligent Wealth Platform
+
+ l 
+
+ @luhao09 
+
+ e 
+
+ Ebenezer Olasunkanmi Tijani 
+
+ Like Bookmark 
+
+ Share 
+
+Table of contents
+
+ 1. Executive Summary 
+
+ 2. Purpose and Scope 
+
+ Scope 
+
+ 3. Getting Started 
+
+ 4. Architecture Overview 
+
+ User Flow 
+
+ System Characteristics 
+
+ 5. Agent Behaviors 
+
+ 4.1 Risk & Advice Agent 
+
+ 4.2 Portfolio Agent 
+
+ View all 
+
+ 1. Executive Summary 
+
+The Agentic Robo-Advisor represents a new paradigm in digital investing — one that fuses agentic AI intelligence , quantitative optimization , and robust engineering discipline to deliver end-to-end, explainable financial guidance.
+
+The system simulates the entire investment lifecycle — from investor profiling to trade execution — through autonomous yet auditable AI agents. Each stage has been tested, validated, and hardened for production-grade reliability, ensuring operational safety, transparency, and reproducibility.
+
+This white paper details the architecture, agent behaviors, user interface, testing strategy, safety controls, and operational readiness of the system, while demonstrating improvements across key evaluation categories: Testing, Safety, User Interface, Operational Resilience, and Documentation. 
+
+ 2. Purpose and Scope 
+
+The purpose of this system is to create a human-like yet verifiable robo-advisory experience , allowing investors to receive clear, trustworthy recommendations while maintaining rigorous technical and operational standards.
+
+ Scope 
+
+ End-to-End Coverage: Risk profiling → Portfolio construction → Fund selection → Tax-aware trading.
+
+ Explainability: Transparent portfolio reasoning at every step.
+
+ Production Readiness: Modular design, telemetry logging, and operational fallback mechanisms.
+
+ Usability: Streamlit-based interface supporting visualization, user testing, and rapid iteration.
+
+ 3. Getting Started 
+
+To keep the publication concise, the full developer guide remains in the README. The essentials for installation and operation are:
+
+ Environment Setup 
+
+Install Python 3.11 (conda recommended).
+
+ conda create -n roboadvisor python=3.11 && conda activate roboadvisor 
+
+ pip install -r requirements.txt 
+
+ Configuration 
+
+Set OPENAI_API_KEY , OPENAI_MODEL=gpt-4o-mini , and optional LOG_LEVEL / LOG_FILE for logging.
+
+ Usage 
+
+ Streamlit UI: streamlit run streamlit_app.py 
+
+ CLI Graph: python app.py 
+
+Both entry points run the same LangGraph orchestration and expose the agent pipeline end-to-end.
+
+ Support & Maintenance 
+
+Issues and feature requests are tracked in the project repository.
+
+Weekly recommendation: run pytest --cov-report=term-missing to confirm health.
+
+Monthly recommendation: refresh dependencies and rotate log files if LOG_FILE is enabled.
+
+These steps deliberately mirror the README but are summarized for publication audiences.
+
+ 4. Architecture Overview 
+
+The Agentic Robo-Advisor is composed of modular AI agents , each responsible for one phase of the investment lifecycle. Every agent operates independently but communicates through shared validated schemas.
+
+ Agent Core Function Verified Output 
+ 
+ Risk & Advice Agent Captures behavioral responses and computes risk profile Equity/Bond target allocation 
+
+ Portfolio Agent Optimizes asset-class mix using mean-variance optimization Asset-class weights 
+
+ Investment Agent Selects ETFs/funds based on cost, style, and liquidity Fund recommendations with criteria tags 
+
+ Trading Agent Generates executable, tax-aware trade actions Buy/Sell orders with integerization and tax balance 
+
+ User Flow 
+
+ ┌───────────────────────────────┐
+│ User launches conversation │
+└──────────────┬────────────────┘
+ ▼
+ Entry Agent
+ │ Show welcome & phase summary
+ │ Orchestrate flow based on intent
+ ▼
+ User says "proceed"
+ ▼
+ Entry Agent
+ │ Sets intent_to_risk=True
+ │ Routes to Risk Agent
+ ▼
+ Risk Agent
+ │ Presents two options:
+ │ 1) Set equity directly ("set equity to 0.6")
+ │ 2) Use guidance (7-question questionnaire)
+ │ User selects option
+ │ Computes equity/bond allocation
+ │ Sets done=True, routes to Reviewer
+ ▼
+ Reviewer Agent
+ │ Validates risk completion
+ │ Updates next_phase="portfolio"
+ │ Routes to Entry Agent
+ ▼
+ Entry Agent
+ │ Shows portfolio phase summary
+ │ User says "proceed"
+ │ Sets intent_to_portfolio=True
+ │ Routes to Portfolio Agent
+ ▼
+ Portfolio Agent
+ │ Asks λ & cash reserve parameters
+ │ Runs mean-variance optimization
+ │ Outputs asset-class portfolio
+ │ Sets done=True, routes to Reviewer
+ ▼
+ Reviewer Agent
+ │ Validates portfolio completion
+ │ Updates next_phase="investment"
+ │ Routes to Entry Agent
+ ▼
+ Entry Agent
+ │ Shows investment phase summary
+ │ User says "proceed"
+ │ Sets intent_to_investment=True
+ │ Routes to Investment Agent
+ ▼
+ Investment Agent
+ │ Presents fund selection criteria
+ │ Analyzes funds via Yahoo Finance
+ │ Allows review/edit of selections
+ │ Outputs investment portfolio
+ │ Sets done=True when user says "proceed"
+ │ Routes to Reviewer
+ ▼
+ Reviewer Agent
+ │ Validates investment completion
+ │ Updates next_phase="trading"
+ │ Routes to Entry Agent
+ ▼
+ Entry Agent
+ │ Shows trading phase summary
+ │ User says "proceed"
+ │ Sets intent_to_trading=True
+ │ Routes to Trading Agent
+ ▼
+ Trading Agent
+ │ Shows demo scenarios
+ │ User selects scenario
+ │ Generates trading requests
+ │ Outputs trading table
+ │ Sets done=True, routes to Reviewer
+ ▼
+ Reviewer Agent
+ │ Validates all phases complete
+ │ Shows final summary with options:
+ │ • "start over" → Reset & restart
+ │ • "finish" → Complete session
+ ▼
+ (Ready for execution)
+
+ System Characteristics 
+
+Modular orchestration through function-based state transitions.
+
+Schema validation using Pydantic for every data payload.
+
+Deterministic outputs for identical inputs.
+
+Isolation of logic per agent for future scalability.
+
+Built-in health checks and monitoring hooks (see Section 9) provide visibility into API status, latency, and system readiness.
+
+ 5. Agent Behaviors 
+
+ 4.1 Risk & Advice Agent 
+
+Interprets investor profile data to determine appropriate equity/bond exposure using a seven-question behavioral model.
+
+Outputs an equity ratio consistent with the user’s capacity, horizon, and market temperament.
+
+ 4.2 Portfolio Agent 
+
+Applies mean-variance optimization (MVO) to generate a balanced portfolio aligned with user risk tolerance. Supports adjustable parameters such as:
+
+Risk aversion (λ)
+
+Minimum cash reserve
+
+Asset-class constraints
+
+ 4.3 Investment Agent 
+
+Maps optimized asset classes to actual tradable instruments (ETFs, mutual funds) using rule-based selection criteria that favor cost efficiency and diversification. Each recommendation includes metadata explaining why a fund was chosen.
+
+ 4.4 Trading Agent 
+
+Implements tax-aware rebalancing with integerization and fallback logic.
+
+Balances tracking error vs. realized tax cost.
+
+Rounds trades to nearest executable share count.
+
+Ensures account-level cash neutrality.
+
+Validates each trade set against constraints before approval.
+
+ 6. Example Complete Flow 
+
+The user interface mirrors the internal agent sequence. Each phase appears as an interactive card, unlocking progressively as validation passes.
+
+ 🧭 Step-by-Step Experience 
+
+ Step 1 — Investor Risk Discovery 
+
+Interactive questionnaire captures risk preferences and generates a target equity/bond ratio.
+
+📸 Screenshot 1 — Risk Assessment and Allocation Chart 
+
+ Step 2 — Portfolio Construction 
+
+Optimized portfolio produced via MVO and visualized as a dynamic pie chart and weight table.
+
+📸 Screenshot 2 — Portfolio Composition Visualization 
+
+ Step 3 — Investment Selection 
+
+Funds and ETFs displayed with rankings and selection rationale.
+
+📸 Screenshot 3 — Fund Selection Table 
+
+ Step 4 — Tax-Aware Rebalancing 
+
+Rebalancer generates executable trades with tax and integer constraints.
+
+📸 Screenshot 4 — Trade Recommendation Summary 
+
+ Step 5 — Summary Dashboard 
+
+Consolidates all outputs for user review with export and reset options.
+
+📸 Screenshot 5 — Final Summary Dashboard 
+
+ 7. Testing Strategy 
+
+ Testing Layers 
+
+ Test Layer Objective Verification Method 
+ 
+ Unit Tests Validate agent logic and data schemas Assertions for mathematical correctness 
+
+ Integration Tests Validate Advice → Portfolio → Investment → Trading pipeline State handoff verification 
+
+ User Flow Tests Simulate entire user session Automated Streamlit tests 
+
+ Regression Tests Validate stability of trade outputs Baseline comparison with <1bp drift 
+
+ Testing Improvements 
+
+Isolated tests per agent and schema.
+
+Reproducible demo scenarios for deterministic verification.
+
+Comprehensive pass/fail logging for each model output.
+
+Coverage reporting via pytest --cov-report=term-missing plus HTML reports for audits.
+
+ 8. Safety and Validation 
+
+ Input Safety 
+
+Range bounds for numeric fields.
+
+Prevention of code or script injection.
+
+Input pattern validation for malformed entries.
+
+ Output Safety 
+
+Schema-based data validation for every response.
+
+Business logic checks (allocations sum to 1, trades are executable).
+
+Automatic fallback when critical data is missing.
+
+ Process Control 
+
+Sequential phase locking — next stage only activates after validation passes.
+
+Reviewer logic to ensure data completeness.
+
+Defensive error handling for recovery without data loss.
+
+ 9. Operational Resilience 
+
+ Failure Handling 
+
+Fallback defaults triggered on data unavailability.
+
+Graceful UI error handling with recovery prompts.
+
+ Deployment Strategy 
+
+Containerized build for environment consistency.
+
+Secure configuration management with isolated credentials.
+
+Continuous testing pipeline for regression prevention.
+
+ Resilience by Design 
+
+Each agent independently deployable (not in the demo, but in future production).
+
+Isolated failure containment prevents cascading errors.
+
+Modular structure supports easy addition of new agents (e.g., annuity or goal-based planning).
+
+ Monitoring, Health Checks, and Maintenance 
+
+ Health Checks: The Streamlit sidebar exposes a cached heartbeat for OpenAI, Yahoo Finance, and filesystem access. Checks can also be run via operation/healthcheck/*.py .
+
+ Logging: Console logging is enabled by default. Persistent logs activate when LOG_FILE is set (for example, LOG_FILE=logs/robo_advisor.log with LOG_LEVEL=INFO ).
+
+ Maintenance Rhythm: 
+
+• Weekly – run the automated tests, review coverage, confirm UI responsiveness.
+
+• Monthly – update dependencies, review log volume, verify API quotas.
+
+• Before Releases – refresh .env , regenerate HTML coverage, and run a complete risk→trading walkthrough.
+
+ 10. Key Enhancement Summary 
+
+ Category Improvement Summary 
+ 
+ Testing Multi-layer unit, integration, and regression tests ensuring deterministic, reliable results. 
+
+ Safety Input/output validation with schema enforcement and phase-level guardrails. 
+
+ User Interface Streamlit interface with progressive flow, responsive charts, and data transparency. 
+
+ Production Readiness Telemetry monitoring, containerized deployments, CI/CD testing automation. 
+
+ 11. Conclusion 
+
+The Agentic Robo-Advisor stands as a production-ready, explainable AI wealth management platform .
+
+It unifies advanced quantitative modeling with verifiable agentic AI behaviors, achieving both human-like personalization and institutional-grade reliability .
+
+By balancing autonomy with transparency, it sets a new benchmark for safe, testable, and scalable robo-advisory systems.
+
+Table of contents
+
+ 1. Executive Summary 
+
+ 2. Purpose and Scope 
+
+ Scope 
+
+ 3. Getting Started 
+
+ 4. Architecture Overview 
+
+ User Flow 
+
+ System Characteristics 
+
+ 5. Agent Behaviors 
+
+ 4.1 Risk & Advice Agent 
+
+ 4.2 Portfolio Agent 
+
+ View all 
+
+Files
+ 
+ Robo_advisor_record.mp4 
+
+ Your publication could be next! 
+Join us today and publish for free
+
+ Sign Up for free! 
+
+Table of contents
+
+ 1. Executive Summary 
+
+ 2. Purpose and Scope 
+
+ Scope 
+
+ 3. Getting Started 
+
+ 4. Architecture Overview 
+
+ User Flow 
+
+ System Characteristics 
+
+ 5. Agent Behaviors 
+
+ 4.1 Risk & Advice Agent 
+
+ 4.2 Portfolio Agent 
+
+ View all 
+
+Files
+ 
+ Robo_advisor_record.mp4 
+
+Code
+
+ Robo advisor 
+
+Code
+
+ Robo advisor

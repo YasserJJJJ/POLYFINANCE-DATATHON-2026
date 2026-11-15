@@ -1,0 +1,790 @@
+<!DOCTYPE html> 
+<HTML lang="en">
+<HEAD>
+<TITLE>Robust Satisficing</TITLE>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" integrity="sha256-pdY4ejLKO67E0CM2tbPtq1DJ3VGDVVdqAR6j3ZwdiE4=" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awes
+ome.min.css" integrity="sha256-XoaMnoYC5TH6/+ihMEnospgm0J1PM/nioxbOUdnM8HY=" crossorigin="anonymous">-->
+<!--    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.0/css/all.css" />-->
+    <link href="/css/normalnew.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/pushy.css" rel="stylesheet" type="text/css"/>
+    <link rel="icon" type="image.jpg" href="/favicon.ico">
+<!--[if lte IE 9]>
+  <script src="/css/html5shiv.min.js"></script>
+  <script src="/css/respond.min.js"></script>
+<![endif]-->
+  <script type='text/javascript'>
+    var captchaContainer = null;
+    var loadCaptcha = function() {
+      captchaContainer = grecaptcha.render('captcha_container', {
+        'sitekey' : '6LdQebIaAAAAACSKxvbloyrkQ_q-MqhOAGgD5PQV',
+        'callback' : function(response) {
+          console.log(response);
+        }
+      });
+    };
+  </script>
+
+<META NAME="handle" CONTENT="RePEc:inm:oropre:v:71:y:2023:i:1:p:61-82"><META NAME="DOI" CONTENT="10.1287/opre.2021.2238"><META NAME="description" CONTENT="Downloadable! We present a general framework for robust satisficing that favors solutions for which a risk-aware objective function would best attain an acceptable target even when the actual probability distribution deviates from the empirical distribution. The satisficing decision maker specifies an acceptable target, or loss of optimality compared with the empirical optimization model, as a trade-off for the model’s ability to withstand greater uncertainty. We axiomatize the decision criterion associated with robust satisficing, termed as the fragility measure , and present its representation theorem. Focusing on Wasserstein distance measure, we present tractable robust satisficing models for risk-based linear optimization, combinatorial optimization, and linear optimization problems with recourse. Serendipitously, the insights to the approximation of the linear optimization problems with recourse also provide a recipe for approximating solutions for hard stochastic optimization problems without relatively complete recourse. We perform numerical studies on a portfolio optimization problem and a network lot-sizing problem. We show that the solutions to the robust satisficing models are more effective in improving the out-of-sample performance evaluated on a variety of metrics, hence alleviating the optimizer’s curse.">
+<META NAME="keywords" CONTENT="Optimization; robust optimization; robust satisficing; data-driven; discrete optimization; stochastic optimization; fragility measure">
+<META NAME="jel_code" CONTENT="">
+<META NAME="author" CONTENT="Daniel Zhuoyu Long & Melvyn Sim & Minglong Zhou">
+<META NAME="author_shortid" CONTENT="">
+<META NAME="title" CONTENT="Robust Satisficing">
+<META NAME="download" CONTENT="1">
+<META NAME="freedownload" CONTENT="1">
+<META NAME="date" CONTENT="2023-02-02">
+<META NAME="citation_publication_date" CONTENT="2023">
+<META NAME="citation_authors" content="Daniel Zhuoyu Long; Melvyn Sim; Minglong Zhou">
+<META NAME="citation_title" content="Robust Satisficing">
+<META NAME="citation_abstract" content="We present a general framework for robust satisficing that favors solutions for which a risk-aware objective function would best attain an acceptable target even when the actual probability distribution deviates from the empirical distribution. The satisficing decision maker specifies an acceptable target, or loss of optimality compared with the empirical optimization model, as a trade-off for the model’s ability to withstand greater uncertainty. We axiomatize the decision criterion associated with robust satisficing, termed as the fragility measure , and present its representation theorem. Focusing on Wasserstein distance measure, we present tractable robust satisficing models for risk-based linear optimization, combinatorial optimization, and linear optimization problems with recourse. Serendipitously, the insights to the approximation of the linear optimization problems with recourse also provide a recipe for approximating solutions for hard stochastic optimization problems without relatively complete recourse. We perform numerical studies on a portfolio optimization problem and a network lot-sizing problem. We show that the solutions to the robust satisficing models are more effective in improving the out-of-sample performance evaluated on a variety of metrics, hence alleviating the optimizer’s curse.">
+<META NAME="citation_publisher" content="INFORMS">
+<META NAME="citation_journal_title" content="Operations Research">
+<META NAME="citation_keywords" content="Optimization; robust optimization; robust satisficing; data-driven; discrete optimization; stochastic optimization; fragility measure">
+<META NAME="citation_abstract_html_url" content="https://ideas.repec.org/a/inm/oropre/v71y2023i1p61-82.html">
+<META NAME="citation_abstract_pdf_url" content="https://ideas.repec.org/a/inm/oropre/v71y2023i1p61-82.html">
+<META NAME="redif-type" content="article">
+<META NAME="citation_type" content="redif-article">
+<META NAME="citation_year" content="2023">
+<META NAME="citation_volume" content="71">
+<META NAME="citation_issue" content="1">
+
+<META NAME="citation_firstpage" content="61">
+<META NAME="citation_lastpage" content="82">
+<META NAME="twitter:card" content="summary_large_image">
+<META NAME="twitter:site" content="@repec_org">
+<META NAME="twitter:title" content="Robust Satisficing, by Daniel Zhuoyu Long; Melvyn Sim; Minglong Zhou">
+<META NAME="twitter:description" content="We present a general framework for robust satisficing that favors solutions for which a risk-aware objective function would best attain an acceptable target even when the actual probability distributi">
+<META NAME="twitter:image" content="https://ideas.repec.org/cgi-bin/twimage.cgi?a&inm:oropre:v:71:y:2023:i:1:p:61-82">
+<META PROPERTY="og:type" content="article">
+<META PROPERTY="og:title" content="Robust Satisficing">
+<META PROPERTY="og:description" content="We present a general framework for robust satisficing that favors solutions for which a risk-aware objective function would best attain an acceptable target even when the actual probability distributi">
+<META PROPERTY="og:url" content="https://ideas.repec.org//a/inm/oropre/v71y2023i1p61-82.html">
+<META PROPERTY="og:image" content="https://ideas.repec.org/cgi-bin/twimage.cgi?a&inm:oropre:v:71:y:2023:i:1:p:61-82">
+<script type="application/ld+json">
+    {
+	"@context": "http://schema.org",
+	"@graph": [
+	  {
+	    "@id": "#periodical",
+	    "@type": "Periodical",
+	    "name": "Operations Research",
+	    "publisher": "INFORMS",
+	    "url": "https://ideas.repec.org/s/inm/oropre.html",
+	    "requiresSubscription": "false"
+          },
+	  {
+	    "@id": "#number",
+	    "@type": "PublicationIssue",
+	    "datePublished": "2023",
+	    "issueNumber": "1"
+          },
+	    {		
+	      "@id": "#volume",
+	      "@type": "PublicationVolume",
+	      "volumeNumber": "71"
+            },
+	  {
+	    "@id": "#article",
+	    "@type": "ScholarlyArticle",
+ 	    "name": "Robust Satisficing",
+	    "url": "https://ideas.repec.org//a/inm/oropre/v71y2023i1p61-82.html",
+	    "description": "We present a general framework for robust satisficing that favors solutions for which a risk-aware objective function would best attain an acceptable target even when the actual probability distribution deviates from the empirical distribution. The satisficing decision maker specifies an acceptable target, or loss of optimality compared with the empirical optimization model, as a trade-off for the model’s ability to withstand greater uncertainty. We axiomatize the decision criterion associated with robust satisficing, termed as the fragility measure , and present its representation theorem. Focusing on Wasserstein distance measure, we present tractable robust satisficing models for risk-based linear optimization, combinatorial optimization, and linear optimization problems with recourse. Serendipitously, the insights to the approximation of the linear optimization problems with recourse also provide a recipe for approximating solutions for hard stochastic optimization problems without relatively complete recourse. We perform numerical studies on a portfolio optimization problem and a network lot-sizing problem. We show that the solutions to the robust satisficing models are more effective in improving the out-of-sample performance evaluated on a variety of metrics, hence alleviating the optimizer’s curse.",
+	    "keywords": "Optimization; robust optimization; robust satisficing; data-driven; discrete optimization; stochastic optimization; fragility measure",
+	    "pageEnd": "82",
+	    "pageStart": "61",
+	    "pagination": "61-82",
+          
+	    "author": "Daniel Zhuoyu Long & Melvyn Sim & Minglong Zhou",
+	    "isPartOf": [
+	      {
+	        "@id": "#volume"
+	      },
+	      {	
+	        "@id": "#periodical"
+	      },
+	      {
+	        "@id": "#number"
+	      }
+	    ]
+	 }
+      ]
+    }
+    </script>
+    </HEAD><BODY>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G63YGSJVZ7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-G63YGSJVZ7');
+</script>
+
+<div class="container">
+    <div id="header" class="row">
+      <nav class="navbar navbar-collapse navbar-expand-md" role="navigation">
+          <a class="navbar-brand" href="/">
+            <img width="125" src="/ideas4.jpg" border="0" alt="IDEAS home">
+          </a>
+	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-toggle="collapse" data-target="#mobilesearch" aria-controls="mobilesearch" aria-expanded="false" aria-label="Toggle navigation">
+	  <span class="navbar-toggler-icon"><i class="bi-search"></i></span>
+	</button>
+	<div class="collapse" id="mobilesearch">
+	  <div class="form-inline">
+	  <form method="POST" action="/cgi-bin/htsearch2" id="mobilesearch" role="search" class="card card-body">
+            <div class="input-group">
+              <input class="form-control" type="text" name="q" value="" placeholder="Search econ literature">
+              <span class="input-group-btn">
+		<button type="submit" class="btn" style="background-color: #2d4e8b; color: white;" aria-label="Search">
+                <i class="bi-search"></i>
+              </button>
+		<!--<input class="btn btn-default btn-lg fa" type="submit" value="&#xf002;" style="color:white;background-color:#2d4e8b;">-->
+              </span>
+            </div>
+            <a href="/search.html" class="advanced-search">Advanced search</a>
+	  </form>
+	  </div>
+	  </div>
+	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-toggle="collapse" data-target="#mobilemenu" aria-controls="mobilemenu" aria-expanded="false" aria-label="Toggle navigation">
+	  <span class="navbar-toggler-icon"><i class="bi bi-list"></i></span>
+	</button>
+	<div class="collapse" id="mobilemenu">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+	      <a class="nav-link" href="/">Economic literature:</a> <a href="/i/p.html">papers</A>, <a href="/i/a.html">articles</A>, <a href="/i/c.html">software</A>, <a href="/i/h.html">chapters</A>, <a href="/i/b.html">books</A>.
+	    </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/i/e.html">Authors</a>
+	    </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://edirc.repec.org/">Institutions</a>
+	    </li>
+            <li class="nav-item">
+	      <a class="nav-link" href="/top/">Rankings</a>
+	    </li>
+            <li class="nav-item">
+	      <a class="nav-link" href="/help.html" target="_blank">Help/FAQ  <i class="bi bi-box-arrow-up-right"></i></a>
+	    </li>
+            <li class="nav-item">
+	      <a class="nav-link" href="/cgi-bin/myideas.cgi">MyIDEAS <I class="bi bi-lightbulb"></I></a>
+	    </li>
+	    <li class="nav-item">
+	      <span class="nav-text">More options at page bottom</span>
+	    </li>
+          </ul>
+	</div>
+	<div class="d-none d-md-inline">
+          <ul class="nav nav-fill" id="topnav">
+            <li class="nav-item">
+	      <a class="nav-link" href="/">Economic literature</a>
+	    </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/i/e.html">Authors</a>
+	    </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://edirc.repec.org/">Institutions</a>
+	    </li>
+            <li class="nav-item">
+	      <a class="nav-link" href="/top/">Rankings</a>
+	    </li>
+            <li class="nav-item">
+	      <a class="nav-link" href="/help.html" target="_blank">Help/FAQ  <i class="bi bi-box-arrow-up-right"></i></a>
+	    </li>
+            <li class="nav-item">
+	      <a class="nav-link" href="/cgi-bin/myideas.cgi" style="color:blue;">MyIDEAS <I class="bi bi-lightbulb"></I> <small>(now improved)</small></a>
+	    </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    
+    
+    <div class="row">
+      <div class="col-12" style="margin-top: -10px;">
+	
+	
+	<div id="sidebar" class="sidebar-nav-fixed pull-right d-none d-print-none d-md-inline col-md-3">
+	  <div class="inline-form">
+	  <form method="POST" action="/cgi-bin/htsearch2" id="topsearch" role="search" class="navbar-form navbar-right">
+            <div class="input-group">
+              <input class="form-control" type="text" name="q" value="" placeholder="Search econ literature">
+              <button type="submit" class="btn" style="background-color: #2d4e8b; color: white;" aria-label="Search">
+                <i class="bi-search"></i>
+              </button>
+	      <!--<input class="btn fa" type="submit" value="&#xf002;" style="color:white;background-color:#2d4e8b;">-->
+            </div>
+            <a href="/search.html" class="advanced-search">Advanced search</a>
+	  </form>
+	  </div>
+	  <div id="menu">
+            <h3>Browse Econ Literature</h3>
+            <ul>
+              <li><a href="/i/p.html">Working papers</a></li>
+              <li><a href="/i/a.html">Journals</a></li>
+              <li><a href="/i/c.html">Software components</a></li>
+              <li><a href="/i/b.html">Books</a></li>
+              <li><a href="/i/h.html">Book chapters</a></li>
+              <li><a href="/j/">JEL classification</a></li>
+            </ul>
+	    
+            <h3>More features</h3>
+            <ul>
+	      <li><a href="http://nep.repec.org/">Subscribe to new research</a></li>
+	      <li><a href="https://biblio.repec.org/">RePEc Biblio</a></li>
+	      <li><a href="https://authors.repec.org/">Author registration</a></li>
+	      <li><a href="/v/">Economics Virtual Seminar Calendar</a></li>
+	      <li><a href="https://confwatcher.b2ideas.eu/"><font color="red">ConfWatcher</font></a> NEW!</li>
+            </ul>
+	    <script async src="https://news.google.com/swg/js/v1/publisher.js"></script>
+	    <div google-add-preferred-source-btn></div>
+	  </div>
+	</div>
+	<div class="d-none d-print-block">
+	  <img width="145" src="/ideas4.jpg" border="0" alt="IDEAS home"> Printed from https://ideas.repec.org/a/inm/oropre/v71y2023i1p61-82.html 
+	</div>
+	
+	<div id="main" class="col-12 col-md-9">
+	  <div class="site-overlay"></div>
+	  <div class="d-print-none">
+	    
+<div id="messages" class="col-xs-12">
+<span class="share-block">
+            &nbsp;<a href="https://bsky.app/intent/compose?text=Found%20on%20RePEc/IDEAS:%20https://ideas.repec.org//a/inm/oropre/v71y2023i1p61-82.html%20&#128161;" target="_NEW"><i class="bi bi-bluesky"></i></a>&nbsp;
+            <share-to-mastodon message="Found on RePEc/IDEAS:" url='https://ideas.repec.org//a/inm/oropre/v71y2023i1p61-82.html'><font color="#2d4e8b"><i class="bi bi-mastodon"></i></font></share-to-mastodon>
+            <a class="share-twitter bi bi-twitter-x" href="#" title="Share on Twitter"></a>
+            <a class="share-facebook bi bi-facebook" href="#" title="Share on Facebook"></a>
+            <a class="share-reddit bi bi-reddit" href="#" title="Share on Reddit"></a>
+            <a class="share-linkedin bi bi-linkedin" href="#"  title="Share on LinkedIn"></a>
+            <a class="share-email bi bi-envelope" href="#"  title="Share by Email"></a>
+            <a class="share-print bi bi-printer" href="#" title="Print this page"></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span id="myideas">
+
+<a href="/cgi-bin/myideas.cgi" data-bs-toggle="tooltip" data-toggle="tooltip" title="MyIDEAS: not logged in">
+<i class="bi bi-lightbulb"></i>
+<i class="bi bi-lock"></i>&nbsp;</a>
+
+
+ <A HREF="/cgi-bin/myideas.cgi#myibiblio1unassigned"><I class="bi bi-archive-fill"></I>&nbsp;My&nbsp;bibliography</A> 
+ <i class="bi bi-bookmark"></i>&nbsp;<span onclick="loadDoc('https://ideas.repec.org/cgi-bin/myiadd2.cgi',myFunction);return true;">Save this article</span>
+
+
+
+
+</span>
+<script>
+function loadDoc(url,cfunc) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      cfunc(xhttp);
+    }
+  };
+  xhttp.open("GET", url, true);
+  xhttp.send();
+}
+function myFunction(xhttp) {
+  document.getElementById("response").innerHTML = xhttp.responseText;
+}
+</script><span id="response"></span>
+</div>
+
+
+	  </div>
+	  <div id="content-block">
+	    
+	    
+
+<div id="title">
+<h1>Robust Satisficing</h1></div>
+<div>
+<ul class="nav nav-pills" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="author-abstract-tab" data-bs-toggle="tab" data-toggle="tab" href="#author-abstract" role="tab" aria-controls="author-abstract" aria-selected="true">Author & abstract</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link download-tab" id="download-tab" data-bs-toggle="tab" data-toggle="tab" href="#download" role="tab" aria-controls="download" aria-selected="false">Download</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="refs-tab" data-bs-toggle="tab" data-toggle="tab" href="#refs" role="tab" aria-controls="refs" aria-selected="false">26 References</a>
+  </li>
+          <li class="nav-item">
+    <a class="nav-link" id="mrel-tab" data-bs-toggle="tab" data-toggle="tab" href="#mrel" role="tab" aria-controls="mrel" aria-selected="false">Most related</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="more-tab" data-bs-toggle="tab" data-toggle="tab" href="#more" role="tab" aria-controls="more" aria-selected="false">Related works & more</a>
+  </li>
+  <!-- Placeholder usernotes pill-->
+  <li class="nav-item">
+    <a class="nav-link" id="correct-tab" data-bs-toggle="tab" data-toggle="tab" href="#correct" role="tab" aria-controls="correct" aria-selected="false">Corrections</a>
+  </li>
+</ul>
+    
+
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="author-abstract" role="tabpanel" aria-labelledby="author-abstract-tab">
+
+<h2>Author</h2>
+    <div id="author-body">
+      <div id="authortable">
+        <div id="listed-authors">Listed:
+          <ul id="authorlist"><li class="authorname">Daniel Zhuoyu Long<p class="authorcontact"> (Department of Systems Engineering and Engineering Management, The Chinese University of Hong Kong, Hong Kong, China)</p></li>
+<li class="authorname">Melvyn Sim<p class="authorcontact"> (Department of Analytics and Operations (DAO), NUS Business School, National University of Singapore, Singapore 119245)</p></li>
+<li class="authorname">Minglong Zhou<p class="authorcontact"> (Department of Management Science, School of Management, Fudan University, Shanghai 200437, China)</p></li>
+</ul></div><div id="registered-authors"> <a href="https://authors.repec.org/">Registered:</a> <ul id="authorregistered"></ul>
+</div>
+</div>
+</div>
+
+
+<h2 style="clear:left">Abstract</h2><div id="abstract-body">We present a general framework for robust satisficing that favors solutions for which a risk-aware objective function would best attain an acceptable target even when the actual probability distribution deviates from the empirical distribution. The satisficing decision maker specifies an acceptable target, or loss of optimality compared with the empirical optimization model, as a trade-off for the model’s ability to withstand greater uncertainty. We axiomatize the decision criterion associated with robust satisficing, termed as the fragility measure , and present its representation theorem. Focusing on Wasserstein distance measure, we present tractable robust satisficing models for risk-based linear optimization, combinatorial optimization, and linear optimization problems with recourse. Serendipitously, the insights to the approximation of the linear optimization problems with recourse also provide a recipe for approximating solutions for hard stochastic optimization problems without relatively complete recourse. We perform numerical studies on a portfolio optimization problem and a network lot-sizing problem. We show that the solutions to the robust satisficing models are more effective in improving the out-of-sample performance evaluated on a variety of metrics, hence alleviating the optimizer’s curse.</div>
+<h2>Suggested Citation</h2>
+<div id="biblio-body">
+<LI class="list-group-item downfree">  Daniel Zhuoyu Long & Melvyn Sim & Minglong Zhou, 2023.
+"<B><A HREF="/a/inm/oropre/v71y2023i1p61-82.html">Robust Satisficing</A></B>,"
+<A HREF="/s/inm/oropre.html">Operations Research</A>, INFORMS, vol. 71(1), pages 61-82, January.
+</li>
+Handle: <i style="word-break:break-all">RePEc:inm:oropre:v:71:y:2023:i:1:p:61-82</i>
+<br>DOI: 10.1287/opre.2021.2238
+<form method="post" action="/cgi-bin/refs.cgi" target="refs" class="form-inline" role="form" style="margin-bottom: 10px;">
+<input type="hidden" name="handle" value="RePEc:inm:oropre:v:71:y:2023:i:1:p:61-82">
+<div class="pull-left" style="padding-right: 2px;">
+<span class="input-group-btn">
+<input class="btn btn-default btn-lg fa" type="submit" value="Export reference" style="background-color:lightgrey;"><i class="bi bi-box-arrow-up-right"></i> as
+<select name="output" size="1">
+<option value="0">HTML</option>
+<option value="0.5">HTML with abstract</option>
+<option value="1">plain text</option>
+<option value="1.5">plain text with abstract</option>
+<option value="2">BibTeX</option>
+<option value="3">RIS (EndNote, RefMan, ProCite)</option>
+<option value="4">ReDIF</option>
+<option value="6">JSON</option>
+</select> 
+</span>
+</div>
+</form></div>
+   </div>
+  <div class="tab-pane fade" id="download" role="tabpanel" aria-labelledby="download-tab">
+    <h2>Download full text from publisher</h2><p></p>
+       <FORM METHOD=GET ACTION="/cgi-bin/get_doc.cgi" target="_blank">
+       <INPUT TYPE=HIDDEN NAME="urn" VALUE="RePEc:inm:oropre:v:71:y:2023:i:1:p:61-82"><INPUT TYPE="radio" NAME="url" VALUE="http://dx.doi.org/10.1287/opre.2021.2238" checked><B>File URL:</B> <span style="word-break:break-all">http://dx.doi.org/10.1287/opre.2021.2238</span><BR><B>Download Restriction:</B> no<BR>
+<HR><INPUT TYPE="radio" NAME="url" VALUE="https://libkey.io/10.1287/opre.2021.2238?utm_source=ideas">
+		<B>File URL:</B> <span style="word-break:break-all">https://libkey.io/10.1287/opre.2021.2238?utm_source=ideas</span><BR>
+                <B>LibKey link</B>: if access is restricted and if your library uses this service, LibKey will redirect you to where you can use your library subscription to access this item<BR>
+<font size="+2" color="red">---><INPUT TYPE="SUBMIT" class="btn fa" VALUE="Download the selected file &#xf08e;" style="color:white;background-color:#2d4e8b;"><---</font></FORM><P>
+</div>
+
+  <div class="tab-pane fade" id="refs" role="tabpanel" aria-labelledby="refs-tab"><h2>References listed on IDEAS</h2><form method="post" action="/cgi-bin/refs.cgi" target="refs" class="form-inline" role="form" style="margin-bottom: 10px;">
+<input type="hidden" name="handle" value="repec:arx:papers:1711.06565#repec:bla:jfinan:v:25:y:1970:i:2:p:349-60#repec:bla:mathfi:v:17:y:2007:i:3:p:449-476#repec:bla:mathfi:v:9:y:1999:i:3:p:203-228#repec:eee:jbfina:v:26:y:2002:i:7:p:1443-1471#repec:eee:jbfina:v:36:y:2012:i:2:p:410-417#repec:inm:orijoc:v:28:y:2016:i:3:p:500-511#repec:inm:orijoc:v:29:y:2017:i:2:p:350-366#repec:inm:ormnsc:v:1:y:1955:i:3-4:p:197-206#repec:inm:ormnsc:v:52:y:2006:i:3:p:311-322#repec:inm:ormnsc:v:55:y:2009:i:1:p:71-84#repec:inm:ormnsc:v:58:y:2012:i:11:p:2095-2113#repec:inm:ormnsc:v:59:y:2013:i:2:p:341-357#repec:inm:ormnsc:v:60:y:2014:i:1:p:130-147#repec:inm:ormnsc:v:65:y:2019:i:2:p:604-618#repec:inm:ormnsc:v:66:y:2020:i:8:p:3329-3339#repec:inm:ormnsc:v:6:y:1959:i:1:p:73-79#repec:inm:ormoor:v:23:y:1998:i:4:p:769-805#repec:inm:oropre:v:52:y:2004:i:1:p:35-53#repec:inm:oropre:v:56:y:2008:i:2:p:344-357#repec:inm:oropre:v:58:y:2010:i:4-part-1:p:902-917#repec:inm:oropre:v:63:y:2015:i:3:p:660-675#repec:inm:oropre:v:63:y:2015:i:5:p:1117-1130#repec:inm:oropre:v:64:y:2016:i:1:p:186-200#repec:oup:rfinst:v:22:y:2009:i:5:p:1915-1953#repec:ucp:jpolec:v:116:y:2008:i:5:p:810-836">
+<div class="pull-left" style="padding-right: 2px;">
+<span class="input-group-btn">
+<input class="btn btn-default btn-lg fa" type="submit" value="Export references" style="background-color:lightgrey;"><i class="bi bi-box-arrow-up-right"></i> as
+<select name="output" size="1">
+<option value="0">HTML</option>
+<option value="0.5">HTML with abstract</option>
+<option value="1">plain text</option>
+<option value="1.5">plain text with abstract</option>
+<option value="2">BibTeX</option>
+<option value="3">RIS (EndNote, RefMan, ProCite)</option>
+<option value="4">ReDIF</option>
+<option value="6">JSON</option>
+</select> 
+</span>
+</div>
+</form>
+<ol class="list-group"><LI class="list-group-item downfree">  Zhi Chen & Melvyn Sim & Peng Xiong, 2020.
+"<B><A HREF="/a/inm/ormnsc/v66y2020i8p3329-3339.html">Robust Stochastic Optimization Made Easy with RSOME</A></B>,"
+<A HREF="/s/inm/ormnsc.html">Management Science</A>, INFORMS, vol. 66(8), pages 3329-3339, August.
+<LI class="list-group-item downfree">  Aharon Ben-Tal & Ruud Brekelmans & Dick den Hertog & Jean-Philippe Vial, 2017.
+"<B><A HREF="/a/inm/orijoc/v29y2017i2p350-366.html">Globalized Robust Optimization for Nonlinear Uncertain Inequalities</A></B>,"
+<A HREF="/s/inm/orijoc.html">INFORMS Journal on Computing</A>, INFORMS, vol. 29(2), pages 350-366, May.
+
+<div class="otherversion"><UL>
+<LI class="list-group-item downfree"> Ben-Tal, A. & Brekelmans, Ruud & den Hertog, Dick & Vial, J.P., 2015.
+ "<B><A HREF="/p/tiu/tiutis/05c1b5b6-5b26-46f6-bd3a-ade07f4c5f04.html">Globalized Robust Optimization for Nonlinear Uncertain Inequalities</A></B>,"
+<A HREF="/s/tiu/tiutis.html">Other publications TiSEM</A> 
+05c1b5b6-5b26-46f6-bd3a-a, Tilburg University, School of Economics and Management.
+
+<LI class="list-group-item downfree"> Ben-Tal, A. & Brekelmans, Ruud & den Hertog, Dick & Vial, J.P., 2015.
+ "<B><A HREF="/p/tiu/tiucen/05c1b5b6-5b26-46f6-bd3a-ade07f4c5f04.html">Globalized Robust Optimization for Nonlinear Uncertain Inequalities</A></B>,"
+<A HREF="/s/tiu/tiucen.html">Discussion Paper</A> 
+2015-031, Tilburg University, Center for Economic Research.
+
+
+</UL></div>
+<LI class="list-group-item downfree">  David B. Brown & Enrico De Giorgi & Melvyn Sim, 2012.
+"<B><A HREF="/a/inm/ormnsc/v58y2012i11p2095-2113.html">Aspirational Preferences and Their Representation by Risk Measures</A></B>,"
+<A HREF="/s/inm/ormnsc.html">Management Science</A>, INFORMS, vol. 58(11), pages 2095-2113, November.
+<LI class="list-group-item downfree">  Lucy Gongtao Chen & Daniel Zhuoyu Long & Melvyn Sim, 2015.
+"<B><A HREF="/a/inm/oropre/v63y2015i5p1117-1130.html">On Dynamic Decision Making to Meet Consumption Targets</A></B>,"
+<A HREF="/s/inm/oropre.html">Operations Research</A>, INFORMS, vol. 63(5), pages 1117-1130, October.
+<LI class="list-group-item downfree">  David B. Brown & Melvyn Sim, 2009.
+"<B><A HREF="/a/inm/ormnsc/v55y2009i1p71-84.html">Satisficing Measures for Analysis of Risky Positions</A></B>,"
+<A HREF="/s/inm/ormnsc.html">Management Science</A>, INFORMS, vol. 55(1), pages 71-84, January.
+<LI class="list-group-item downfree">  Dan A. Iancu & Nikolaos Trichakis, 2014.
+"<B><A HREF="/a/inm/ormnsc/v60y2014i1p130-147.html">Pareto Efficiency in Robust Optimization</A></B>,"
+<A HREF="/s/inm/ormnsc.html">Management Science</A>, INFORMS, vol. 60(1), pages 130-147, January.
+<LI class="list-group-item downgate">  Robert J. Aumann & Roberto Serrano, 2008.
+"<B><A HREF="/a/ucp/jpolec/v116y2008i5p810-836.html">An Economic Index of Riskiness</A></B>,"
+<A HREF="/s/ucp/jpolec.html">Journal of Political Economy</A>, University of Chicago Press, vol. 116(5), pages 810-836, October.
+
+<div class="otherversion"><UL>
+<LI class="list-group-item downfree"> Robert J. Aumann & Roberto Serrano, 2006.
+ "<B><A HREF="/p/bro/econwp/2006-20.html">An Economic Index of Riskiness</A></B>,"
+<A HREF="/s/bro/econwp.html">Working Papers</A> 
+2006-20, Brown University, Department of Economics.
+
+<LI class="list-group-item downfree"> Robert J. Aumann & Roberto Serrano, 2007.
+ "<B><A HREF="/p/huj/dispap/dp446.html">An Economic Index of Riskiness</A></B>,"
+<A HREF="/s/huj/dispap.html">Discussion Paper Series</A> 
+dp446, The Federmann Center for the Study of Rationality, the Hebrew University, Jerusalem.
+<LI class="list-group-item downfree"> Robert J. Aumann & Roberto Serrano, 2007.
+ "<B><A HREF="/p/imd/wpaper/wp2007-08.html">An economic index of riskiness</A></B>,"
+<A HREF="/s/imd/wpaper.html">Working Papers</A> 
+2007-08, Instituto Madrileño de Estudios Avanzados (IMDEA) Ciencias Sociales.
+<LI class="list-group-item downfree"> Robert J. Aumann & Roberto Serrano, 2006.
+ "<B><A HREF="/p/cla/levrem/321307000000000585.html">An Economic Index of Riskiness</A></B>,"
+<A HREF="/s/cla/levrem.html">Levine's Bibliography</A> 
+321307000000000585, UCLA Department of Economics.
+<LI class="list-group-item downfree"> Robert J. Aumann & Roberto Serrano, 2007.
+ "<B><A HREF="/p/cla/levrem/321307000000000836.html">An Economic Index of Riskiness</A></B>,"
+<A HREF="/s/cla/levrem.html">Levine's Bibliography</A> 
+321307000000000836, UCLA Department of Economics.
+<LI class="list-group-item downfree"> Robert J. Aumann & Roberto Serrano, 2007.
+ "<B><A HREF="/p/cmf/wpaper/wp2007_0706.html">An Economic Index of Riskiness</A></B>,"
+<A HREF="/s/cmf/wpaper.html">Working Papers</A> 
+wp2007_0706, CEMFI.
+
+
+</UL></div>
+<LI class="list-group-item downfree">  Dimitris Bertsimas & Melvyn Sim, 2004.
+"<B><A HREF="/a/inm/oropre/v52y2004i1p35-53.html">The Price of Robustness</A></B>,"
+<A HREF="/s/inm/oropre.html">Operations Research</A>, INFORMS, vol. 52(1), pages 35-53, February.
+<LI class="list-group-item downgate">  Victor DeMiguel & Lorenzo Garlappi & Raman Uppal, 2009.
+"<B><A HREF="/a/oup/rfinst/v22y2009i5p1915-1953.html">Optimal Versus Naive Diversification: How Inefficient is the 1-N Portfolio Strategy?</A></B>,"
+<A HREF="/s/oup/rfinst.html">The Review of Financial Studies</A>, Society for Financial Studies, vol. 22(5), pages 1915-1953, May.
+<LI class="list-group-item downfree">  A. Charnes & W. W. Cooper, 1959.
+"<B><A HREF="/a/inm/ormnsc/v6y1959i1p73-79.html">Chance-Constrained Programming</A></B>,"
+<A HREF="/s/inm/ormnsc.html">Management Science</A>, INFORMS, vol. 6(1), pages 73-79, October.
+<LI class="list-group-item downgate">  Pflug, Georg Ch. & Pichler, Alois & Wozabal, David, 2012.
+"<B><A HREF="/a/eee/jbfina/v36y2012i2p410-417.html">The 1/N investment strategy is optimal under high model ambiguity</A></B>,"
+<A HREF="/s/eee/jbfina.html">Journal of Banking & Finance</A>, Elsevier, vol. 36(2), pages 410-417.
+<LI class="list-group-item downfree">  Dimitris Bertsimas & Frans J. C. T. de Ruiter, 2016.
+"<B><A HREF="/a/inm/orijoc/v28y2016i3p500-511.html">Duality in Two-Stage Adaptive Linear Optimization: Faster Computation and Stronger Bounds</A></B>,"
+<A HREF="/s/inm/orijoc.html">INFORMS Journal on Computing</A>, INFORMS, vol. 28(3), pages 500-511, August.
+<LI class="list-group-item downfree">  George B. Dantzig, 1955.
+"<B><A HREF="/a/inm/ormnsc/v1y1955i3-4p197-206.html">Linear Programming under Uncertainty</A></B>,"
+<A HREF="/s/inm/ormnsc.html">Management Science</A>, INFORMS, vol. 1(3-4), pages 197-206, 04-07.
+<LI class="list-group-item downfree"> Jun-Ya Gotoh & Michael Jong Kim & Andrew E. B. Lim, 2017.
+ "<B><A HREF="/p/arx/papers/1711.06565.html">Calibration of Distributionally Robust Empirical Optimization Models</A></B>,"
+<A HREF="/s/arx/papers.html">Papers</A> 
+1711.06565, arXiv.org, revised May 2020.
+<LI class="list-group-item downfree">  A. Ben-Tal & A. Nemirovski, 1998.
+"<B><A HREF="/a/inm/ormoor/v23y1998i4p769-805.html">Robust Convex Optimization</A></B>,"
+<A HREF="/s/inm/ormoor.html">Mathematics of Operations Research</A>, INFORMS, vol. 23(4), pages 769-805, November.
+<LI class="list-group-item downfree">  Patrick Jaillet & Jin Qi & Melvyn Sim, 2016.
+"<B><A HREF="/a/inm/oropre/v64y2016i1p186-200.html">Routing Optimization Under Uncertainty</A></B>,"
+<A HREF="/s/inm/oropre.html">Operations Research</A>, INFORMS, vol. 64(1), pages 186-200, February.
+<LI class="list-group-item downfree">  Aharon Ben‐Tal & Marc Teboulle, 2007.
+"<B><A HREF="/a/bla/mathfi/v17y2007i3p449-476.html">An Old‐New Concept Of Convex Risk Measures: The Optimized Certainty Equivalent</A></B>,"
+<A HREF="/s/bla/mathfi.html">Mathematical Finance</A>, Wiley Blackwell, vol. 17(3), pages 449-476, July.
+<LI class="list-group-item downfree">  Joel Goh & Melvyn Sim, 2010.
+"<B><A HREF="/a/inm/oropre/v58y2010i4-part-1p902-917.html">Distributionally Robust Optimization and Its Tractable Approximations</A></B>,"
+<A HREF="/s/inm/oropre.html">Operations Research</A>, INFORMS, vol. 58(4-part-1), pages 902-917, August.
+<LI class="list-group-item downgate">  Rockafellar, R. Tyrrell & Uryasev, Stanislav, 2002.
+"<B><A HREF="/a/eee/jbfina/v26y2002i7p1443-1471.html">Conditional value-at-risk for general loss distributions</A></B>,"
+<A HREF="/s/eee/jbfina.html">Journal of Banking & Finance</A>, Elsevier, vol. 26(7), pages 1443-1471, July.
+<LI class="list-group-item downfree">  Xin Chen & Melvyn Sim & Peng Sun & Jiawei Zhang, 2008.
+"<B><A HREF="/a/inm/oropre/v56y2008i2p344-357.html">A Linear Decision-Based Approximation Approach to Stochastic Programming</A></B>,"
+<A HREF="/s/inm/oropre.html">Operations Research</A>, INFORMS, vol. 56(2), pages 344-357, April.
+<LI class="list-group-item downfree">  James E. Smith & Robert L. Winkler, 2006.
+"<B><A HREF="/a/inm/ormnsc/v52y2006i3p311-322.html">The Optimizer's Curse: Skepticism and Postdecision Surprise in Decision Analysis</A></B>,"
+<A HREF="/s/inm/ormnsc.html">Management Science</A>, INFORMS, vol. 52(3), pages 311-322, March.
+<LI class="list-group-item downfree">  Philippe Artzner & Freddy Delbaen & Jean‐Marc Eber & David Heath, 1999.
+"<B><A HREF="/a/bla/mathfi/v9y1999i3p203-228.html">Coherent Measures of Risk</A></B>,"
+<A HREF="/s/bla/mathfi.html">Mathematical Finance</A>, Wiley Blackwell, vol. 9(3), pages 203-228, July.
+<LI class="list-group-item downfree">  Nicholas G. Hall & Daniel Zhuoyu Long & Jin Qi & Melvyn Sim, 2015.
+"<B><A HREF="/a/inm/oropre/v63y2015i3p660-675.html">Managing Underperformance Risk in Project Portfolio Selection</A></B>,"
+<A HREF="/s/inm/oropre.html">Operations Research</A>, INFORMS, vol. 63(3), pages 660-675, June.
+<LI class="list-group-item downfree">  Dimitris Bertsimas & Melvyn Sim & Meilin Zhang, 2019.
+"<B><A HREF="/a/inm/ormnsc/v65y2019i2p604-618.html">Adaptive Distributionally Robust Optimization</A></B>,"
+<A HREF="/s/inm/ormnsc.html">Management Science</A>, INFORMS, vol. 65(2), pages 604-618, February.
+<LI class="list-group-item downgate">  Mao, James C T, 1970.
+"<B><A HREF="/a/bla/jfinan/v25y1970i2p349-60.html">Survey of Capital Budgeting: Theory and Practice</A></B>,"
+<A HREF="/s/bla/jfinan.html">Journal of Finance</A>, American Finance Association, vol. 25(2), pages 349-360, May.
+<LI class="list-group-item downfree">  Aharon Ben-Tal & Dick den Hertog & Anja De Waegenaere & Bertrand Melenberg & Gijs Rennen, 2013.
+"<B><A HREF="/a/inm/ormnsc/v59y2013i2p341-357.html">Robust Solutions of Optimization Problems Affected by Uncertain Probabilities</A></B>,"
+<A HREF="/s/inm/ormnsc.html">Management Science</A>, INFORMS, vol. 59(2), pages 341-357, April.
+
+<div class="otherversion"><UL>
+<LI class="list-group-item downfree"> Ben-Tal, A. & den Hertog, D. & De Waegenaere, A.M.B. & Melenberg, B. & Rennen, G., 2011.
+ "<B><A HREF="/p/tiu/tiutis/4d43dc51-86d9-4804-8563-9c0b1891e0bc.html">Robust Solutions of Optimization Problems Affected by Uncertain Probabilities</A></B>,"
+<A HREF="/s/tiu/tiutis.html">Other publications TiSEM</A> 
+4d43dc51-86d9-4804-8563-9, Tilburg University, School of Economics and Management.
+
+<LI class="list-group-item downfree"> Ben-Tal, A. & den Hertog, D. & De Waegenaere, A.M.B. & Melenberg, B. & Rennen, G., 2011.
+ "<B><A HREF="/p/tiu/tiucen/4d43dc51-86d9-4804-8563-9c0b1891e0bc.html">Robust Solutions of Optimization Problems Affected by Uncertain Probabilities</A></B>,"
+<A HREF="/s/tiu/tiucen.html">Discussion Paper</A> 
+2011-061, Tilburg University, Center for Economic Research.
+
+
+</UL></div>
+</ol>
+<A TARGET="_blank" HREF="http://citec.repec.org/cgi-bin/get_data.pl?h=RePEc:inm:oropre:v:71:y:2023:i:1:p:61-82&o=all"><B>Full references</B> <i class="bi bi-box-arrow-up-right"></i></A> (including those not matched with items on IDEAS)<P>
+</div>
+
+ <div class="tab-pane fade" id="mrel" role="tabpanel" aria-labelledby="mrel-tab">
+    <h2>Most related items</H2>
+These are the items that most often cite the same works as this one and are cited by the same works as this one.
+<ol class="list-group"><LI class="list-group-item downfree">  Zheng Cui & Daniel Zhuoyu Long & Jin Qi & Lianmin Zhang, 2023.
+"<B><A HREF="/a/inm/oropre/v71y2023i1p378-395.html">The Inventory Routing Problem Under Uncertainty</A></B>,"
+<A HREF="/s/inm/oropre.html">Operations Research</A>, INFORMS, vol. 71(1), pages 378-395, January.
+<LI class="list-group-item downfree">  Antonio J. Conejo & Nicholas G. Hall & Daniel Zhuoyu Long & Runhao Zhang, 2021.
+"<B><A HREF="/a/inm/orijoc/v33y2021i4p1533-1550.html">Robust Capacity Planning for Project Management</A></B>,"
+<A HREF="/s/inm/orijoc.html">INFORMS Journal on Computing</A>, INFORMS, vol. 33(4), pages 1533-1550, October.
+<LI class="list-group-item downfree">  Li Chen & Melvyn Sim, 2025.
+"<B><A HREF="/a/inm/oropre/v73y2025i3p1459-1478.html">Robust CARA Optimization</A></B>,"
+<A HREF="/s/inm/oropre.html">Operations Research</A>, INFORMS, vol. 73(3), pages 1459-1478, May.
+<LI class="list-group-item downgate">  Marla, Lavanya & Rikun, Alexander & Stauffer, Gautier & Pratsini, Eleni, 2020.
+"<B><A HREF="/a/eee/oprepe/v7y2020ics2214716020300403.html">Robust modeling and planning: Insights from three industrial applications</A></B>,"
+<A HREF="/s/eee/oprepe.html">Operations Research Perspectives</A>, Elsevier, vol. 7(C).
+<LI class="list-group-item downfree">  Xiaoqiang Cai & Daniel Zhuoyu Long & Gen Yu & Lianmin Zhang, 2024.
+"<B><A HREF="/a/inm/ormsom/v26y2024i3p952-971.html">Multiportfolio Optimization: A Fairness-Aware Target-Oriented Model</A></B>,"
+<A HREF="/s/inm/ormsom.html">Manufacturing & Service Operations Management</A>, INFORMS, vol. 26(3), pages 952-971, May.
+<LI class="list-group-item downfree">  Nicholas G. Hall & Daniel Zhuoyu Long & Jin Qi & Melvyn Sim, 2015.
+"<B><A HREF="/a/inm/oropre/v63y2015i3p660-675.html">Managing Underperformance Risk in Project Portfolio Selection</A></B>,"
+<A HREF="/s/inm/oropre.html">Operations Research</A>, INFORMS, vol. 63(3), pages 660-675, June.
+<LI class="list-group-item downfree">  Shao-Wei Lam & Tsan Sheng Ng & Melvyn Sim & Jin-Hwa Song, 2013.
+"<B><A HREF="/a/inm/oropre/v61y2013i1p214-227.html">Multiple Objectives Satisficing Under Uncertainty</A></B>,"
+<A HREF="/s/inm/oropre.html">Operations Research</A>, INFORMS, vol. 61(1), pages 214-227, February.
+<LI class="list-group-item downfree">  Zhi Chen & Melvyn Sim & Huan Xu, 2019.
+"<B><A HREF="/a/inm/oropre/v67y2019i5p1328-1344.html">Distributionally Robust Optimization with Infinitely Constrained Ambiguity Sets</A></B>,"
+<A HREF="/s/inm/oropre.html">Operations Research</A>, INFORMS, vol. 67(5), pages 1328-1344, September.
+<LI class="list-group-item downgate">  Wang, Fan & Zhang, Chao & Zhang, Hui & Xu, Liang, 2021.
+"<B><A HREF="/a/eee/jomega/v105y2021ics0305048321001286.html">Short-term physician rescheduling model with feature-driven demand for mental disorders outpatients</A></B>,"
+<A HREF="/s/eee/jomega.html">Omega</A>, Elsevier, vol. 105(C).
+<LI class="list-group-item downfree">  Feng Liu & Zhi Chen & Shuming Wang, 2023.
+"<B><A HREF="/a/inm/orijoc/v35y2023i5p1120-1142.html">Globalized Distributionally Robust Counterpart</A></B>,"
+<A HREF="/s/inm/orijoc.html">INFORMS Journal on Computing</A>, INFORMS, vol. 35(5), pages 1120-1142, September.
+<LI class="list-group-item downfree">  Mengshi Lu & Zuo‐Jun Max Shen, 2021.
+"<B><A HREF="/a/bla/popmgt/v30y2021i6p1927-1943.html">A Review of Robust Operations Management under Model Uncertainty</A></B>,"
+<A HREF="/s/bla/popmgt.html">Production and Operations Management</A>, Production and Operations Management Society, vol. 30(6), pages 1927-1943, June.
+<LI class="list-group-item downgate">  Wei Liu & Li Yang & Bo Yu, 2021.
+"<B><A HREF="/a/spr/annopr/v307y2021i1d10.1007_s10479-021-04171-4.html">KDE distributionally robust portfolio optimization with higher moment coherent risk</A></B>,"
+<A HREF="/s/spr/annopr.html">Annals of Operations Research</A>, Springer, vol. 307(1), pages 363-397, December.
+<LI class="list-group-item downfree">  Li Chen & Chenyi Fu & Fan Si & Melvyn Sim & Peng Xiong, 2025.
+"<B><A HREF="/a/inm/oropre/v73y2025i6p3118-3138.html">Robust Optimization with Moment-Dispersion Ambiguity</A></B>,"
+<A HREF="/s/inm/oropre.html">Operations Research</A>, INFORMS, vol. 73(6), pages 3118-3138, November.
+<LI class="list-group-item downfree">  Zhenzhen Zhang & Yu Zhang & Roberto Baldacci, 2024.
+"<B><A HREF="/a/inm/ortrsc/v58y2024i4p761-780.html">Generalized Riskiness Index in Vehicle Routing Under Uncertain Travel Times: Formulations, Properties, and Exact Solution Framework</A></B>,"
+<A HREF="/s/inm/ortrsc.html">Transportation Science</A>, INFORMS, vol. 58(4), pages 761-780, July.
+<LI class="list-group-item downgate">  Walid Ben-Ameur & Adam Ouorou & Guanglei Wang & Mateusz Żotkiewicz, 2018.
+"<B><A HREF="/a/spr/eurjco/v6y2018i4d10.1007_s13675-017-0092-4.html">Multipolar robust optimization</A></B>,"
+<A HREF="/s/spr/eurjco.html">EURO Journal on Computational Optimization</A>, Springer;EURO - The Association of European Operational Research Societies, vol. 6(4), pages 395-434, December.
+<LI class="list-group-item downfree">  Angelos Georghiou & Angelos Tsoukalas & Wolfram Wiesemann, 2026.
+"<B><A HREF="/a/inm/ormnsc/v72y2026i2p1456-1471.html">On the Optimality of Affine Decision Rules in Distributionally Robust Optimization</A></B>,"
+<A HREF="/s/inm/ormnsc.html">Management Science</A>, INFORMS, vol. 72(2), pages 1456-1471, February.
+<LI class="list-group-item downfree">  Wenqing Chen & Melvyn Sim, 2009.
+"<B><A HREF="/a/inm/oropre/v57y2009i2p342-357.html">Goal-Driven Optimization</A></B>,"
+<A HREF="/s/inm/oropre.html">Operations Research</A>, INFORMS, vol. 57(2), pages 342-357, April.
+<LI class="list-group-item downfree">  Wolfram Wiesemann & Daniel Kuhn & Melvyn Sim, 2014.
+"<B><A HREF="/a/inm/oropre/v62y2014i6p1358-1376.html">Distributionally Robust Convex Optimization</A></B>,"
+<A HREF="/s/inm/oropre.html">Operations Research</A>, INFORMS, vol. 62(6), pages 1358-1376, December.
+<LI class="list-group-item downgate">  Chen, Qingxin & Ma, Shoufeng & Li, Hongming & Zhu, Ning & He, Qiao-Chu, 2024.
+"<B><A HREF="/a/eee/transe/v184y2024ics136655452400067x.html">Optimizing bike rebalancing strategies in free-floating bike-sharing systems: An enhanced distributionally robust approach</A></B>,"
+<A HREF="/s/eee/transe.html">Transportation Research Part E: Logistics and Transportation Review</A>, Elsevier, vol. 184(C).
+<LI class="list-group-item downfree">  Haolin Ruan & Zhi Chen & Chin Pang Ho, 2023.
+"<B><A HREF="/a/inm/orijoc/v35y2023i5p1002-1023.html">Adjustable Distributionally Robust Optimization with Infinitely Constrained Ambiguity Sets</A></B>,"
+<A HREF="/s/inm/orijoc.html">INFORMS Journal on Computing</A>, INFORMS, vol. 35(5), pages 1002-1023, September.
+</ol>
+</div>
+
+  <div class="tab-pane fade" id="more" role="tabpanel" aria-labelledby="more-tab">
+    <H2> More about this item</H2>  <h3>Keywords</h3><form action="/cgi-bin/htsearch2" method="post" class="inline"><input type="hidden" name="q" value="Optimization"><button type="submit" value="submit" class="link-button">Optimization</button></form>; <form action="/cgi-bin/htsearch2" method="post" class="inline"><input type="hidden" name="q" value="robust optimization"><button type="submit" value="submit" class="link-button">robust optimization</button></form>; <form action="/cgi-bin/htsearch2" method="post" class="inline"><input type="hidden" name="q" value="robust satisficing"><button type="submit" value="submit" class="link-button">robust satisficing</button></form>; <form action="/cgi-bin/htsearch2" method="post" class="inline"><input type="hidden" name="q" value="data-driven"><button type="submit" value="submit" class="link-button">data-driven</button></form>; <form action="/cgi-bin/htsearch2" method="post" class="inline"><input type="hidden" name="q" value="discrete optimization"><button type="submit" value="submit" class="link-button">discrete optimization</button></form>; <form action="/cgi-bin/htsearch2" method="post" class="inline"><input type="hidden" name="q" value="stochastic optimization"><button type="submit" value="submit" class="link-button">stochastic optimization</button></form>; <form action="/cgi-bin/htsearch2" method="post" class="inline"><input type="hidden" name="q" value="fragility measure"><button type="submit" value="submit" class="link-button">fragility measure</button></form>; <form action="/cgi-bin/htsearch2" method="post" class="inline"><input type="hidden" name="q" value="Optimization robust optimization robust satisficing data-driven discrete optimization stochastic optimization fragility measure "><button type="submit" value="submit" class="link-button">All these keywords</button></form><h3>Statistics</h3>
+ <A      HREF="http://logec.repec.org/scripts/paperstat.pl?h=RePEc:inm:oropre:v:71:y:2023:i:1:p:61-82">Access and download statistics</A>
+</div>
+
+<!-- placeholder usernotes tab-->
+ <div class="tab-pane fade" id="correct" role="tabpanel" aria-labelledby="correct-tab">
+    <h2>Corrections</H2>
+    <P>All material on this site has been provided by the respective publishers and authors. You can help correct errors and omissions. When requesting a correction, please mention this item's handle: <I style="word-break:break-all;">RePEc:inm:oropre:v:71:y:2023:i:1:p:61-82</I>. See <A HREF="/corrections.html">general information</A> about how to correct material in RePEc.
+      </P><P>
+      If you have authored this item and are not yet registered with RePEc, we encourage you to do it <A HREF="https://authors.repec.org/new-user">here</A>. This allows to link your profile to this item. It also allows you to accept potential citations to this item that we are uncertain about.
+      </P><p>If <A HREF="http://citec.repec.org/" target ="_blank">CitEc <i class="bi bi-box-arrow-up-right"></i></a> recognized a bibliographic reference but did not link an item in RePEc to it, you can help with <A HREF="http://citec.repec.org/cgi-bin/get_data.pl?h=RePEc:inm:oropre:v:71:y:2023:i:1:p:61-82&o=all" target="_blank">this form <I class="bi bi-box-arrow-up-right"></I></A>.</p><P>
+      If you know of missing items citing this one, you can help us creating those links by adding the relevant references in the same way as above, for each refering item. If you are a registered author of this item, you may also want to check the "citations" tab in your <a href="https://authors.repec.org/">RePEc Author Service</A> profile, as there may be some citations waiting for confirmation.
+      </P><P>
+        For technical questions regarding this item, or to correct its authors, title, abstract, bibliographic or download information, contact: Chris Asher (email available below). General contact details of provider: <A HREF="https://edirc.repec.org/data/inforea.html" target="_blank" style="word-break:break-all;">https://edirc.repec.org/data/inforea.html <i class="bi bi-box-arrow-up-right"></i></A>.
+
+<div id="viewemail">
+<form id="emailForm" action="/cgi-bin/getemail.cgi" method="POST">
+<input type="hidden" name="handle" value="repec:inm:oropre:m">
+<div id="captcha_container"></div>
+          <input type="submit" value="View email address">
+      </form>
+      <script src="https://www.google.com/recaptcha/api.js?onload=loadCaptcha&render=explicit" async defer></script>
+<div id="emailResponse"></div>
+</div>
+</p><p>
+      Please note that corrections may take a couple of weeks to filter through
+      the various RePEc services.</p>
+</div>
+</div>
+</div>
+<div id="footer" class="row d-print-none">
+  <div class="col-sm-6 more-services">
+    <h3 style="border-bottom: 1px solid #111; position: relative; right:0.9em;">More services and features</h3>
+    <div class="row">
+      <div class="list-group col">
+        <a href="/cgi-bin/myideas.cgi" class="list-group-item">
+          <h4 class="list-group-item-heading">MyIDEAS</h4>
+          <p class="list-group-item-text">Follow serials, authors, keywords &amp; more</p>
+        </a>
+        <a href="http://authors.repec.org/" class="list-group-item">
+          <h4 class="list-group-item-heading">Author registration</h4>
+          <p class="list-group-item-text">Public profiles for Economics researchers</p>
+        </a>
+        <a href="http://ideas.repec.org/top/" class="list-group-item">
+          <h4 class="list-group-item-heading">Rankings</h4>
+          <p class="list-group-item-text">Various research rankings in Economics</p>
+        </a>
+        <a href="http://genealogy.repec.org/" class="list-group-item">
+          <h4 class="list-group-item-heading">RePEc Genealogy</h4>
+          <p class="list-group-item-text">Who was a student of whom, using RePEc</p>
+        </a>
+        <a href="http://biblio.repec.org/" class="list-group-item">
+          <h4 class="list-group-item-heading">RePEc Biblio</h4>
+          <p class="list-group-item-text">Curated articles &amp; papers on economics topics</p>
+        </a>
+      </div>
+      <div class="list-group col">
+        <a href="http://mpra.ub.uni-muenchen.de/" class="list-group-item" target="_blank">
+          <h4 class="list-group-item-heading">MPRA  <i class="bi bi-box-arrow-up-right"></i></h4>
+          <p class="list-group-item-text">Upload your paper to be listed on RePEc and IDEAS</p>
+        </a>
+        <a href="http://nep.repec.org/" class="list-group-item" target="_blank">
+          <h4 class="list-group-item-heading">New papers by email <i class="bi bi-box-arrow-up-right"></i></h4>
+          <p class="list-group-item-text">Subscribe to new additions to RePEc</p>
+        </a>
+        <a href="http://www.econacademics.org/" class="list-group-item">
+          <h4 class="list-group-item-heading">EconAcademics</h4>
+          <p class="list-group-item-text">Blog aggregator for economics research</p>
+        </a>
+        <a href="http://plagiarism.repec.org/" class="list-group-item">
+          <h4 class="list-group-item-heading">Plagiarism</h4>
+          <p class="list-group-item-text">Cases of plagiarism in Economics</p>
+        </a>
+      </div>
+      </div>
+    </div>
+    <div class="col-sm more-services">
+      <h3 style="border-bottom: 1px solid #111;">About RePEc</h3>
+      <div class="list-group col">
+        <a href="http://repec.org/" class="list-group-item" target="_blank">
+	  <h4 class="list-group-item-heading">RePEc home <i class="bi bi-box-arrow-up-right"></i></h4>
+	  <p class="list-group-item-text">Initiative for open bibliographies in Economics</p>
+	</a>
+        <a href="http://blog.repec.org/" class="list-group-item" target="_blank">
+          <h4 class="list-group-item-heading">Blog <i class="bi bi-box-arrow-up-right"></i></h4>
+          <p class="list-group-item-text">News about RePEc</p>
+	</a>
+        <a href="/help.html" class="list-group-item" target="_blank">
+          <h4 class="list-group-item-heading">Help/FAQ <i class="bi bi-box-arrow-up-right"></i></h4>
+          <p class="list-group-item-text">Questions about IDEAS and RePEc</p>
+	</a>
+        <a href="/team.html" class="list-group-item">
+          <h4 class="list-group-item-heading">RePEc team</h4>
+          <p class="list-group-item-text">RePEc volunteers</p>
+	</a>
+        <a href="/archives.html" class="list-group-item">
+          <h4 class="list-group-item-heading">Participating archives</h4>
+          <p class="list-group-item-text">Publishers indexing in RePEc</p>
+	</a>
+        <a href="https://ideas.repec.org/privacy.html" class="list-group-item" target="_blank">
+          <h4 class="list-group-item-heading">Privacy statement <i class="bi bi-box-arrow-up-right"></i></h4>
+	</a>
+      </div>
+    </div>
+    <div class="col-sm more-services">
+      <h3 style="border-bottom: 1px solid #111;">Help us</h3>
+      <div class="list-group col">
+        <a href="/corrections.html" class="list-group-item">
+          <h4 class="list-group-item-heading">Corrections</h4>
+          <p class="list-group-item-text">Found an error or omission?</p>
+	</a>
+        <a href="/volunteers.html" class="list-group-item">
+          <h4 class="list-group-item-heading">Volunteers</h4>
+          <p class="list-group-item-text">Opportunities to help RePEc</p>
+	</a>
+        <a href="/participate.html" class="list-group-item">
+          <h4 class="list-group-item-heading">Get papers listed</h4>
+          <p class="list-group-item-text">Have your research listed on RePEc</p>
+	</a>
+        <a href="/stepbystep.html" class="list-group-item">
+          <h4 class="list-group-item-heading">Open a RePEc archive</h4>
+          <p class="list-group-item-text">Have your institution's/publisher's output listed on RePEc</p>
+	</a>
+	<a href="/getdata.html" class="list-group-item">
+          <h4 class="list-group-item-heading">Get RePEc data</h4>
+          <p class="list-group-item-text">Use data assembled by RePEc</p>
+	</a>
+      </div>
+    </div>
+</div>
+<div class="row">
+  <div class="col-12" style="text-align: center; padding-top: 10px;">
+    <div id="sidelogos">
+      <a href="https://ideas.repec.org/">IDEAS</a> is a <a href="http://repec.org/" target="_blank">RePEc <i class="bi bi-box-arrow-up-right"></i></a> service. RePEc uses bibliographic data supplied by the respective publishers.
+    </div>
+  </div>
+  
+  
+</div>
+</div>
+
+</div>
+<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/share-to-mastodon@0.2.0/dist/share-to-mastodon.js"></script>
+<script src="/css/ideas.js"></script>
+<script src="/css/pushy.js"></script>
+<script>
+$(document).ready(function() {
+    // show active tab on reload
+    if (location.hash !== '') $('a[href="' + location.hash + '"]').tab('show');
+
+    // remember the hash in the URL without jumping
+//    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+//       if(history.pushState) {
+//            history.pushState(null, null, '#'+$(e.target).attr('href').substr(1));
+//       } else {
+//            location.hash = '#'+$(e.target).attr('href').substr(1);
+//       }
+//    });
+});
+</script>
+
+</BODY>
+</HTML>

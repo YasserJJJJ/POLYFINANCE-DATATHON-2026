@@ -1,0 +1,415 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.04 [en] (Win95; I) [Netscape]">
+   <TITLE>Notes on </TITLE>
+</HEAD>
+<BODY>
+
+<UL>Clancey,W.J. (1993) "Notes on "Epistemology of a Rule-based Expert
+System"." <I>Artificial Intelligence</I> <B>59</B>(1-2 February): 191-204,
+1993. Special issue "Artificial Intelligence in Perspective"&nbsp;
+<HR WIDTH="100%"></UL>
+
+<CENTER>&nbsp;</CENTER>
+
+<CENTER>
+<H1>
+Notes on</H1></CENTER>
+
+<CENTER>
+<H1>
+"Epistemology of a Rule-based Expert System"</H1></CENTER>
+
+<CENTER><B><FONT SIZE=+0>William J. Clancey</FONT></B></CENTER>
+
+<CENTER><B><FONT SIZE=+0>Institute for Research on Learning</FONT></B></CENTER>
+
+<CENTER><B><FONT SIZE=+0>2550 Hanover Street</FONT></B></CENTER>
+
+<CENTER><B><FONT SIZE=+0>Palo Alto, CA 94304</FONT></B></CENTER>
+
+<CENTER>&nbsp;</CENTER>
+
+<CENTER>&nbsp;</CENTER>
+
+<CENTER><I>Artificial Intelligence</I> <B>59</B>(1-2 February): 191-204,
+1993. Special issue "Artificial Intelligence in Perspective"</CENTER>
+.&nbsp;
+<HR WIDTH="100%">
+<H1>
+1. The Epistemology of a Rule-Based Expert System: A Framework for Explanation.</H1>
+<I>Artificial Intelligence</I>, <B>20</B> (3), 215-252.&nbsp;
+<BR>&nbsp;
+
+<P>When I joined the MYCIN project in January 1975, I was full of excitement
+about working with physicians and doing something "relevant to society."
+This excitement soon paled as I became lost by medical jargon and tedious
+design arguments. In April 1975, I wrote an essay, "Why is the Tetracycline
+rule so difficult to understand?" This simple rule presented itself as
+a puzzle: "If the patient is less than 7 years old, then do not prescribe
+Tetracycline." I knew what all the words meant, but I couldn't understand
+why the rule was correct. How could Mycin understand the rule? What did
+it mean to understand a rule? And if Mycin didn't understand the rule,
+how could it be said to be reasoning? Somewhat fatuously, I labeled my
+line-printer listing of rules "What Mycin Knows." More than a decade would
+pass before I realized that to have a representation in your pocket is
+not to be intelligent, that "having knowledge" does not mean possessing
+some <I>things</I>. A more accurate label for the rule listing would have
+been "Our representations of what Drs. Shortliffe, Blum, and Yu know."
+
+<P>But criticizing Mycin wasn't on my mind in 1975, before we even called
+Mycin an "expert system," before even the Heuristic Programming Project
+became the Knowledge Systems Lab. My interest was to understand the medicine
+and logic behind the rules. Within the AI research goals of the time, this
+was framed as research on explanation and teaching (Scott, et. al., 1977;
+Clancey, 1977). The "epistemology" article was originally a chapter of
+my dissertation (Clancey, 1987a).
+
+<P>By late 1978, my interest in ordering and understanding Mycin's rules
+focused on the rules we (principally Victor Yu and Larry Fagan) had recently
+added for treating meningitis. By this time, Jim Bennett and I were influenced
+by Randy Davis's work on knowledge acquisition (Davis and Lenat, 1982),
+and intrigued by ways in which the process could be managed and taught.
+From experience, we knew that building a knowledge base wasn't a matter
+of just generating rules and dropping them into a pot. Jim's experience
+in constructing Sacon (Bennett, et al., 1979) showed the importance of
+helping experts write useful rules, in particular, organizing rules conceived
+in isolation into lines of reasoning.
+<H2>
+Structure-Strategy-Support design rationales</H2>
+In effect, we were already moving from the programmer's view of rules as
+modular and independently changeable to the view that a knowledge base
+was designed and maintained as a coherent whole. The Mycin team was impressed
+by the effort in 1975-77 required to generate and test different versions
+of Mycin's context tree. We were attempting to represent reasoning about
+multiple cultures from a given body site at different points in time. Clearly,
+the contribution by the computer scientists was not just in developing
+the inference engine and attendant subsystems, but in formulating and encoding
+a complex reasoning network. Indeed, in formulating new concepts and causal
+models, we were involved in medical science.
+
+<P>By 1978, Bennett and I focused on the idea of <I>inference structure</I>,
+an outline of the dominant goal structure of a rule set. Seeing the goal
+structures of Mycin and Sacon on paper, we wondered, "What is the logic
+behind these trees?" Here I was strongly influenced by Brown, Collins,
+and Harris' (1977) paper, "AI and Learning Strategies," which analyzed
+reasoning strategies in different domains. I noted the parallel between
+controlling Mycin's rules and deciding which axiom to apply in algebraic
+simplification (Clancey, 1983, Figure 12). Until this time, the idea of
+strategy in the Mycin project was simply a rule that controlled other rules
+(a <I>metarule</I>). But here I realized that a strategy was a kind of
+argument. It had its own logical content, which for medical diagnosis was
+more like a <I>procedure</I> for focusing an extended dialogue, than isolated
+metarules affecting rule ordering. This was probably the most important
+idea in the design of Neomycin, which was already under way by the fall
+of 1979.
+
+<P>The procedural-declarative controversy also influenced my analysis.
+What was the relation between "explicit" and "implicit knowledge"? In what
+sense does clause ordering constitute implicit knowledge? For example,
+I can proceduralize the relation between "age of the patient" and "alcoholism"
+by placing the age clause before the alcoholism clause in rules. But how
+is this different from the "declarative representation," "If the age is
+less than 13, then the patient is probably not an alcoholic"? Since MYCIN
+doesn't understand what alcoholism is anyway, in what sense is the rule's
+meaning more explicit? It was many years before I realized that there was
+no such thing as "the meaning" of a representation. And we were light years
+from distinguishing between "knowing a meaning" and "a representation of
+meaning." At the very least, the ideas of implicit and explicit knowledge
+encouraged me to list and study relations such as clause ordering that
+were crucial to the program's correct operation. Ultimately, I framed this
+analysis by relating it to Woods (1975), "What's in a Link?" and Brachman's
+(1977) "What's in a concept?" Today, with more respect for simplicity,
+I would have called my article, "What's in a rule?"
+
+<P>Looking back, I believe that the "Strategy, Structure, Support" framework
+holds up. The observation that an inference procedure (strategy) indexes
+the domain model (the knowledge base of propositions and rules) through
+a vocabulary of relations (structure, the domain theory) is of basic importance
+for understanding how changes to the theory, model, and inference procedure
+interrelate. Unfortunately, my misleading characterization of strategic
+knowledge as domain-independent (instead of domain-general) led some people
+to belittle the idea of representing the domain model separately from the
+inference and communication procedures. I believe these distinctions are
+central for articulating and advancing the process representation techniques
+of AI programming (Clancey, in press).
+<H2>
+Knowledge bases and generative models</H2>
+After constructing Neomycin and studying its metarules in the mid 1980s,
+I realized that removing ordering relations between rule clauses produced
+a special kind of model, like the relation between a grammar and a lexicon.
+In effect, we discover patterns in expressions (Mycin's rules) and formulate
+a grammar that can generate these patterns by interpreting a separate set
+of propositions (the domain model of propositions and rules). I believe
+that understanding how such process models are constructed is important
+for understanding the capabilities and limits of qualitative modeling.
+
+<P>The first idea is that general theories of processes are developed by
+abstracting <I>ordering patterns</I> (e.g, clause ordering, rule ordering,
+data-request ordering) from a collection of models written in some language
+(Clancey, 1987b). We followed this approach in creating Neomycin from Mycin,
+and then in studying patterns in Neomycin's metarules (Clancey, 1988).
+A more general observation is that <I>different procedures</I> for interpreting
+a domain model (e.g., an inference procedure, a compiler, an explanation
+program, a student modeling program), index the model through <I>different
+classifications</I> of domain terms and relations (Clancey, in press).
+
+<P>Second, a domain-general inference procedure (general because it uses
+variables for domain terms) can be used like a natural language grammar
+to parse an expert or student's sequence of requests for data and hypothesis
+statements (Wilkins, et al., 1988). A given sequence of expert or student
+behavior can be parsed in different ways, depending on different assumptions
+about the person's domain model (Clancey, 1988).
+
+<P>Third, when we replace a representation by what appears to be its generative
+constituents, we specialize it (by specifying when propositions and rules
+should be applied), and potentially lose robustness. For example, if we
+replace the dictum "generalize questions" (formalized in Neomycin by a
+metarule) by the conditions under which this should be done (e.g., you
+are in a hurry and this finding is rarely present), we will require both
+more details to be represented (e.g., the frequency of a finding) and more
+information to be checked during the problem-solving context (e.g., am
+I in a hurry today?). That is, by making more aspects of the system being
+modeled and the context explicit, more reasoning (or search of triggering
+conditions) is required. Besides requiring more data, the program will
+no longer apply the rule in situations in which it might be relevant. Recent
+research in self-organizing and reactive architectures is partly motivated
+by these observations (Steels, 1989).
+
+<P>Of course, these statements would not have been made in the 1970s, when
+few people acknowledged that Mycin's classification of diseases and causal
+relations expressed in rules constituted a model of the domain. We needed
+to recognize that we were constructing new models in knowledge bases before
+we could understand how people typically create and use models, and the
+capabilities of a reasoning mechanism built only out of models.
+<H2>
+The role of rationalization reconsidered</H2>
+We originally conceived of support knowledge as the causal and social context
+that justifies a rule, an objective documentation for why a rule is correct.
+Today we would call the justification a <I>design rationale</I>, and emphasize
+its use in developing better models over time. In particular, any number
+of rationalizations for or against a representation are possible, depending
+on changing circumstances in which representations are interpreted. Rather
+than viewing justifications as objective and pertaining to "truth," a design
+rationale should cite the shortcomings in the previous theory or model,
+relative to how it has been used (Sch&ouml;n, 1987). Rationalization of
+this sort involves reconceiving the goals of the program and what constitutes
+a problem, not just providing "deeper" explanations for isolated rules.
+
+<P>Conflating knowledge and knowledge representations distorts how people
+create models, and leads to an inadequate conception of what tools might
+help us. For example, in the Epistemology article I observed that the meaning
+of represented concepts tends to be generalized when later additions are
+made to the knowledge base, which I termed <I>concept broadening</I>. I
+now believe that this is an inherent aspect of representational change
+(Clancey, 1991), not something that can be prevented by "principled representations."
+Tools for maintaining and using design rationales, grounded in a case library,
+could take this into account.
+
+<P>Our conception of explanation systems was also biased by the view that
+knowledge bases weren't our models, but were delivered from the heads of
+experts. We didn't consider that users were already representing knowledge
+in their everyday affairs. We believed that a program's explanation would
+help experts improve the program (transmission from expert to program),
+but in the workplace we conceived of explanation as a teaching device (transmission
+from program to user). We viewed changes to the rules in terms of debugging
+a program, expecting it to be a convergent process that would be controlled
+by technicians, or preferably the experts themselves. After all, building
+a knowledge base was conceived as a process of acquiring already "known"
+knowledge from experts. To the extent users had knowledge, it was assumed
+to be unarticulated, and hence incomplete and naive.
+
+<P>We viewed all interactions between people and program in terms of "transfer":
+Experts had knowledge stored in their heads. The knowledge base was an
+objective inventory of expert knowledge. Users lacked knowledge. The role
+of consultation (and knowledge acquisition and teaching) was to transfer
+knowledge between experts, users, and students. Knowledge engineers are
+like priests; they receive "The Word" from experts above, add nothing to
+the content, but codify it accurately into written rules, and pass it down
+to ordinary folks as commandments to live by. If you are not an expert,
+you learn by being told. This is how knowledge engineers learn from experts
+and how users and students learn from the expert system. This view lacks
+any sense that the knowledge base could belong to a community of practitioners,
+the users and experts alike, and might be developed and maintained by them
+(but see Stefik and Conway, 1988).
+
+<P>Similarly, apart from courtesies of the bedside manner, it was difficult
+to conceive what a medical student should be taught, other than Mycin's
+rules. We didn't realize that the complement of Neomycin&oacute;how the
+model relates to the unformalized world of medical practice&oacute;is an
+essential part of what a student needs to know. What explanations could
+help students and consultation users become more aware of the quality of
+their work, know when to question what they are doing, and generate ideas
+for changing what they are doing? In other words, how can we use knowledge
+representations to make people <I>reflective practitioners</I> (Sch&ouml;n,
+1987)?
+
+<P>As an example, consider the disease taxonomy of Neomycin. Today we view
+such representations not as a <I>product</I> to be delivered to a student,
+but as a partial model of a practice. Besides learning the various diseases
+and their relations, we would want the student to learn the following:
+
+<P>o Why do we taxonomize diseases?
+
+<P>o What gets glossed? How do we know when this stereotypic view of physiological
+processes is misleading?
+
+<P>o Who knows this taxonomy; what is its origin?
+
+<P>o What is the nature of disagreements; how do they arise; how are they
+settled?
+
+<P>o How are taxonomies related to medical research? Are they becoming
+unnecessary as we develop better mechanistic models?
+
+<P>o What are good ways to keep a taxonomic perspective up-to-date?
+
+<P>By this view, knowledge is <I>knowing how to live</I> in a community,
+not just static facts or procedures that <I>represent</I> what people do.
+This is what we want the student to learn and what our computer tools could
+support (Lave and Wenger, 1991; Sch&ouml;n, book; Clancey, in preparation;
+Greenbaum and Kyng, 1991). Today we realize that "glass box design" is
+not an inherent property of a representational system, but <I>a relation</I>
+between the design and the practices of a community (Wenger, 1990).
+
+<P>If I had this perspective in 1975, before building Guidon I would have
+experimented with the original Mycin program in the medical school. I would
+first give Mycin to the students with illustrative cases demonstrating
+the program's capabilities. I would then challenge them to defeat the program
+by selecting new cases from the clinic and explaining why Mycin fails.
+This would teach them something about computer models as well as the domain.
+<H2>
+Subsequent research</H2>
+This article helped frame explanation research in terms of content, as
+opposed to the goal-rule backward-chaining syntax. But given my view that
+the program was an omniscient expert, it is no surprise that I didn't discuss
+the <I>explanation process</I> as a kind of negotiation, a joint construction
+(cf. Moore and Swartout, 1989). For example, the Pollack, et al. (1982)
+study of radio talk shows reveals how participants engage in problem-framing,
+co-define the expert's capabilities, and evaluate the usefulness of his
+advice. Related work by Langlotz and Shortliffe (1983) explores the relation
+of consultation dialogs to human involvement and responsibility; Karp and
+Wilkins (1989) reconsider the nature of rule-based models in relation to
+explicit causal representations.
+
+<P>This article was a step in the design of Neomycin and my subsequent
+study of other expert systems. I was surprised to find after completing
+the Heuristic Classification paper that the abstraction&ntilde;heuristic-association&ntilde;refinement
+horseshoe diagram is anticipated by Figure 8, which shows how a rule can
+be explained by generalizing it. In effect, I have written a trilogy of
+papers with expanding interests and claims about representation: The epistemology
+article (1983) is a study of Mycin's rules; Heuristic Classification (1985)
+is a generalization to other expert systems; and Model Construction Operators
+(in press) is a further generalization to the process modeling methodology
+of AI programming.
+
+<P>I am especially grateful to Bruce Buchanan, John Seely Brown, and Danny
+Bobrow for their persistent interest and direction during more than two
+years of rewriting this paper.
+<H2>
+References</H2>
+Bennett, J., Creary, L., Englemore, R., and Melosh, R. 1979. SACON: A knowledge-based
+consultant for structural analysis. <I>Sixth Proceedings of the International
+Joint Conference on Artificial Intelligence</I>, pp. 47-49.
+
+<P>Brachman, R. J. 1977. What's in a concept: structural foundations for
+semantic networks<I>. International Journal of Man-Machine Studies</I>,
+<B>9</B>:127-152.
+
+<P>Brown, J. S., Collins, A. and Harris, G. 1977. Artificial intelligence
+and learning strategies. In H. O'Neill (ed), <I>Learning Strategies</I>.
+New York: Academic Press.
+
+<P>Clancey, W. J. 1977. An antibiotic therapy selector which provides for
+explanations. <I>Fifth International Joint Conference on Artificial Intelligence</I>.
+Expanded version appears in B.G. Buchanan and E.H. Shortliffe (eds), <I>Rule
+Based Expert Systems: The MYCIN Experiments of the Stanford Heuristic Programming
+Project</I>. Reading, MA: Addison-Wesley. pp. 133-146.
+
+<P>Clancey, W. J. 1983. The epistemology of a rule-based expert system:
+A framework for explanation. <I>Artificial Intelligence</I>, <B>20</B>(3),
+215-252.
+
+<P>Clancey, W. J. 1987a. <I>Knowledge-Based Tutoring: The GUIDON Program</I>.
+Cambridge: MIT Press.
+
+<P>Clancey, W.J. 1987b. From Guidon to Neomycin and Heracles in twenty
+short lessons: ONR final report, 1979-1985. In A. vanLamsweerde (editor),
+<I>Current Issues in Expert Systems,</I> London: Academic Press, Inc.,
+pp. 79-123. Also <I>The AI Magazine,</I> <B>7</B>(3) 40-60, Conference,
+1986.
+
+<P>Clancey, W.J. 1988. Acquiring, representing, and evaluating a competence
+model of diagnosis. In M.T.H. Chi, R. Glaser, and M.J. Farr (eds), <I>The
+Nature of Expertise. </I>Hillsdale: Lawrence Erlbaum Associates, pp. 343-418.
+
+<P>Clancey, W.J. 1991.<FONT SIZE=+1> </FONT>Review of Rosenfield's "The
+Invention of Memory," <I>Artificial Intelligence</I>, <B>50</B>(2):241-284,
+1991.
+
+<P>Clancey, W.J. (In press). Model construction operators. To appear in
+<I>Artificial Intelligence</I>.
+
+<P>Clancey, W.J. (in preparation). The knowledge level reconsidered: Modeling
+socio-technical systems. To appear in <I>The International Journal of Intelligent
+Systems</I>, Special issue on Knowledge Acquisition, edited by Ken Ford.
+
+<P>Davis, R. and Lenat D.B. 1982. <I>Knowledge-Based Systems in Artificial
+Intelligence.</I> New York: McGraw-Hill.
+
+<P>Greenbaum J. and Kyng, M. 1991. <I>Design at Work: Cooperative design
+of computer systems.</I> Hillsdale, NJ: Lawrence Erlbaum Associates.
+
+<P>Karp, P.D. and Wilkins, D.C. 1989. An analysis of the distinction between
+deep and shallow expert systems. <I>International Journal of Expert Systems</I>,
+<B>2</B>(1):1-32.
+
+<P>Langlotz, C.P. and Shortliffe, E.H. 1983. Adapting a consultaiton system
+to critique user plans. <I>International Journal of Man-Machine Studies</I>,
+<B>19</B>(5):479-496.
+
+<P>Lave, J. and Wenger, E. 1991. <I>Situated Learning: Legitimate Peripheral
+Participation.</I> Cambridge: Cambridge University Press.
+
+<P>Moore, J.D. and Swartout, W.R. 1989. A reactive approach to explanation.
+<I>Eleventh Proceedings of the International Joint Conference on Artificial
+Intelligence, </I>Detroit. pp. 1504-1510.
+
+<P>Pollack, M.E. Hirsherg, J., and Webber, B. 1982. User participation
+in the reasoning processes of expert systems. <I>Proceedings of the National
+Conference on Artificial Intelligence</I>, Pittsburgh. pp. 358-361.
+
+<P>Sch&ouml;n, D.A. 1987. <I>Educating the Reflective Practitioner</I>.
+San Francisco: Jossey-Bass Publishers.
+
+<P>Scott, A. C., Clancey, W. J., Davis, R., &amp; Shortliffe, E. H. 1977.
+Explanation capabilities of knowledge-based production systems. <I>American
+Journal of Computer Linguistics</I>, Microfiche 62. Also, in B. Buchanan
+and E.H. Shortliffe (eds), <I>Rule-Based Expert Systems</I>, (Reading,
+MA: Addison-Wesley, 1984), pp. 338-362.
+
+<P>Steels, L. 1989. Cooperation through self-organisation<I>. </I>In Y.
+De Mazeau and J.P. Muller (eds), <I>Multi-agent Systems</I>. Amsterdam:
+North-Holland.
+
+<P>Stefik, M. and Conway, L. 1988. Towards the principled engineering of
+knowledge. In R. Engelmore (ed), <I>Readings From the AI Magazine, Volumes
+1-5, 1980-85.</I> Menlo Park, CA: AAAI Press: pp.135-147.
+
+<P>Wenger, E. 1990. <I>Toward a theory of cultural transparency: Elements
+of a social discourse of the visible and the invisible. </I>PhD. Dissertation
+in Information and Computer Science, University of California, Irvine.
+
+<P>Wilkins, D. C., Clancey, W. J., and Buchanan, B. G. 1988. On using and
+evaluating differential modeling in intelligent tutoring and apprentice
+learning systems. In J. Psotka, D. Massey, and S. Mutter (eds), <I>Intelligent
+Tutoring Systems: Lessons Learned. </I>Hillsdale, NJ: Lawrence Erlbaum
+Publishers.
+
+<P>Woods, W. A. 1975. What's in a link: Foundations for semantic networks.
+In D. G. Bobrow and A. Collins (eds), <I>Representation and Understanding</I>,
+New York:Academic Press, pp. 35-82.
+</BODY>
+</HTML>
+<script src="http://archive-bar.soton.ac.uk/archive-bar.js"></script>

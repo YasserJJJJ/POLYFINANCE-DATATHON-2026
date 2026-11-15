@@ -1,0 +1,594 @@
+GitHub - stefan-jansen/empyrical-reloaded: Common financial risk and performance metrics. Used by zipline and pyfolio. · GitHub 
+
+ Skip to content 
+
+Navigation Menu
+
+ Sign in 
+
+ Products 
+
+ Platform 
+ GitHub Repository hosting, code review, and collaboration 
+
+ Copilot AI coding agent for tasks, projects, and automated work 
+
+ Build & Ship 
+ Actions CI/CD and automation 
+
+ Code Quality Quality analysis, fixes, and enforcement 
+
+ Codespaces Cloud development environments 
+
+ Secure 
+ Code Security Vulnerability detection and remediation 
+
+ Secret Protection Secret scanning and leak prevention 
+
+ All Features 
+
+ Developers 
+
+ Learn 
+ Documentation 
+
+ Training 
+
+ Certifications 
+
+ Build 
+ Build with Copilot 
+
+ Customize Copilot 
+
+ Integrations 
+
+ Explore 
+ Trending repos 
+
+ GitHub Sponsors 
+
+ Developer articles 
+
+ Changelog 
+ Changelog Your source for the latest features, improvements, and fixes across GitHub products, all in one place. 
+
+ Businesses 
+
+ By Stage 
+ Enterprises 
+
+ Team 
+
+ Startups 
+
+ Nonprofits 
+
+ By Industry 
+ Healthcare 
+
+ Financial services 
+
+ Manufacturing 
+
+ Government 
+
+ See all industries 
+
+ Evaluate GitHub 
+ Why GitHub 
+
+ Customer Stories 
+
+ Business insights 
+
+ Trust Center 
+
+ Add-ons 
+ GitHub Advanced Security Enterprise-grade code security 
+
+ Copilot for business Enterprise-grade AI features 
+
+ Premium Support Enterprise-grade 24/7 support 
+
+ Resources 
+
+ Learn & Connect 
+ Documentation 
+
+ Resource center 
+
+ Blog 
+
+ Events & webinars 
+
+ Community Forum 
+
+ Customer Stories 
+
+ Integrations 
+
+ Support 
+ Customer support 
+
+ Training 
+
+ GitHub Status 
+
+ Company 
+ About 
+
+ Partners 
+
+ Changelog 
+
+ GitHub Universe 
+ GitHub Universe The event for developers, by developers — talks, workshops, and what’s next for GitHub. 
+
+ Pricing 
+
+ Search / 
+
+ Sign in 
+ Sign up 
+Appearance settings
+
+ You signed in with another tab or window. Reload to refresh your session. 
+ You signed out in another tab or window. Reload to refresh your session. 
+ You switched accounts on another tab or window. Reload to refresh your session. 
+
+ Dismiss alert 
+
+{{ message }}
+
+ stefan-jansen 
+
+ empyrical-reloaded 
+
+Repository navigation
+
+ Code 
+
+ Issues 1  ( 1 ) 
+
+ Pull requests 
+
+ Discussions 
+
+ Actions 
+
+ Projects 
+
+ Security and quality 
+
+ Insights 
+
+ More items 
+
+ empyrical-reloaded 
+ Public 
+
+ forked from quantopian / empyrical 
+
+ Notifications You must be signed in to change notification settings 
+
+ Fork 52  ( 52 ) 
+
+ Star 133  ( 133 ) You must be signed in to star a repository 
+
+ About 
+
+Common financial risk and performance metrics. Used by zipline and pyfolio.
+
+ empyrical.ml4trading.io/ 
+
+ Resources 
+
+ Readme 
+
+ Apache-2.0 license 
+
+ Contributing 
+
+ Contributing 
+
+ Activity 
+
+ Stars 
+
+ 133 stars 
+
+ Watchers 
+
+ 4 watching 
+
+ Forks 
+
+ 52 forks 
+
+ Report repository 
+
+ main 
+
+ Branches Tags 
+
+ Go to file 
+
+ Code 
+ Open more actions menu 
+
+Latest commit
+
+History
+ 416 Commits 
+
+ 416 Commits 
+
+Folders and files
+
+ Name Name 
+ Last commit message 
+ 
+ Last commit date 
+
+ .github 
+
+ .github 
+
+ conda 
+
+ conda 
+
+ docs 
+
+ docs 
+
+ examples 
+
+ examples 
+
+ src/ empyrical 
+
+ src/ empyrical 
+
+ tests 
+
+ tests 
+
+ .flake8 
+
+ .flake8 
+
+ .gitattributes 
+
+ .gitattributes 
+
+ .gitignore 
+
+ .gitignore 
+
+ CONTRIBUTING.md 
+
+ CONTRIBUTING.md 
+
+ LICENSE 
+
+ LICENSE 
+
+ MANIFEST.in 
+
+ MANIFEST.in 
+
+ README.md 
+
+ README.md 
+
+ codecov.yml 
+
+ codecov.yml 
+
+ pyproject.toml 
+
+ pyproject.toml 
+
+ View all files 
+
+Repository files navigation
+
+ README 
+
+ Contributing 
+
+ Apache-2.0 license 
+
+ More items 
+
+Common financial return and risk metrics in Python.
+
+Maintenance and new projects
+
+We continue to maintain Empyrical Reloaded for bug, security, and compatibility fixes.
+Our new feature development focuses on ML4T Diagnostic ,
+part of the ML4T libraries .
+For new projects, start with Diagnostic's maintained
+ Empyrical migration guide 
+and published documentation .
+Check each recipe's package and release requirements before using APIs documented in source.
+Keep annualization, periodic versus annual rates, missing-value policies and return/loss signs
+explicit; similarly named metrics need not have equivalent behavior.
+
+The historical ten-metric comparison ,
+ frozen source migration recipe 
+and frozen capability reference 
+retain earlier tested versions and findings. They do not describe current successor coverage
+or establish complete replacement of Empyrical.
+
+Installation
+
+Empyrical Reloaded supports Python 3.11 through 3.15. Python 3.9 and 3.10 are retired
+for this release; historical packages retain their original Python requirements.
+You can install it using pip :
+
+ pip install empyrical-reloaded 
+
+or conda from the conda-forge channel
+
+ conda install empyrical-reloaded -c conda-forge 
+
+The installer provides NumPy, pandas, SciPy and the other declared runtime dependencies.
+
+Note that Numpy>=2.0 requires pandas>=2.2.2. If you are using an older version of pandas, you may need to upgrade
+accordingly, otherwise you may encounter compatibility issues.
+
+Optional dependencies include yfinance to download price data
+from Yahoo! Finance 
+and pandas-datareader to
+access Fama-French risk factors and FRED
+treasury yields.
+
+To install the optional dependencies, use:
+
+ pip install empyrical-reloaded[yfinance] 
+
+or
+
+ pip install empyrical-reloaded[datareader] 
+
+or
+
+ pip install empyrical-reloaded[yfinance,datareader] 
+
+Usage
+
+Simple Statistics
+
+Empyrical computes basic metrics from returns and volatility to alpha and beta, Value at Risk, and Sharpe or Sortino
+ratios.
+
+ import numpy as np 
+ from empyrical import max_drawdown , alpha_beta 
+
+ returns = np . array ([ .01 , .02 , .03 , - .4 , - .06 , - .02 ])
+ benchmark_returns = np . array ([ .02 , .02 , .03 , - .35 , - .05 , - .01 ])
+
+ # calculate the max drawdown 
+ max_drawdown ( returns )
+
+ # calculate alpha and beta 
+ alpha , beta = alpha_beta ( returns , benchmark_returns ) 
+
+Rolling Measures
+
+Empyrical also aggregates return and risk metrics for rolling windows:
+
+ import numpy as np 
+ from empyrical import roll_max_drawdown 
+
+ returns = np . array ([ .01 , .02 , .03 , - .4 , - .06 , - .02 ])
+
+ # calculate the rolling max drawdown 
+ roll_max_drawdown ( returns , window = 3 ) 
+
+Pandas Support
+
+Empyrical also works with both NumPy arrays and Pandas data
+structures:
+
+ import pandas as pd 
+ from empyrical import roll_up_capture , capture 
+
+ returns = pd . Series ([ .01 , .02 , .03 , - .4 , - .06 , - .02 ])
+ factor_returns = pd . Series ([ .02 , .01 , .03 , - .01 , - .02 , .02 ])
+
+ # calculate a capture ratio 
+ capture ( returns , factor_returns )
+ - 0.147387712263491 
+
+Fama-French Risk Factors
+
+Empyrical downloads Fama-French risk factors from 1970 onward:
+
+Requires optional dependency pandas-datareader - see installation instructions above.
+
+ import pandas as pd 
+ import empyrical as emp 
+
+ risk_factors = emp . utils . get_fama_french ()
+
+ pd . concat ([ risk_factors . head (), risk_factors . tail ()])
+
+ Mkt - RF 
+ SMB 
+ HML 
+ RF 
+ Mom 
+ Date 
+ 1970 - 01 - 02 
+ 00 : 00 : 00 + 00 : 00 
+ 0.0118 
+ 0.0129 
+ 0.0101 
+ 0.00029 - 0.0340 
+ 1970 - 01 - 05 
+ 00 : 00 : 00 + 00 : 00 
+ 0.0059 
+ 0.0067 
+ 0.0072 
+ 0.00029 - 0.0153 
+ 1970 - 01 - 06 
+ 00 : 00 : 00 + 00 : 00 - 0.0074 
+ 0.0010 
+ 0.0021 
+ 0.00029 
+ 0.0038 
+ 1970 - 01 - 07 
+ 00 : 00 : 00 + 00 : 00 - 0.0015 
+ 0.0040 - 0.0033 
+ 0.00029 
+ 0.0011 
+ 1970 - 01 - 0 
+ 8 
+ 00 : 00 : 00 + 00 : 00 
+ 0.0004 
+ 0.0018 - 0.0017 
+ 0.00029 
+ 0.0033 
+ 2024 - 03 - 22 
+ 00 : 00 : 00 + 00 : 00 - 0.0023 - 0.0087 - 0.0053 
+ 0.00021 
+ 0.0043 
+ 2024 - 03 - 25 
+ 00 : 00 : 00 + 00 : 00 - 0.0026 - 0.0024 
+ 0.0088 
+ 0.00021 - 0.0034 
+ 2024 - 03 - 26 
+ 00 : 00 : 00 + 00 : 00 - 0.0026 
+ 0.0009 - 0.0013 
+ 0.00021 
+ 0.0009 
+ 2024 - 03 - 27 
+ 00 : 00 : 00 + 00 : 00 
+ 0.0088 
+ 0.0104 
+ 0.0091 
+ 0.00021 - 0.0134 
+ 2024 - 03 - 28 
+ 00 : 00 : 00 + 00 : 00 
+ 0.0010 
+ 0.0029 
+ 0.0048 
+ 0.00021 - 0.0044 
+
+Asset Prices and Benchmark Returns
+
+Empyrical use yfinance to download price data
+from Yahoo! Finance . To obtain the S&P returns since 1950, use:
+
+Note: requires optional dependency yfinance - see installation instructions above.
+
+ import empyrical as emp 
+
+ symbol = '^GSPC' 
+ returns = emp . utils . get_symbol_returns_from_yahoo ( symbol ,
+ start = '1950-01-01' )
+
+ import seaborn as sns # requires separate installation 
+ import matplotlib . pyplot as plt # requires separate installation 
+
+ fig , axes = plt . subplots ( ncols = 2 , figsize = ( 14 , 5 ))
+
+ with sns . axes_style ( 'whitegrid' ):
+ returns . plot ( ax = axes [ 0 ], rot = 0 , title = 'Time Series' , legend = False )
+ sns . histplot ( returns , ax = axes [ 1 ], legend = False )
+ axes [ 1 ]. set_title ( 'Histogram' )
+ sns . despine ()
+ plt . tight_layout ()
+ plt . suptitle ( 'Daily S&P 500 Returns' ) 
+
+Documentation
+
+See the documentation for details on the API.
+
+Support
+
+Please open an issue for support.
+
+Contributing
+
+Empyrical Reloaded accepts bug, security, and compatibility fixes. Read the
+ contribution guide 
+for issue scope, regression evidence, review checks, and AI disclosure requirements.
+
+Testing
+
+install requirements
+
+"pytest>=6.2.0",
+
+ pytest tests 
+
+ About 
+
+Common financial risk and performance metrics. Used by zipline and pyfolio.
+
+ empyrical.ml4trading.io/ 
+
+ Resources 
+
+ Readme 
+
+ Apache-2.0 license 
+
+ Contributing 
+
+ Contributing 
+
+ Activity 
+
+ Stars 
+
+ 133 stars 
+
+ Watchers 
+
+ 4 watching 
+
+ Forks 
+
+ 52 forks 
+
+ Report repository 
+
+ Releases 
+
+ Used by 
+
+ Contributors 
+
+ Languages 
+
+Footer
+
+ © 2026 GitHub, Inc.
+
+Footer navigation
+
+ Terms 
+
+ Privacy 
+
+ Security 
+
+ Status 
+
+ Community 
+
+ Docs 
+
+ Contact 
+
+ Manage cookies
+
+ Do not share my personal information
+
+ You can’t perform that action at this time.

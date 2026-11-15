@@ -1,0 +1,192 @@
+
+
+## PAGE 1
+
+Event dashboard
+Démarrages rapides
+Assistants de code IA
+Claude Code sur Bedrock
+Claude Code sur Bedrock
+Claude Code est l'outil de programmation agentique d'Anthropic. Il fonctionne dans votre terminal, lit votre code, écrit des ﬁchiers, exécute des commandes et
+corrige ses propres erreurs. Conﬁguré pour Amazon Bedrock, il utilise le compte AWS de votre équipe pour l'inférence, sans abonnement séparé.
+Claude Code s'installe avec npm (Node.js 22 ou plus récent), sur votre ordinateur ou dans CloudShell 
+ :
+Sur votre ordinateur, copiez d'abord les identiﬁants AWS CLI temporaires depuis la page de l'événement Workshop Studio et collez les commandes export dans
+votre terminal. Dans CloudShell, les identiﬁants sont déjà en place.
+Claude Code inclut un assistant qui conﬁgure Bedrock pour vous. Si vos identiﬁants AWS fonctionnent, c'est le plus rapide.
+Puis, dans Claude Code :
+L'assistant vous guide pour les identiﬁants, la région (choisissez us-east-1) et les modèles à épingler. Il écrit dans ~/.claude/settings.json, et vous pouvez
+relancer /setup-bedrock à tout moment pour changer vos choix.
+Vériﬁez le résultat :
+La ligne du fournisseur doit indiquer Amazon Bedrock, avec la région utilisée.
+Si vous préférez les variables d'environnement, ou si vous préparez la conﬁguration pour toute l'équipe :
+Claude Code cherche la région dans cet ordre : AWS_REGION, puis AWS_DEFAULT_REGION, puis la région de votre proﬁl AWS actif, puis us-east-1. Déﬁnir
+AWS_REGION évite toute surprise.
+Sans épinglage, sur Bedrock, le modèle principal par défaut est Opus 5.5 et le modèle rapide par défaut est Sonnet 4.5. Opus 5.5 est le plus coûteux. Pour choisir
+explicitement, avec les proﬁls d'inférence globaux disponibles dans us-east-1 :
+ANTHROPIC_MODEL choisit le modèle de la session. Les trois autres variables déﬁnissent ce que désignent les alias sonnet, opus et haiku dans le sélecteur /model.
+Pour le Datathon, utilisez Sonnet 5 comme modèle principal. Sonnet 5.5 et Haiku 5.5 ne sont pas disponibles dans les comptes du Datathon. Opus 5.5 coûte
+nettement plus cher et, pour le code de ce week-end, apporte rarement un gain. Passez-y avec /model pour un problème difficile précis, puis revenez à Sonnet.
+Cette étape vaut pour le compte, pas pour chaque personne : un seul membre de l'équipe la fait pour tout le monde.
+Si votre équipe utilise une clé d'API Amazon Bedrock au lieu des identiﬁants AWS :
+Quand AWS_BEARER_TOKEN_BEDROCK est déﬁnie, Claude Code l'utilise et ignore les autres identiﬁants AWS. Ne mettez jamais cette clé dans un ﬁchier versionné.
+Quand il a besoin d'une signature d'API, il la cherche au lieu de la deviner. C'est le changement de conﬁguration le plus utile. uvx est fourni avec uv 
+.
+Créez CLAUDE.md à la racine de votre projet. Claude Code le lit automatiquement :
+Quelques comportements diffèrent de Claude Code avec l'API d'Anthropic :
+L'outil WebSearch n'est pas disponible sur Bedrock. Utilisez un serveur MCP si vous avez besoin d'accès web.
+/logout ne s'applique pas : l'authentiﬁcation vient de vos identiﬁants AWS.
+Claude Code utilise l'API Invoke de Bedrock, pas Converse. Sans effet au quotidien, mais cela explique pourquoi certaines pages de documentation Bedrock ne
+correspondent pas. Votre application, elle, utilise Converse.
+on-demand throughput isn't supported : votre identiﬁant de modèle doit avoir un préﬁxe de proﬁl d'inférence. Ajoutez global. ou us..
+Problèmes de région ou de modèle : vériﬁez ce que votre compte peut appeler :
+Identiﬁants expirés : les identiﬁants Workshop Studio sont temporaires. Copiez-en de nouveaux depuis la page de l'événement.
+Session CloudShell fermée : CloudShell ferme la session après 20 à 30 minutes sans interaction au clavier ou à la souris. Les ﬁchiers de votre répertoire personnel
+sont conservés, mais pas les variables d'environnement : relancez les commandes export.
+Claude Code sur Amazon Bedrock (documentation officielle, en anglais) 
+Claude Code sur Amazon Bedrock
+Installer
+npm install -g @anthropic-ai/claude-code
+claude --version
+1
+2
+La voie simple : l'assistant de configuration
+# Dans un environnement où `aws sts get-caller-identity` fonctionne
+claude
+1
+2
+/setup-bedrock
+1
+/status
+1
+La voie manuelle
+export CLAUDE_CODE_USE_BEDROCK=1
+export AWS_REGION=us-east-1
+claude
+1
+2
+3
+4
+Épingler les modèles
+export ANTHROPIC_MODEL='global.anthropic.claude-sonnet-5'
+export ANTHROPIC_DEFAULT_SONNET_MODEL='global.anthropic.claude-sonnet-5'
+export ANTHROPIC_DEFAULT_OPUS_MODEL='global.anthropic.claude-opus-5-5'
+export ANTHROPIC_DEFAULT_HAIKU_MODEL='global.anthropic.claude-haiku-4-5-20251001-v1:0'
+1
+2
+3
+4
+Dans une région us-*, Claude Code choisit par défaut les proﬁls us.. Les identiﬁants épinglés ci-dessus utilisent le préﬁxe global., comme le reste de cet atelier. Pour garder
+les modèles par défaut et changer seulement le préﬁxe, déﬁnissez plutôt ANTHROPIC_BEDROCK_REGION_PREFIX=global (valeurs possibles : us, eu, apac, jp, au, global).
+Étape unique pour les modèles Anthropic
+Avant le premier appel à un modèle Anthropic dans un compte AWS, un formulaire de cas d'usage doit être rempli une fois pour ce compte. Ouvrez la console Amazon Bedrock,
+choisissez un modèle Anthropic dans le catalogue de modèles et remplissez le formulaire : l'accès est accordé dès l'envoi. Si votre première session claude échoue avec une
+erreur d'accès, c'est presque toujours la raison. Demandez à un mentor AWS ; c'est l'affaire d'une minute.
+Avec une clé d'API Bedrock
+export AWS_BEARER_TOKEN_BEDROCK="votre-cle-api-bedrock"
+export CLAUDE_CODE_USE_BEDROCK=1
+export AWS_REGION=us-east-1
+1
+2
+3
+Lui donner la documentation AWS
+claude mcp add aws-docs -- uvx awslabs.aws-documentation-mcp-server@latest
+1
+Lui décrire votre projet
+# AlphaForge AI : prototype de datathon
+ AlphaForge AI : prototype de datathon
+ AlphaForge AI : prototype de datathon
+ AlphaForge AI : prototype de datathon
+##
+##
+##
+## Conventions
+ Conventions
+ Conventions
+ Conventions
+- Région : us-east-1, toujours.
+- Bedrock via boto3 avec l'API Converse. Jamais InvokeModel.
+- Modèle par défaut : global.amazon.nova-2-lite-v1:0
+- Raisonnement plus exigeant : global.anthropic.claude-sonnet-5
+- Réponses Converse : concaténer les blocs qui contiennent "text", ne jamais lire content[0]["text"].
+- Framework d'agents : Strands (`pip install strands-agents`).
+##
+##
+##
+## Contraintes
+ Contraintes
+ Contraintes
+ Contraintes
+- Données financières publiques seulement ; chaque chiffre cite sa source et sa date.
+- Profils d'investisseurs fictifs, dans profiles.py. Aucune donnée personnelle ou bancaire réelle.
+- Simulation uniquement : aucune transaction réelle, aucun conseil financier personnalisé.
+- La démo tourne en local avec `streamlit run app.py --server.address localhost`. Pas de déploiement.
+- Une démo qui fonctionne passe avant les abstractions.
+##
+##
+##
+## Commandes
+ Commandes
+ Commandes
+ Commandes
+- Lancer : `streamlit run app.py --server.address localhost`
+- Tester : `python -m pytest -q`
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+À savoir sur Bedrock
+Dépannage
+aws bedrock list-inference-profiles --region us-east-1 \
+  --query 'inferenceProfileSummaries[].inferenceProfileId' --output text | tr '\t' '\n' | grep anthropic
+1
+2
+En savoir plus
+Previous
+Next
+Bases de connaissances et RAG
+Data Automation
+Construire des agents
+Fonctionnement des agents
+Strands Agents
+Amazon Bedrock AgentCore
+MCP
+Démarrages rapides
+Bucket S3
+Assistants de code IA
+Kiro
+Claude Code sur Bedrock
+Codex sur Bedrock
+Données ﬁnancières publiques
+Nettoyage et exportation
+Ressources
+AWS account access
+Open AWS console
+(us-east-1)
+Get AWS CLI credentials
+Share feedback
+Workshop catalog in AWS Builder
+Center
+Exit event
+AWS Workshop Studio
+adamlarhlimi2006
+© 2008 - 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+Privacy policy
+Terms of use
+Cookie preferences

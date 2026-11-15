@@ -1,0 +1,39 @@
+flowchart TB
+    H["Personne : besoin, précisions, corrections, examen et choix"]
+    D[("Dossier partagé et versionné<br/>Mandat • Questions • Preuves • Méthodes<br/>Calculs • Contrôles • Conclusions • Vues • Événements")]
+    K["Noyau déterministe<br/>Droits • Références • Versions • Commit<br/>Invalidation • Planification • Reprise<br/>Pas un cinquième agent financier"]
+    subgraph MAIN["Parcours principal — plusieurs tâches possibles par rôle"]
+        direction LR
+        A0["Agent0 — Qualification<br/>Demande → mandat, contraintes et questions"]
+        A1["Agent1 — Recherche critique<br/>Questions → preuves, méthodes et lacunes"]
+        A2["Agent2 — Analyse et résolution<br/>Formulation → calculs et contrôles"]
+        A3["Agent3 — Restitution<br/>Pièces contrôlées → explication et révision"]
+        A0 --> A1 --> A2 --> A3
+    end
+    H -. "Déclarations authentiques" .-> A0
+    A3 -. "Questions, explications, corrections et choix" .-> H
+    D -->|"Révision et pièces lues"| MAIN
+    MAIN -->|"ChangeSet proposé + dépendances"| K
+    K -->|"Commit cohérent"| D
+    A1 -. "Besoin ou hypothèse parent à rouvrir" .-> A0
+    A2 -. "Preuve ou méthode à approfondir" .-> A1
+    A2 -. "Sens, conflit ou relaxation à qualifier" .-> A0
+    A3 -. "Contrôle ou analyse insuffisants" .-> A2
+    A3 -. "Passage non probant" .-> A1
+    A3 -. "Correction du besoin" .-> A0
+    T0["Déclarations • Historique • Règles professionnelles<br/>Schéma et contrôles de contradiction"] --- A0
+    T1["Corpus P2 • Documents 00 / 00B / 01 • Notebook<br/>Recherche AWS • HTTP/PDF • GitHub"] --- A1
+    T2["Données qualifiées • Python / solveurs admis<br/>Références • Scénarios • Sensibilités"] --- A2
+    T3["Registre • Passages cités • Valeurs liées<br/>Cinq contrôles • Historique des vues"] --- A3
+    AWS["Toutes les inférences : route Amazon Bedrock convenue<br/>alphaforge • us-east-1 • global.openai.gpt-6-astra"]
+    AWS --- MAIN
+    STORE["Local proposé : SQLite et artefacts immuables<br/>LangGraph à qualifier • Strands Graph alternative<br/>Questions ≠ tâches ≠ preuves ; parcours = projection"]
+    STORE --- D
+    classDef agent fill:#ffffff,stroke:#087b7c,color:#172b45;
+    classDef shared fill:#eaf1fb,stroke:#245b9e,color:#172b45;
+    classDef human fill:#fff4e7,stroke:#b7650b,color:#172b45;
+    classDef tool fill:#f1f4f8,stroke:#738093,color:#172b45;
+    class A0,A1,A2,A3 agent;
+    class D,K,AWS,STORE shared;
+    class H human;
+    class T0,T1,T2,T3 tool;

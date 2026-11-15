@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Search the web using Amazon Bedrock AgentCore Web Search - Amazon Bedrock AgentCore</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="web-search-api" /><meta name="default_state" content="web-search-api" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/web-search-api.html" /><link rel="alternate" type="text/markdown" href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/web-search-api.md" title="Markdown version" /><meta name="description" content="Amazon Bedrock AgentCore Web Search lets you search the web from your own code with the InvokeWebSearch API. The API returns a ranked list of results. Each result includes a text extract from the page and, when they are available, the page title, URL, and publication time. You call the API with the AWS SDKs or the AWS Command Line Interface (AWS CLI), and you authorize calls with AWS Identity and Access Management (IAM). You don’t create or manage any resources to use it." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon Bedrock AgentCore" /><meta name="guide" content="Developer Guide" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/web-search-api.html" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/bedrock-agentcore/latest/devguide/web-search-api.html" hreflang="id-id" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/bedrock-agentcore/latest/devguide/web-search-api.html" hreflang="id" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/bedrock-agentcore/latest/devguide/web-search-api.html" hreflang="de-de" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/bedrock-agentcore/latest/devguide/web-search-api.html" hreflang="de" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/web-search-api.html" hreflang="en-us" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/web-search-api.html" hreflang="en" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/bedrock-agentcore/latest/devguide/web-search-api.html" hreflang="es-es" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/bedrock-agentcore/latest/devguide/web-search-api.html" hreflang="es" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/bedrock-agentcore/latest/devguide/web-search-api.html" hreflang="fr-fr" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/bedrock-agentcore/latest/devguide/web-search-api.html" hreflang="fr" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/bedrock-agentcore/latest/devguide/web-search-api.html" hreflang="it-it" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/bedrock-agentcore/latest/devguide/web-search-api.html" hreflang="it" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/bedrock-agentcore/latest/devguide/web-search-api.html" hreflang="ja-jp" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/bedrock-agentcore/latest/devguide/web-search-api.html" hreflang="ja" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/bedrock-agentcore/latest/devguide/web-search-api.html" hreflang="ko-kr" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/bedrock-agentcore/latest/devguide/web-search-api.html" hreflang="ko" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/bedrock-agentcore/latest/devguide/web-search-api.html" hreflang="pt-br" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/bedrock-agentcore/latest/devguide/web-search-api.html" hreflang="pt" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_cn/bedrock-agentcore/latest/devguide/web-search-api.html" hreflang="zh-cn" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_tw/bedrock-agentcore/latest/devguide/web-search-api.html" hreflang="zh-tw" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/web-search-api.html" hreflang="x-default" /><meta name="feedback-item" content="bedrock-agentcore" /><meta name="this_doc_product" content="Amazon Bedrock AgentCore" /><meta name="this_doc_guide" content="Developer Guide" /><head xmlns="http://www.w3.org/1999/xhtml"> <script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"/></head>
+<script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'bedrock-agentcore'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Search the web using Amazon Bedrock AgentCore Web Search" /><meta name="uiVersion" content="2024.10" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><p><a href="web-search-api.md">View a markdown version of this page</a></p><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Search the web using Amazon Bedrock AgentCore Web Search - Amazon Bedrock AgentCore</title><meta name="pdf" content="/pdfs/bedrock-agentcore/latest/devguide/bedrock-agentcore-dg.pdf#web-search-api" /><meta name="rss" content="bedrock-agentcore-dg.rss" /><meta name="forums" content="https://repost.aws/search/content?globalSearch=Amazon Bedrock AgentCore" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=bedrock-agentcore&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock-agentcore/latest/devguide/web-search-api.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/bedrock-agentcore/latest/devguide/web-search-api.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/bedrock-agentcore/latest/devguide/web-search-api.html" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon Bedrock AgentCore",
+        "item" : "https://docs.aws.amazon.com/bedrock-agentcore/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Search the web using Amazon Bedrock AgentCore Web Search",
+        "item" : "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/web-search-api.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/bedrock-agentcore/latest/devguide/bedrock-agentcore-dg.pdf#web-search-api" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/bedrock-agentcore/index.html">Amazon Bedrock AgentCore</a><a href="what-is-bedrock-agentcore.html">Developer Guide</a></div><div id="page-toc-src"><a href="#web-search-api-choose">Choose between the API and the Gateway connector</a><a href="#web-search-api-regions">Regions</a><a href="#web-search-api-quotas">Quotas</a><a href="#web-search-api-acceptable-use">Acceptable use</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="web-search-api">Search the web using Amazon Bedrock AgentCore Web Search</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Amazon Bedrock AgentCore Web Search lets you search the web from your own code with the <code class="code">InvokeWebSearch</code> API. The API returns a ranked list of results. Each result includes a text extract from the page and, when they are available, the page title, URL, and publication time. You call the API with the AWS SDKs or the AWS Command Line Interface (AWS CLI), and you authorize calls with AWS Identity and Access Management (IAM). You don’t create or manage any resources to use it.</p><p>Use AgentCore Web Search to give an application, an agent loop that you write yourself, or a data pipeline access to current information from the web. For example, you can look up recent announcements about a product, collect sources for a research question, or check a claim against pages from domains that you trust. To narrow the results, you can filter them by domain and by publication time.</p><div class="highlights"><h6>Topics</h6><ul><li><p><a href="#web-search-api-choose">Choose between the API and the Gateway connector</a></p></li><li><p><a href="#web-search-api-regions">Regions</a></p></li><li><p><a href="#web-search-api-quotas">Quotas</a></p></li><li><p><a href="#web-search-api-acceptable-use">Acceptable use</a></p></li><li><p><a href="./web-search-api-get-started.html">Get started with AgentCore Web Search</a></p></li><li><p><a href="./web-search-api-reference.html">AgentCore Web Search request and response</a></p></li><li><p><a href="./web-search-api-privatelink.html">Call AgentCore Web Search through AWS PrivateLink</a></p></li><li><p><a href="./web-search-api-cloudtrail.html">Log AgentCore Web Search API calls with AWS CloudTrail</a></p></li><li><p><a href="./web-search-api-troubleshooting.html">Troubleshoot AgentCore Web Search</a></p></li></ul></div>
+      <h2 id="web-search-api-choose">Choose between the API and the Gateway connector</h2>
+      <p>You can also search the web through the Web Search Tool connector, which you add as a target to an AgentCore gateway. Use the <code class="code">InvokeWebSearch</code> API when your code, rather than a Model Context Protocol (MCP) client, consumes the results. Use the connector when your agents discover and call tools over MCP. For more information about the connector, see <a href="./gateway-target-connector-web-search-tool.html">Web Search Tool</a>.</p>
+      <p>The two differ in the following ways:</p>
+      <div class="itemizedlist">
+          
+          
+          
+          
+          
+          
+          
+          
+      <ul class="itemizedlist"><li class="listitem">
+            <p>
+               <strong>How you call it</strong> – Your code calls the API on the Amazon Bedrock AgentCore data plane endpoint. Agents call the connector as an MCP tool through a gateway.</p>
+         </li><li class="listitem">
+            <p>
+               <strong>Authorization</strong> – The API authorizes callers with IAM only. A gateway can also authorize callers with a JSON Web Token (JWT).</p>
+         </li><li class="listitem">
+            <p>
+               <strong>Domain lists</strong> – With the API, each request carries its own domain filter. The connector can also apply target-level domain lists to every request, without the calling agent seeing them.</p>
+         </li><li class="listitem">
+            <p>
+               <strong>Search text</strong> – The API takes the search text in <code class="code">searchQuery</code>. The MCP tool takes it in <code class="code">query</code>.</p>
+         </li><li class="listitem">
+            <p>
+               <strong>Default number of results</strong> – If you don’t set <code class="code">maxResults</code>, the API returns up to 25 results and the MCP tool returns up to 10.</p>
+         </li><li class="listitem">
+            <p>
+               <strong>Publication time range</strong> – The API bounds the range with <code class="code">publishedAfter</code> and <code class="code">publishedBefore</code>. The MCP tool bounds it with <code class="code">from</code> and <code class="code">to</code>. Both treat both bounds as inclusive.</p>
+         </li><li class="listitem">
+            <p>
+               <strong>Dates without a time</strong> – The MCP tool’s <code class="code">to</code> date includes that whole day. The AWS SDKs and the AWS CLI send a <code class="code">publishedBefore</code> date as midnight Coordinated Universal Time (UTC) at the start of that day.</p>
+         </li><li class="listitem">
+            <p>
+               <strong>Regions</strong> – The connector is also available in AWS GovCloud (US-West). The API isn’t.</p>
+         </li></ul></div>
+    
+      <h2 id="web-search-api-regions">Regions</h2>
+      <p>AgentCore Web Search is available in the following AWS Regions:</p>
+      <div class="itemizedlist">
+          
+          
+          
+          
+          
+          
+      <ul class="itemizedlist"><li class="listitem">
+            <p>US East (N. Virginia) <code class="code">us-east-1</code>
+            </p>
+         </li><li class="listitem">
+            <p>US East (Ohio) <code class="code">us-east-2</code>
+            </p>
+         </li><li class="listitem">
+            <p>US West (Oregon) <code class="code">us-west-2</code>
+            </p>
+         </li><li class="listitem">
+            <p>Asia Pacific (Sydney) <code class="code">ap-southeast-2</code>
+            </p>
+         </li><li class="listitem">
+            <p>Asia Pacific (Tokyo) <code class="code">ap-northeast-1</code>
+            </p>
+         </li><li class="listitem">
+            <p>Europe (Ireland) <code class="code">eu-west-1</code>
+            </p>
+         </li></ul></div>
+      <p>AgentCore Web Search isn’t available in AWS GovCloud (US-West). In that Region, use the Web Search Tool connector. For the availability of other features, see <a href="./agentcore-regions.html">Supported AWS Regions</a>.</p>
+    
+      <h2 id="web-search-api-quotas">Quotas</h2>
+      <p>By default, each account can send up to 10 <code class="code">InvokeWebSearch</code> requests per second in each Region. You can request an increase to this quota for each Region. To request an increase, contact AWS Support. For more information about the quota, see <a href="./bedrock-agentcore-limits.html#web-search-service-limits">AgentCore Web Search Service Quotas</a>.</p>
+    
+      <h2 id="web-search-api-acceptable-use">Acceptable use</h2>
+      <p>If you use Web Search, you are responsible for your use, and any use by your end users, of content retrieved from Web Search ("Search Results"). You must retain and display the source citations and links provided with each Search Result in any output you surface to your end users that uses the Search Result. You may not use Web Search to (a) extract, store, or reproduce content from Search Results in bulk, or (b) build or populate a competing index or database.</p>
+   <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./browser-tool-troubleshooting.html">Troubleshoot AgentCore Browser</div><div id="next" class="next-link" accesskey="n" href="./web-search-api-get-started.html">Get started</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=bedrock-agentcore&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock-agentcore/latest/devguide/web-search-api.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=bedrock-agentcore&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock-agentcore/latest/devguide/web-search-api.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,274 @@
+{
+  "live_requested": true,
+  "api": "http://127.0.0.1:8768",
+  "cases": {
+    "robert": {
+      "id": "fc6be5c0fd7b4a069259e6dc39e9d7e3",
+      "status": "complete",
+      "revision": 10,
+      "analysis_status": "conditional",
+      "method": "reserve-turnover-lp-v1",
+      "claims": [
+        {
+          "id": "minimum_reallocation",
+          "kind": "conditional_optimality",
+          "result_refs": [
+            {
+              "pointer": "/options/1/metrics/turnover_cad/value",
+              "unit": "CAD"
+            }
+          ],
+          "scope": "Branche abstraite, contraintes déclarées et tolérances numériques.",
+          "text": "Dans ce modèle, le minimum de capital réalloué est de 40,000.00 CAD."
+        },
+        {
+          "id": "reserve_scope",
+          "kind": "limitation",
+          "result_refs": [],
+          "scope": "Aucun résultat hors du modèle.",
+          "text": "La réserve est abstraite ; aucune garantie d'un instrument réel n'est établie."
+        },
+        {
+          "id": "multiple_optima",
+          "kind": "numerical_witness",
+          "result_refs": [
+            {
+              "pointer": "/optimal_face/non_unique_witness_found",
+              "unit": "boolean"
+            }
+          ],
+          "scope": "Extrêmes sur la face optimale à tolérance ; aucun optimum de risque recherché.",
+          "text": "Plusieurs allocations atteignent le minimum à la tolérance déclarée ; aucun critère de départage n'a été inventé."
+        }
+      ],
+      "changed_fields": [
+        "fact.withdrawal_cad"
+      ],
+      "reused": [
+        "fact.assumptions@1",
+        "fact.capital_cad@1",
+        "fact.clarifications@1",
+        "fact.comparison@1",
+        "fact.currency@1",
+        "fact.decision_type@1",
+        "fact.holdings@1",
+        "fact.horizon_years@1",
+        "fact.knowledge_date@1",
+        "fact.max_asset_weights@1",
+        "fact.objective@1",
+        "fact.question@1",
+        "fact.reserve_policy@1",
+        "fact.scenario_loss_limit_cad@1",
+        "fact.scenarios@1",
+        "fact.unknowns@1",
+        "fact.withdrawal_months@1",
+        "research@1"
+      ],
+      "invalidated": [
+        "analysis@1",
+        "analysis_review@1",
+        "fact.withdrawal_cad@1",
+        "problem@1",
+        "qualification@1",
+        "questions.agent0@1",
+        "questions.agent1@1",
+        "questions.agent2@1",
+        "questions.agent3@1",
+        "request@1",
+        "research_review@1",
+        "view@1"
+      ],
+      "roles": [
+        {
+          "role": "agent0",
+          "status": "complete",
+          "output_refs": [
+            "problem@1",
+            "qualification@1",
+            "questions.agent0@1"
+          ]
+        },
+        {
+          "role": "agent1",
+          "status": "complete",
+          "output_refs": [
+            "research@1",
+            "research_review@1",
+            "questions.agent1@1"
+          ]
+        },
+        {
+          "role": "agent2",
+          "status": "complete",
+          "output_refs": [
+            "analysis@1",
+            "analysis_review@1",
+            "questions.agent2@1"
+          ]
+        },
+        {
+          "role": "agent3",
+          "status": "complete",
+          "output_refs": [
+            "view@1",
+            "questions.agent3@1"
+          ]
+        },
+        {
+          "role": "agent0",
+          "status": "complete",
+          "output_refs": [
+            "problem@2",
+            "qualification@2",
+            "questions.agent0@2"
+          ]
+        },
+        {
+          "role": "agent1",
+          "status": "complete",
+          "output_refs": [
+            "research_review@2",
+            "questions.agent1@2"
+          ]
+        },
+        {
+          "role": "agent2",
+          "status": "complete",
+          "output_refs": [
+            "analysis@2",
+            "analysis_review@2",
+            "questions.agent2@2"
+          ]
+        },
+        {
+          "role": "agent3",
+          "status": "complete",
+          "output_refs": [
+            "view@2",
+            "questions.agent3@2"
+          ]
+        }
+      ],
+      "aws_calls": [
+        {
+          "request_id": "830bd7a1-aded-4a90-bf53-a7d56e08bf19",
+          "role": "agent0",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 2240,
+            "input_tokens": 2,
+            "output_tokens": 199,
+            "total_tokens": 2441
+          },
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "status": "complete"
+        },
+        {
+          "request_id": "2cf36a60-81a0-4d84-907e-63408cd18e13",
+          "role": "agent1",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 11435,
+            "input_tokens": 2,
+            "output_tokens": 558,
+            "total_tokens": 11995
+          },
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "status": "complete"
+        },
+        {
+          "request_id": "0973f204-0e2f-4d28-b150-e1db75ea5872",
+          "role": "agent2",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 1132,
+            "input_tokens": 2,
+            "output_tokens": 565,
+            "total_tokens": 1699
+          },
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "status": "complete"
+        },
+        {
+          "request_id": "08a793b9-96f2-4cb5-89a5-7a13805b2e05",
+          "role": "agent3",
+          "usage": {
+            "cache_read_input_tokens": 1255,
+            "cache_write_input_tokens": 0,
+            "input_tokens": 2,
+            "output_tokens": 148,
+            "total_tokens": 1405
+          },
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "status": "complete"
+        },
+        {
+          "request_id": "b22a0ac7-c1de-49f1-b0d3-6b242aa76d9c",
+          "role": "agent0",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 1850,
+            "input_tokens": 2,
+            "output_tokens": 145,
+            "total_tokens": 1997
+          },
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "status": "complete"
+        },
+        {
+          "request_id": "ac3dbd59-6a59-4050-9162-a626274e6829",
+          "role": "agent1",
+          "usage": {
+            "cache_read_input_tokens": 11435,
+            "cache_write_input_tokens": 0,
+            "input_tokens": 2,
+            "output_tokens": 571,
+            "total_tokens": 12008
+          },
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "status": "complete"
+        },
+        {
+          "request_id": "5bed745e-04a3-46e1-8097-dc2bb9702091",
+          "role": "agent2",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 1172,
+            "input_tokens": 2,
+            "output_tokens": 608,
+            "total_tokens": 1782
+          },
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "status": "complete"
+        },
+        {
+          "request_id": "38fbac82-5feb-4c22-8152-056e47d271f3",
+          "role": "agent3",
+          "usage": {
+            "cache_read_input_tokens": 1255,
+            "cache_write_input_tokens": 0,
+            "input_tokens": 2,
+            "output_tokens": 256,
+            "total_tokens": 1513
+          },
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "status": "complete"
+        }
+      ]
+    },
+    "amira": {
+      "id": "c4721cee82a0455f8ec130205818748a",
+      "status": "waiting",
+      "error": null
+    }
+  },
+  "reference_outputs_used": false
+}

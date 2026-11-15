@@ -1,0 +1,162 @@
+
+
+## PAGE 1
+
+Event dashboard
+Nettoyage et exportation
+Nettoyage et exportation
+La meilleure version de cette page est celle dont vous n'avez jamais besoin, parce que vous poussez votre code dans le dépôt GitHub de votre équipe depuis le début.
+C'est aussi un livrable : le dépôt de code doit être remis le dimanche 15 novembre à 23 h 59.
+Ensuite, faites des commits au fur et à mesure. Cinq minutes de conﬁguration le samedi éliminent le risque du dimanche soir.
+S'il n'est pas dans Git, mettez-le dans Git maintenant. Si GitHub n'est pas possible, téléchargez-le :
+Dans JupyterLab (SageMaker Uniﬁed Studio), faites un clic droit sur un ﬁchier ou un dossier de l'explorateur et choisissez Download. Un terminal JupyterLab permet
+aussi d'utiliser git directement.
+Dans CloudShell, les ﬁchiers arrivent dans votre répertoire personnel CloudShell : utilisez Actions → Download ﬁle pour les récupérer sur votre ordinateur. Pour de
+gros volumes, aws s3 sync depuis votre propre machine est plus rapide.
+Ne publiez pas dans un dépôt public des données dont la licence ne permet pas la redistribution : publiez plutôt le script qui les télécharge. Voir Données ﬁnancières
+publiques.
+Vos prompts et votre conﬁguration sont le fruit de votre travail. Enregistrez-les sous forme de texte dans votre dépôt.
+Faites un commit de ces ﬁchiers. Recréer un garde-fou à partir de son JSON prend quelques minutes ; le recréer de mémoire prend un après-midi.
+Faciles à oublier et pénibles à perdre. Chaque prompt système, description d'outil et exemple que vous avez ajusté doit être dans un ﬁchier de votre dépôt, pas
+seulement dans un script en cours d'exécution ou un formulaire de la console.
+Une page dans le README de votre dépôt : les services utilisés, le parcours des données, les sources et leurs licences, les hypothèses, les limites et la suite. Elle vous
+servira aussi pour la documentation technique, un des livrables du Datathon, et elle prend quinze minutes pendant que tout est encore frais.
+Tant que votre compte existe, ce qui reste allumé est facturé à l'événement. Arrêtez-le quand vous avez terminé.
+Vériﬁez ensuite qu'il ne reste pas de collection OpenSearch Serverless 
+ si l'assistant de création de la base de connaissances a créé un stockage vectoriel pour
+vous. C'est la ressource la plus susceptible de continuer à coûter quand vous pensez avoir ﬁni.
+Arrêtez aussi vos espaces JupyterLab dans SageMaker Uniﬁed Studio (Code spaces, menu …, Stop), et supprimez le reste de ce que vous avez créé : instances EC2,
+fonctions Lambda avec URL publique, piles CloudFormation.
+ Code poussé dans le dépôt de votre équipe
+ Jeux de données et résultats téléchargés depuis S3 et JupyterLab
+ Conﬁguration des garde-fous, des bases de connaissances et des prompts enregistrée dans le dépôt
+ Note d'architecture écrite dans le README
+ Captures d'écran ou enregistrement de la démo fonctionnelle : votre compte disparaît, votre vidéo reste
+ Ressources en cours d'exécution arrêtées
+ Aucun identiﬁant dans ce que vous avez poussé
+Nettoyage et exportation
+Votre compte AWS sera supprimé déﬁnitivement le lundi 16 novembre à 13 h 59. Tout ce qu'il contient disparaît avec lui : code, données, notebooks, conﬁgurations. Aucune
+récupération n'est possible. Exportez ce que vous voulez garder avant cette heure.
+Faites-le dès le premier jour, pas à la fin
+git init
+git add .
+git commit -m "Prototype fonctionnel"
+git remote add origin https://github.com/VOTRE_EQUIPE/votre-projet.git
+git push -u origin main
+1
+2
+3
+4
+5
+Vériﬁez qu'aucun identiﬁant, ﬁchier .env ou clé d'API ne se trouve dans ce que vous poussez. Faites un git status avant chaque commit. Une clé AWS publiée est trouvée et
+utilisée en quelques minutes.
+Liste d'exportation
+1. Le code
+# Dans CloudShell, regroupez votre travail, puis utilisez Actions → Download file
+tar -czf mon-projet.tar.gz ./mon-projet
+1
+2
+2. Les données et fichiers dans S3
+# Lister vos buckets
+aws s3 ls
+# Récupérer un bucket complet
+aws s3 sync s3://$BUCKET ./sauvegarde/
+# Ou seulement ce qui compte
+aws s3 sync s3://$BUCKET/processed/ ./sauvegarde/processed/
+1
+2
+3
+4
+5
+6
+7
+8
+3. La configuration à conserver
+# Garde-fous
+aws bedrock list-guardrails --region us-east-1 > guardrails-list.json
+aws bedrock get-guardrail --region us-east-1 \
+  --guardrail-identifier VOTRE_ID --guardrail-version DRAFT > guardrail-config.json
+# Bases de connaissances
+aws bedrock-agent list-knowledge-bases --region us-east-1 > knowledge-bases.json
+# Projets Bedrock Data Automation
+aws bedrock-data-automation list-data-automation-projects --region us-east-1 > bda-projects.json
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+4. Vos prompts système
+5. Une courte note d'architecture
+Arrêter ce qui coûte de l'argent
+# AgentCore, si vous avez déployé un agent
+agentcore remove all --yes
+agentcore deploy --yes    # le projet est vide : les ressources sont supprimées
+# Base de connaissances et son stockage vectoriel, la ressource la plus souvent oubliée
+aws bedrock-agent delete-knowledge-base --region us-east-1 --knowledge-base-id VOTRE_KB_ID
+# Garde-fous
+aws bedrock delete-guardrail --region us-east-1 --guardrail-identifier VOTRE_ID
+1
+2
+3
+4
+5
+6
+7
+8
+9
+aws cloudformation list-stacks --region us-east-1 \
+  --stack-status-filter CREATE_COMPLETE UPDATE_COMPLETE \
+  --query 'StackSummaries[].StackName' --output text
+aws ec2 describe-instances --region us-east-1 \
+  --filters "Name=instance-state-name,Values=running" \
+  --query 'Reservations[].Instances[].[InstanceId,InstanceType]' --output table
+aws lambda list-functions --region us-east-1 --query 'Functions[].FunctionName' --output text
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Avant de quitter la salle
+Enregistrez votre démo pendant que tout fonctionne. La vidéo d'environ cinq minutes est un livrable, et c'est le seul artefact qui survit à la suppression du compte et prouve que
+la solution fonctionnait.
+Previous
+Next
+Bases de connaissances et RAG
+Data Automation
+Construire des agents
+Fonctionnement des agents
+Strands Agents
+Amazon Bedrock AgentCore
+MCP
+Démarrages rapides
+Bucket S3
+Assistants de code IA
+Kiro
+Claude Code sur Bedrock
+Codex sur Bedrock
+Données ﬁnancières publiques
+Nettoyage et exportation
+Ressources
+AWS account access
+Open AWS console
+(us-east-1)
+Get AWS CLI credentials
+Share feedback
+Workshop catalog in AWS Builder
+Center
+Exit event
+AWS Workshop Studio
+adamlarhlimi2006
+© 2008 - 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+Privacy policy
+Terms of use
+Cookie preferences

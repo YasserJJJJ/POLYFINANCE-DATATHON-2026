@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Building Lambda Event Functions with Python - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="lambda-python" /><meta name="default_state" content="lambda-python" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-python.html" /><link rel="alternate" type="text/markdown" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-python.md" title="Markdown version" /><meta name="description" content="Run Python code in Lambda Event Functions. Your code runs in an environment that includes the SDK for Python (Boto3) and credentials from an AWS Identity and Access Management (IAM) role that you manage." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Lambda is a compute service that lets you run code without provisioning or managing servers." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-python.html" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/lambda-python.html" hreflang="id-id" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/lambda-python.html" hreflang="id" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/lambda-python.html" hreflang="de-de" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/lambda-python.html" hreflang="de" /><link rel="alternate" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-python.html" hreflang="en-us" /><link rel="alternate" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-python.html" hreflang="en" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/lambda-python.html" hreflang="es-es" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/lambda-python.html" hreflang="es" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/lambda-python.html" hreflang="fr-fr" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/lambda-python.html" hreflang="fr" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/lambda-python.html" hreflang="it-it" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/lambda-python.html" hreflang="it" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/lambda-python.html" hreflang="ja-jp" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/lambda-python.html" hreflang="ja" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/lambda-python.html" hreflang="ko-kr" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/lambda-python.html" hreflang="ko" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/lambda-python.html" hreflang="pt-br" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/lambda-python.html" hreflang="pt" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/lambda-python.html" hreflang="zh-cn" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/lambda-python.html" hreflang="zh-tw" /><link rel="alternate" href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-python.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><head xmlns="http://www.w3.org/1999/xhtml"> <script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"/></head>
+<script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Building Lambda Event Functions with Python" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><p><a href="lambda-python.md">View a markdown version of this page</a></p><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Building Lambda Event Functions with Python - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#lambda-python" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="https://repost.aws/tags/TA5uNafDy2TpGNjidWLMSxDw" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-python.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-python.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-python.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,compute,function,Event Function,High Availability,python function,python Lambda,python sample code,python Lambda function,python create function" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "AWS Lambda Event Functions (formerly Lambda functions)",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-functions-chapter.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Programming languages",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-programming-languages.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Building Lambda Event Functions with Python",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-programming-languages.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#lambda-python" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#python-sdk-included">Runtime-included SDK versions</a><a href="#python-disabled-features">Disabled Python features</a><a href="#python-response-format">Response format</a><a href="#python-graceful-shutdown">Graceful shutdown for extensions</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="lambda-python">Building Lambda Event Functions with Python</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can run Python code in AWS Lambda Event Functions. Lambda provides <a href="./lambda-runtimes.html">runtimes</a> for Python that run your code to process events. Your code runs
+    in an environment that includes the SDK for Python (Boto3), with credentials from an AWS Identity and Access Management (IAM) role that you manage. To learn more 
+    about the SDK versions included with the Python runtimes, see <a href="#python-sdk-included">Runtime-included SDK versions</a>.</p><p>Lambda supports the following Python runtimes.</p><div class="table-container"><div class="table-contents"><table id="d0e1"><thead>
+      <tr>
+        <th>Name</th>
+        <th>Identifier</th>
+        <th>Operating system</th>
+        <th>Deprecation date</th>
+        <th>Block function create</th>
+        <th>Block function update</th>
+      </tr>
+    </thead>
+      <tr>
+        <td tabindex="-1">
+          <p>Python 3.15</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">python3.15</code></p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2023</p>
+        </td>
+
+        <td tabindex="-1">
+          <p>
+            Not scheduled
+            </p>
+        </td>
+        <td tabindex="-1">
+          <p>
+            Not scheduled
+            </p>
+        </td>
+        <td tabindex="-1">
+          <p>
+            Not scheduled
+            </p>
+        </td>
+
+      </tr>
+      <tr>
+        <td tabindex="-1">
+          <p>Python 3.14</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">python3.14</code></p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2023</p>
+        </td>
+
+        <td tabindex="-1">
+          <p>            Jun 30, 2029
+            </p>
+        </td>
+        <td tabindex="-1">
+          <p>            Jul 31, 2029
+            </p>
+        </td>
+        <td tabindex="-1">
+          <p>            Aug 31, 2029
+            </p>
+        </td>
+
+      </tr>
+      <tr>
+        <td tabindex="-1">
+          <p>Python 3.13</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">python3.13</code></p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2023</p>
+        </td>
+
+        <td tabindex="-1">
+          <p>            Jun 30, 2029
+            </p>
+        </td>
+        <td tabindex="-1">
+          <p>            Jul 31, 2029
+            </p>
+        </td>
+        <td tabindex="-1">
+          <p>            Aug 31, 2029
+            </p>
+        </td>
+
+      </tr>
+      <tr>
+        <td tabindex="-1">
+          <p>Python 3.12</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">python3.12</code></p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2023</p>
+        </td>
+
+        <td tabindex="-1">
+          <p>            Oct 31, 2028
+            </p>
+        </td>
+        <td tabindex="-1">
+          <p>            Nov 30, 2028
+            </p>
+        </td>
+        <td tabindex="-1">
+          <p>            Jan 10, 2029
+            </p>
+        </td>
+
+      </tr>
+      <tr>
+        <td tabindex="-1">
+          <p>Python 3.11</p>
+        </td>
+        <td tabindex="-1">
+          <p><code class="code">python3.11</code></p>
+        </td>
+        <td tabindex="-1">
+          <p>Amazon Linux 2</p>
+        </td>
+
+        <td tabindex="-1">
+          <p>            Jun 30, 2027
+            </p>
+        </td>
+        <td tabindex="-1">
+          <p>            Jul 29, 2027
+            </p>
+        </td>
+        <td tabindex="-1">
+          <p>            Aug 31, 2027
+            </p>
+        </td>
+
+      </tr>
+    </table></div></div><div class="procedure"><h6>To create a Python Event Function</h6><ol><li>
+      <p>Open the <a href="https://console.aws.amazon.com/lambda" rel="noopener noreferrer" target="_blank"><span>Lambda console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+    </li><li>
+      <p>Choose <b>Create Event Function</b>.</p>
+    </li><li>
+      <p>Configure the following settings:</p>
+      <div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><b>Function name</b>: Enter a name for the function.</p>
+        </li><li class="listitem">
+          <p><b>Runtime</b>: Choose <b>Python 3.14</b>.</p>
+        </li></ul></div>
+    </li><li>
+      <p>Choose <b>Create Event Function</b>.</p>
+    </li></ol></div><p>The console creates a Lambda Event Function with a single source file named <code class="code">lambda_function</code>. You can edit this file and add more files in the built-in code editor. In the <b>DEPLOY</b> section, choose <b>Deploy</b> to update your function's code. Then, to run your code, choose <b>Create test event</b> in the <b>TEST EVENTS</b> section.</p><p>Your Lambda function comes with a CloudWatch Logs log group. The function runtime sends details about each invocation to
+    CloudWatch Logs. It relays any <a href="./python-logging.html">logs that your function outputs</a> during invocation. If
+    your function returns an error, Lambda formats the error and returns it to the
+    invoker.</p><p>For guidance on testing your Python functions, see <a href="./python-testing.html">AWS Lambda Event Function testing in Python</a>.</p><div class="highlights"><h6>Topics</h6><ul><li><p><a href="#python-sdk-included">Runtime-included SDK versions</a></p></li><li><p><a href="#python-disabled-features">Disabled Python features</a></p></li><li><p><a href="#python-response-format">Response format</a></p></li><li><p><a href="#python-graceful-shutdown">Graceful shutdown for extensions</a></p></li><li><p><a href="./python-handler.html">Define Lambda Event Function handler in Python</a></p></li><li><p><a href="./python-package.html">Working with .zip file archives for Python Lambda Event Functions</a></p></li><li><p><a href="./python-image.html">Deploy Python Lambda Event Functions with container images</a></p></li><li><p><a href="./python-layers.html">Working with layers for Python Lambda Event Functions</a></p></li><li><p><a href="./python-context.html">Using the Lambda context object to retrieve Python Event Function information</a></p></li><li><p><a href="./python-logging.html">Log and monitor Python Lambda Event Functions</a></p></li><li><p><a href="./python-testing.html">AWS Lambda Event Function testing in Python</a></p></li><li><p><a href="./python-tracing.html">Instrumenting Python code in AWS Lambda</a></p></li></ul></div>
+    <h2 id="python-sdk-included">Runtime-included SDK versions</h2>
+    <p>The version of the AWS SDK included in the Python runtime depends on the runtime version and your AWS Region. To find the version of the SDK included in the runtime 
+      you're using, create a function with the following code.</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (Python)--><code class="Python ">import boto3
+import botocore
+
+def lambda_handler(event, context):
+   print(f'boto3 version: <span>{</span>boto3.__version__}')
+   print(f'botocore version: <span>{</span>botocore.__version__}')</code></pre>
+   
+    <h2 id="python-disabled-features">Disabled Python features</h2>  
+    <p>The following table lists Python features which are disabled in the Lambda managed runtimes and container base images for Python. These features must be enabled when the Python runtime executable is compiled and cannot be enabled by using an execution-time flag. To use these features in Lambda, you can deploy your own Python runtime build with these features enabled, using a <a href="./python-image.html#python-image-clients">container image</a> or <a href="./runtimes-custom.html">custom runtime</a>.</p>
+    <div class="table-container"><div class="table-contents"><table id="d0e2"><thead>
+          <tr>
+            <th>Python feature</th>
+            <th>Affected Python versions</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+          <tr>
+            <td tabindex="-1">Just-in-Time (JIT) compiler</td>
+            <td tabindex="-1">Python 3.13 and later</td>
+            <td tabindex="-1">The JIT compiler is experimental and is not recommended for production workloads. It is therefore disabled in the Lambda Python runtimes.</td>
+          </tr>
+          <tr>
+            <td tabindex="-1">Free-threading</td>
+            <td tabindex="-1">Python 3.13 and later</td>
+            <td tabindex="-1">Free threading (option to disable the global interpreter lock) is disabled in Lambda Python builds due to the performance impact on single-threaded code.</td>
+          </tr>
+        </table></div></div>
+   
+    <h2 id="python-response-format">Response format</h2>  
+  <p>In Python 3.12 and later Python runtimes, functions return Unicode characters as part of their JSON response. Earlier Python runtimes return escaped sequences for Unicode characters in responses. For example, in Python 3.11, if you return a Unicode string such as "こんにちは", it escapes the Unicode characters and returns "\u3053\u3093\u306b\u3061\u306f". The Python 3.12 runtime returns the original "こんにちは".</p>
+  <p>Using Unicode responses reduces the size of Lambda responses, making it easier to fit larger responses into the 6 MB maximum payload size for synchronous functions. In the previous example, the escaped version is 32 bytes—compared to 17 bytes with the Unicode string.</p>
+    <p>When you upgrade to Python 3.12 or later Python runtimes, you might need to adjust your code to account for the new response format. If the caller expects escaped Unicode, you must either add code to the returning function to escape the Unicode manually, or adjust the caller to handle the Unicode return.</p>
+   
+    <h2 id="python-graceful-shutdown">Graceful shutdown for extensions</h2>  
+  <p>Python 3.12 and later Python runtimes offer improved graceful shutdown capabilities for functions with <a href="./lambda-extensions.html">external extensions</a>. When Lambda shuts down an execution environment, it sends a <code class="code">SIGTERM</code> signal to the runtime and then a <code class="code">SHUTDOWN</code> event to each registered external extension. You can catch the <code class="code">SIGTERM</code> signal in your function and clean up resources such as database connections that were created by the function.</p>
+  <p>To learn more about the execution environment lifecycle, see <a href="./lambda-runtime-environment.html">Understanding the Lambda execution environment lifecycle</a>. For examples of how to use graceful shutdown with extensions, see the <a href="https://github.com/aws-samples/graceful-shutdown-with-aws-lambda" rel="noopener noreferrer" target="_blank"><span>AWS Samples GitHub repository</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./typescript-tracing.html">Tracing</div><div id="next" class="next-link" accesskey="n" href="./python-handler.html">Handler</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-python.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-python.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

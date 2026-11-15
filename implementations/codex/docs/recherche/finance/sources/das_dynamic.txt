@@ -1,0 +1,1393 @@
+Computational Management Science (2020) 17:613–640
+https://doi.org/10.1007/s10287-019-00351-7
+
+ORIGINAL PAPER
+
+
+
+Dynamic portfolio allocation in goals-based wealth
+management
+
+Sanjiv R. Das1 · Daniel Ostrov1 · Anand Radhakrishnan2 · Deep Srivastav2
+
+Received: 7 July 2018 / Accepted: 27 May 2019 / Published online: 4 June 2019
+© Springer-Verlag GmbH Germany, part of Springer Nature 2019
+
+
+
+Abstract
+We report a dynamic programming algorithm which, given a set of efficient (or
+even inefficient) portfolios, constructs an optimal portfolio trading strategy that max-
+imizes the probability of attaining an investor’s specified target wealth at the end of
+a designated time horizon. Our algorithm also accommodates periodic infusions or
+withdrawals of cash with no degradation to the dynamic portfolio’s performance or
+runtime. We explore the sensitivity of the terminal wealth distribution to restricting
+the segment of the efficient frontier available to the investor. Since our algorithm’s
+optimal strategy can be on the efficient frontier and is driven by an investor’s wealth
+and goals, it soundly beats the performance of target date funds in attaining investors’
+goals. These optimal goals-based wealth management strategies are useful for inde-
+pendent financial advisors to implement behavioral-based FinTech offerings and for
+robo-advisors.
+
+Keywords Goals · Wealth management · Behavioral portfolio theory · Dynamic
+portfolios · Efficient portfolios
+
+
+
+
+We are grateful for discussions and contributions from many of the team at Franklin Templeton
+Investments.
+
+B Sanjiv R. Das
+    srdas@scu.edu
+    Daniel Ostrov
+    dostrov@scu.edu
+    Anand Radhakrishnan
+    andy.radhakrishnan@franklintempleton.com
+    Deep Srivastav
+    deepratna.srivastav@franklintempleton.com
+
+1   Santa Clara University, 500 El Camino Real, Santa Clara, CA 95053, USA
+2   Franklin Templeton Investments, 1 Franklin Pkwy #970, San Mateo, CA 94403, USA
+
+
+                                                                                           123
+614                                                                          S. R. Das et al.
+
+
+1 Introduction
+
+Goals-based wealth management (GBWM) refers to the management of an investor’s
+portfolios with a view to meeting long-term financial goals, as opposed to only optimiz-
+ing a risk-return tradeoff. In this paper, we present and analyze a dynamic programming
+approach for GBWM that is fully optimal in meeting long-term goals, while also opti-
+mizing risk-return tradeoff. We will show that our approach has several advantageous
+features in terms of speed and adaptability, and that it soundly outperforms portfolios
+based on current widespread approaches, such as the target-date paradigm.
+    GBWM is a modern implementation of behavioral ideas from early work by Shefrin
+and Statman (2000) espousing behavioral portfolio theory that were further discussed
+by Nevins (2004) from a practitioner viewpoint. A specific framework for GBWM was
+initially proposed by Chabbra (2005) and is now followed by many practitioners (see
+Brunel 2015). Our approach in this paper is also cognizant of prospect theory (Kah-
+neman and Tversky 1979), which is aimed at modeling how people realistically make
+decisions, rather than an optimization framework, which usually does not account
+for all the criteria used by people when making tradeoffs between gains and losses.
+Our framework also accommodates mental accounting (Thaler 1985, 1999), which
+is the paradigm where people behave as if they have different risk-return preferences
+depending on the goal being achieved, being risk averse in some settings and even risk
+seeking in others. In our context, mental accounting is the idea that financial goals
+may be sharply defined and better managed in separate portfolios. We also include
+paradigms for how investors form both upside and downside goals, such as aspira-
+tional goal-setting (Lopes 1987), a safety-first criterion (Roy 1952), and loss aversion
+(Shefrin and Statman 1985).
+    We can combine these seminal GBWM ideas for achieving long term goals with
+modern portfolio theory (Markowitz 1952) to achieve the short term goal of minimizing
+the risk associated with any specific expected return. GBWM is fully consistent with
+Markowitz’s mean-variance theory. This was developed in Das et al. (2010) as a static
+model for mental accounts, and a full analysis of the static model in a GBWM context
+is provided in Das et al. (2018).
+    These static models are not fully optimal, because they can only be implemented
+period by period in a myopic manner. Previous fully optimal, dynamic approaches to
+GBWM include solving continuous-time partial differential equations, as shown in the
+early work by Merton (1969, 1971), Browne (1995, 1997), or using continuous-time
+martingale methods based on seminal ideas in Cox and Huang (1989), as shown in
+more recent work by Wang et al. (2011) and Deguest et al. (2015). In this paper we
+introduce a discrete time fully optimal dynamic programming approach that has many
+advantages, including being adaptable to many financial situations, being simple to
+implement, and being fast to run. For example, our approach handles periodic infusions
+and withdrawals of varying amounts, as well as bankruptcy, which is not always
+easy to do with the aforementioned continuous-time approaches. Also, our approach
+employs a polynomial time algorithm that corresponds in general to a runtime of only
+a few seconds. These features give our algorithm wide applicability, enabling either
+traditional financial advisors or robo-advisors to quickly and optimally determine the
+best strategy for investors to pursue to meet their individual wealth goals.
+
+123
+Dynamic portfolio allocation in goals-based wealth…                                   615
+
+
+   The essence of GBWM lies in choosing a different objective function for dynamic
+optimization than that chosen in utility-based portfolio problems. The simplest form
+of the GBWM objective function is probabilistic: that is, define a portfolio goal wealth
+G at the defined horizon T and find the dynamic portfolio strategy that maximizes the
+probability of achieving the goal, i.e.,
+
+                                      max              Pr [W (T ) ≥ G],
+                             {A(0),A(1),...,A(T −1)}
+
+
+where W (T ) is the terminal portfolio wealth value and A(t) are the possible allocations
+among the funds available to the investor at each time t = 0, 1, 2, . . . , T − 1. The
+optimal allocation at any time t is a function of W (t), the level of wealth at time t; G,
+the goal wealth; T , the timeframe; and other investor specific parameters.
+   This approach may be contrasted with a utility-based approach where the dynamic
+strategy is chosen to maximize the expected utility from any consumption over time,
+as well as the expected utility of the final wealth. This approach, as well as GBWM,
+are attractive since they focus on long-run outcomes and are not myopic one-period
+optimization models. Single-period optimization changes the focus from achieving
+long-term goals to short-term risk-return tradeoffs. We see that strategies that are
+aimed at meeting an upside goal with a lower threshold might result in very different
+strategies than dynamic asset allocation based on utility function maximization, such
+as taking on more risk when not reaching goals close to the investment horizon, see
+Browne (1999b).
+   Hybrid approaches, where the objective function to be maximized is expected utility
+subject to goals as constraints, have also been attempted as in Browne (1999a, 2000),
+Deguest et al. (2015). However, this approach requires choosing a utility function
+for the investor which is hard to determine, and therefore an ad-hoc choice is often
+required. In this paper, we do not require a utility function to be specified. We provide
+an optimal solution procedure to the GBWM problem and examine the properties of
+the trading strategy dictated by the algorithm.
+   The following briefly characterizes our solution: (i) In our numerical experiments,
+the backward recursion algorithm that solves the dynamic problem is approximately
+quadratic in its dependence on the timeframe T , between linear and quadratic with
+a growth exponent of 1.5 in its dependence on the granularity of the wealth grid,
+and approximately linear in its dependence on the number of portfolio choices. Our
+results are quite robust to the granularity of the wealth grid and the number of port-
+folio choices, which suggests that expanding the scale of the problem with additional
+features, such as tax optimization, can be performed without significantly degrading
+run times or the solution’s accuracy. (ii) In our base case timeframe of 10 years with
+annual rebalancing, having a wealth grid granularity of at least three wealth nodes
+per yearly standard deviation in portfolio performance, and allowing for 15 portfo-
+lio choices, our algorithm runs in under 5 s. (iii) As the markets move up or down
+through the investment tenure, we rebalance the portfolio such that the probability of
+reaching the goal wealth continues to remain the highest. The optimal allocation and
+rebalancing is intuitive in the sense that when the portfolio is far from its goal due to
+underperformance, risk is increased in order to enhance the probability of reaching
+
+                                                                               123
+616                                                                           S. R. Das et al.
+
+
+the goal, and when the portfolio is outperforming, risk is dialed back to reduce the risk
+of missing the goal. Therefore, the strategy depends on both time and state (wealth),
+unlike target-date fund strategies, which only depend on time and cannot accommodate
+investor-specific goals. (iv) The dynamic program uses a collection of exogenously
+provided portfolios, that may or may not be chosen to be on the efficient frontier,
+so an asset management team can develop the set of model portfolios, while, acting
+separately, the optimization team can tune the dynamic programming algorithm. This
+offers a plug-and-play approach to GBWM, where portfolio construction is separated
+from portfolio allocation.
+   Our GBWM strategy allows for a variety of important features and results: (i)
+The final wealth distribution may be modulated by limiting the range of available
+portfolios (i.e., controls), which exogenously alters the risk that is taken. Raising the
+minimum risk of the portfolios that are available to the investor increases the right tail
+of the wealth distribution more than the left tail. Conversely, raising the maximum
+risk available to the investor, increases the left tail more than the right tail. This
+suggest that investors in a GBWM environment who wish to have higher returns are
+better off raising their minimum risk, instead of the more intuitive move of raising
+their maximum risk. That said, raising the minimum risk will decrease the chance of
+attaining the investor’s goal wealth, while raising the maximum risk will increase this
+chance. (ii) The algorithm is flexible: (a) If desired, the algorithm can optimize for
+multiple wealth goals at the end of the portfolio horizon instead of a single wealth
+goal, with weights for the relative importance of these multiple goals that the investor
+can decide. (b) The algorithm can include an investor’s specified portfolio infusions
+and withdrawals. We will see that even small infusions can increase the probability of
+reaching the goal wealth substantively. When there are withdrawals, there is a chance
+that the investor will run out money (i.e., go bankrupt) during the investment timeframe.
+Our algorithm can determine this chance of bankruptcy, and much more importantly,
+show how to minimize it. (c) The algorithm can accommodate any desired time period
+between rebalancing and between infusions or withdrawals. (iii) Our algorithm allows
+us to determine how to optimize retirement savings. For example, our algorithm will
+allow us to explore the effect of infusions on the minimized probability of going
+bankrupt in retirement. In particular, we will consider a 50 year old investor who
+currently has 100 thousand dollars in their retirement account and intends to take out
+50 thousand present day dollars every year after they turn 65 through the age of 80.
+We show that to attain a 58.6% probability of maintaining this income stream would
+require the investor to make annual inflation-adjusted infusions of 15 thousand dollars
+a year until retiring at age 65. (iv) Finally, we compare our GBWM optimal strategy to
+the performance of target date funds (TDFs), by considering a TDF with a typical glide
+path for three index funds representing total domestic bond, total international stock,
+and total domestic stock. Because our GBWM strategy is on the efficient frontier, uses
+a wealth-dependent strategy, and accounts for investor-specific goals, we will see that
+our GBWM strategy, which uses the same three index funds, shows a much higher
+probability of reaching an investor’s goals. For example, we will show that using our
+TDF in the case presented in the previous point reduces the probability of maintaining
+the desired income stream from 58.6% down to 26.6%.
+
+
+123
+Dynamic portfolio allocation in goals-based wealth…                                    617
+
+
+  The rest of this paper is organized as follows. In Sect. 2 we describe the algorithm
+and in Sect. 3 the extensions of the algorithm to deal with other cases are presented.
+The results of our study are set out in Sect. 4 and our conclusions are summarized in
+Sect. 5.
+
+
+2 Algorithm
+
+2.1 Notation
+
+We describe the notation used in the paper here.
+
+ • Let t = 0, h, 2h, . . . , N h = T be the N time periods in the model. Here, h is the
+   time step, usually taken to be 1 year. Therefore, the time frame of the model is
+   0 ≤ t ≤ T.
+ • Initial wealth: W (0).
+ • Target wealth (goal G) at the horizon: W (T ) ≡ G.
+ • We have n equity assets indexed by i = 1, 2, . . . , n.
+ • C(t): known cash flows C(t) of capital into the portfolio each year. When C(t) > 0,
+   we have an infusion into the portfolio. When C(t) < 0, we have a withdrawal from
+   the portfolio. All of these cash flows are assumed to be determined at t = 0, so
+   they are pre-committed by the investor.
+
+Our goal is to dynamically allocate the portfolio among these n assets so that we
+maximize the probability at t = T of attaining a final portfolio worth at least W (T ) =
+G, our goal wealth.
+
+2.2 The efficient frontier for stock portfolios
+
+For any given portfolio volatility, σ , it is always optimal to maximize the portfolio
+expected return, μ. Modern portfolio theory, which was developed by Markowitz, see
+Markowitz (1952), gives a method for the exact allocation among the n assets that
+gives the maximum μ. If, for every value of σ , we plot the point (σ, μ) where μ is
+the maximum portfolio expected return from modern portfolio theory, we sketch out a
+hyperbola in the (σ, μ) plane, which is called the efficient frontier. It is always optimal
+to maintain the portfolio on the efficient frontier. The question that remains is how to
+optimally adjust ourselves along the efficient frontier over time.
+   As shown in Das et al. (2018), the specific hyperbola for the efficient frontier is the
+equation
+
+                                            
+                                     σ =     aμ2 + bμ + c.                             (1)
+
+The constants, a, b, and c are defined by m, which is a vector of the n expected returns;
+o, which is a vector of n ones; and , which is the n × n covariance matrix of the n
+assets, via the following equations:
+
+                                                                                123
+618                                                                            S. R. Das et al.
+
+
+                                      a = h h
+                                      b = 2g h
+                                      c = g g,
+
+where the vectors g and h are defined by
+
+                                   l −1 o − k −1 m
+                                g=
+                                        lp − k 2
+                                   p m − k −1 o
+                                       −1
+                                h=                   ,
+                                         lp − k 2
+
+and the scalars k, l, and p are defined by
+
+                                     k = m  −1 o
+                                     l = m  −1 m
+                                     p = o  −1 o.
+
+We allow for restrictions on the segment of the efficient frontier available to the
+investor, due, for example, to restrictions such as disallowing short positions. We will
+consider this truncated efficient frontier as the set of potential portfolios from which we
+optimize the probability of attaining our goal wealth G. More specifically, we define
+μmin and μmax to be the smallest and largest values of μ in this truncated efficient
+frontier. The optimal policy or “control” in our problem is a value of μ ∈ [μmin , μmax ],
+where the corresponding value of σ , the volatility, is given by Eq. (1).
+   Because it is optimal, we stay on the efficient frontier in this paper. However, we
+note that the method presented in this paper also applies to any fixed group of allowable
+portfolios on or off the efficient frontier. So, for example, if there are limitations on
+the fractions that can be devoted to specific assets within the portfolio, our method
+can still be applied.
+
+2.3 The state space gridpoints
+
+The state space consists of time values, t, and wealth values, W (t), which are dis-
+cretized, so that we consider annual rebalancing (and, later, non-annual rebalancing
+in Sect. 3.1) at times t = 0, 1, 2, . . . , T and, at each of these times, we use wealth
+grid points, Wi , where the index i ∈ {0, 1, 2, . . . , i max }. The smallest wealth grid
+point, W0 , should correspond to the smallest possible wealth, Wmin , attainable, and
+the largest wealth grid point, Wimax , should correspond to the largest possible wealth,
+Wmax , attainable. We next determine values for i max , Wmin , and Wmax .
+   To move forward in time, we require a stochastic model for the evolution of the
+initial portfolio wealth, W (0). We have chosen to use geometric Brownian motion for
+this paper. That is,
+                                                    2
+                                                            √
+                                                 μ− σ2    t+σ t Z
+                            W (t) = W (0)e                          ,                     (2)
+
+123
+Dynamic portfolio allocation in goals-based wealth…                                                       619
+
+
+where Z is a standard normal random variable, however, we could have just as easily
+worked with other stochastic models, including those containing tails that are fat-
+ter than normal distributions to more accurately reflect observed volatility. The only
+restriction on the evolution model is that it is Markovian. That is, the evolution model
+is not affected by previous events.
+   For our geometric Brownian motion model, we will assume that Z realistically
+takes values between −3 and 3, so the smallest realistic value for W (t) corresponds
+to computing Eq. (2) after setting Z = −3, μ = μmin , and σ equal to σmax , which is
+the value of σ from Eq. (1) when μ = μmax . The largest realistic value is computed
+by again using σ = σmax , but replacing Z with 3 and μ with μmax .
+   Since we must also include the effects of the cashflows, C(t), as well as the initial
+investment, W (0), and both are affected by the same geometric Brownian motion
+model, we have that
+                                          ⎡                           
+                                                                  σ2            √
+                                                            μmin − max  τ −3σmax τ
+           Ŵmin =         min            ⎣W (0)e                   2
+
+                      τ ∈{0,1,2,...,T }
+                                                                                                 ⎤
+                                                   τ                       σ2                √
+                                                                     μmin − max  (τ −t)−3σmax τ −t
+                                              +         C(t)e
+                                                                             2
+                                                                                                  ⎦       (3)
+                                                  t=0
+                                          ⎡                           
+                                                                  σ2             √
+                                                            μmax − max   τ +3σmax τ
+           Ŵmax =         max            ⎣W (0)e                   2
+
+                      τ ∈{0,1,2,...,T }
+                                                                                                  ⎤
+                                                   τ                       σ2                 √
+                                                                     μmax − max   (τ −t)+3σmax τ −t
+                                              +         C(t)e
+                                                                             2
+                                                                                                  ⎦,      (4)
+                                                  t=0
+
+
+where C(0) = 0, since any cash flow at t = 0 is incorporated into W (0). For the
+moment, we assume that Ŵmin > 0, because the C(t) are not sufficiently negative that
+bankruptcy is a realistic possibility; in Sect. 3.2 we will explore the case where C(t)
+are sufficiently negative that bankruptcy is a realistic possibility.
+   We next look to fill in the grid points between Ŵmin and Ŵmax . First, analogous to
+our σmax definition, we define σmin to be the value of σ from Eq. (1) when μ = μmin .
+We then define the exogenously selected wealth grid density parameter, ρgrid , which
+corresponds to the number of wealth grid points chosen per each σmin     in the 
+                                                                                following
+sense: After setting t and Z to one in Eq. (2) and ignoring the drift term μ − σ2 t, we
+                                                                                  2
+
+
+see that σ is proportional to the logarithm of wealth. Therefore, we compute ln(Ŵmin )
+and ln(Ŵmax ) and then, starting with ln(Ŵmin ), we add a grid point every σρmin
+                                                                               grid
+                                                                                    units,
+stopping once we reach or surpass ln(Ŵmax ). This yields a total of i max + 1 grid points
+                       (ln(Ŵ
+                       max       )−ln(Ŵ
+                                  min   grid      ))ρ
+where i max equals          σmin             after rounding up to the nearest integer.
+  Next, we equally shift all of these i max +1 values downward by the smallest amount
+necessary to match one of these values to ln(W (0)), the logarithm of the initial portfolio
+wealth. Finally, we exponentiate all i max + 1 values to obtain our wealth grid values,
+
+                                                                                                        123
+620                                                                                         S. R. Das et al.
+
+
+W0 through Wimax , noting the following: (1) One of the grid points will equal W (0),
+which will be important for computing the probability distribution for the wealth in
+Sect. 2.5. (2) We define Wmin = W0 and Wmax = Wimax , observing that the small
+downward shift will have created a small difference between Ŵmin and Wmin and
+between Ŵmax and Wmax . (3) While the values of ln(Wi ) where i = 0, 1, 2, . . . , i max
+are equally spaced, the values of Wi are not. The spacing between Wi values increases
+exponentially as the wealth increases.
+
+2.4 Dynamic programming for optimizing the chance of obtaining the investor’s
+    goal
+
+The value function, V (W (t)), is the probability that the investor will attain their goal
+wealth, G, or more at the time horizon T , given they have a worth W (t) at time t. This
+means that at time T ,
+
+                                                       0    if Wi (T ) < G
+                           V (Wi (T )) =                                                               (5)
+                                                       1    if Wi (T ) ≥ G.
+
+   We next determine the Bellman equation so that we can determine V at year t =
+T − 1, then t = T − 2, etc., iterating backwards in time until we finish at t = 0.
+We begin by determining the transition probabilities, p(W j (t + 1)|Wi (t), μ). The
+transition probability is the normalized relative probability that we will be at the wealth
+node W j at time t + 1 if we start at the wealth node Wi at time t and, between times
+t and t + 1, our portfolio is run with an expected return of μ and its corresponding
+volatility, σ , from Eq. (1). Defining φ(z) to be the value of the probability density
+function of the standard normal random variable at Z = z, we have from Eq. (2) the
+following probability density function values
+                                                                                 
+                                                   1             Wj                σ2
+       p̃(W j (t + 1)|Wi (t), μ) = φ                    ln                    − μ−        .            (6)
+                                                   σ          Wi + C(t)            2
+
+Normalizing these probability density function values yields the desired transition
+probabilities:
+
+                                                             p̃(W j (t + 1)|Wi (t), μ)
+              p(W j (t + 1)|Wi (t), μ) =                   i max
+                                                                                        .
+                                                           k=0 p̃(Wk (t + 1)|Wi (t), μ)
+
+    Since V (W (t)) is the expected value of V (W (T )), our Bellman recursion equation
+is simply
+                                       ⎡                                                    ⎤
+                                           i max
+      V (Wi (t)) =       max           ⎣           V (W j (t + 1)) p(W j (t + 1)|Wi (t), μ)⎦ .         (7)
+                     μ∈[μmin ,μmax ]
+                                           j=0
+
+We denote μi,t as the value of μ at which the maximum is attained in the Bellman
+equation, and σi,t is, of course, its corresponding volatility on the efficient frontier. As
+
+123
+Dynamic portfolio allocation in goals-based wealth…                                       621
+
+
+a computational matter, we select an integer m, divide the interval [μmin , μmax ] into
+an array of m equally spaced values, and let μi,t and V (Wi (t)) be determined from the
+μ value within this array that optimizes the sum in the right-hand side of the Bellman
+recursion equations. In practice m = 15 was generally sufficient to maintain accuracy
+in our results, as we further discuss in Sect. 4.2.1.
+   First setting t = T − 1, we solve the Bellman equation (7) to determine μi,T −1
+and V (Wi (T − 1)) for each i ∈ [0, i max ]. We then continue backwards in time to
+t = T − 2, t = T − 3, etc., until we reach t = 0. The value of V (W (0)) is the optimal
+probability of the investor attaining their wealth goal G from their initial wealth W (0).
+
+2.5 Probability distribution for the investor’s wealth at future times
+
+To determine the probability distribution for the investor’s wealth at future times,
+we use the optimal strategy information, μi,t and σi,t , determined previously from
+dynamic programming to evolve the probability distribution forward in time, starting
+with t = 0, then t = 1, ending at t = T − 1. At any given value of t, we determine
+for each j ∈ [0, i max ]
+
+                                    i max
+               p(W j (t + 1)) =             p(W j (t + 1)|Wi (t), μi,t ) · p(Wi (t)).     (8)
+                                     i=0
+
+Define i 0 so that Wi0 is the wealth node that equals W (0). We then start at t = 0 with
+p(Wi0 (0)) = 1 and p(Wi (0)) = 0 for all i = i 0 to generate the entire set of proba-
+bilities for t = 1, i.e., p(W j (1)) for each j ∈ [0, i max ]. After that, moving forward in
+time, we recursively apply Eq. (8), until we obtain the probability distribution for the
+wealth nodes in every year of the lifetime of the portfolio.
+
+2.6 Summary
+
+We summarize the flow and meaning of the dynamic procedure from the investor point
+of view in four broad steps:
+1. The investor determines an initial investment wealth, a goal wealth and a timeframe
+   by which they hope to grow their initial investment into their goal wealth. The
+   investor may also specify annual cash flows for the portfolio, i.e., infusions or
+   withdrawals, if desired.
+2. Lower and upper bounds on the mean along the efficient frontier are chosen.
+   (Alternatively, these can be specified through lower and upper bounds on the risk,
+   given by the corresponding standard deviations on the frontier.) These bounds,
+   which determine the specific range of the efficient frontier to which we restrict
+   portfolio choice, can depend on the investor’s goal wealth and timeframe, as well
+   as the desire to limit downside or increase upside, as we will explore in Sect. 4.3.3.
+3. As the markets move up or down through the investment tenure, our program
+   rebalances the portfolio so that the probability of reaching the goal continues to
+   remain the highest.
+
+                                                                                        123
+622                                                                            S. R. Das et al.
+
+
+4. At any given point in time, we keep track of the portfolio’s current wealth, the
+   conditional probabilities of transitioning to different wealth levels at future points
+   in time, and also the probability of meeting the goal under the optimal strategy.
+   This is information that enables the investor to keep track of the performance of
+   the portfolio strategy.
+   An alternative solution approach is multi-stage stochastic linear programming using
+an asset-liability management context [see Birge and Louveaux (1997) for a good
+reference; examples in financial optimization, including wealth goals, are in Wallace
+and Ziemba (2005)]. This approach can be adapted to an objective function similar
+to our GBWM objective function. These optimization models are also flexible in
+allowing a multitude of possible constraints such as risk exposure limits, and they
+have the advantage of using discrete scenarios that do not require an assumption about
+the distribution of returns. On the other hand, they are computationally very hard and
+sometimes require heuristic solutions and small scenario trees.
+
+
+3 Expanding our dynamic programming algorithm to other cases
+
+As stated earlier, we can easily extend our results to cases where the available portfolios
+are not on the efficient frontier, and we can also extend our model from geometric
+Brownian motion to any other Markovian portfolio evolution model. Here are three
+additional extensions of our model:
+
+3.1 Non-annual updates
+
+Our main algorithm is written for annual updates. Annual updates particularly make
+sense in taxable accounts where short-term capital gains rates are levied on gains
+realized from stocks held less than a year. For other accounts, however, it might make
+more sense to update the portfolio every h years, where h = 1. For example, we
+might choose h = 0.25 if we want quarterly updates. In this context, the integer t now
+becomes the index of the update, so if h = 0.25, then t = 4 corresponds to the state
+of the portfolio after 1 year and, say, T = 40 means that we look to see if we have
+attained our goal, G, in the 40th update at the end of 10 years.
+   The main change needed to accommodate these cases where h = 1 is to note that
+since ht now represents the actual time represented by index t, Eq. (2) becomes
+                                                   2
+                                                               √
+                                                μ− σ2       ht+σ ht Z
+                           W (t) = W (0)e                               ,
+
+where we note that W (t) is the wealth at index t, which is time ht. This means that
+the Eqs. (3) and (4) for Ŵmin and Ŵmax become
+
+
+
+
+123
+Dynamic portfolio allocation in goals-based wealth…                                                           623
+
+
+                                   ⎡                       
+                                                       σ2              √
+                                                 μmin − max   hτ −3σmax hτ
+     Ŵmin =        min            ⎣W (0)e               2
+
+               τ ∈{0,1,2,...,T }
+                                                                                                        ⎤
+                                                     τ                     σ2                   √
+                                                                     μmin − max   h(τ −t)−3σ      h(τ −t)
+                                                                                                        ⎦
+                                                                             2              max
+                                             +           C(t)e
+                                                   t=0
+                                   ⎡                       
+                                                       σ2              √
+                                                 μmax − max   hτ +3σmax hτ
+    Ŵmax =         max            ⎣W (0)e               2
+
+               τ ∈{0,1,2,...,T }
+                                                                                                        ⎤
+                                                     τ                     σ2                   √
+                                                                     μmax − max   h(τ −t)+3σ      h(τ −t)
+                                                                                                         ⎦.
+                                                                             2              max
+                                             +           C(t)e
+                                                   t=0
+
+                                           √
+It also means that we replace σmin by σmin h if we continue to want to have ρgrid
+wealth grid points for every period’s minimum standard deviation, so i max becomes
+(ln(Ŵmax )−ln(Ŵmin ))ρgrid
+              √              after rounding up to the nearest integer. Finally, it means that
+         σmin h
+Eq. (6) becomes
+                                                                                        
+                                                 1                Wj                     σ2
+    p̃(W j (t + 1)|Wi (t), μ) = φ                √        ln                        − μ−     h   .
+                                             σ h               Wi + C(t)                 2
+
+Otherwise, our main algorithm is the same.
+
+3.2 Incorporating bankruptcy
+
+When investor withdrawals, C(t) < 0, are sufficiently negative, they may cause the
+investor to go bankrupt. That is, we must consider how to alter our algorithm for these
+bankruptcy cases where Wi + C(t) ≤ 0.
+   To do this, for each time t, we define i pos (t) to be the smallest index i such that
+Wi + C(t) > 0. (The notation “pos” reflects the fact that Wi + C(t) is positive.)
+This means that for each i < i pos (t), we have a state of bankruptcy after the time t
+withdrawal, since Wi + C(t) ≤ 0, while for each i ≥ i pos (t), the investor still has
+money after the time t withdrawal. We note that an investor, once bankrupt, cannot
+attain their goal wealth, therefore V (Wi (t)) = 0 for any i < i pos (t).
+   If i pos (t) fails to exist at any time t, it means that Wimax + C(t) ≤ 0 at this time,
+so, from the point of view of our algorithm, the investor is guaranteed to be bankrupt
+by time t. If i pos (t) exists for each t, we only need to make the following adjustments
+to our algorithm:
+ • In Sect. 2.3, the potential for bankruptcy means that Eq. (3) would make Ŵmin ≤ 0,
+   which is undesirable. We therefore replace Eq. (3) with a value for Ŵmin that is
+   positive, but near bankruptcy, like ten dollars, Ŵmin = 10, or one dollar, Ŵmin = 1,
+   or even a penny, Ŵmin = 0.01.
+
+                                                                                                     123
+624                                                                            S. R. Das et al.
+
+
+ • In Sect. 2.4, we still determine the transition probabilities, p(W j (t + 1)|Wi (t), μ),
+   for all j values, but now only for i values where i ≥ i pos (t). After that, the Bellman
+   equation (7) is only used to compute V (Wi (t)) for i ≥ i pos (t). For i < i pos (t),
+   we have that V (Wi (t)) = 0, as stated before.
+ • Finally, in Sect. 2.5, we alter Eq. (8) for the probability of being at a wealth node
+   so that the summation over i is from i pos (t) to i max instead of from 0 to i max .
+We note that the probability of going bankrupt due to the withdrawal at a given time
+      i pos (t)−1
+t is i=0          p(Wi (t)), while the probability of being bankrupt prior to this time is
+       i max
+1 − i=0 p(Wi (t)). In particular, since there is no cash flow at the final time T , the
+probability of the investor going broke by time T is 1 − ii=0  max
+                                                                   p(Wi (T )).
+
+3.3 Multiple weighted goals
+
+An investor may hope to attain a wealth goal, while at the same time also valuing
+the goal of not falling below a lower wealth threshold. Further, the investor may want
+to emphasize the relative importance of one of these wealth goals over the other.
+Mathematically, this corresponds to letting the lower wealth goal value, G 1 , have
+a weight of w1 and the higher wealth goal value, G 2 , have a weight of w2 , where
+w1 + w2 = 1 and the higher w1 is, the more important goal G 1 is relative to goal G 2 .
+To accommodate these two goals, we simply replace the terminal value Eq. (5) with
+                                   ⎧
+                                   ⎨0     if Wi (T ) < G 1
+                      V (Wi (T )) = w1 if G 1 ≤ Wi (T ) < G 2
+                                   ⎩
+                                     1    if Wi (T ) ≥ G 2 ,
+
+and run the algorithm as before, noting that the value function V no longer represents
+the probability of attaining the goal wealth, since there is no longer a single goal
+wealth. If desired, we can easily extend this to k wealth goals G 1 < G 2 < · · · < G k
+with weights w1 , w2 , . . . , wk that sum to one, by replacing the terminal value Eq. (5)
+with
+                    ⎧
+                    ⎪ 0           if Wi (T ) < G 1
+                    ⎪
+                    ⎨ j
+     V (Wi (T )) =          wl if G j ≤ Wi (T ) < G j+1 for j = 1, 2, . . . , k − 1
+                    ⎪
+                    ⎪
+                    ⎩ l=1
+                      1           if Wi (T ) ≥ G k .
+
+
+4 Results
+
+In this section, we begin by describing a base case, which we then fine tune by adjusting
+our algorithm’s parameters so as to optimize the algorithm’s speed vs. accuracy trade-
+offs. We then demonstrate the results of the algorithm for a number of cases, both
+with and without periodic infusions and withdrawals. At the end of the section we
+demonstrate how our algorithm can be used to minimize the probability of an investor
+going bankrupt during retirement, how an investor can understand the effect of periodic
+
+123
+Dynamic portfolio allocation in goals-based wealth…                                                         625
+
+
+Table 1 Summary statistics on returns from January 1998 to December 2017 for our three index funds
+
+Index fund category              Mean return               Covariance of returns
+
+U.S. Bonds                       0.0493                     0.0017             − 0.0017             − 0.0021
+International Stocks             0.0770                   − 0.0017                0.0396               0.03086
+U.S. Stocks                      0.0886                   − 0.0021                0.0309               0.0392
+
+
+
+infusions on the minimum probability of going bankrupt, and how our algorithm
+compares to target date fund performance for achieving goals.
+
+4.1 Base case
+
+We create a base case from which we will later compute comparative statics. For
+our base case, we assume the investor begins with a $100 investment at t = 0, so
+W (0) = 100. The investor’s goal is to maximize their probability of reaching a goal
+wealth of G = $200 at the end of year T = 10. We note that the ratio of these wealth
+values is all that is important here. That is, the maximum probability of going from a
+wealth of $100 to at least $200 at T = 10 in our base case is the same as the maximum
+probability of doubling any initial investment at T = 10. So, for example, we can think
+of W (0) = 100 thousand dollars and G = 200 thousand dollars. The calculations are
+not changed.
+   No cash flows are present in the base case, although we will certainly explore their
+effect later. The base case value for m, the number of potential portfolios we consider
+along the efficient frontier, is 15. The base case value for ρgrid , the grid point density
+per minimum annual standard deviation in the portfolio’s performance, is 3.0. These
+values for m and ρgrid have been chosen for reasons that will be explained in Sect. 4.2.
+   The efficient frontier arising from the investments available to the investor in our
+base case is exogenously determined. For illustrative purposes, we have generated this
+efficient frontier using historical returns from the 20 year period between January 1998
+to December 2017 for index funds representing U.S. Bonds, International Stocks, and
+U.S. Stocks.1 The mean and covariance of returns for these indexes are given in Table
+1.
+   The data from this table is used in conjunction with the mathematics in Sect. 2.2
+to generate the efficient frontier, shown in Fig. 1. The range for μ is restricted so that
+μmin ≤ μ ≤ μmax . The bounds, μmin and μmax , can be chosen through a variety
+of methods, including bounds on the investor’s tolerance for risk via the standard
+deviation on the efficient portfolio or, as we will explore in Sect. 4.3.3, the investor’s
+interest in limiting the downside or increasing the potential upside in the portfolio’s
+final wealth distribution. For our base case, we have selected μmin = 0.0526 to
+1 The three index funds used are (i) Vanguard Total Bond Market II Index Fund Investor Shares (VTBIX),
+representative of U.S. Fixed Income (Intermediate-Term Bond), (ii) Vanguard Total International Stock
+Index Fund Investor Shares (VGTSX), representative of Global Equity (Large Cap Blend), (iii) Vanguard
+Total Stock Market Index Fund Investor Shares (VTSMX), representative of U.S. Equity (Large Cap Blend).
+These three funds have been chosen only as representatives of their respective asset categories for illustrative
+purposes.
+
+
+                                                                                                  123
+626                                                                                              S. R. Das et al.
+
+
+
+
+                                                Portfolio Weights
+                           Portfolio       U.S.   International   U.S.
+                           number         Bonds       Stocks     Stocks
+                                0         0.9098           0.0225          0.0677
+                                1         0.8500           0.0033          0.1467
+                                2         0.7903          -0.0160          0.2257
+                                3         0.7305          -0.0352          0.3047
+                                4         0.6707          -0.0545          0.3837
+                                5         0.6110          -0.0737          0.4628
+                                6         0.5512          -0.0930          0.5418
+                                7         0.4915          -0.1122          0.6208
+                                8         0.4317          -0.1315          0.6998
+                                9         0.3719          -0.1507          0.7788
+                               10         0.3122          -0.1700          0.8578
+                               11         0.2524          -0.1892          0.9368
+                               12         0.1927          -0.2085          1.0158
+                               13         0.1329          -0.2277          1.0948
+                               14         0.0731          -0.2470          1.1738
+
+Fig. 1 Top: The efficient frontier generated from the data shown in Table 1 for the returns of our three
+indexes. Bottom: The table gives the portfolio weights in the three indexes for 15 consecutive portfolios on
+the efficient frontier, starting from the low point to the high point. Both long-only and long-short portfolios
+are permissible
+
+
+
+
+correspond to the lowest possible portfolio standard deviation on the efficient frontier,
+which is σ = 0.0374. We have selected μmax = 0.0886, the highest mean return
+of the three index funds, so as to avoid long-short portfolios. This value of μmax
+corresponds to σ = 0.1954. These numbers are realistic and match those in related
+research, see for example Exhibit 5 in Wang et al. (2011). From Sect. 2.3, we can
+now compute that there are 327 nodes in our wealth grid (i.e., i max = 326) ranging
+between Wmin = 21.72 and Wmax = 1269. We consider m = 15 portfolios on the
+efficient frontier whose μ values are equally spaced over the interval [μmin , μmax ]. At
+each year and wealth node in the state space, the dynamic strategy determines which
+of these 15 portfolios is optimal.
+
+123
+Dynamic portfolio allocation in goals-based wealth…                                                   627
+
+
+
+
+Fig. 2 Annual evolution of the probability distribution for wealth under the optimal dynamic strategy. The
+plot shows the probability of having at least the corresponding wealth on the curve at each time
+
+
+
+
+   Under the optimal dynamic strategy, we find that the highest achievable probability
+of reaching the goal wealth or more is Pr [W (T ) ≥ G = 200] = 0.669. The initial
+portfolio has μ = 0.0835 and σ = 0.1686. Figure 2 shows the plot of one minus
+the cumulative distribution of wealth for all t = 1, 2, . . . , 10 years. Using one minus
+the cumulative distribution is more natural than using the cumulative distribution in
+the context of this paper, because one minus the cumulative probability depicts the
+optimal probability of meeting a given level of wealth at each horizon, so higher values
+on the graph are better. For example, the point (100, 0.63) for the t = 1 curve means
+the investor has a 63% chance of having at least $100 after a year, and, of course, the
+investor would have been happier if the graph had been higher since that would mean
+a higher chance of having at least $100 after a year.
+   The evolution of the distribution in Fig. 2 shows the shift of these wealth distribu-
+tions to the right as time proceeds, but, more interestingly, it also shows the adjustments
+the distribution shape makes so as to maximize the probability of exceeding the value
+of G = 200 by the final year T = 10. In the earlier years, the distribution has a slight
+positive skew, as is the case for a lognormal distribution, but the adjustments to attain
+the goal wealth eventually reverse this and create a negative skew to the distribution
+as it progresses to its time horizon. In Fig. 2, this corresponds to the development of
+a hump that evolves to finally lift the curve higher at G = 200 when T = 10, so as to
+maximize the probability of meeting the investor’s goal wealth.
+   Figure 3 shows the optimal probability of reaching our goal wealth G = 200 (i.e.,
+the value function) at each point in time and for any level of wealth in the state space;
+that is, at each {t, Wi (t)} grid point. As is expected, higher wealth levels are associated
+with higher probabilities of reaching the goal wealth. The figure also reflects the fact
+that as we reach the final time T = 10, we have more certainty about whether we will
+attain the goal wealth.
+   In Fig. 4, we show the optimal portfolio strategy at each {t, Wi (t)} grid point. That is,
+we show which of the 15 μ values are optimal, where portfolio number 0 corresponds
+to μmin (and the lightest color) and portfolio number 14 corresponds to μmax (and the
+darkest color). When the portfolio has a lot of money, it moves towards lower portfolio
+numbers, since the corresponding decrease in volatility makes it less likely to incur
+
+                                                                                             123
+628                                                                                          S. R. Das et al.
+
+
+
+
+Fig. 3 The value function, which is the optimal probability of reaching the goal wealth G = 200 at each
+wealth node and time found by our dynamic strategy. The darker the color on the graph, the higher the value
+function is. The x-axis shows the time in years and the y-axis depicts the level of wealth. Note that the
+y-axis is an exponentially increasing scale. The figure truncates the displayed wealth values from its full
+range between Wmin = $21.72 and Wmax = $1269 to the range of wealths between $37 and $226 where
+the optimal probability varies
+
+
+big losses that could remove investors from the path to attaining the goal wealth that
+they are currently on. When the portfolio has less money, it moves towards higher
+portfolio numbers, since the increase in both expected return and volatility makes it
+more likely to attain the goal wealth.
+
+4.2 Fine tuning the parameters to balance algorithm speed vs. accuracy
+
+4.2.1 Effect of changing, m, the number of portfolio strategies
+
+In Table 2, we consider the effect on the base case of changing the number of interme-
+diate strategies we consider on the efficient frontier between μ = μmin and μ = μmax .
+Because the efficient frontier is part of a hyperbola, it becomes progressively linear
+as μ increases. This means the intermediate strategies matter more near μmin . From
+Table 2, we see that m = 15, our base case value (denoted by an asterisk in this table,
+as will all base case values in later tables), is more than sufficient for providing enough
+accuracy in determining the probability of the initial investment W (0) = 100 gaining
+at least 50% and at least 100% of its initial worth after 10 years. The table also shows
+that the rate of growth in the run time as m increases is initially slightly sub-linear, but
+then becomes linear for larger m values.
+
+4.2.2 Effect of changing the grid point density, grid
+
+In Table 3, we consider the effect on the base case of changing the grid point density,
+ρgrid , recalling from Sect. 2.3 that ρgrid represents the number of grid points (i.e., wealth
+nodes) per σmin , the minimum annual portfolio volatility. Analyzing the run time data
+
+123
+Dynamic portfolio allocation in goals-based wealth…                                                     629
+
+
+
+
+Fig. 4 Optimal portfolio strategy at each wealth node and time. Note that portfolio numbers run from 0, the
+lightest color corresponding to μmin , to 14, the darkest color corresponding to μmax , for the m = 15 model
+portfolios on the efficient frontier. The x-axis shows the time in years and the y-axis depicts the level of
+wealth on an exponentially increasing scale. The figure truncates the displayed wealth values from its full
+range between Wmin = $21.72 and Wmax = $1269 to the range of wealths between $37 and $226 where
+the portfolio choice varies
+Table 2 Effect of changing m, the number of strategies
+
+Value of m               Run time (s)               Pr [W (T ) ≥ 150]               Pr [W (T ) ≥ G = 200]
+
+5                        1.8                       .775                             .665
+10                       2.4                       .776                             .668
+15*                      2.9                       .777                             .669
+20                       3.4                       .777                             .669
+40                       8.5                       .777                             .669
+60                       12                        .777                             .669
+80                       15                        .777                             .669
+100                      18                        .777                             .669
+*denote the base case
+
+in Table 3 shows that the rate of growth in the run time as ρgrid increases has an exponent
+of 1.5, directly between linear and quadratic growth. The optimal probabilities of the
+initial investment gaining at least 50% and at least 100% of its initial worth have some
+noise that dies down rather slowly as ρgrid increases. We choose ρgrid = 3 for the base
+case (again, denoted with an asterisk), since the noise is within reason while the run
+time has not grown too large.
+
+4.3 The effect of the investor making changes
+
+4.3.1 Effect of changing W(0), the initial investment
+
+At the end of Sect. 2.4, our algorithm has determined the value function V at time
+t = 0 for the investor’s specified initial investment, W (0), but it has also determined V
+
+                                                                                               123
+630                                                                                                S. R. Das et al.
+
+
+Table 3 Effect of changing ρgrid , the grid point density
+
+Value of ρgrid              Run time (s)               Pr [W (T ) ≥ 150]                Pr [W (T ) ≥ G = 200]
+
+1.0                         0.64                       .777                             .662
+1.5                         1.1                        .776                             .673
+2.0                         1.6                        .780                             .676
+2.5                         2.2                        .773                             .666
+3.0*                        2.9                        .777                             .669
+3.5                         3.7                        .780                             .673
+4.0                         4.6                        .779                             .674
+4.5                         5.5                        .778                             .669
+5.0                         6.5                        .777                             .670
+5.5                         7.7                        .779                             .673
+6.0                         9.5                        .778                             .668
+*denote the base case
+
+
+
+
+Fig. 5 Initial optimal probability of reaching the goal wealth G = 200 if we start at different levels of initial
+wealth W (0). The red dot corresponds to our base case of W (0) = 100, where the optimal probability is
+66.9%
+
+
+at time t = 0 for all of the other wealth nodes between Wmin and Wmax . This enables
+an investor to determine the effect that increasing or decreasing their initial investment
+will have on V , the optimal probability of their attaining their wealth goal G at time
+T . In Fig. 5, we can see precisely how increasing the initial investment, W (0), from
+its base case value of $100, increases the optimal probability of attaining the goal of
+$200 at T = 10.
+    We can also see the effect of decreasing the initial investment, seemingly until we
+reach the cutoff in the figure’s graph at Wmin = 21.72. However, near this cutoff, our
+results are questionable, since the accuracy of the graph near Wmin requires that the
+value function at Wmin be very near zero, which is not quite the case here. The remedy
+
+123
+Dynamic portfolio allocation in goals-based wealth…                                       631
+
+
+Table 4 Effect of changing T , the portfolio’s time horizon
+
+Time horizon T                 Run time (s)                   Goal wealth, G   Pr [W (T ) ≥ G]
+
+5                              0.86                           150              .574
+10*                            2.9                            200*             .669
+15                             6.1                            250              .763
+20                             10                             300              .843
+25                             16                             350              .913
+30                             23                             400              .957
+40                             44                             500              .995
+*denote the base case
+
+
+for this problem is easy: simply reduce Wmin so that the full range of potential W (0)
+values stays well above the newly chosen value of Wmin . Similarly, if Wmax creates a
+cutoff, it should be increased.
+
+4.3.2 Effect of changing T , the portfolio’s time horizon
+
+In Table 4, we look at the effect of changing the time horizon T for the portfolio.
+In this table, we let the goal wealth G increase linearly with T , although G actually
+scales exponentially with T . As a result, we see the associated probability of attaining
+G grow as T increases in the table. We also note from the table’s data that the growth
+rate in the run time as T increases starts out being below quadratic growth for small
+T , but increases to quadratic growth for large T .
+
+4.3.3 Effect of changing min or max for the efficient frontier truncation
+
+Our algorithm can accommodate any given set of funds from which it then forms
+allowable portfolios along the efficient frontier. This has two benefits. First, because
+the funds are selected independently from the mechanics of the algorithm, the determi-
+nation of the funds and the efficient frontier can be determined by a different operating
+team in the fund management business from the team running the dynamic program-
+ming algorithm. Further, if different sectors of the fund management business need
+to work with different funds, our algorithm can easily accommodate each sector sep-
+arately. Second, the spread in the wealth distribution at time T can be controlled to
+some degree by changing the endpoints of the interval μ ∈ [μmin , μmax ] that restrict
+the (σ, μ) pairs on the efficient frontier available to our algorithm. In this subsection
+we explore this second benefit by altering μmin and then μmax in our base case.
+   Recall that in our base case we consider 15 (σ, μ) pairs on the efficient frontier, with
+the lower end of the frontier at (0.0374, 0.0526) and the upper end at (0.1954, 0.0886),
+so μmin = 0.0526 and μmax = 0.0886. In the top panel of Fig. 6, we see the effect
+on the terminal distribution of wealth when we chose four different values for μmin :
+0.0526, 0.06, 0.065, and 0.07. As μmin increases, the probability of attaining the goal
+wealth G = 200 goes down since the interval of available controls shrinks. Also, the
+wealth distribution has a higher variance, as is to be expected. But these higher risk
+
+                                                                                  123
+632                                                                                        S. R. Das et al.
+
+
+
+
+Fig. 6 Graphs for the probability distribution of the terminal wealth when μmin and μmax are varied. All
+other parameters from the base case remain the same. The ranges are: μmin = {0.0526, 0.06, 0.065, 0.07}
+and μmax = {0.07, 0.0886, 0.10, 0.15}
+
+
+
+
+distributions also have higher positive skewness, evident from the longer right tails.
+Therefore, choosing the value of μmin corresponds to choosing a trade-off between
+variance and skewness. More notably, the left tails of all three distributions are very
+similar, indicating that modulating μmin has a much stronger effect on the right side
+of the wealth distribution.
+   The lower panel of Fig. 6 shows the effect of varying μmax by considering four
+different μmax values: 0.07, 0.0886, 0.10, and 0.15. Again, the probability of attaining
+the goal wealth G = 200 increases as μmax increases, because the interval of available
+controls grows. However, in this case we notice that both the left and right sides of
+the probability distribution are affected, although the effect on the downside is more
+pronounced than that on the upside, suggesting that varying μmax has a greater effect
+on the left tail.
+
+123
+Dynamic portfolio allocation in goals-based wealth…                                   633
+
+
+Table 5 Effect of changing annual infusions, C(t) ≥ 0
+
+Value of C(t)                          Pr [W (T ) ≥ 150]             Pr [W (T ) ≥ G = 200]
+
+0*                                    .777                           .669
+1                                     .832                           .730
+2                                     .881                           .789
+3                                     .926                           .848
+4                                     .961                           .901
+5                                     .984                           .944
+6                                     .996                           .976
+7                                     .999                           .992
+8                                     .999                           .998
+9                                     .999                           .999
+*denote the base case
+
+
+   An investor that is more accepting of risk would tend to first want to increase μmax ,
+but Fig. 6 suggests that increasing μmin might be the wiser course of action, since we
+can see in this case that increasing μmin appears to have a stronger influence on the
+upside potential whereas increasing μmax appears to have a stronger influence on the
+downside, risking significant losses without that much compensating gains.
+   The reason for this is actually straightforward: The algorithm is only interested in
+attaining the goal wealth, so the optimal strategy for a well-off investor is to move
+μ to μmin so as to reduce volatility and the chance of major losses resulting in no
+longer being on track to attain the goal wealth. Because the well-off investor uses
+μmin , increasing μmax has little effect on the right tail, while increasing μmin has a
+significant effect. Similarly, when the investor is worse off, they select μmax because
+that increases both μ and σ , which increase the chance of big gains and attaining the
+goal wealth. Of course this also increases the chance of big losses, which inflates the
+left tail of the wealth distribution.
+
+4.3.4 The effect of cash flows: infusions or withdrawals
+
+1. Annual infusions: C(t) > 0
+
+   We continue to work with our base case where we have an initial investment of
+   W (0) = 100 thousand dollars and a goal of having at least W (T ) = G = 200
+   thousand dollars at the end of T = 10 years. In Table 5, we look at how constant
+   annual infusions of C(t) = 1, 2, . . . , 9 thousand dollars affect the maximum
+   probability of reaching this goal, as well as the probability of reaching at least
+   150 thousand dollars. We note from the table that even small infusions can have a
+   significant effect on increasing these probabilities.
+2. Annual withdrawals: C(t) < 0 and the probability of going bankrupt.
+
+     We now look at the same situation, but with constant annual withdrawals instead
+     of infusions, so C(t) is now a negative constant. Should the annual withdrawal
+
+                                                                              123
+634                                                                            S. R. Das et al.
+
+
+Table 6 Effect of changing annual withdrawals, C(t) ≤ 0
+
+Value of C(t)           Pr [W (T ) = 0]           Pr [W (T ) ≥ 150]   Pr [W (T ) ≥ G = 200]
+
+0*                      0                         .777                .669
+−1                      0                         .720                .609
+−5                      .002                      .491                .387
+− 10                    .124                      .246                .182
+− 15                    .492                      .099                .072
+− 20                    .796                      .034                .021
+− 25                    .937                      .004                .001
+*denote the base case
+
+
+      amount become significant, the investor will now risk bankruptcy (i.e., W (T ) = 0).
+      In Table 6, we see how increasing the withdrawal rate increases the chance of the
+      investor going bankrupt, while decreasing both the probability of reaching 150
+      thousand dollars and the probability of reaching the goal wealth of 200 thousand
+      dollars at time T = 10.
+
+4.3.5 Attaining retirement goals: our algorithm versus a target date approach
+
+Our algorithm can be used to solve a variety of important problems for optimizing
+retirement savings. Here, for example, we consider the effect of infusions on the
+maximized probability of not running out of money in retirement. In particular, we
+consider at t = 0 a 50 year old investor who currently has 100 thousand dollars in
+their retirement account and intends to take out 50 thousand present day dollars every
+year after they turn 65 through the age of 80, where t = T = 30. We assume that
+the annual rate of inflation is 3%, so, in thousands of dollars, that means that at age
+66, C(t) = −50 · 1.0316 , at age 67, C(t) = −50 · 1.0317 , up through age 79 where
+C(t) = −50·1.0329 . Because C(t) isn’t defined at time T , which corresponds to when
+the investor is 80, we need to set the goal wealth G equal, in thousands of dollars, to
+G = 50 · 1.0330 = 121.4, so that the investor can make their final withdrawal without
+going bankrupt.
+   Our algorithm now optimizes the chance that the investor does not go bankrupt,
+but it finds, unfortunately, that this optimal probability is only 12.8%. The investor,
+therefore, considers making infusions of c thousand present day dollars each year until
+retiring at age 65, starting with an infusion of c · 1.03 at the age of 51. The effect of
+increasing c on the maximized probability of remaining solvent at age 80 is given in
+the first two columns of Table 7.
+   Target Date Funds (TDFs) play an important role in the space of retirement invest-
+ing. They provide a logical investment strategy that has the advantage of being
+customized to the age of an investor. Our GBWM approach allows the investment
+strategy to be further customized to the investor’s needs by considering their goals,
+timeframe, cash flows, and state of wealth over time, in addition to their age.
+   To quantify the advantages this additional customization provides, we have, for
+comparison to our GBWM results, created a hypothetical TDF using the same three
+
+123
+Dynamic portfolio allocation in goals-based wealth…                                                 635
+
+
+Table 7 Effect of changing
+                                      Value of c            Our GBWM algo-            Our Target Date
+pre-retirement infusions, c, for
+                                                            rithm: probability        Fund: probability
+our algorithm with the goal of
+                                                            of staying solvent        of staying solvent
+staying solvent and for our
+                                                            (%)                       (%)
+Target Date Fund
+                                      0                     12.8                       0.7
+                                      5                     25.8                       3.9
+                                      10                    42.0                      11.9
+                                      15                    58.6                      26.6
+                                      20                    73.5                      45.0
+                                      25                    85.4                      62.7
+                                      30                    93.8                      77.0
+                                      35                    98.4                      86.6
+                                      40                    99.8                      92.8
+
+
+
+Table 8 Our Target Date Fund glide path
+
+Age range                 50–54 (%)        55–59 (%)   60–64 (%)     65–69 (%)   70–74 (%)   75–80 (%)
+
+1. U.S. Stock             44               40          35            28          20          18
+2. International Stock    29               26          23            19          13          12
+3. U.S. Bond              27               34          42            53          67          70
+
+
+
+
+index funds representative of U.S. Bonds, International Stocks, and U.S. Stocks used
+by our GBWM algorithm, along with a typical glide path, shown in Table 8, for an
+investor transitioning from age 50 to age 80. Using the allocations from the glide path
+in this table, we use simulation to determine the probabilities of an investor remaining
+solvent at age 80. This gives us the results shown in the Target Date Fund column in
+Table 7.
+    We see from Table 7 that our algorithm shows a significantly higher ability to
+achieve the investor’s goal of staying solvent. More specifically, the advantage in
+using our GBWM algorithm is greater than 30 percentage points when c = 10 or 15
+and remains high for the other values of c as well.
+    There are a number of reasons for our algorithm’s considerable outperformance.
+One reason is that the TDF retirement allocations are not generally on the efficient
+frontier, so they incur some additional volatility that is not compensated by increased
+expected returns. A second reason is that the allocation within TDFs is time depen-
+dent, but does not depend on the level of the investor’s wealth, whereas our algorithm’s
+allocation strategy depends on both time and the level of wealth. Finally, our algorithm
+takes into account the investor’s stated goals and decisions, specifically the infusions
+and the withdrawals the investor has pre-determined, as well as the investor’s time-
+frame and the goal of staying solvent at the end of this timeframe. By allowing our
+optimization to be customizable to an individual investor’s circumstances, specifica-
+tions, and goals, our algorithm gains a considerable advantage over the one-size-fits-all
+nature of target date funds. Table 7 shows that these differences are not small.
+
+                                                                                             123
+636                                                                                         S. R. Das et al.
+
+
+
+
+Fig. 7 The distribution of wealth, given as one minus the cumulative distribution function, as it evolves
+across t = {5, 10, 15, 20, 25, 30} years when the contribution level, c, is 15 from t = 1 to t = 15. The
+top panel depicts the wealth evolution when the goal of our GBWM methodology is to remain solvent at
+T = 30. We note that wealth curve presented for t = T = 30 already has the final goal wealth, G = 121.4,
+subtracted from it, since G is to be withdrawn at T = 30. The bottom panel shows the wealth evolution for
+our Target Date Fund. Comparing the two t = 30 curves at W = 0, we see the jump from 26.6 to 58.6% in
+the probability of remaining solvent that our GBWM strategy provides, as shown in Table 7
+
+
+
+   We can better understand the trade-offs between our GBWM algorithm and our
+Target Date Fund by comparing the two panels in Fig. 7, where we present one minus
+the cumulative probability distributions at t = {5, 10, 15, 20, 25, 30} years for our
+GBWM methodology and our Target Date Fund. For this figure we have chosen c = 15.
+We note that the right tail of our Target Date Fund at t = 30 is higher. We also note at
+times like t = 20 that the chance of not going bankrupt, which is the value of the graph
+at W = 0, is slightly lower for our GBWM methodology than our TDF. These are the
+trade-offs that lead to our GBWM methodology attaining its goal of a much higher
+probability of not going bankrupt than our TDF (58.6% versus 26.6%) at t = 30.
+   In Table 9, we change the goal of our algorithm from staying solvent to ending with
+a balance at or above $500,000. This has no effect on our Target Date Fund numbers, of
+course, but for our algorithm, as expected, it lowers the probability of staying solvent,
+while increasing the probability of ending above $500,000. Again, we see that the
+advantage in using our GBWM methodology is greater than 30 percentage points, this
+time when c = 15, 20, or 25, and, again, it remains high for the other values of c as
+well. The effect of changing the GBWM goal to having a balance at or above $500,000
+
+123
+Dynamic portfolio allocation in goals-based wealth…                                                  637
+
+
+Table 9 Effect of changing
+                                    Value of c        Our algorithm: proba-       Our Target Date Fund:
+pre-retirement infusions, c, for
+                                                      bility of ending with ≥     probability of ending
+our algorithm with the goal of
+                                                      $500,000 (%)                with ≥ $500,000 (%)
+ending with at least $500,000
+and for our Target Date Fund        0                  8.9                         0.2
+                                    5                 18.5                         1.2
+                                    10                31.2                         4.2
+                                    15                45.1                        12.0
+                                    20                58.7                        24.5
+                                    25                70.9                        39.9
+                                    30                81.2                        55.6
+                                    35                89.2                        69.5
+                                    40                94.9                        80.1
+
+
+
+
+Fig. 8 The distribution of wealth, given as one minus the cumulative distribution function, as it evolves
+across t = {5, 10, 15, 20, 25, 30} years when the contribution level, c, is 15 from t = 1 to t = 15. The
+top panel depicts the wealth evolution when the goal of our GBWM methodology is to deliver an amount
+greater than $500,000 at T = 30. The bottom panel displays the wealth evolution when we split the goal
+for our GBWM methodology between staying solvent with a 60% weight and delivering an amount greater
+than $500,000 with a 40% weight at T = 30. In both panels, the wealth curve presented for t = T = 30
+already has the final goal wealth, G = 121.4, subtracted from it, since G is to be withdrawn at T = 30
+
+
+
+
+                                                                                            123
+638                                                                                S. R. Das et al.
+
+
+Table 10 Effect of changing
+                                    Value of c   Our algorithm: proba-    Our algorithm: proba-
+pre-retirement infusions, c, for
+                                                 bility of staying sol-   bility of ending with ≥
+our algorithm with the split goal
+                                                 vent (%)                 $500,000 (%)
+of staying solvent with a 60%
+weight and ending with at least     0            11.8                      8.1
+$500,000 with a 40% weight
+                                    5            23.8                     16.9
+                                    10           38.9                     28.8
+                                    15           54.5                     42.2
+                                    20           68.7                     55.5
+                                    25           80.5                     67.8
+                                    30           89.5                     78.5
+                                    35           95.6                     87.2
+                                    40           98.8                     93.8
+
+
+
+on the wealth distribution over time can be seen in the top panel of Fig. 8. Note in this
+panel the evolution of the advantageous kink that finally lands at $500 thousand in the
+t = T = 30 curve.
+   Finally, in Table 10, we show the results of dividing our goal, as discussed in
+Sect. 3.3, between staying solvent with a 60% weight and ending with a balance at or
+above $500,000 with a 40% weight. Comparing the results in Table 10 with the results
+in Table 7, we see that having a 60% weight, as opposed to the full weight, on the goal
+of staying solvent leads to losses in the probability for attaining this goal of less than 5
+percentage points, while comparing Table 10 with Table 9 for the goal of attaining at
+least $500,000, we only observe losses of less than 4 percentage points. The evolution
+of the distribution for this mixed GBWM goal when c = 15 can be seen in the bottom
+panel of Fig. 8. Note that, as one would expect, we now see two advantageous kinks
+at $0 and $500 thousand in the t = T = 30 curve.
+
+
+5 Concluding discussion
+
+In this paper, we have developed an algorithm that can quickly determine (generally
+within a few seconds to a minute) an optimal dynamic trading strategy for goals-based
+wealth management (GBWM). The objective function we maximize in our GBWM
+framework is the probability of reaching a given goal wealth at the end of a given
+investment horizon, in contrast to maximizing the expected utility of the wealth at
+the end of a given time horizon. Without any sacrifice in runtime, our algorithm can
+optimally allocate from among any given set, large or small, of chosen portfolios,
+which can be determined outside of our algorithm. Also, without any sacrifice in
+runtime, our algorithm can accommodate periodic specified infusions or withdrawals.
+Further, we can easily compute the probability of running out of money at each period
+due to any of these withdrawals.
+   The dynamic programming approach, whose computation works backwards in time,
+has important advantages over approaches that work forwards in time. Dynamic pro-
+gramming addresses the fact that the optimal portfolio allocation will shift over time.
+
+123
+Dynamic portfolio allocation in goals-based wealth…                                                   639
+
+
+Attempting to consider this with a forwards in time algorithm is computationally
+infeasible, so these algorithms are reduced to myopic approaches, where the alloca-
+tion chosen at a point in time is only optimal under the assumption that no further
+reallocation will occur. That is, the forwards in time algorithms are restricted to the
+inferior approach of repeated static optimization. Interestingly, despite this, the results
+from the repeated static optimization method described in Das et al. (2018) end up
+being very similar to the results obtained from our dynamic programming approach,
+however, that paper’s method, which relies on the solution to a stochastic differential
+equation (SDE), cannot be extended to infusions or withdrawals and it has a longer
+computational time. Most forwards in time approaches rely on simulation instead of
+solving an SDE, which leads to even longer computational times to be reasonably
+accurate.
+    We can modulate the left and right tails of the terminal wealth distribution by
+varying the chosen range of allowable portfolios on the efficient frontier. If we remove
+either the most risky investments at the top of this range or the least risky investments
+at the bottom of this range, we lower the probability of reaching our goal wealth, since
+we are restricting the set of controls available to the algorithm. However, removing the
+most risky investments has the benefit of lowering the left tail in the distribution, as it
+lowers the chance of significant losses, while removing the least risky investments has
+the benefit of raising the right tail in the distribution, making it more likely to attain
+wealth values that are significantly higher than the goal wealth.
+    Target date (or life-cycle) funds have the important feature of being able to reallo-
+cate funds based on time, specifically on the age of the investor. They cannot, however,
+reallocate based on the investor’s wealth or the investor’s specific goals. Nor are the
+allocations underlying a target date fund necessarily on the efficient frontier. The nat-
+ural question arises as to weather incorporating these GBWM features and efficiency
+constraints, which require individualized attention through automation and/or human
+advisors, adds much value to the investor. Our paper concludes that they can actually
+add considerable value. We explored the case of a 50 year old saving for retirement at
+age 65, who then takes out inflation adjusted withdrawals until the age of 80. Working
+with just three index funds representative of U.S. Bonds, International Stocks, and
+U.S. Stocks, we show examples where our algorithm’s optimal dynamic reallocation
+strategy increases the chance of this investor remaining solvent at age 80 by more than
+30 percentage points over using a Target Date Fund during this period.
+    The approach in this paper can be expanded to answer questions arising in other
+important financial situations. These include incorporating the effect of taxes or incor-
+porating stochastic efficient frontier models. Because our algorithm runs so quickly,
+it is unlikely that these additional features will degrade the runtime particularly sig-
+nificantly.
+
+
+References
+Birge JR, Louveaux FV (1997) Introduction to stochastic programming. Springer, New York
+Browne S (1995) Optimal investment policies for a firm with a random risk process: exponential utility and
+     minimizing the probability of ruin. Math Oper Res 20(04):937–958
+
+
+
+                                                                                             123
+640                                                                                          S. R. Das et al.
+
+
+Browne S (1997) Survival and growth with a liability: optimal portfolio strategies in continuous time. Math
+     Oper Res 22(02):468–493
+Browne S (1999a) Reaching goals by a deadline: digital options and continuous-time active portfolio
+     management. Adv Appl Probab 31(02):551–577
+Browne S (1999b) The risk and rewards of minimizing shortfall probability. J Portfolio Manag 25(04):76–85
+Browne S (2000) Risk-constrained dynamic active portfolio management. Manag Sci 46(09):1188–1199
+Brunel JLP (2015) Goals-based wealth management: an integrated and practical approach to changing the
+     structure of wealth advisory practices. Wiley, Hoboken
+Chhabra A (2005) Beyond Markowitz: a comprehensive wealth allocation framework for individual
+     investors. J Wealth Manag 7(4):8–34
+Cox JC, Huang C (1989) Optimal consumption and portfolio policies when asset prices follow a diffusion
+     process. J Econ Theory 49(1):33–83
+Das SR, Markowitz H, Scheid J, Statman M (2010) Portfolio optimization with mental accounts. J Financ
+     Quant Anal 45(2):311–334
+Das SR, Ostrov D, Radhakrishnan A, Srivastav D (2018) Goals-based wealth management: a new approach.
+     J Invest Manag 16(3):1–27
+Deguest R, Martellini L, Milhau V, Suri A, Wang H (2015) Introducing a comprehensive risk allocation
+     framework for goals-based wealth management. EDHEC-Risk Institute, Lille
+Kahneman D, Tversky A (1979) Prospect theory: an analysis of decision under risk. Econometrica 47:263–
+     291
+Lopes L (1987) Between hope and fear: the psychology of risk. Adv Exp Soc Psychol 20:255–295
+Markowitz H (1952) Portfolio selection. J Finance 6:77–91
+Merton RC (1969) Lifetime portfolio selection under uncertainty: the continuous-time case. Rev Econ Stat
+     51(3):247–257
+Merton RC (1971) Optimum consumption and portfolio rules in a continuous-time model. Journal of
+     Economic Theory 3(4):373–413
+Nevins D (2004) Goals-based investing: integrating traditional behavioral finance. J Wealth Manag 6(4):8–
+     23
+Roy AD (1952) Safety-first and the holding of assets. Econometrica 20:431–449
+Shefrin HM, Statman M (1985) The disposition to sell winners too early and ride losers too long: theory
+     and evidence. J Finance 40:777–790
+Shefrin HM, Statman M (2000) Behavioral portfolio theory. J Financ Quant Anal 35(2):127–151
+Thaler RH (1985) Mental accounting and consumer choice. Mark Sci 4:199–214
+Thaler RH (1999) Mental accounting matters. J Behav Decis Mak 12:183–206
+Wallace SW, Ziemba WT (eds) (2005) Applications of stochastic programming. MPS-SIAM mathematical
+     series on optimization, SIAM and MPS, Philadelphia
+Wang H, Suri A, Laster D, Almadi H (2011) Portfolio selection in goals-based wealth management. J Wealth
+     Manag 14(1):55–65
+
+
+Publisher’s Note Springer Nature remains neutral with regard to jurisdictional claims in published maps
+and institutional affiliations.
+
+
+
+
+123
+

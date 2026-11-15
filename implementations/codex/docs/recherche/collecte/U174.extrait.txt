@@ -1,0 +1,429 @@
+GitHub - pmorissette/bt: bt - flexible backtesting for Python · GitHub 
+
+ Skip to content 
+
+Navigation Menu
+
+ Sign in 
+
+ Products 
+
+ Platform 
+ GitHub Repository hosting, code review, and collaboration 
+
+ Copilot AI coding agent for tasks, projects, and automated work 
+
+ Build & Ship 
+ Actions CI/CD and automation 
+
+ Code Quality Quality analysis, fixes, and enforcement 
+
+ Codespaces Cloud development environments 
+
+ Secure 
+ Code Security Vulnerability detection and remediation 
+
+ Secret Protection Secret scanning and leak prevention 
+
+ All Features 
+
+ Developers 
+
+ Learn 
+ Documentation 
+
+ Training 
+
+ Certifications 
+
+ Build 
+ Build with Copilot 
+
+ Customize Copilot 
+
+ Integrations 
+
+ Explore 
+ Trending repos 
+
+ GitHub Sponsors 
+
+ Developer articles 
+
+ Changelog 
+ Changelog Your source for the latest features, improvements, and fixes across GitHub products, all in one place. 
+
+ Businesses 
+
+ By Stage 
+ Enterprises 
+
+ Team 
+
+ Startups 
+
+ Nonprofits 
+
+ By Industry 
+ Healthcare 
+
+ Financial services 
+
+ Manufacturing 
+
+ Government 
+
+ See all industries 
+
+ Evaluate GitHub 
+ Why GitHub 
+
+ Customer Stories 
+
+ Business insights 
+
+ Trust Center 
+
+ Add-ons 
+ GitHub Advanced Security Enterprise-grade code security 
+
+ Copilot for business Enterprise-grade AI features 
+
+ Premium Support Enterprise-grade 24/7 support 
+
+ Resources 
+
+ Learn & Connect 
+ Documentation 
+
+ Resource center 
+
+ Blog 
+
+ Events & webinars 
+
+ Community Forum 
+
+ Customer Stories 
+
+ Integrations 
+
+ Support 
+ Customer support 
+
+ Training 
+
+ GitHub Status 
+
+ Company 
+ About 
+
+ Partners 
+
+ Changelog 
+
+ GitHub Universe 
+ GitHub Universe The event for developers, by developers — talks, workshops, and what’s next for GitHub. 
+
+ Pricing 
+
+ Search / 
+
+ Sign in 
+ Sign up 
+Appearance settings
+
+ You signed in with another tab or window. Reload to refresh your session. 
+ You signed out in another tab or window. Reload to refresh your session. 
+ You switched accounts on another tab or window. Reload to refresh your session. 
+
+ Dismiss alert 
+
+{{ message }}
+
+ pmorissette 
+
+ bt 
+
+Repository navigation
+
+ Code 
+
+ Issues 13  ( 13 ) 
+
+ Pull requests 
+
+ Actions 
+
+ Projects 
+
+ Wiki 
+
+ Security and quality 
+
+ Insights 
+
+ More items 
+
+ bt 
+ Public 
+
+ Notifications You must be signed in to change notification settings 
+
+ Fork 511  ( 511 ) 
+
+ Star 3k  ( 3k ) You must be signed in to star a repository 
+
+ About 
+
+bt - flexible backtesting for Python
+
+ pmorissette.github.io/bt 
+
+ Resources 
+
+ Readme 
+
+ MIT license 
+
+ Activity 
+
+ Stars 
+
+ 3.0k stars 
+
+ Watchers 
+
+ 87 watching 
+
+ Forks 
+
+ 511 forks 
+
+ Report repository 
+
+ master 
+
+ Branches Tags 
+
+ Go to file 
+
+ Code 
+ Open more actions menu 
+
+Latest commit
+
+History
+ 1,001 Commits 
+
+ 1,001 Commits 
+
+Folders and files
+
+ Name Name 
+ Last commit message 
+ 
+ Last commit date 
+
+ .github 
+
+ .github 
+
+ benchmarks 
+
+ benchmarks 
+
+ bt 
+
+ bt 
+
+ docs 
+
+ docs 
+
+ examples 
+
+ examples 
+
+ tests 
+
+ tests 
+
+ .copier-answers.yaml 
+
+ .copier-answers.yaml 
+
+ .gitattributes 
+
+ .gitattributes 
+
+ .gitignore 
+
+ .gitignore 
+
+ LICENSE 
+
+ LICENSE 
+
+ Makefile 
+
+ Makefile 
+
+ README.md 
+
+ README.md 
+
+ pyproject.toml 
+
+ pyproject.toml 
+
+ View all files 
+
+Repository files navigation
+
+ README 
+
+ MIT license 
+
+ More items 
+
+bt — Flexible Backtesting for Python
+
+Build, test, and compare investment strategies from reusable Python components.
+bt combines strategy logic with historical price data, tracks portfolio positions
+and transactions, and provides performance statistics and charts through
+ ffn .
+
+ Compose strategy logic: combine algorithms for scheduling, security selection, weighting, and rebalancing.
+
+ Build portfolios of strategies: nest strategies and securities in a common tree.
+
+ Model trading costs: configure commissions and transaction cost models.
+
+ Compare results: inspect returns, weights, transactions, drawdowns, and other statistics.
+
+Install
+
+ pip install bt 
+
+See the installation guide for additional details.
+
+A first backtest
+
+This example uses synthetic prices, so it runs without downloading market data:
+
+ import numpy as np 
+ import pandas as pd 
+
+ import bt 
+
+ prices = pd . DataFrame (
+ {
+ "asset_a" : np . linspace ( 100 , 120 , 252 ),
+ "asset_b" : np . linspace ( 100 , 110 , 252 ),
+ },
+ index = pd . bdate_range ( "2020-01-01" , periods = 252 ),
+)
+
+ strategy = bt . Strategy (
+ "equal_weight" ,
+ [
+ bt . algos . RunMonthly (),
+ bt . algos . SelectAll (),
+ bt . algos . WeighEqually (),
+ bt . algos . Rebalance (),
+ ],
+)
+ result = bt . run ( bt . Backtest ( strategy , prices ))
+ result . display () 
+
+The strategy selects both assets, gives each equal weight, and rebalances monthly.
+Replace the synthetic prices with your own data to explore a strategy. Backtest
+results depend on data quality and modeling assumptions; they do not predict
+future performance.
+
+Explore the documentation
+
+ First strategy tutorial : walk through a backtest and inspect its results.
+
+ Algorithms : compose and customize strategy logic.
+
+ Portfolio trees : combine securities and nested strategies.
+
+ Examples : explore momentum, risk allocation, and fixed-income strategies.
+
+ API overview : find strategy, algorithm, and backtest interfaces.
+
+The published documentation is at https://pmorissette.github.io/bt/ .
+
+Contribute
+
+See the development guide for environment setup, tests,
+documentation builds, and Copier template updates. Report bugs and propose
+improvements through GitHub issues .
+
+bt is released under the MIT license .
+
+ About 
+
+bt - flexible backtesting for Python
+
+ pmorissette.github.io/bt 
+
+ Resources 
+
+ Readme 
+
+ MIT license 
+
+ Activity 
+
+ Stars 
+
+ 3.0k stars 
+
+ Watchers 
+
+ 87 watching 
+
+ Forks 
+
+ 511 forks 
+
+ Report repository 
+
+ Releases 
+
+ Packages 
+
+ Used by 
+
+ Contributors 
+
+ Languages 
+
+Footer
+
+ © 2026 GitHub, Inc.
+
+Footer navigation
+
+ Terms 
+
+ Privacy 
+
+ Security 
+
+ Status 
+
+ Community 
+
+ Docs 
+
+ Contact 
+
+ Manage cookies
+
+ Do not share my personal information
+
+ You can’t perform that action at this time.

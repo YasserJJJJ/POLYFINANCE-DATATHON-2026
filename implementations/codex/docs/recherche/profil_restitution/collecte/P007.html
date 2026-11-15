@@ -1,0 +1,784 @@
+ <!DOCTYPE html> <html lang="en" > <head> <meta charset="utf-8" /> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <link rel="shortcut icon" type="image/png" href="/ResourcePackages/FPCanadaBootstrap/assets/images/favicon.png" /> <script type="importmap">
+            {
+                "imports": {
+                    "vue": "/ResourcePackages/FPCanadaBootstrap/assets/dist/js/vue.global.prod.js",
+                    "components": "/js/components.js"
+                }
+            }
+        </script> <script async src="https://www.googletagmanager.com/gtag/js?id=G-7SD97CBZV2"></script> <!-- Google Tag Manager --> <script>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || []; w[l].push({
+                    'gtm.start':
+                        new Date().getTime(), event: 'gtm.js'
+                }); var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                        'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-K7V3X8S');
+        </script> <!-- End Google Tag Manager --> <script>
+            var baseURL = 'https://api.fpcanada.ca/SOA/';
+    </script> <!-- TODO NG: eventually consider swapping these over to the prod versions? --> <script src="/ResourcePackages/FPCanadaBootstrap/assets/dist/js/vue.global.prod.js"></script> <script src="/ResourcePackages/FPCanadaBootstrap/assets/dist/js/index.iife.js"></script> <script src="/ResourcePackages/FPCanadaBootstrap/assets/dist/js/pinia.iife.prod.js"></script> <script src="/ResourcePackages/FPCanadaBootstrap/assets/dist/js/mock-min.js"></script> <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet" /> <script src="/ResourcePackages/FPCanadaBootstrap/assets/dist/js/vuetify.min.js"></script> <link rel="stylesheet" href="/ResourcePackages/FPCanadaBootstrap/assets/CSS/vuetify.min.css" /> <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet" /> <script>
+        const { createApp, ref, watch, forceUpdate, getCurrentInsance, onMounted, computed, nextTick, toRaw } = Vue;
+        const { createPinia, defineStore, mapStores, mapState, mapActions } = Pinia
+    </script> <script src="/ResourcePackages/FPCanadaBootstrap/assets/dist/js/jquery.min.js?package=FPCanadaBootstrap" type="text/javascript"></script><script src="/ScriptResource.axd?d=6DQe8ARl7A9TiuWej5ttCiD6XGBHrsxPUm81JqhY8UH9OaRbnsWqBJ43CrBpn8xLIzMO7JhpVMYkxZCHG08mm9OGN6eseLNz89S3GY7DyyNM9bWeeAni8nd6BzGD4kYIsJvn26-PCyh4C0dhReOwTosGEt8MBdLH2SrV_cEspJDho1_fSa3Y9W4jvhzPpSiN0&amp;t=ffffffff8869f732" type="text/javascript"></script><script src="/ScriptResource.axd?d=74FHISOx3fOPKwLxL0RMYvPryJGthBmhalRECHNPcayiz29DmJI2gsIZaLNRvYrL3_f8GYMHtOj_XiqV2gCdARDJbeYxTQynxr26r8dgocwb3XCw0WmO_DPuB8HeAukYj5ZlAEsQwyKi-antMsaP8BKojtufzgTRXeDQGBpYELMzXG1K3Mko4y5l6T3EbQEi0&amp;t=ffffffff8869f732" type="text/javascript"></script><script src="/ScriptResource.axd?d=BipRCKUteAIr0PTUVR7xo3Kf_nNFwdiQbImEdU5u5MjEuJ2MPzuyMBzi5QqWmyPtaTmj0WPXioN8VlQ_AcQtL6xm1L5qukRchQlnk_Y_ZBty2CdnyJQV6SxeAcYyq_aYWjJMFptZ5VkzHqf3WGK953qw6tuhd6aOuqWdz5Ae-YKFCf0A1lEh42QUFzafbLeT0&amp;t=ffffffff8869f732" type="text/javascript"></script> <script src="/ResourcePackages/FPCanadaBootstrap/assets/dist/js/axios.min.js?package=FPCanadaBootstrap" type="text/javascript"></script><script src="/ResourcePackages/FPCanadaBootstrap/assets/dist/js/bootstrap.bundle.min.js?package=FPCanadaBootstrap" type="text/javascript"></script><script src="/ResourcePackages/FPCanadaBootstrap/assets/dist/js/select2.min.js?package=FPCanadaBootstrap" type="text/javascript"></script><script src="/ResourcePackages/FPCanadaBootstrap/assets/dist/js/bootstrap-datepicker.min.js?package=FPCanadaBootstrap" type="text/javascript"></script><script src="/ResourcePackages/FPCanadaBootstrap/assets/dist/js/dataTables.min.js?package=FPCanadaBootstrap" type="text/javascript"></script><script src="/ResourcePackages/FPCanadaBootstrap/assets/dist/js/helper.js?v=4.3.8&amp;package=FPCanadaBootstrap" type="text/javascript"></script><script src="/ResourcePackages/FPCanadaBootstrap/assets/dist/js/custom.js?v=4.3.8&amp;package=FPCanadaBootstrap" type="text/javascript"></script><link href="/ResourcePackages/FPCanadaBootstrap/assets/CSS/owl.carousel.min.css?package=FPCanadaBootstrap" rel="stylesheet" type="text/css" /><link href="/ResourcePackages/FPCanadaBootstrap/assets/CSS/magnific-popup.css?package=FPCanadaBootstrap" rel="stylesheet" type="text/css" /><link href="/ResourcePackages/FPCanadaBootstrap/assets/CSS/bootstrap.css?package=FPCanadaBootstrap" rel="stylesheet" type="text/css" /><link href="/ResourcePackages/FPCanadaBootstrap/assets/CSS/multiselect.css?package=FPCanadaBootstrap" rel="stylesheet" type="text/css" /><link href="/ResourcePackages/FPCanadaBootstrap/assets/CSS/select2.min.css?package=FPCanadaBootstrap" rel="stylesheet" type="text/css" /><link href="/ResourcePackages/FPCanadaBootstrap/assets/CSS/jquery.mCustomScrollbar.css?package=FPCanadaBootstrap" rel="stylesheet" type="text/css" /><link href="/ResourcePackages/FPCanadaBootstrap/assets/CSS/bootstrap-multiselect.min.css?package=FPCanadaBootstrap" rel="stylesheet" type="text/css" /><link href="/ResourcePackages/FPCanadaBootstrap/assets/CSS/pagination.css?package=FPCanadaBootstrap" rel="stylesheet" type="text/css" /><link href="/ResourcePackages/FPCanadaBootstrap/assets/CSS/bootstrap-datepicker.min.css?package=FPCanadaBootstrap" rel="stylesheet" type="text/css" /><link href="/ResourcePackages/FPCanadaBootstrap/assets/CSS/dataTables.min.css?package=FPCanadaBootstrap" rel="stylesheet" type="text/css" /><link href="/ResourcePackages/FPCanadaBootstrap/assets/CSS/all.min.css?package=FPCanadaBootstrap" rel="stylesheet" type="text/css" /><link href="/ResourcePackages/FPCanadaBootstrap/assets/CSS/custom.professional.css?v=4.3.8&amp;package=FPCanadaBootstrap" rel="stylesheet" type="text/css" /><link href="/ResourcePackages/FPCanadaBootstrap/assets/css/materialdesignicons.min.css?package=FPCanadaBootstrap" rel="stylesheet" type="text/css" /> <script src="/Mvc/Scripts/General/FPCanadaConfig.js?v=4.3.8&amp;package=FPCanadaBootstrap" type="text/javascript"></script><script src="/Mvc/Scripts/General/FPCanadaStore.js?v=4.3.8&amp;package=FPCanadaBootstrap" type="text/javascript"></script><script src="/Mvc/Scripts/General/WebServiceCalls_v1.0.1.js?v=4.3.8&amp;package=FPCanadaBootstrap" type="text/javascript"></script> <!-- NOTE 2024-04-08: keep this order because the WebServiceCalls need some of the pieces from the earlier js files to run --> <!--
+    <script type="module" crossorigin src="/ResourcePackages/vuejs/vue-project/dist/assets/index-CPxSLA6C.js"></script>
+    <link rel="stylesheet" crossorigin href="/ResourcePackages/vuejs/vue-project/dist/assets/index-1bjcHagV.css">
+        --> <title>
+	Use of Technology When Providing Financial Planning Services | FP Canada
+</title><meta property="og:title" content="Use of Technology When Providing Financial Planning Services | FP Canada" /><meta property="og:description" content="This Rule Interpretation Bulletin provides information about the interpretation and application of the Use of Technology Rules 28 and 29 in the FP Canada Standards Council™ Standards of Professional Responsibility" /><meta property="og:url" content="https://fpcanada.ca/professional-responsibility/practice-guidance/fp-canada-standards-council-rule-interpretation-bulletin-1" /><meta property="og:type" content="website" /><meta property="og:site_name" content="Professional Site" /><meta name="Generator" content="Sitefinity 15.4.8630.0 DX" /><link rel="canonical" href="https://fpcanada.ca/professional-responsibility/practice-guidance/fp-canada-standards-council-rule-interpretation-bulletin-1" /><meta name="description" content="This Rule Interpretation Bulletin provides information about the interpretation and application of the Use of Technology Rules 28 and 29 in the FP Canada Standards Council™ Standards of Professional Responsibility" /></head> <body> <!-- Google Tag Manager (noscript) --> <noscript> <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K7V3X8S"
+                    height="0" width="0" style="display:none;visibility:hidden"></iframe> </noscript> <div class="FPGlobalOverlay"> <div class="spinner-border text-light" style="margin:25%;" role="status"> <span class="visually-hidden">Loading...</span> </div> </div> <div class="headerSpacer"></div> <header> <div class="headerTop"> <div class="container"> 
+<div class="row" data-sf-element="Row">
+    <div id="HeaderTop_TC927687B019_Col00" class="sf_colsIn col-lg-9" data-sf-element="Column 1" data-placeholder-label="Column 1">
+
+
+
+
+	<div class="topMenu text-end me-1">
+
+  <ul>
+    <li class="top-nav">
+        <a  data-sf-ec-immutable="" class="nav-link " href="/canadian-public" target="_blank">Canadian public</a>
+    </li>
+    <li class="top-nav">
+        <a  data-sf-ec-immutable="" class="nav-link " href="/news" target="_self">News</a>
+    </li>
+    <li class="top-nav">
+        <a  data-sf-ec-immutable="" class="nav-link " href="/ce-accreditation-program" target="_self">CE Accreditation</a>
+    </li>
+    <li class="top-nav">
+        <a  data-sf-ec-immutable="" class="nav-link " href="/industry" target="_self">Industry</a>
+    </li>
+    <li class="top-nav">
+        <a  data-sf-ec-immutable="" class="nav-link " href="/planner-directory" target="_self">Planner Directory</a>
+    </li>
+    <li class="top-nav">
+        <a  data-sf-ec-immutable="" class="nav-link " href="/make-a-complaint" target="_self">Make a complaint</a>
+    </li>
+    <li class="top-nav">
+        <a  data-sf-ec-immutable="" class="nav-link " href="/contact" target="_self">Contact</a>
+    </li>
+    
+  </ul>
+</div>
+    
+     
+ 
+
+
+
+    </div>
+    <div id="HeaderTop_TC927687B019_Col01" class="sf_colsIn col-lg-3" data-sf-element="Column 2" data-placeholder-label="Column 2">
+<div class="SearchBar">
+<div class="d-flex gap-3 my-3" role="search">
+
+    <input type="search" title="Search input" placeholder="Search" id="3fb51832-2742-4a27-a00d-d14912d9328a" class="form-control" value="" aria-autocomplete="both" aria-describedby='SearchInfo-1' />
+    <button type="button" class="searchBtn" id="1984187e-129c-469b-b1f3-280aac0496ea" >Search</button>
+    <span id='SearchInfo-1' aria-hidden="true" hidden>When autocomplete results are available use up and down arrows to review and enter to select.</span>
+
+
+    <input type="hidden" data-sf-role="resultsUrl" value="/search-results" />
+    <input type="hidden" data-sf-role="indexCatalogue" value="professional-site" />
+    <input type="hidden" data-sf-role="disableSuggestions" value='false' />
+    <input type="hidden" data-sf-role="minSuggestionLength" value="3" />
+    <input type="hidden" data-sf-role="suggestionFields" value="Title,Content" />
+    <input type="hidden" data-sf-role="language" value="en" />
+    <input type="hidden" data-sf-role="siteId" value="a100615c-ba7f-4ad3-bb3a-6cc40b84b47a" />
+    <input type="hidden" data-sf-role="suggestionsRoute" value="/restapi/search/suggestions" />
+    <input type="hidden" data-sf-role="searchTextBoxId" value='#3fb51832-2742-4a27-a00d-d14912d9328a' />
+    <input type="hidden" data-sf-role="searchButtonId" value='#1984187e-129c-469b-b1f3-280aac0496ea' />
+    <input type="hidden" data-sf-role="scoringSettings" value='' />
+    <input type="hidden" data-sf-role="searchInAllSitesInTheIndex" value='' />
+</div>
+</div>
+
+
+
+
+
+    </div>
+</div>
+ </div> </div> <div class="headerBottom"> <div class="container"> 
+<div class="row flex-nowrap header-navigation  designview-flex" data-sf-element="Row">
+    <div id="Header_T6540258C047_Col00" class="sf_colsIn no-be-flex" style="flex: 2;" data-sf-element="Column 1" data-placeholder-label="Column 1">
+
+
+
+
+
+
+    <div class="d-flex justify-content-between align-items-end">
+
+        <div class="siteLogo">
+            <a href="/">
+
+                <img src="/ResourcePackages/FPCanadaBootstrap/assets/images/FP_logo.jpg?v=4.3.8" alt="Logo" data-sf-ec-immutable="">
+            </a>
+        </div>
+        <!-- End: siteLogo -->
+
+        <div class="rightSide d-flex align-items-end mx-auto">
+            <div class="mainMenu">
+                <ul class="" role="tablist">
+                            <!-- End: lefBlue -->
+                                <li class="submenu oneSubmenu" role="tab">
+                                    <a class=" dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">About us <span class="dropicon"></span></a>
+
+                                    <div class="dropdown-menu menuDropdown" style="">
+                                        <div class="lefBlue d-flex flex-wrap align-items-stretch">
+                                            <button class="backMenu" type="button">Back</button>
+                                            <p>IMAGINE 2030 is our vision of the future</p><div class="d-flex align-items-end"><a href="/about/imagine-2030" class="btn btn-primary">Find out more</a>
+</div>
+                                        </div>
+
+                                        <div class="rightmenu">
+                                            <ul>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/about/about-fp-canada" target="_self">About FP Canada</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/about/governance-and-management" target="_self">Governance and management</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/about/strategic-plan-2025-2030" target="_self">2025–2030 Strategic Plan</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/about/imagine-2030" target="_self">IMAGINE 2030</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/about/the-canadian-foundation-for-financial-planning" target="_blank">The Canadian Foundation for Financial Planning</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/about/awards-recognition" target="_self">Awards and recognition</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/about/public-policy" target="_self">Public policy&#160;</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/about/fintellect-initiative" target="_blank">Fintellect Initiative</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/about/financial-planning-conference" target="_self">Financial Planning Conference</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/about/scholarship" target="_self">Scholarship</a>
+                                                    </li>
+                                            </ul>
+                                        </div>
+                                        <!-- End: rightmenu -->
+                                    </div>
+                                </li>
+                            <!-- End: lefBlue -->
+                                <li class="submenu oneSubmenu" role="tab">
+                                    <a class=" dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Our certifications <span class="dropicon"></span></a>
+
+                                    <div class="dropdown-menu menuDropdown" style="">
+                                        <div class="lefBlue d-flex flex-wrap align-items-stretch">
+                                            <button class="backMenu" type="button">Back</button>
+                                            <p>FP Canada Institute™ offers end-to-end education towards CFP<sup>®</sup> certification and QAFP<sup>®</sup> certification</p><div class="d-flex align-items-end"><a class="btn btn-primary" href="/programs-and-courses">Programs &amp; Courses</a></div>
+                                        </div>
+
+                                        <div class="rightmenu">
+                                            <ul>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/about-our-certifications/financial-planning-as-a-career" target="_self">Financial planning as a career</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/about-our-certifications/why-get-certified" target="_self">Why get certified?</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/about-our-certifications/qafp-certification" target="_self">QAFP certification</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/about-our-certifications/cfp-certification" target="_self">CFP certification</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/about-our-certifications/paths-to-certification" target="_self">Paths to certification</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/about-our-certifications/postsecondary-requirements-certification" target="_self">Postsecondary requirements</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/about-our-certifications/fee-schedule" target="_self">Fee schedule</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/about-our-certifications/fp-retired" target="_self">FP Retired status</a>
+                                                    </li>
+                                            </ul>
+                                        </div>
+                                        <!-- End: rightmenu -->
+                                    </div>
+                                </li>
+                            <!-- End: lefBlue -->
+                                <li class="submenu oneSubmenu" role="tab">
+                                    <a class=" dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Get certified <span class="dropicon"></span></a>
+
+                                    <div class="dropdown-menu menuDropdown" style="">
+                                        <div class="lefBlue d-flex flex-wrap align-items-stretch">
+                                            <button class="backMenu" type="button">Back</button>
+                                            <p>Learn how to become a QAFP<sup>®</sup> professional or CFP<sup>®</sup> professional</p><div class="d-flex align-items-end"><a class="btn btn-primary" href="/pathfinder">Get started</a>
+</div>
+                                        </div>
+
+                                        <div class="rightmenu">
+                                            <ul>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/get-certified/overview" target="_self">Get certified</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/get-certified/education" target="_self">Education</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/get-certified/exam" target="_self">Exam</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/get-certified/experience" target="_self">Experience</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/get-certified/ethics" target="_self">Ethics</a>
+                                                    </li>
+                                            </ul>
+                                        </div>
+                                        <!-- End: rightmenu -->
+                                    </div>
+                                </li>
+                            <!-- End: lefBlue -->
+                                <li class="submenu oneSubmenu" role="tab">
+                                    <a class="active dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Professional responsibility <span class="dropicon"></span></a>
+
+                                    <div class="dropdown-menu menuDropdown" style="">
+                                        <div class="lefBlue d-flex flex-wrap align-items-stretch">
+                                            <button class="backMenu" type="button">Back</button>
+                                            <p>The FP Canada Standards Council™ reviews all complaints it receives</p><div class="d-flex align-items-end"><a class="btn btn-primary" href="/make-a-complaint">Make a complaint</a>
+</div>
+                                        </div>
+
+                                        <div class="rightmenu">
+                                            <ul>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/professional-responsibility/our-promise-to-canadians" target="_self">Our promise to Canadians</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/professional-responsibility/commitment-to-high-standards" target="_self">Commitment to high standards</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/professional-responsibility/enforcing-the-standards" target="_self">Enforcing the standards</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/professional-responsibility/standards-of-professional-responsibility" target="_self">Standards of Professional Responsibility</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/professional-responsibility/disciplinary-rules-and-procedures" target="_self">Disciplinary rules and procedures</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/professional-responsibility/disciplinary-actions" target="_self">Disciplinary actions</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/professional-responsibility/conduct-review-panel-guidance-and-advice" target="_self">Letters of Guidance and Advice</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="active" href="/professional-responsibility/practice-guidance" target="_self">Practice guidance</a>
+                                                    </li>
+                                            </ul>
+                                        </div>
+                                        <!-- End: rightmenu -->
+                                    </div>
+                                </li>
+                            <!-- End: lefBlue -->
+                                <li class="submenu oneSubmenu" role="tab">
+                                    <a class=" dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Career &amp; growth <span class="dropicon"></span></a>
+
+                                    <div class="dropdown-menu menuDropdown" style="">
+                                        <div class="lefBlue d-flex flex-wrap align-items-stretch">
+                                            <button class="backMenu" type="button">Back</button>
+                                            <p>Access your financial planning professionals account</p><div class="d-flex align-items-end"><a class="btn btn-primary" href="/login">Login</a>
+</div>
+                                        </div>
+
+                                        <div class="rightmenu">
+                                            <ul>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/career/resources-for-financial-planners" target="_self">Resources for Financial Planners</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/career/access-certification-marks" target="_self">Access certification marks</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/career/maintain-your-certification" target="_self">Maintain your certification</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/career/continuing-education" target="_self">Continuing Education</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/career/ciro-exam-prep" target="_self">Securities Licensing Education &amp; CIRO Exam Prep Tools</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/career/industry-career-board" target="_self">Industry career board</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/career/volunteer-opportunities" target="_self">Volunteer opportunities</a>
+                                                    </li>
+                                            </ul>
+                                        </div>
+                                        <!-- End: rightmenu -->
+                                    </div>
+                                </li>
+                            <!-- End: lefBlue -->
+                                <li class="submenu oneSubmenu" role="tab">
+                                    <a class=" dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Catalogue <span class="dropicon"></span></a>
+
+                                    <div class="dropdown-menu menuDropdown" style="">
+                                        <div class="lefBlue d-flex flex-wrap align-items-stretch">
+                                            <button class="backMenu" type="button">Back</button>
+                                            <p>Sign in to your FP Canada account</p><div class="d-flex align-items-end"><a class="btn btn-primary" href="/login">Login</a>
+</div>
+                                        </div>
+
+                                        <div class="rightmenu">
+                                            <ul>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/catalogue/certification-education-store" target="_self">Certification Education Store</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/catalogue/ce-store" target="_self">CE Store</a>
+                                                    </li>
+                                                    <li class="nav-item" role="tab">
+                                                        <a class="" href="/catalogue/securities-licensing-education-ciro-exam-prep-tools" target="_self">Securities Licensing Education &amp; CIRO Exam Prep Tools Store</a>
+                                                    </li>
+                                            </ul>
+                                        </div>
+                                        <!-- End: rightmenu -->
+                                    </div>
+                                </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    </div>
+    <div id="Header_T6540258C047_Col01" class="sf_colsIn w-auto d-flex align-content-center flex-wrap" data-sf-element="Column 2" data-placeholder-label="Column 2"><div class="row justify-content-end align-items-center flex-nowrap designview-flex" data-sf-element="Row">
+    <div id="Header_T6540258C048_Col00" class="sf_colsIn w-auto p-0 " style="flex: 1;" data-sf-element="Column 1" data-placeholder-label="Column 1"><div  id="shoppingCartIcon" class="d-flex flex-row h-100" v-cloak>
+    <div class="headBtn myAccountSection ml-auto align-self-center">        
+            <button v-if="showceAppCartIcon"class="cartIcons" @click="PassHrefFunc('/ce-account/ce-dashboard/shopping-ce-cart')" aria-label="Shopping Cart">
+                <a href="/ce-account/ce-dashboard/shopping-ce-cart" class="text-dark text-decoration-none" aria-label="Shopping Cart">
+                    <i class="fa-regular fa-cart-shopping fs-14" title="Shopping Cart"></i>
+                    <span class="empty-cart d-inline fs-14 ms-1">{{cartLength}}</span>
+                </a>
+            </button>    
+            <button v-else class="cartIcons" @click="PassHrefFunc('/shopping-cart')" aria-label="Shopping Cart">
+                <a href="/shopping-cart" class="text-dark text-decoration-none" aria-label="Shopping Cart">
+                    <i class="fa-regular fa-cart-shopping fs-14" title="Shopping Cart"></i>
+                    <span class="empty-cart d-inline fs-14 ms-1">{{cartLength}}</span>
+                </a>
+            </button>
+        
+    </div>
+</div>
+
+<script type="module">
+    const ShoppingCartIcon = createApp({
+        data() {
+          loggedIn: false
+        },
+        computed: {
+            ...mapState(createSharedStore, ['memberType']),
+            ...mapState(createCartStore, ['cartItems']),
+            ...mapState(createCEAppCartStore, ['ceAppCartItems']),
+            showceAppCartIcon() {
+
+                if (personId > 0) {
+                    this.loggedIn = true
+                }
+                if (this.loggedIn  && this.memberType === "CE Provider")
+                    return true
+                else
+                    return false
+                
+            },
+            cartLength() {
+                if (!this.showceAppCartIcon) {
+                    if (!this.cartItems || this.cartItems.length === 0) return ''
+                    return ` (${this.cartItems.length})`
+                }
+                else {
+                    if (!this.ceAppCartItems || this.ceAppCartItems.length === 0) return ''
+                    return ` (${this.ceAppCartItems.length})`
+                }
+            }
+        },
+        methods: {
+            //...mapActions(createSharedStore, ['storeDashboardDetails']),
+            //loadUserData() {
+            //    let response = apiGetCall(AptifySOAPaths.Dashboard.DashboardDetails)
+            //    if (response.success == true) {
+            //        let data = response.data;
+            //        this.storeDashboardDetails(data);
+            //    }
+            //},
+            PassHrefFunc(HrefLink) {                
+               // AccountProfileCall(HrefLink); // ToDo loges - Need to check,whether this is required
+            }
+        },
+        //mounted() {
+        //    if (!this.memberType) this.loadUserData();            
+        //}
+    })
+    ShoppingCartIcon.use(pinia)
+    ShoppingCartIcon.mount("#shoppingCartIcon")
+</script>
+    </div>
+    <div id="Header_T6540258C048_Col01" class="sf_colsIn w-auto p-0 " data-sf-element="Column 2" data-placeholder-label="Column 2"><div id="portal-menu-app">
+    <div class="headBtn myAccountSection" v-if="isLoggedIn">
+        <!-- TODO NG: figure out whether the cart icon should be added in here instead -->
+        
+        <div class="dropdown btn btnIcon btn-danger userProf">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="myprofileBtn text-white">
+                    <i class="fa-regular fa-circle-user" title="My Account"></i>
+                    <span class="myAccMobile d-none d-xl-inline">
+                        My Account
+                    </span>
+                </div>
+
+            </button>
+            <ul class="dropdown-menu profile-dropdown profile-dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuProfile">
+                <li>
+                    <div class="dropdown-item profile-card" id="portal-menu-app">
+                        <div class="profile-card-inner">
+                            <div class="profile-card-image">
+                                <img v-bind:src="ProfilePhoto" alt="userImage" class="img-fluid" id="userimg">
+                            </div>
+                            <div class="profile-name">
+                                <h3>
+                                    <span v-html="displayName" />
+                                </h3>
+                                <h4>ID #{{personID}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li v-for="item in menuItems" :key="item.text">
+                    <a class="dropdown-item " :href="item.link" :aria-label="item.text">
+                        <div class="MenuDropDown" @click="PassHrefFunc(item.link)">
+                            <div class="MenuDropDownItem" >
+                                {{item.text}}
+                            </div>
+                            <div class="MenuDropDownItem">
+                                <div class="bgIconColor text-white">
+                                    <i class="fa-solid text-white" :class="item.icon" :title="item.text"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" id="logout" @click="logout" aria-label="Logout">
+                        <div class="MenuDropDown">
+                            <div class="MenuDropDownItem">
+                                Logout
+                            </div>
+                            <div class="MenuDropDownItem">
+                                <div class="bgIconColor text-white">
+                                    <i class="fa-regular fa-right-from-bracket" title="Logout"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <button class="menuToggle" type="button"></button>
+    </div>
+    <div class="login" v-else>
+        <div class="headBtn">
+            <a href="/login" class="btn btnIcon" alt="Login">                
+                Login
+            </a>            
+            <a href="/get-started" class="btn btnIcon btn-danger" aria-label="Get Started">
+                <img src="/ResourcePackages/FPCanadaBootstrap/assets/images/certified.svg" alt="Get Started">
+                <span class="d-none d-md-block">Get started</span>
+            </a>
+            <button class="menuToggle" type="button"></button>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    const portalMenuApp = createApp({   
+        data() {
+            return {
+                menuItems: []
+            }
+        },
+        methods: {
+            ...mapActions(createSharedStore, ['storeDashboardDetails']),
+            logout(event) {                
+                let response = apiPostCall(AptifySOAPaths.Authentication.ebizLogoutPath) // It is not returning any response
+                if (response.success) {
+                    window.location.href = "/home";
+                    localStorage.clear()
+                }                
+
+            },
+            loadUserData() {                
+                let response = apiGetCall(AptifySOAPaths.Dashboard.DashboardDetails)
+                if (response.success == true) {                    
+                    let data = response.data                    
+                    this.storeDashboardDetails(data)
+
+                    let domainUrl = `${location.protocol}//${location.host}`;
+                    $.ajax({
+                        type: "GET",
+                        url: `${domainUrl}/MenuItems`, 
+                        data: { userType: this.memberType },
+                        contentType: "application/json; charset=utf-8",
+                        error: (e) => {
+                            console.log(e)
+                            ErrorAlert(undefined, e.msg);
+                        },
+                        success: (data) => {
+                            this.menuItems = data
+                        }
+                    });
+                }
+            },
+            PassHrefFunc(HrefLink) {
+                AccountProfileCall(HrefLink);
+            }
+        },
+        computed: {
+            ...mapState(createSharedStore, ['memberType', 'isCertified',  'FirstName', 'LastName','ProfilePhoto','personID']),       
+            displayName() {
+                let name = this.FirstName + " " + this.LastName  // like dashboard banner, only the preferred Names are shown here.                          
+
+                let certMark = ""
+                if (this.isCertified) { // if the user is certified, the certification Mark would be shown
+                    if (this.memberType === "CFP Professional") certMark = ", CFP<sup>&reg;</sup>"
+                    else if (this.memberType === "QAFP Professional") certMark = ", QAFP<sup>&reg;</sup>"
+                    else if (this.memberType === "FP Retired") certMark = ", FP Retired&trade;"
+                }
+
+                return name + certMark
+            },            
+            isLoggedIn() {
+                return personId > 0
+            }
+        },        
+        mounted() {
+            if (this.isLoggedIn)
+                this.loadUserData()
+        }
+       
+    })
+    portalMenuApp.use(pinia)
+    portalMenuApp.mount("#portal-menu-app");
+</script>
+
+<style>
+    .MenuDropDownItem .fa-regular::before {
+        padding: 0;
+    }
+
+    .login .nav-item {
+        display: inline-block;
+        font-size: 0.875rem;
+        text-decoration: none;
+        color: #111111;
+        padding: 12px 0 12px 0;
+        position: relative;
+    }
+</style>
+    </div>
+</div>
+
+    </div>
+</div>
+ </div> </div> 
+
+  <div class="breadcrumb-height">
+    <div class="breadcrumbs-progressbar-sticky">
+        <div class="breadcrumbs-main">
+          <div class="container container-fluid">
+    <nav aria-label="Full path to the current page">
+        
+      <ol class="breadcrumb">
+        
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/professional-responsibility">Professional responsibility</a></li>
+                        <li class="breadcrumb-item"><a href="/professional-responsibility/practice-guidance">Practice guidance</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">FP Canada Standards Council Rule Interpretation Bulletin 1</li>
+
+        </ol>
+    </nav>
+
+            </div>
+      </div>
+    </div>
+    </div>
+ </header>  <div class="g-0 p-0"> 
+
+
+<section class="hero-banner">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <div class="banner-content-wrapper">
+                        <div class="heading-bar"></div>
+                        <h1 class="mb-5 pb-2 text-white">FP Canada Standards Council™ Rule Interpretation Bulletin</h1>
+                        <p class="lead fw-normal pt-1 text-white">
+                      <p><strong>Use of Technology When Providing Financial Planning Services.</strong></p><p>May 2023</p>    
+                      </p>
+                      
+                      
+                                           
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="header-image">
+                        <div class="bg-line1"></div>
+                        <div class="bg-line2"></div>                      
+                            <img src="/images/professionalsitelibraries/photography/istockphoto-646414846-1024x1024.png?sfvrsn=87ae33f_2" title="istockphoto-646414846-1024x1024" />                	    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> </div> <div class=""> 
+<div class="" data-sf-element="Row">
+    <div id="Contentplaceholder1_TC927687B021_Col00" class="sf_colsIn container-fluid container-sm pt-5" data-sf-element="Column 1" data-placeholder-label="Column 1"><div class="row" data-sf-element="Row">
+    <div id="Contentplaceholder1_C022_Col00" class="sf_colsIn col-lg-8" data-sf-element="Column 1" data-placeholder-label="Column 1">
+<div >
+    <div ><p>This Rule Interpretation Bulletin provides information about the interpretation and application of the Use of Technology Rules 28 and 29 in the FP Canada Standards Council™ <a href="/professional-responsibility/fp-canada-standards-of-professional-responsibility"><strong>Standards of Professional Responsibility</strong></a>.</p><ul><li>Rule 28 means that QAFP<sup>®</sup> professionals and CFP<sup>®</sup> professionals must understand the data, including the assumptions that go into the financial planning technology they use to make their planning recommendations. Professional financial planners must understand which inputs the technology is using for calculations and projections, including:</li><li>The Projection Assumption Guidelines, as a reliable data source for the long-term rates of investment return, inflation and longevity assumptions</li><li>Current and accurate tax rates for the client’s province or territory of residence</li><li>Current interest rates to be charged on debt</li><li>Tax settings, customizable by the user, that can account for features such as splitting or sharing pension benefits, pro-rated CPP/OAS benefits when a client retires mid-year, or the pooling of charitable donations with a spouse.</li></ul><p>Knowing about a technology’s methodologies and embedded financial assumptions can help a QAFP professional or CFP professional validate that technology’s outputs, as required by Rule 28.</p><p>Professional financial planners must also ensure that the assumptions and outputs are reasonable and appropriate for each client’s unique circumstances (current situation, goals, needs, planning time-horizon). They also must ensure the client’s financial and personal situations are taken into consideration when using technology in the financial planning process. As stated in Rule 28, professional financial planners must understand the technology they use well enough to validate that its outputs are reasonable and appropriate for a client before they rely on that technology for the financial planning process.</p><p>A QAFP professional or CFP professional must document the rationale behind all material assumptions they use in the financial planning process. Material assumptions include any assumption that is key to the financial plan itself such as, but not limited to, future expenses like university tuition; date of retirement; employment income projections; or date for the sale of a primary residence related to downsizing.</p><p>Documenting assumptions helps professional financial planners ensure the correctness of the assumptions they use, and validate the reasonability of the output the technology produces. Furthermore, to ensure full transparency, professional financial planners must communicate their rationale and the assumptions they have made to the client in a way the client can understand. For example, QAFP professionals and CFP professionals should find out about their clients’ comfort with financial tools and technologies and take that level of comfort into consideration when providing financial planning recommendations.</p><p>Professional financial planners should discuss assumptions with their client(s) to ensure they understand them and are comfortable with their use. To comply with Rules 28 and 29 on the Use of Technology requires professional financial planners to ensure the technology, and the assumptions and methodology they use in the financial planning process are transparent; to make an independent analysis of each client’s unique situation; and to apply their professional judgment. Transparency also enhances the financial planner-client relationship by encouraging dialogue and engagement which build trust.</p><p>Complying with Rules 28 and 29 helps professional financial planners to fulfill their obligations under Practice Standard 8, which says that a QAFP professional or a CFP professional must:</p><p style="margin-left: 30px">PS.8: Compile and Present the Financial Planning Assumptions and Recommendations and Supporting Rationale</p><p style="margin-left: 30px">Document and present the financial planning assumptions and recommendations and supporting rationale in a way that allows the client to make an informed decision.</p><p>QAFP professionals and CFP professionals also can find helpful information in the <a href="/professional-responsibility/fp-canada-standards-of-professional-responsibility"><strong>Standards of Professional Responsibility</strong></a> section on Use of Technology to further guide their understanding of Rules 28 and 29.</p></div>    
+</div>
+    </div>
+    <div id="Contentplaceholder1_C022_Col01" class="sf_colsIn col-lg-4" data-sf-element="Column 2" data-placeholder-label="Column 2">
+<div class="bg-light2" >
+    <div ><div style="padding: 20px"><h2>Rule 28</h2><p>When relying on or using technology in the financial planning process, a Certificant:
+    </p><ul><li>Must take reasonable proactive steps to gain a general understanding of the methodologies underlying the technology that have a direct impact on financial planning projections and recommendations;
+        </li><li>Must have an understanding of the financial assumptions underlying the technology that have a direct impact on financial planning projections and recommendations;
+        </li><li>Must validate that the inputs and assumptions used are reasonable and appropriate based on the client’s circumstances; and
+        </li><li>Must validate that the outputs generated are reasonable and appropriate for the client before relying on them, or presenting the final recommendations or strategies to the client.</li></ul><h2>Rule 29</h2><p>In all cases, irrespective of the data used, the material assumptions used as well as the rationale must be documented, and clearly communicated to clients.</p></div></div>    
+</div>
+    </div>
+</div>
+
+<div >
+    <div >&nbsp;</div>    
+</div>
+    </div>
+</div>
+ </div> 
+<div class="row newsletter-sign-up" data-sf-element="Row">
+    <div id="ContentBottom_TC927687B026_Col00" class="sf_colsIn col-lg-4" data-sf-element="Column 1" data-placeholder-label="Column 1">
+    </div>
+    <div id="ContentBottom_TC927687B026_Col01" class="sf_colsIn col-lg-8" data-sf-element="Column 2" data-placeholder-label="Column 2">
+    </div>
+</div>
+
+<div class="bg-primary-dark">
+    <div class="textImageArea py-125 position-relative right">
+        <div class="container container-sm">
+
+            <div class="bg-light2 overlayBg position-absolute start-0 top-0 h-100"></div>
+
+            <div class="row align-items-center">
+                <div class="col-md-6 d-md-flex justify-content-md-end order-md-2 offset-lg-1 mb-5 pb-4 mb-sm-5 pb-sm-4 mb-md-0 pb-md-0 imageT">
+                            <img src="/images/professionalsitelibraries/test/istockphoto-1329526317-1024x1024.jpg?sfvrsn=271fde9a_1" title="istockphoto-1329526317-1024x1024" />
+
+                <div class="position-relative">
+                  <span class="skyblue bg-warning"></span>
+                </div>
+
+                </div>
+
+                <div class="col-md-6 col-lg-5 pe-md-5">
+                        <h2 class="fst-italic mb-2 mb-sm-4 pb-3">Need help?</h2>
+                    <p>FP Canada provides information and guidance to QAFP professionals and CFP professionals at all stages of their careers. </p>
+<a href="/contact" class="btn btn-danger">Contact us</a>                </div>
+            </div>
+        </div>
+    </div>
+</div> <footer class="global-footer"> <div class="container"> <div class="row"> <div class="col-lg-4"> <div class="footer-blue-bg"> <div class="min-h-500 d-flex align-content-between flex-wrap"> 
+
+<div >
+    <div ><div class="overline text-white mb-4 fs-14"><em>About FP Canada</em></div><p class="text-white">We are dedicated to championing better financial wellness for all Canadians by leading the advancement of professional financial planning in Canada.
+</p><div><a class="btn btn-primary btnIcon" href="/about/about-fp-canada"><img src="/ResourcePackages/FPCanadaBootstrap/assets/images/arrow-right-long-menu.svg" alt="" data-sf-ec-immutable="">Learn about FP Canada</a>
+</div></div>    
+</div> </div> </div> </div> <div class="col-lg-8"> <div class="h-100 d-flex align-content-start flex-wrap"> <div class="footer-top w-100"> <div class="row"> 
+<div class="row" data-sf-element="Row">
+    <div id="FooterRight_T6540258C054_Col00" class="sf_colsIn col-lg-4" data-sf-element="Column 1" data-placeholder-label="Column 1">
+<div >
+    <div ><div class="overline mb-4 fw-bold">Our certifications</div></div>    
+</div>
+<div >
+    <div ><p style="font-size: 0.9em"><strong><a href="/about-our-certifications/financial-planning-as-a-career">Financial planning as a career</a></strong></p><p style="font-size: 0.9em"><strong><a href="/about-our-certifications/why-get-certified">Why get certified?</a></strong></p><p style="font-size: 0.9em"><strong><a href="/about-our-certifications/paths-to-certification">Paths to certification</a></strong></p><p style="font-size: 0.9em"><strong><a href="/about-our-certifications/fp-retired">FP Retired status</a></strong></p><p style="font-size: 0.9em"><strong><a href="/about-our-certifications/fee-schedule">Fee schedule</a></strong>
+</p></div>    
+</div>
+    </div>
+    <div id="FooterRight_T6540258C054_Col01" class="sf_colsIn col-lg-4" data-sf-element="Column 2" data-placeholder-label="Column 2">
+<div >
+    <div ><div class="overline mb-4 fw-bold">Quick links</div></div>    
+</div>
+<div >
+    <div ><p style="font-size: 0.9em"><strong><a href="/projection-assumption-guidelines">Projection Assumption Guidelines</a></strong></p><p style="font-size: 0.9em"><strong><a href="/financial-planning-body-of-knowledge">Body of Knowledge</a></strong></p><p style="font-size: 0.9em"><strong><a href="/educator-tools">Educator tools</a></strong></p><p style="font-size: 0.9em"><strong><a href="/accessibility">Accessibility policy</a></strong></p><p style="font-size: 0.9em"><strong><a href="/privacy-policy">Privacy policy</a></strong>
+</p></div>    
+</div>
+    </div>
+    <div id="FooterRight_T6540258C054_Col02" class="sf_colsIn col-lg-4" data-sf-element="Column 3" data-placeholder-label="Column 3">
+<div >
+    <div ><div class="overline mb-4 fw-bold">FP Canada</div></div>    
+</div>
+<div >
+    <div ><p style="font-size: 0.9em">416-593-8587</p><p style="font-size: 0.9em"><strong>Toll free:</strong> 1-800-305-9886</p><p style="font-size: 0.9em"><a href="mailto:info@fpcanada.ca"><strong>info@fpcanada.ca</strong></a></p><p style="font-size: 0.9em"><strong></strong><a href="/fp-canada-careers"><strong>FP Canada careers</strong></a></p></div>    
+</div>
+    </div>
+</div>
+ </div> </div> <div class="footer-bottom w-100"> 
+<div class="row" data-sf-element="Row">
+    <div id="FooterBottom_T6540258C049_Col00" class="sf_colsIn col-lg-9" data-sf-element="Column 1" data-placeholder-label="Column 1">
+<div >
+    <div ><p>Follow us on social media for the latest news from FP Canada™</p></div>    
+</div>
+    </div>
+    <div id="FooterBottom_T6540258C049_Col01" class="sf_colsIn col-lg-3" data-sf-element="Column 2" data-placeholder-label="Column 2">
+<div >
+    <div ><ul class="social-links"><li><a href="https://www.linkedin.com/company/fpcanada" target="_blank" rel="noopener noreferrer" style="display: inline-flex; width: 44px; height: 44px; align-items: center; justify-content: center; text-decoration: none !important; position: relative" data-sf-ec-immutable=""><em class="fab fa-linkedin" style="color: rgba(0, 0, 0, 1)"></em><span style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0">Visit FP Canada on LinkedIn
+            </span>
+ </a>
+ </li><li><a href="https://www.facebook.com/OfficialFPCanada" target="_blank" rel="noopener noreferrer" style="display: inline-flex; width: 44px; height: 44px; align-items: center; justify-content: center; text-decoration: none !important; position: relative" data-sf-ec-immutable=""><em class="fab fa-facebook" style="color: rgba(0, 0, 0, 1)"></em><span style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0">Visit FP Canada on Facebook
+            </span>
+ </a>
+ </li><li><a href="https://www.youtube.com/c/FPCanadaOfficial" target="_blank" rel="noopener noreferrer" style="display: inline-flex; width: 44px; height: 44px; align-items: center; justify-content: center; text-decoration: none !important; position: relative" data-sf-ec-immutable=""><em class="fab fa-youtube" style="color: rgba(0, 0, 0, 1)"></em><span style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0">Visit FP Canada on YouTube
+            </span>
+ </a>
+ </li></ul></div>    
+</div>
+    </div>
+</div>
+
+<div >
+    <div >&nbsp;</div>    
+</div>
+<div >
+    <div ><p class="copyright"><small>CFP<sup>®</sup>, <span style="font-variant: small-caps">Certified Financial Planner</span><sup>®</sup> and CFP<sup>®</sup>&nbsp;logo are trademarks owned by Financial Planning Standards Board Ltd. (FPSB) and used under license. QAFP<sup>®</sup>, <span style="font-variant: small-caps">Qualified Associate Financial Planner</span>™, QAFP<sup>®</sup>&nbsp;logo and all other trademarks are those of FP Canada™. © 2026 FP Canada™. All rights reserved.</small></p><br><br></div>    
+</div> </div> </div> </div> </div> </div> </footer> <script src="/ResourcePackages/FPCanadaBootstrap/assets/dist/js/owl.carousel.min.js?package=FPCanadaBootstrap" type="text/javascript"></script><script src="/ResourcePackages/FPCanadaBootstrap/assets/dist/js/jquery.magnific-popup.js?package=FPCanadaBootstrap" type="text/javascript"></script><script src="/ResourcePackages/FPCanadaBootstrap/assets/dist/js/multiselect.min.js?package=FPCanadaBootstrap" type="text/javascript"></script><script src="/ResourcePackages/FPCanadaBootstrap/assets/dist/js/jquery.mCustomScrollbar.concat.min.js?package=FPCanadaBootstrap" type="text/javascript"></script><script src="/ResourcePackages/FPCanadaBootstrap/assets/dist/js/bootstrap-multiselect.min.js?package=FPCanadaBootstrap" type="text/javascript"></script><script src="/ResourcePackages/FPCanadaBootstrap/assets/dist/js/moment.min.js?package=FPCanadaBootstrap" type="text/javascript"></script><script src="/ResourcePackages/FPCanadaBootstrap/assets/dist/js/pagination.min.js?package=FPCanadaBootstrap" type="text/javascript"></script><script src="/Frontend-Assembly/Telerik.Sitefinity.Frontend.Search/Mvc/Scripts/SearchBox/Search-box.min.js?package=FPCanadaBootstrap&amp;v=MjA5NDkxODIzMQ%3d%3d" type="text/javascript"></script>    <script type="text/javascript">
+        setGtagValue('G-7SD97CBZV2')
+</script> <script type="text/html" id="sf-tracking-consent-manager">
+        <div id="tracking-consent-dialog" style="padding:20px;position:relative;z-index:10000000;border:1px solid #ccc;background:#fff;">
+            <p>We use cookies on our website to give you the most relevant experience by remembering your preferences and repeat visits.</p>
+            <button type="button" onclick="TrackingConsentManager.updateUserConsent(false)" id="tracking-consent-dialog-reject" class="btn btn-default btn-secondary">Dismiss</button>
+            <button type="button" onclick="TrackingConsentManager.updateUserConsent(true)" id="tracking-consent-dialog-accept" class="btn btn-primary">Accept</button>
+        </div>
+    </script> <div class="alert alert-success alert-custum-style alert-dismissible" role="alert"> <div class="custom-alert-wrapper"> <div class="alert-icon"> <i class="fa-sharp fa-solid fa-circle-info text-success"></i> </div> <div class="alert-content"> <h6 class="fw-normal lh-1 title"></h6> <p class="text-sm mb-0 text-light content"></p> </div> </div> <button type="button" class="btn-close text-dange btn-close-alert" aria-label="Close"><i class="fa-solid fa-xmark"></i></button> </div> <div class="alert alert-danger alert-custum-style alert-dismissible" role="alert"> <div class="custom-alert-wrapper"> <div class="alert-icon"> <i class="fa-sharp fa-solid fa-circle-info text-danger"></i> </div> <div class="alert-content"> <h6 class="fw-normal lh-1 title"></h6> <p class="text-sm mb-0 text-light content"></p> </div> </div> <button type="button" class="btn-close text-danger alert-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button> </div> <script>
+
+            window.addEventListener('load', function () {
+                // Code to run when the entire page is fully loaded
+                FPGlobalOverlay("hide")
+            });
+        </script> </body> </html>
+
+

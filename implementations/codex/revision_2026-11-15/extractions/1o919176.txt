@@ -1,0 +1,172 @@
+
+
+## PAGE 1
+
+Event dashboard
+Démarrages rapides
+Assistants de code IA
+Codex sur Bedrock
+Codex sur Bedrock
+Codex est l'outil de programmation agentique d'OpenAI. Il peut utiliser des modèles OpenAI hébergés sur Amazon Bedrock : il passe alors par le compte AWS de votre
+équipe, et vos requêtes ne transitent pas par l'API hébergée par OpenAI.
+Ses fonctions recoupent largement celles de Claude Code. Choisissez-en un et apprenez à bien vous en servir, plutôt que de changer d'outil en plein Datathon.
+Codex CLI 0.128.0 ou plus récent (ou application de bureau / extension VS Code 26.429.30905 ou plus récente)
+Accès à un modèle OpenAI pris en charge dans votre compte Bedrock
+Des identiﬁants AWS valides : sur votre ordinateur, copiez les identiﬁants AWS CLI temporaires depuis la page de l'événement Workshop Studio ; dans
+CloudShell 
+, ils sont déjà en place
+Codex sur Bedrock n'accepte que ces identiﬁants exacts :
+openai.gpt-5.6-sol
+Choix recommandé par défaut
+openai.gpt-5.6-terra
+openai.gpt-5.6-luna
+openai.gpt-5.5
+openai.gpt-5.4
+Bedrock propose aussi des modèles OpenAI plus récents (par exemple openai.gpt-6-sol), mais ils ne ﬁgurent pas dans la liste officielle de Codex au 4 novembre
+2026. Restez sur la liste ci-dessus pour Codex.
+Vériﬁez ce que votre compte propose avant de conﬁgurer quoi que ce soit :
+Si aucun des cinq identiﬁants pris en charge n'apparaît, Codex sur Bedrock n'est pas possible dans votre compte : utilisez Claude Code ou Kiro.
+Créez ou modiﬁez ~/.codex/config.toml :
+Déﬁnir la région dans ce ﬁchier est l'option la plus explicite. Sinon, Codex laisse le SDK AWS trouver la région (AWS_REGION, puis AWS_DEFAULT_REGION, puis votre
+proﬁl).
+Codex vériﬁe deux méthodes, dans cet ordre :
+1. AWS_BEARER_TOKEN_BEDROCK : une clé d'API Bedrock
+2. La chaîne d'identiﬁants standard du SDK AWS
+Avec les identiﬁants AWS (le cas habituel pendant le Datathon), tout ce que le SDK AWS comprend fonctionne : variables d'environnement copiées depuis Workshop
+Studio, ﬁchier d'identiﬁants partagé ou proﬁl nommé :
+Vous pouvez aussi ﬁxer le proﬁl dans la conﬁguration :
+Avec une clé d'API Bedrock :
+Avec une clé d'API, la région doit être déﬁnie dans config.toml.
+Vériﬁez que le fournisseur de modèle affiché est amazon-bedrock.
+Les applications graphiques n'héritent pas forcément des variables de votre shell. Mettez-les dans ~/.codex/.env :
+Redémarrez l'application ou l'extension après chaque modiﬁcation de config.toml ou de .env.
+Codex lit AGENTS.md à la racine de votre projet :
+Pour ne pas perdre de temps à essayer : génération d'images, transcription vocale en entrée, boutique de plugins infonuagique, conﬁguration et politiques
+infonuagiques, agents infonuagiques (dont les agents de revue, de sécurité et web).
+Vériﬁez dans l'ordre :
+Votre version de Codex respecte le minimum.
+Votre identiﬁant de modèle correspond exactement à l'un des cinq identiﬁants pris en charge, sans préﬁxe.
+Le modèle est disponible dans la région conﬁgurée.
+Vos identiﬁants ou votre clé d'API sont valides et n'ont pas expiré. Les identiﬁants Workshop Studio sont temporaires.
+Pour l'application de bureau ou l'extension, les variables sont dans ~/.codex/.env et vous avez redémarré.
+Conﬁgurer Codex avec Amazon Bedrock (documentation officielle, en anglais) 
+Codex sur Amazon Bedrock
+Prérequis
+npm install -g @openai/codex
+codex --version
+1
+2
+Modèles pris en charge
+Identiﬁant du modèle
+Notes
+Ce sont des identiﬁants de modèle sans préﬁxe us. ni global., contrairement à ce que vous verrez dans Choisir un modèle. La raison : Codex utilise l'implémentation de l'API
+Responses de Bedrock, pas bedrock-runtime, et ce point de terminaison attend l'identiﬁant simple. N'ajoutez pas de préﬁxe ici.
+aws bedrock list-foundation-models --region us-east-1 \
+  --query 'modelSummaries[?starts_with(modelId, `openai.`)].modelId' \
+  --output text | tr '\t' '\n' | sort
+1
+2
+3
+Configurer
+model = "openai.gpt-5.6-sol"
+model_provider = "amazon-bedrock"
+[model_providers.amazon-bedrock.aws]
+region = "us-east-1"
+wire_api = "responses"
+1
+2
+3
+4
+5
+6
+Authentification
+export AWS_PROFILE=mon-profil
+# ou utilisez directement les variables export copiées depuis Workshop Studio
+1
+2
+model = "openai.gpt-5.6-sol"
+model_provider = "amazon-bedrock"
+[model_providers.amazon-bedrock.aws]
+profile = "codex-bedrock"
+region = "us-east-1"
+wire_api = "responses"
+1
+2
+3
+4
+5
+6
+7
+export AWS_BEARER_TOKEN_BEDROCK="votre-cle-api-bedrock"
+1
+Ne déﬁnissez pas OPENAI_API_KEY pour cette conﬁguration. Quand model_provider vaut amazon-bedrock, Codex utilise les identiﬁants AWS ; une clé OpenAI en trop ne fait
+que semer la confusion.
+Vérifier
+/status
+1
+Application de bureau et extension VS Code
+AWS_BEARER_TOKEN_BEDROCK=votre-cle-api-bedrock
+AWS_REGION=us-east-1
+1
+2
+Ajouter la documentation AWS
+codex mcp add aws-docs -- uvx awslabs.aws-documentation-mcp-server@latest
+1
+Lui décrire votre projet
+# AlphaForge AI : prototype de datathon
+ AlphaForge AI : prototype de datathon
+ AlphaForge AI : prototype de datathon
+ AlphaForge AI : prototype de datathon
+- Région : us-east-1.
+- Amazon Bedrock via boto3, API Converse seulement.
+- Modèle par défaut dans le code de l'application : global.amazon.nova-2-lite-v1:0
+- Réponses Converse : concaténer les blocs qui contiennent "text", ne jamais lire content[0]["text"].
+- Données financières publiques seulement ; chaque chiffre cite sa source et sa date.
+- Profils d'investisseurs fictifs, dans profiles.py.
+- Simulation uniquement : aucune transaction réelle, aucun conseil financier personnalisé.
+- Lancer la démo avec `streamlit run app.py --server.address localhost`. Pas d'outils de déploiement.
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+Non disponible dans cette configuration
+Dépannage
+En savoir plus
+Previous
+Next
+Bases de connaissances et RAG
+Data Automation
+Construire des agents
+Fonctionnement des agents
+Strands Agents
+Amazon Bedrock AgentCore
+MCP
+Démarrages rapides
+Bucket S3
+Assistants de code IA
+Kiro
+Claude Code sur Bedrock
+Codex sur Bedrock
+Données ﬁnancières publiques
+Nettoyage et exportation
+Ressources
+AWS account access
+Open AWS console
+(us-east-1)
+Get AWS CLI credentials
+Share feedback
+Workshop catalog in AWS Builder
+Center
+Exit event
+AWS Workshop Studio
+adamlarhlimi2006
+© 2008 - 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+Privacy policy
+Terms of use
+Cookie preferences

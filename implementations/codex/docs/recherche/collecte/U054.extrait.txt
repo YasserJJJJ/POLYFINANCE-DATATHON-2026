@@ -1,0 +1,444 @@
+GitHub - microsoft/OptiGuide: GenAI for Optimization and Decision Intelligence · GitHub 
+
+ Skip to content 
+
+Navigation Menu
+
+ Sign in 
+
+ Products 
+
+ Platform 
+ GitHub Repository hosting, code review, and collaboration 
+
+ Copilot AI coding agent for tasks, projects, and automated work 
+
+ Build & Ship 
+ Actions CI/CD and automation 
+
+ Code Quality Quality analysis, fixes, and enforcement 
+
+ Codespaces Cloud development environments 
+
+ Secure 
+ Code Security Vulnerability detection and remediation 
+
+ Secret Protection Secret scanning and leak prevention 
+
+ All Features 
+
+ Developers 
+
+ Learn 
+ Documentation 
+
+ Training 
+
+ Certifications 
+
+ Build 
+ Build with Copilot 
+
+ Customize Copilot 
+
+ Integrations 
+
+ Explore 
+ Trending repos 
+
+ GitHub Sponsors 
+
+ Developer articles 
+
+ Changelog 
+ Changelog Your source for the latest features, improvements, and fixes across GitHub products, all in one place. 
+
+ Businesses 
+
+ By Stage 
+ Enterprises 
+
+ Team 
+
+ Startups 
+
+ Nonprofits 
+
+ By Industry 
+ Healthcare 
+
+ Financial services 
+
+ Manufacturing 
+
+ Government 
+
+ See all industries 
+
+ Evaluate GitHub 
+ Why GitHub 
+
+ Customer Stories 
+
+ Business insights 
+
+ Trust Center 
+
+ Add-ons 
+ GitHub Advanced Security Enterprise-grade code security 
+
+ Copilot for business Enterprise-grade AI features 
+
+ Premium Support Enterprise-grade 24/7 support 
+
+ Resources 
+
+ Learn & Connect 
+ Documentation 
+
+ Resource center 
+
+ Blog 
+
+ Events & webinars 
+
+ Community Forum 
+
+ Customer Stories 
+
+ Integrations 
+
+ Support 
+ Customer support 
+
+ Training 
+
+ GitHub Status 
+
+ Company 
+ About 
+
+ Partners 
+
+ Changelog 
+
+ GitHub Universe 
+ GitHub Universe The event for developers, by developers — talks, workshops, and what’s next for GitHub. 
+
+ Pricing 
+
+ Search / 
+
+ Sign in 
+ Sign up 
+Appearance settings
+
+ You signed in with another tab or window. Reload to refresh your session. 
+ You signed out in another tab or window. Reload to refresh your session. 
+ You switched accounts on another tab or window. Reload to refresh your session. 
+
+ Dismiss alert 
+
+{{ message }}
+
+ microsoft 
+
+ OptiGuide 
+
+Repository navigation
+
+ Code 
+
+ Issues 6  ( 6 ) 
+
+ Pull requests 6  ( 6 ) 
+
+ Actions 
+
+ Projects 
+
+ Security and quality 
+
+ Insights 
+
+ More items 
+
+ OptiGuide 
+ Public 
+
+ Notifications You must be signed in to change notification settings 
+
+ Fork 128  ( 128 ) 
+
+ Star 731  ( 731 ) You must be signed in to star a repository 
+
+ About 
+
+GenAI for Optimization and Decision Intelligence
+
+ Resources 
+
+ Readme 
+
+ MIT license 
+
+ Code of conduct 
+
+ Code of conduct 
+
+ Security policy 
+
+ Security policy 
+
+ Activity 
+
+ Custom properties 
+
+ Stars 
+
+ 731 stars 
+
+ Watchers 
+
+ 18 watching 
+
+ Forks 
+
+ 128 forks 
+
+ Report repository 
+
+ main 
+
+ Branches Tags 
+
+ Go to file 
+
+ Code 
+ Open more actions menu 
+
+Latest commit
+
+History
+ 75 Commits 
+
+ 75 Commits 
+
+Folders and files
+
+ Name Name 
+ Last commit message 
+ 
+ Last commit date 
+
+ .github/ workflows 
+
+ .github/ workflows 
+
+ milp-evolve 
+
+ milp-evolve 
+
+ optimind 
+
+ optimind 
+
+ what-if 
+
+ what-if 
+
+ .gitignore 
+
+ .gitignore 
+
+ .pre-commit-config.yaml 
+
+ .pre-commit-config.yaml 
+
+ CODE_OF_CONDUCT.md 
+
+ CODE_OF_CONDUCT.md 
+
+ LICENSE 
+
+ LICENSE 
+
+ README.md 
+
+ README.md 
+
+ SECURITY.md 
+
+ SECURITY.md 
+
+ SUPPORT.md 
+
+ SUPPORT.md 
+
+ setup.py 
+
+ setup.py 
+
+ View all files 
+
+Repository files navigation
+
+ README 
+
+ Code of conduct 
+
+ MIT license 
+
+ Security 
+
+ More items 
+
+OptiGuide: GenAI for Optimization and Decision Intelligence
+
+Projects
+
+We have several projects in this repository for decision making and optimization, and please cite the paper if you use this code in your own work.
+
+OptiGuide for Supply Chain Optimization with What-if Analysis
+
+The what-if folder includes the following material to open source the paper and what-if analysis for the OptiGuide project:
+
+ @article{li2023large,
+ title={Large Language Models for Supply Chain Optimization},
+ author={Li, Beibin and Mellou, Konstantina and Zhang, Bo and Pathuri, Jeevan and Menache, Ishai},
+ journal={arXiv preprint arXiv:2307.03875},
+ year={2023}
+} 
+
+Towards Foundation Models for Mixed Integer Linear Programming
+
+The milp-evolve folder includes the following material to open source the paper, MILP-Evolve code, and data:
+
+ @article{li2024towards,
+ author = {Li, Sirui and Kulkarni, Janardhan and Wu, Cathy and Menache, Ishai and Li, Beibin},
+ title = {Towards Foundation Models for Mixed Integer Linear Programming},
+ booktitle = {The Thirteenth International Conference on Learning Representations},
+ year = {2025}
+} 
+
+OptiMind: Improving Small Language Models for Optimization Modeling through Formulation Guidance and Multi-Turn Learning
+
+The optimind folder includes the following material to open source the paper, evaluation code, and test data for the OptiMind project:
+
+ @inproceedings { zhang2026optimind ,
+ title = { OptiMind: Improving Small Language Models for Optimization Modeling through Formulation Guidance and Multi-Turn Learning } ,
+ author = { Zhang, Xinzhi and Chen, Zeyi and Zope, Humishka and Barbalho, Hugo and Mellou, Konstantina and Molinaro, Marco and Kulkarni, Janardhan and Menache, Ishai and Li, Sirui } ,
+ booktitle = { Advances in Neural Information Processing Systems } ,
+ year = { 2026 } ,
+ note = { Accepted at NeurIPS 2026 } 
+} 
+
+Responsible AI Considerations
+
+The integration of GenAI into decision intelligence and optimization has provided human-like reasoning in complex problem-solving. However, it is essential to actively consider the ethical and responsible aspects of AI to ensure its application remains both beneficial and free from unintended consequences.
+
+Since we utilize publicly available language models, our framework inherently inherits both the strengths and limitations of these models. Recognizing these challenges, we have implemented safeguard mechanisms to ensure fairness, robustness, and safety in decision-making. Nevertheless, due to the inherent complexities of AI, issues such as model biases, adversarial vulnerabilities, and unexpected behaviors can still arise.
+
+Researchers and practitioners must critically assess and interpret these AI-driven solutions, maintaining a deep understanding of both the advantages and limitations of LLMs. By responsibly leveraging these models, we can drive significant advancements in decision intelligence and optimization while upholding ethical standards and mitigating potential risks.
+
+Prohibitions
+
+Due to the specialized nature of this repository, which includes both benchmark data and source code designed for evaluating data-oriented models and pipelines, we expressly prohibit the following:
+
+Scraping the content of this repository for the purpose of training machine learning models, deep learning architectures, data science algorithms, large language models, or any other data-driven computational models. Utilizing this repository's content for such purposes could introduce bias and invalidate the evaluation metrics of the trained models. You are, however, permitted to use this repository for the evaluation of models and pipelines.
+
+Violating the licensing terms in this repository.
+
+Contributing
+
+This project welcomes contributions and suggestions. Most contributions require you to agree to a
+Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
+the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com .
+
+When you submit a pull request, a CLA bot will automatically determine whether you need to provide
+a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
+provided by the bot. You will only need to do this once across all repos using our CLA.
+
+This project has adopted the Microsoft Open Source Code of Conduct .
+For more information see the Code of Conduct FAQ or
+contact opencode@microsoft.com with any additional questions or comments.
+
+Trademarks
+
+This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft
+trademarks or logos is subject to and must follow
+ Microsoft's Trademark & Brand Guidelines .
+Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
+Any use of third-party trademarks or logos are subject to those third-party's policies.
+
+ About 
+
+GenAI for Optimization and Decision Intelligence
+
+ Resources 
+
+ Readme 
+
+ MIT license 
+
+ Code of conduct 
+
+ Code of conduct 
+
+ Security policy 
+
+ Security policy 
+
+ Activity 
+
+ Custom properties 
+
+ Stars 
+
+ 731 stars 
+
+ Watchers 
+
+ 18 watching 
+
+ Forks 
+
+ 128 forks 
+
+ Report repository 
+
+ Releases 
+
+ Packages 
+
+ Used by 
+
+ Contributors 
+
+ Languages 
+
+Footer
+
+ © 2026 GitHub, Inc.
+
+Footer navigation
+
+ Terms 
+
+ Privacy 
+
+ Security 
+
+ Status 
+
+ Community 
+
+ Docs 
+
+ Contact 
+
+ Manage cookies
+
+ Do not share my personal information
+
+ You can’t perform that action at this time.

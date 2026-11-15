@@ -1,0 +1,91 @@
+{
+  "mode": "preview",
+  "started_at": "2026-11-15T20:42:52.850Z",
+  "observations": [
+    {
+      "name": "proof_context_and_focus",
+      "id": "method",
+      "excerpt": "Du problème au résultat\n\nLa méthode et ses contrôles effectifs.\n\nHypothèses et méthode\n{\n  \"id\": \"reserve-budget-contradiction-v1\",\n  \"version\": 1,\n  \"domain\": \"Sous-ensemble nécessaire des contraintes du modèle déclaré ; aucun IIS global.\",\n  \"assumptions\": [\n    \"Allocation long-only entièrement f"
+    },
+    {
+      "name": "preview_missing_impossible_no_mutation",
+      "initial_revision": 5,
+      "preview_receipt": {
+        "executed_at": "2026-11-15T20:42:53.680418+00:00",
+        "implementation": "alphaforge_app.decision.finance.analyze",
+        "calculation_executed": true,
+        "result_sha256": "68d3f361807043b3029fda5b9bc54c59fd61bc395772b4886fa9b1c4c4c6b49d",
+        "inputs_sha256": "312a5307e5dd441927630c54188883760ad61afcd14daf6c1531cb5d6b22a89b",
+        "source_sha256": "7f277003e42216d8e68c5d042a4cfec6363962a171679a694799ccff3f37085e",
+        "inference_calls": 0,
+        "product_mutations": 0,
+        "artifact_cache_reused": false,
+        "base_dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+        "base_revision": 5,
+        "scope": "Aperçu déterministe ; aucun agent ni validation documentaire renouvelée."
+      }
+    }
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/dossiers/examples",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/71c8fb4b9d5e45fe98a4b4942e07c41e/preview",
+      "method": "POST"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/dossiers/examples",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/71c8fb4b9d5e45fe98a4b4942e07c41e/preview",
+      "method": "POST"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/71c8fb4b9d5e45fe98a4b4942e07c41e/preview",
+      "method": "POST"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "method": "GET"
+    }
+  ],
+  "health": {
+    "status": "ok",
+    "version": "0.7.0",
+    "hosting": "local",
+    "application": "alphaforge",
+    "workspace": "/Users/vpro/Documents/ChatGPT/CALIBRE/Datathon_AlphaForge",
+    "inference": "AWS Bedrock",
+    "region": "us-east-1"
+  },
+  "status": "passed",
+  "finished_at": "2026-11-15T20:42:57.360Z"
+}

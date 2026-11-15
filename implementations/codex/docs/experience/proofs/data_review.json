@@ -1,0 +1,82 @@
+{
+  "checks": [
+    {
+      "name": "correct_difference_operator",
+      "passed": true
+    },
+    {
+      "name": "certificate_gap_20000",
+      "passed": true
+    },
+    {
+      "name": "algebra_not_solver",
+      "passed": true
+    },
+    {
+      "name": "certificate_pointer",
+      "passed": true,
+      "detail": "analysis@1 /checks/0/shortfall_cad"
+    },
+    {
+      "name": "zero_budget_unique_no_false_alternatives",
+      "passed": true
+    },
+    {
+      "name": "local_proof_exact_pointer",
+      "passed": true
+    },
+    {
+      "name": "adoption_preserves_source_version",
+      "passed": true
+    },
+    {
+      "name": "fractional_cad_preserved",
+      "passed": true,
+      "detail": "0,15CAD"
+    }
+  ],
+  "inference_calls": 0,
+  "review_scope": "Review of UI against own data adapter: not independent numerical validation",
+  "reviewer": "p6_donnees",
+  "independence": "Relecteur distinct de l’auteur UI ; auteur de l’adaptateur de données et du serveur prototype. Aucun nouveau contrôle financier indépendant revendiqué.",
+  "observations": [
+    {
+      "id": "UX-FID-01",
+      "observation": "Certificat présenté avec opérateur > puis =, et vocabulaire résidus/borne LP malgré preuve algébrique.",
+      "impact": "Dénature la méthode réellement exécutée.",
+      "correction": "Soustraction pour écart et texte algébrique sans solveur.",
+      "verified": "browser_pass"
+    },
+    {
+      "id": "UX-FID-02",
+      "observation": "Calcul r5 retrouvé depuis r15 puis adopté restait rattaché au retour r15.",
+      "impact": "Confusion sur la base de comparaison et la provenance de la copie.",
+      "correction": "Adoption fixe base_case_id et base_version_id depuis le reçu.",
+      "verified": "browser_pass"
+    },
+    {
+      "id": "UX-FID-03",
+      "observation": "Preuve locale tombait sur /claims au lieu du pointeur numérique.",
+      "impact": "Le chiffre local ne remontait pas directement à son champ.",
+      "correction": "Reconstruire les liaisons depuis claim.result_refs et hash local.",
+      "verified": "browser_pass"
+    },
+    {
+      "id": "UX-FID-04",
+      "observation": "Budget de perte nul : aucun optimum multiple, mais callout affirmait plusieurs expositions au même minimum.",
+      "impact": "Promesse d’un choix qui n’existe pas pour ce calcul.",
+      "correction": "Conditionner callout et légende au témoin réellement calculé.",
+      "verified": "browser_pass"
+    },
+    {
+      "id": "UX-FID-05",
+      "observation": "Capital 1 CAD, retrait 0 : minimum 0,15 CAD ramené à 0 CAD dans une phrase de suffisance.",
+      "impact": "Arrondi qui change le sens de la conclusion.",
+      "correction": "Conserver les centimes pour les montants non entiers.",
+      "verified": "browser_pass"
+    }
+  ],
+  "final_ui_sha256": "8adb2f50b5aed6771260f5d01ee6753fb3818c59b197458c7865223a83309b3f",
+  "checked_at": "2026-11-15T20:03:37.281Z",
+  "test_harness_note": "Première tentative du contrôle centimes corrigée : le script avait omis d’ouvrir le groupe Capital et concentration avant saisie. Aucun défaut produit correspondant."
+}

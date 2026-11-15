@@ -1,0 +1,1106 @@
+pymoo: Multi-objective Optimization in Python — pymoo: Multi-objective Optimization in Python 0.6.2 documentation 
+
+ Skip to main content 
+
+ Back to top 
+
+ Ctrl + K 
+
+ -->
+ -->
+ -->
+
+Version: 0.6.2
+
+ pymoo: Multi-objective Optimization in Python
+
+ News 
+
+ Installation 
+
+ Getting Started 
+
+ Preface: Basics and Challenges 
+
+ Part I: A Constrained Bi-objective Optimization Problem 
+
+ Part II: Find a Solution Set using Multi-objective Optimization 
+
+ Part III: Multi-Criteria Decision Making 
+
+ Part IV: Analysis of Convergence 
+
+ Part V: Some more useful Information 
+
+ Source Code 
+
+ Interface 
+
+ Minimize 
+
+ Problem 
+
+ Algorithm 
+
+ Termination Criterion 
+
+ Callback 
+
+ Display 
+
+ Result 
+
+ Problems 
+
+ Definition 
+
+ Test Problems 
+
+ Ackley 
+
+ Griewank 
+
+ Zakharov 
+
+ Rastrigin 
+
+ Rosenbrock 
+
+ BNH 
+
+ ZDT 
+
+ OSY 
+
+ TNK 
+
+ Truss2D 
+
+ Welded Beam 
+
+ Omni-test 
+
+ SYM-PART 
+
+ DTLZ 
+
+ WFG 
+
+ MW 
+
+ DAS-CMOP 
+
+ MODAct 
+
+ DF: Benchmark Problems for CEC2018 Competition on Dynamic Multiobjective Optimisation 
+
+ Parallelization 
+
+ Vectorized Matrix Operations 
+
+ Starmap Interface 
+
+ Joblib 
+
+ GPU Acceleration 
+
+ Custom Parallelization 
+
+ Algorithms 
+
+ Initialization 
+
+ Usage 
+
+ List Of Algorithms 
+
+ Hyperparameters 
+
+ GA: Genetic Algorithm 
+
+ BRKGA: Biased Random Key Genetic Algorithm 
+
+ DE: Differential Evolution 
+
+ Nelder Mead 
+
+ PSO: Particle Swarm Optimization 
+
+ Pattern Search 
+
+ ES: Evolutionary Strategy 
+
+ SRES: Stochastic Ranking Evolutionary Strategy 
+
+ ISRES: Improved Stochastic Ranking Evolutionary Strategy 
+
+ CMA-ES 
+
+ G3PCX: A Computationally Efficient Evolutionary Algorithm for Real-Parameter Optimization 
+
+ NRBO: Newton-Raphson-based Optimizer 
+
+ NSGA-II: Non-dominated Sorting Genetic Algorithm 
+
+ R-NSGA-II 
+
+ NSGA-III 
+
+ U-NSGA-III 
+
+ R-NSGA-III 
+
+ MOEA/D 
+
+ C-TAEA 
+
+ AGE-MOEA: Adaptive Geometry Estimation based MOEA 
+
+ AGE-MOEA2: Adaptive Geometry Estimation based MOEA 
+
+ RVEA: Reference Vector Guided Evolutionary Algorithm 
+
+ SMS-EMOA: Multiobjective selection based on dominated hypervolume 
+
+ SPEA2: Strength Pareto Evolutionary Algorithm 2 
+
+ Omni-Optimizer 
+
+ D-NSGA-II: Dynamic Multi-Objective Optimization Using Modified NSGA-II 
+
+ KGB-DMOEA: Knowledge-Guided Bayesian Dynamic Multi-Objective Evolutionary Algorithm 
+
+ PI-NSGA-II: Progressively Interactive NSGA-II 
+
+ CMOPSO: Competitive Mechanism based Multi-objective Particle Swarm Optimizer 
+
+ MOPSO-CD: Multi-Objective Particle Swarm Optimization with Crowding Distance 
+
+ NSDE: Non-dominated Sorting Differential Evolution 
+
+ GDE3: Generalized Differential Evolution 3 
+
+ NSDE-R: Reference-direction based Differential Evolution 
+
+ Constraint Handling 
+
+ Constrained Problem 
+
+ Feasibility First (Parameter-less Approach) 
+
+ Constraint Violation (CV) as Penalty 
+
+ Constraint Violation (CV) As Objective 
+
+ \(\epsilon\) -Constraint Handling 
+
+ Repair Operator 
+
+ Gradients 
+
+ Customization 
+
+ Binary Variable Problem 
+
+ Discrete Variable Problem 
+
+ Permutations 
+
+ Mixed Variable Problem 
+
+ Custom Variable Type 
+
+ Biased Initialization 
+
+ Subset Selection Problem 
+
+ Operators 
+
+ Sampling 
+
+ Selection 
+
+ Crossover 
+
+ Mutation 
+
+ Repair 
+
+ Survival 
+
+ Visualization 
+
+ Scatter Plot 
+
+ Parallel Coordinate Plots 
+
+ Heatmap 
+
+ Petal Diagram 
+
+ Radar Plot 
+
+ Radviz 
+
+ Star Coordinate Plot 
+
+ Video 
+
+ Multi-Criteria Decision Making (MCDM) 
+
+ Case Studies 
+
+ Subset Selection Problem 
+
+ Portfolio Allocation 
+
+ Matrix Inversion 
+
+ Performance Indicator 
+
+ Miscellaneous 
+
+ Reference Directions 
+
+ Convergence 
+
+ Decomposition 
+
+ Karush Kuhn Tucker Proximity Measure (KKTPM) 
+
+ Checkpoints 
+
+ Lexicographic Selection from a Pareto Front 
+
+ FAQ 
+
+ API Reference 
+
+ Model 
+
+ Algorithms 
+
+ Versions 
+
+ Contribute 
+
+ Cite Us 
+
+ Contact 
+
+ License 
+
+ Repository 
+
+ Show source 
+
+ Suggest edit 
+
+ Open issue 
+
+pymoo: Multi-objective Optimization in Python
+
+ Contents 
+
+ Features 
+
+ List Of Algorithms 
+
+ Cite Us 
+
+ News 
+
+ About 
+
+ Content 
+
+ Contact 
+
+pymoo: Multi-objective Optimization in Python # 
+
+Our framework offers state of the art single- and multi-objective optimization algorithms and many
+more features related to multi-objective optimization such as visualization and decision making.
+ pymoo is available on PyPi and can be installed by:
+
+ pip install -U pymoo
+
+Please note that some modules can be compiled to speed up computations (optional). The command
+above attempts is made to compile the modules; however, if unsuccessful, the
+pure python version is installed. More information are available in our
+ Installation Guide .
+
+ Getting Started Guide: The most important steps in multi-objective
+ optimization:
+ Problem Definition, Optimization, Convergence Analysis, and Decision Making. 
+
+ Discord: Join our discord server for help or a discussion about optimization in the context of our framework.
+
+Features # 
+
+Furthermore, our framework offers a variety of different features which cover various facets of multi-objective optimization:
+
+ Interface 
+
+ Function: 
+ minimize 
+
+ Parameters: 
+ Problem ,
+ Algorithm ,
+ Termination 
+
+ Optionals: 
+ Callback ,
+ Display ,
+ ... 
+
+ Returns: Result 
+
+ Related: 
+ Ask and Tell ,
+ Checkpoints 
+
+ Problems 
+
+ Single-objective: 
+ Ackley ,
+ Griewank ,
+ Rastrigin ,
+ Rosenbrock ,
+ Zakharov ,
+ ... 
+
+ Multi-objective: 
+ BNH ,
+ OSY ,
+ TNK ,
+ Truss2d ,
+ Welded Beam ,
+ ZDT ,
+ ... 
+
+ Many-objective: 
+ DTLZ ,
+ WFG
+
+ Constrained: 
+ CTP,
+ DASCMOP ,
+ MODAct ,
+ MW ,
+ CDTLZ
+
+ Dynamic: 
+ DF 
+
+ Related: 
+ Problem Definition ,
+ Gradients ,
+ Parallelization 
+
+ Algorithms 
+
+ Single-objective: 
+ GA ,
+ DE ,
+ PSO ,
+ Nelder Mead ,
+ Pattern Search ,
+ BRKGA ,
+ ES ,
+ SRES ,
+ ISRES ,
+ CMA-ES ,
+ G3PCX ,
+ NRBO 
+
+ Multi-objective: 
+ NSGA-II ,
+ R-NSGA-II ,
+ SPEA2 ,
+ Omni-Optimizer ,
+ CMOPSO ,
+ MOPSO-CD ,
+ NSDE ,
+ GDE3 
+
+ Many-objective: 
+ NSGA-III ,
+ R-NSGA-III ,
+ U-NSGA-III ,
+ MOEA/D ,
+ AGE-MOEA ,
+ AGE-MOEA2 ,
+ RVEA ,
+ SMS-EMOA ,
+ C-TAEA ,
+ NSDE-R 
+
+ Dynamic: 
+ D-NSGA-II ,
+ KGB ,
+ PI-NSGA-II 
+
+ Related: 
+ Reference Directions ,
+ Constraints ,
+ Convergence ,
+ Hyperparameters 
+
+ Customization 
+
+ Variable Types: 
+ Binary ,
+ Discrete ,
+ Permutation ,
+ Mixed ,
+ Custom 
+
+ Examples: 
+ Biased Initialization ,
+ Traveling Salesman 
+
+ Operators 
+
+ Sampling: 
+ Random, LHS
+
+ Selection: 
+ Random, Binary Tournament
+
+ Crossover: 
+ SBX, UX, HUX, DE Point, Exponential, OX, ERX
+
+ Mutation: 
+ Polynomial, Bitflip, Inverse Mutation
+
+ Repair 
+
+ Visualization 
+
+ Scatter Plot (2D/3D/ND) ,
+ Parallel Coordinate Plot (PCP) ,
+ Radviz ,
+ Star Coordinates ,
+ Heatmap ,
+ Petal Diagram ,
+ Spider Web / Radar ,
+ Video 
+
+ Multi-Criteria Decision Making 
+
+ Compromise Programming ,
+ Pseudo Weights ,
+ High Trade-off Points 
+
+ Performance Indicator 
+
+ GD ,
+ GD+ ,
+ IGD ,
+ IGD+ ,
+ Hypervolume ,
+ KKTPM 
+
+ Decomposition 
+
+ Weighted-Sum ,
+ ASF ,
+ AASF ,
+ Tchebysheff ,
+ PBI 
+
+ Case Studies 
+
+ Subset Selection ,
+ Portfolio Allocation 
+
+List Of Algorithms # 
+
+ Algorithms available in pymoo # 
+
+Algorithm
+
+Class
+
+Convenience
+
+Objective(s)
+
+Constraints
+
+Description
+
+ Genetic Algorithm 
+
+GA
+
+single
+
+x
+
+A modular implementation of a genetic algorithm. It can be easily customized with different evolutionary operators and applies to a broad category of problems.
+
+ Differential Evolution 
+
+DE
+
+single
+
+x
+
+Different variants of differential evolution which is a well-known concept for in continuous optimization especially for global optimization.
+
+ Particle Swarm Optimization 
+
+PSO
+
+single
+
+x
+
+A swarm intelligence algorithm where each particle is guided by its own and the swarm’s best-known positions to explore the search space.
+
+ Biased Random Key Genetic Algorithm 
+
+BRKGA
+
+single
+
+x
+
+Mostly used for combinatorial optimization where instead of custom evolutionary operators the complexity is put into an advanced variable encoding.
+
+ Nelder Mead 
+
+NelderMead
+
+single
+
+x
+
+A point-by-point based algorithm which keeps track of a simplex with is either extended reflected or shrunk.
+
+ Pattern Search 
+
+PatternSearch
+
+single
+
+x
+
+Iterative approach where the search direction is estimated by forming a specific exploration pattern around the current best solution.
+
+ CMAES 
+
+CMAES
+
+single
+
+Well-known model-based algorithm sampling from a dynamically updated normal distribution in each iteration.
+
+ Evolutionary Strategy 
+
+ES
+
+single
+
+x
+
+The evolutionary strategy algorithm proposed for real-valued optimization problems.
+
+ Stochastic Ranking Evolutionary Strategy 
+
+SRES
+
+single
+
+x
+
+An evolutionary strategy with constrained handling using stochastic ranking.
+
+ Improved Stochastic Ranking Evolutionary Strategy 
+
+ISRES
+
+single
+
+x
+
+An improved version of SRES being able to deal dependent variables efficiently.
+
+ G3PCX 
+
+G3PCX
+
+single
+
+A real-coded genetic algorithm using the generalized generation gap (G3) model with the parent-centric recombination (PCX) operator.
+
+ Newton-Raphson-based Optimizer 
+
+NRBO
+
+single
+
+x
+
+A population-based metaheuristic inspired by Newton-Raphson method with high optimization efficiency.
+
+ NSGA-II 
+
+NSGA2
+
+multi
+
+x
+
+Well-known multi-objective optimization algorithm based on non-dominated sorting and crowding.
+
+ R-NSGA-II 
+
+RNSGA2
+
+multi
+
+x
+
+An extension of NSGA-II where reference/aspiration points can be provided by the user.
+
+ PI-NSGA-II 
+
+PINSGA2
+
+multi
+
+x
+
+An interactive version of NSGA-II that uses user preference to guide the optimization towards desired solutions.
+
+ NSGA-III 
+
+NSGA3
+
+many
+
+x
+
+An improvement of NSGA-II developed for multi-objective optimization problems with more than two objectives.
+
+ U-NSGA-III 
+
+UNSGA3
+
+many
+
+x
+
+A generalization of NSGA-III to be more efficient for single and bi-objective optimization problems.
+
+ R-NSGA-III 
+
+RNSGA3
+
+many
+
+x
+
+Allows defining aspiration points for NSGA-III to incorporate the user’s preference.
+
+ MOEAD 
+
+MOEAD
+
+many
+
+Another well-known multi-objective optimization algorithm based on decomposition.
+
+ AGE-MOEA 
+
+AGEMOEA
+
+many
+
+Similar to NSGA-II but estimates the shape of the Pareto-front to compute a score replacing the crowding distance.
+
+ AGE-MOEA2 
+
+AGEMOEA2
+
+many
+
+An improved AGE-MOEA with a more accurate estimation of the Pareto-front geometry used to compute the survival score.
+
+ C-TAEA 
+
+CTAEA
+
+many
+
+x
+
+An algorithm with a more sophisticated constraint-handling for many-objective optimization algoritms.
+
+ SMS-EMOA 
+
+SMSEMOA
+
+many
+
+x
+
+An algorithm that uses hypervolume during the environmental survival.
+
+ SPEA2 
+
+SPEA2
+
+multi
+
+x
+
+Strength Pareto evolutionary algorithm using a strength-based fitness with a k-th nearest neighbor density estimate and an archive truncation operator for diversity.
+
+ Omni-Optimizer 
+
+OmniOptimizer
+
+multi
+
+x
+
+A generic NSGA-II based algorithm using a dynamic epsilon-dominance and crowding in objective and variable space to find multiple equivalent Pareto-optimal solutions.
+
+ RVEA 
+
+RVEA
+
+many
+
+A reference direction based algorithm used an angle-penalized metric.
+
+ CMOPSO 
+
+CMOPSO
+
+multi
+
+x
+
+A competitive mechanism based multi-objective particle swarm optimizer with fast convergence using binary tournament selection on elites.
+
+ MOPSO-CD 
+
+MOPSO_CD
+
+multi
+
+x
+
+Multi-objective particle swarm optimization with crowding distance mechanism for leader selection and archive management.
+
+ D-NSGA-II 
+
+DNSGA2
+
+multi
+
+x
+
+A dynamic version of NSGA-II that detects and reacts to changes of the objectives over time.
+
+ KGB-DMOEA 
+
+KGB
+
+multi
+
+x
+
+A knowledge-guided Bayesian dynamic multi-objective optimizer that reuses past search knowledge when the problem changes.
+
+ NSDE 
+
+NSDE
+
+multi
+
+x
+
+NSGA-II combined with differential evolution variation operators instead of simulated binary crossover and polynomial mutation.
+
+ GDE3 
+
+GDE3
+
+multi
+
+x
+
+Generalized Differential Evolution 3 - differential evolution variation with non-dominated sorting survival and a greedy parent-trial comparison.
+
+ NSDE-R 
+
+NSDER
+
+many
+
+x
+
+A reference-direction based differential evolution algorithm extending NSGA-III’s survival to many-objective problems.
+
+Cite Us # 
+
+If you have used our framework for research purposes, you can cite our publication by:
+
+ J. Blank and K. Deb, pymoo: Multi-Objective Optimization in Python, in IEEE Access, vol. 8, pp. 89497-89509, 2020, doi: 10.1109/ACCESS.2020.2990567 
+
+BibTex:
+
+ @ARTICLE{pymoo,
+ author={J. {Blank} and K. {Deb}},
+ journal={IEEE Access},
+ title={pymoo: Multi-Objective Optimization in Python},
+ year={2020},
+ volume={8},
+ number={},
+ pages={89497-89509},
+}
+
+News # 
+
+ June 27, 2026: pymoo version 0.6.2 has been released. This release restores CMA-ES compatibility with NumPy 2.x (via cma>=3.4.0 ), refreshes the documentation with a complete and consistent algorithm overview, and adds internal code-quality improvements (repo-wide linting, whole-package type-checking, and a behavior-regression test suite). ( Release Notes )
+
+ November 23, 2025: pymoo version 0.6.1.6 has been released with visualization fixes, SPEA2 improvements, faster bi-objective non-dominated sorting, and updated documentation with a new Sphinx Book Theme.
+
+ May 26, 2025: A new pymoo version 0.6.1.5 has been released with further refinements and bug fixes to ensure stability and performance across different environments.
+
+ More News 
+
+About # 
+
+This framework is powered by anyoptimization , a Python research community. It is developed and maintained by Julian Blank who is affiliated to the
+ Computational Optimization and Innovation Laboratory (COIN) supervised
+by Kalyanmoy Deb at the Michigan State University in
+East Lansing, Michigan, USA.
+
+We have developed the framework for research purposes and hope to contribute to the research area by delivering tools
+for solving and analyzing multi-objective problems. Each algorithm is developed as close as possible to the proposed
+version to the best of our knowledge.
+ NSGA-II and NSGA-III have been developed collaboratively with one of the authors and, therefore, we recommend
+using them for official benchmarks.
+
+If you intend to use our framework for any profit-making purposes, please contact us. Also, be aware that even
+state-of-the-art algorithms are just the starting point for many optimization problems.
+The full potential of genetic algorithms requires customization and the incorporation of domain knowledge.
+We have experience for more than 20 years in the optimization field and are eager to tackle challenging problems.
+Let us know if you are interested in working with experienced collaborators in optimization. Please keep in mind
+that only through such projects can we keep developing and improving our framework and making sure
+it meets the industry’s current needs.
+
+Moreover, any kind of contribution is more than welcome:
+
+ (i) Give us a ⭐ on GitHub .
+This makes not only our framework but, in general, multi-objective optimization more accessible by being listed with a higher rank regarding specific keywords.
+
+ (ii) To offer more and more new algorithms and features, we are more than happy if somebody wants to contribute by developing code. You can see it as a
+win-win situation because your development will be linked to your publication(s), which
+can significantly increase your work awareness. Please note that we aim to keep a high level of code quality, and some refactoring might be suggested.
+
+ (iii) You like our framework, and you would like to use it for profit-making purposes?
+We are always searching for industrial collaborations because they help direct research to meet the industry’s needs. Our laboratory solving practical problems have a high priority for every student and can help you benefit from the research experience we have gained
+over the last years.
+
+If you find a bug or you have any kind of concern regarding the correctness, please use
+our Issue Tracker Nobody is perfect
+Moreover, only if we are aware of the issues we can start to investigate them.
+
+Content # 
+
+ News 
+
+ Installation 
+
+ Stable 
+
+ Optional Dependencies 
+
+ Release Candidate 
+
+ Development 
+
+ Compilation 
+
+ Conda 
+
+ Getting Started 
+
+ Interface 
+
+ Problems 
+
+ Parallelization 
+
+ Algorithms 
+
+ Constraint Handling 
+
+ Gradients 
+
+ Customization 
+
+ Binary Variable Problem 
+
+ Discrete Variable Problem 
+
+ Permutations 
+
+ Mixed Variable Problem 
+
+ Custom Variable Type 
+
+ Biased Initialization 
+
+ Subset Selection Problem 
+
+ Operators 
+
+ Sampling 
+
+ Selection 
+
+ Mutation 
+
+ Crossover 
+
+ Visualization 
+
+ Multi-Criteria Decision Making (MCDM) 
+
+ Compromise Programming 
+
+ Pseudo-Weights 
+
+ High Trade-off Points 
+
+ Case Studies 
+
+ Performance Indicator 
+
+ Generational Distance (GD) 
+
+ Generational Distance Plus (GD+) 
+
+ Inverted Generational Distance (IGD) 
+
+ Inverted Generational Distance Plus (IGD+) 
+
+ Hypervolume 
+
+ Miscellaneous 
+
+ Reference Directions 
+
+ Convergence 
+
+ Decomposition 
+
+ Karush Kuhn Tucker Proximity Measure (KKTPM) 
+
+ Checkpoints 
+
+ Lexicographic Selection from a Pareto Front 
+
+ FAQ 
+
+ API Reference 
+
+ Model 
+
+ Algorithms 
+
+ Versions 
+
+ 0.6.2 [Documentation] 
+
+ 0.6.1.6 [Documentation] 
+
+ 0.6.1.5 [Documentation] 
+
+ 0.6.1.3 [Documentation] 
+
+ 0.6.1 [Documentation] 
+
+ 0.6.0 [Documentation] 
+
+ 0.5.0 [Documentation] 
+
+ 0.4.2 [Documentation] 
+
+ 0.4.1 [Documentation] 
+
+ 0.4.0 [Documentation] 
+
+ 0.3.2 [Documentation] 
+
+ 0.3.1 [Documentation] 
+
+ 0.3.0 
+
+ 0.2.2 
+
+ 0.2.1 
+
+ Contribute 
+
+ Cite Us 
+
+ Contact 
+
+ License 
+
+Contact # 
+
+ Julian Blank 
+
+(blankjul [at] outlook.com)
+
+next
+
+News
+
+ Contents
+
+ Features 
+
+ List Of Algorithms 
+
+ Cite Us 
+
+ News 
+
+ About 
+
+ Content 
+
+ Contact 
+
+By Julian Blank
+
+ © Copyright 2020.
+
+ so the DOM is not blocked -->
+
+ Newsletter 
+
+ * indicates required
+
+ Email Address * 
+
+ First Name 
+
+ Last Name 
+
+ Institution 
+
+Powered by MailChimp

@@ -1,0 +1,1633 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content="pymoo: An open source framework for multi-objective optimization in Python. It provides not only state of the art single- and multi-objective optimization algorithms but also many more features related to multi-objective optimization such as visualization and decision making." name="description" />
+<meta content="Multi-objective Optimization, Evolutionary Algorithm, NSGA2" name="keywords" />
+
+    <title>pymoo: Multi-objective Optimization in Python &#8212; pymoo: Multi-objective Optimization in Python 0.6.2 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=bcc2e69f" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=967efe37"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=0729d509"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <script src="_static/js/pymoo-sidebar.js?v=ca182f98"></script>
+    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="News" href="news.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.svg" class="logo__image only-light" alt="pymoo: Multi-objective Optimization in Python 0.6.2 documentation - Home"/>
+    <script>document.write(`<img src="_static/logo.svg" class="logo__image only-dark" alt="pymoo: Multi-objective Optimization in Python 0.6.2 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><!-- Pymoo logo -->
+<!--<div style="text-align: center; padding: 20px 15px 10px 15px;">-->
+<!--    <a href="#">-->
+<!--        <img src="_static/logo.svg" alt="pymoo" style="max-width: 100%; height: auto;">-->
+<!--    </a>-->
+<!--</div>-->
+
+<!-- Pymoo sidebar buttons -->
+<div class="pymoo-sidebar-buttons">
+    <div class="pymoo-social-icons">
+        <a href="https://github.com/anyoptimization/pymoo" class="pymoo-icon" target="_blank" title="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+            </svg>
+        </a>
+        <a href="#" class="pymoo-icon" onclick="openNewsletter(); return false;" title="Newsletter">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+        </a>
+        <a href="https://discord.gg/DUCGrvqWEM" class="pymoo-icon" target="_blank" title="Discord">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0002 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9554 2.4189-2.1568 2.4189Z"/>
+            </svg>
+        </a>
+    </div>
+    <div class="pymoo-version">Version: 0.6.2</div>
+</div>
+
+<!-- Original navigation -->
+<nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    pymoo: Multi-objective Optimization in Python
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="getting_started/index.html">Getting Started</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started/preface.html">Preface: Basics and Challenges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started/part_1.html">Part I: A Constrained Bi-objective Optimization Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started/part_2.html">Part II: Find a Solution Set using Multi-objective Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started/part_3.html">Part III: Multi-Criteria Decision Making</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started/part_4.html">Part IV: Analysis of Convergence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started/part_5.html">Part V: Some more useful Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started/source_code.html">Source Code</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="interface/index.html">Interface</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="interface/minimize.html">Minimize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface/problem.html">Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface/algorithm.html">Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface/termination.html">Termination Criterion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface/callback.html">Callback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface/display.html">Display</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface/result.html">Result</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="problems/index.html">Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="problems/definition.html">Definition</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="problems/test_problems.html">Test Problems</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="problems/single/ackley.html">Ackley</a></li>
+<li class="toctree-l3"><a class="reference internal" href="problems/single/griewank.html">Griewank</a></li>
+<li class="toctree-l3"><a class="reference internal" href="problems/single/zakharov.html">Zakharov</a></li>
+<li class="toctree-l3"><a class="reference internal" href="problems/single/rastrigin.html">Rastrigin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="problems/single/rosenbrock.html">Rosenbrock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="problems/multi/bnh.html">BNH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="problems/multi/zdt.html">ZDT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="problems/multi/osy.html">OSY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="problems/multi/tnk.html">TNK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="problems/multi/truss2d.html">Truss2D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="problems/multi/welded_beam.html">Welded Beam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="problems/multi/omni_test.html">Omni-test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="problems/multi/sym_part.html">SYM-PART</a></li>
+<li class="toctree-l3"><a class="reference internal" href="problems/many/dtlz.html">DTLZ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="problems/many/wfg.html">WFG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="problems/constrained/mw.html">MW</a></li>
+<li class="toctree-l3"><a class="reference internal" href="problems/constrained/dascmop.html">DAS-CMOP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="problems/constrained/modact.html">MODAct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="problems/dynamic/df.html">DF: Benchmark Problems for CEC2018 Competition on Dynamic Multiobjective Optimisation</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="parallelization/index.html">Parallelization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="parallelization/vectorized.html">Vectorized Matrix Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallelization/starmap.html">Starmap Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallelization/joblib.html">Joblib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallelization/gpu.html">GPU Acceleration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallelization/custom.html">Custom Parallelization</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="algorithms/index.html">Algorithms</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/initialization.html">Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/usage.html">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/list.html">List Of Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/hyperparameters.html">Hyperparameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/soo/ga.html">GA: Genetic Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/soo/brkga.html">BRKGA: Biased Random Key Genetic Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/soo/de.html">DE: Differential Evolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/soo/nelder.html">Nelder Mead</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/soo/pso.html">PSO: Particle Swarm Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/soo/pattern.html">Pattern Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/soo/es.html">ES: Evolutionary Strategy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/soo/sres.html">SRES: Stochastic Ranking Evolutionary Strategy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/soo/isres.html">ISRES: Improved Stochastic Ranking Evolutionary Strategy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/soo/cmaes.html">CMA-ES</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/soo/g3pcx.html">G3PCX: A Computationally Efficient Evolutionary Algorithm for Real-Parameter Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/soo/nrbo.html">NRBO: Newton-Raphson-based Optimizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/moo/nsga2.html">NSGA-II: Non-dominated Sorting Genetic Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/moo/rnsga2.html">R-NSGA-II</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/moo/nsga3.html">NSGA-III</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/moo/unsga3.html">U-NSGA-III</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/moo/rnsga3.html">R-NSGA-III</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/moo/moead.html">MOEA/D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/moo/ctaea.html">C-TAEA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/moo/age.html">AGE-MOEA: Adaptive Geometry Estimation based MOEA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/moo/age2.html">AGE-MOEA2: Adaptive Geometry Estimation based MOEA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/moo/rvea.html">RVEA: Reference Vector Guided Evolutionary Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/moo/sms.html">SMS-EMOA: Multiobjective selection based on dominated hypervolume</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/moo/spea2.html">SPEA2: Strength Pareto Evolutionary Algorithm 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/moo/omni.html">Omni-Optimizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/moo/dnsga2.html">D-NSGA-II: Dynamic Multi-Objective Optimization Using Modified NSGA-II</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/moo/kgb.html">KGB-DMOEA: Knowledge-Guided Bayesian Dynamic Multi-Objective Evolutionary Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/moo/pinsga2.html">PI-NSGA-II: Progressively Interactive NSGA-II</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/moo/cmopso.html">CMOPSO: Competitive Mechanism based Multi-objective Particle Swarm Optimizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/moo/mopso_cd.html">MOPSO-CD: Multi-Objective Particle Swarm Optimization with Crowding Distance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/moo/nsde.html">NSDE: Non-dominated Sorting Differential Evolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/moo/gde3.html">GDE3: Generalized Differential Evolution 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithms/moo/nsder.html">NSDE-R: Reference-direction based Differential Evolution</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="constraints/index.html">Constraint Handling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="constraints/problem.html">Constrained Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints/feas_first.html">Feasibility First (Parameter-less Approach)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints/as_penalty.html">Constraint Violation (CV) as Penalty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints/as_obj.html">Constraint Violation (CV) As Objective</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints/eps.html"><span class="math notranslate nohighlight">\(\epsilon\)</span>-Constraint Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constraints/repair.html">Repair Operator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="gradients/index.html">Gradients</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="customization/index.html">Customization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="customization/binary.html">Binary Variable Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customization/discrete.html">Discrete Variable Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customization/permutation.html">Permutations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customization/mixed.html">Mixed Variable Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customization/custom.html">Custom Variable Type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customization/initialization.html">Biased Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customization/subset.html">Subset Selection Problem</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="operators/index.html">Operators</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="operators/sampling.html">Sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operators/selection.html">Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operators/crossover.html">Crossover</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operators/mutation.html">Mutation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operators/repair.html">Repair</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operators/survival.html">Survival</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="visualization/index.html">Visualization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="visualization/scatter.html">Scatter Plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization/pcp.html">Parallel Coordinate Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization/heatmap.html">Heatmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization/petal.html">Petal Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization/radar.html">Radar Plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization/radviz.html">Radviz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization/star.html">Star Coordinate Plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization/video.html">Video</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="mcdm/index.html">Multi-Criteria Decision Making (MCDM)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="case_studies/index.html">Case Studies</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="case_studies/subset_selection.html">Subset Selection Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="case_studies/portfolio_allocation.html">Portfolio Allocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="case_studies/matrix_inversion.html">Matrix Inversion</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="misc/indicators.html">Performance Indicator</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="misc/index.html">Miscellaneous</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="misc/reference_directions.html">Reference Directions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc/convergence.html">Convergence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc/decomposition.html">Decomposition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc/kktpm.html">Karush Kuhn Tucker Proximity Measure (KKTPM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc/checkpoint.html">Checkpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc/lexicographic_pareto_selection.html">Lexicographic Selection from a Pareto Front</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="api/index.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/model.html">Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/algorithms.html">Algorithms</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="versions.html">Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">Cite Us</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/anyoptimization/pymoo" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/anyoptimization/pymoo/blob/main/docs/source/index.rst?plain=1" target="_blank"
+   class="btn btn-sm btn-source-file-button dropdown-item"
+   title="Show source"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">Show source</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/anyoptimization/pymoo/edit/main/docs/source/index.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/anyoptimization/pymoo/issues/new?title=Issue%20on%20page%20%2Findex.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>pymoo: Multi-objective Optimization in Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features">Features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-of-algorithms">List Of Algorithms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cite-us">Cite Us</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#news">News</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about">About</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content">Content</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contact">Contact</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="pymoo-multi-objective-optimization-in-python">
+<h1>pymoo: Multi-objective Optimization in Python<a class="headerlink" href="#pymoo-multi-objective-optimization-in-python" title="Link to this heading">#</a></h1>
+<p>Our framework offers state of the art single- and multi-objective optimization algorithms and many
+more features related to multi-objective optimization such as visualization and decision making.
+<strong>pymoo</strong> is available on PyPi and can be installed by:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pip install -U pymoo
+</pre></div>
+</div>
+<p>Please note that some modules can be compiled to speed up computations (optional). The command
+above attempts is made to compile the modules; however, if unsuccessful, the
+pure python version is installed. More information are available in our
+<a class="reference internal" href="installation.html#installation"><span class="std std-ref">Installation Guide</span></a>.</p>
+<style>
+
+    .zoom:hover {
+        transform: scale(1.07);
+    }
+</style>
+
+
+<div class="container">
+    <div class="row row-eq-height">
+
+
+        <div class="col-md d-flex my-1 mx-2 overflow-hidden">
+            <div class="card">
+                <a href="getting_started/index.html"><img class="card-img-top w-100 zoom"
+                                                          src="_static/images/icon_getting_started.png"
+                                                          alt="Icon Getting Started"></a>
+                <div class="card-body">
+                    <p class="card-text"><b>Getting Started Guide:</b> The most important steps in multi-objective
+                        optimization:
+                        Problem Definition, Optimization, Convergence Analysis, and Decision Making. </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md d-flex my-1 mx-2 overflow-hidden">
+            <div class="card">
+                <a href="https://discord.gg/DUCGrvqWEM"><img class="card-img-top w-100 zoom"
+                                                                              src="_static/images/icon_discord.jpeg"
+                                                                              alt="Discord Server"></a>
+                <div class="card-body">
+                    <p class="card-text"><b>Discord:</b> Join our discord server for help or a discussion about optimization in the context of our framework.</p>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div><section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Link to this heading">#</a></h2>
+<p>Furthermore, our framework offers a variety of different features which cover various facets of multi-objective optimization:</p>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+<style>
+
+    #wrapper h4 {
+        margin: 5px 0px 15px 0px;
+        font-weight: 400;
+    }
+
+    .entry {
+        height: 100%;
+        width: 100%;
+    }
+
+
+    .border {
+        border: 1px solid #DCDCDC;
+    }
+
+    .icon {
+        margin-top: 5px;
+    }
+
+    .entry:hover {
+        background: #DCDCDC;
+        cursor: pointer;
+    }
+
+
+
+
+</style>
+
+<div id="wrapper">
+
+    <div class="row row-eq-height">
+
+        <div class="col-12 col-lg-6 p-1" onclick="location.href='interface/index.html';">
+            <div class="entry border p-3">
+                <div class="d-flex flex-row">
+                    <div class="icon col-2">
+                        <i class="fas fa-bullhorn fa-2x"></i>
+                    </div>
+                    <div class="desc col-10">
+                        <p class="portfolio-heading"><a href="interface/index.html">Interface</a></p>
+
+                        <b>Function:</b>
+                        <a href="interface/minimize.html">minimize</a>
+                        <p style="margin-bottom:0.4em;"></p>
+
+                        <b>Parameters:</b>
+                        <a href="problems/index.html">Problem</a>,
+                        <a href="algorithms/index.html">Algorithm</a>,
+                        <a href="interface/termination.html">Termination</a>
+                        <p style="margin-bottom:0.4em;"></p>
+
+                        <b>Optionals:</b>
+                        <a href="interface/callback.html">Callback</a>,
+                        <a href="interface/display.html">Display</a>,
+                        <a href="interface/minimize.html">...</a>
+
+                        <p style="margin-bottom:0.4em;"></p>
+
+                        <b>Returns:</b> <a href="interface/result.html">Result</a>
+
+                        <br>
+                        <p style="margin-bottom:0.7em;"></p>
+
+                        <b>Related:</b>
+                        <a href="algorithms/usage.html">Ask and Tell</a>,
+                        <a href="misc/checkpoint.html">Checkpoints</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-6 p-1" onclick="location.href='problems/index.html';">
+            <div class="entry border p-3">
+                <div class="d-flex flex-row">
+
+                    <div class="icon col-2">
+                        <i class="fas fa-chess fa-2x"></i>
+                    </div>
+                    <div class="desc col-10">
+                        <p class="portfolio-heading"><a href="problems/index.html">Problems</a></p>
+
+                        <b>Single-objective:</b>
+                        <a href="problems/single/ackley.html">Ackley</a>,
+                        <a href="problems/single/griewank.html">Griewank</a>,
+                        <a href="problems/single/rastrigin.html">Rastrigin</a>,
+                        <a href="problems/single/rosenbrock.html">Rosenbrock</a>,
+                        <a href="problems/single/zakharov.html">Zakharov</a>,
+                        <a href="problems/index.html#Single-Objective">...</a>
+                        <br>
+                        <p style="margin-bottom:0.4em;"></p>
+
+
+                        <b>Multi-objective:</b>
+                        <a href="problems/multi/bnh.html">BNH</a>,
+                        <a href="problems/multi/osy.html">OSY</a>,
+                        <a href="problems/multi/tnk.html">TNK</a>,
+                        <a href="problems/multi/truss2d.html">Truss2d</a>,
+                        <a href="problems/multi/welded_beam.html">Welded Beam</a>,
+                        <a href="problems/multi/zdt.html">ZDT</a>,
+                        <a href="problems/index.html#Multi-Objective">...</a>
+                        <br>
+                        <p style="margin-bottom:0.4em;"></p>
+
+
+                        <b>Many-objective:</b>
+                        <a href="problems/many/dtlz.html">DTLZ</a>,
+                        WFG
+                        <br>
+                        <p style="margin-bottom:0.7em;"></p>
+
+                        <b>Constrained:</b>
+                        CTP,
+                        <a href="problems/constrained/dascmop.html">DASCMOP</a>,
+                        <a href="problems/constrained/modact.html">MODAct</a>,
+                        <a href="problems/constrained/mw.html">MW</a>,
+                        CDTLZ
+                        <br>
+                        <p style="margin-bottom:0.4em;"></p>
+
+                        <b>Dynamic:</b>
+                        <a href="problems/dynamic/df.html">DF</a>
+                        
+                        <br>
+                        <p style="margin-bottom:0.7em;"></p>
+                        
+
+                        <b>Related:</b>
+                        <a href="problems/definition.html">Problem Definition</a>,
+                        <a href="gradients/index.html">Gradients</a>,
+                        <a href="parallelization/index.html">Parallelization</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="row row-eq-height">
+
+        <div class="col-12 col-lg-6 p-1"onclick="location.href='algorithms/index.html';">
+            <div class="entry border p-3">
+                <div class="d-flex flex-row">
+
+                    <div class="icon col-2">
+                        <i class="fas fa-search fa-2x"></i>
+                    </div>
+                    <div class="desc col-10">
+                        <p class="portfolio-heading"><a href="algorithms/index.html">Algorithms</a></p>
+
+                        <b>Single-objective:</b>
+                        <a href="algorithms/soo/ga.html">GA</a>,
+                        <a href="algorithms/soo/de.html">DE</a>,
+                        <a href="algorithms/soo/pso.html">PSO</a>,
+                        <a href="algorithms/soo/nelder.html">Nelder Mead</a>,
+                        <a href="algorithms/soo/pattern.html">Pattern Search</a>,
+                        <a href="algorithms/soo/brkga.html">BRKGA</a>,
+                        <a href="algorithms/soo/es.html">ES</a>,
+                        <a href="algorithms/soo/sres.html">SRES</a>,
+                        <a href="algorithms/soo/isres.html">ISRES</a>,
+                        <a href="algorithms/soo/cmaes.html">CMA-ES</a>,
+                        <a href="algorithms/soo/g3pcx.html">G3PCX</a>,
+                        <a href="algorithms/soo/nrbo.html">NRBO</a><img class="new-flag" src="_static/new-flag.svg">
+
+                        <p style="margin-bottom:0.4em;"></p>
+                        <p style="margin-bottom:0.4em;"></p>
+
+                        <b>Multi-objective:</b>
+                        <a href="algorithms/moo/nsga2.html">NSGA-II</a>,
+                        <a href="algorithms/moo/rnsga2.html">R-NSGA-II</a>,
+                        <a href="algorithms/moo/spea2.html">SPEA2</a>,
+                        <a href="algorithms/moo/omni.html">Omni-Optimizer</a><img class="new-flag" src="_static/new-flag.svg">,
+                        <a href="algorithms/moo/cmopso.html">CMOPSO</a><img class="new-flag" src="_static/new-flag.svg">,
+                        <a href="algorithms/moo/mopso_cd.html">MOPSO-CD</a><img class="new-flag" src="_static/new-flag.svg">,
+                        <a href="algorithms/moo/nsde.html">NSDE</a>,
+                        <a href="algorithms/moo/gde3.html">GDE3</a>
+
+                        <br>
+                        <p style="margin-bottom:0.4em;"></p>
+
+                        <b>Many-objective:</b>
+                        <a href="algorithms/moo/nsga3.html">NSGA-III</a>,
+                        <a href="algorithms/moo/rnsga3.html">R-NSGA-III</a>,
+                        <a href="algorithms/moo/unsga3.html">U-NSGA-III</a>,
+                        <a href="algorithms/moo/moead.html">MOEA/D</a>,
+                        <a href="algorithms/moo/age.html">AGE-MOEA</a>,
+                        <a href="algorithms/moo/age2.html">AGE-MOEA2</a>,
+                        <a href="algorithms/moo/rvea.html">RVEA</a>,
+                        <a href="algorithms/moo/sms.html">SMS-EMOA</a>,
+                        <a href="algorithms/moo/ctaea.html">C-TAEA</a>,
+                        <a href="algorithms/moo/nsder.html">NSDE-R</a>
+                        <br>
+                        
+                        <b>Dynamic:</b>
+                        <a href="algorithms/moo/dnsga2.html">D-NSGA-II</a>,
+                        <a href="algorithms/moo/kgb.html">KGB</a>,
+                        <a href="algorithms/moo/pinsga2.html">PI-NSGA-II</a>
+                        <br>
+                        <p style="margin-bottom:0.7em;"></p>
+
+                        <b>Related:</b>
+                        <a href="misc/reference_directions.html">Reference Directions</a>,
+                        <a href="constraints/index.html">Constraints</a>,
+                        <a href="misc/convergence.html">Convergence</a>,
+                        <a href="algorithms/hyperparameters.html">Hyperparameters</a>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-6 p-1" onclick="location.href='customization/index.html';">
+            <div class="entry border p-3">
+                <div class="d-flex flex-row">
+                    <div class="icon col-2">
+                        <i class="fas fa-book-open fa-2x"></i>
+                    </div>
+                    <div class="desc col-10">
+                        <p class="portfolio-heading"><a href="customization/index.html">Customization</a></p>
+
+                        <b>Variable Types:</b>
+                        <a href="customization/binary.html">Binary</a>,
+                        <a href="customization/discrete.html">Discrete</a>,
+                        <a href="customization/permutation.html">Permutation</a>,
+                        <a href="customization/mixed.html">Mixed</a>,
+                        <a href="customization/custom.html">Custom</a>
+
+                        <br>
+                        <p style="margin-bottom:0.4em;"></p>
+
+                        <b>Examples:</b>
+                        <a href="customization/initialization.html">Biased Initialization</a>,
+                        <a href="customization/permutation.html#Traveling-Salesman-Problem-(TSP)">Traveling Salesman</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="row row-eq-height">
+
+        <div class="col-12 col-lg-6 p-1"onclick="location.href='operators/index.html';">
+            <div class="entry border p-3">
+                <div class="d-flex flex-row">
+
+
+                    <div class="icon col-2">
+                        <i class="fas fa-tools fa-2x"></i>
+                    </div>
+                    <div class="desc col-10">
+                        <p class="portfolio-heading"><a href="operators/index.html">Operators</a></p>
+
+
+                        <a href="operators/sampling.html">Sampling:</a>
+                        Random, LHS
+                        </br>
+                        <a href="operators/selection.html">Selection:</a>
+                        Random, Binary Tournament
+
+                        </br>
+                        <a href="operators/crossover.html">Crossover:</a>
+                        SBX, UX, HUX, DE Point, Exponential, OX, ERX
+                        </br>
+
+                        <a href="operators/mutation.html">Mutation:</a>
+                        Polynomial, Bitflip, Inverse Mutation
+                        </br>
+                        <a href="operators/repair.html">Repair</a>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-6 p-1" onclick="location.href='visualization/index.html';">
+            <div class="entry border p-3">
+                <div class="d-flex flex-row">
+
+                    <div class="icon col-2">
+                        <i class="fas fa-chart-line fa-2x"></i>
+                    </div>
+                    <div class="desc col-10">
+                        <p class="portfolio-heading"><a href="visualization/index.html">Visualization</a></p>
+
+                        <a href="visualization/scatter.html">Scatter Plot (2D/3D/ND)</a>,
+                        <a href="visualization/pcp.html">Parallel Coordinate Plot (PCP) </a>,
+                        <a href="visualization/radviz.html">Radviz</a>,
+                        <a href="visualization/star.html">Star Coordinates</a>,
+                        <a href="visualization/heatmap.html">Heatmap</a>,
+                        <a href="visualization/petal.html">Petal Diagram</a>,
+                        <a href="visualization/radar.html">Spider Web / Radar</a>,
+                        <a href="visualization/video.html">Video</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="row row-eq-height">
+
+        <div class="col-12 col-lg-6 p-1" onclick="location.href='mcdm/index.html';">
+            <div class="entry border p-3">
+                <div class="d-flex flex-row">
+
+                    <div class="icon col-2">
+                        <i class="fas fa-balance-scale fa-2x"></i>
+                    </div>
+                    <div class="desc col-10">
+                        <p class="portfolio-heading"><a href="mcdm/index.html">Multi-Criteria Decision Making</a></p>
+
+                        <a href="mcdm/index.html#nb-compromise">Compromise Programming</a>,
+                        <a href="mcdm/index.html#nb-pseudo-weights">Pseudo Weights</a>,
+                        <a href="mcdm/index.html#nb-high-tradeoff">High Trade-off Points</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-12 col-lg-6 p-1" onclick="location.href='misc/indicators.html';">
+            <div class="entry border p-3">
+                <div class="d-flex flex-row">
+                    <div class="icon col-2">
+                        <i class="fas fa-medal fa-2x"></i>
+                    </div>
+                    <div class="desc col-10">
+                        <p class="portfolio-heading"><a href="misc/indicators.html">Performance Indicator</a></p>
+
+                        <a href="misc/indicators.html#nb-gd">GD</a>,
+                        <a href="misc/indicators.html#nb-gd-plus">GD+</a>,
+                        <a href="misc/indicators.html#nb-igd">IGD</a>,
+                        <a href="misc/indicators.html#nb-igd-plus">IGD+</a>,
+                        <a href="misc/indicators.html#nb-hv">Hypervolume</a>,
+                        <a href="misc/kktpm.html">KKTPM</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+        <div class="row row-eq-height">
+
+        <div class="col-12 col-lg-6 p-1" onclick="location.href='misc/decomposition.html';">
+            <div class="entry border p-3">
+                <div class="d-flex flex-row">
+                    <div class="icon col-2">
+                        <i class="fas fa-layer-group fa-2x"></i>
+                    </div>
+                    <div class="desc col-10">
+                        <p class="portfolio-heading"><a href="misc/decomposition.html">Decomposition</a></p>
+
+                        <a href="misc/decomposition.html#nb-weighted-sum">Weighted-Sum</a>,
+                        <a href="misc/decomposition.html#nb-asf">ASF</a>,
+                        <a href="misc/decomposition.html#nb-aasf">AASF</a>,
+                        <a href="misc/decomposition.html#nb-tchebi">Tchebysheff</a>,
+                        <a href="misc/decomposition.html#nb-pbi">PBI</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-12 col-lg-6 p-1" onclick="location.href='case_studies/index.html';">
+            <div class="entry border p-3">
+                <div class="d-flex flex-row">
+                    <div class="icon col-2">
+                        <i class="fas fa-business-time fa-2x"></i>
+                    </div>
+                    <div class="desc col-10">
+                        <p class="portfolio-heading"><a href="case_studies/index.html">Case Studies</a></p>
+                        <a href="case_studies/subset_selection.html">Subset Selection</a>,
+                        <a href="case_studies/portfolio_allocation.html">Portfolio Allocation</a>
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+</div></section>
+<section id="list-of-algorithms">
+<h2>List Of Algorithms<a class="headerlink" href="#list-of-algorithms" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table" id="id1">
+<caption><span class="caption-text">Algorithms available in pymoo</span><a class="headerlink" href="#id1" title="Link to this table">#</a></caption>
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 5.0%" />
+<col style="width: 5.0%" />
+<col style="width: 5.0%" />
+<col style="width: 5.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Algorithm</p></th>
+<th class="head"><p>Class</p></th>
+<th class="head"><p>Convenience</p></th>
+<th class="head"><p>Objective(s)</p></th>
+<th class="head"><p>Constraints</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="algorithms/soo/ga.html#nb-ga"><span class="std std-ref">Genetic Algorithm</span></a></p></td>
+<td><p>GA</p></td>
+<td><p>single</p></td>
+<td><p>x</p></td>
+<td><p>A modular implementation of a genetic algorithm. It can be easily customized with different evolutionary operators and applies to a broad category of problems.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="algorithms/soo/de.html#nb-de"><span class="std std-ref">Differential Evolution</span></a></p></td>
+<td><p>DE</p></td>
+<td><p>single</p></td>
+<td><p>x</p></td>
+<td><p>Different variants of differential evolution which is a well-known concept for in continuous optimization especially for global optimization.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="algorithms/soo/pso.html#nb-pso"><span class="std std-ref">Particle Swarm Optimization</span></a></p></td>
+<td><p>PSO</p></td>
+<td><p>single</p></td>
+<td><p>x</p></td>
+<td><p>A swarm intelligence algorithm where each particle is guided by its own and the swarm’s best-known positions to explore the search space.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="algorithms/soo/brkga.html#nb-brkga"><span class="std std-ref">Biased Random Key Genetic Algorithm</span></a></p></td>
+<td><p>BRKGA</p></td>
+<td><p>single</p></td>
+<td><p>x</p></td>
+<td><p>Mostly used for combinatorial optimization where instead of custom evolutionary operators the complexity is put into an advanced variable encoding.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="algorithms/soo/nelder.html#nb-nelder-mead"><span class="std std-ref">Nelder Mead</span></a></p></td>
+<td><p>NelderMead</p></td>
+<td><p>single</p></td>
+<td><p>x</p></td>
+<td><p>A point-by-point based algorithm which keeps track of a simplex with is either extended  reflected or shrunk.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="algorithms/soo/pattern.html#nb-pattern-search"><span class="std std-ref">Pattern Search</span></a></p></td>
+<td><p>PatternSearch</p></td>
+<td><p>single</p></td>
+<td><p>x</p></td>
+<td><p>Iterative approach where the search direction is estimated by forming a specific exploration pattern around the current best solution.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="algorithms/soo/cmaes.html#nb-cmaes"><span class="std std-ref">CMAES</span></a></p></td>
+<td><p>CMAES</p></td>
+<td><p>single</p></td>
+<td></td>
+<td><p>Well-known model-based algorithm sampling from a dynamically updated normal distribution in each iteration.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="algorithms/soo/es.html#nb-es"><span class="std std-ref">Evolutionary Strategy</span></a></p></td>
+<td><p>ES</p></td>
+<td><p>single</p></td>
+<td><p>x</p></td>
+<td><p>The evolutionary strategy algorithm proposed for real-valued optimization problems.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="algorithms/soo/sres.html#nb-sres"><span class="std std-ref">Stochastic Ranking Evolutionary Strategy</span></a></p></td>
+<td><p>SRES</p></td>
+<td><p>single</p></td>
+<td><p>x</p></td>
+<td><p>An evolutionary strategy with constrained handling using stochastic ranking.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="algorithms/soo/isres.html#nb-isres"><span class="std std-ref">Improved Stochastic Ranking Evolutionary Strategy</span></a></p></td>
+<td><p>ISRES</p></td>
+<td><p>single</p></td>
+<td><p>x</p></td>
+<td><p>An improved version of SRES being able to deal dependent variables efficiently.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="algorithms/soo/g3pcx.html#nb-g3pcx"><span class="std std-ref">G3PCX</span></a></p></td>
+<td><p>G3PCX</p></td>
+<td><p>single</p></td>
+<td></td>
+<td><p>A real-coded genetic algorithm using the generalized generation gap (G3) model with the parent-centric recombination (PCX) operator.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="algorithms/soo/nrbo.html#nb-nrbo"><span class="std std-ref">Newton-Raphson-based Optimizer</span></a></p></td>
+<td><p>NRBO</p></td>
+<td><p>single</p></td>
+<td><p>x</p></td>
+<td><p>A population-based metaheuristic inspired by Newton-Raphson method with high optimization efficiency.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="algorithms/moo/nsga2.html#nb-nsga2"><span class="std std-ref">NSGA-II</span></a></p></td>
+<td><p>NSGA2</p></td>
+<td><p>multi</p></td>
+<td><p>x</p></td>
+<td><p>Well-known multi-objective optimization algorithm based on non-dominated sorting and crowding.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="algorithms/moo/rnsga2.html#nb-rnsga2"><span class="std std-ref">R-NSGA-II</span></a></p></td>
+<td><p>RNSGA2</p></td>
+<td><p>multi</p></td>
+<td><p>x</p></td>
+<td><p>An extension of NSGA-II where reference/aspiration points can be provided by the user.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="algorithms/moo/pinsga2.html#nb-pinsga2"><span class="std std-ref">PI-NSGA-II</span></a></p></td>
+<td><p>PINSGA2</p></td>
+<td><p>multi</p></td>
+<td><p>x</p></td>
+<td><p>An interactive version of NSGA-II that uses user preference to guide the optimization towards desired solutions.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="algorithms/moo/nsga3.html#nb-nsga3"><span class="std std-ref">NSGA-III</span></a></p></td>
+<td><p>NSGA3</p></td>
+<td><p>many</p></td>
+<td><p>x</p></td>
+<td><p>An improvement of NSGA-II developed for multi-objective optimization problems with more than two objectives.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="algorithms/moo/unsga3.html#nb-unsga3"><span class="std std-ref">U-NSGA-III</span></a></p></td>
+<td><p>UNSGA3</p></td>
+<td><p>many</p></td>
+<td><p>x</p></td>
+<td><p>A generalization of NSGA-III to be more efficient for single and bi-objective optimization problems.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="algorithms/moo/rnsga3.html#nb-rnsga3"><span class="std std-ref">R-NSGA-III</span></a></p></td>
+<td><p>RNSGA3</p></td>
+<td><p>many</p></td>
+<td><p>x</p></td>
+<td><p>Allows defining aspiration points for NSGA-III to incorporate the user’s preference.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="algorithms/moo/moead.html#nb-moead"><span class="std std-ref">MOEAD</span></a></p></td>
+<td><p>MOEAD</p></td>
+<td><p>many</p></td>
+<td></td>
+<td><p>Another well-known multi-objective optimization algorithm based on decomposition.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="algorithms/moo/age.html#nb-agemoea"><span class="std std-ref">AGE-MOEA</span></a></p></td>
+<td><p>AGEMOEA</p></td>
+<td><p>many</p></td>
+<td></td>
+<td><p>Similar to NSGA-II but estimates the shape of the Pareto-front to compute a score replacing the crowding distance.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="algorithms/moo/age2.html#nb-agemoea2"><span class="std std-ref">AGE-MOEA2</span></a></p></td>
+<td><p>AGEMOEA2</p></td>
+<td><p>many</p></td>
+<td></td>
+<td><p>An improved AGE-MOEA with a more accurate estimation of the Pareto-front geometry used to compute the survival score.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="algorithms/moo/ctaea.html#nb-ctaea"><span class="std std-ref">C-TAEA</span></a></p></td>
+<td><p>CTAEA</p></td>
+<td><p>many</p></td>
+<td><p>x</p></td>
+<td><p>An algorithm with a more sophisticated constraint-handling for many-objective optimization algoritms.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="algorithms/moo/sms.html#nb-sms"><span class="std std-ref">SMS-EMOA</span></a></p></td>
+<td><p>SMSEMOA</p></td>
+<td><p>many</p></td>
+<td><p>x</p></td>
+<td><p>An algorithm that uses hypervolume during the environmental survival.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="algorithms/moo/spea2.html#nb-spea2"><span class="std std-ref">SPEA2</span></a></p></td>
+<td><p>SPEA2</p></td>
+<td><p>multi</p></td>
+<td><p>x</p></td>
+<td><p>Strength Pareto evolutionary algorithm using a strength-based fitness with a k-th nearest neighbor density estimate and an archive truncation operator for diversity.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="algorithms/moo/omni.html#nb-omni"><span class="std std-ref">Omni-Optimizer</span></a></p></td>
+<td><p>OmniOptimizer</p></td>
+<td><p>multi</p></td>
+<td><p>x</p></td>
+<td><p>A generic NSGA-II based algorithm using a dynamic epsilon-dominance and crowding in objective and variable space to find multiple equivalent Pareto-optimal solutions.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="algorithms/moo/rvea.html#nb-rvea"><span class="std std-ref">RVEA</span></a></p></td>
+<td><p>RVEA</p></td>
+<td><p>many</p></td>
+<td></td>
+<td><p>A reference direction based algorithm used an angle-penalized metric.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="algorithms/moo/cmopso.html#nb-cmopso"><span class="std std-ref">CMOPSO</span></a></p></td>
+<td><p>CMOPSO</p></td>
+<td><p>multi</p></td>
+<td><p>x</p></td>
+<td><p>A competitive mechanism based multi-objective particle swarm optimizer with fast convergence using binary tournament selection on elites.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="algorithms/moo/mopso_cd.html#nb-mopso-cd"><span class="std std-ref">MOPSO-CD</span></a></p></td>
+<td><p>MOPSO_CD</p></td>
+<td><p>multi</p></td>
+<td><p>x</p></td>
+<td><p>Multi-objective particle swarm optimization with crowding distance mechanism for leader selection and archive management.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="algorithms/moo/dnsga2.html#nb-dnsga2"><span class="std std-ref">D-NSGA-II</span></a></p></td>
+<td><p>DNSGA2</p></td>
+<td><p>multi</p></td>
+<td><p>x</p></td>
+<td><p>A dynamic version of NSGA-II that detects and reacts to changes of the objectives over time.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="algorithms/moo/kgb.html#nb-kgb"><span class="std std-ref">KGB-DMOEA</span></a></p></td>
+<td><p>KGB</p></td>
+<td><p>multi</p></td>
+<td><p>x</p></td>
+<td><p>A knowledge-guided Bayesian dynamic multi-objective optimizer that reuses past search knowledge when the problem changes.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="algorithms/moo/nsde.html#nb-nsde"><span class="std std-ref">NSDE</span></a></p></td>
+<td><p>NSDE</p></td>
+<td><p>multi</p></td>
+<td><p>x</p></td>
+<td><p>NSGA-II combined with differential evolution variation operators instead of simulated binary crossover and polynomial mutation.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="algorithms/moo/gde3.html#nb-gde3"><span class="std std-ref">GDE3</span></a></p></td>
+<td><p>GDE3</p></td>
+<td><p>multi</p></td>
+<td><p>x</p></td>
+<td><p>Generalized Differential Evolution 3 - differential evolution variation with non-dominated sorting survival and a greedy parent-trial comparison.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="algorithms/moo/nsder.html#nb-nsder"><span class="std std-ref">NSDE-R</span></a></p></td>
+<td><p>NSDER</p></td>
+<td><p>many</p></td>
+<td><p>x</p></td>
+<td><p>A reference-direction based differential evolution algorithm extending NSGA-III’s survival to many-objective problems.</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="cite-us">
+<h2>Cite Us<a class="headerlink" href="#cite-us" title="Link to this heading">#</a></h2>
+<p>If you have used our framework for research purposes, you can cite our publication by:</p>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://ieeexplore.ieee.org/document/9078759">J. Blank and K. Deb, pymoo: Multi-Objective Optimization in Python, in IEEE Access, vol. 8, pp. 89497-89509, 2020, doi: 10.1109/ACCESS.2020.2990567</a></div>
+<div class="line"><br /></div>
+<div class="line">BibTex:</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>@ARTICLE{pymoo,
+    author={J. {Blank} and K. {Deb}},
+    journal={IEEE Access},
+    title={pymoo: Multi-Objective Optimization in Python},
+    year={2020},
+    volume={8},
+    number={},
+    pages={89497-89509},
+}
+</pre></div>
+</div>
+</section>
+<section id="news">
+<h2>News<a class="headerlink" href="#news" title="Link to this heading">#</a></h2>
+<p><strong>June 27, 2026:</strong> pymoo version <strong>0.6.2</strong> has been released. This release restores CMA-ES compatibility with NumPy 2.x (via <code class="docutils literal notranslate"><span class="pre">cma&gt;=3.4.0</span></code>), refreshes the documentation with a complete and consistent algorithm overview, and adds internal code-quality improvements (repo-wide linting, whole-package type-checking, and a behavior-regression test suite). (<a class="reference internal" href="versions.html#version-0-6-2"><span class="std std-ref">Release Notes</span></a>)</p>
+<p><strong>November 23, 2025:</strong> pymoo version <strong>0.6.1.6</strong> has been released with visualization fixes, SPEA2 improvements, faster bi-objective non-dominated sorting, and updated documentation with a new Sphinx Book Theme.</p>
+<p><strong>May 26, 2025:</strong> A new pymoo version <strong>0.6.1.5</strong> has been released with further refinements and bug fixes to ensure stability and performance across different environments.</p>
+<p><a class="reference internal" href="news.html#news"><span class="std std-ref">More News</span></a></p>
+</section>
+<section id="about">
+<h2>About<a class="headerlink" href="#about" title="Link to this heading">#</a></h2>
+<p>This framework is powered by <a href="https://anyoptimization.com" target="_blank">anyoptimization</a>, a Python research community. It is developed and maintained by <a href="http://julianblank.com" target="_blank">Julian Blank</a> who is affiliated to the
+<a href="http://www.coin-lab.org" target="_blank">Computational Optimization and Innovation Laboratory (COIN)</a> supervised
+by <a href="https://www.egr.msu.edu/people/profile/kdeb" target="_blank">Kalyanmoy Deb</a> at the Michigan State University in
+East Lansing, Michigan, USA.</p>
+<p>We have developed the framework for research purposes and hope to contribute to the research area by delivering tools
+for solving and analyzing multi-objective problems. Each algorithm is developed as close as possible to the proposed
+version to the best of our knowledge.
+<strong>NSGA-II</strong> and <strong>NSGA-III</strong> have been developed collaboratively with one of the authors and, therefore, we recommend
+using them for <strong>official</strong> benchmarks.</p>
+<p>If you intend to use our framework for <strong>any</strong> profit-making purposes, please contact us. Also, be aware that even
+state-of-the-art algorithms are just the starting point for many optimization problems.
+The full potential of genetic algorithms requires customization and the incorporation of domain knowledge.
+We have experience for more than 20 years in the optimization field and are eager to tackle challenging problems.
+Let us know if you are interested in working with experienced collaborators in optimization. Please keep in mind
+that only through such projects can we keep developing and improving our framework and making sure
+it meets the industry’s current needs.</p>
+<p>Moreover, any kind of <strong>contribution</strong> is more than welcome:</p>
+<div style="margin-left: 10px;"><p><strong>(i)</strong> Give us a <a href="https://github.com/anyoptimization/pymoo" style="text-decoration: none;">⭐</a> on <a href="https://github.com/anyoptimization/pymoo" target="_blank">GitHub</a>.
+This makes not only our framework but, in general, multi-objective optimization more accessible by being listed with a higher rank regarding specific keywords.</p>
+<p><strong>(ii)</strong> To offer more and more new algorithms and features, we are more than happy if somebody wants to contribute by developing code. You can see it as a
+win-win situation because your development will be linked to your publication(s), which
+can significantly increase your work awareness. Please note that we aim to keep a high level of code quality, and some refactoring might be suggested.</p>
+<p><strong>(iii)</strong> You like our framework, and you would like to use it for profit-making purposes?
+We are always searching for industrial collaborations because they help direct research to meet the industry’s needs. Our laboratory solving practical problems have a high priority for every student and can help you benefit from the research experience we have gained
+over the last years.</p>
+</div><p>If you find a bug or you have any kind of concern regarding the correctness, please use
+our <a href="https://github.com/anyoptimization/pymoo/issues" target="_blank">Issue Tracker</a> Nobody is perfect
+Moreover, only if we are aware of the issues we can start to investigate them.</p>
+</section>
+<section id="content">
+<h2>Content<a class="headerlink" href="#content" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#Stable">Stable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#Optional-Dependencies">Optional Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#Release-Candidate">Release Candidate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#Development">Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#Compilation">Compilation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#Conda">Conda</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interface/index.html">Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="problems/index.html">Problems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parallelization/index.html">Parallelization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms/index.html">Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constraints/index.html">Constraint Handling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gradients/index.html">Gradients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="customization/index.html">Customization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="customization/binary.html">Binary Variable Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customization/discrete.html">Discrete Variable Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customization/permutation.html">Permutations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customization/mixed.html">Mixed Variable Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customization/custom.html">Custom Variable Type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customization/initialization.html">Biased Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customization/subset.html">Subset Selection Problem</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="operators/index.html">Operators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="operators/index.html#Sampling">Sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operators/index.html#Selection">Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operators/index.html#Mutation">Mutation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operators/index.html#Crossover">Crossover</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="visualization/index.html">Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mcdm/index.html">Multi-Criteria Decision Making (MCDM)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mcdm/index.html#Compromise-Programming">Compromise Programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcdm/index.html#Pseudo-Weights">Pseudo-Weights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcdm/index.html#High-Trade-off-Points">High Trade-off Points</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="case_studies/index.html">Case Studies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc/indicators.html">Performance Indicator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="misc/indicators.html#Generational-Distance-(GD)">Generational Distance (GD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc/indicators.html#Generational-Distance-Plus-(GD+)">Generational Distance Plus (GD+)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc/indicators.html#Inverted-Generational-Distance-(IGD)">Inverted Generational Distance (IGD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc/indicators.html#Inverted-Generational-Distance-Plus-(IGD+)">Inverted Generational Distance Plus (IGD+)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc/indicators.html#Hypervolume">Hypervolume</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="misc/index.html">Miscellaneous</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="misc/reference_directions.html">Reference Directions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc/convergence.html">Convergence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc/decomposition.html">Decomposition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc/kktpm.html">Karush Kuhn Tucker Proximity Measure (KKTPM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc/checkpoint.html">Checkpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc/lexicographic_pareto_selection.html">Lexicographic Selection from a Pareto Front</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/model.html">Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/algorithms.html">Algorithms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="versions.html">Versions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#0.6.2-[Documentation]">0.6.2 [Documentation]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#0.6.1.6-[Documentation]">0.6.1.6 [Documentation]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#0.6.1.5-[Documentation]">0.6.1.5 [Documentation]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#0.6.1.3-[Documentation]">0.6.1.3 [Documentation]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#0.6.1-[Documentation]">0.6.1 [Documentation]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#0.6.0-[Documentation]">0.6.0 [Documentation]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#0.5.0-[Documentation]">0.5.0 [Documentation]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#0.4.2-[Documentation]">0.4.2 [Documentation]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#0.4.1-[Documentation]">0.4.1 [Documentation]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#0.4.0-[Documentation]">0.4.0 [Documentation]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#0.3.2-[Documentation]">0.3.2 [Documentation]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#0.3.1-[Documentation]">0.3.1 [Documentation]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#0.3.0">0.3.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#0.2.2">0.2.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="versions.html#0.2.1">0.2.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">Cite Us</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+</div>
+</section>
+<section id="contact">
+<h2>Contact<a class="headerlink" href="#contact" title="Link to this heading">#</a></h2>
+<div class="line-block">
+<div class="line"><a class="reference external" href="http://julianblank.com">Julian Blank</a></div>
+<div class="line">(blankjul [at] outlook.com)</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="right-next"
+       href="news.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">News</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#features">Features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-of-algorithms">List Of Algorithms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cite-us">Cite Us</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#news">News</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about">About</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#content">Content</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contact">Contact</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Julian Blank
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2020.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+
+  <footer class="bd-footer">
+  </footer>
+<style>
+    .modal-backdrop {
+        position: fixed !important;
+        z-index: 1040 !important;
+    }
+
+    .modal {
+        z-index: 1050 !important;
+    }
+</style>
+
+<div class="modal fade" id="newsletter" tabindex="-1" role="dialog" aria-labelledby="newsletterModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newsletterModalLabel"><b>Newsletter</b></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Begin Mailchimp Signup Form -->
+                <link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+                <style type="text/css">
+                    #mc_embed_signup {
+                        background: #fff;
+                        clear: left;
+                        font: 14px Helvetica, Arial, sans-serif;
+                    }
+                </style>
+                <div id="mc_embed_signup">
+                    <form action="https://pymoo.us1.list-manage.com/subscribe/post?u=4454ea68ad3065ee471d6f9aa&amp;id=6f71107645"
+                          method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
+                          class="validate" target="_blank" novalidate>
+                        <div id="mc_embed_signup_scroll">
+                            <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
+                            <div class="mc-field-group">
+                                <label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label>
+                                <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" autocomplete="email">
+                            </div>
+                            <div class="mc-field-group">
+                                <label for="mce-FNAME">First Name </label>
+                                <input type="text" value="" name="FNAME" class="" id="mce-FNAME">
+                            </div>
+                            <div class="mc-field-group">
+                                <label for="mce-LNAME">Last Name </label>
+                                <input type="text" value="" name="LNAME" class="" id="mce-LNAME">
+                            </div>
+                            <div class="mc-field-group">
+                                <label for="mce-INSTITUTIO">Institution </label>
+                                <input type="text" value="" name="INSTITUTIO" class="" id="mce-INSTITUTIO">
+                            </div>
+                            <p>Powered by <a href="http://eepurl.com/hsCRrP"
+                                             title="MailChimp - email marketing made easy and fun">MailChimp</a></p>
+                            <div id="mce-responses" class="clear">
+                                <div class="response" id="mce-error-response" style="display:none"></div>
+                                <div class="response" id="mce-success-response" style="display:none"></div>
+                            </div>
+                            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                            <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                                <input type="text" name="b_4454ea68ad3065ee471d6f9aa_6f71107645" tabindex="-1" value="">
+                            </div>
+                            <div class="clear">
+                                <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
+                <script type='text/javascript'>
+                (function ($) {
+                    window.fnames = new Array();
+                    window.ftypes = new Array();
+                    fnames[0] = 'EMAIL';
+                    ftypes[0] = 'email';
+                    fnames[1] = 'FNAME';
+                    ftypes[1] = 'text';
+                    fnames[2] = 'LNAME';
+                    ftypes[2] = 'text';
+                    fnames[6] = 'INSTITUTIO';
+                    ftypes[6] = 'text';
+                }(jQuery));
+                var $mcj = jQuery.noConflict(true);
+                </script>
+                <!--End mc_embed_signup-->
+            </div>
+        </div>
+    </div>
+</div>
+
+  </body>
+</html>

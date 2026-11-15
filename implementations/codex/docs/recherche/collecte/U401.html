@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Control access to Lambda function URLs - AWS Lambda</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="urls-auth" /><meta name="default_state" content="urls-auth" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html" /><link rel="alternate" type="text/markdown" href="https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.md" title="Markdown version" /><meta name="description" content="Secure and limit access to your Lambda function URL using the AuthType parameter along with resource-based policies." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Lambda" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Lambda is a compute service that lets you run code without provisioning or managing servers." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/urls-auth.html" hreflang="id-id" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/lambda/latest/dg/urls-auth.html" hreflang="id" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/urls-auth.html" hreflang="de-de" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/lambda/latest/dg/urls-auth.html" hreflang="de" /><link rel="alternate" href="https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html" hreflang="en-us" /><link rel="alternate" href="https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html" hreflang="en" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/urls-auth.html" hreflang="es-es" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/lambda/latest/dg/urls-auth.html" hreflang="es" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/urls-auth.html" hreflang="fr-fr" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/lambda/latest/dg/urls-auth.html" hreflang="fr" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/urls-auth.html" hreflang="it-it" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/lambda/latest/dg/urls-auth.html" hreflang="it" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/urls-auth.html" hreflang="ja-jp" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/urls-auth.html" hreflang="ja" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/urls-auth.html" hreflang="ko-kr" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/urls-auth.html" hreflang="ko" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/urls-auth.html" hreflang="pt-br" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/lambda/latest/dg/urls-auth.html" hreflang="pt" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/urls-auth.html" hreflang="zh-cn" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_tw/lambda/latest/dg/urls-auth.html" hreflang="zh-tw" /><link rel="alternate" href="https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html" hreflang="x-default" /><meta name="feedback-item" content="Lambda" /><meta name="this_doc_product" content="AWS Lambda" /><meta name="this_doc_guide" content="Developer Guide" /><head xmlns="http://www.w3.org/1999/xhtml"> <script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"/></head>
+<script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'lambda'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Control access to Lambda function URLs" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><p><a href="urls-auth.md">View a markdown version of this page</a></p><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Control access to Lambda function URLs - AWS Lambda</title><meta name="pdf" content="/pdfs/lambda/latest/dg/lambda-dg.pdf#urls-auth" /><meta name="rss" content="lambda-updates.rss" /><meta name="forums" content="https://repost.aws/tags/TA5uNafDy2TpGNjidWLMSxDw" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/urls-auth.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/urls-auth.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/urls-auth.html" /><meta name="keywords" content="Lambda,AWS Lambda,serverless,serverless applications,cloud computing,compute,function,Event Function,High Availability,invoke,trigger,kick off function,start function,send request to function,event source mapping,creating function URLs,managing function URLs,configuring function URLs,function URL configuration,Lambda HTTP endpoint,function URL security,function URL auth,function URL IAM policy,function URL resource-based policy,function URL access control" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Lambda",
+        "item" : "https://docs.aws.amazon.com/lambda/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "AWS Lambda Event Functions (formerly Lambda functions)",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-functions-chapter.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Understanding Lambda Event Function invocation methods",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Creating and managing Lambda function URLs",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/urls-configuration.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Control access to Lambda function URLs",
+        "item" : "https://docs.aws.amazon.com/lambda/latest/dg/urls-configuration.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/lambda/latest/dg/lambda-dg.pdf#urls-auth" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/lambda/index.html">AWS Lambda</a><a href="welcome.html">Developer Guide</a></div><div id="page-toc-src"><a href="#urls-auth-iam">Using the AWS_IAM auth type</a><a href="#urls-auth-none">Using the NONE auth type</a><a href="#urls-governance">Governance and access control</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="urls-auth">Control access to Lambda function URLs</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Starting in October 2025, new function URLs will require both <code class="code">lambda:InvokeFunctionUrl</code> and <code class="code">lambda:InvokeFunction</code> permissions.</p></div></div><p>You can control access to your Lambda function URLs using the <a href="https://docs.aws.amazon.com/lambda/latest/api/API_CreateFunctionUrlConfig.html#lambda-CreateFunctionUrlConfig-request-AuthType">AuthType</a> parameter combined with <a href="./access-control-resource-based.html">resource-based policies</a> attached to your specific Event Function. The
+    configuration of these two components determines who can invoke or perform other administrative actions on your function URL.</p><p>The <code class="code">AuthType</code> parameter determines how Lambda authenticates or authorizes requests to your function
+    URL. When you configure your function URL, you must specify one of the following <code class="code">AuthType</code>
+    options:</p><div class="itemizedlist">
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p><code class="code">AWS_IAM</code> – Lambda uses AWS Identity and Access Management (IAM) to authenticate and authorize
+        requests based on the IAM principal's identity policy and the function's resource-based
+        policy. Choose this option if you want only authenticated users and roles to invoke your
+        function using the function URL.</p>
+    </li></ul></div><div class="itemizedlist">
+     
+  <ul class="itemizedlist"><li class="listitem">
+      <p><code class="code">NONE</code> – Lambda doesn't perform any authentication before invoking your function. However,
+        your function's resource-based policy is always in effect and must grant public access before your function URL
+        can receive requests. Choose this option to allow public, unauthenticated access to your function URL.</p>
+    </li></ul></div><p>For additional insights into security, you can use AWS Identity and Access Management Access Analyzer to get a comprehensive
+    analysis of external access to your function URL. IAM Access Analyzer also monitors for new or updated
+    permissions on your Lambda Event Functions to help you identify permissions that grant public and
+    cross-account access. You can use IAM Access Analyzer at no charge. To get started with IAM Access Analyzer,
+    see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html">Using
+      AWS IAM Access Analyzer</a>.</p><p>This page contains examples of resource-based policies for both auth types, and how to
+    create these policies using the <a href="https://docs.aws.amazon.com/lambda/latest/api/API_AddPermission.html">AddPermission</a> API operation or the Lambda console. For
+    information about how to invoke your function URL after you've set up permissions, see <a href="./urls-invocation.html">Invoking Lambda function URLs</a>.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><p><a href="#urls-auth-iam">Using the AWS_IAM auth type</a></p></li><li><p><a href="#urls-auth-none">Using the NONE auth type</a></p></li><li><p><a href="#urls-governance">Governance and access control</a></p></li></ul></div>
+    <h2 id="urls-auth-iam">Using the <code class="code">AWS_IAM</code> auth type</h2>
+    <p>If you choose the <code class="code">AWS_IAM</code> auth type, users who need to invoke your Lambda
+      function URL must have the <code class="code">lambda:InvokeFunctionUrl</code> and
+        <code class="code">lambda:InvokeFunction</code> permissions. Depending on who makes the invocation
+      request, you might have to grant this permission using a <a href="./access-control-resource-based.html">resource-based policy</a>.</p>
+    <p>If the principal making the request is in the same AWS account as the function URL, then
+      the principal must <b>either</b> have
+        <code class="code">lambda:InvokeFunctionUrl</code> and <code class="code">lambda:InvokeFunction</code> permissions in
+      their <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html">identity-based
+        policy</a>, <b>or</b> have permissions granted to them in the
+      function's resource-based policy. In other words, a resource-based policy is optional if the
+      user already has <code class="code">lambda:InvokeFunctionUrl</code> and <code class="code">lambda:InvokeFunction</code>
+      permissions in their identity-based policy. Policy evaluation follows the rules outlined in
+        <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html">Policy evaluation logic</a>.</p>
+    <p>If the principal making the request is in a different account, then the principal must
+      have <b>both</b> an identity-based policy that gives them
+        <code class="code">lambda:InvokeFunctionUrl</code> and <code class="code">lambda:InvokeFunction</code> permissions
+        <b>and</b> permissions granted to them in a resource-based policy
+      on the function that they are trying to invoke. Policy evaluation follows the rules outlined
+      in <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic-cross-account.html#policy-eval-cross-account">Determining whether a cross-account request is allowed</a>.</p>
+    <p>The following resource-based policy allows the <code class="code">example</code>
+      role in AWS account <code class="code">444455556666</code> to invoke the function URL associated with function
+      <code class="code">my-function</code>. The <a href="https://docs.aws.amazon.com/lambda/latest/api/API_AddPermission.html#lambda-AddPermission-request-InvokedViaFunctionUrl">lambda:InvokedViaFunctionUrl</a> context key restricts the <code class="code">lambda:InvokeFunction</code> action to function URL calls. This means that the principal must use the function URL to invoke the function. If you don't include <code class="code">lambda:InvokedViaFunctionUrl</code>, the principal can invoke your function through other invocation methods, in addition to the function URL.</p>
+    <div class="example"><h6>Example— Cross-account resource-based policy</h6><div class="example-contents"><awsdocs-tabs><dl style="display: none">
+    <dt>JSON</dt><dd tab-id="json">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term"></span></b></dt>
+        <dd>
+            
+                
+                <pre class="programlisting" data-example-id="11998665e4a1d7aa2a852be7b88fb617be32dcb936f09ffa4fea27d57dd2506b"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (json)--><code class="json "><code class="userinput"><span>{</span>
+  "Version":"2012-10-17",
+  "Statement": [
+    <span>{</span>
+      "Effect": "Allow",
+      "Principal": <span>{</span>
+        "AWS": "arn:aws:iam::444455556666:role/<code class="userinput">example</code>"
+      },
+      "Action": "lambda:InvokeFunctionUrl",
+      "Resource": "arn:aws:lambda:us-east-1:123456789012:function:<code class="userinput">my-function</code>",
+      "Condition": <span>{</span>
+        "StringEquals": <span>{</span>
+          "lambda:FunctionUrlAuthType": "AWS_IAM"
+        }
+      }
+    },
+    <span>{</span>
+      "Effect": "Allow",
+      "Principal": <span>{</span>
+        "AWS": "arn:aws:iam::444455556666:role/<code class="userinput">example</code>"
+      },
+      "Action": "lambda:InvokeFunction",
+      "Resource": "arn:aws:lambda:us-east-1:123456789012:function:<code class="userinput">my-function</code>",
+      "Condition": <span>{</span>
+        "Bool": <span>{</span>
+          "lambda:InvokedViaFunctionUrl": "true"
+        }
+      }
+    }
+  ]
+}
+</code>
+</code></pre>
+            
+        </dd>
+    </dl></div>
+        </dd>
+</dl></awsdocs-tabs></div></div>
+    <p>You can create this resource-based policy through the console using the following
+      steps:</p>
+    <div class="procedure"><h6>To grant URL invocation permissions to another account (console)</h6><ol><li>
+        <p>Open the <a href="https://console.aws.amazon.com/lambda/home#/functions" rel="noopener noreferrer" target="_blank"><span>Event Functions page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> of the Lambda console.</p>
+      </li><li>
+        <p>Choose the name of the function that you want to grant URL invocation permissions for.</p>
+      </li><li>
+        <p>Choose the <b>Configuration</b> tab, and then choose <b>Permissions</b>.</p>
+      </li><li>
+        <p>Under <b>Resource-based policy</b>, choose <b>Add permissions</b>.</p>
+      </li><li>
+        <p>Choose <b>Function URL</b>.</p>
+      </li><li>
+        <p>For <b>Auth type</b>, choose <b>AWS_IAM</b>.</p>
+      </li><li>
+        <p>Enter a <b>Statement ID</b> for your policy statement.</p>
+      </li><li>
+        <p>For <b>Principal</b>, enter the account ID or the Amazon Resource Name
+          (ARN) of the user or role that you want to grant permissions to. For example:
+            <code class="userinput">444455556666</code>.</p>
+      </li><li>
+        <p>Choose <b>Save</b>.</p>
+      </li></ol></div>
+    <p>Alternatively, you can create this policy using the following <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/lambda/add-permission.html" rel="noopener noreferrer" target="_blank"><span>add-permission</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> AWS Command Line Interface (AWS CLI) commands. When you use the AWS CLI, you must add the
+        <code class="code">lambda:InvokeFunctionUrl</code> and <code class="code">lambda:InvokeFunction</code> statements
+      separately. For example:</p>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli ()--><code class="nohighlight"><code class="userinput">aws lambda add-permission --function-name my-function \
+  --statement-id UrlPolicyInvokeURL \
+  --action <code class="replaceable">lambda:InvokeFunctionUrl</code> \
+  --principal 444455556666 \
+  --function-url-auth-type AWS_IAM</code></code></pre>
+    <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli ()--><code class="nohighlight"><code class="userinput">aws lambda add-permission --function-name my-function \
+  --statement-id UrlPolicyInvokeFunction \
+  --action <code class="replaceable">lambda:InvokeFunction</code> \
+  --principal 444455556666 \
+  --invoked-via-function-url</code></code></pre>
+   
+    <h2 id="urls-auth-none">Using the <code class="code">NONE</code> auth type</h2>
+    <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>When your function URL auth type is <code class="code">NONE</code> and you have a <a href="./access-control-resource-based.html">resource-based policy</a> that grants public
+        access, any unauthenticated user with your function URL can invoke your function.</p></div></div>
+    <p>In some cases, you might want your function URL to be public. For example, you might want
+      to serve requests made directly from a web browser. To allow public access to your function
+      URL, choose the <code class="code">NONE</code> auth type.</p>
+    <p>If you choose the <code class="code">NONE</code> auth type, Lambda doesn't use IAM to authenticate requests to your
+      function URL. However,
+      your function must have a resource-based policy that allows <code class="code">lambda:InvokeFunctionUrl</code> and <code class="code">lambda:InvokeFunction</code>. When you create a function URL with auth type <code class="code">NONE</code> using the console or AWS Serverless Application Model (AWS SAM), Lambda
+      automatically creates the resource-based policy for you. If you're using the AWS CLI, AWS CloudFormation, or the Lambda API directly, you must <a href="#policy-cli">add the policy yourself</a>.</p>
+    <p>We recommend that you include the <a href="https://docs.aws.amazon.com/lambda/latest/api/API_AddPermission.html#lambda-AddPermission-request-InvokedViaFunctionUrl">lambda:InvokedViaFunctionUrl</a> context key in your resource-based policies when using the <code class="code">NONE</code> auth type. This context key ensures that the function can only be invoked through the function URL and not through other invocation methods.</p>
+    <p>Note the following about this policy:</p>
+      <div class="itemizedlist">
+         
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>All entities can call <code class="code">lambda:InvokeFunctionUrl</code> and
+            <code class="code">lambda:InvokeFunction</code>. This means that anyone who has your function URL can
+          invoke your function.</p>
+        </li><li class="listitem">
+          <p>The <code class="code">lambda:FunctionUrlAuthType</code> condition key value is <code class="code">NONE</code>. This
+            means that the policy statement allows access only when your function URL's auth type is also <code class="code">NONE</code>.</p>
+        </li><li class="listitem">
+          <p>The <code class="code">lambda:InvokedViaFunctionUrl</code> condition ensures that the function can only be invoked through the function URL and not through other invocation methods.</p>
+        </li></ul></div>
+    <div class="example"><h6>Example— Default resource-based policy for NONE auth type</h6><div class="example-contents"><awsdocs-tabs><dl style="display: none">
+    <dt>JSON</dt><dd tab-id="json">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term"></span></b></dt>
+        <dd>
+            
+                
+                <pre class="programlisting" data-example-id="5b6b2619bd4082fdc8a7c9cedcff5c7a92a873d7cd5925f3524b90ab92b81454"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (json)--><code class="json "><code class="userinput"><span>{</span>
+  "Version":"2012-10-17",
+  "Statement": [
+    <span>{</span>
+      "Sid": "FunctionURLAllowPublicAccess",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "lambda:InvokeFunctionUrl",
+      "Resource": "arn:aws:lambda:us-east-2:123456789012:function:<code class="userinput">my-function</code>",
+      "Condition": <span>{</span>
+        "StringEquals": <span>{</span>
+          "lambda:FunctionUrlAuthType": "NONE"
+        }
+      }
+    },
+    <span>{</span>
+      "Sid": "FunctionURLInvokeAllowPublicAccess",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "lambda:InvokeFunction",
+      "Resource": "arn:aws:lambda:us-east-2:123456789012:function:<code class="userinput">my-function</code>",
+      "Condition": <span>{</span>
+        "Bool": <span>{</span>
+          "lambda:InvokedViaFunctionUrl": "true"
+        }
+      }
+    }
+  ]
+}</code>
+</code></pre>
+            
+        </dd>
+    </dl></div>
+        </dd>
+</dl></awsdocs-tabs></div></div>
+     
+      <h6>Create the resource-based policy using the AWS CLI</h6>
+      <p><span id="policy-cli"></span>Unless you use the console or AWS SAM to create a function URL with auth type <code class="code">NONE</code>, you must add the resource-based policy yourself. Use the following commands to create statements for the <code class="code">lambda:InvokeFunctionUrl</code> and <code class="code">lambda:InvokeFunction</code> permissions. Each statement must be added in a separate command.</p>
+   
+  <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli ()--><code class="nohighlight"><code class="userinput">aws lambda add-permission \
+  --function-name UrlTestFunction \
+  --statement-id UrlPolicyInvokeURL \
+  --action <code class="replaceable">lambda:InvokeFunctionUrl</code> \
+  --principal * \
+  --function-url-auth-type NONE</code></code></pre>
+  <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli ()--><code class="nohighlight"><code class="userinput">aws lambda add-permission \
+  --function-name UrlTestFunction \
+  --statement-id UrlPolicyInvokeFunction \
+  --action <code class="replaceable">lambda:InvokeFunction</code> \
+  --principal * \
+  --invoked-via-function-url</code></code></pre>    
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If you delete a function URL with auth type <code class="code">NONE</code>, Lambda doesn't automatically
+        delete the associated resource-based policy. If you want to delete this policy, you must manually do so.</p></div></div>
+
+    <p>If a function's resource-based policy doesn't grant <code class="code">lambda:invokeFunctionUrl</code>
+      and <code class="code">lambda:InvokeFunction</code> permissions, users get a 403 Forbidden error code
+      when they try to invoke your function URL. This occurs even if the function URL uses the
+        <code class="code">NONE</code> auth type.</p>
+   
+    <h2 id="urls-governance">Governance and access control</h2>
+    <p>In addition to function URL invocation permissions, you can also control access on actions used to configure
+      function URLs. Lambda supports the following IAM policy actions for function URLs:</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><code class="code">lambda:InvokeFunctionUrl</code> – Invoke a Lambda Event Function using the function URL.</p>
+      </li><li class="listitem">
+        <p><code class="code">lambda:CreateFunctionUrlConfig</code> – Create a function URL and set its <code class="code">AuthType</code>.</p>
+      </li><li class="listitem">
+        <p><code class="code">lambda:UpdateFunctionUrlConfig</code> – Update a function URL configuration and its <code class="code">AuthType</code>.</p>
+      </li><li class="listitem">
+        <p><code class="code">lambda:GetFunctionUrlConfig</code> – View the details of a function URL.</p>
+      </li><li class="listitem">
+        <p><code class="code">lambda:ListFunctionUrlConfigs</code> – List function URL configurations.</p>
+      </li><li class="listitem">
+        <p><code class="code">lambda:DeleteFunctionUrlConfig</code> – Delete a function URL.</p>
+      </li></ul></div>
+    <p>To allow or deny function URL access to other AWS entities, include these actions in IAM policies. For
+      example, the following policy grants the <code class="code">example</code> role in AWS account
+        <code class="code">444455556666</code> permissions to update the function URL for function
+        <code class="userinput">my-function</code> in account <code class="code">123456789012</code>.</p>
+    <div class="example"><h6>Example cross-account function URL policy</h6><div class="example-contents"><awsdocs-tabs><dl style="display: none">
+    <dt>JSON</dt><dd tab-id="json">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term"></span></b></dt>
+        <dd>
+            
+                
+                <pre class="programlisting" data-example-id="99f46506e39ab04baa853ea9ccb3802f402274903860c6b0177ee15581aadd5e"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (json)--><code class="json "><code class="userinput"><span>{</span>
+    "Version":"2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Effect": "Allow",
+            "Principal": <span>{</span> 
+                "AWS": "arn:aws:iam::444455556666:role/example"
+            },
+            "Action": "lambda:UpdateFunctionUrlConfig",
+            "Resource": "arn:aws:lambda:us-east-2:123456789012:function:<code class="replaceable">my-function</code>"
+        }
+    ]
+}</code>
+</code></pre>
+            
+        </dd>
+    </dl></div>
+        </dd>
+</dl></awsdocs-tabs></div></div>
+     
+      <h3 id="urls-condition-keys">Condition keys</h3>
+      <p>For fine-grained access control over your function URLs, use condition context keys. Lambda supports the following context keys for function URLs:</p>
+      <div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p><code class="code">lambda:FunctionUrlAuthType</code> – Defines an enum value describing the auth type that your function URL uses. The value can be either <code class="code">AWS_IAM</code> or <code class="code">NONE</code>.</p>
+        </li><li class="listitem">
+          <p><code class="code">lambda:InvokedViaFunctionUrl</code> – Restricts the <code class="code">lambda:InvokeFunction</code> action to calls made through the function URL. This ensures that the function can only be invoked using the function URL and not through other invocation methods. For examples of resource-based policies that use the <code class="code">lambda:InvokedViaFunctionUrl</code> context key, see the examples in <a href="#urls-auth-iam">Using the AWS_IAM auth type</a> and <a href="#urls-auth-none">Using the NONE auth type</a>.</p>
+        </li></ul></div>
+      <p>You can use these context keys in policies associated with your Event Function. For example, you might want to
+        restrict who can make configuration changes to your function URLs. To deny all <code class="code">UpdateFunctionUrlConfig</code>
+        requests to any function with URL auth type <code class="code">NONE</code>, you can define the following policy:</p>
+      <div class="example"><h6>Example function URL policy with explicit deny</h6><div class="example-contents"><awsdocs-tabs><dl style="display: none">
+    <dt>JSON</dt><dd tab-id="json">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term"></span></b></dt>
+        <dd>
+            
+                
+                <pre class="programlisting" data-example-id="7b362f0ba6800ad0b82641ca38f5e0dc83f53ea42c5401bca60e29eef7ef9f55"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (json)--><code class="json "><code class="userinput"><span>{</span>
+    "Version":"2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Effect": "Deny",
+            "Principal": "*",
+            "Action":[
+                "lambda:UpdateFunctionUrlConfig"
+            ],
+            "Resource": "arn:aws:lambda:us-east-1:123456789012:function:*",
+            "Condition": <span>{</span>
+                "StringEquals": <span>{</span>
+                    "lambda:FunctionUrlAuthType": "NONE"
+                }
+            }
+        }
+    ]
+}</code>
+</code></pre>
+            
+        </dd>
+    </dl></div>
+        </dd>
+</dl></awsdocs-tabs></div></div>
+      <p>To grant the <code class="code">example</code> role in AWS account <code class="code">444455556666</code> permissions to
+        make <code class="code">CreateFunctionUrlConfig</code> and <code class="code">UpdateFunctionUrlConfig</code> requests on functions with
+        URL auth type <code class="code">AWS_IAM</code>, you can define the following policy:</p>
+      <div class="example"><h6>Example function URL policy with explicit allow</h6><div class="example-contents"><awsdocs-tabs><dl style="display: none">
+    <dt>JSON</dt><dd tab-id="json">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term"></span></b></dt>
+        <dd>
+            
+                
+                <pre class="programlisting" data-example-id="3ab5ab34fb92c574ff355d836648399168b54379d2e82a6c4c0f615f8ac53ded"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (json)--><code class="json "><code class="userinput"><span>{</span>
+    "Version":"2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Effect": "Allow",
+            "Principal": <span>{</span> 
+                "AWS": "arn:aws:iam::444455556666:role/example"
+            },
+            "Action":[
+                "lambda:CreateFunctionUrlConfig",
+                "lambda:UpdateFunctionUrlConfig"
+            ],
+            "Resource": "arn:aws:lambda:us-east-1:123456789012:function:*",
+            "Condition": <span>{</span>
+                "StringEquals": <span>{</span>
+                    "lambda:FunctionUrlAuthType": "AWS_IAM"
+                }
+            }
+        }
+    ]
+}</code>
+</code></pre>
+            
+        </dd>
+    </dl></div>
+        </dd>
+</dl></awsdocs-tabs></div></div>
+      <p>You can also use this condition key in a <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html">service control policy</a> (SCP). Use
+        SCPs to manage permissions across an entire organization in AWS Organizations. For example, to deny users from creating
+        or updating function URLs that use anything other than the <code class="code">AWS_IAM</code> auth type, use the following
+        service control policy:</p>
+      <div class="example"><h6>Example function URL SCP with explicit deny</h6><div class="example-contents"><awsdocs-tabs><dl style="display: none">
+    <dt>JSON</dt><dd tab-id="json">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term"></span></b></dt>
+        <dd>
+            
+                
+                <pre class="programlisting" data-example-id="9848f09b555a01cd931469cd321b9ff16f08277ffd1dc282bb94c62bb7ccdff2"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (json)--><code class="json "><code class="userinput"><span>{</span>
+    "Version":"2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Effect": "Deny",
+            "Action":[
+                "lambda:CreateFunctionUrlConfig",
+                "lambda:UpdateFunctionUrlConfig"
+            ],
+            "Resource": "arn:aws:lambda:*:123456789012:function:*",
+            "Condition": <span>{</span>
+                "StringNotEquals": <span>{</span>
+                    "lambda:FunctionUrlAuthType": "AWS_IAM"
+                }
+            }
+        }
+    ]
+}</code>
+</code></pre>
+            
+        </dd>
+    </dl></div>
+        </dd>
+</dl></awsdocs-tabs></div></div>
+     
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./urls-configuration.html">Function URLs</div><div id="next" class="next-link" accesskey="n" href="./urls-invocation.html">Invoking function URLs</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/urls-auth.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=Lambda&amp;topic_url=https://docs.aws.amazon.com/en_us/lambda/latest/dg/urls-auth.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

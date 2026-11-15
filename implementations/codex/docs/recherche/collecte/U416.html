@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Connecting to data in AWS Quick Sight - AWS Quick</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="working-with-data" /><meta name="default_state" content="working-with-data" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/quick/latest/userguide/working-with-data.html" /><link rel="alternate" type="text/markdown" href="https://docs.aws.amazon.com/quick/latest/userguide/working-with-data.md" title="Markdown version" /><meta name="description" content="Make data available in AWS Quick Sight." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS Quick" /><meta name="guide" content="User Guide" /><meta name="abstract" content="The Quick user guide contains how-to topics, and guides for creating data analyses, visualizations, and dashboards." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/quick/latest/userguide/working-with-data.html" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/quick/latest/userguide/working-with-data.html" hreflang="id-id" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/quick/latest/userguide/working-with-data.html" hreflang="id" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/quick/latest/userguide/working-with-data.html" hreflang="de-de" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/quick/latest/userguide/working-with-data.html" hreflang="de" /><link rel="alternate" href="https://docs.aws.amazon.com/quick/latest/userguide/working-with-data.html" hreflang="en-us" /><link rel="alternate" href="https://docs.aws.amazon.com/quick/latest/userguide/working-with-data.html" hreflang="en" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/quick/latest/userguide/working-with-data.html" hreflang="es-es" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/quick/latest/userguide/working-with-data.html" hreflang="es" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/quick/latest/userguide/working-with-data.html" hreflang="fr-fr" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/quick/latest/userguide/working-with-data.html" hreflang="fr" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/quick/latest/userguide/working-with-data.html" hreflang="it-it" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/quick/latest/userguide/working-with-data.html" hreflang="it" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/quick/latest/userguide/working-with-data.html" hreflang="ja-jp" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/quick/latest/userguide/working-with-data.html" hreflang="ja" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/quick/latest/userguide/working-with-data.html" hreflang="ko-kr" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/quick/latest/userguide/working-with-data.html" hreflang="ko" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/quick/latest/userguide/working-with-data.html" hreflang="pt-br" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/quick/latest/userguide/working-with-data.html" hreflang="pt" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_cn/quick/latest/userguide/working-with-data.html" hreflang="zh-cn" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_tw/quick/latest/userguide/working-with-data.html" hreflang="zh-tw" /><link rel="alternate" href="https://docs.aws.amazon.com/quick/latest/userguide/working-with-data.html" hreflang="x-default" /><meta name="feedback-item" content="QuickSight" /><meta name="this_doc_product" content="AWS Quick" /><meta name="this_doc_guide" content="User Guide" /><head xmlns="http://www.w3.org/1999/xhtml"> <script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"/></head>
+<script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'quick'}"></script><meta id="panorama-serviceSubSection" value="User Guide" /><meta id="panorama-serviceConsolePage" value="Connecting to data in AWS Quick Sight" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><p><a href="working-with-data.md">View a markdown version of this page</a></p><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Connecting to data in AWS Quick Sight - AWS Quick</title><meta name="pdf" content="/pdfs/quick/latest/userguide/amazon-quicksuite-user.pdf#working-with-data" /><meta name="rss" content="amazon-quicksuite-doc-release-notes.rss" /><meta name="forums" content="https://repost.aws/tags/TAtoF6BGmuRdGfw2e14IBwEQ" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=QuickSight&amp;topic_url=https://docs.aws.amazon.com/en_us/quick/latest/userguide/working-with-data.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/quick/latest/userguide/working-with-data.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/quick/latest/userguide/working-with-data.html" /><meta name="keywords" content="data analysis,data insights,data visualization,dataviz,graphical data analysis,AWS Quick" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS Quick",
+        "item" : "https://docs.aws.amazon.com/quick/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "User Guide",
+        "item" : "https://docs.aws.amazon.com/quick/latest/userguide"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Visualize, analyze, and share data with analyses, dashboards, and reports in AWS Quick Sight",
+        "item" : "https://docs.aws.amazon.com/quick/latest/userguide/quick-bi.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Connecting to data in AWS Quick Sight",
+        "item" : "https://docs.aws.amazon.com/quick/latest/userguide/quick-bi.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/quick/latest/userguide/amazon-quicksuite-user.pdf#working-with-data" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/quick/index.html">AWS Quick</a><a href="what-is.html">User Guide</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="working-with-data">Connecting to data in AWS Quick Sight</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>People in many different roles use AWS Quick Sight to help them do analysis and advanced
+		calculations, design data dashboards, embed analytics, and make better-informed decisions.
+		Before any of that can happen, someone who understands your data needs to add it to a <a href="https://docs.aws.amazon.com/quicksuite/latest/userguide/creating-data-sets">Quick Sight
+			dataset</a>. Quick Sight supports direct connections and uploads from a variety of
+			<a href="https://docs.aws.amazon.com/quicksuite/latest/userguide/working-with-data-sources">data
+			sources</a>.</p><div class="variablelist">
+		<h6><b>Capabilities and use cases</b></h6>
+		 
+		 
+		 
+		 
+		 
+	<dl>
+			<dt><span class="term"><b>AWS Quick Standard edition capabilities</b></span></dt>
+			<dd>
+				<p>After your data is available in Quick Standard edition, you can do
+					the following:</p>
+				<div class="itemizedlist">
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+				<ul class="itemizedlist"><li class="listitem">
+						<p>Transform the dataset with field formatting, hierarchies, data type
+							conversions, and calculations.</p>
+					</li><li class="listitem">
+						<p>Create one or more data analyses based on your newly created
+							dataset.</p>
+					</li><li class="listitem">
+						<p>Share your analysis with other people so they can help design
+							it.</p>
+					</li><li class="listitem">
+						<p>Add charts, graphs, more datasets, and multiple pages (called sheets)
+							to your data analysis.</p>
+					</li><li class="listitem">
+						<p>Create visual appeal with customized formatting and themes.</p>
+					</li><li class="listitem">
+						<p>Make them interactive by using parameters, controls, filters, and
+							custom actions.</p>
+					</li><li class="listitem">
+						<p>Combine data from multiple data sources, and then build new
+							hierarchies for drilling down and calculations only available during
+							analytics, like aggregations, window functions, and more.</p>
+					</li><li class="listitem">
+						<p>Publish your analysis as an interactive data dashboard.</p>
+					</li><li class="listitem">
+						<p>Share the dashboard so other people can use the dashboard, even if
+							they don't use the analysis that it's based on.</p>
+					</li><li class="listitem">
+						<p>Add more data to create more analyses and dashboards.</p>
+					</li></ul></div>
+
+			</dd>
+		 
+			<dt><span class="term"><b>AWS Quick</b>
+				<b>Enterprise edition capabilities</b></span></dt>
+			<dd>
+				<p>After your data is available in Quick Enterprise edition, you can
+					do different things depending on your role. If you can build datasets, design
+					analyses, and publish dashboards, you can do all of the things people using
+					Standard edition can do. </p>
+				<p>In addition, these are some examples of additional tasks that you can
+					do:</p>
+				<div class="itemizedlist">
+					 
+					 
+					 
+					 
+					 
+					 
+				<ul class="itemizedlist"><li class="listitem">
+						<p>Create analyses that use Quick Sight insights, including machine
+							learning (ML) powered insights for forecasting, anomaly and outlier
+							detection, and key driver identification.</p>
+					</li><li class="listitem">
+						<p>Design narrative insights with text, colors, images, and
+							calculations.</p>
+					</li><li class="listitem">
+						<p>Add data from virtual private clouds (VPCs) and on-premises data
+							sources, with data encryption at rest.</p>
+					</li><li class="listitem">
+						<p>Control access in datasets by adding row and column level
+							security.</p>
+					</li><li class="listitem">
+						<p>Refresh imported datasets every hour.</p>
+					</li><li class="listitem">
+						<p>Share emailed reports.</p>
+					</li></ul></div>
+
+			</dd>
+		 
+			<dt><span class="term"><b>Application development</b></span></dt>
+			<dd>
+				<p>If you develop applications or use the AWS SDKs and AWS Command Line Interface (AWS CLI), you
+					can do the following and more:</p>
+				<div class="itemizedlist">
+					 
+					 
+					 
+					 
+					 
+				<ul class="itemizedlist"><li class="listitem">
+						<p>Add embedded analytics and embedded interactive dashboards to websites
+							and applications.</p>
+					</li><li class="listitem">
+						<p>Use API operations to manage data sources and datasets.</p>
+					</li><li class="listitem">
+						<p>Refresh imported data more frequently by using the data ingestion API
+							operations.</p>
+					</li><li class="listitem">
+						<p>Script, transfer, and make templates from analyses and dashboards by
+							using API operations.</p>
+					</li><li class="listitem">
+						<p>Programmatically assign people to security roles based on settings
+							managed by system administrators.</p>
+					</li></ul></div>
+			</dd>
+		 
+			<dt><span class="term"><b>Administrative functions in
+				Quick</b></span></dt>
+			<dd>
+				<p>If you perform administrative functions in Quick, you can do the
+					following and more:</p>
+				<div class="itemizedlist">
+					 
+					 
+					 
+					 
+					 
+				<ul class="itemizedlist"><li class="listitem">
+						<p>Manage security with shared folders to organize your teams' work and
+							help them collaborate using dashboards, analytics, and datasets.</p>
+					</li><li class="listitem">
+						<p>Add Quick Sight to your VPC to enable access to data in VPC and
+							on-premises data sources.</p>
+					</li><li class="listitem">
+						<p>Protect sensitive data with finely grained access control to AWS
+							data sources.</p>
+					</li><li class="listitem">
+						<p>Manually assign people to the Quick author security role
+							so they can prepare datasets, design analytics, and publish data
+							dashboards at a fixed cost per month.</p>
+					</li><li class="listitem">
+						<p>Manually assign people to the Quick reader security role
+							so they can securely interact with published data dashboards on a
+							pay-per-session basis.</p>
+					</li></ul></div>
+			</dd>
+		 
+			<dt><span class="term"><b>Dashboard subscription</b></span></dt>
+			<dd>
+				<p>If you subscribe to dashboards, you can do the following:</p>
+				<div class="itemizedlist">
+					 
+					 
+					 
+					 
+				<ul class="itemizedlist"><li class="listitem">
+						<p>Use and subscribe to interactive dashboards designed by your team of
+							experts.</p>
+					</li><li class="listitem">
+						<p>Enjoy a simplified uncluttered interface.</p>
+					</li><li class="listitem">
+						<p>View dashboard snapshots in email.</p>
+					</li><li class="listitem">
+						<p>Focus on making decisions with the data at your fingertips.</p>
+					</li></ul></div>
+			</dd>
+		</dl></div><p>After you connect to or import data, you create a dataset to shape and prepare data to
+		share and reuse. You can view your available datasets on the <b>Data</b> page,
+		which you reach by choosing <b>Data</b> on the AWS Quick Sight start page. You can
+		view available data sources and create a new dataset on the <b>Create a Data
+			Set</b> page, which you reach by choosing <b>Create </b> then
+			<b>New dataset</b> on the <b>Data</b> page.</p><div class="highlights"><h6>Topics</h6><ul><li><p><a href="./supported-data-sources.html">Supported data sources</a></p></li><li><p><a href="./connecting-to-data-examples.html">Connect to your data with integrations and datasets</a></p></li><li><p><a href="./catalog-integration.html">Connecting to data catalogs in AWS Quick</a></p></li><li><p><a href="./data-source-limits.html">Data source quotas</a></p></li><li><p><a href="./supported-data-types-and-values.html">Supported data types and values</a></p></li><li><p><a href="./working-with-datasets.html">Working with datasets</a></p></li><li><p><a href="./working-with-data-sources.html">Working with data sources in AWS Quick Sight</a></p></li></ul></div><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./quick-bi.html">Visualize, analyze, and share data with AWS Quick Sight</div><div id="next" class="next-link" accesskey="n" href="./supported-data-sources.html">Supported data sources</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=QuickSight&amp;topic_url=https://docs.aws.amazon.com/en_us/quick/latest/userguide/working-with-data.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=QuickSight&amp;topic_url=https://docs.aws.amazon.com/en_us/quick/latest/userguide/working-with-data.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

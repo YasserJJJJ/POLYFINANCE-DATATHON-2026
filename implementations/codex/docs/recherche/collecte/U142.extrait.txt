@@ -1,0 +1,1309 @@
+PatronusAI/financebench · Datasets at Hugging Face 
+
+ Hugging Face 
+ Search models, datasets, users... Ctrl K 
+
+ Models 
+
+ Datasets 
+
+ Spaces 
+
+ Buckets 
+
+ Docs 
+
+ Enterprise 
+ 
+ Pricing 
+
+ Website 
+ 
+ Tasks 
+
+ HuggingChat 
+
+ Collections 
+
+ Languages 
+
+ Organizations 
+
+ Community 
+ 
+ Blog 
+
+ Posts 
+
+ Daily Papers 
+
+ Hardware 
+
+ Learn 
+
+ Discord 
+
+ Forum 
+
+ GitHub 
+
+ Solutions 
+ 
+ Team & Enterprise 
+
+ Hugging Face PRO 
+
+ Enterprise Support 
+
+ Inference Providers 
+
+ Inference Endpoints 
+
+ Storage Buckets 
+
+ Log In 
+ 
+ Sign Up 
+
+ Datasets: 
+
+ PatronusAI 
+/
+
+ financebench 
+ 
+ Like 145 
+
+ Follow 
+ Patronus AI 127 
+
+ Modalities: 
+ Text 
+
+ Formats: 
+ json 
+
+ Size: 
+ < 1K 
+
+ ArXiv: 
+
+ arxiv: 2311.11944 
+
+ Libraries: 
+ Datasets 
+ 
+ pandas 
+
+ Croissant 
+
+ + 1 
+
+ License: 
+
+ cc-by-nc-4.0 
+
+ Dataset card Data Studio Files Files and versions 
+ xet 
+ Community 
+3
+
+Dataset Viewer
+ 
+ Auto-converted to Parquet API Embed Duplicate Data Studio 
+
+ Subset (1) 
+ default · 150 rows 
+ default (150 rows) 
+Split (1)
+ 
+ train · 150 rows 
+ train (150 rows) 
+
+SQL
+ Console 
+
+ financebench_id 
+ 
+ string lengths 
+
+21
+ 
+21
+
+ company 
+ 
+ string lengths 
+
+2
+ 
+20
+
+ doc_name 
+ 
+ string lengths 
+
+11
+ 
+40
+
+ question_type 
+ 
+ string classes 
+
+3
+ values
+
+ question_reasoning 
+ 
+ string classes 
+
+9
+ values
+
+ domain_question_num 
+ 
+ string classes 
+
+25
+ values
+
+ question 
+ 
+ string lengths 
+
+44
+ 
+592
+
+ answer 
+ 
+ string lengths 
+
+1
+ 
+609
+
+ justification 
+ 
+ string lengths 
+
+9
+ 
+703
+ 
+⌀
+
+ dataset_subset_label 
+ 
+ string classes 
+
+1
+ value
+
+ evidence 
+ 
+ list lengths 
+
+1
+ 
+3
+
+ gics_sector 
+ 
+ string classes 
+
+9
+ values
+
+ doc_type 
+ 
+ string classes 
+
+4
+ values
+
+ doc_period 
+ 
+ int64 
+
+2.02k
+ 
+2.02k
+
+ doc_link 
+ 
+ string lengths 
+
+77
+ 
+171
+
+ financebench_id_03029 
+
+ 3M 
+
+ 3M_2018_10K 
+
+ metrics-generated 
+
+ Information extraction 
+
+null
+
+ What is the FY2018 capital expenditure amount (in USD millions) for 3M? Give a response to the question by relying on the details shown in the cash flow statement. 
+
+ $1577.00 
+
+ The metric capital expenditures was directly extracted from the company 10K. The line item name, as seen in the 10K, was: Purchases of property, plant and equipment (PP&E). 
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "Table of Contents \n3M Company and Subsidiaries\nConsolidated Statement of Cash Flow s\nYears ended December 31\n \n(Millions)\n \n2018\n \n2017\n \n2016\n \nCash Flows from Operating Activities\n \n \n \n \n \n \n \nNet income including noncontrolling interest\n \n$\n5,363 \n$\n4,869 \n$\n5... 
+
+ Industrials 
+
+ 10k 
+
+ 2,018 
+
+ https://investors.3m.com/financials/sec-filings/content/0001558370-19-000470/0001558370-19-000470.pdf 
+
+ financebench_id_04672 
+
+ 3M 
+
+ 3M_2018_10K 
+
+ metrics-generated 
+
+ Information extraction 
+
+null
+
+ Assume that you are a public equities analyst. Answer the following question by primarily using information that is shown in the balance sheet: what is the year end FY2018 net PPNE for 3M? Answer in USD billions. 
+
+ $8.70 
+
+ The metric ppne, net was directly extracted from the company 10K. The line item name, as seen in the 10K, was: Property, plant and equipment â net. 
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "Table of Contents \n3M Company and Subsidiaries\nConsolidated Balance Shee t\nAt December 31\n \n \n \nDecember 31,\n \nDecember 31,\n \n(Dollars in millions, except per share amount)\n \n2018\n \n2017\n \nAssets\n \n \n \n \n \nCurrent assets\n \n \n \n \n \nCash and cash equivalents\n \n$\... 
+
+ Industrials 
+
+ 10k 
+
+ 2,018 
+
+ https://investors.3m.com/financials/sec-filings/content/0001558370-19-000470/0001558370-19-000470.pdf 
+
+ financebench_id_00499 
+
+ 3M 
+
+ 3M_2022_10K 
+
+ domain-relevant 
+
+ Logical reasoning (based on numerical reasoning) 
+
+ dg06 
+
+ Is 3M a capital-intensive business based on FY2022 data? 
+
+ No, the company is managing its CAPEX and Fixed Assets pretty efficiently, which is evident from below key metrics:
+CAPEX/Revenue Ratio: 5.1%
+Fixed assets/Total Assets: 20%
+Return on Assets= 12.4% 
+
+ CAPEX/Revenue
+Fixed Assets/Total Assets
+ROA=Net Income/Total Assets 
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "3M Company and Subsidiaries\nConsolidated Statement of Income\nYears ended December 31\n(Millions, except per share amounts)\n2022\n2021\n2020\nNet sales\n$\n34,229 $\n35,355 $\n32,184",
+ "doc_name": "3M_2022_10K",
+ "evidence_page_num": 47,
+ "evidence_text_full_page": "Table of Cont... 
+
+ Industrials 
+
+ 10k 
+
+ 2,022 
+
+ https://investors.3m.com/financials/sec-filings/content/0000066740-23-000014/0000066740-23-000014.pdf 
+
+ financebench_id_01226 
+
+ 3M 
+
+ 3M_2022_10K 
+
+ domain-relevant 
+
+ Logical reasoning (based on numerical reasoning) OR Numerical reasoning OR Logical reasoning 
+
+ dg17 
+
+ What drove operating margin change as of FY2022 for 3M? If operating margin is not a useful metric for a company like this, then please state that and explain why. 
+
+ Operating Margin for 3M in FY2022 has decreased by 1.7% primarily due to: 
+-Decrease in gross Margin
+-mostly one-off charges including Combat Arms Earplugs litigation, impairment related to exiting PFAS manufacturing, costs related to exiting Russia and divestiture-related restructuring
+charges 
+
+null
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "SG&A, measured as a percent of sales, increased in 2022 when compared to the same period last year. SG&A was impacted by increased special item costs for significant\nlitigation primarily related to steps toward resolving Combat Arms Earplugs litigation (discussed in Note 16) resulting in a ... 
+
+ Industrials 
+
+ 10k 
+
+ 2,022 
+
+ https://investors.3m.com/financials/sec-filings/content/0000066740-23-000014/0000066740-23-000014.pdf 
+
+ financebench_id_01865 
+
+ 3M 
+
+ 3M_2022_10K 
+
+ novel-generated 
+
+null
+
+null
+
+ If we exclude the impact of M&A, which segment has dragged down 3M's overall growth in 2022? 
+
+ The consumer segment shrunk by 0.9% organically. 
+
+null
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "Worldwide Sales Change \nBy Business Segment\nOrganic sales\nAcquisitions\nDivestitures\nTranslation\nTotal sales change\nSafety and Industrial\n1.0 %\n \n %\n %\n(4.2) %\n(3.2) %\nTransportation and Electronics\n1.2 \n \n(0.5)\n(4.6)\n(3.9)\nHealth Care\n3.2 \n \n(1.4)\n(3.8)\n(2.0)\nConsum... 
+
+ Industrials 
+
+ 10k 
+
+ 2,022 
+
+ https://investors.3m.com/financials/sec-filings/content/0000066740-23-000014/0000066740-23-000014.pdf 
+
+ financebench_id_00807 
+
+ 3M 
+
+ 3M_2023Q2_10Q 
+
+ domain-relevant 
+
+ Logical reasoning (based on numerical reasoning) OR Logical reasoning 
+
+ dg01 
+
+ Does 3M have a reasonably healthy liquidity profile based on its quick ratio for Q2 of FY2023? If the quick ratio is not relevant to measure liquidity, please state that and explain why. 
+
+ No. The quick ratio for 3M was 0.96 by Jun'23 close, which needs a bit of an improvement to touch the 1x mark 
+
+ Quick Ratio= (Total current assets-Total inventories)/Total current liabilities
+(15,754-5,280)/10,936 
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "3M Company and Subsidiaries\nConsolidated Balance Sheet\n(Unaudited)\n(Dollars in millions, except per share amount)\nJune 30, 2023\nDecember 31, 2022\nAssets\nCurrent assets\nCash and cash equivalents\n$\n4,258 \n$\n3,655 \nMarketable securities current\n56 \n238 \nAccounts receivable net o... 
+
+ Industrials 
+
+ 10q 
+
+ 2,023 
+
+ https://investors.3m.com/financials/sec-filings/content/0000066740-23-000058/0000066740-23-000058.pdf 
+
+ financebench_id_00941 
+
+ 3M 
+
+ 3M_2023Q2_10Q 
+
+ domain-relevant 
+
+ Information extraction 
+
+ dg04 
+
+ Which debt securities are registered to trade on a national securities exchange under 3M's name as of Q2 of 2023? 
+
+ Following debt securities registered under 3M's name are listed to trade on the New York Stock Exchange:
+-1.500% Notes due 2026 (Trading Symbol: MMM26)
+-1.750% Notes due 2030 (Trading Symbol: MMM30)
+-1.500% Notes due 2031 (Trading Symbol: MMM31) 
+
+null
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "Title of each class\nTrading Symbol(s)\nName of each exchange on which registered\nCommon Stock, Par Value $.01 Per Share\nMMM\nNew York Stock Exchange\nMMM\nChicago Stock Exchange, Inc.\n1.500% Notes due 2026\nMMM26\nNew York Stock Exchange\n1.750% Notes due 2030\nMMM30\nNew York Stock Exch... 
+
+ Industrials 
+
+ 10q 
+
+ 2,023 
+
+ https://investors.3m.com/financials/sec-filings/content/0000066740-23-000058/0000066740-23-000058.pdf 
+
+ financebench_id_01858 
+
+ 3M 
+
+ 3M_2023Q2_10Q 
+
+ novel-generated 
+
+null
+
+null
+
+ Does 3M maintain a stable trend of dividend distribution? 
+
+ Yes, not only they distribute the dividends on a routine basis, 3M has also been increasing the per share dividend for consecutive 65 years 
+
+null
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "This marked the 65th consecutive\nyear of dividend increases for 3M.",
+ "doc_name": "3M_2023Q2_10Q",
+ "evidence_page_num": 61,
+ "evidence_text_full_page": "Table of Contents\nFinancial condition:\nRefer to the section entitled Financial Condition and Liquidity later in MD&A for a di... 
+
+ Industrials 
+
+ 10q 
+
+ 2,023 
+
+ https://investors.3m.com/financials/sec-filings/content/0000066740-23-000058/0000066740-23-000058.pdf 
+
+ financebench_id_02987 
+
+ Activision Blizzard 
+
+ ACTIVISIONBLIZZARD_2019_10K 
+
+ metrics-generated 
+
+ Numerical reasoning 
+
+null
+
+ What is the FY2019 fixed asset turnover ratio for Activision Blizzard? Fixed asset turnover ratio is defined as: FY2019 revenue / (average PP&E between FY2018 and FY2019). Round your answer to two decimal places. Base your judgments on the information provided primarily in the statement of income and the statement of f... 
+
+ 24.26 
+
+ The metric in question was calculated using other simpler metrics. The various simpler metrics (from the current and, if relevant, previous fiscal year(s)) used were:
+
+Metric 1: Total revenue. This metric was located in the 10K as a single line item named: Total net revenues.
+
+Metric 2: Ppne, net. This metric was locat... 
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "Table of Contents\nACTIVISION BLIZZARD, INC. AND SUBSIDIARIES\nCONSOLIDATED BALANCE SHEETS\n(Amounts in millions, except share data)\n \nAt December 31, 2019\n \nAt December 31, 2018\nAssets\n \n \nCurrent assets:\n \n \nCash and cash equivalents\n$\n5,794\n $\n4,225\nAccounts receivable, ne... 
+
+ Communication Services 
+
+ 10k 
+
+ 2,019 
+
+ https://investor.activision.com/static-files/32abe798-add2-4770-9c7d-4cd3a840ede2 
+
+ financebench_id_07966 
+
+ Activision Blizzard 
+
+ ACTIVISIONBLIZZARD_2019_10K 
+
+ metrics-generated 
+
+ Numerical reasoning 
+
+null
+
+ What is the FY2017 - FY2019 3 year average of capex as a % of revenue for Activision Blizzard? Answer in units of percents and round to one decimal place. Calculate (or extract) the answer from the statement of income and the cash flow statement. 
+
+ 1.9% 
+
+ The metric in question was calculated using other simpler metrics. The various simpler metrics (from the current and, if relevant, previous fiscal year(s)) used were:
+
+Metric 1: Capital expenditures. This metric was located in the 10K as a single line item named: Capital expenditures.
+
+Metric 2: Total revenue. This met... 
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "Table of Contents\nACTIVISION BLIZZARD, INC. AND SUBSIDIARIES\nCONSOLIDATED STATEMENTS OF OPERATIONS\n(Amounts in millions, except per share data)\n \nFor the Years Ended December 31,\n \n2019\n \n2018\n \n2017\nNet revenues\n \n \n \n \nProduct sales\n$\n1,975\n $\n2,255 $\n2,110\nSubscript... 
+
+ Communication Services 
+
+ 10k 
+
+ 2,019 
+
+ https://investor.activision.com/static-files/32abe798-add2-4770-9c7d-4cd3a840ede2 
+
+ financebench_id_04735 
+
+ Adobe 
+
+ ADOBE_2015_10K 
+
+ metrics-generated 
+
+ Numerical reasoning 
+
+null
+
+ You are an investment banker and your only resource(s) to answer the following question is (are): the statement of financial position and the cash flow statement. Here's the question: what is the FY2015 operating cash flow ratio for Adobe? Operating cash flow ratio is defined as: cash from operations / total current li... 
+
+ 0.66 
+
+ The metric in question was calculated using other simpler metrics. The various simpler metrics (from the current and, if relevant, previous fiscal year(s)) used were:
+
+Metric 1: Cash from operations. This metric was located in the 10K as a single line item named: Net cash provided by operating activities.
+
+Metric 2: To... 
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "59\n ADOBE SYSTEMS INCORPORATED\n CONSOLIDATED BALANCE SHEETS\n(In thousands, except par value)\n \nNovember 27,\n2015\nNovember 28,\n2014\nASSETS\nCurrent assets:\n \n \nCash and cash equivalents................................................................................................... 
+
+ Information Technology 
+
+ 10k 
+
+ 2,015 
+
+ https://www.adobe.com/pdf-page.html?pdfTarget=aHR0cHM6Ly93d3cuYWRvYmUuY29tL2NvbnRlbnQvZGFtL2NjL2VuL2ludmVzdG9yLXJlbGF0aW9ucy9wZGZzL0FEQkUtMTBLLUZZMTUtRklOQUwucGRm 
+
+ financebench_id_07507 
+
+ Adobe 
+
+ ADOBE_2016_10K 
+
+ metrics-generated 
+
+ Numerical reasoning 
+
+null
+
+ What is Adobe's year-over-year change in unadjusted operating income from FY2015 to FY2016 (in units of percents and round to one decimal place)? Give a solution to the question by using the income statement. 
+
+ 65.4% 
+
+ The metric unadjusted operating income was directly extracted from the company 10K. The line item name, as seen in the 10K, was: Operating income. The final step was to execute the desired percent change calculation on unadjusted operating income. 
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "Table of Contents\n62\nADOBE SYSTEMS INCORPORATED\nCONSOLIDATED STATEMENTS OF INCOME\n(In thousands, except per share data)\n \nYears Ended\n \nDecember 2,\n2016\nNovember 27,\n2015\nNovember 28,\n2014\nRevenue:\n \nSubscription\n$\n4,584,833\n$\n3,223,904\n$\n2,076,584\nProduct\n800,498\n1,... 
+
+ Information Technology 
+
+ 10k 
+
+ 2,016 
+
+ https://www.adobe.com/pdf-page.html?pdfTarget=aHR0cHM6Ly93d3cuYWRvYmUuY29tL2NvbnRlbnQvZGFtL2NjL2VuL2ludmVzdG9yLXJlbGF0aW9ucy9wZGZzL0FEQkUtMTBLLUZZMTYtRklOQUwucGRm 
+
+ financebench_id_03856 
+
+ Adobe 
+
+ ADOBE_2017_10K 
+
+ metrics-generated 
+
+ Numerical reasoning 
+
+null
+
+ What is the FY2017 operating cash flow ratio for Adobe? Operating cash flow ratio is defined as: cash from operations / total current liabilities. Round your answer to two decimal places. Please utilize information provided primarily within the balance sheet and the cash flow statement. 
+
+ 0.83 
+
+ The metric in question was calculated using other simpler metrics. The various simpler metrics (from the current and, if relevant, previous fiscal year(s)) used were:
+
+Metric 1: Cash from operations. This metric was located in the 10K as a single line item named: Net cash provided by operating activities.
+
+Metric 2: To... 
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "Table of Contents\n57\n ADOBE SYSTEMS INCORPORATED\n CONSOLIDATED BALANCE SHEETS\n(In thousands, except par value)\n \nDecember 1,\n2017\nDecember 2,\n2016\nASSETS\nCurrent assets:\n \n \nCash and cash equivalents\n$\n2,306,072\n$\n1,011,315\nShort-term investments\n3,513,702\n3,749,985\nTra... 
+
+ Information Technology 
+
+ 10k 
+
+ 2,017 
+
+ https://www.adobe.com/pdf-page.html?pdfTarget=aHR0cHM6Ly93d3cuYWRvYmUuY29tL2NvbnRlbnQvZGFtL2NjL2VuL2ludmVzdG9yLXJlbGF0aW9ucy9wZGZzL0FEQkUtMTBLLUZZMTctRklOQUwucGRm 
+
+ financebench_id_00438 
+
+ Adobe 
+
+ ADOBE_2022_10K 
+
+ domain-relevant 
+
+ Numerical reasoning OR information extraction 
+
+ dg14 
+
+ Does Adobe have an improving operating margin profile as of FY2022? If operating margin is not a useful metric for a company like this, then state that and explain why. 
+
+ No the operating margins of Adobe have recently declined from 36.8% in FY 2021 to 34.6% in FY2022. A drop by 2.2% in a year. 
+
+ 6098/16388
+5802/14573 
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "ADOBE INC.\nCONSOLIDATED STATEMENTS OF INCOME\n(In millions, except per share data)\n \nYears Ended\n \nDecember 2,\n2022\nDecember 3,\n2021\nNovember 27,\n2020\nRevenue:\n \nSubscription\n$ \n16,388 $ \n14,573 $ \n11,626 \nProduct\n \n532 \n555 \n507 \nServices and other\n \n686 \n657 \n735... 
+
+ Information Technology 
+
+ 10k 
+
+ 2,022 
+
+ https://www.adobe.com/pdf-page.html?pdfTarget=aHR0cHM6Ly93d3cuYWRvYmUuY29tL2NvbnRlbnQvZGFtL2NjL2VuL2ludmVzdG9yLXJlbGF0aW9ucy9wZGZzL0FEQkUtMTBLLUZZMjItRklOQUwucGRm 
+
+ financebench_id_00591 
+
+ Adobe 
+
+ ADOBE_2022_10K 
+
+ novel-generated 
+
+null
+
+null
+
+ Does Adobe have an improving Free cashflow conversion as of FY2022? 
+
+ Yes, the FCF conversion (using net income as the denominator) for Adobe has improved by ~13% from 143% in 2021 to 156% in 2022 
+
+ FCF Conversion: (Net cash provided by operating activities - Purchases of property and equipment)/Net income
+(7838-442)/4756
+(7230-348)/4822 
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "ADOBE INC.\n CONSOLIDATED STATEMENTS OF CASH FLOWS\n(In millions)\n \nYears Ended\n \nDecember 2,\n2022\nDecember 3,\n2021\nNovember 27,\n2020\nCash flows from operating activities:\n \n \nNet income\n$ \n4,756 \n$ \n4,822 \n$ \n5,260 \nAdjustments to reconcile net income to net cash provide... 
+
+ Information Technology 
+
+ 10k 
+
+ 2,022 
+
+ https://www.adobe.com/pdf-page.html?pdfTarget=aHR0cHM6Ly93d3cuYWRvYmUuY29tL2NvbnRlbnQvZGFtL2NjL2VuL2ludmVzdG9yLXJlbGF0aW9ucy9wZGZzL0FEQkUtMTBLLUZZMjItRklOQUwucGRm 
+
+ financebench_id_01319 
+
+ AES Corporation 
+
+ AES_2022_10K 
+
+ domain-relevant 
+
+ Information extraction 
+
+ dg21 
+
+ What is the quantity of restructuring costs directly outlined in AES Corporation's income statements for FY2022? If restructuring costs are not explicitly outlined then state 0. 
+
+ 0 
+
+null
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "Consolidated Statements of Operations\nYears ended December 31, 2022, 2021, and 2020\n2022\n2021\n2020\n(in millions, except per share amounts)\nRevenue:\nRegulated\n$\n3,538 \n$\n2,868 \n$\n2,661 \nNon-Regulated\n9,079 \n8,273 \n6,999 \nTotal revenue\n12,617 \n11,141 \n9,660 \nCost of Sales... 
+
+ Utilities 
+
+ 10k 
+
+ 2,022 
+
+ https://d18rn0p25nwr6d.cloudfront.net/CIK-0000874761/3be55db1-bf7e-407a-8062-6a6b8d9dd2f5.pdf 
+
+ financebench_id_00540 
+
+ AES Corporation 
+
+ AES_2022_10K 
+
+ domain-relevant 
+
+ Numerical reasoning OR Logical reasoning 
+
+ dg25 
+
+ Roughly how many times has AES Corporation sold its inventory in FY2022? Calculate inventory turnover ratio for the FY2022; if conventional inventory management is not meaningful for the company then state that and explain why. 
+
+ AES has converted inventory 9.5 times in FY 2022. 
+
+ Cost of sales/Inventory
+10069/1055 
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "Consolidated Balance Sheets\nDecember 31, 2022 and 2021\n2022\n2021\n(in millions, except share and per share data)\nASSETS\nCURRENT ASSETS\nCash and cash equivalents\n$\n1,374 \n$\n943 \nRestricted cash\n536 \n304 \nShort-term investments\n730 \n232 \nAccounts receivable, net of allowance f... 
+
+ Utilities 
+
+ 10k 
+
+ 2,022 
+
+ https://d18rn0p25nwr6d.cloudfront.net/CIK-0000874761/3be55db1-bf7e-407a-8062-6a6b8d9dd2f5.pdf 
+
+ financebench_id_10420 
+
+ AES Corporation 
+
+ AES_2022_10K 
+
+ metrics-generated 
+
+ Numerical reasoning 
+
+null
+
+ Based on the information provided primarily in the statement of financial position and the statement of income, what is AES's FY2022 return on assets (ROA)? ROA is defined as: FY2022 net income / (average total assets between FY2021 and FY2022). Round your answer to two decimal places. 
+
+ -0.02 
+
+ The metric in question was calculated using other simpler metrics. The various simpler metrics (from the current and, if relevant, previous fiscal year(s)) used were:
+
+Metric 1: Net income. This metric was located in the 10K as a single line item named: NET INCOME (LOSS) ATTRIBUTABLE TO THE AES CORPORATION.
+
+Metric 2: ... 
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "128 \nConsolidated Balance Sheets\nDecember 31, 2022 and 2021\n2022\n2021\n(in millions, except share and per share data)\nASSETS\nCURRENT ASSETS\nCash and cash equivalents\n$\n1,374 \n$\n943 \nRestricted cash\n536 \n304 \nShort-term investments\n730 \n232 \nAccounts receivable, net of allow... 
+
+ Utilities 
+
+ 10k 
+
+ 2,022 
+
+ https://d18rn0p25nwr6d.cloudfront.net/CIK-0000874761/3be55db1-bf7e-407a-8062-6a6b8d9dd2f5.pdf 
+
+ financebench_id_06655 
+
+ Amazon 
+
+ AMAZON_2017_10K 
+
+ metrics-generated 
+
+ Numerical reasoning 
+
+null
+
+ What is Amazon's FY2017 days payable outstanding (DPO)? DPO is defined as: 365 * (average accounts payable between FY2016 and FY2017) / (FY2017 COGS + change in inventory between FY2016 and FY2017). Round your answer to two decimal places. Address the question by using the line items and information shown within the ba... 
+
+ 93.86 
+
+ The metric in question was calculated using other simpler metrics. The various simpler metrics (from the current and, if relevant, previous fiscal year(s)) used were:
+
+Metric 1: Accounts payable. This metric was located in the 10K as a single line item named: Accounts payable.
+
+Metric 2: Inventories. This metric was lo... 
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "Table of Contents\nAMAZON.COM, INC.\nCONSOLIDATED STATEMENTS OF OPERATIONS\n(in millions, except per share data)\n \n \nYear Ended December 31,\n \n2015\n \n2016\n \n2017\nNet product sales\n$\n79,268 $\n94,665 $\n118,573\nNet service sales\n27,738 \n41,322 \n59,293\nTotal net sales\n107,006... 
+
+ Consumer Discretionary 
+
+ 10k 
+
+ 2,017 
+
+ https://d18rn0p25nwr6d.cloudfront.net/CIK-0001018724/02da2a86-7bb9-4bcb-95ae-4ce27ea5e3bc.pdf 
+
+ financebench_id_08135 
+
+ Amazon 
+
+ AMAZON_2017_10K 
+
+ metrics-generated 
+
+ Numerical reasoning 
+
+null
+
+ What is Amazon's year-over-year change in revenue from FY2016 to FY2017 (in units of percents and round to one decimal place)? Calculate what was asked by utilizing the line items clearly shown in the statement of income. 
+
+ 30.8% 
+
+ The metric total revenue was directly extracted from the company 10K. The line item name, as seen in the 10K, was: Total net sales. The final step was to execute the desired percent change calculation on total revenue. 
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "Table of Contents\nAMAZON.COM, INC.\nCONSOLIDATED STATEMENTS OF OPERATIONS\n(in millions, except per share data)\n \n \nYear Ended December 31,\n \n2015\n \n2016\n \n2017\nNet product sales\n$\n79,268 $\n94,665 $\n118,573\nNet service sales\n27,738 \n41,322 \n59,293\nTotal net sales\n107,006... 
+
+ Consumer Discretionary 
+
+ 10k 
+
+ 2,017 
+
+ https://d18rn0p25nwr6d.cloudfront.net/CIK-0001018724/02da2a86-7bb9-4bcb-95ae-4ce27ea5e3bc.pdf 
+
+ financebench_id_08286 
+
+ Amazon 
+
+ AMAZON_2019_10K 
+
+ metrics-generated 
+
+ Information extraction 
+
+null
+
+ By drawing conclusions from the information stated only in the income statement, what is Amazon's FY2019 net income attributable to shareholders (in USD millions)? 
+
+ $11588.00 
+
+ The metric net income was directly extracted from the company 10K. The line item name, as seen in the 10K, was: Net income. 
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "Table of Contents\nAMAZON.COM, INC.\nCONSOLIDATED STATEMENTS OF OPERATIONS\n(in millions, except per share data)\n \n \nYear Ended December 31,\n \n2017\n \n2018\n \n2019\nNet product sales\n$\n118,573 $\n141,915 $\n160,408\nNet service sales\n59,293 \n90,972 \n120,114\nTotal net sales\n177,... 
+
+ Consumer Discretionary 
+
+ 10k 
+
+ 2,019 
+
+ https://d18rn0p25nwr6d.cloudfront.net/CIK-0001018724/4d39f579-19d8-4119-b087-ee618abf82d6.pdf 
+
+ financebench_id_03882 
+
+ Amcor 
+
+ AMCOR_2020_10K 
+
+ metrics-generated 
+
+ Information extraction 
+
+null
+
+ What is Amcor's year end FY2020 net AR (in USD millions)? Address the question by adopting the perspective of a financial analyst who can only use the details shown within the balance sheet. 
+
+ $1616.00 
+
+ The metric accounts receivable, net was directly extracted from the company 10K. The line item name, as seen in the 10K, was: Trade receivables, net. 
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "Amcor plc and Subsidiaries\nConsolidated Balance Sheet\n(in millions)\nAs of June 30,\n2020\n2019\nAssets\nCurrent assets:\nCash and cash equivalents\n$\n742.6 \n$\n601.6 \nTrade receivables, net\n1,615.9 \n1,864.3 \nInventories, net\n1,831.9 \n1,953.8 \nPrepaid expenses and other current as... 
+
+ Materials 
+
+ 10k 
+
+ 2,020 
+
+ https://portalvhds1fxb0jchzgjph.blob.core.windows.net/press-releases-attachments/1517907/Annual%20report%20%5BSection%2013%20and%2015(d)%2C%20not%20S-K%20Item%20405%5D.pdf 
+
+ financebench_id_01935 
+
+ Amcor 
+
+ AMCOR_2022_8K_dated-2022-07-01 
+
+ novel-generated 
+
+null
+
+null
+
+ What was the key agenda of the AMCOR's 8k filing dated 1st July 2022? 
+
+ Amcor Finance (USA), Inc. and Amcor Flexibles North America, Inc., entered into supplemental indentures relating to Guaranteed Senior Notes due 2026 and 2028. This involved the substitution of the Substitute Issuer (Amcor Flexibles North America) for the Former Issuer (Amcor Finance) and the assumption of covenants und... 
+
+null
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "On June 30, 2022, Amcor Finance (USA), Inc. (the Former Issuer) and Amcor Flexibles North America, Inc. (the Substitute Issuer),\neach a wholly-owned subsidiary of Amcor plc (the Company), entered into a (i) Second Supplemental Indenture (the Second Supplemental\nIndenture) with the Trustee ... 
+
+ Materials 
+
+ 8k 
+
+ 2,022 
+
+ https://portalvhds1fxb0jchzgjph.blob.core.windows.net/press-releases-attachments/1517333/Current%20report.pdf 
+
+ financebench_id_00799 
+
+ Amcor 
+
+ AMCOR_2023_10K 
+
+ domain-relevant 
+
+ Numerical reasoning OR Logical reasoning 
+
+ dg02 
+
+ Has AMCOR's quick ratio improved or declined between FY2023 and FY2022? If the quick ratio is not something that a financial analyst would ask about a company like this, then state that and explain why. 
+
+ The quick ratio has slightly improved from 0.67 times to 0.69 times between FY 2023 and FY 2022.(3.4% jump) 
+
+ Quick Ratio= (Total current assets-(Raw materials and supplies+Work in process and finished goods))/Total current liabilities
+(5308-992-1221)/4476
+(5853-1114-1325)/5103 
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "Amcor plc and Subsidiaries\nConsolidated Balance Sheets\n($ in millions, except share and per share data)\nAs of June 30,\n2023\n2022\nAssets\nCurrent assets:\nCash and cash equivalents\n$\n689 \n$\n775 \nTrade receivables, net of allowance for credit losses of $21 and $25, respectively\n1,8... 
+
+ Materials 
+
+ 10k 
+
+ 2,023 
+
+ https://portalvhds1fxb0jchzgjph.blob.core.windows.net/press-releases-attachments/1556025/Annual%20report%20%5BSection%2013%20and%2015(d)%2C%20not%20S-K%20Item%20405%5D.pdf 
+
+ financebench_id_01079 
+
+ Amcor 
+
+ AMCOR_2023_10K 
+
+ domain-relevant 
+
+ Information extraction 
+
+ dg10 
+
+ What are major acquisitions that AMCOR has done in FY2023, FY2022 and FY2021? 
+
+ Amcor completed these acquisitions during FY2023:
+-100% equity interest of a flexibles manufacturing company in the Czech Republic
+- 100% equity interest in a medical device packaging manufacturing site in
+Shanghai, China.
+-acquisition of a New Zealand-based leading manufacturer of state-of-the-art, automated protein
+p... 
+
+null
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "On August 1, 2022, the Company completed the acquisition of 100% equity interest in a Czech Republic company that operates a world-class\nflexible packaging manufacturing plant. The purchase consideration of $59 million included a deferred portion of $5 million that was paid in the\nfirst qu... 
+
+ Materials 
+
+ 10k 
+
+ 2,023 
+
+ https://portalvhds1fxb0jchzgjph.blob.core.windows.net/press-releases-attachments/1556025/Annual%20report%20%5BSection%2013%20and%2015(d)%2C%20not%20S-K%20Item%20405%5D.pdf 
+
+ financebench_id_01148 
+
+ Amcor 
+
+ AMCOR_2023_10K 
+
+ domain-relevant 
+
+ Information extraction OR Logical reasoning OR 
+
+ dg12 
+
+ What industry does AMCOR primarily operate in? 
+
+ Amcor is a global leader in packaging production for various use cases. 
+
+null
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "Today, we are a global leader in developing and producing responsible\npackaging for food, beverage, pharmaceutical, medical, home and personal-care, and other products",
+ "doc_name": "AMCOR_2023_10K",
+ "evidence_page_num": 4,
+ "evidence_text_full_page": "PART I\nItem 1. - Business\... 
+
+ Materials 
+
+ 10k 
+
+ 2,023 
+
+ https://portalvhds1fxb0jchzgjph.blob.core.windows.net/press-releases-attachments/1556025/Annual%20report%20%5BSection%2013%20and%2015(d)%2C%20not%20S-K%20Item%20405%5D.pdf 
+
+ financebench_id_00684 
+
+ Amcor 
+
+ AMCOR_2023_10K 
+
+ domain-relevant 
+
+ Numerical reasoning OR information extraction 
+
+ dg13 
+
+ Does AMCOR have an improving gross margin profile as of FY2023? If gross margin is not a useful metric for a company like this, then state that and explain why. 
+
+ No. For AMCOR there has been a slight decline in gross margins by 0.8%. 
+
+ Gross Profit/Net Sales
+2725/14694
+2820/14544 
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "Amcor plc and Subsidiaries\nConsolidated Statements of Income\n($ in millions, except per share data)\nFor the years ended June 30,\n2023\n2022\n2021\nNet sales\n$\n14,694 \n$\n14,544 \n$\n12,861 \nCost of sales\n(11,969)\n(11,724)\n(10,129)\nGross profit\n2,725 \n2,820 \n2,732",
+ "doc_na... 
+
+ Materials 
+
+ 10k 
+
+ 2,023 
+
+ https://portalvhds1fxb0jchzgjph.blob.core.windows.net/press-releases-attachments/1556025/Annual%20report%20%5BSection%2013%20and%2015(d)%2C%20not%20S-K%20Item%20405%5D.pdf 
+
+ financebench_id_01936 
+
+ Amcor 
+
+ AMCOR_2023Q2_10Q 
+
+ novel-generated 
+
+null
+
+null
+
+ What is the nature & purpose of AMCOR's restructuring liability as oF Q2 of FY2023 close? 
+
+ 87% of the total restructuring liability is related Employee liabilities. 
+
+null
+
+ OPEN_SOURCE 
+
+ [
+ {
+ "evidence_text": "($ in millions)\nEmployee Costs\nFixed Asset\nRelated Costs\nOther Costs\nTotal\nRestructuring\nCosts\nLiability balance at June 30, 2022\n$\n97 \n$\n3 \n$\n18 \n$\n118 \nNet charges to earnings\n2 \n \n \n2 \nCash paid\n(16)\n(1)\n(8)\n(25)\nReversal of unused amounts\n(2)\n \n \n(2)\nLiabi... 
+
+ Materials 
+
+ 10q 
+
+ 2,023 
+
+ https://portalvhds1fxb0jchzgjph.blob.core.windows.net/press-releases-attachments/1516809/Quarterly%20report%20%5BSections%2013%20or%2015(d)%5D.pdf 
+
+End of preview. Expand in Data Studio 
+
+ Previous 
+ 
+ 1 
+
+ 2 
+ 
+ Next 
+
+ FinanceBench is a first-of-its-kind test suite for evaluating the performance of LLMs on open book financial question answering (QA). This is an open source sample of 150 annotated examples used in the evaluation and analysis of models assessed in the FinanceBench paper.
+
+The PDFs linked in the dataset can be found here as well: https://github.com/patronus-ai/financebench/tree/main/pdfs 
+
+The dataset comprises of questions about publicly traded companies, with corresponding answers and evidence strings. The questions in FinanceBench are ecologically valid and cover a diverse set of scenarios. They are intended to be clear-cut and straightforward to answer to serve as a minimum performance standard.
+
+We test 16 state of the art model configurations (including GPT-4-Turbo, Llama2 and Claude2, with vector stores and long context prompts) on a sample of 150 cases from FinanceBench, and manually review their answers (n=2,400). The cases are available open-source.
+
+We find that existing LLMs have clear limitations for financial QA. All models assessed exhibit weaknesses, such as hallucinations, that limit their suitability for use by enterprises.
+
+To evaluate your models on the full dataset, or if you have questions about this work, you can email us at contact@patronus.ai 
+
+ Copy to bucket 
+
+ Use this dataset 
+
+ Downloads last month 
+
+ 8,293 
+
+Number of rows:
+ 
+ 150 
+ 
+Total file size:
+ 
+ 962 kB 
+
+ Models trained or fine-tuned on PatronusAI/financebench 
+
+PeterAM4/Qwen3-Embedding-0.6B-GGUF
+ 
+ Sentence Similarity • 0.6B • Updated Feb 7 • 3.4k • 4 
+
+mradermacher/SpydazWeb_AI_LCARS_Humanization_003-i1-GGUF
+ 
+ 7B • Updated Mar 22, 2025 • 2.28k • 2 
+
+mradermacher/WORLD_ARCHIVES_II-GGUF
+ 
+ 7B • Updated Jun 9, 2024 • 989 
+
+mradermacher/SpydazWeb_AI_LCARS_Humanization_003-GGUF
+ 
+ 7B • Updated Mar 22, 2025 • 614 
+
+trjxter/TraceAlchemy-Gemma-4-E4B-Finance-IT-gguf
+ 
+ Text Generation • 8B • Updated May 13 • 583 • 5 
+
+zhiqian99/Qwen3-Embedding-0.6B-GGUF
+ 
+ Sentence Similarity • 0.6B • Updated Aug 23 • 301 
+
+ Browse 18 models trained on this dataset 
+
+ Spaces using PatronusAI/financebench 8 
+
+⚖️
+ 
+nvidia/judges-verdict
+ 
+📊
+ 
+amitlal/financebench-llm
+ 
+🤖
+ 
+Rom89823974978/RAG_Eval
+ 
+🏢
+ 
+Shruti02222/ai-investment-analyst
+ 
+📊
+ 
+mishrahimanshuedu/financebench-llm
+ 
+🔥
+ 
+Sanjam19/GraphRAG
+ 
+💬
+ 
+dahutapea/Finchat
+ 
+💬
+ 
+dahutapea/finchat-api
+ + 3 Spaces 
+
+ Paper for PatronusAI/financebench 
+
+FinanceBench: A New Benchmark for Financial Question Answering
+ 
+ Paper • 2311.11944 • Published Nov 20, 2023 
+
+ System theme 
+
+Company
+ TOS Privacy About Careers 
+Website
+ Models Datasets Spaces Pricing Docs

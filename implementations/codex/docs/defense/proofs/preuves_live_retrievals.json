@@ -1,0 +1,138 @@
+[
+  {
+    "evidence": [
+      {
+        "id": "local-U901-0a89f975a663",
+        "version": 1,
+        "source_id": "U901",
+        "source": {
+          "url": "https://example.org/p5-fixture/U901",
+          "title": "Fixture P5 U901",
+          "kind": "captured_document",
+          "authority": "unclassified_requires_review"
+        },
+        "known_at": "2026-11-15T00:00:00+00:00",
+        "known_at_basis": "timestamp_of_exact_captured_version",
+        "reading_level": "targeted_passages",
+        "review_status": "extracted_for_role_review",
+        "passages": [
+          {
+            "line_start": 1,
+            "line_end": 1,
+            "text": "Document de test P5, convention A. Dans cette fixture fictive, le champ adj_close du fichier prices_daily.csv inclut les distributions réinvesties et les fractionnements. Son ratio est donc un rendement total avec revenus. Cette déclaration n'est pas une donnée réelle du starter.",
+            "text_truncated": false,
+            "selection": "deterministic_keyword_window",
+            "match_terms": []
+          }
+        ],
+        "passage": "Document de test P5, convention A. Dans cette fixture fictive, le champ adj_close du fichier prices_daily.csv inclut les distributions réinvesties et les fractionnements. Son ratio est donc un rendement total avec revenus. Cette déclaration n'est pas une donnée réelle du starter.",
+        "capture": {
+          "path": "docs/defense/proofs/preuves_corpus/collecte/U901.html",
+          "sha256": "0a89f975a6630a5927459cc2624486db77f917b532443ace95fdac55e803b51a",
+          "text_sha256": "e3c58dacb30ca1adc55f79162551096bb6d8182bc1ec2f18249563e93ac6bada",
+          "text_path": "docs/defense/proofs/preuves_captures/e3c58dacb30ca1adc55f79162551096bb6d8182bc1ec2f18249563e93ac6bada.txt"
+        },
+        "scope": {
+          "query": "historical portfolio comparison diversification estimation risk backtest limitations currency",
+          "source_version": "0a89f975a6630a5927459cc2624486db77f917b532443ace95fdac55e803b51a",
+          "pdf_pages": null
+        },
+        "limitations": [
+          "Passages extraits automatiquement ; pertinence et ancrage restent à examiner.",
+          "Date de capture conservatrice ; elle ne prouve pas la disponibilité de cette version à une date antérieure."
+        ]
+      },
+      {
+        "id": "local-U902-6a382ecc976d",
+        "version": 1,
+        "source_id": "U902",
+        "source": {
+          "url": "https://example.org/p5-fixture/U902",
+          "title": "Fixture P5 U902",
+          "kind": "captured_document",
+          "authority": "unclassified_requires_review"
+        },
+        "known_at": "2026-11-15T00:00:00+00:00",
+        "known_at_basis": "timestamp_of_exact_captured_version",
+        "reading_level": "targeted_passages",
+        "review_status": "extracted_for_role_review",
+        "passages": [
+          {
+            "line_start": 1,
+            "line_end": 1,
+            "text": "Document de test P5, convention B contradictoire. Dans cette même fixture fictive, le même champ adj_close du fichier prices_daily.csv exclut les distributions et corrige seulement les fractionnements. Son ratio est donc un rendement de prix sans revenus. Ce document contredit explicitement la convention A, et ne doit pas être fusionné en une convention implicite. Cette déclaration n'est pas une donnée réelle du starter.",
+            "text_truncated": false,
+            "selection": "deterministic_keyword_window",
+            "match_terms": []
+          }
+        ],
+        "passage": "Document de test P5, convention B contradictoire. Dans cette même fixture fictive, le même champ adj_close du fichier prices_daily.csv exclut les distributions et corrige seulement les fractionnements. Son ratio est donc un rendement de prix sans revenus. Ce document contredit explicitement la convention A, et ne doit pas être fusionné en une convention implicite. Cette déclaration n'est pas une donnée réelle du starter.",
+        "capture": {
+          "path": "docs/defense/proofs/preuves_corpus/collecte/U902.html",
+          "sha256": "6a382ecc976dd19b91e30af1ac1d5f30f0b148635f723b7cbe3c5e72aaa7e9d6",
+          "text_sha256": "b4c7bc6cf486d3c398ac4ab8ffc046b21cdf34911f16b11dcfe7bc7ca2a47aee",
+          "text_path": "docs/defense/proofs/preuves_captures/b4c7bc6cf486d3c398ac4ab8ffc046b21cdf34911f16b11dcfe7bc7ca2a47aee.txt"
+        },
+        "scope": {
+          "query": "historical portfolio comparison diversification estimation risk backtest limitations currency",
+          "source_version": "6a382ecc976dd19b91e30af1ac1d5f30f0b148635f723b7cbe3c5e72aaa7e9d6",
+          "pdf_pages": null
+        },
+        "limitations": [
+          "Passages extraits automatiquement ; pertinence et ancrage restent à examiner.",
+          "Date de capture conservatrice ; elle ne prouve pas la disponibilité de cette version à une date antérieure."
+        ]
+      }
+    ],
+    "methods": [],
+    "gaps": [],
+    "contradictions": [],
+    "receipts": [
+      {
+        "tool_id": "local_corpus_read",
+        "version": "1.0",
+        "execution_id": "bf2108719e456b64deffec3b",
+        "started_at": "2026-11-15T19:04:44.140042+00:00",
+        "finished_at": "2026-11-15T19:04:44.142290+00:00",
+        "status": "success",
+        "parameters": {
+          "source_id": "U901"
+        },
+        "output_refs": [
+          "local-U901-0a89f975a663"
+        ],
+        "capture_sha256": "0a89f975a6630a5927459cc2624486db77f917b532443ace95fdac55e803b51a"
+      },
+      {
+        "tool_id": "local_corpus_read",
+        "version": "1.0",
+        "execution_id": "faba0bffc84a6a7195ab87c2",
+        "started_at": "2026-11-15T19:04:44.142300+00:00",
+        "finished_at": "2026-11-15T19:04:44.144066+00:00",
+        "status": "success",
+        "parameters": {
+          "source_id": "U902"
+        },
+        "output_refs": [
+          "local-U902-6a382ecc976d"
+        ],
+        "capture_sha256": "6a382ecc976dd19b91e30af1ac1d5f30f0b148635f723b7cbe3c5e72aaa7e9d6"
+      },
+      {
+        "tool_id": "aws_invoke_web_search",
+        "version": "1.0",
+        "execution_id": "e548fdf84614b86bb47ef5ba",
+        "started_at": "2026-11-15T19:04:44.144076+00:00",
+        "finished_at": "2026-11-15T19:04:44.144080+00:00",
+        "status": "skipped",
+        "reason": "web_not_allowed"
+      }
+    ],
+    "limitations": [
+      "La collecte fournit des passages à examiner ; elle ne certifie pas leur soutien à une assertion.",
+      "Aucun score ESG, rendement attendu ou propriété contractuelle n'est imputé."
+    ],
+    "query": "historical portfolio comparison diversification estimation risk backtest limitations currency",
+    "knowledge_date": "2026-11-15"
+  }
+]

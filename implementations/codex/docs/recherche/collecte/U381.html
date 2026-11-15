@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Getting started with Amazon S3 - Amazon Simple Storage Service</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="GetStartedWithS3" /><meta name="default_state" content="GetStartedWithS3" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html" /><link rel="alternate" type="text/markdown" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.md" title="Markdown version" /><meta name="description" content="Get started storing and retrieving any amount of data at any time, from anywhere on the web with Amazon S3." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon Simple Storage Service" /><meta name="guide" content="User Guide" /><meta name="abstract" content="Learn how to use Amazon Simple Storage Service (Amazon S3) to store and retrieve any amount of data from anywhere. This guide explains Amazon S3 concepts, such as buckets, objects, and related configurations, and includes code examples for common operations." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/AmazonS3/latest/userguide/GetStartedWithS3.html" hreflang="id-id" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/AmazonS3/latest/userguide/GetStartedWithS3.html" hreflang="id" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/AmazonS3/latest/userguide/GetStartedWithS3.html" hreflang="de-de" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/AmazonS3/latest/userguide/GetStartedWithS3.html" hreflang="de" /><link rel="alternate" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html" hreflang="en-us" /><link rel="alternate" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html" hreflang="en" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/AmazonS3/latest/userguide/GetStartedWithS3.html" hreflang="es-es" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/AmazonS3/latest/userguide/GetStartedWithS3.html" hreflang="es" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/AmazonS3/latest/userguide/GetStartedWithS3.html" hreflang="fr-fr" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/AmazonS3/latest/userguide/GetStartedWithS3.html" hreflang="fr" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/AmazonS3/latest/userguide/GetStartedWithS3.html" hreflang="it-it" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/AmazonS3/latest/userguide/GetStartedWithS3.html" hreflang="it" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/GetStartedWithS3.html" hreflang="ja-jp" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/GetStartedWithS3.html" hreflang="ja" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/userguide/GetStartedWithS3.html" hreflang="ko-kr" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/userguide/GetStartedWithS3.html" hreflang="ko" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/GetStartedWithS3.html" hreflang="pt-br" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/GetStartedWithS3.html" hreflang="pt" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_cn/AmazonS3/latest/userguide/GetStartedWithS3.html" hreflang="zh-cn" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_tw/AmazonS3/latest/userguide/GetStartedWithS3.html" hreflang="zh-tw" /><link rel="alternate" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html" hreflang="x-default" /><meta name="feedback-item" content="S3" /><meta name="this_doc_product" content="Amazon Simple Storage Service" /><meta name="this_doc_guide" content="User Guide" /><head xmlns="http://www.w3.org/1999/xhtml"> <script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"/></head>
+<script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'s3'}"></script><meta id="panorama-serviceSubSection" value="User Guide" /><meta id="panorama-serviceConsolePage" value="Getting started with Amazon S3" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><p><a href="GetStartedWithS3.md">View a markdown version of this page</a></p><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Getting started with Amazon S3 - Amazon Simple Storage Service</title><meta name="pdf" content="/pdfs/AmazonS3/latest/userguide/s3-userguide.pdf#GetStartedWithS3" /><meta name="rss" content="s3-userguide-rss-updates.rss" /><meta name="forums" content="https://repost.aws/tags/TADSTjraA0Q4-a1dxk6eUYaw" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=S3&amp;topic_url=https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/GetStartedWithS3.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/GetStartedWithS3.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/GetStartedWithS3.html" /><meta name="keywords" content="S3,Amazon S3,S3 User Guide,Amazon S3 User Guide,Amazon User Guide,s3 bucket,s3 object,cloud storage,data storage" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon Simple Storage Service (S3)",
+        "item" : "https://docs.aws.amazon.com/s3/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "User Guide",
+        "item" : "https://docs.aws.amazon.com/AmazonS3/latest/userguide"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Getting started with Amazon S3",
+        "item" : "https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/AmazonS3/latest/userguide/s3-userguide.pdf#GetStartedWithS3" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/s3/index.html">Amazon Simple Storage Service (S3)</a><a href="Welcome.html">User Guide</a></div><div id="page-toc-src"><a href="#setting-up-s3">Setting up</a><a href="#creating-bucket">Step 1: Create a bucket</a><a href="#uploading-an-object-bucket">Step 2: Upload an object</a><a href="#accessing-an-object">Step 3: Download an object</a><a href="#copying-an-object">Step 4: Copy an object</a><a href="#deleting-object-bucket">Step 5: Delete the objects and bucket</a><a href="#getting-started-next-steps">Next steps</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="GetStartedWithS3">Getting started with Amazon S3</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>You can get started with Amazon S3 by working with buckets and objects. A <em>bucket</em> is a container for objects. An <em>object</em> is
+    a file and any metadata that describes that file.</p><p>To store an object in Amazon S3, you create a bucket and then upload the object to the bucket.
+    When the object is in the bucket, you can open it, download it, and move it. When you no longer
+    need an object or a bucket, you can clean up your resources.</p><p>With Amazon S3, you pay only for what you use. For more information about Amazon S3 features and
+    pricing, see <a href="https://aws.amazon.com/s3" rel="noopener noreferrer" target="_blank"><span>Amazon S3</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. If you are a new Amazon S3 customer, you
+    can get started with Amazon S3 for free. For more information, see <a href="https://aws.amazon.com/free" rel="noopener noreferrer" target="_blank"><span>AWS Free Tier</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>For more information about using the Amazon S3 Express One Zone storage class with directory buckets, see <a href="./directory-bucket-high-performance.html#s3-express-one-zone">S3 Express One Zone</a> and <a href="./directory-buckets-overview.html">Working with directory buckets</a>.</p></div></div>    
+      <h6>Video: Getting started with Amazon S3</h6>
+    <p>The following video shows you how to get started with
+      Amazon S3.</p>
+  <div class="mediaobject">
+       
+        <iframe width="600" height="350" frameborder="0" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" sandbox="allow-scripts allow-same-origin allow-popups" src="https://www.youtube-nocookie.com/embed/FZCZbPEMlXk/"></iframe>
+       
+       
+    </div>
+    <h6>Prerequisites</h6>
+    <p>Before you begin, confirm that you've completed the steps in <a href="#setting-up-s3">Setting up Amazon S3</a>.</p>
+   
+  <h2 id="setting-up-s3">Setting up Amazon S3</h2>
+  <p>When you sign up for AWS, your AWS account is automatically signed up for all services
+    in AWS, including Amazon S3. You are charged only for the services that you use.</p>
+  <p>With Amazon S3, you pay only for what you use. For more information about Amazon S3 features and
+    pricing, see <a href="https://aws.amazon.com/s3" rel="noopener noreferrer" target="_blank"><span>Amazon S3</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. If you are a new Amazon S3 customer, you
+    can get started with Amazon S3 for free. For more information, see <a href="https://aws.amazon.com/free" rel="noopener noreferrer" target="_blank"><span>AWS Free Tier</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+  <p>To set up Amazon S3, use the steps in the following sections.</p>
+  <p>When you sign up for AWS and set up Amazon S3, you can optionally change the display language
+    in the AWS Management Console. For more information, see <a href="https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/getting-started.html#change-language">Changing the language
+      of the AWS Management Console</a> in the <em>AWS Management Console Getting Started Guide</em>.</p>
+  <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><p><a href="#sign-up-for-aws">Sign up for an AWS account</a></p></li></ul></div>
+
+  
+  
+
+
+   
+    <h3 id="sign-up-for-aws">Sign up for an AWS account</h3> 
+    <p>To get started with AWS, you need an AWS account. There are two ways to sign up for AWS. If you want complete control over account configuration and where your content is stored, or if you have regulated workloads such as HIPAA or FedRAMP, use <a href="https://docs.aws.amazon.com/accounts/latest/reference/getting-started.html">Sign up for AWS (advanced)</a>. If you are a new user and want to use a login you already own to sign in to AWS and create an AWS environment with preconfigured defaults in select <a href="https://docs.aws.amazon.com/accounts/latest/reference/project-regions.html">AWS Regions</a>, use <a href="https://docs.aws.amazon.com/accounts/latest/reference/sign-in-new.html">Sign up for AWS</a>.</p>
+   
+
+
+  
+
+
+
+
+ 
+  <h2 id="creating-bucket">Step 1: Create your first S3 bucket</h2>
+  <p>After you sign up for AWS, you're ready to create a bucket in Amazon S3 using the AWS Management Console.
+    Every object in Amazon S3 is stored in a <em>bucket</em>. Before you can
+    store data in Amazon S3, you must create a bucket. </p>
+  <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>For more information about using the Amazon S3 Express One Zone storage class with directory buckets, see <a href="./directory-bucket-high-performance.html#s3-express-one-zone">S3 Express One Zone</a> and <a href="./directory-buckets-overview.html">Working with directory buckets</a>.</p></div></div>
+  <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>You are not charged for creating a bucket. You are charged only for storing objects in the
+      bucket and for transferring objects in and out of the bucket. The charges that you incur
+      through following the examples in this guide are minimal (less than $1). For more information
+      about storage charges, see <a href="https://aws.amazon.com/s3/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon S3
+      pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></div></div>
+  <div class="procedure"><ol><li><p>Sign in to the AWS Management Console and open the Amazon S3 console at
+         <a href="https://console.aws.amazon.com/s3/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/s3/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></li><li> <p>In the navigation bar, choose the name of the currently displayed AWS Region. Next, choose the Region in which you want to create a bucket. 
+    </p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>After you create a bucket, you can't change its Region. </p>
+        </li><li class="listitem">
+          <p>To minimize latency and costs and address regulatory requirements, choose a Region close to
+            you. Objects stored in a Region never leave that Region unless you explicitly transfer them to
+            another Region. For a list of Amazon S3 AWS Regions, see <a href="https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region">AWS service endpoints</a> in the <em>Amazon Web Services General Reference</em>.</p>
+        </li></ul></div></div></div>
+    </li><li>
+        <p>In the left navigation pane, choose <b>General purpose buckets</b>.</p>
+    </li><li>
+        <p>Choose <b>Create bucket</b>. The <b>Create bucket</b> page opens.</p>
+    </li><li>
+        <p>For <b>Bucket name</b>, enter a name for your bucket.</p>
+        <p>The bucket name must:</p>
+        <div class="itemizedlist">
+             
+             
+             
+             
+       
+        <ul class="itemizedlist"><li class="listitem">
+                <p>Be unique within a partition. A partition is a grouping of Regions. AWS currently has
+          three partitions: <code class="code">aws</code> (commercial Regions), <code class="code">aws-cn</code> (China Regions), and
+            <code class="code">aws-us-gov</code> (AWS GovCloud (US) Regions).</p>
+            </li><li class="listitem">
+                <p>Be between 3 and 63 characters long.</p>
+            </li><li class="listitem">
+                <p>Consist only of lowercase letters, numbers, periods (<code class="code">.</code>), and hyphens
+            (<code class="code">-</code>). For best compatibility, we recommend that you avoid using periods
+            (<code class="code">.</code>) in bucket names, except for buckets that are used only for static website
+          hosting.</p>
+            </li><li class="listitem">
+                <p>Begin and end with a letter or number. </p>
+            </li><li class="listitem">
+        <p>For a complete list of bucket-naming rules, see <a href="./bucketnamingrules.html">General purpose bucket naming rules</a>.</p>
+      </li></ul></div>
+        <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><div class="itemizedlist">
+         
+         
+      <ul class="itemizedlist"><li class="listitem">
+          <p>After you create the bucket, you can't change its name. </p>
+        </li><li class="listitem">
+          <p>Don't include sensitive information in the bucket name. The bucket name is visible in the URLs
+            that point to the objects in the bucket.</p>
+        </li></ul></div></div></div>
+    </li><li>
+        <p>(Optional) Under <b>General configuration</b>, you can choose to copy an existing
+      bucket's settings to your new bucket. If you don't want to copy the settings of an existing bucket, skip
+      to the next step.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>This option:</p><div class="itemizedlist">
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem"><p>Isn't available in the AWS CLI and is only available in the Amazon S3 console</p></li><li class="listitem"><p>Doesn't copy the bucket policy from the existing bucket to the new bucket</p></li></ul></div></div></div>
+        <p> To copy an existing bucket's settings, under <b>Copy settings from existing
+        bucket</b>, select <b>Choose bucket</b>. The <b>Choose bucket</b>
+      window opens. Find the bucket with the settings that you want to copy, and select <b>Choose
+        bucket</b>. The <b>Choose bucket</b> window closes, and the <b>Create
+        bucket</b> window reopens.</p>
+        <p>Under <b>Copy settings from existing bucket</b>, you now see the name of the
+      bucket that you selected. The settings of your new bucket now match the settings of the bucket that you
+      selected. If you want to remove the copied settings, choose <b>Restore defaults</b>.
+      Review the remaining bucket settings on the <b>Create bucket</b> page. If you don't want
+      to make any changes, you can skip to the final step. </p>
+    </li><li>
+        <p>Under <b>Object Ownership</b>, to disable or enable ACLs and control
+            ownership of objects uploaded in your bucket, choose one of the following
+            settings:</p>
+        <div class="itemizedlist">
+            <h6>ACLs disabled</h6>
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p> <b>Bucket owner enforced (default)</b> – 
+	ACLs are disabled, and the bucket owner automatically owns and has full control over every object in the general purpose bucket. ACLs 
+	no longer affect access permissions to data in the S3 general purpose bucket. The bucket uses policies exclusively to define access control.</p>
+                <p>By default, ACLs are disabled. A majority of modern use cases in Amazon S3 no
+                    longer require the use of ACLs. We recommend that you keep ACLs disabled, except
+                    in circumstances where you must control access for each object
+                    individually. For more information, see <a href="./about-object-ownership.html">Controlling ownership of objects and disabling ACLs for your bucket</a>.</p>
+            </li></ul></div>
+        <div class="itemizedlist">
+            <h6>ACLs enabled</h6>
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><b>Bucket owner preferred</b> – The bucket owner owns and
+                    has full control over new objects that other accounts write to the bucket with
+                    the <code class="code">bucket-owner-full-control</code> canned ACL. </p>
+                <p>If you apply the <b>Bucket owner preferred</b> setting, to
+                    require all Amazon S3 uploads to include the <code class="code">bucket-owner-full-control</code>
+                    canned ACL, you can <a href="./ensure-object-ownership.html#ensure-object-ownership-bucket-policy">add a
+                        bucket policy</a> that allows only object uploads that use this
+                    ACL.</p>
+            </li><li class="listitem">
+                <p><b>Object writer</b> – The AWS account that uploads an
+                    object owns the object, has full control over it, and can grant other users
+                    access to it through ACLs.</p>
+            </li></ul></div>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The default setting is <b>Bucket owner enforced</b>. To apply the
+                default setting and keep ACLs disabled, only the <code class="code">s3:CreateBucket</code>
+                permission is needed. To enable ACLs, you must have the
+                <code class="code">s3:PutBucketOwnershipControls</code> permission.</p></div></div>
+    </li><li>
+        <p>Under <b>Block Public Access settings for this bucket</b>, choose the
+            Block Public Access settings that you want to apply to the bucket. </p>
+        <p>By default, all four Block Public Access settings are enabled. We recommend that you
+            keep all settings enabled, unless you know that you need to turn off one or more of them
+            for your specific use case. For more information about blocking public access, see <a href="./access-control-block-public-access.html">Blocking public access to your Amazon S3 storage</a>.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>To enable all Block Public Access settings, only the <code class="code">s3:CreateBucket</code> permission
+            is required. To turn off any Block Public Access settings, you must have the
+            <code class="code">s3:PutBucketPublicAccessBlock</code> permission.</p></div></div>
+    </li><li>
+        <p>(Optional) By default, <b>Bucket Versioning</b> is disabled. Versioning is a means
+      of keeping multiple variants of an object in the same bucket. You can use versioning to preserve,
+      retrieve, and restore every version of every object stored in your bucket. With versioning, you can
+      recover more easily from both unintended user actions and application failures. For more information
+      about versioning, see <a href="./Versioning.html">Retaining multiple versions of objects with S3 Versioning</a>. </p>
+    <p>To enable versioning on your bucket, choose <b>Enable</b>. </p>
+    </li><li>
+        <p>(Optional) Under <b>Tags</b>, you can choose to add tags to your bucket. With
+      AWS cost allocation, you can use bucket tags to annotate billing for your use of a bucket. A tag is a
+      key-value pair that represents a label that you assign to a bucket. For more information, see <a href="./CostAllocTagging.html">Using cost allocation S3 bucket tags</a>.</p>    
+        <p>To add a bucket tag, enter a <b>Key</b> and optionally a
+            <b>Value</b> and choose <b>Add Tag</b>.</p>
+    </li><li>
+    <p>To configure <b>Default encryption</b>, under <b>Encryption type</b>,
+      choose one of the following: </p>
+    <div class="itemizedlist">
+       
+       
+                   
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>Server-side encryption with Amazon S3 managed keys (SSE-S3)</b></p>
+      </li><li class="listitem">
+        <p><b>Server-side encryption with AWS Key Management Service keys (SSE-KMS)</b></p>
+      </li><li class="listitem">
+        <p><b>Dual-layer server-side encryption with AWS Key Management Service (AWS KMS) keys
+          (DSSE-KMS)</b></p>
+        <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>If you use the SSE-KMS or DSSE-KMS option for your default encryption configuration, you are
+            subject to the requests per second (RPS) quota of AWS KMS. For more information about AWS KMS quotas
+            and how to request a quota increase, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/limits.html">Quotas</a> in
+            the <em>AWS Key Management Service Developer Guide</em>.</p></div></div>
+      </li></ul></div>
+    <p>Buckets and new objects are encrypted by using server-side encryption with Amazon S3 managed keys
+      (SSE-S3) as the base level of encryption configuration. For more information about default encryption,
+      see <a href="./bucket-encryption.html">Setting default server-side encryption behavior for Amazon S3 buckets</a>. For more information about
+      SSE-S3, see <a href="./UsingServerSideEncryption.html">Using server-side encryption with Amazon S3 managed keys (SSE-S3)</a>.</p>
+    <p>For more information about using server-side encryption to encrypt your data, see <a href="./UsingEncryption.html">Protecting data with encryption</a>. </p>
+  </li><li>
+    <p>If you chose <b>Server-side encryption with AWS Key Management Service keys (SSE-KMS)</b> or
+        <b>Dual-layer server-side encryption with AWS Key Management Service (AWS KMS) keys (DSSE-KMS)</b>, do the
+      following:</p>
+    <ol><li>
+        <p>Under <b>AWS KMS key</b>, specify your KMS key in one of the following ways:</p>
+        <div class="itemizedlist">
+           
+           
+           
+        <ul class="itemizedlist"><li class="listitem">
+            <p>To choose from a list of available KMS keys, choose <b>Choose from
+              your AWS KMS keys</b>, and choose your
+              <b>KMS key</b> from the list of available keys.</p>
+            <p>Both the AWS managed key (<code class="code">aws/s3</code>) and your customer managed keys appear in this
+              list. For more information about customer managed keys, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-mgmt">Customer keys and
+                AWS keys</a> in the <em>AWS Key Management Service Developer Guide</em>.</p>
+          </li><li class="listitem">
+            <p>To enter the KMS key ARN, choose <b>Enter AWS KMS key
+              ARN</b>, and enter your KMS key ARN in the field that appears.
+            </p>
+          </li><li class="listitem">
+            <p>To create a new customer managed key in the AWS KMS console, choose <b>Create a
+              KMS key</b>.</p>
+            <p>For more information about creating an AWS KMS key, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html">Creating keys</a> in the <em>AWS Key Management Service Developer Guide</em>.</p>
+          </li></ul></div>
+        <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>You can use only KMS keys that are available in the same AWS Region as the bucket. The
+            Amazon S3 console lists only the first 100 KMS keys in the same Region as the bucket. To use a
+            KMS key that isn't listed, you must enter your KMS key ARN. If you want to use a KMS key
+            that's owned by a different account, you must first have permission to use the key, and then you
+            must enter the KMS key ARN. For more information about cross account permissions for KMS keys,
+            see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html#cross-account-console">Creating KMS keys that other accounts can use</a> in the
+              <em>AWS Key Management Service Developer Guide</em>. For more information about SSE-KMS, see <a href="./specifying-kms-encryption.html">Specifying server-side encryption with AWS KMS (SSE-KMS)</a>. For more
+            information about DSSE-KMS, see <a href="./UsingDSSEncryption.html">Using dual-layer server-side encryption with AWS KMS keys (DSSE-KMS)</a>.</p><p>When you use an AWS KMS key for server-side encryption in Amazon S3, you must
+            choose a symmetric encryption KMS key. Amazon S3 supports only symmetric encryption KMS keys and not
+            asymmetric KMS keys. For more information, see <a href="https://docs.aws.amazon.com/kms/latest/developerguide/find-symm-asymm.html">Identifying symmetric and
+              asymmetric KMS keys</a> in the <em>AWS Key Management Service Developer Guide</em>.</p></div></div>
+      </li><li>
+        <p>When you configure your bucket to use default encryption with SSE-KMS, you can also use S3 Bucket Keys.
+          S3 Bucket Keys lower the cost of encryption by decreasing request traffic from Amazon S3 to AWS KMS. For more
+          information, see <a href="./bucket-key.html">Reducing the cost of SSE-KMS with Amazon S3 Bucket Keys</a>. S3 Bucket Keys aren't
+          supported for DSSE-KMS.</p>
+        <p>By default, S3 Bucket Keys are enabled in the Amazon S3 console. We recommend leaving S3 Bucket Keys enabled to
+          lower your costs. To disable S3 Bucket Keys for your bucket, under <b>Bucket Key</b>, choose
+            <b>Disable</b>.</p>
+      </li></ol>
+  </li><li>
+        <p>(Optional) S3 Object Lock helps protect new objects from being deleted or overwritten. For
+      more information, see <a href="./object-lock.html">Locking objects with Object Lock</a>. If you want to enable
+      S3 Object Lock, do the following:</p>
+        <ol><li>
+                <p>Choose <b>Advanced settings</b>.</p>
+                <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>Enabling Object Lock automatically enables versioning for the bucket. After you've
+            enabled and successfully created the bucket, you must also configure the Object Lock default
+            retention and legal hold settings on the bucket's <b>Properties</b> tab. </p></div></div>
+            </li><li>
+                <p>If you want to enable Object Lock, choose
+                    <b>Enable</b>, read the warning that appears, and acknowledge it.</p>
+            </li></ol>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>To create an Object Lock enabled bucket, you must have the following permissions:
+          <code class="code">s3:CreateBucket</code>, <code class="code">s3:PutBucketVersioning</code>, and
+          <code class="code">s3:PutBucketObjectLockConfiguration</code>.</p></div></div>
+    </li><li>
+        <p>Choose <b>Create bucket</b>.</p>
+    </li></ol></div>
+  <p>You've created a bucket in Amazon S3. </p>
+   
+    <h6>Next step</h6>
+    <p>To add an object to your bucket, see <a href="#uploading-an-object-bucket">Step 2: Upload an object to your bucket</a>.</p>
+   
+ 
+  <h2 id="uploading-an-object-bucket">Step 2: Upload an object to your bucket</h2>
+  <p>After creating a bucket in Amazon S3, you're ready to upload an object to the bucket. An object
+    can be any kind of file: a text file, a photo, a video, and so on.
+  </p>
+  <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>For more information about using the Amazon S3 Express One Zone storage class with directory buckets, see <a href="./directory-bucket-high-performance.html#s3-express-one-zone">S3 Express One Zone</a> and <a href="./directory-buckets-overview.html">Working with directory buckets</a>.</p></div></div>
+  <div class="procedure"><h6>To upload an object to a bucket</h6><ol><li><p>Open the Amazon S3 console at
+         <a href="https://console.aws.amazon.com/s3/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/s3/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></li><li>
+      <p>In the <b>Buckets</b> list, choose the name of the bucket that you want to
+        upload your object to.</p>
+    </li><li>
+      <p>On the <b>Objects</b> tab for your bucket, choose
+          <b>Upload</b>.</p>
+    </li><li>
+      <p>Under <b>Files and folders</b>, choose <b>Add
+        files</b>.</p>
+    </li><li>
+      <p>Choose a file to upload, and then choose <b>Open.</b>
+      </p>
+    </li><li>
+      <p>Choose <b>Upload</b>. </p>
+    </li></ol></div>
+  <p>You've successfully uploaded an object to your bucket. </p>
+   
+    <h6>Next step</h6>
+    <p>To view your object, see <a href="#accessing-an-object">Step 3: Download an object</a>.</p>
+   
+ 
+  <h2 id="accessing-an-object">Step 3: Download an object</h2>
+  <p>After you upload an object to a bucket, you can view information about your object and
+    download the object to your local computer.</p>
+  <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>For more information about using the Amazon S3 Express One Zone storage class with directory buckets, see <a href="./directory-bucket-high-performance.html#s3-express-one-zone">S3 Express One Zone</a> and <a href="./directory-buckets-overview.html">Working with directory buckets</a>.</p></div></div>
+   
+    <h3 id="download-objects-console">Using the S3 console</h3>
+    <p>This section explains how to use the Amazon S3 console to download an object from an S3
+        bucket.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><div class="itemizedlist">
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>You can download only one object at a time.</p>
+            </li><li class="listitem">
+                <p>If you use the Amazon S3 console to download an object whose key name ends with a
+                    period (<code class="code">.</code>), the period is removed from the key name of the
+                    downloaded object. To retain the period at the end of the name of the downloaded
+                    object, you must use the AWS Command Line Interface (AWS CLI), AWS SDKs, or Amazon S3 REST API. </p>
+            </li></ul></div></div></div>
+    <div class="procedure"><h6>To download an object from an S3 bucket</h6><ol><li> <p>Sign in to the AWS Management Console and open the Amazon S3 console at
+         <a href="https://console.aws.amazon.com/s3/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/s3/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p> </li><li>
+            <p>In the left navigation pane, choose <b>General purpose buckets</b> or <b>Directory buckets</b>.</p>
+        </li><li>
+            <p>In the buckets list, choose the name of the bucket that you
+                want to download an object from.</p>
+            <p> </p>
+        </li><li>
+            <p>You can download an object from an S3 bucket in any of the following ways:</p>
+            <div class="itemizedlist">
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>Select the check box next to the object, and choose
+                            <b>Download</b>. If you want to download the object to a
+                        specific folder, on the <b>Actions</b> menu, choose
+                            <b>Download as</b>.</p>
+                </li><li class="listitem">
+                    <p>If you want to download a specific version of the object, turn on
+                            <b>Show versions</b> (located next to the search box).
+                        Select the check box next to the version of the object that you want, and
+                        choose <b>Download</b>. If you want to download the object to
+                        a specific folder, on the <b>Actions</b> menu, choose
+                            <b>Download as</b>.</p>
+                </li></ul></div>
+        </li></ol></div>
+ 
+  <p>You've successfully downloaded your object.</p>
+   
+    <h6>Next step</h6>
+    <p>To copy and paste your object within Amazon S3, see <a href="#copying-an-object">Step 4: Copy your object to a folder</a>.</p>
+   
+  
+ 
+  <h2 id="copying-an-object">Step 4: Copy your object to a folder</h2>
+  <p>You've already added an object to a bucket and downloaded the object. Now, you create a
+    folder and copy the object and paste it into the folder.</p>
+  <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>For more information about using the Amazon S3 Express One Zone storage class with directory buckets, see <a href="./directory-bucket-high-performance.html#s3-express-one-zone">S3 Express One Zone</a> and <a href="./directory-buckets-overview.html">Working with directory buckets</a>.</p></div></div>
+  <div class="procedure"><h6>To copy an object to a folder</h6><ol><li>
+      <p>In the <b>Buckets</b> list, choose your bucket name.</p>
+    </li><li>
+      <p>Choose <b>Create folder</b> and configure a new folder: </p>
+      <ol><li>
+          <p>Enter a folder name (for example, <code>favorite-pics</code>).</p>
+        </li><li>
+          <p>For the folder encryption setting, choose <b>Disable</b>.</p>
+        </li><li>
+          <p>Choose <b>Save</b>.</p>
+        </li></ol>
+    </li><li>
+      <p>Navigate to the Amazon S3 bucket or folder that contains the objects that you want to
+        copy.</p>
+    </li><li>
+      <p>Select the check box to the left of the names of the objects that you want to
+        copy.</p>
+    </li><li>
+      <p>Choose <b>Actions</b> and choose <b>Copy</b> from the list
+        of options that appears.</p>
+      <p>Alternatively, choose <b>Copy</b> from the options that appear.
+      </p>
+    </li><li>
+      <p>Choose the destination folder:</p>
+      <ol><li>
+          <p>Choose <b>Browse S3</b>.</p>
+        </li><li>
+          <p>Choose the option button to the left of the folder name.</p>
+          <p>To navigate into a folder and choose a subfolder as your destination, choose the
+            folder name.</p>
+        </li><li>
+          <p>Choose <b>Choose destination</b>.</p>
+        </li></ol>
+      <p>The path to your destination folder appears in the <b>Destination</b> box.
+        In <b>Destination</b>, you can alternately enter your destination path, for
+        example,
+        s3://<code class="replaceable">bucket-name</code>/<code class="replaceable">folder-name</code>/.</p>
+    </li><li>
+      <p>Choose <b>Copy</b>.</p>
+      <p>Amazon S3 copies your objects to the destination folder.</p>
+    </li></ol></div>
+   
+    <h6>Next step</h6>
+    <p>To delete an object and a bucket in Amazon S3, see <a href="#deleting-object-bucket">Step 5: Delete your objects and bucket</a>.</p>
+   
+ 
+  <h2 id="deleting-object-bucket">Step 5: Delete your objects and bucket</h2>
+  <p>When you no longer need an object or a bucket, we recommend that you delete them to prevent
+    further charges. If you completed this getting started walkthrough as a learning exercise, and
+    you don't plan to use your bucket or objects, we recommend that you delete your bucket and
+    objects so that charges no longer accrue. </p>
+  <p>Before you delete your bucket, empty the bucket or delete the objects in the bucket. After
+    you delete your objects and bucket, they are no longer available.</p>
+  <p>If you want to continue to use the same bucket name, we recommend that you delete the
+    objects or empty the bucket, but don't delete the bucket. After you delete a bucket, the name
+    becomes available to reuse. However, another AWS account might create a bucket with the same
+    name before you have a chance to reuse it. </p>
+  <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>For more information about using the Amazon S3 Express One Zone storage class with directory buckets, see <a href="./directory-bucket-high-performance.html#s3-express-one-zone">S3 Express One Zone</a> and <a href="./directory-buckets-overview.html">Working with directory buckets</a>.</p></div></div>
+  <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><p><a href="#clean-up-delete-objects">Deleting an object</a></p></li><li><p><a href="#clean-up-empty-bucket">Emptying your bucket</a></p></li><li><p><a href="#clean-up-delete-bucket">Deleting your bucket</a></p></li></ul></div>
+  
+   
+    <h3 id="clean-up-delete-objects">Deleting an object</h3>
+    <p>If you want to choose which objects you delete without emptying all the objects from your
+      bucket, you can delete an object. </p>
+    <div class="procedure"><ol><li>
+        <p>In the <b>Buckets</b> list, choose the name of the bucket that you want
+          to delete an object from.</p>
+      </li><li>
+        <p>Select the object that you want to
+          delete.</p>
+      </li><li>
+        <p>Choose <b>Delete</b> from the options that appear.
+        </p>
+      </li><li>
+        <p>On the <b>Delete objects</b> page, type <code class="userinput">delete</code> to confirm deletion of your objects.</p>
+      </li><li>
+        <p>Choose <b>Delete objects</b>.</p>
+      </li></ol></div>
+   
+   
+    <h3 id="clean-up-empty-bucket">Emptying your bucket</h3>
+    <p>If you plan to delete your bucket, you must first empty your bucket, which deletes all the
+      objects in the bucket. </p>
+    <div class="procedure"><h6>To empty a bucket</h6><p></p><ol><li>
+        <p>In the <b>Buckets</b> list, select the bucket that you want to empty,
+          and then choose <b>Empty</b>.</p>
+      </li><li>
+        <p>To confirm that you want to empty the bucket and delete all the objects in it, in
+            <b>Empty bucket</b>, type <code class="userinput">permanently
+          delete</code>.</p>
+        <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>Emptying the bucket cannot be undone. Objects added to the bucket while the empty
+            bucket action is in progress will be deleted.</p></div></div>
+      </li><li>
+        <p>To empty the bucket and delete all the objects in it, and choose
+          <b>Empty</b>.</p>
+        <p>An <b>Empty bucket: Status</b> page opens that you can use to review a
+          summary of failed and successful object deletions.</p>
+      </li><li>
+        <p>To return to your bucket list, choose <b>Exit</b>.</p>
+      </li></ol></div>
+   
+   
+    <h3 id="clean-up-delete-bucket">Deleting your bucket</h3>
+    <div class="procedure"><p>After you empty your bucket or delete all the objects from your bucket, you can delete
+        your bucket.</p><ol><li>
+        <p>To delete a bucket, in the <b>Buckets</b> list, select the
+          bucket.</p>
+      </li><li>
+        <p>Choose <b>Delete</b>.</p>
+      </li><li>
+        <p>To confirm deletion, in <b>Delete bucket</b>, type the name of the
+          bucket.</p>
+        <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>Deleting a bucket cannot be undone. Bucket names are unique. If you delete your
+            bucket, another AWS user can use the name. If you want to continue to use the same
+            bucket name, don't delete your bucket. Instead, empty and keep the bucket. </p></div></div>
+      </li><li>
+        <p>To delete your bucket, choose <b>Delete bucket</b>.</p>
+      </li></ol></div>
+   
+ 
+    <h2 id="getting-started-next-steps">Next steps</h2>
+    <p>In the preceding examples, you learned how to perform some basic Amazon S3 tasks.</p>
+    <p>The following topics explain the learning paths that you can use to
+        gain a deeper understanding of Amazon S3 so that you can implement it in your
+        applications.</p>
+    <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>For more information about using the Amazon S3 Express One Zone storage class with directory buckets, see <a href="./directory-bucket-high-performance.html#s3-express-one-zone">S3 Express One Zone</a> and <a href="./directory-buckets-overview.html">Working with directory buckets</a>.</p></div></div>
+    <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><p><a href="#s3-use-cases">Understand common use cases</a></p></li><li><p><a href="#control-access-resources">Control access to your buckets and objects</a></p></li><li><p><a href="#manage-monitor-storage">Protect and monitor your storage</a></p></li><li><p><a href="#develop-with-s3">Develop with Amazon S3</a></p></li><li><p><a href="#s3-getting-started-tutorials-list">Learn from tutorials</a></p></li><li><p><a href="#explore-training-and-support">Explore training and support</a></p></li></ul></div>
+
+     
+        <h3 id="s3-use-cases">Understand common use cases</h3>
+        <p>You can use Amazon S3 to support your specific use case. The <a href="https://aws.amazon.com/solutions/" rel="noopener noreferrer" target="_blank"><span>AWS Solutions
+                Library</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and <a href="https://aws.amazon.com/blogs/" rel="noopener noreferrer" target="_blank"><span>AWS
+                Blog</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> provide use-case specific information and
+            tutorials. The following are some common use cases for Amazon S3:</p>
+        <div class="itemizedlist">
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><span class="topcom">Backup and storage</span> – Use Amazon S3 storage
+                    management features to manage costs, meet regulatory requirements, reduce
+                    latency, and save multiple distinct copies of your data for compliance
+                    requirements.</p>
+            </li><li class="listitem">
+                <p><span class="topcom">Application hosting</span> – Deploy, install,
+                    and manage web applications that are reliable, highly scalable, and low-cost.
+                    For example, you can configure your Amazon S3 bucket to host a static website. For
+                    more information, see <a href="./WebsiteHosting.html">Hosting a static website using Amazon S3</a>.</p>
+            </li><li class="listitem">
+                <p><span class="topcom">Media hosting</span> – Build a highly available
+                    infrastructure that hosts video, photo, or music uploads and downloads.</p>
+            </li><li class="listitem">
+                <p><span class="topcom">Software delivery</span> – Host your software
+                    applications for customers to download.</p>
+            </li></ul></div>
+     
+     
+        <h3 id="control-access-resources">Control access to your buckets and objects</h3>
+        <p>Amazon S3 provides a variety of security features and tools. For an overview, see <a href="./access-management.html">Access control in Amazon S3</a>.</p>
+        <p>By default, S3 buckets and the objects in them are private. You
+            have access only to the S3 resources that you create. You can use
+            the following features to grant granular resource permissions that
+            support your specific use case or to audit the permissions of your
+            Amazon S3 resources. </p>
+        <div class="itemizedlist">
+             
+             
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html">S3
+                        Block Public Access</a> – Block public access to S3 buckets and
+                    objects. By default, Block Public Access settings are turned on at the bucket
+                    level.</p>
+            </li><li class="listitem">
+                <p><a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/security-iam.html">AWS Identity and Access Management (IAM)
+                        identities</a> – Use IAM or AWS IAM Identity Center to create IAM
+                    identities in your AWS account to manage access to your Amazon S3 resources. For
+                    example, you can use IAM with Amazon S3 to control the type of access that a user
+                    or group of users has to an Amazon S3 bucket that your AWS account owns. For more
+                    information about IAM identities and best practices, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html">IAM identities
+                        (users, user groups, and roles)</a> in the <em>IAM User Guide</em>.</p>
+            </li><li class="listitem">
+                <p><a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-policies.html">Bucket policies</a> – Use IAM-based policy
+                    language to configure resource-based permissions for your S3
+                    buckets and the objects in them.</p>
+            </li><li class="listitem">
+                <p><a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/acls.html">Access
+                        control lists (ACLs)</a> – Grant read and write permissions for
+                    individual buckets and objects to authorized users. As a general rule, we
+                    recommend using S3 resource-based policies (bucket policies and access point
+                    policies) or IAM user policies for access control instead of ACLs. Policies
+                    are a simplified and more flexible access-control option. With bucket policies
+                    and access point policies, you can define rules that apply broadly across all
+                    requests to your Amazon S3 resources. For more information about the specific cases
+                    when you'd use ACLs instead of resource-based policies or IAM user policies,
+                    see <a href="./security-iam.html">Identity and Access Management for Amazon S3</a>.</p>
+            </li><li class="listitem">
+                <p><a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html">S3 Object Ownership</a> – Take ownership of every object in
+                    your bucket, simplifying access management for data stored in Amazon S3.
+                    S3 Object Ownership is an Amazon S3 bucket-level setting that you can use to
+                    disable or enable ACLs. By default, ACLs are disabled. With ACLs disabled, the
+                    bucket owner owns all the objects in the bucket and manages access to data
+                    exclusively by using access-management policies.</p>
+            </li><li class="listitem">
+                <p><a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-analyzer.html">IAM Access Analyzer for S3</a> – Evaluate and monitor your S3
+                    bucket access policies, ensuring that the policies provide
+                    only the intended access to your S3 resources. </p>
+            </li></ul></div>
+     
+     
+        <h3 id="manage-monitor-storage">Protect and monitor your storage</h3>
+        <div class="itemizedlist">
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><a href="./data-protection.html">Protecting your storage</a> – After
+                    you create buckets and upload objects in Amazon S3, you can protect your object
+                    storage. For example, you can use S3 Versioning, S3 Replication, and Multi-Region Access Point
+                    failover controls for disaster recovery, AWS Backup to back up your data, and
+                    S3 Object Lock to set retention periods, prevent deletions and overwrites, and
+                    meet compliance requirements.</p>
+            </li><li class="listitem">
+                <p><a href="./monitoring-overview.html">Monitoring your
+                        storage</a> – Monitoring is an important part
+                    of maintaining the reliability, availability, and
+                    performance of Amazon S3 and your AWS solutions. You can
+                    monitor storage activity and costs. Also, we recommend that
+                    you collect monitoring data from all the parts of your AWS
+                    solution so that you can more easily debug a multipoint
+                    failure if one occurs. </p>
+                <p>You can also use analytics and insights in Amazon S3 to understand, analyze, and
+                    optimize your storage usage. For example, use <a href="./storage_lens.html">Amazon S3 Storage Lens</a> to understand, analyze, and optimize your storage.
+                    S3 Storage Lens provides 29+ usage and activity metrics and interactive dashboards to
+                    aggregate data for your entire organization, specific accounts, Regions,
+                    buckets, or prefixes. Use <a href="./analytics-storage-class.html">Storage Class
+                        Analysis</a> to analyze storage access patterns to decide when it's time
+                    to move your data to a more cost-effective storage class. To manage your costs,
+                    you can use <a href="./object-lifecycle-mgmt.html">S3 Lifecycle</a>.</p>
+            </li></ul></div>
+     
+     
+        <h3 id="develop-with-s3">Develop with Amazon S3</h3>
+        <p>Amazon S3 is a REST service. You can send requests to Amazon S3 using the
+            REST API or the AWS SDK libraries, which wrap the underlying Amazon S3
+            REST API, simplifying your programming tasks. You can also use the
+            AWS Command Line Interface (AWS CLI) to make Amazon S3 API calls. For more information, see
+            <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/MakingRequests.html">Making requests
+            </a> in the <em>Amazon S3 API Reference</em>.</p>
+        <p>The Amazon S3 REST API is an HTTP interface to Amazon S3. With the REST API,
+            you use standard HTTP requests to create, fetch, and delete buckets
+            and objects. To use the REST API, you can use any toolkit that
+            supports HTTP. You can even use a browser to fetch objects, as long
+            as they are anonymously readable. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/developing-s3.html">Developing with Amazon S3</a> in the <em>Amazon S3 API Reference</em>.</p>
+        <p>To help you build applications using the language of your choice, we provide the
+            following resources.</p>
+        
+                <h6>AWS CLI</h6>
+                    <p>You can access the features of Amazon S3 using the AWS CLI.
+                        To download and configure the AWS CLI, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/setup-aws-cli.html">Developing with Amazon S3 using the AWS CLI
+                        </a> in the <em>Amazon S3 API Reference</em>.</p>
+        
+                    <p>The AWS CLI provides two tiers of commands for accessing
+                        Amazon S3: High-level (<a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html">s3</a>) commands and API-level (<a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-apicommands.html">s3api</a> and <code class="code">s3control</code> commands. The high-level S3
+                        commands simplify performing common tasks, such as
+                        creating, manipulating, and deleting objects and
+                        buckets. The s3api and s3control commands expose direct
+                        access to all Amazon S3 API operations, which you can use to
+                        carry out advanced operations that might not be possible
+                        with the high-level commands alone.</p>
+                    <p>For a list of Amazon S3 AWS CLI commands, see <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3/index.html" rel="noopener noreferrer" target="_blank"><span>s3</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/index.html" rel="noopener noreferrer" target="_blank"><span>s3api</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, and <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3control/index.html" rel="noopener noreferrer" target="_blank"><span>s3control</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+         
+        <h6>AWS SDKs and Explorers</h6>
+                    <p>You can use the AWS SDKs when developing applications with Amazon S3. The
+                        AWS SDKs simplify your programming tasks by wrapping the underlying REST
+                        API. The AWS Mobile SDKs and the Amplify JavaScript library are also
+                        available for building connected mobile and web applications using
+                        AWS.</p>
+         
+                    <p>In addition to the AWS SDKs, AWS Explorers are
+                        available for Visual Studio and Eclipse for Java IDE. In
+                        this case, the SDKs and the explorers are bundled
+                        together as AWS Toolkits.</p>
+        <p>For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/sdk-general-information-section.html">Developing with Amazon S3 using the AWS SDKs
+        </a> in the <em>Amazon S3 API Reference</em>.</p>
+               
+        <h6>Sample Code and Libraries</h6>
+                    <p>The <a href="https://aws.amazon.com/code/Amazon-S3" rel="noopener noreferrer" target="_blank"><span>AWS
+                            Developer Center</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and <a href="https://docs.aws.amazon.com/code-samples/latest/catalog/welcome.html">AWS
+                            Code Sample Catalog</a> have sample code and
+                        libraries written especially for Amazon S3. You can use these
+                        code samples to understand how to implement the Amazon S3
+                        API. You can also view the <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/Welcome.html"><em>Amazon Simple Storage Service API Reference</em></a>
+                        to understand the Amazon S3 API operations in detail.</p>
+                   
+     
+
+     
+        <h3 id="s3-getting-started-tutorials-list">Learn from tutorials</h3>
+        <p>You can get started with step-by-step tutorials to learn more about Amazon S3. These tutorials are intended for a lab-type
+            environment, and they use fictitious company names, user names, and so
+            on. Their purpose is to provide general guidance. They are not intended
+            for direct use in a production environment without careful review and
+            adaptation to meet the unique needs of your organization's environment.</p>
+
+
+     
+        <h4 id="getting-started-tutorials">Getting started</h4>
+        <div class="itemizedlist">
+             
+              
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><a href="https://aws.amazon.com/getting-started/hands-on/backup-files-to-amazon-s3/?ref=docs_gateway/amazons3/tutorials.html" rel="noopener noreferrer" target="_blank"><span>Tutorial: Storing and retrieving a file with Amazon S3</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+            </li><li class="listitem">
+                <p><a href="https://aws.amazon.com/getting-started/hands-on/getting-started-using-amazon-s3-intelligent-tiering/?ref=docs_gateway/amazons3/tutorials.html" rel="noopener noreferrer" target="_blank"><span>Tutorial: Getting started using S3 Intelligent-Tiering</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+            </li><li class="listitem">
+                <p><a href="https://aws.amazon.com/getting-started/hands-on/getting-started-using-amazon-s3-glacier-storage-classes/?ref=docs_gateway/amazons3/tutorials.html" rel="noopener noreferrer" target="_blank"><span>Tutorial: Getting started using the S3 Glacier storage classes</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+            </li></ul></div>        
+     
+
+     
+        <h4 id="storage-costs-tutorials">Optimizing storage costs</h4>
+        <div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><a href="https://aws.amazon.com/getting-started/hands-on/getting-started-using-amazon-s3-intelligent-tiering/?ref=docs_gateway/amazons3/tutorials.html" rel="noopener noreferrer" target="_blank"><span>Tutorial: Getting started using S3 Intelligent-Tiering</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+            </li><li class="listitem">
+                <p><a href="https://aws.amazon.com/getting-started/hands-on/getting-started-using-amazon-s3-glacier-storage-classes/?ref=docs_gateway/amazons3/tutorials.html" rel="noopener noreferrer" target="_blank"><span>Tutorial: Getting started using the S3 Glacier; storage classes</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+            </li><li class="listitem">
+                <p><a href="https://aws.amazon.com/getting-started/hands-on/amazon-s3-storage-lens/?ref=docs_gateway/amazons3/tutorials.html" rel="noopener noreferrer" target="_blank"><span>Tutorial: Optimizing costs and gaining visibility into usage with S3 Storage Lens</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+            </li></ul></div>        
+     
+    
+         
+        <h4 id="storage-management-tutorials">Managing storage</h4>
+        <div class="itemizedlist">
+             
+                          
+        <ul class="itemizedlist"><li class="listitem">
+                <p><a href="https://aws.amazon.com/getting-started/hands-on/getting-started-with-amazon-s3-multi-region-access-points/?ref=docs_gateway/amazons3/tutorials.html" rel="noopener noreferrer" target="_blank"><span>Tutorial: Getting started with Amazon S3 Multi-Region Access Points</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+            </li><li class="listitem">
+                <p><a href="https://aws.amazon.com/getting-started/hands-on/replicate-existing-objects-with-amazon-s3-batch-replication/?ref=docs_gateway/amazons3/tutorials.html" rel="noopener noreferrer" target="_blank"><span>Tutorial: Replicating existing objects in your Amazon S3 buckets with S3 Batch Replication</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+            </li></ul></div>        
+     
+
+     
+        <h4 id="host-web-video-tutorials">Hosting videos and websites</h4>
+        <div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><a href="./tutorial-s3-cloudfront-route53-video-streaming.html">Tutorial: Hosting on-demand streaming video with Amazon S3, Amazon CloudFront, and Amazon Route 53</a></p>
+            </li><li class="listitem">
+                <p><a href="./HostingWebsiteOnS3Setup.html">Tutorial: Configuring a static website on Amazon S3</a></p>
+            </li><li class="listitem">
+                <p><a href="./website-hosting-custom-domain-walkthrough.html">Tutorial: Configuring a static website using a custom domain registered with Route 53</a></p>
+            </li></ul></div>        
+     
+
+     
+        <h4 id="data-processing-tutorials">Processing data</h4>
+        <div class="itemizedlist">
+             
+             
+                        
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><a href="./tutorial-s3-object-lambda-uppercase.html">Tutorial: Transforming data for your application with S3 Object Lambda</a></p>
+            </li><li class="listitem">
+                <p><a href="./tutorial-s3-object-lambda-redact-pii.html">Tutorial: Detecting and redacting PII data with S3 Object Lambda and Amazon Comprehend</a></p>
+            </li><li class="listitem">
+                <p><a href="https://aws.amazon.com/getting-started/hands-on/amazon-s3-object-lambda-to-dynamically-watermark-images/?ref=docs_gateway/amazons3/tutorials.html" rel="noopener noreferrer" target="_blank"><span>Tutorial: Using S3 Object Lambda to dynamically watermark images as they are retrieved</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+            </li><li class="listitem">
+                <p><a href="./tutorial-s3-batchops-lambda-mediaconvert-video.html">Tutorial: Batch-transcoding videos with S3 Batch Operations</a></p>
+            </li></ul></div>        
+     
+    
+     
+        <h4 id="protect-data-tutorials">Protecting data</h4>
+        <div class="itemizedlist">
+             
+             
+                 
+                             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><a href="https://aws.amazon.com/getting-started/hands-on/amazon-s3-with-additional-checksums/?ref=docs_gateway/amazons3/tutorials.html" rel="noopener noreferrer" target="_blank"><span>Tutorial: Checking the integrity of data in Amazon S3 with additional checksums</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+            </li><li class="listitem">
+                <p><a href="https://aws.amazon.com/getting-started/hands-on/replicate-data-using-amazon-s3-replication/?ref=docs_gateway/amazons3/tutorials.html" rel="noopener noreferrer" target="_blank"><span>Tutorial: Replicating data within and between AWS Regions using S3 Replication</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+            </li><li class="listitem">
+                <p><a href="https://aws.amazon.com/getting-started/hands-on/protect-data-on-amazon-s3/?ref=docs_gateway/amazons3/tutorials.html" rel="noopener noreferrer" target="_blank"><span>Tutorial: Protecting data on Amazon S3 against accidental deletion or application bugs
+                    using S3 Versioning, S3 Object Lock, and S3 Replication</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+            </li><li class="listitem">
+                <p><a href="https://aws.amazon.com/getting-started/hands-on/replicate-existing-objects-with-amazon-s3-batch-replication/?ref=docs_gateway/amazons3/tutorials.html" rel="noopener noreferrer" target="_blank"><span>Tutorial: Replicating existing objects in your Amazon S3 buckets with S3 Batch Replication</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p>
+            </li></ul></div>        
+     
+    
+
+
+
+     
+     
+        <h3 id="explore-training-and-support">Explore training and support</h3>
+        <p>You can learn from AWS experts to advance your skills and get expert assistance
+            achieving your objectives.</p>
+        <div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><span class="topcom">Training</span> – Training resources provide a hands-on approach to learning Amazon S3. For more
+                    information, see <a href="https://www.aws.training" rel="noopener noreferrer" target="_blank"><span>AWS training and
+                        certification</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and <a href="https://aws.amazon.com/events/online-tech-talks" rel="noopener noreferrer" target="_blank"><span>AWS online tech talks</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                
+            </li><li class="listitem">
+                <p><span class="topcom">Discussion Forums</span> – On the forum, you can review posts to understand what you can and can't do
+                    with Amazon S3. You can also post your questions. For more information, see
+                    <a href="https://forums.aws.amazon.com/index.jspa" rel="noopener noreferrer" target="_blank"><span>Discussion Forums</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            </li><li class="listitem">
+                <p><span class="topcom">Technical Support</span> – If you have further questions, you can contact <a href="https://aws.amazon.com/contact-us" rel="noopener noreferrer" target="_blank"><span>Technical Support</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            </li></ul></div>
+     
+<awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./amazons3-ol-change.html">Amazon S3 Object Lambda availability change</div><div id="next" class="next-link" accesskey="n" href="./GettingStartedS3CLI.html">Using Amazon S3 with the AWS CLI</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=S3&amp;topic_url=https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/GetStartedWithS3.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=S3&amp;topic_url=https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/GetStartedWithS3.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

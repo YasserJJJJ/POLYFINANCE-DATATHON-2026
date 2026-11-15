@@ -1,0 +1,65 @@
+{
+  "cases": [
+    {
+      "changes": {},
+      "minimum": 30000.0,
+      "calls": 0
+    },
+    {
+      "changes": {
+        "withdrawal_cad": 40000
+      },
+      "minimum": 40000.0,
+      "calls": 0
+    },
+    {
+      "changes": {
+        "withdrawal_cad": 40000,
+        "scenario_loss_limit_cad": 1000
+      },
+      "minimum": 74400.0,
+      "calls": 0
+    }
+  ],
+  "checks": [
+    "4 cases / 6 versions",
+    "source downloads",
+    "30k/40k/74.4k actual calculations",
+    "impossible no options",
+    "bool/unsupported/case guards",
+    "simulated error and retry contract",
+    "external origin refused",
+    "product DB unchanged"
+  ],
+  "product_db_sha256": "50d88f2b60f147097783aa1a69146227df3bd9ff49c86b2da6ebbf886c58367a",
+  "inference_calls": 0,
+  "dependency_execution_audit": {
+    "at": "2026-11-15T20:06:16.079054+00:00",
+    "checks": [
+      {
+        "changes": {},
+        "baseline_evaluations_observed": 1,
+        "baseline_stress": "unchanged_inputs_reusable_in_future_revision",
+        "result_sha256": "b9c716880e9fb11e3f91026b234bf389402310a4810aa5511f2d135eea1699b6"
+      },
+      {
+        "changes": {
+          "withdrawal_cad": 40000
+        },
+        "baseline_evaluations_observed": 1,
+        "baseline_stress": "unchanged_inputs_reusable_in_future_revision",
+        "result_sha256": "9642b10ad66568f1cfecca53d546ad6cce36ad022f56d9b348a338c925171dd9"
+      },
+      {
+        "changes": {
+          "capital_cad": 200000
+        },
+        "baseline_evaluations_observed": 1,
+        "baseline_stress": "dependent_on_changed_capital",
+        "result_sha256": "f46fc28f8976021cd6d1f79ffda303c168476f2b469cacbbb636407621a0a9d1"
+      }
+    ],
+    "product_db_unchanged": true,
+    "observation": "Every local analyze call recomputes applicable baseline and dependent numeric results; reuse is only a future revision dependency preview."
+  }
+}

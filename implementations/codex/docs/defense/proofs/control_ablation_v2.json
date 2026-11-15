@@ -1,0 +1,161 @@
+{
+  "mode": "deterministic_control_no_inference",
+  "scope": "Mêmes problèmes déjà formalisés : ne teste pas la qualité de compréhension en langage naturel.",
+  "cases": [
+    {
+      "name": "extracted-initial",
+      "aws_dossier": "4089e4b0d70f40b6b20d832fa261e1dc",
+      "control_dossier": "5845472397344ea8ae52d93a28e92ff0",
+      "problem": {
+        "assumptions": [
+          {
+            "id": "example_scope",
+            "origin": "assumed",
+            "text": "Exercice fictif ; réserve abstraite, coûts/fiscalité nuls, chocs CAD synthétiques sans probabilité ; aucun placement réel garanti."
+          }
+        ],
+        "capital_cad": 100000.0,
+        "clarifications": [],
+        "comparison": null,
+        "currency": "CAD",
+        "decision_type": "reserve_allocation",
+        "historical_policy": null,
+        "holdings": [
+          {
+            "ticker": "XBB.TO",
+            "weight": 0.35
+          },
+          {
+            "ticker": "ZST.TO",
+            "weight": 0.2
+          },
+          {
+            "ticker": "XIU.TO",
+            "weight": 0.2
+          },
+          {
+            "ticker": "TSLA",
+            "weight": 0.25
+          }
+        ],
+        "horizon_years": 4.0,
+        "knowledge_date": "2026-11-15",
+        "max_asset_weights": {
+          "TSLA": 0.1
+        },
+        "objective": "minimize_reallocated_capital",
+        "question": "Financer un retrait en déplaçant le moins de capital.",
+        "reserve_policy": "abstract_nominal",
+        "scenario_loss_limit_cad": 15000.0,
+        "scenarios": [
+          {
+            "horizon_months": 12.0,
+            "id": "actions",
+            "kind": "hypothetical",
+            "label": "Choc actions hypothétique",
+            "returns": {
+              "RESERVE_ABSTRAITE": 0.0,
+              "TSLA": -0.5,
+              "XBB.TO": -0.05,
+              "XIU.TO": -0.2,
+              "ZST.TO": 0.0
+            }
+          },
+          {
+            "horizon_months": 12.0,
+            "id": "obligations",
+            "kind": "hypothetical",
+            "label": "Choc obligations hypothétique",
+            "returns": {
+              "RESERVE_ABSTRAITE": 0.0,
+              "TSLA": -0.25,
+              "XBB.TO": -0.15,
+              "XIU.TO": -0.1,
+              "ZST.TO": -0.02
+            }
+          }
+        ],
+        "unknowns": [
+          "Instrument réel de réserve et conditions non qualifiés."
+        ],
+        "withdrawal_cad": 30000.0,
+        "withdrawal_months": 12.0
+      },
+      "equal_options": true,
+      "equal_claims": true,
+      "model_calls": 0,
+      "status": "complete"
+    },
+    {
+      "name": "amira-initial",
+      "aws_dossier": "f281a9067e4544138fa178fa4ee0b850",
+      "control_dossier": "43e8bd53b8a6489e99c7c8af168e20ca",
+      "problem": {
+        "assumptions": [
+          {
+            "id": "retrospective",
+            "origin": "assumed",
+            "text": "Entrées fictives choisies pour comparaison descriptive, achat-conservation, sans projection à quinze ans ; aucune allocation officielle de persona."
+          },
+          {
+            "id": "redistribution",
+            "origin": "declared",
+            "text": "Le capital libéré par la réduction de TSLA est redistribué proportionnellement aux autres positions initiales."
+          },
+          {
+            "id": "historical_window",
+            "origin": "declared",
+            "text": "Utiliser toute la fenêtre commune admissible du snapshot disponible à knowledge_date, sans projection au-delà de l'histoire observée."
+          }
+        ],
+        "capital_cad": 25000.0,
+        "clarifications": [],
+        "comparison": {
+          "target_weight": 0.1,
+          "ticker": "TSLA"
+        },
+        "currency": "CAD",
+        "decision_type": "historical_comparison",
+        "historical_policy": {
+          "redistribution": "proportional_other_holdings",
+          "window": {
+            "end_date": null,
+            "kind": "all_common_available",
+            "start_date": null
+          }
+        },
+        "holdings": [
+          {
+            "ticker": "SPY",
+            "weight": 0.45
+          },
+          {
+            "ticker": "XIU.TO",
+            "weight": 0.3
+          },
+          {
+            "ticker": "TSLA",
+            "weight": 0.25
+          }
+        ],
+        "horizon_years": 15.0,
+        "knowledge_date": "2026-11-15",
+        "max_asset_weights": {},
+        "objective": "compare_historical",
+        "question": "Comparer deux expositions initiales à TSLA sur le snapshot disponible.",
+        "reserve_policy": null,
+        "scenario_loss_limit_cad": null,
+        "scenarios": [],
+        "unknowns": [
+          "Compositions de FNB et exclusions ESG non établies."
+        ],
+        "withdrawal_cad": null,
+        "withdrawal_months": null
+      },
+      "equal_options": true,
+      "equal_claims": true,
+      "model_calls": 0,
+      "status": "complete"
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "verified_at": "2026-11-15T14:43:50.422959+00:00",
+  "scope": "Documentary consistency and arithmetic cross-check of saved example, not implementation or product tests",
+  "internal_objects_with_verified_hash": 128,
+  "internal_versioned_reference_occurrences_checked": 961,
+  "input_dependencies_acyclic": true,
+  "no_future_input_reads_in_illustrative_revisions": true,
+  "revisions": 8,
+  "question_types": [
+    "calculation",
+    "conclusion",
+    "data_requirement",
+    "decision",
+    "evidence_requirement",
+    "method_choice",
+    "objective",
+    "subproblem",
+    "verification"
+  ],
+  "external_sources_with_path_hash_and_pointer_checks": [
+    "docs/refonte/inspection_diagnostic.json",
+    "docs/recherche/finance/experiences/results.json",
+    "docs/recherche/finance/01_revue_par_decision.md"
+  ],
+  "numeric_copy_and_arithmetic_checks": [
+    {
+      "artifact": "ROB-A1@1",
+      "exact_copy_from_P2": true,
+      "weights_budget_and_bounds": true,
+      "turnover_identity": true,
+      "scenario_losses_CAD": [
+        10000.0,
+        7900.0
+      ]
+    },
+    {
+      "artifact": "ROB-A2@1",
+      "exact_copy_from_P2": true,
+      "weights_budget_and_bounds": true,
+      "turnover_identity": true,
+      "scenario_losses_CAD": [
+        9500.0,
+        6400.0
+      ]
+    }
+  ],
+  "view_value_bindings_checked": 6,
+  "actual_human_acceptance_or_display_not_claimed": true,
+  "real_reserve_remains_unknown": true,
+  "local_markdown_links_checked": 53,
+  "broken_local_links": [],
+  "diagram": {
+    "PNG_dimensions": [
+      2200,
+      1450
+    ],
+    "SVG_well_formed": true,
+    "visual_review": "Root and experience agent: no overlap; roles, loops, human path and legend checked"
+  },
+  "product_hashes_unchanged": {
+    "alphaforge_app/personas.py": true,
+    "alphaforge_app/datasets.py": true,
+    "alphaforge_app/__init__.py": true,
+    "alphaforge_app/orchestrator.py": true,
+    "alphaforge_app/analytics.py": true,
+    "alphaforge_app/main.py": true,
+    "alphaforge_app/evidence.py": true,
+    "alphaforge_app/bedrock.py": true,
+    "alphaforge_app/static/index.html": true,
+    "alphaforge_app/static/app.css": true,
+    "alphaforge_app/static/app.js": true
+  },
+  "tracked_or_staged_diff": false,
+  "files_sha256": {
+    "01_architecture_et_fonctionnement.md": "7f53ea594c6aa4065d7bd75d1f0706e03ff4babe0c3e51576907ec9db2e4fa65",
+    "02_contrats_echanges.md": "3c748e3625787bc7e8f47e5074a79cbe97f22bb4da3392c879ecd4e6a34f640b",
+    "03_decisions_techniques.md": "1dc99adf39df894c9ab2a55196120274886d883f979118c2b28b4f85da0f8956",
+    "04_parcours_et_controles.md": "cc5f94e64b3174f87a289b8e1aab03a3afbf0b2554790acd90ca9565547fbd7c",
+    "05_exemple_financier.md": "324b71127f3421fa09585e97ee9a8d219067e83a1cc65e7fc253a5a573724e14",
+    "README.md": "1c9389e28bccf50aa5c5fbf929cf88e0b8b929b0b14f42bed092c30c7357ad5e",
+    "architecture.mmd": "17c2d83d89cbb20dc294a3e26ef6bf47df5208cb84539bc20e389690677130ed",
+    "architecture.png": "9d9e68b9f1d06d3243c71ac4979c1d018f23a1b2eced145c034771daa71e2c5b",
+    "architecture.svg": "86b8bed5eb20240adfcbfbb7ddaff7dc742498fa28ee61caf26c578765e8898f",
+    "dessiner_architecture.py": "5910d85e4560cc41169fe1e577ad2cfe214cf1a9c18bc4af084a5e09d7d7a688",
+    "exemples/robert_dossier.json": "5980448a7675a02aed4a6fe3ba45315e0f37e4a702b00d92e60a1b41040297c0"
+  },
+  "limitations": [
+    "No future runtime, persistence, concurrency, interruption or UI test has run.",
+    "No new optimization or financial empirical experiment was executed; arithmetic only checks copied existing results.",
+    "Link/identifier/hash checks do not establish documentary truth or suitability for a real investor.",
+    "The twenty acceptance scenarios and engine qualification protocol remain future work after user validation."
+  ]
+}

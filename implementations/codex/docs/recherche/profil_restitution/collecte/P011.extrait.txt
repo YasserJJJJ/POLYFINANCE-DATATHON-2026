@@ -1,0 +1,1133 @@
+                                           Does the Whole Exceed its Parts? The Effect of AI Explanations
+                                                     on Complementary Team Performance
+
+                                                            Gagan Bansal∗                                                    Joyce Zhou†                                   Besmira Nushi
+                                                           Tongshuang Wu∗                                                   Raymond Fok†                            besmira.nushi@microsoft.com
+                                                    bansalg@cs.washington.edu                                      jyzhou15@cs.washington.edu                            Microsoft Research
+                                                   wtshuang@cs.washington.edu                                       rayfok@cs.washington.edu
+                                                     University of Washington                                        University of Washington
+
+                                                                 Ece Kamar                                             Marco Tulio Ribeiro                                 Daniel S. Weld
+
+
+
+
+arXiv:2006.14779v3 [cs.AI] 12 Jan 2021
+                                                       eckamar@microsoft.com                                          marcotcr@microsoft.com                          weld@cs.washington.edu
+                                                          Microsoft Research                                            Microsoft Research                           University of Washington &
+                                                                                                                                                                     Allen Institute for Artificial
+                                                                                                                                                                             Intelligence
+
+                                         ABSTRACT                                                                                        ACM Reference Format:
+                                         Many researchers motivate explainable AI with studies showing                                   Gagan Bansal, Tongshuang Wu, Joyce Zhou, Raymond Fok, Besmira Nushi,
+                                                                                                                                         Ece Kamar, Marco Tulio Ribeiro, and Daniel S. Weld. 2021. Does the Whole
+                                         that human-AI team performance on decision-making tasks im-
+                                                                                                                                         Exceed its Parts? The Effect of AI Explanations on Complementary Team
+                                         proves when the AI explains its recommendations. However, prior                                 Performance. In CHI Conference on Human Factors in Computing Systems
+                                         studies observed improvements from explanations only when the                                   (CHI ’21), May 8–13, 2021, Yokohama, Japan. ACM, New York, NY, USA,
+                                         AI, alone, outperformed both the human and the best team. Can                                   16 pages. https://doi.org/10.1145/3411764.3445717
+                                         explanations help lead to complementary performance, where team
+                                         accuracy is higher than either the human or the AI working solo?                                1    INTRODUCTION
+                                         We conduct mixed-method user studies on three datasets, where an
+                                                                                                                                         Although the accuracy of Artificial Intelligence (AI) systems is
+                                         AI with accuracy comparable to humans helps participants solve a
+                                                                                                                                         rapidly improving, in many cases, it remains risky for an AI to op-
+                                         task (explaining itself in some conditions). While we observed com-
+                                                                                                                                         erate autonomously, e.g., in high-stakes domains or when legal and
+                                         plementary improvements from AI augmentation, they were not in-
+                                                                                                                                         ethical matters prohibit full autonomy. A viable strategy for these
+                                         creased by explanations. Rather, explanations increased the chance
+                                                                                                                                         scenarios is to form Human-AI teams, in which the AI system aug-
+                                         that humans will accept the AI’s recommendation, regardless of its
+                                                                                                                                         ments one or more humans by recommending its predictions, but
+                                         correctness. Our result poses new challenges for human-centered
+                                                                                                                                         people retain agency and have accountability on the final decisions.
+                                         AI: Can we develop explanatory approaches that encourage ap-
+                                                                                                                                         Examples include AI systems that predict likely hospital readmis-
+                                         propriate trust in AI, and therefore help generate (or improve)
+                                                                                                                                         sion to assist doctors with correlated care decisions [8, 13, 15, 78]
+                                         complementary performance?
+                                                                                                                                         and AIs that estimate recidivism to help judges decide whether
+                                                                                                                                         to grant bail to defendants [2, 30]. In such scenarios, it is impor-
+                                         CCS CONCEPTS                                                                                    tant that the human-AI team achieves complementary performance
+                                         • Human-centered computing → Empirical studies in HCI;                                          (i.e., performs better than either alone): From a decision-theoretic
+                                         Interactive systems and tools; • Computing methodologies →                                      perspective, a rational developer would only deploy a team if it
+                                         Machine learning.                                                                               adds utility to the decision-making process [73]. For example, sig-
+                                                                                                                                         nificantly improving decision accuracy by closing deficiencies in
+                                         KEYWORDS                                                                                        automated reasoning with human effort, and vice versa [35, 70].
+                                         Explainable AI, Human-AI teams, Augmented intelligence                                              Many researchers have argued that such human-AI teams would
+                                                                                                                                         be improved if the AI systems could explain their reasoning. In addi-
+                                         ∗ Equal contribution.
+                                                                                                                                         tion to increasing trust between humans and machines or improving
+                                         † Made especially large contributions.
+                                                                                                                                         the speed of decision making, one hopes that an explanation should
+                                                                                                                                         help the responsible human know when to trust the AI’s sugges-
+                                         Permission to make digital or hard copies of all or part of this work for personal or
+                                         classroom use is granted without fee provided that copies are not made or distributed           tion and when to be skeptical, e.g., when the explanation doesn’t
+                                         for profit or commercial advantage and that copies bear this notice and the full citation       “make sense.” Such appropriate reliance [46] is crucial for users to
+                                         on the first page. Copyrights for components of this work owned by others than the              leverage AI assistance and improve task performance [10]. Indeed,
+                                         author(s) must be honored. Abstracting with credit is permitted. To copy otherwise, or
+                                         republish, to post on servers or to redistribute to lists, requires prior specific permission   at first glance, it appears that researchers have already confirmed
+                                         and/or a fee. Request permissions from permissions@acm.org.                                     the utility of explanations on tasks ranging from medical diagno-
+                                         CHI ’21, May 8–13, 2021, Yokohama, Japan                                                        sis [14, 53], data annotation [67] to deception detection [43]. In
+                                         © 2021 Copyright held by the owner/author(s). Publication rights licensed to ACM.
+                                         ACM ISBN 978-1-4503-8096-6/21/05. . . $15.00                                                    each case, the papers show that, when the AI provides explanations,
+                                         https://doi.org/10.1145/3411764.3445717                                                         team accuracy reaches a level higher than human-alone.
+CHI ’21, May 8–13, 2021, Yokohama, Japan                                                                                                                                           G. Bansal et al.
+
+
+
+           Team setting
+                                                                                                  1.0                                                                 1.0
+
+
+
+
+                                                                         Accuracy of decisions
+        Input                              Decision
+
+
+
+
+                                                                                                                                              Accuracy of decisions
+                      Recommendation (R)
+                      + Explanation                                                                 R+Explanation                                                      R+Explanation
+                                                                                                         >0                                                                 >0 ?
+              Teammates                                                                             R only                                                             R only
+                 AI      Human
+                 Complementary zone
+                 ( max (Human, AI) , 1 ]                                                          0.0                                                                 0.0
+                 Change of performance                               A Prior work                                                                              B Ours
+
+Figure 1: (Best viewed in color) Do AI explanations lead to complementary team performance? In a team setting, when given an
+input, the human uses (usually imperfect) recommendations from an AI model to make the final decision. We seek to under-
+stand if automatically generated explanations of the AI’s recommendation improve team performance compared to baselines,
+such as simply providing the AI’s recommendation, 𝑅, and confidence. (A) Most previous work concludes that explanations
+improve team performance (i.e., Δ𝐴 > 0); however, it usually considers settings where AI systems are much more accurate
+than people and even the human-AI team. (B) Our study considers settings where human and AI performance is comparable
+to allow room for complementary improvement. We ask, “Do explanations help in this context, and how do they compare to
+simple confidence-based strategies?” (Is Δ𝐵 > 0?).
+
+
+    However, a careful reading of these papers shows another com-                                suggestions or ignore the correct ones [13, 69]. However, using
+monality: in every situation, while explanations are shown to help                               end-to-end studies, we go one step further to quantify the impact
+raise team performance closer to that of the AI, one would achieve                               of such over-reliance on objective metrics of team performance.
+an even better result by stripping humans from the loop and let-                                    As a first attempt to tackle the problem of blind reliance on AI,
+ting the AI operate autonomously (Figure 1A & Table 1). Thus,                                    we introduce Adaptive Explanation. Our mechanism tries to reduce
+the existing work suggests several important open questions for                                  human trust when the AI has low confidence: it only explains
+the AI and HCI community: Do explanations help achieve comple-                                   the predicted class when the AI is confident, but also explains
+mentary performance by enabling humans to anticipate when the                                    the alternative otherwise. While it failed to produce significant
+AI is potentially incorrect? Furthermore, do explanations provide                                improvement in final team performance over other explanation
+significant value over simpler strategies such as displaying the AI’s                            types, there is suggestive evidence that the adaptive approach can
+uncertainty? In the quest to build the best human-machine teams,                                 push the agreement between AI predictions and human decisions
+such questions deserve critical attention.                                                       towards the desired direction.
+    To explore these questions, we conduct new experiments where                                    Through extensive qualitative analysis, we also summarize po-
+we control the study design, ensuring that the AI’s accuracy is                                  tential factors that should be considered in experimental settings for
+comparable to the human’s (Figure 1B). Specifically, we measure                                  studying human-AI complementary performance. For example, the
+the human skill on our experiment tasks and then control AI ac-                                  difference in expertise between human and AI affects whether (or
+curacy by purposely selecting study samples where AI has compa-                                  how much) AI assistance will help achieve complementary perfor-
+rable accuracy. This setting simulates situations where there is a                               mance, and the display of the explanation may affect the human’s
+strong incentive to deploy human-AI teams, e.g., because there ex-                               collaboration strategy. In summary:
+ists more potential for complementary performance (by correcting                                      • We highlight an important limitation of previous work on
+each other’s mistakes), and where simple heuristics such as blindly                                      explainable AI: While many studies show that explaining
+following the AI are unlikely to achieve the highest performance.                                        predictions of AI increases team performance (Table 1), they
+    We selected three common-sense tasks that can be tackled by                                          all consider cases where the AI system is significantly more
+crowd workers with little training: sentiment analysis of book and                                       accurate than both the human partner and the human-AI
+beer reviews and a set of LSAT questions that require logical reason-                                    team. In response, we argue that AI explanations for decision-
+ing. We conducted large-scale studies using a variety of explanation                                     making should aim for complementary performance, where
+sources (AI versus expert-generated) and strategies (explaining just                                     the human-AI team outperforms both solo human and AI.
+the predicted class, or explaining other classes as well). We observed                                • To study complementary performance, we develop a new
+complementary performance on every task, but — surprisingly —                                            experimental setup and use it in studies with 1626 users on
+explanations did not appear to offer benefit compared to simply                                          three tasks1 to evaluate a variety of explanation sources and
+displaying the AI’s confidence. Notably, explanations increased                                          strategies. We observe complementary performance in every
+reliance on recommendations even when the AI was incorrect. Our                                          human-AI teaming condition.
+result echoes prior work on inappropriate trust on systems [38, 58],
+i.e., explanations can lead humans to either follow incorrect AI                                 1 All the task examples and the collected experiment data are available at https://github.
+                                                                                                 com/uw-hai/Complementary-Performance.
+Does the Whole Exceed its Parts? The Effect of AI Explanations on Complementary Team Performance                                CHI ’21, May 8–13, 2021, Yokohama, Japan
+
+
+     • However, surprisingly, we do not observe any significant                       observed on tasks other than classification. In Sangdeh et al. [65],
+       increase in team performance by communicating explana-                         MTurk workers predicted house price using various regression mod-
+       tions, compared to simply showing the AI’s confidence. Ex-                     els that generated explanations in terms of most salient features.
+       planations often increased accuracy when the AI system                         Their models’ predictions resulted in lowest error (See Figure 6
+       was correct but, worryingly, decreased it when the AI erred,                   in [65]). In Feng et al. [21], experts and novices played Quiz Bowl
+       resulting in a minimal net change — even for our adaptive                      with recommendation from Elastic Search system. The system ex-
+       explanations. Through qualitative analysis, we discuss poten-                  plained its predictions by presenting training examples that were
+       tial causes for failure of explanations, behavioral differences                influential, and using inline-highlights to explain the connection
+       among tasks, and suggest directions for developing more                        between question and evidence. However, Feng et al. do not report
+       effective AI explanations.                                                     the exact performance of the AI on their study sample, but mention
+                                                                                      its superiority in Section 3.1 in [21] pointing out that it outper-
+                                                                                      forms top trivia players. One possible exception is Bligic & Mooney
+2    BACKGROUND AND RELATED WORK                                                      (2005) [10], who probably achieved complementary performance on
+Explanations can be useful in many scenarios where a human                            their task of recommending books to users. However, they did not
+and AI interact: transparently communicating model predictions                        compare explanations against simple baselines, such as showing
+[10, 21, 38, 40, 66], teaching humans tasks like translation [3, 26]                  the book title or the system confidence (rating).
+or content moderation [36], augmenting human analysis proce-                             At least two potential causes account for the absence of comple-
+dure [36] or creativity [17], legal imperatives [57, 77], etc. Various                mentary performance in these cases. First, task design may have
+studies have evaluated the effect of explanations from different di-                  hindered collaboration: previous researchers considered AI systems
+mensions, including whether the explanation improves users’ trust                     whose accuracy was substantially higher than the human’s, leading
+in the AI [41, 81] or enables users to simulate the model predic-                     to a small zone with potential for complementary performance
+tions [16, 65], or assists developers to debug models [9, 38].                        (see Figure 1). For example, this may have made it more likely that
+   In this paper, we focus explicitly on AI-assisted decision making                  human errors were a superset of the AI’s, reducing the possibility of
+scenarios [6, 74], where an AI assistant (e.g., a classification model)               a human overseer spotting a machine mistake. Second, even when
+makes recommendations to a human (e.g., a judge), who is respon-                      the task has the potential for complementary performance, it is
+sible for making final decisions (e.g., whether or not to grant bail).                unclear if the collaboration mechanisms under study supported it.
+In particular, we assess performance in terms of the accuracy of the                  Collaboration factors like incentives, the format of explanations,
+human-AI team. While other metrics can be used for evaluation                         and whether AI’s uncertainty was displayed may drive the human
+(more discussed in Section 6.1), we directly evaluate end-to-end                      towards simple, less collaborative heuristics, such as “always trust
+team accuracy for three reasons. First, deploying such a human-AI                     the AI” or “never trust the AI.”
+team is ideal if it achieves complementary performance, i.e., if it
+outperforms both the AI and the human acting alone. Second, eval-                     3     SETUP AND PILOT STUDIES
+uating explanations using proxy tasks (such as whether humans                         To better understand the role of explanations in producing com-
+can use it to guess the model’s prediction) can lead to different,                    plementary performance, we enlarge the zone of potential comple-
+misleading conclusions for achieving best team performance than                       mentarity by matching AI accuracy to that of an average human,2
+an end-to-end evaluation [12]. Third, AI-assisted decision making                     and investigate multiple explanation styles on several domains (Sec-
+is often listed as a major motivation for AI explanations. In recent                  tion 3.1). As Table 2 summarizes, we first designed and conducted
+years numerous papers have employed user studies to show that                         pilots studies (Sections 3.2) and used them to inform our final study
+human accuracy increases if the AI system explains its reasoning                      and hypotheses (Section 4).
+for tasks as diverse as medical diagnosis, predicting loan defaults,
+and answering trivia questions. However, as summarized in Table                       3.1      Choice of Tasks and Explanations
+1, complementary performance was not observed in any of these                         Since our interest is in AI-assisted decision making, we studied
+studies – in each case, adding the human to the loop decreased                        the effect of local explanations on team performance – that is,
+performance compared to if AI had acted alone.                                        explaining each individual recommendation made by a model [66].
+   For example, in Lai et al. [42, 43], MTurk workers classified de-                  This contrasts with providing a global understanding of the full
+ceptive hotel reviews with predictions from SVM and BERT-based                        model all at once (e.g., [45]).
+models, as well as explanations in the form of inline-highlights.                        We conducted experiments on two types of tasks: text classifi-
+However, models outperformed every team (see Table 1 and Fig-                         cation (sentiment analysis) and question answering. Text classifi-
+ure 6 in [42]). Zhang et al. [83] noticed the superior behavior of                    cation because it is a popular task in natural language processing
+the models in Lai et al.’s work, and evaluated the accuracy and                       (NLP) that has been used in several previous studies on human-AI
+trust calibration where the gap between human and the AI per-
+                                                                                      2 Of course, complementary performance may be possible even in situations when one
+formances was less severe. Still, on their task of income category
+                                                                                      of the team partners is significantly more accurate than the other. For example, a low-
+prediction, their Gradient Boosted Trees model had 10% higher ac-                     accuracy team member may be valuable if their errors are independent, because they
+curacy compared to their MTurk workers, which seemed borderline                       may be able to spot mistakes made by the team majority. However, it is more difficult
+“comparable” at best. Furthermore, when run autonomously, their                       to observe complementary performance in such settings, so we first consider the case
+                                                                                      where humans and AI have similar accuracy. If explanations cannot provide value in
+AI model performed just slightly better than the best team (see                       such settings, it will be even more difficult to show complementary performance when
+Section 4.2.2 and Figure 10 in [83]). A similar performance trend is                  teammates have disparate skills.
+CHI ’21, May 8–13, 2021, Yokohama, Japan                                                                                                                 G. Bansal et al.
+
+
+                                                                                                Performance
+              Domain                       Task
+                                                                   Metric            Human alone          AI alone        Team       Complementary?
+                           Deceptive review [43]                 Accuracy ↑                51.1%            87.0%        74.6%                 ✗
+                           Deceptive review [42]                 Accuracy ↑                54.6%            86.3%        74.0%                 ✗
+           Classification  Income category [83]                  Accuracy ↑                 65%              75%          73%                  ✗
+                             Loan defaults [27]                  Norm. Brier ↑               0                1          0.682                 ✗
+                           Hypoxemia risk [53]                     AUC ↑                    0.66             0.81         0.78                 ✗
+                          Nutrition prediction [12]              Accuracy ↑                 0.46             0.75         0.74                 ✗
+                 QA                 Quiz bowl [21]                    “AI outperforms top trivia players.”                                     ✗
+            Regression             House price [65]         Avg. Absolute Error ↓          $331k            $200k        $232k                 ✗
+Table 1: Recent studies that evaluate the effect of automatically generated explanations on human-AI team performance.
+While explanations did improve team accuracy, the performance was not complementary — acting autonomously, the AI
+would have performed even better. For papers with multiple domains or experiments, we took one sample with the most
+comparable human and AI performance. ↑ (or ↓) indicates whether the metric should be maximized (or minimized).
+
+
+         Explain. Strategies        Explain. Sources     Tasks                   in this case it is unclear how inline-highlights could be used to com-
+         Explain-Top-1              AI                   Beer                    municate logical constructs (e.g., contradiction may not be visible
+         Explain-Top-2              Expert               Amzbook                 by highlighting the input alone), we turned to narrative explana-
+         Adaptive                                        LSAT                    tions which justify a candidate answer in natural language. We
+                                                                                 explain these in more detail in Section 4.2.
+Table 2: An overview of our tasks, explanation strategies and
+sources. We ran our pilot studies (Section 3.2) with condi-
+tions marked with . Based on the pilot results, we added                         3.2      Pilot Study on Sentiment Classification
+adaptive explanations and expert explanations (Section 3.3).                     To iterate on the hypotheses and the associated explanation condi-
+Along with two additional domains, these form the condi-                         tions for our main study (detailed later in Section 4), we conducted
+tions for our final study conditions (Section 4.1).                              a pilot study on one of our datasets (Beer). The between-subject
+                                                                                 pilot study asked crowdworkers to judge the sentiment of 50 beer
+                                                                                 reviews with assistance from a logistic regression classifier in three
+teaming [21, 29, 42, 50, 62, 83] and because it requires little domain           conditions, each condition with 50 workers. One condition only
+expertise, and is thus amenable to crowdsourcing. Specifically, we               showed the model prediction and confidence; the other two also
+selected two sentiment analysis datasets to improve the generaliza-              included the following common explanation strategies4 :
+tion of our results: beer reviews [56] and book reviews [31]. More                  (1) Explain-Top-1 explains just the predicted class by highlight-
+details about these datasets are in Section 4.2. While there exist                       ing the most influential words for that class.
+various local explanation approaches for text classification, we rely               (2) Explain-Top-2 explains the top two predicted classes, and un-
+on local saliency explanations, which explain a single prediction in                     like Explain-Top-1, it also color codes and highlights words
+terms of the importance of input features (e.g., each word) towards                      for the other sentiment class.
+the model’s prediction (e.g., positive or negative sentiment).                      The two strategies closely align with the design in prior work [24,
+   As commonly practiced in previous work [21, 42, 43], we dis-                  43, 49, 75], and have been shown to be beneficial (Table 1). Explain-
+play explanations with inline-highlights, i.e., directly highlighting            Top-2 also corresponds to Wang et al.’s suggestion to mitigate
+the explanation in the input text, so the user need not go back                  heuristic biases by explaining “multiple outcomes” [74].
+and forth between input and the explanation. While there exist                   Observations We summarize our findings from the pilot study:
+other explanatory approaches, such as feature-importance visual-                    (1) Contrary to many prior works, we observed no significant
+ization [11, 27, 53, 61, 76] (more suitable for tabular data) or com-                    changes or improvements in aggregated team accuracy by
+municating influential training examples [3, 40, 80] (more suitable                      displaying either type of explanations.
+for images), these techniques are not ideal for text because they                   (2) That said, explaining just the predicted class (Explain-Top-1)
+add an additional cognitive cost to mapping the explanation to the                       performed better than explaining both (Explain-Top-2).
+respective text. Figure 2 shows one example beer review.                            (3) We also observed that explanations increased reliance on rec-
+   We also experimented with Law School Admission Test (LSAT)                            ommendations even when they were incorrect: explaining the
+questions3 because it is more challenging. In this task, every ques-                     predicted class slightly improved performance (compared to
+tion contains four options with a unique correct answer (Figure 3).                      confidence only) when the recommendation was correct but
+Again, answering LSAT questions requires no specialized knowl-                           decreased performance when it was incorrect.
+edge except common-sense reasoning skills, such as recognizing                      (4) This effect was less pronounced in Explain-Top-2, presum-
+logical connections and conflicts between arguments [82]. Because                        ably because it encouraged users to consider alternatives and
+
+3 https://en.wikipedia.org/wiki/LawSchoolAdmissionTest                           4 the saliency scores were based on feature weights learned by the linear model [27, 42]
+Does the Whole Exceed its Parts? The Effect of AI Explanations on Complementary Team Performance                               CHI ’21, May 8–13, 2021, Yokohama, Japan
+
+
+       hence deterred over-reliance. In Figure 2, for example, if                        Conditions. For both domains, we ran two baseline conditions:
+       counter-argument (d) was not highlighted, participants could                   unassisted users (Human), as well as a simple AI assistance that
+       easily stop reading at the highlighted first sentence and over-                shows the AI’s recommendation and confidence but no explanation
+       look the negative ending.                                                      (Team (Conf)). We use this simple assistance because it serves as
+   (5) Finally, participants indicated that they wanted higher quality                a stronger and broadly acknowledged baseline than the alterna-
+       explanations. Crowd-workers were confused when explana-                        tive, i.e., displaying AI’s recommendation without confidence. First,
+       tions did not seem to correlate with model behavior.                           most ML models can generate confidence scores that, in practice,
+   Because we made similar observations in our main study, we                         correlate with the model’s true likelihood to err [32]. Second, dis-
+defer detailed discussions and implications of these observations to                  playing uncertainty in predictions can help users can make more
+Section 5.1 and Figure 4.                                                             optimal decisions [19, 22, 25, 37, 60]. Hence, we focus on evaluating
+                                                                                      whether the explanations provide additional value when shown
+3.3     Additional Explanation Strategies/Sources                                     alongside confidence scores. In the rest of the paper, we indicate the
+Added Strategy: Adaptive Explanations. The pilot study indi-                          explanation conditions using the following template: Team (Strat-
+cated that Explain-Top-2 was more beneficial than Explain-Top-1                       egy, Source). For example, Team (Explain-Top-1, AI) indicates the
+when the classifier made mistakes, but not otherwise. Relying on the                  condition that shows the AI’s explanations for the top prediction.
+commonly seen correlations between mistakes and low-confidence
+                                                                                          Interface. Figure 2 shows an example UI for sentiment clas-
+[32], we developed a new dynamic strategy, adaptive explanation,
+                                                                                      sification for Team (Adaptive, AI). In all explanation conditions,
+that switches between Explain-Top-1 and Explain-Top-2 depending
+                                                                                      explanations are displayed as inline highlights, with the background
+on the AI’s confidence. This method explains the top-two classes
+                                                                                      color aligned with the positive/negative label buttons. The highlight
+only when the classifier confidence is below a task- and model-
+                                                                                      varies by condition, e.g., Team (Adaptive, AI) has a similar display to
+specific threshold (described later in Section 4.2), explaining only
+                                                                                      Figure 2, except that the AI picks multiple short phrases, instead of
+the top prediction otherwise. Intuitively, it was inspired by an effi-
+                                                                                      a full sentence. In Team (Explain-Top-1, AI) the counter-argument
+cient assistant that divulges more information (confessing doubts
+                                                                                      (d) is always missing, and in Team (Conf) no explanations are high-
+and arguing for alternatives) only when it is unsure about its recom-
+                                                                                      lighted. Figure 3 shows a screenshot of the user interface for LSAT
+mendation. Adaptive explanations can also be viewed as changing
+                                                                                      in the Team (Adaptive, Expert) condition.
+explanation according to context [1]. While we limit the our context
+to the AI’s confidence, in general, one could rely on more features
+of the human-AI team, such as the user, location, or time [34, 48].                   4.2     AI Model, Study Samples and Explanations
+   Added Source: Expert-Generated Explanations. Users in our                          4.2.1 Sentiment Classification.
+pilot study were confused when the explanations did not make in-                      Training data. To prepare each dataset (Beer and Amzbook) for
+tuitive sense, perhaps due to either the quality of the underlying                    training classification models, we binarized the target labels, split
+linear model-based AI. While we test state-of-the-art models in                       the dataset into training and test sets (80/20 split), removed class
+the final study, we also added expert-generated explanations to                       imbalance from the train split by oversampling the minority class,
+serve as an upper bound on explanation quality. We describe their                     and further split the training set to create a validation set.
+annotation process in Section 4.2.                                                        AI Model. For each dataset, we fine-tuned a RoBERTa-based [52]
+                                                                                      text classifier from AllenNLP5 on the training dataset and per-
+4     FINAL STUDY                                                                     formed hyper-parameter selection on the validation set.
+Based on our pilot studies, we formulated our final hypotheses and                        Task examples. For each domain, we selected 50 examples from
+used them to inform our final conditions and their interface (Sec-                    the test set to create our study sample. We first conducted additional
+tion 4.1). We then tested these hypotheses for several tasks and AI                   pilot studies to establish the accuracy of unassisted users, which we
+systems (Section 4.2) through crowdsourcing studies (Section 4.3).                    observed were 87% for Beer and 85% for Amzbook 6 We then selected
+                                                                                      50 unambiguous examples so that the AI’s accuracy was 84% (i.e.,
+4.1     Hypotheses, Conditions, and Interface                                         comparable to human accuracy), with equal false positive and false
+                                                                                      negative rates. The filtering was for keeping the task objective:
+We formulated the following hypotheses for sentiment analysis:
+                                                                                      If the ground-truth answer was unclear, one cannot compute or
+   H1 Among current explanation strategies, explaining the predicted                  compare the accuracy of decisions.
+       class will perform better than explaining both classes.                            Explanations. To generate saliency explanations, we used LIME,
+   H2 The better strategies, Explain-Top-1, will still perform similarly              which is a popular post hoc method [66]. We chose this setup be-
+       to simply showing confidence.                                                  cause the combination of RoBERTa and LIME was consistently
+   H3 Our proposed Adaptive explanations, which combines benefits                     ranked the highest among the various systems we tried in an ex-
+       of existing strategies, will improve performance.                              plainer comparison study with human judges (details in Appendix).
+   H4 Adaptive explanations would perform even better if AI could                     Despite offering accurate predictions, RoBERTa generated poorly
+       generate higher quality explanations.                                          calibrated confidence scores, a common issue with neural networks
+   Since generating AI explanations for LSAT was not feasible (Sec-
+tion 3.3), we slightly modified the hypothesis for LSAT : we omitted                  5 https://demo.allennlp.org/sentiment-analysis
+the hypothesis on explanation quality (H4) and tested the first three                 6 Again, each condition containing 50 crowd-workers. We estimated the human accu-
+hypotheses using expert- rather than AI-generated explanations.                       racy on all the three datasets with another 150 crowd-workers.
+CHI ’21, May 8–13, 2021, Yokohama, Japan                                                                                                     G. Bansal et al.
+
+
+
+
+                                  c
+                                                                               a
+
+
+
+                                                                               b
+
+
+
+
+                                           d
+
+
+
+Figure 2: A screenshot of the Team (Adaptive, Expert) condition for the Amzbook reviews dataset. Participants read the review
+(left pane) and used the buttons (right pane) to decide if the review was mostly positive or negative. The right pane also shows
+progress and accuracy (a). To make a recommendation, the AI (called “Marvin”) hovers above a button (b) and displays the
+confidence score under the button. In this case, the AI incorrectly recommended that this review was positive, with confidence
+62.7%. As part of the explanation, the AI highlighted the most positive sentence (c) in the same color as the positive button.
+Because confidence was low, the AI also highlights the most negative sentence (d) to provide a counter-argument.
+
+                           a                                      0 / 20
+                                                                                                                          b
+
+
+
+
+                                                                           c
+
+                                                                           d
+
+
+Figure 3: A screenshot of Team (Adaptive, Expert) for LSAT . Similar to Figure 2, the interface contained a progress indicator (a),
+AI recommendation (b), and explanations for the top-2 predictions (c and d). To discourage participants from blindly following
+the AI, all AI information is displayed on the right. In (b), the confidence score is scaled so those for top-2 classes sum to 100%.
+
+[28], which we mitigated with post hoc calibration (isotonic regres-       4.2.2 LSAT.
+sion [7]) on the validation set.                                           AI Model. We finetuned a RoBERTa model7 on ReClor [82], a logic-
+   In particular, for Adaptive explanation, we used the classifier’s       reasoning dataset that contains questions from standardized exams
+median confidence as the threshold to have an equal number of              like the LSAT and GMAT.8
+25 examples displayed as Explain-Top-1 and Explain-Top-2, respec-             Task examples. We selected 20 examples from an LSAT prep
+tively. The thresholds were 89.2% for Beer and 88.9% for Amzbook.          book [71]. We verified that our questions were not easily searchable
+We happened to explain 18 correctly predicted and 7 incorrectly            online and were not included in the training dataset. We selected
+predicted examples with Explain-Top-2 for both datasets (leaving           fewer LSAT questions than for sentiment analysis, because they
+1 incorrect and 24 correct cases with Explain-Top-1). While one            are more time consuming to answer and could fatigue participants:
+might learn a better threshold from the data, we leave that to future      LSAT questions took around a minute to answer, compared to
+work. As for expert-generated explanations, one author created             around 17 seconds for Beer and Amzbook. The RoBERTa model
+expert explanations by selecting one short, convincing text phrase         achieved 65% accuracy on these examples, comparable to the 67%
+span for each class (positive or negative).                                human accuracy that we observed in our pilot study.
+
+                                                                           7 Based on the opensource implementation: https://github.com/yuweihao/reclor.
+                                                                           8 https://en.wikipedia.org/wiki/GraduateManagementAdmissionTest
+Does the Whole Exceed its Parts? The Effect of AI Explanations on Complementary Team Performance                       CHI ’21, May 8–13, 2021, Yokohama, Japan
+
+
+   Explanations. We found no automated method that could gen-                            Modifications for LSAT. For the LSAT dataset, we used a very
+erate reasonable explanations (unsurprising, given that explana-                      similar procedure but used two screening questions and required
+tions rely on prior knowledge and complex reasoning); instead, we                     workers to answer both correctly. We used a stricter passing re-
+used expert explanations exclusively, which is again based on the                     quirement to avoid low-quality workers who might cheat, which
+prep book. The book contains explanations for the correct answer,                     we observed more for this task in our pilots. We again used MTurk
+which one author condensed to a maximum of two sentences. Since                       with the same filters as sentiment classification, and we post hoc
+the book did not provide explanations for alternative choices, we                     removed data from participants whose median response time was
+created these by manually crafting a logical supporting argument                      less than three seconds. 508 crowd workers participated in our
+for each choice that adhered to the tone and level of conciseness of                  study, 35% of whom passed the screening and completed the main
+the other explanations. Experts only generated explanations and                       task, resulting in a total of 100 participants per condition.
+did not determine the model predictions or its uncertainties.                            Participants received a base pay of $0.50 for participating, a
+                                                                                      performance-based bonus of $0.30 for each correct answer in the
+                                                                                      main task, and a fixed bonus of $0.25 for completing an exit survey.
+                                                                                      They received an additional bonus of $1.00, $2.00, and $3.00 for
+4.3     Study Procedure                                                               reaching an overall accuracy of 30%, 50%, and 85% to motivate
+   Sentiment Classification. For the final study, participants went                   workers to answer more questions correctly and perform their best.
+through the following steps: 1) A landing page first explained the                    The average completion time for the LSAT task was 16 minutes,
+payment scheme; the classification task was presented (here, pre-                     with an average payment of $6.30 (equals an hourly wage of $23.34).
+dicting the sentiment of reviews); and they were shown dataset-
+specific examples. 2) To familiarize them with the task and verify
+their understanding, a screening phase required the participant                       5 RESULTS
+to correctly label four of six reviews [51]. Only participants who
+passed the gating test were allowed to proceed to the main task. 3)                   5.1 Effect of Explanation on Team performance
+The main task randomly assigned participants to one of our study                     Figure 4A shows the team performance (i.e., accuracy of final deci-
+conditions (Section 3.3) and presented condition-specific instruc-                   sion) for each domain and condition. We tested the significance of
+tions, including the meaning and positioning of AI’s prediction,                     our results using Student’s T-tests with Bonferroni correction.
+confidence, and explanations. Participants then labeled all 50 study                    The baseline team condition, Team (Conf), achieved com-
+samples one-by-one. For a given dataset, all conditions used the                     plementary performance across tasks. For Beer, providing AI
+same ordering of examples. The participants received immediate                       recommendations and confidence to users increased their perfor-
+feedback on their correctness after each round of the task. 4) A                     mance to (𝜇 = 0.89 ± 𝜎 = 0.05), surpassing both AI (0.84) and
+post-task survey was administered, asking whether they found the                     unassisted human accuracy (0.82 ± 0.09). Similarly, Team (Conf)
+model assistance to be helpful, their rating of the usefulness of                    achieved complementary performance for Amzbook and LSAT , with
+explanations in particular (if they were present), and their strategy                relative gains of 2.2% and 20.1% over unassisted workers (Figure 4A).
+for using model assistance.                                                             We did not observe a significant difference between Explain-
+   We recruited participants from Amazon’s Mechanical Turk, lim-                     Top-1 and Explain-Top-2, or that H1 was not supported. For ex-
+iting the pool to subjects from within the United States with a                      ample, in Figure 4A of Beer, explaining the top prediction performed
+prior task approval rating of at least 97% and a minimum of 1,000                    marginally better than explaining the top-two predictions, but the
+approved tasks. To ensure data quality, we removed data from par-                    difference was not significant (𝑧=0.85, 𝑝=.40). The same was true
+ticipants whose median labeling time was less than 2 seconds or                      for Amzbook (𝑧=0.81, 𝑝=.42) and LSAT (𝑧=0.42, 𝑝=.68).
+those who assigned the same label to all examples. In total, we                         We did not observe significant improvements over the con-
+recruited 566 (Beer) and 552 (Amzbook) crowd workers, and in both                    fidence baseline by displaying explanations. For example, for
+datasets, 84% of participants passed the screening and post-filtering.               Beer, Team (Conf) and Team (Explain-Top-1, AI) achieved similar
+Eventually, we collected data from around 100 participants (ranging                  performance, with the accuracy being 0.89 ± 0.05 vs. 0.88 ± 0.06
+from 93 to 101 due to filtering) per condition.                                      respectively; the difference was insignificant (𝑧=-1.18, 𝑝=.24). We
+   Study participants received a base pay of $0.50 for participating,                observed the same pattern for Amzbook (𝑧=1.23, 𝑝=.22) and LSAT
+a performance-based bonus for the main task, and a fixed bonus of                    (𝑧=0.427, 𝑝=.64). As a result, we could not reject our hypothesis H2
+$0.25 for completing the survey. Our performance-based bonus was                     that Explain-Top-1 performs similar to simply showing confidence
+a combination of linear and step functions on accuracy: we gave                      . This result motivates the need to develop new AI systems and ex-
+$0.05 for every correct decision in addition to an extra $0.50 if the to-            planation methods that provide true value to team performance by
+tal accuracy exceeded 90% or $1.00 if it exceeded 95%. The assigned                  supplementing the model’s confidence, perhaps working in tandem
+additional bonuses were intended to motivate workers to strive for                   with confidence scores.
+performance in the complementary zone and improve over the AI-                          Though designed to alleviate the limitations of Explain-Top-1
+only performance [33]. Since we fixed the AI performance at 84%,                     and Explain-Top-2 in our experiments, we did not observe im-
+humans could not obtain the bonus by blindly following the AI’s                      provements from using Adaptive explanations. For example,
+recommendations. Participants spent 13 minutes on average on the                     we did not observe any significant differences between Team (Adap-
+experiment and received an average payment of $3.35 (equivalent                      tive, AI) and Team (Conf) for Beer (𝑧=-1.02, 𝑝=.31) or Amzbook
+to an hourly wage of $15.77).                                                        (𝑧=1.08, 𝑝=.28). We did not observe significant differences between
+CHI ’21, May 8–13, 2021, Yokohama, Japan                                                                                                                                                          G. Bansal et al.
+
+
+                                                           AI accuracy           Complementary zone                                                 AI recommendation           correct     incorrect
+                                A                                 Beer Decision Accuracy                                         B                           Beer Decision Accuracy (split)
+                                                Human                                                                                            Human
+                                           Team (Conf)                                                                                      Team (Conf)
+
+
+                    condition                                                                                        condition
+                                Team (Explain-Top-1, AI)                                                                         Team (Explain-Top-1, AI)
+                                Team (Explain-Top-2, AI)                                                                         Team (Explain-Top-2, AI)
+                                    Team (Adaptive, AI)                                                                              Team (Adaptive, AI)
+                                Team (Adaptive, Expert)                                                                          Team (Adaptive, Expert)
+
+                                                           0.75    0.80    0.85     0.90    0.95 1.00                                                       0.4   0.5    0.6   0.7   0.8    0.9   1.0
+                                                                       Decision Accuracy                                                                                Decision Accuracy
+
+
+                                                             Amzbook Decision Accuracy                                                                  Amzbook Decision Accuracy (split)
+                                                Human                                                                                            Human
+                                           Team (Conf)                                                                                      Team (Conf)
+
+
+                    condition                                                                                        condition
+                                Team (Explain-Top-1, AI)                                                                         Team (Explain-Top-1, AI)
+                                Team (Explain-Top-2, AI)                                                                         Team (Explain-Top-2, AI)
+                                    Team (Adaptive, AI)                                                                              Team (Adaptive, AI)
+                                Team (Adaptive, Expert)                                                                          Team (Adaptive, Expert)
+
+                                                           0.75    0.80    0.85     0.90    0.95 1.00                                                       0.4   0.5    0.6   0.7   0.8    0.9   1.0
+                                                                       Decision Accuracy                                                                                Decision Accuracy
+
+
+                                                                  LSAT Decision Accuracy                                                                    LSAT Decision Accuracy (split)
+                                                Human                                                                                            Human
+                                                                                                                                            Team (Conf)
+
+                                                                                                         condition
+                                           Team (Conf)
+
+        condition
+                    Team (Explain Top-1, Expert)                                                                     Team (Explain Top-1, Expert)
+
+                    Team (Explain Top-2, Expert)                                                                     Team (Explain Top-2, Expert)
+
+                                Team (Adaptive, Expert)                                                                          Team (Adaptive, Expert)
+
+                                                           0.50 0.55      0.60    0.65     0.70   0.75                                                      0.3   0.4    0.5   0.6   0.7    0.8   0.9
+                                                                       Decision Accuracy                                                                                Decision Accuracy
+
+Figure 4: Team performance (with average accuracy and 95% confidence interval) achieved by different explanation conditions
+and baselines for three datasets, with around 100 participants per condition. (A) Across every dataset, all team conditions
+achieved complementary performance. However, we did not observe significant improvements from using explanations over
+simply showing confidence scores. (B) Splitting the analysis based on the correctness of AI accuracy, we saw that for Beer and
+LSAT , Explain-Top-1 explanations worsened performance when the AI was incorrect, the impact of Explain-Top-1 and Explain-
+Top-2 explanations were correlated with the correctness of the AI’s recommendation, and Adaptive explanations seemed to
+have the potential to improve Explain-Top-1 when the AI was incorrect, and to retain the higher performance of Explain-Top-1
+when the AI was correct.
+
+Team (Adaptive, Expert) and Team (Conf) for LSAT (𝑧=0.16, 𝑝=.87).                                               user’s subjective ratings of trust, to the best of our knowledge, our
+More surprisingly, switching the source of Adaptive explanation to                                              studies are the first to show this phenomenon for explanation and
+expert-generated did not significantly improve sentiment analysis                                               end-to-end decision making with large-scale studies. As expected,
+results. For example, in Figure 4A, the differences in performance                                              in Beer, Adaptive explanations improved performance over Explain-
+between Team (Adaptive, Expert) and Team (Adaptive, AI) were                                                    Top-1 when the AI was incorrect and improved performance over
+insignificant: Beer (𝑧=1.31, 𝑝=.19) and Amzbook (𝑧=-0.78, 𝑝=.43). As                                            Explain-Top-2 when the AI was correct, although the effect was
+such, we could not reject the null hypotheses for either H3 or H4.                                              smaller on other datasets.
+   While Adaptive explanation did not significantly improve                                                        While Figure 4B shows team performance, the promising effects
+team performance across domains, further analysis may point                                                     of Adaptive explanations are clearer if we study the agreement
+a way forward by combining the strengths of Explain-Top-1                                                       between AI predictions and human decisions (Figure 5). Adaptive
+and Explain-Top-2. Split the team performance by whether the                                                    explanations seem to encourage participants to consider the AI
+AI made a mistake (Figure 4B), we observe that explaining the top                                               more when it is confident and solve the task themselves otherwise.
+prediction lead to better accuracy when the AI recommendation                                                   Unfortunately, as our experiments show, the effect of using Adap-
+was correct but worse when the AI was incorrect, as in our pilot                                                tive did not seem sufficient to increase the final team accuracy,
+study. This is consistent with Psychology literature [39], which has                                            possibly for two reasons: (1) in high confidence regions (circles in
+shown that human explanations cause listeners to agree even when                                                Figure 5), not only did workers have to agree more, but they also had
+the explanation is wrong, and recent studies that showed explana-                                               to identify cases where the model failed with very high confidence
+tions can mislead data scientists into overtrusting ML models for                                               (unknown unknowns [44]). Identifying unknown unknowns could
+deployment [38]. While these results were obtained by measuring                                                 have been a difficult and time-consuming task for workers, and they
+Does the Whole Exceed its Parts? The Effect of AI Explanations on Complementary Team Performance                                                                          CHI ’21, May 8–13, 2021, Yokohama, Japan
+
+
+                                                               Beer
+                                                   Team (Explain-Top-1, AI)                                                                               Display
+
+
+                                       condition
+                                                   Team (Explain-Top-2, AI)                                                                                     Explain-Top-1
+                                                       Team (Adaptive, AI)                                                                                      Explain-Top-2
+                                                   Team (Adaptive, Expert)
+                                                                                                                                                          Pass adaptive threshold?
+                                                                                0.6                  0.7          0.8         0.9         1.0
+                                                             Amzbook                                                                                            < threshold
+                                                   Team (Explain-Top-1, AI)                                                                                     >= threshold
+
+
+                                       condition
+                                                   Team (Explain-Top-2, AI)
+                                                       Team (Adaptive, AI)
+                                                   Team (Adaptive, Expert)
+
+                                                                                0.6                  0.7          0.8         0.9         1.0
+                                                               LSAT
+
+
+                           condition
+                                       Team (Explain -Top-1, Expert)
+                                       Team (Explain -Top-2, Expert)
+                                                   Team (Adaptive, Expert)
+
+                                                                                0.5                  0.6          0.7         0.8         0.9
+                                                                                                     Human-AI Agreement
+
+Figure 5: Relative agreement rates between humans and AI (i.e., does the final human decision match the AI’s suggestion?) for
+various conditions, with examples split by whether AI’s confidence exceeded the threshold used for Adaptive explanations.
+Across the three datasets, Adaptive explanations successfully reduced the human’s tendency to blindly trust the AI (i.e., de-
+creased agreement) when it was uncertain and more likely to be incorrect. For example, comparing Team (Explain-Top-1, AI)
+and Team (Adaptive, AI) on low confidence examples that did not pass the threshold (rectangles), participants in Explain-Top-2
+(pink rectangles) were less likely to agree with the AI compared to those who saw Explain-Top-1 (blue rectangles).
+
+                                                                                                                                                AI Recommendation                   correct    incorrect
+
+                                                        Beer                                                       Amzbook                                                        LSAT
+                                                                                               60%                                                            20%
+
+
+
+
+        % Examples                                                                % Examples                                                     % Examples
+                     40%                                                                                                                                      15%
+                                                                                               40%
+                                                                                                                                                              10%
+                     20%                                                                       20%
+                                                                                                                                                              5%
+
+                     0%                                                                        0%                                                             0%
+                             0.00 0.20                0.40   0.60   0.80 1.00                         0.00 0.20    0.40    0.60     0.80 1.00                       0.00 0.20   0.40   0.60   0.80 1.00
+                                        Human accuracy (Binned)                                            Human accuracy (Binned)                                      Human accuracy (Binned)
+
+Figure 6: The distribution of study examples as a function of average human accuracy. For each domain, examples on the right
+were easy for most humans working alone. Both Beer and LSAT show a distribution that shows potential for complementary
+team performance: humans can correct easy questions mistaken by the AI (red bars towards the right), and, conversely, the
+AI may add value on examples where humans frequently err (green bars towards the left). In contrast, Amzbook showed less
+potential for this kind of human-AI synergy, with less “easy for human” questions (bars towards the left).
+
+may have needed other types of support that we did not provide.                                                           computed the average accuracy of unassisted users on study exam-
+(2) In low confidence regions (rectangles), not only did workers                                                          ples and overlaid the AI’s expertise (whether the recommendation
+have to disagree more, but they also had to be able to solve the task                                                     was correct) in Figure 6. The figure helps explain why users ben-
+correctly when they disagreed. Explain-Top-2 explanations might                                                           efited more from AI recommendations for both Beer and LSAT
+have enabled them to suspect the model more, but it is unclear if                                                         datasets. There was a significant fraction of examples that the AI
+they helped participants make the right decisions. This indicates                                                         predicted correctly but humans struggled with (green bars to the
+that more sophisticated strategies are needed to support humans in                                                        left), while the same was not true for Amzbook (where AI rec-
+both situations. We discuss some potential strategies in Section 6.3.                                                     ommendations did not help as much). Further, when the AI was
+   Differences in expertise between human and AI affects                                                                  incorrect, explaining predictions on Amzbook via Explain-Top-1
+whether (or how much) AI assistance will help achieve com-                                                                improved the performance by 5% over showing confidence (Fig-
+plementary performance. To understand how differences in ex-                                                              ure 4B), but it decreased the performance for Beer and LSAT . One
+pertise between the human and AI impact team performance, we
+CHI ’21, May 8–13, 2021, Yokohama, Japan                                                                                                                             G. Bansal et al.
+
+
+                                                  Response         Strongly disagree      Disagree       Neither agree nor disagree     Agree       Strongly agree
+
+                                      A                                         Beer: AI Assistant is Useful          B         Beer: Explanation is Useful
+                                                          Team (Conf)
+
+
+
+                                   Condition
+                                               Team (Explain-Top-1, AI)
+                                               Team (Explain-Top-2, AI)
+                                                   Team (Adaptive, AI)
+                                               Team (Adaptive, Expert)
+
+                                                                             -50%           0%           50%                 -50%          0%           50%
+                                                                                       % Participants                                 % Participants
+
+                                                                             Amzbook: AI Assistant is Useful                 Amzbook: Explanation is Useful
+                                                          Team (Conf)
+
+
+
+                                   Condition
+                                               Team (Explain-Top-1, AI)
+                                               Team (Explain-Top-2, AI)
+                                                   Team (Adaptive, AI)
+                                               Team (Adaptive, Expert)
+
+                                                                             -50%           0%           50%                 -50%          0%           50%
+                                                                                       % Participants                                 % Participants
+
+                                                                                LSAT: AI Assistant is Useful                   LSAT: Explanation is Useful
+                                                          Team (Conf)
+
+
+                       Condition
+                                   Team (Explain Top-1, Expert)
+                                   Team (Explain Top-2, Expert)
+                                               Team (Adaptive, Expert)
+
+                                                                             -50%           0%           50%                 -50%          0%           50%
+                                                                                       % Participants                                 % Participants
+
+Figure 7: Analysis of participant responses to two statements: (A) “AI’s assistance (e.g., the information it displayed) helped me
+solve the task”, and (B) “AI’s explanations in particular helped me solve the task.” Across datasets, a majority of participants
+found AI assistant to be useful, and they rated all the conditions similarly, with a slight preference towards Team (Adaptive,
+Expert). In contrast to AI’s overall usefulness, fewer participants rated explanations as useful, particularly Explain-Top-2
+explanations. Participants also had a clearer preference for higher-quality (expert) Adaptive explanations.
+
+possible explanation is that most AI mistakes were predicted cor-                                            Explanation usefulness: Figure 7B shows that participants’
+rectly by most humans on Amzbook (red bars were mostly towards                                            ratings for the usefulness of explanations were lower than the
+the right). After observing clear model mistakes, participants may                                        overall usefulness of AI’s assistance (in A). Again, expert-generated
+have learned to rely on them less, despite the convincing-effect of                                       Adaptive explanations received higher ratings than AI-generated
+explanation. Participants’ self-reported collaboration approaches                                         ones for Beer (53% vs. 38%) vs. Amzbook (50% vs. 40%). This could
+supported our guess – Amzbook participants reportedly ignored the                                         indicate that showing higher quality explanations improves users’
+AI’s assistance the most (Section 5.3). That said, other confounding                                      perceived helpfulness of the system. However, it is worth noting
+effects such as the nature of the task (e.g., binary classification vs.                                   that this increased preference did not translate to an improvement in
+choosing between multiple options) should also be studied.                                                team performance, which is consistent with observations made by
+                                                                                                          Buçinca et al. [12] that show that people may prefer one explanation
+5.2      Survey Responses on Likert Scale Questions                                                       but make better decisions with another.
+Two of the questions in our post-task survey requested categorical
+ratings of AI and explanation usefulness.9                                                                5.3     Qualitative Analysis on Collaboration
+   AI usefulness: While participants generally rated AI assistance                                        To better understand how users collaborated with the AI in different
+useful (Figure 7A), the improvements in ratings between most ex-                                          tasks, we coded their response to the prompt: “Describe how you
+planations and simply showing confidence were marginal. The                                               used the information Marvin (the AI) provided.” Two annotators
+difference was more clear for high-quality adaptive explanations;                                         independently read a subset of the responses to identify emergent
+for Beer, 70% of the participants rated AI assistance useful with                                         codes and, using a discussion period, created a codebook (Table 3).
+Team (Adaptive, Expert) in contrast to 57% with Team (Conf). We                                           Using this codebook, for each team condition and dataset, they
+observed a similar pattern on Amzbook (65% vs. 49%) and LSAT (63%                                         coded a sample of 30 random worker responses: 28 were unique
+vs. 45%), though on LSAT , Team (Explain-Top-2, Expert) received                                          and 2 overlapped between annotators, allowing us to compute inter-
+slightly higher ratings than Team (Adaptive, Expert) (66% vs. 63%).                                       annotator agreement. Our final analysis used 409 unique responses
+9 Since we did not pre-register hypotheses for the subjective ratings and only analyzed                   after removing 11 responses deemed to be of poor quality (Table 3).
+them post-hoc, we do not perform/claim statistical significant analysis on these metrics.                 We scored the inter-annotator agreement with both the Cohen’s 𝜅
+Does the Whole Exceed its Parts? The Effect of AI Explanations on Complementary Team Performance                         CHI ’21, May 8–13, 2021, Yokohama, Japan
+
+
+             Codes                               Definitions and Examples                                                          #Participants
+             Overall Collaboration Approach (codes are mutually exclusive)
+             Mostly Follow AI          The participant mostly followed the AI.                                                     23 (6%)
+                                      “I went with Marvin most times.”
+             AI as Prior Guide         Used AI as a starting reference point.                                                      190 (47%)
+                                      “I looked at his prediction and then I read the passage.”
+             AI as Post Check          Double-checked after they made their own decisions.                                         102 (25%)
+                                      “I ignored it until I made my decision and then verified what it said.”
+             Mostly Ignore AI          Mostly made their own decisions without the AI.                                             90 (22%)
+                                      “I didn’t. I figured out the paragraph for myself.”
+             The Usage of Explanation (codes can overlap)
+             Used Expl.                Explicitly acknowledged they used the explanation.                                          138 (42%)
+                                       “I skimmed his highlighted words.”
+             Speed Read                Used explanations to quickly skim through the example.                                      29 (9%)
+                                       “I looked at Marvin’s review initially then speed read the review. ”
+             Validate AI               Used the explanation to validate AI’s reasoning.                                            17 (5%)
+                                       “Marvin focuses on the wrong points at times. This made me
+                                       cautious when taking Marvin’s advice.”
+             The Usage of Confidence (codes can overlap)
+             Used Conf.                Explicitly acknowledged they used the confidence.                                           90 (22%)
+                                       “I mostly relied on Marvin’s confident levels to guide me.”
+             Conf. Threshold           Was more likely to accept AI above the threshold.                                           24 (6%)
+                                       “If Marvin was above 85% confidence, I took his word for it.”
+             Others (codes can overlap)
+             Fall Back to AI                    Followed the AI’s label if they failed to decide.                                  54 (13%)
+                                                “I used it if I was unsure of my own decision.”
+             Updated Strategy                   Changed their strategy as they interacted more.                                    12 (2%)
+                                                “I decided myself after seeing that sometimes Marvin failed me. ”
+         Table 3: The codebook for participants’ descriptions of how they used the AI, with the number of self-reports.
+
+and the raw overlap between the coding. We achieved reasonably                        into account for a few rounds, and stopped after I got 2 incorrect
+high agreements, with an average 𝜇 (𝜅) = 0.71, 𝜎 (𝜅) = 0.18 (the                      answers. After that I read all of the reviews carefully and followed
+average agreement was 93% ± 6.5%). We noticed the following,                          my own discretion.”
+which echo the performance differences observed across datasets:                          In contrast, a Beer participant relied more on the AI once realizing
+   Most participants used the AI’s recommendation as a prior                          it could be correct: “At first I tried reading the passages and making
+or to double-check their answers. For all datasets, more than                         my own judgments, but then I got several items wrong. After that, I
+70% of the participants mentioned they would partially take AI’s                      just switched to going with Marvin’s recommendation every time.”
+recommendation into consideration rather than blindly following                           In addition to the user’s collaboration behavior, these differ-
+AI or fully ignoring it (Figure 8). Participants used the AI as a prior               ences between domains may have affected our quantitative ob-
+guide more than as a post-check for sentiment analysis, but not                       servations of team performance. For example, a small difference
+for LSAT , which aligns with our interface design: for LSAT , AI                      between human and AI expertise (distribution of errors) means
+recommendations were on a separate pane, encouraging users to                         that the improvement in performance when the AI is correct would
+solve the task on their own before consulting the AI.                                 be less substantial. In fact, in Figure 4B, if we compare the team
+   Participants ignored the AI more on domains where AI                               performance when the AI is correct, the difference between team
+expertise did not supplement their expertise. Figure 8 shows                          conditions and the human baseline is least substantial for Amzbook.
+that while only 11% of LSAT participants claimed that they mostly                         Some participants developed mental models of the AI’s
+ignored the AI, the ratio doubled (Beer, 23%) or even tripled (Amz-                   confidence score to determine when to trust the AI. Among
+book, 30%) for sentiment analysis. As discussed in Figure 6, this                     participants who mentioned they used confidence scores (90 in
+may be due to correlation differences between human and AI errors                     total), 27% reported using an explicit confidence threshold, below
+for different datasets: Amzbook participants were less likely to see                  which they were likely to distrust the AI. The threshold mostly
+cases where AI was more correct than they were, and therefore they                    varied between 80 to 100 (83 ± 8 for Beer, 89 ± 7 for Amzbook, and
+may have learned to rely less on it. For example, one participant in                  90 ± 0 for LSAT ) but could go as low as 65, indicating that users
+Amzbook mentioned, “I had initially tried to take Marvin’s advice                     built different mental models about when they considered AI to
+CHI ’21, May 8–13, 2021, Yokohama, Japan                                                                                                                         G. Bansal et al.
+
+
+                                                                         Beer                            Amzbook                           LSAT
+
+
+
+
+                        Collaboration
+                                         Mostly Follow AI
+                                        AI as Prior Guide
+                                        AI as Post Check
+                                         Mostly Ignore AI
+
+                                                            0% 10% 20% 30% 40% 50%          0% 10% 20% 30% 40% 50%             0% 10% 20% 30% 40% 50%
+                                                                 % Participants                     % Participants                    % Participants
+
+Figure 8: Instead of ignoring or strictly following the AI, participants reported taking the AI information into consideration
+most of the time. They most frequently used AI as a prior guide in sentiment analysis, but used it as post-check in LSAT . They
+were also more likely to ignore the AI in sentiment analysis than in LSAT .
+
+                                                            Amzbook                          Beer                              LSAT
+
+
+            condition
+                                         Conf.                                                                                                    condition
+                                                                                                                                                       Conf.
+                        Conf.+Expl.
+                                                                                                                                                       Conf.+Expl.
+                                                 0%         5%        10%         0%   5%       10%        15%       0%   2%    4%      6%
+                                                        % Participants                 % Participants                     % Participants
+
+Figure 9: Comparing the occurrence of Used Conf. in just the confidence condition and in those with explanations, we saw a
+similar proportion of users that explicitly acknowledged using confidence, regardless of whether they saw an explanation.
+
+
+be “trustworthy.” While this observation empirically shows that                                      6     DISCUSSION & FUTURE DIRECTIONS
+end-users develop mental model of trust in AI-assisted decision                                      Though conducted in a limited scope, our findings should help guide
+making [5], it more importantly shows how the AI’s confidence is                                     future work on explanations and other mechanisms for improving
+a simple, yet salient feature via which users create a mental model                                  decision making with human-AI teams.
+of the AI’s global behavior [23]. Note that across all three domains,
+the same proportion of participants self-reported using AI’s confi-                                  6.1     Limitations
+dence scores regardless of whether they saw explanations (Figure 9).
+                                                                                                     As mentioned in Section 2, AI explanations have other motivations
+Furthermore, some participants consigned the task to AI when
+                                                                                                     not addressed by this paper. Our work, as well as the papers listed
+they were themselves uncertain. For example, 13% participants
+                                                                                                     in Table 1, evaluated team performance along one dimension: accu-
+mentioned that they would go with the AI’s decision if they were on
+                                                                                                     racy of decisions. We did not explore the benefits on other metrics
+the fence by themselves: “There were some that I could go either way
+                                                                                                     (e.g.increasing speed as reported by some users in Section 5.2), but
+on, and I went with what Marvin suggested.” These user behaviors are
+                                                                                                     in general, one may wish to achieve complementary performance
+similar to observations in psychology literature on Truth-Default
+                                                                                                     on a multi-dimensional metric. In fact, research shows that large
+Theory [47], which shows that people exhibit truth-default behavior:
+                                                                                                     collaborative communities like Wikipedia require AI systems that
+by default, people are biased to assume that the speaker is being
+                                                                                                     balance multiple aspects, e.g., reducing human effort, improving
+truthful, especially when triggers that raise suspicion are absent.
+                                                                                                     trust and positive engagement [68]. We encourage future research
+Furthermore, our participants’ distrust in low-confidence recom-
+                                                                                                     to extend the definition of complementarity, and to evaluate the
+mendations is also consistent with examples of triggers that cause
+                                                                                                     impact of explanations on those dimensions accordingly.
+people to abandon the truth-default behavior.
+                                                                                                        Further, we restricted ourselves to tasks amenable to crowdsourc-
+   Explanations can help participants validate the AI’s deci-
+                                                                                                     ing (text classification and question answering), so our results may
+sions, and the inline-highlight format helped participants
+                                                                                                     not generalize to high-stakes domains with expert users such as
+speed up their decision making. Among the participants who
+                                                                                                     medical diagnosis. We also note that the effectiveness of expla-
+explicitly mentioned using explanations, 27% in Beer and 32% in
+                                                                                                     nations may depend on user expertise, a factor that we did not
+Amzbook reported that they used them to read the review text faster.
+                                                                                                     explore. Investigating this in our framework would either require
+Since LSAT explanations required reading additional text, we did
+                                                                                                     recruiting lay and expert users for the same task [21] or utilizing a
+not expect LSAT users to find this benefit. Interestingly, for Beer
+                                                                                                     within-subject experimental design to measure user expertise.
+and Amzbook, while a small percentage of users (17%) reported
+                                                                                                        Finally, we only explored two possible ways to present expla-
+using the explanations to validate the AI’s decisions (see Figure 3),
+                                                                                                     nations (highlighting keywords and natural language arguments).
+only 2% did so in LSAT . This could be because LSAT is a harder task
+                                                                                                     While these methods are widely adopted [24, 43, 49, 75], alternative
+than sentiment analysis, and verifying AI’s explanations is costlier.
+                                                                                                     approaches may provide more benefit to team performance.
+Other participants mostly mentioned that they would supplement
+their own reasoning with the AI’s: “I read the Marvin rationale and
+weighed it against my intuition and understanding.”                                                  6.2     Explaining AI for Appropriate Reliance
+                                                                                                     One concerning observation was that explanations increased blind
+                                                                                                     trust rather than appropriate reliance on AI. This is problematic
+                                                                                                     especially in domains where humans are required in the loop for
+Does the Whole Exceed its Parts? The Effect of AI Explanations on Complementary Team Performance                        CHI ’21, May 8–13, 2021, Yokohama, Japan
+
+
+moral or legal reasons (e.g., medical diagnosis) and suppose the                      6.3     Rethinking AI’s Role in Human-AI Teams
+presence of explanations simply soothes the experts (e.g., doctors),                     Comparable accuracy does not guarantee complementary part-
+making them more compliant so they blindly (or become more                            ners. Rather, in an ideal team, the human and AI would have mini-
+likely to) agree with the computer. Encouraging human-AI interac-                     mally overlapping mistakes so that there is a greater opportunity
+tions like these seems deeply unsatisfactory and ethically fraught.                   to correct each other’s mistakes. In one of our experiment domains
+Importantly, while prior works also observed instances of inap-                       (Amzbook), AI errors correlated much more strongly with humans’
+propriate reliance on AI [18, 38, 58, 74], our studies quantified its                 than in others, and thus we saw relatively smaller gains in per-
+effect on team performance. Since the nature of the proxy tasks can                   formance from AI assistance (Figure 6). As recent work has sug-
+significantly change the human behavior, they can lead to potential                   gested [4, 55, 59, 79], it may be useful to directly optimize for com-
+misleading conclusions [12]. The emphasis of the complementary                        plementary behavior by accounting for the human behavior during
+team performance in end-to-end tasks can objectively evaluate the                     training, who may have access to a different set of features [72].
+extent of such issues or about the effectiveness of a solution.                          Furthermore, the human and AI could maximize their talents in
+   Our Adaptive Explanation aims to encourage the human to think                      different dimensions. For example, for grading exams, AI could use
+more carefully when the system had a low confidence. While the                        its computation power to quickly gather statistics and highlight
+relative agreement rates showed that the Explain-Top-2 explanation                    commonly missed corner cases, whereas the human teacher could
+might cue the humans to suspect the model’s veracity (Figure 5),                      focus on ranking the intelligence of the student proposed algo-
+the method was not sufficient to significantly increase the final                     rithms [26]. Similarly, to maximize human performance at Quiz
+team accuracy (Figure 4). This is perhaps because users still have                    Bowl, Feng and Graber [21] designed interaction so that the AI
+to identify high-confidence mistakes (unknown-unknowns) and                           memorized and quickly retrieved documents relevant to a ques-
+solve the task when the AI is uncertain (Section 5.1). A followup                     tion, a talent which humans lacked because of cognitive limitations;
+question is, then, what kind of interactions would help humans                        however, they left the task of combining found evidence and logical
+perform correctly when the AI is incorrect?                                           reasoning to human partners. Future research should explore other
+                                                                                      ways to increase synergy.
+
+    Explanations should be informative, instead of just convincing.
+                                                                                         The timing of AI recommendations is important. Besides the types
+Our current expert explanations did not help any more than the AI
+                                                                                      of explanations, it is also important to carefully design when the
+explanations, which may indicate that having the ML produce the
+                                                                                      AI provides its viewpoint. All of our methods used a workflow
+maximally convincing explanation — a common objective shared in
+                                                                                      that showed the AI’s prediction (and its explanation) to the human,
+the design of many AI explanation algorithms — might be a poor
+                                                                                      before they attempted to solve the problem on their own. However,
+choice for complementary performance [12]. A more ideal goal is
+                                                                                      by presenting an answer and accompanying justification upfront,
+explanations that accurately inform the user – such that the user
+                                                                                      and perhaps overlaid right onto the instance, our design makes it
+can quickly gauge through the explanation when the AI’s reasoning
+                                                                                      almost impossible for the human to reason independently, ignoring
+is correct and when it should raise suspicion. A successful example
+                                                                                      the AI’s opinion while considering the task. This approach risks
+of this was seen with Generalized Additive Models (GAMs) for
+                                                                                      invoking the anchor effect, studied in Psychology [20] and intro-
+healthcare, where its global explanations helped medical experts
+                                                                                      duced to the AI explanation field by Wang et al. [74] — people rely
+suspect that the model had learned incorrect, spurious correlations
+                                                                                      heavily on the first information that is presented by others when
+(e.g.a history of asthma reduces the risk of dying from pneumo-
+                                                                                      making decisions. This effect was reflected in an increase in the
+nia [15]). We hope future research can produce explanations that
+                                                                                      use of the “AI as Prior Guide” collaboration approach in the
+better enable the human to effectively catch AI’s mistakes, rather
+                                                                                      sentiment analysis domain, compared to LSAT (Figure 8).
+than finding plausible justifications when it erred.
+                                                                                         Alternate approaches that present AI recommendations in an
+                                                                                      asynchronous fashion might increase independence and improve
+                                                                                      accuracy. For example, pairing humans with slower AIs (that wait
+   High complementary performance may require adapting beyond                         or take more time to make recommendation) may provide humans
+confidence. Since approaches based on confidence scores make it                       with a better chance to reflect on their own decisions [63]. Methods
+difficult to spot unknown-unknowns, instead it may be worthwhile                      that embody recommendations from management science for avoid-
+to design explanation strategies that adapt based on the frequency                    ing group-think [54] might also be effective, e.g., showing the AI’s
+of agreement between the human and AI. For example, instead of                        prediction after the human’s initial answer or only having the AI
+explaining why it believes an answer to be true, the AI might play                    present an explanation if it disagreed with the human’s choice. We
+a devil’s advocate role, explaining its doubts — even when it agrees                  note that these approaches correspond to the Update and Feedback
+with the human. The doubts can even be expressed in an interac-                       methods of Green & Chen [27], which were effective, albeit not in
+tive fashion (as a back and forth conversation) than a set of static                  the complementary zone. Another approach is to limit the AI’s capa-
+justifications, so to avoid cognitive overload. For example, even if                  bilities. For example, one might design the AI to summarize the best
+the system agrees with the user, the system can present a high-level                  evidence for all possible options, without giving hard predictions,
+summary of evidence for top-K alternatives and let the user drill                     by training evidence agents [64]. However, by delaying display of
+down, i.e., ask the system for more detailed evidence for the subset                  the AI’s recommendation until after the human has solved the task
+of alternatives that they now think are worth investigating.                          independently or restricting to only per class evidences, one may
+CHI ’21, May 8–13, 2021, Yokohama, Japan                                                                                                                        G. Bansal et al.
+
+
+preclude improvement to the speed of problem solving, which often                        [4] Gagan Bansal, Besmira Nushi, Ece Kamar, Eric Horvitz, and Daniel S. Weld. 2020.
+correlates to the cost of performing the task.                                               Optimizing AI for Teamwork. arXiv:2004.13102 [cs.AI]
+                                                                                         [5] Gagan Bansal, Besmira Nushi, Ece Kamar, Walter S. Lasecki, Daniel S. Weld, and
+   As a result, there is a strong tension between the competing                              Eric Horvitz. 2019. Beyond Accuracy: The Role of Mental Models in Human-AI
+objectives of speed, accuracy, and independence; We encourage                                Team Performance. Proceedings of the AAAI Conference on Human Computation
+                                                                                             and Crowdsourcing 7, 1 (Oct. 2019), 2–11. https://ojs.aaai.org/index.php/HCOMP/
+the field to design and conduct experiments and explore different                            article/view/5285
+architectures for balancing these factors.                                               [6] Gagan Bansal, Besmira Nushi, Ece Kamar, Daniel S. Weld, Walter S. Lasecki, and
+                                                                                             Eric Horvitz. 2019. Updates in Human-AI Teams: Understanding and Addressing
+                                                                                             the Performance/Compatibility Tradeoff. Proceedings of the AAAI Conference on
+7    CONCLUSIONS                                                                             Artificial Intelligence 33, 01 (Jul. 2019), 2429–2437. https://doi.org/10.1609/aaai.
+Previous work has shown that the accuracy of a human-AI team                                 v33i01.33012429
+                                                                                         [7] Richard E Barlow and Hugh D Brunk. 1972. The isotonic regression problem and
+can be improved when the AI explains its suggestions, but these                              its dual. J. Amer. Statist. Assoc. 67, 337 (1972), 140–147.
+results are only obtained in situations where the AI, operating in-                      [8] Mohsen Bayati, Mark Braverman, Michael Gillam, Karen M. Mack, George Ruiz,
+dependently, is better than either the human or the best human-AI                            Mark S. Smith, and Eric Horvitz. 2014. Data-Driven Decisions for Reducing
+                                                                                             Readmissions for Heart Failure: General Methodology and Case Study. PLOS
+team. We ask if AI explanations help achieve complementary team                              ONE 9, 10 (10 2014), 1–9. https://doi.org/10.1371/journal.pone.0109264
+performance, i.e.whether the team is more accurate than either the                       [9] Umang Bhatt, Alice Xiang, Shubham Sharma, Adrian Weller, Ankur Taly, Yun-
+                                                                                             han Jia, Joydeep Ghosh, Ruchir Puri, José M. F. Moura, and Peter Eckersley.
+AI or human acting independently. We conducted large-scale exper-                            2020. Explainable Machine Learning in Deployment. In Proceedings of the
+iments with more than 1,500 participants. Importantly, we selected                           2020 Conference on Fairness, Accountability, and Transparency (Barcelona, Spain)
+our study questions to ensure that our AI systems had accuracy                               (FAT* ’20). Association for Computing Machinery, New York, NY, USA, 648–657.
+                                                                                             https://doi.org/10.1145/3351095.3375624
+comparable to humans and increased the opportunity for seeing                           [10] Mustafa Bilgic. 2005. Explaining Recommendations: Satisfaction vs. Promotion. ,
+complementary performance. While all human-AI teams showed                                   13–18 pages.
+complementarity, none of the explanation conditions produced an                         [11] Reuben Binns, Max Van Kleek, Michael Veale, Ulrik Lyngs, Jun Zhao, and
+                                                                                             Nigel Shadbolt. 2018. ’It’s Reducing a Human Being to a Percentage’: Per-
+accuracy significantly higher than the simple baseline of showing                            ceptions of Justice in Algorithmic Decisions. In Proceedings of the 2018 CHI
+the AI’s confidence — in contrast to prior work. Explanations in-                            Conference on Human Factors in Computing Systems (Montreal QC, Canada)
+                                                                                             (CHI ’18). Association for Computing Machinery, New York, NY, USA, 1–14.
+creased team performance when the system was correct, but they                               https://doi.org/10.1145/3173574.3173951
+decreased the accuracy on examples when the system was wrong,                           [12] Zana Buçinca, Phoebe Lin, Krzysztof Z. Gajos, and Elena L. Glassman. 2020. Proxy
+making the net improvement minimal.                                                          Tasks and Subjective Measures Can Be Misleading in Evaluating Explainable AI
+                                                                                             Systems. In Proceedings of the 25th International Conference on Intelligent User
+   By highlighting critical challenges, we hope this paper will serve                        Interfaces (Cagliari, Italy) (IUI ’20). Association for Computing Machinery, New
+as a “Call to action” for the HCI and AI communities: and AI commu-                          York, NY, USA, 454–464. https://doi.org/10.1145/3377325.3377498
+nities. In future work, characterize when human-AI collaboration                        [13] Adrian Bussone, Simone Stumpf, and Dympna O’Sullivan. 2015. The role of
+                                                                                             explanations on trust and reliance in clinical decision support systems. In 2015
+can be beneficial (i.e., when both parties complement each other),                           International Conference on Healthcare Informatics. IEEE, IEEE, Dallas, Texas,
+developing explanation approaches and coordination strategies that                           160–169.
+                                                                                        [14] Carrie J Cai, Samantha Winter, David Steiner, Lauren Wilcox, and Michael Terry.
+result in a complementary team performance that exceeds what can                             2019. " Hello AI": Uncovering the Onboarding Needs of Medical Practitioners for
+be produced by simply showing AI’s confidence, and communicate                               Human-AI Collaborative Decision-Making. Proceedings of the ACM on Human-
+explanations to increase understanding rather than just to persuade.                         Computer Interaction 3, CSCW (2019), 1–24.
+                                                                                        [15] Rich Caruana, Yin Lou, Johannes Gehrke, Paul Koch, Marc Sturm, and Noemie
+At the highest level, we hope researchers can develop new interac-                           Elhadad. 2015. Intelligible Models for HealthCare: Predicting Pneumonia Risk
+tion methods that increase complementary performance beyond                                  and Hospital 30-Day Readmission. In Proceedings of the 21th ACM SIGKDD In-
+having an AI telegraph its confidence.                                                       ternational Conference on Knowledge Discovery and Data Mining (Sydney, NSW,
+                                                                                             Australia) (KDD ’15). Association for Computing Machinery, New York, NY, USA,
+                                                                                             1721–1730. https://doi.org/10.1145/2783258.2788613
+ACKNOWLEDGMENTS                                                                         [16] Arjun Chandrasekaran, Viraj Prabhu, Deshraj Yadav, Prithvijit Chattopadhyay,
+                                                                                             and Devi Parikh. 2018. Do explanations make VQA models more predictable
+This material is based upon work supported by ONR grant N00014-                              to a human?. In Proceedings of the 2018 Conference on Empirical Methods in
+18-1-2193, NSF RAPID grant 2040196, the University of Washington                             Natural Language Processing. Association for Computational Linguistics, Brussels,
+                                                                                             Belgium, 1036–1042. https://doi.org/10.18653/v1/D18-1128
+WRF/Cable Professorship, and the Allen Institute for Artificial In-                     [17] Elizabeth Clark, Anne Spencer Ross, Chenhao Tan, Yangfeng Ji, and Noah A.
+telligence (AI2), and Microsoft Research. The authors thank Umang                            Smith. 2018. Creative Writing with a Machine in the Loop: Case Studies on
+Bhatt, Jim Chen, Elena Glassman, Walter Lasecki, Qisheng Li, Eu-                             Slogans and Stories. In 23rd International Conference on Intelligent User Interfaces
+                                                                                             (Tokyo, Japan) (IUI ’18). Association for Computing Machinery, New York, NY,
+nice Jun, Sandy Kaplan, Younghoon Kim, Galen Weld, Amy Zhang,                                USA, 329–340. https://doi.org/10.1145/3172944.3172983
+and anonymous reviewers for helpful discussions and comments.                           [18] Pat Croskerry. 2009. Clinical cognition and diagnostic error: applications of a
+                                                                                             dual process model of reasoning. Advances in health sciences education 14, 1
+                                                                                             (2009), 27–35.
+REFERENCES                                                                              [19] Xiao Dong and Caroline C Hayes. 2012. Uncertainty visualizations: Helping
+ [1] Gregory D. Abowd, Anind K. Dey, Peter J. Brown, Nigel Davies, Mark Smith, and           decision makers become more aware of uncertainty and its implications. Journal
+     Pete Steggles. 1999. Towards a Better Understanding of Context and Context-             of Cognitive Engineering and Decision Making 6, 1 (2012), 30–56.
+     Awareness. In Proceedings of the 1st International Symposium on Handheld and       [20] Birte Englich, Thomas Mussweiler, and Fritz Strack. 2006. Playing dice with crim-
+     Ubiquitous Computing (Karlsruhe, Germany) (HUC ’99). Springer-Verlag, Berlin,           inal sentences: The influence of irrelevant anchors on experts’ judicial decision
+     Heidelberg, 304–307.                                                                    making. Personality and Social Psychology Bulletin 32, 2 (2006), 188–200.
+ [2] Julia Angwin, Jeff Larson, Surya Mattu, and Lauren Kirchner. 2016. Machine bias:   [21] Shi Feng and Jordan Boyd-Graber. 2019. What Can AI Do for Me? Evaluating
+     There’s software across the country to predict future criminals and it’s biased         Machine Learning Interpretations in Cooperative Play. In Proceedings of the 24th
+     against blacks.                                                                         International Conference on Intelligent User Interfaces (Marina del Ray, California)
+ [3] Oisin Mac Aodha, Shihan Su, Yuxin Chen, Pietro Perona, and Yisong Yue. 2018.            (IUI ’19). Association for Computing Machinery, New York, NY, USA, 229–239.
+     Teaching Categories to Human Learners With Visual Explanations. In 2018 IEEE            https://doi.org/10.1145/3301275.3302265
+     Conference on Computer Vision and Pattern Recognition, CVPR 2018. IEEE Com-        [22] Michael Fernandes, Logan Walls, Sean Munson, Jessica Hullman, and Matthew
+     puter Society, Salt Lake City, UT, USA, 3820–3828. https://doi.org/10.1109/CVPR.        Kay. 2018. Uncertainty Displays Using Quantile Dotplots or CDFs Improve Transit
+     2018.00402                                                                              Decision-Making. In Proceedings of the 2018 CHI Conference on Human Factors in
+Does the Whole Exceed its Parts? The Effect of AI Explanations on Complementary Team Performance                                    CHI ’21, May 8–13, 2021, Yokohama, Japan
+
+
+     Computing Systems (Montreal QC, Canada) (CHI ’18). Association for Computing              Machine Learning - Volume 70 (ICML’17). JMLR.org, Sydney, NSW, Australia,
+     Machinery, New York, NY, USA, 1–12. https://doi.org/10.1145/3173574.3173718               1885–1894.
+[23] Katy Ilonka Gero, Zahra Ashktorab, Casey Dugan, Qian Pan, James Johnson,             [41] Johannes Kunkel, Tim Donkers, Lisa Michael, Catalin-Mihai Barbu, and Jür-
+     Werner Geyer, Maria Ruiz, Sarah Miller, David R. Millen, Murray Campbell,                 gen Ziegler. 2019. Let Me Explain: Impact of Personal and Impersonal Ex-
+     Sadhana Kumaravel, and Wei Zhang. 2020. Mental Models of AI Agents in a                   planations on Trust in Recommender Systems. In Proceedings of the 2019 CHI
+     Cooperative Game Setting. In Proceedings of the 2020 CHI Conference on Human              Conference on Human Factors in Computing Systems (Glasgow, Scotland Uk)
+     Factors in Computing Systems (Honolulu, HI, USA) (CHI ’20). Association for               (CHI ’19). Association for Computing Machinery, New York, NY, USA, 1–12.
+     Computing Machinery, New York, NY, USA, 1–12. https://doi.org/10.1145/                    https://doi.org/10.1145/3290605.3300717
+     3313831.3376316                                                                      [42] Vivian Lai, Han Liu, and Chenhao Tan. 2020. "Why is ’Chicago’ Deceptive?"
+[24] Reza Ghaeini, Xiaoli Fern, and Prasad Tadepalli. 2018. Interpreting Recurrent and         Towards Building Model-Driven Tutorials for Humans. In Proceedings of the 2020
+     Attention-Based Neural Models: a Case Study on Natural Language Inference.                CHI Conference on Human Factors in Computing Systems (Honolulu, HI, USA)
+     In Proceedings of the 2018 Conference on Empirical Methods in Natural Language            (CHI ’20). Association for Computing Machinery, New York, NY, USA, 1–13.
+     Processing. Association for Computational Linguistics, Brussels, Belgium, 4952–           https://doi.org/10.1145/3313831.3376873
+     4957. https://doi.org/10.18653/v1/D18-1537                                           [43] Vivian Lai and Chenhao Tan. 2019. On Human Predictions with Explanations and
+[25] Dimitra Gkatzia, Oliver Lemon, and Verena Rieser. 2016. Natural Language                  Predictions of Machine Learning Models: A Case Study on Deception Detection.
+     Generation enhances human decision-making with uncertain information. In                  In Proceedings of the Conference on Fairness, Accountability, and Transparency
+     Proceedings of the 54th Annual Meeting of the Association for Computational               (Atlanta, GA, USA) (FAT* ’19). Association for Computing Machinery, New York,
+     Linguistics (Volume 2: Short Papers). Association for Computational Linguistics,          NY, USA, 29–38. https://doi.org/10.1145/3287560.3287590
+     Berlin, Germany, 264–268. https://doi.org/10.18653/v1/P16-2043                       [44] Himabindu Lakkaraju, Ece Kamar, Rich Caruana, and Eric Horvitz. 2017. Iden-
+[26] Elena L Glassman, Jeremy Scott, Rishabh Singh, Philip J Guo, and Robert C Miller.         tifying Unknown Unknowns in the Open World: Representations and Policies
+     2015. OverCode: Visualizing variation in student solutions to programming                 for Guided Exploration. In Proceedings of the Thirty-First AAAI Conference on
+     problems at scale. ACM Transactions on Computer-Human Interaction (TOCHI)                 Artificial Intelligence (AAAI’17). AAAI Press, San Francisco, California, USA,
+     22, 2 (2015), 1–35.                                                                       2124–2132.
+[27] Ben Green and Yiling Chen. 2019. The principles and limits of algorithm-in-the-      [45] Himabindu Lakkaraju, Ece Kamar, Rich Caruana, and Jure Leskovec.
+     loop decision making. Proceedings of the ACM on Human-Computer Interaction 3,             2017. Interpretable & Explorable Approximations of Black Box Models.
+     CSCW (2019), 1–24.                                                                        arXiv:1707.01154 [cs.AI]
+[28] Chuan Guo, Geoff Pleiss, Yu Sun, and Kilian Q. Weinberger. 2017. On Calibration      [46] John D. Lee and Katrina A. See. 2004. Trust in Automation: Designing for
+     of Modern Neural Networks. In Proceedings of the 34th International Conference            Appropriate Reliance. Human Factors 46, 1 (2004), 50–80. https://doi.org/10.
+     on Machine Learning - Volume 70 (ICML’17). JMLR.org, Sydney, NSW, Australia,              1518/hfes.46.1.50_30392
+     1321–1330.                                                                           [47] Timothy R Levine. 2014. Truth-default theory (TDT) a theory of human deception
+[29] Peter Hase and Mohit Bansal. 2020. Evaluating Explainable AI: Which Algorith-             and deception detection. Journal of Language and Social Psychology 33, 4 (2014),
+     mic Explanations Help Users Predict Model Behavior?. In Proceedings of the 58th           378–392.
+     Annual Meeting of the Association for Computational Linguistics. Association for     [48] B. Lim, A. Dey, and D. Avrahami. 2009. Why and Why Not Explanations Improve
+     Computational Linguistics, Online, 5540–5552. https://doi.org/10.18653/v1/2020.           the Intelligibility of Context-aware Intelligent Systems. In Proceedings of the
+     acl-main.491                                                                              SIGCHI Conference on Human Factors in Computing Systems (Boston, MA, USA)
+[30] Yugo Hayashi and Kosuke Wakabayashi. 2017. Can AI Become Reliable Source                  (CHI ’09). ACM, New York, NY, USA, 2119–2128. https://doi.org/10.1145/1518701.
+     to Support Human Decision Making in a Court Scene?. In Companion of the 2017              1519023
+     ACM Conference on Computer Supported Cooperative Work and Social Computing           [49] Zhouhan Lin, Minwei Feng, Cícero Nogueira dos Santos, Mo Yu, Bing Xiang,
+     (Portland, Oregon, USA) (CSCW ’17 Companion). Association for Computing Ma-               Bowen Zhou, and Yoshua Bengio. 2017. A Structured Self-Attentive Sentence
+     chinery, New York, NY, USA, 195–198. https://doi.org/10.1145/3022198.3026338              Embedding. In 5th International Conference on Learning Representations, ICLR
+[31] Ruining He and Julian McAuley. 2016. Ups and Downs: Modeling the Vi-                      2017, Conference Track Proceedings. OpenReview.net, Toulon, France, 1–15. https:
+     sual Evolution of Fashion Trends with One-Class Collaborative Filtering. In               //openreview.net/forum?id=BJC_jUqxe
+     Proceedings of the 25th International Conference on World Wide Web (Mon-             [50] Zachary C. Lipton. 2018. The Mythos of Model Interpretability: In Machine
+     tréal, Québec, Canada) (WWW ’16). International World Wide Web Confer-                    Learning, the Concept of Interpretability is Both Important and Slippery. Queue
+     ences Steering Committee, Republic and Canton of Geneva, CHE, 507–517.                    16, 3 (June 2018), 31–57. https://doi.org/10.1145/3236386.3241340
+     https://doi.org/10.1145/2872427.2883037                                              [51] Angli Liu, Stephen Soderland, Jonathan Bragg, Christopher H. Lin, Xiao Ling,
+[32] Dan Hendrycks and Kevin Gimpel. 2017. A Baseline for Detecting Misclassified              and Daniel S. Weld. 2016. Effective Crowd Annotation for Relation Extraction. In
+     and Out-of-Distribution Examples in Neural Networks. In 5th International Con-            Proceedings of the 2016 Conference of the North American Chapter of the Association
+     ference on Learning Representations, ICLR 2017. OpenReview.net, Toulon, France,           for Computational Linguistics: Human Language Technologies. Association for
+     1–12. https://openreview.net/forum?id=Hkg4TI9xl                                           Computational Linguistics, San Diego, California, 897–906. https://doi.org/10.
+[33] Chien-Ju Ho, Aleksandrs Slivkins, Siddharth Suri, and Jennifer Wortman Vaughan.           18653/v1/N16-1104
+     2015. Incentivizing High Quality Crowdwork. In Proceedings of the 24th Interna-      [52] Yinhan Liu, Myle Ott, Naman Goyal, Jingfei Du, Mandar Joshi, Danqi Chen, Omer
+     tional Conference on World Wide Web (Florence, Italy) (WWW ’15). International            Levy, Mike Lewis, Luke Zettlemoyer, and Veselin Stoyanov. 2019. RoBERTa: A
+     World Wide Web Conferences Steering Committee, Republic and Canton of                     Robustly Optimized BERT Pretraining Approach. arXiv:1907.11692 [cs.CL]
+     Geneva, CHE, 419–429. https://doi.org/10.1145/2736277.2741102                        [53] Scott M. Lundberg, Bala Nair, Monica S. Vavilala, Mayumi Horibe, Michael J.
+[34] Eric Horvitz. 1999. Principles of Mixed-Initiative User Interfaces. In Proceedings        Eisses, Trevor Adams, David E. Liston, Daniel King-Wai Low, Shu-Fang Newman,
+     of the SIGCHI Conference on Human Factors in Computing Systems (Pittsburgh,               Jerry Kim, and Su-In Lee. 2018. Explainable machine-learning predictions for the
+     Pennsylvania, USA) (CHI ’99). Association for Computing Machinery, New York,              prevention of hypoxaemia during surgery. Nature Biomedical Engineering 2, 10
+     NY, USA, 159–166. https://doi.org/10.1145/302979.303030                                   (01 Oct 2018), 749–760. https://doi.org/10.1038/s41551-018-0304-0
+[35] Eric Horvitz and Tim Paek. 2007. Complementary computing: policies for trans-        [54] Les Macleod. 2011. Avoiding “groupthink” A manager’s challenge. Nursing
+     ferring callers from dialog systems to human receptionists. User Modeling and             management 42, 10 (2011), 44–48.
+     User-Adapted Interaction 17, 1-2 (2007), 159–182.                                    [55] David Madras, Toniann Pitassi, and Richard Zemel. 2018. Predict Responsibly:
+[36] Shagun Jhaver, Amy Bruckman, and Eric Gilbert. 2019. Does transparency in                 Improving Fairness and Accuracy by Learning to Defer. In Proceedings of the
+     moderation really matter? User behavior after content removal explanations on             32nd International Conference on Neural Information Processing Systems (Montréal,
+     reddit. Proceedings of the ACM on Human-Computer Interaction 3, CSCW (2019),              Canada) (NIPS’18). Curran Associates Inc., Red Hook, NY, USA, 6150–6160.
+     1–27.                                                                                [56] Julian McAuley, Jure Leskovec, and Dan Jurafsky. 2012. Learning Attitudes
+[37] Susan Joslyn and Jared LeClerc. 2013. Decisions with uncertainty: The glass half          and Attributes from Multi-Aspect Reviews. In Proceedings of the 2012 IEEE 12th
+     full. Current Directions in Psychological Science 22, 4 (2013), 308–315.                  International Conference on Data Mining (ICDM ’12). IEEE Computer Society,
+[38] Harmanpreet Kaur, Harsha Nori, Samuel Jenkins, Rich Caruana, Hanna Wallach,               USA, 1020–1025. https://doi.org/10.1109/ICDM.2012.110
+     and Jennifer Wortman Vaughan. 2020. Interpreting Interpretability: Under-            [57] T. Miller. 2018. Explanation in artificial intelligence: Insights from the social
+     standing Data Scientists’ Use of Interpretability Tools for Machine Learning. In          sciences. Artificial Intelligence 267 (February 2018), 1–38.
+     Proceedings of the 2020 CHI Conference on Human Factors in Computing Systems         [58] Margaret Mitchell, Simone Wu, Andrew Zaldivar, Parker Barnes, Lucy Vasserman,
+     (Honolulu, HI, USA) (CHI ’20). Association for Computing Machinery, New York,             Ben Hutchinson, Elena Spitzer, Inioluwa Deborah Raji, and Timnit Gebru. 2019.
+     NY, USA, 1–14. https://doi.org/10.1145/3313831.3376219                                    Model Cards for Model Reporting. In Proceedings of the Conference on Fairness,
+[39] Derek J Koehler. 1991. Explanation, imagination, and confidence in judgment.              Accountability, and Transparency (Atlanta, GA, USA) (FAT* ’19). Association for
+     Psychological bulletin 110, 3 (1991), 499.                                                Computing Machinery, New York, NY, USA, 220–229. https://doi.org/10.1145/
+[40] Pang Wei Koh and Percy Liang. 2017. Understanding Black-Box Predictions                   3287560.3287596
+     via Influence Functions. In Proceedings of the 34th International Conference on
+CHI ’21, May 8–13, 2021, Yokohama, Japan                                                                                                                           G. Bansal et al.
+
+
+[59] Hussein Mozannar and David Sontag. 2020. Consistent Estimators for Learning to       [71] LSAT Prep Books Team. 2017. LSAT prep book study guide: quick study & practice
+     Defer to an Expert. In Proceedings of the 37th International Conference on Machine        test questions for the Law School Admissions council’s (LSAC) Law school admission
+     Learning (Proceedings of Machine Learning Research, Vol. 119), Hal Daumé III and          test. Mometrix Test Preparation, Beaumont, TX.
+     Aarti Singh (Eds.). PMLR, Virtual, 7076–7087. http://proceedings.mlr.press/v119/     [72] Kush R. Varshney, Prashant Khanduri, Pranay Sharma, Shan Zhang, and
+     mozannar20b.html                                                                          Pramod K. Varshney. 2018.              Why Interpretability in Machine Learn-
+[60] Limor Nadav-Greenberg and Susan L Joslyn. 2009. Uncertainty forecasts improve             ing? An Answer Using Distributed Detection and Data Fusion Theory.
+     decision making among nonexperts. Journal of Cognitive Engineering and Decision           arXiv:1806.09710 [stat.ML]
+     Making 3, 3 (2009), 209–227.                                                         [73] J. von Neumann and O. Morgenstern. 1947. Theory of games and economic
+[61] Menaka Narayanan, Emily Chen, Jeffrey He, Been Kim, Sam Gershman, and Finale              behavior. Princeton University Press, Princeton, New Jersey.
+     Doshi-Velez. 2018. How do Humans Understand Explanations from Machine                [74] Danding Wang, Qian Yang, Ashraf Abdul, and Brian Y. Lim. 2019. Design-
+     Learning Systems? An Evaluation of the Human-Interpretability of Explanation.             ing Theory-Driven User-Centric Explainable AI. In Proceedings of the 2019 CHI
+     arXiv:1802.00682 [cs.AI]                                                                  Conference on Human Factors in Computing Systems (Glasgow, Scotland Uk)
+[62] Dong Nguyen. 2018. Comparing Automatic and Human Evaluation of Local                      (CHI ’19). Association for Computing Machinery, New York, NY, USA, 1–15.
+     Explanations for Text Classification. In Proceedings of the 2018 Conference of the        https://doi.org/10.1145/3290605.3300831
+     North American Chapter of the Association for Computational Linguistics: Human       [75] Yequan Wang, Minlie Huang, Xiaoyan Zhu, and Li Zhao. 2016. Attention-based
+     Language Technologies, Volume 1 (Long Papers). Association for Computational              LSTM for Aspect-level Sentiment Classification. In Proceedings of the 2016 Confer-
+     Linguistics, New Orleans, Louisiana, 1069–1078. https://doi.org/10.18653/v1/N18-          ence on Empirical Methods in Natural Language Processing. Association for Com-
+     1097                                                                                      putational Linguistics, Austin, Texas, 606–615. https://doi.org/10.18653/v1/D16-
+[63] Joon Sung Park, Rick Barber, Alex Kirlik, and Karrie Karahalios. 2019. A Slow             1058
+     Algorithm Improves Users’ Assessments of the Algorithm’s Accuracy. Proceedings       [76] Hilde J. P. Weerts, Werner van Ipenburg, and Mykola Pechenizkiy. 2019. A Human-
+     of the ACM on Human-Computer Interaction 3, CSCW (2019), 1–15.                            Grounded Evaluation of SHAP for Alert Processing. arXiv:1907.03324 [cs.LG]
+[64] Ethan Perez, Siddharth Karamcheti, Rob Fergus, Jason Weston, Douwe Kiela, and        [77] Daniel S. Weld and Gagan Bansal. 2019. The Challenge of Crafting Intelligible
+     Kyunghyun Cho. 2019. Finding Generalizable Evidence by Learning to Convince               Intelligence. Commun. ACM 62, 6 (May 2019), 70–79. https://doi.org/10.1145/
+     Q&A Models. In Proceedings of the 2019 Conference on Empirical Methods in                 3282486
+     Natural Language Processing and the 9th International Joint Conference on Natural    [78] Jenna Wiens, John Guttag, and Eric Horvitz. 2016. Patient risk stratification
+     Language Processing (EMNLP-IJCNLP). Association for Computational Linguistics,            with time-varying parameters: a multitask learning approach. JMLR 17, 1 (2016),
+     Hong Kong, China, 2402–2411. https://doi.org/10.18653/v1/D19-1244                         2797–2819.
+[65] Forough Poursabzi-Sangdeh, Daniel G. Goldstein, Jake M. Hofman, Jennifer Wort-       [79] Bryan Wilder, Eric Horvitz, and Ece Kamar. 2020. Learning to Complement
+     man Vaughan, and Hanna Wallach. 2019. Manipulating and Measuring Model                    Humans. In Proceedings of the Twenty-Ninth International Joint Conference on
+     Interpretability. arXiv:1802.07810 [cs.AI]                                                Artificial Intelligence, IJCAI-20, Christian Bessiere (Ed.). International Joint Con-
+[66] Marco Tulio Ribeiro, Sameer Singh, and Carlos Guestrin. 2016. "Why Should I               ferences on Artificial Intelligence Organization, Yokohama, Japan, 1526–1533.
+     Trust You?": Explaining the Predictions of Any Classifier. In Proceedings of the          https://doi.org/10.24963/ijcai.2020/212 Main track.
+     22nd ACM SIGKDD International Conference on Knowledge Discovery and Data             [80] Fumeng Yang, Zhuanyi Huang, Jean Scholtz, and Dustin L. Arendt. 2020. How Do
+     Mining (San Francisco, California, USA) (KDD ’16). Association for Computing              Visual Explanations Foster End Users’ Appropriate Trust in Machine Learning?.
+     Machinery, New York, NY, USA, 1135–1144. https://doi.org/10.1145/2939672.                 In Proceedings of the 25th International Conference on Intelligent User Interfaces
+     2939778                                                                                   (Cagliari, Italy) (IUI ’20). Association for Computing Machinery, New York, NY,
+[67] Philipp Schmidt and Felix Biessmann. 2019. Quantifying Interpretability and               USA, 189–201. https://doi.org/10.1145/3377325.3377480
+     Trust in Machine Learning Systems. arXiv:1901.08558 [cs.LG]                          [81] Kun Yu, Shlomo Berkovsky, Ronnie Taib, Jianlong Zhou, and Fang Chen. 2019.
+[68] C. Estelle Smith, Bowen Yu, Anjali Srivastava, Aaron Halfaker, Loren Terveen,             Do I Trust My Machine Teammate? An Investigation from Perception to Decision.
+     and Haiyi Zhu. 2020. Keeping Community in the Loop: Understanding Wikipedia               In Proceedings of the 24th International Conference on Intelligent User Interfaces
+     Stakeholder Values for Machine Learning-Based Systems. In Proceedings of the              (Marina del Ray, California) (IUI ’19). Association for Computing Machinery, New
+     2020 CHI Conference on Human Factors in Computing Systems (Honolulu, HI,                  York, NY, USA, 460–468. https://doi.org/10.1145/3301275.3302277
+     USA) (CHI ’20). Association for Computing Machinery, New York, NY, USA, 1–14.        [82] Weihao Yu, Zihang Jiang, Yanfei Dong, and Jiashi Feng. 2020. ReClor: A Reading
+     https://doi.org/10.1145/3313831.3376783                                                   Comprehension Dataset Requiring Logical Reasoning. In 8th International Con-
+[69] Simone Stumpf, Vidya Rajaram, Lida Li, Weng-Keen Wong, Margaret Burnett,                  ference on Learning Representations, ICLR 2020. OpenReview.net, Addis Ababa,
+     Thomas Dietterich, Erin Sullivan, and Jonathan Herlocker. 2009. Interacting               Ethiopia, 1–26. https://openreview.net/forum?id=HJgJtT4tvB
+     meaningfully with machine learning systems: Three experiments. International         [83] Yunfeng Zhang, Q. Vera Liao, and Rachel K. E. Bellamy. 2020. Effect of Confi-
+     Journal of Human-Computer Studies 67, 8 (2009), 639–662.                                  dence and Explanation on Accuracy and Trust Calibration in AI-Assisted Decision
+[70] Sarah Tan, Julius Adebayo, Kori Inkpen, and Ece Kamar. 2018. Inves-                       Making. In Proceedings of the 2020 Conference on Fairness, Accountability, and
+     tigating Human + Machine Complementarity for Recidivism Predictions.                      Transparency (Barcelona, Spain) (FAT* ’20). Association for Computing Machin-
+     arXiv:1808.09123 [cs.LG]                                                                  ery, New York, NY, USA, 295–305. https://doi.org/10.1145/3351095.3372852
+

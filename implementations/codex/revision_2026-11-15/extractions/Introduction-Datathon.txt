@@ -1,0 +1,388 @@
+CELL 0 markdown
+![Datathon PolyFinances 2026](attachment:entete-datathon.jpg)
+
+CELL 1 markdown
+# Bienvenue dans l'aventure !
+
+Prépare-toi à vivre **un week-end intense de collaboration, d'analyse et d'innovation** où se rencontrent **finance, science des données et intelligence artificielle.**
+
+Le Datathon PolyFinances 2026, c'est bien plus qu'une compétition : c'est **une immersion dans la réalité de la finance,** où tes idées et ton esprit analytique feront la différence.
+
+CELL 2 markdown
+## Rappel du défi : AlphaForge AI
+
+**Contexte :** Les investisseurs disposent d'une abondance d'informations (cours de marché, publications d'entreprises, conditions macroéconomiques, nouvelles financières, indicateurs de risque). La difficulté consiste à les sélectionner, les mettre en relation et en tirer des conclusions compréhensibles selon le contexte de chaque investisseur.
+
+**Objectif :** Concevoir une solution originale utilisant l'intelligence artificielle et des **données financières publiques** pour appuyer l'analyse ou la prise de décision en investissement, en tenant compte de différents profils d'investisseurs et en choisissant librement les actifs pertinents.
+
+**Personas de référence :**
+
+| Persona | Risque | Objectif indicatif |
+|---------|--------|--------------------|
+| Prudent | Faible | Préserver le capital, rechercher la stabilité, maîtriser la volatilité et la concentration |
+| Équilibré | Modéré | Concilier croissance et stabilité, diversifier, arbitrer entre potentiel et risque |
+| Audacieux | Élevé | Rechercher un potentiel de croissance plus important, accepter davantage de fluctuations |
+
+**À retenir :** L'objectif n'est pas de trouver le portefeuille au meilleur rendement passé, mais de démontrer une démarche crédible, innovante et utile. Le défi se déroule **uniquement en simulation** : aucune transaction réelle et aucun conseil financier personnalisé.
+
+**Il est fortement recommandé de lire attentivement l'énoncé complet du défi partagé avec tous les participants pour comprendre tous les détails, livrables et critères d'appréciation.**
+
+CELL 3 markdown
+---
+
+CELL 4 markdown
+## Votre environnement
+
+Ce notebook fonctionne dans JupyterLab sur AWS (par exemple dans Amazon SageMaker Unified Studio) ou sur votre ordinateur avec les identifiants de votre compte AWS du Datathon. Utilisez la région `us-east-1`.
+
+**Important :** L'utilisation de cet environnement n'est pas obligatoire. Vous disposez de droits d'administration sur votre compte AWS et êtes libres d'utiliser les services et outils de votre choix pour développer votre solution.
+
+**Attention :** Les comptes AWS seront fermés et toutes les données détruites le **lundi 16 novembre à 13 h 59**. Téléchargez vos notebooks, votre code et vos résultats avant cette date.
+
+CELL 5 markdown
+### Installation des bibliothèques
+
+Si pip affiche un avertissement sur `sagemaker-studio` et des paquets `pymongo` manquants, il vient de l'image SageMaker et n'empêche pas ce notebook de fonctionner.
+
+CELL 6 code
+%pip install --quiet yfinance strands-agents
+
+CELL 7 code
+import io
+import os
+
+import boto3
+import numpy as np
+import pandas as pd
+import requests
+import yfinance as yf
+from IPython.display import Markdown, display
+
+# Région AWS de votre environnement
+REGION = boto3.session.Session().region_name or "us-east-1"
+print(f"Région AWS : {REGION}")
+
+# Dossier local pour conserver les données téléchargées (traçabilité)
+DOSSIER_DONNEES = "donnees"
+os.makedirs(DOSSIER_DONNEES, exist_ok=True)
+
+CELL 8 markdown
+---
+
+CELL 9 markdown
+## Les données publiques
+
+Aucun jeu de données n'est imposé : vous choisissez les actifs et les sources pertinents pour votre approche. Les exemples ci-dessous utilisent des sources publiques citées dans l'énoncé. Pour chaque source, notez la date, la devise et les traitements appliqués, et respectez ses conditions d'utilisation.
+
+| Source | Données | Accès |
+|--------|---------|-------|
+| Yahoo Finance (bibliothèque `yfinance`) | Prix quotidiens, dividendes, fractionnements | Sans clé, usage personnel et éducatif |
+| [Banque du Canada (Valet)](https://www.banqueducanada.ca/valet/docs) | Taux de change, taux directeur | Sans clé |
+| [FRED](https://fred.stlouisfed.org/) | Séries macroéconomiques et taux américains | Sans clé pour le téléchargement CSV |
+| [SEC EDGAR](https://www.sec.gov/search-filings/edgar-application-programming-interfaces) | Données financières déclarées par les entreprises américaines | Sans clé, en-tête `User-Agent` avec un courriel obligatoire |
+
+### Prix quotidiens d'un échantillon d'actifs
+
+Les symboles ci-dessous sont des exemples indicatifs tirés de l'énoncé. Modifiez la liste librement.
+
+CELL 10 code
+ACTIFS = {
+    "RY.TO": "Banque Royale (actions canadiennes)",
+    "SHOP.TO": "Shopify (actions canadiennes)",
+    "AAPL": "Apple (actions américaines)",
+    "MSFT": "Microsoft (actions américaines)",
+    "XIU.TO": "FNB S&P/TSX 60",
+    "SPY": "FNB S&P 500",
+    "XBB.TO": "FNB obligataire canadien",
+    "AGG": "FNB obligataire américain",
+    "GLD": "FNB lié à l'or",
+    "BTC-USD": "Bitcoin",
+}
+
+prix = yf.download(list(ACTIFS), period="5y", interval="1d", auto_adjust=True, progress=False)["Close"]
+prix = prix[list(ACTIFS)]
+prix.to_csv(f"{DOSSIER_DONNEES}/prix_quotidiens.csv")
+
+print(f"{prix.shape[0]} jours, de {prix.index.min():%Y-%m-%d} à {prix.index.max():%Y-%m-%d}")
+prix.dropna(thresh=len(ACTIFS) // 2).tail()
+
+CELL 11 markdown
+### Taux de change CAD/USD (Banque du Canada)
+
+Les actifs sont cotés en CAD ou en USD. Pour les comparer, convertissez-les dans une même devise.
+
+CELL 12 code
+reponse = requests.get("https://www.bankofcanada.ca/valet/observations/FXUSDCAD/json?start_date=2021-01-01", timeout=30)
+reponse.raise_for_status()
+
+usd_cad = pd.Series(
+    {obs["d"]: float(obs["FXUSDCAD"]["v"]) for obs in reponse.json()["observations"]},
+    name="USD_CAD",
+)
+usd_cad.index = pd.to_datetime(usd_cad.index)
+usd_cad.to_csv(f"{DOSSIER_DONNEES}/taux_change_usd_cad.csv")
+
+print(f"1 USD = {usd_cad.iloc[-1]:.4f} CAD au {usd_cad.index[-1]:%Y-%m-%d}")
+
+CELL 13 markdown
+### Données macroéconomiques (FRED)
+
+Exemple : le taux des obligations du Trésor américain à 10 ans (`DGS10`). Explorez le [catalogue FRED](https://fred.stlouisfed.org/) pour d'autres séries (inflation, chômage, etc.).
+
+CELL 14 code
+reponse = requests.get("https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10", timeout=30)
+reponse.raise_for_status()
+
+taux_10_ans = pd.read_csv(io.StringIO(reponse.text), index_col=0, parse_dates=True, na_values=".")["DGS10"].dropna()
+taux_10_ans.to_csv(f"{DOSSIER_DONNEES}/fred_dgs10.csv")
+
+print(f"Taux du Trésor américain à 10 ans : {taux_10_ans.iloc[-1]:.2f} % au {taux_10_ans.index[-1]:%Y-%m-%d}")
+
+CELL 15 markdown
+### Données financières d'entreprises (SEC EDGAR)
+
+L'API de la SEC exige un en-tête `User-Agent` qui vous identifie. Remplacez le courriel par le vôtre.
+
+CELL 16 code
+ENTETES_SEC = {"User-Agent": "Equipe Datathon PolyFinances votre.courriel@exemple.com"}
+
+# Apple : CIK 0000320193. Trouvez le CIK d'une entreprise sur https://www.sec.gov/search-filings
+reponse = requests.get("https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json", headers=ENTETES_SEC, timeout=30)
+reponse.raise_for_status()
+faits = reponse.json()["facts"]["us-gaap"]
+
+revenus = pd.DataFrame(faits["RevenueFromContractWithCustomerExcludingAssessedTax"]["units"]["USD"])
+duree_jours = (pd.to_datetime(revenus["end"]) - pd.to_datetime(revenus["start"])).dt.days
+revenus_annuels = revenus[(revenus["form"] == "10-K") & duree_jours.between(350, 380)].drop_duplicates("end").tail(5)
+revenus_annuels[["end", "val", "filed"]].rename(columns={"end": "fin_exercice", "val": "revenus_usd", "filed": "date_depot"})
+
+CELL 17 markdown
+---
+
+CELL 18 markdown
+## Indicateurs de risque et de rendement
+
+Quelques indicateurs simples, calculés sur les rendements quotidiens. Ils ne présument pas des rendements futurs.
+
+CELL 19 code
+# Rendements calculés actif par actif : les actions ne se négocient pas la fin de semaine, contrairement aux cryptoactifs
+rendements = prix.apply(lambda serie: serie.dropna().pct_change())
+# 252 jours de bourse par an (365 pour les cryptoactifs, qui se négocient tous les jours)
+jours_par_an = pd.Series({s: 365 if s.endswith("-USD") else 252 for s in prix.columns})
+
+
+def perte_maximale(serie):
+    serie = serie.dropna()
+    return (serie / serie.cummax() - 1).min()
+
+
+indicateurs = pd.DataFrame({
+    "description": pd.Series(ACTIFS),
+    "rendement_annualise": (1 + rendements.mean()) ** jours_par_an - 1,
+    "volatilite_annualisee": rendements.std() * np.sqrt(jours_par_an),
+    "perte_maximale": prix.apply(perte_maximale),
+})
+indicateurs["ratio_rendement_risque"] = indicateurs["rendement_annualise"] / indicateurs["volatilite_annualisee"]
+indicateurs = indicateurs.sort_values("volatilite_annualisee")
+
+# Affichage en pourcentages (les valeurs de `indicateurs` restent numériques)
+affichage = indicateurs.copy()
+for colonne in ["rendement_annualise", "volatilite_annualisee", "perte_maximale"]:
+    affichage[colonne] = affichage[colonne].map("{:.1%}".format)
+affichage["ratio_rendement_risque"] = affichage["ratio_rendement_risque"].map("{:.2f}".format)
+affichage
+
+CELL 20 code
+# Corrélations entre les actifs : utiles pour juger de la diversification
+rendements.corr().round(2)
+
+CELL 21 markdown
+---
+
+CELL 22 markdown
+## L'IA générative avec Amazon Bedrock
+
+Exemple d'utilisation simple avec l'API Converse. Les modèles les plus récents sont accessibles via un profil d'inférence global (préfixe `global.`). Tous les modèles disponibles dans Amazon Bedrock sont permis pendant le Datathon.
+
+CELL 23 code
+# Modèles utilisés dans ce notebook. Consultez la liste plus bas pour en choisir d'autres.
+# Claude Sonnet 5.5 et Haiku 5.5 ne sont pas disponibles dans les comptes du Datathon.
+MODELE_PRINCIPAL = "global.anthropic.claude-sonnet-5"
+MODELE_RAPIDE = "global.anthropic.claude-haiku-4-5-20251001-v1:0"
+
+bedrock_runtime = boto3.client("bedrock-runtime", region_name=REGION)
+
+
+def texte_reponse(reponse):
+    # Retourne le texte d'une réponse Converse (certains modèles ajoutent d'abord un bloc de raisonnement)
+    return "".join(bloc["text"] for bloc in reponse["output"]["message"]["content"] if "text" in bloc)
+
+
+reponse = bedrock_runtime.converse(
+    modelId=MODELE_RAPIDE,
+    messages=[{"role": "user", "content": [{"text": "Explique en 3 phrases ce qu'est la volatilité d'un actif financier."}]}],
+)
+
+display(Markdown(texte_reponse(reponse)))
+
+CELL 24 markdown
+### Adapter l'explication au profil de l'investisseur
+
+La même information financière peut être interprétée différemment selon le persona. Ici, le modèle reçoit les indicateurs calculés plus haut et un profil fictif.
+
+CELL 25 code
+CONSIGNES_SYSTEME = (
+    "Tu es un analyste qui aide des étudiants dans un concours de finance simulée. "
+    "Base-toi uniquement sur les données fournies, distingue les faits des hypothèses et signale les limites. "
+    "Il s'agit d'une simulation : ne présente jamais ta réponse comme un conseil financier personnalisé."
+)
+
+persona = "Prudent : risque faible, préserver le capital, rechercher la stabilité, maîtriser la volatilité et la concentration."
+
+reponse = bedrock_runtime.converse(
+    modelId=MODELE_PRINCIPAL,
+    system=[{"text": CONSIGNES_SYSTEME}],
+    messages=[{
+        "role": "user",
+        "content": [{"text": (
+            f"Profil fictif : {persona}\n\n"
+            f"Indicateurs historiques sur 5 ans :\n{indicateurs.round(3).to_string()}\n\n"
+            "En 150 mots maximum, quels actifs semblent cohérents avec ce profil, lesquels ne le sont pas, et pourquoi ?"
+        )}],
+    }],
+)
+
+display(Markdown(texte_reponse(reponse)))
+
+CELL 26 markdown
+### Liste des modèles disponibles
+
+CELL 27 code
+from botocore.exceptions import ClientError
+
+bedrock = boto3.client("bedrock", region_name=REGION)
+
+try:
+    profils = []
+    for page in bedrock.get_paginator("list_inference_profiles").paginate(typeEquals="SYSTEM_DEFINED"):
+        profils.extend(page["inferenceProfileSummaries"])
+    for profil in sorted(profils, key=lambda p: p["inferenceProfileId"]):
+        if profil["inferenceProfileId"].startswith("global."):
+            print(profil["inferenceProfileId"])
+except ClientError as erreur:
+    if erreur.response["Error"]["Code"] != "AccessDeniedException":
+        raise
+    print("Le rôle de ce notebook n'a pas le droit de lister les modèles (bedrock:ListInferenceProfiles).")
+    print("Ajoutez la politique AmazonBedrockFullAccess au rôle AmazonSageMaker-ExecutionRole-... :")
+    print("voir la page « SageMaker Unified Studio et notebook d'introduction » de l'atelier.")
+    print("Les appels de modèles plus haut fonctionnent sans cette permission.")
+
+CELL 28 markdown
+---
+
+CELL 29 markdown
+## Extraire des données structurées d'un texte
+
+Les nouvelles et communiqués sont des données qualitatives. Avec les **sorties structurées** d'Amazon Bedrock, vous donnez un schéma JSON au modèle et sa réponse respecte ce schéma. Ici, le schéma vient d'une classe [Pydantic](https://docs.pydantic.dev/), qui sert aussi à valider la réponse avant de la combiner avec vos données quantitatives.
+
+CELL 30 code
+import json
+from typing import Literal
+
+from pydantic import BaseModel, ConfigDict, Field
+
+
+class SignalNouvelle(BaseModel):
+    model_config = ConfigDict(extra="forbid")  # exigé par Bedrock : additionalProperties = false
+
+    entreprise: str
+    symbole_boursier: str
+    type_evenement: Literal["résultats", "acquisition", "réglementation", "direction", "autre"]
+    sentiment: Literal["positif", "neutre", "négatif"]
+    chiffres_cles: list[str] = Field(description="Chiffres mentionnés, avec leur unité")
+    risques_mentionnes: list[str]
+
+
+# Communiqué fictif
+texte = (
+    "Exemple Corp. (NASDAQ: EXMP) a annoncé aujourd'hui ses résultats du troisième trimestre 2026. "
+    "Les revenus ont atteint 4,2 milliards de dollars américains, en hausse de 12 % sur un an, et le bénéfice "
+    "par action s'établit à 1,87 $. La direction souligne toutefois l'incertitude liée aux nouveaux tarifs "
+    "douaniers, la volatilité des taux de change et un ralentissement de la demande en Europe."
+)
+
+reponse = bedrock_runtime.converse(
+    modelId=MODELE_RAPIDE,
+    messages=[{"role": "user", "content": [{"text": f"Analyse ce communiqué : {texte}"}]}],
+    inferenceConfig={"maxTokens": 1000},
+    outputConfig={"textFormat": {"type": "json_schema", "structure": {"jsonSchema": {
+        "name": "signal_nouvelle",
+        "description": "Signaux extraits d'un communiqué financier",
+        "schema": json.dumps(SignalNouvelle.model_json_schema()),  # une chaîne JSON, pas un dictionnaire
+    }}}},
+)
+
+signal = SignalNouvelle.model_validate_json(texte_reponse(reponse))
+signal.model_dump()
+
+CELL 31 markdown
+---
+
+CELL 32 markdown
+## Un agent qui utilise vos données
+
+Un agent combine un modèle et des **outils** : des fonctions Python qu'il peut décider d'appeler. Voici un exemple simple avec [Strands Agents](https://strandsagents.com/), où l'agent consulte les indicateurs calculés plus haut au lieu de les inventer.
+
+CELL 33 code
+from strands import Agent, tool
+from strands.models import BedrockModel
+
+
+@tool
+def indicateurs_actif(symbole: str) -> dict:
+    """Retourne les indicateurs historiques (rendement, volatilité, perte maximale) d'un actif de l'échantillon.
+
+    Args:
+        symbole: Symbole boursier, par exemple RY.TO ou SPY.
+    """
+    if symbole not in indicateurs.index:
+        return {"erreur": f"Symbole inconnu. Symboles disponibles : {', '.join(indicateurs.index)}"}
+    return indicateurs.loc[symbole].to_dict()
+
+
+@tool
+def correlation(symbole_a: str, symbole_b: str) -> float:
+    """Retourne la corrélation des rendements quotidiens entre deux actifs de l'échantillon.
+
+    Args:
+        symbole_a: Premier symbole boursier.
+        symbole_b: Second symbole boursier.
+    """
+    return float(rendements[symbole_a].corr(rendements[symbole_b]))
+
+
+agent = Agent(
+    model=BedrockModel(model_id=MODELE_PRINCIPAL, region_name=REGION),
+    system_prompt=CONSIGNES_SYSTEME,
+    tools=[indicateurs_actif, correlation],
+)
+
+resultat = agent(
+    "Compare RY.TO et SHOP.TO pour un profil prudent puis pour un profil audacieux. "
+    "Est-ce que XBB.TO diversifierait un portefeuille composé de XIU.TO ? Réponds en 200 mots maximum."
+)
+
+CELL 34 markdown
+---
+## À vous de jouer maintenant !
+
+**Félicitations !** Vous avez maintenant les outils en main pour relever ce défi passionnant.
+
+**Il est temps de créer votre propre notebook** et de laisser libre cours à votre créativité et votre expertise technique.
+
+Quelques rappels :
+- Identifiez la source, la date et la devise de chaque donnée, et n'utilisez pas dans une simulation une information qui n'était pas encore publiée à la date simulée.
+- Aucune transaction réelle, aucun renseignement personnel ou bancaire réel : les portefeuilles et profils peuvent être entièrement fictifs.
+- Téléchargez votre travail avant la fermeture des comptes AWS, le **lundi 16 novembre à 13 h 59**.
+
+**Bonne chance, et que le meilleur gagne !** 🚀

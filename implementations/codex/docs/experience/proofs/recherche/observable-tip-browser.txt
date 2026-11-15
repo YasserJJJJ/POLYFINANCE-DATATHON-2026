@@ -1,0 +1,541 @@
+Skip to content
+Plot
+Search
+K
+0.6.19
+GitHub️ 5.4k
+Sidebar Navigation
+Introduction
+
+What is Plot?
+
+Why Plot?
+
+Getting started
+
+Examples
+
+Features
+
+Plots
+
+Marks
+
+Scales
+
+Projections
+
+Transforms
+
+Interactions
+
+Facets
+
+Legends
+
+Curves
+
+Formats
+
+Intervals
+
+Markers
+
+Shorthand
+
+Accessibility
+
+Marks
+
+Area
+
+Arrow
+
+Auto
+
+Axis
+
+Bar
+
+Bollinger
+
+Box
+
+Cell
+
+Contour
+
+Delaunay
+
+Density
+
+Difference
+
+Dot
+
+Frame
+
+Geo
+
+Grid
+
+Hexgrid
+
+Image
+
+Line
+
+Linear regression
+
+Link
+
+Raster
+
+Rect
+
+Rule
+
+Text
+
+Tick
+
+Tip
+
+Tree
+
+Vector
+
+Waffle
+
+Transforms
+Interactions
+
+API index
+
+On this page
+Tip options
+tip(data, options)
+Tip mark ^0.6.7
+​
+
+The tip mark displays text, or several name-value pairs, in a floating box anchored to a given position in x and y. The tip mark is often paired with the pointer transform to reveal details on demand when hovering over a chart, as in this line chart of Apple stock price:
+
+60
+70
+80
+90
+100
+110
+120
+130
+140
+150
+160
+170
+180
+190
+↑ Close
+2014
+2015
+2016
+2017
+2018
+Fork
+js
+Plot.lineY(aapl, {x: "Date", y: "Close", tip: true}).plot({y: {grid: true}})
+
+The above code uses the tip mark option; the code can be written more explicitly with a tip mark and a pointer transform.
+
+js
+Plot.plot({
+  y: {grid: true},
+  marks: [
+    Plot.lineY(aapl, {x: "Date", y: "Close"}),
+    Plot.tip(aapl, Plot.pointerX({x: "Date", y: "Close"}))
+  ]
+})
+
+The tip mark defaults the pool option ^0.6.18 to true, such that if there are multiple tip marks and pointer transforms, at most one tip will be visible at a time. Setting the pool option to false allows multiple tips to be visible simultaneously; in this case, beware that tips may collide.
+
+The tip mark can also be used for static annotations, say to draw attention to elements of interest or to add context. The tip text is supplied via the title channel. If the tip mark‘s data is an array of strings, the title channel defaults to identity.
+
+60
+70
+80
+90
+100
+110
+120
+130
+140
+150
+160
+170
+180
+190
+↑ Close
+2014
+2015
+2016
+2017
+2018
+​Apple stock reaches a new high of $133​on Feb. 23, 2015. The release of the first​Apple Watch, slated for April, is hotly​anticipated.
+​Apple stock drops 8% after the company​misses Q2 revenue targets and reports​declining iPhone sales. It reaches a two-​year low of $90.34 on May 12.
+Fork
+js
+Plot.plot({
+  y: {grid: true},
+  marks: [
+    Plot.lineY(aapl, {x: "Date", y: "Close"}),
+    Plot.tip(
+      [`Apple stock reaches a new high of $133 on Feb. 23, 2015. The release of the first Apple Watch, slated for April, is hotly anticipated.`],
+      {x: new Date("2015-02-23"), y: 133, dy: -3, anchor: "bottom"}
+    ),
+    Plot.tip(
+      [`Apple stock drops 8% after the company misses Q2 revenue targets and reports declining iPhone sales. It reaches a two-year low of $90.34 on May 12.`],
+      {x: new Date("2016-05-12"), y: 90.34, dy: 3, anchor: "top"}
+    )
+  ]
+})
+
+When using the title channel, the tip mark wraps text to 20 ems by default, and preserves newlines in the provided text. Use the lineWidth option to adjust the width, along with other text options such as lineHeight, textOverflow, fontFamily, and fontSize; see the text mark for more details.
+
+The title channel can be used with interactive tips, too. If you have a few moments, hover the chart below to read about various athletes who competed at Rio 2016.
+
+female
+male
+sex
+1.4
+1.6
+1.8
+2.0
+2.2
+1.4
+1.6
+1.8
+2.0
+2.2
+↑ height
+40
+60
+80
+100
+120
+140
+160
+weight →
+Fork
+js
+Plot.plot({
+  grid: true,
+  marks: [
+    Plot.dot(olympians, {
+      x: "weight",
+      y: "height",
+      fy: "sex",
+      sort: (d) => !!d.info,
+      stroke: (d) => d.info ? "currentColor" : "#aaa"
+    }),
+    Plot.tip(olympians, Plot.pointer({
+      x: "weight",
+      y: "height",
+      fy: "sex",
+      filter: (d) => d.info,
+      title: (d) => [d.name, d.info].join("\n\n")
+    }))
+  ]
+})
+
+If no title channel is supplied, the tip mark displays all channel values. You can supply additional name-value pairs by registering extra channels using the channels mark option. In the scatterplot of Olympic athletes below, you can hover to see the name and sport of each athlete. This is helpful for noticing patterns — tall basketball players, giant weightlifters and judoka, diminutive gymnasts — and for seeing individuals.
+
+1.3
+1.4
+1.5
+1.6
+1.7
+1.8
+1.9
+2.0
+2.1
+2.2
+↑ height
+40
+60
+80
+100
+120
+140
+160
+weight →
+Fork
+js
+Plot.dot(olympians, {
+  x: "weight",
+  y: "height",
+  stroke: "sex",
+  channels: {name: "name", sport: "sport"},
+  tip: true
+}).plot()
+
+INFO
+
+The tallest athlete in this dataset, swimmer Kevin Cordes, is likely an error: his official height is 1.96m (6′ 5″) not 2.21m (7′ 3″). Basketball player Li Muhao is likely the true tallest.
+
+If a channel is bound to the color or opacity scale, the tip mark displays a swatch to reinforce the encoding, such as female ■ or male ■.
+
+The tip mark recognizes that x1 & x2 and y1 & y2 are paired channels. Below, observe that the weight shown in the tip is a range such as 64–66 kg; however, the frequency is shown as the difference between the y1 and y2 channels. The latter is achieved by the stack transform setting a channel hint to indicate that y1 and y2 represent a length.
+
+0
+50
+100
+150
+200
+250
+300
+350
+400
+450
+500
+550
+600
+↑ Frequency
+40
+60
+80
+100
+120
+140
+160
+weight →
+Fork
+js
+Plot.rectY(olympians, Plot.binX({y: "count"}, {x: "weight", fill: "sex", tip: true})).plot()
+
+This even works when stacking negative values, say to mirror the histogram instead of stacking it. (The tip displays negative frequency, but this is consistent with the y axis.)
+
+−400
+−300
+−200
+−100
+0
+100
+200
+300
+400
+↑ Frequency
+40
+60
+80
+100
+120
+140
+160
+weight →
+Fork
+js
+Plot.rectY(olympians, Plot.binX({y: "sum"}, {x: "weight", y: (d) => d.sex === "male" ? 1 : -1, fill: "sex", tip: true})).plot({y: {label: "Frequency"}})
+
+The order and formatting of channels in the tip can be customized with the format option ^0.6.11, which accepts a key-value object mapping channel names to formats. Each format can be a string (for number or time formats), a function that receives the value as input and returns a string, true to use the default format, and null or false to suppress. The order of channels in the tip follows their order in the format object followed by any additional channels. When using the title channel, the format option may be specified as a string or a function; the given format will then apply to the title channel. ^0.6.15
+
+A channel’s label can be specified alongside its value as a {value, label} object; if a channel label is not specified, the associated scale’s label is used, if any; if there is no associated scale, or if the scale has no label, the channel name is used instead.
+
+1.3
+1.4
+1.5
+1.6
+1.7
+1.8
+1.9
+2.0
+2.1
+2.2
+↑ height
+40
+60
+80
+100
+120
+140
+160
+weight →
+Fork
+js
+Plot.dot(olympians, {
+  x: "weight",
+  y: "height",
+  stroke: "sex",
+  channels: {
+    name: "name",
+    nationality: {
+      value: "nationality",
+      label: "country"
+    },
+    sport: "sport"
+  },
+  tip: {
+    format: {
+      name: true,
+      sport: true,
+      nationality: true,
+      y: (d) => `${d}m`,
+      x: (d) => `${d}kg`,
+      stroke: false
+    }
+  }
+}).plot()
+
+The tip mark supports nine different orientations specified by the anchor option: the four sides (top, right, bottom, left), the four corners (top-left, top-right, bottom-right, bottom-left), and middle. Note that when middle is used, the tip will obscure its anchor point.
+
+​top
+​right
+​bottom
+​left
+​top-left
+​top-right
+​bottom-right
+​bottom-left
+​middle
+js
+Plot.plot({
+  height: 160,
+  marks: [
+    Plot.frame({strokeOpacity: 0.2}),
+    [
+      "top", "right", "bottom", "left", // sides
+      "top-left", "top-right", "bottom-right", "bottom-left", // corners
+      "middle"
+    ].map((anchor) => [
+      Plot.dot({length: 1}, {frameAnchor: anchor, fill: "blue"}),
+      Plot.tip([anchor], {frameAnchor: anchor, anchor})
+    ])
+  ]
+})
+
+If you don’t specify an explicit anchor, the tip mark will choose one automatically, using the preferredAnchor ^0.6.12 if it fits. The preferred anchor defaults to bottom, except when using the tip option and the pointerY pointing mode, in which case it defaults to left. In some cases, it may not be possible to fit the tip within the plot’s frame; consider setting the plot’s style to overflow: visible; to prevent the tip from being truncated.
+
+The tip mark is compatible with transforms that derive x and y dynamically from data, such as the centroid transform which computes polygon centroids. Below, a map of the United States shows state names. We reduce the size of the tips by setting the textPadding option to 3 pixels instead of the default 8.
+
+​Arizona
+​Louisiana
+​Idaho
+​Minnesota
+​North Dakota
+​South Dakota
+​New York
+​Alaska
+​Georgia
+​Indiana
+​Michigan
+​Mississippi
+​Ohio
+​Texas
+​Nebraska
+​Colorado
+​Maryland
+​Kansas
+​Illinois
+​Wisconsin
+​California
+​Iowa
+​Pennsylvania
+​Montana
+​Missouri
+​Florida
+​Kentucky
+​Maine
+​Utah
+​Oklahoma
+​Tennessee
+​Oregon
+​West Virginia
+​Arkansas
+​Washington
+​North Carolina
+​Virginia
+​Wyoming
+​Alabama
+​South Carolina
+​New Mexico
+​New Hampshire
+​Vermont
+​Nevada
+​Hawaii
+​Massachusetts
+​Rhode Island
+​New Jersey
+​Delaware
+​Connecticut
+​District of Columbia
+Fork
+js
+Plot.plot({
+  projection: "albers-usa",
+  marks: [
+    Plot.geo(states),
+    Plot.tip(states, Plot.geoCentroid({title: (d) => d.properties.name, anchor: "bottom", textPadding: 3}))
+  ]
+})
+
+TIP
+
+When multiple tips are visible simultaneously, some may collide; consider using the pointer interaction to show only the one closest to the pointer, or use multiple tip marks and adjust the anchor option for each to minimize occlusion.
+
+Tip options
+​
+
+The following position options are supported:
+
+x, x1, or x2 - the horizontal↔︎ position channel
+y, y1, or y2 - the vertical↕︎ position channel
+frameAnchor - fallback position if x or y are otherwise unspecified
+
+To resolve the anchor position, the tip mark applies the following order of precedence:
+
+the midpoint of x1 and x2, if both are present;
+otherwise x, if present;
+otherwise x1, if present;
+and lastly the position given by the frameAnchor.
+
+The same precedence applies to the y, y1, and y2 channels.
+
+These tip-specific options control the tip appearance:
+
+anchor - top, right, bottom, left, top-left, top-right, bottom-right, bottom-left, or middle
+pointerSize - the size of the tip’s pointer in pixels; defaults to 12
+pathFilter - the image filter for the tip’s box; defaults to a drop shadow
+textPadding - the padding around the text in pixels; defaults to 8
+
+The tip mark does not support the standard style channels such as varying fill or stroke; channels are used exclusively to control the displayed values rather than the tip’s appearance. You can however use the these options for a constant fill, fillOpacity, stroke, strokeOpacity, or strokeWidth on the path element surrounding the tip text.
+
+​Danger! This tip is red.
+js
+Plot.tip(["Danger! This tip is red."], {
+  anchor: "bottom",
+  frameAnchor: "bottom",
+  fill: "red"
+}).plot()
+
+These standard text options control the display of text within the tip:
+
+monospace - if true, changes the default fontFamily and metrics to monospace
+fontFamily - the font name; defaults to system-ui
+fontSize - the font size in pixels; defaults to 10
+fontStyle - the font style; defaults to normal
+fontVariant - the font variant; defaults to normal
+fontWeight - the font weight; defaults to normal
+textAnchor - the text anchor for horizontal position; start, end, or middle
+lineHeight - the line height in ems; defaults to 1
+lineWidth - the line width in ems, for wrapping; defaults to 20
+textOverflow - how to wrap or clip lines longer than the specified line width
+tip(data, options)
+​
+js
+Plot.tip(aapl, {x: "Date", y: "Close"})
+
+Returns a new tip mark with the given data and options.
+
+Pager
+Previous page
+Tick
+Next page
+Tree

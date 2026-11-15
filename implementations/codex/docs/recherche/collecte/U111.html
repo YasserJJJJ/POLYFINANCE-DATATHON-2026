@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Quotas for the bedrock-runtime endpoint - Amazon Bedrock</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="quotas-runtime" /><meta name="default_state" content="quotas-runtime" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/bedrock/latest/userguide/quotas-runtime.html" /><link rel="alternate" type="text/markdown" href="https://docs.aws.amazon.com/bedrock/latest/userguide/quotas-runtime.md" title="Markdown version" /><meta name="description" content="Learn about the per-model quotas that govern inference traffic to the bedrock-runtime endpoint." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon Bedrock" /><meta name="guide" content="User Guide" /><meta name="abstract" content="User Guide for the Amazon Bedrock service." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/bedrock/latest/userguide/quotas-runtime.html" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/bedrock/latest/userguide/quotas-runtime.html" hreflang="id-id" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/bedrock/latest/userguide/quotas-runtime.html" hreflang="id" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/bedrock/latest/userguide/quotas-runtime.html" hreflang="de-de" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/bedrock/latest/userguide/quotas-runtime.html" hreflang="de" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock/latest/userguide/quotas-runtime.html" hreflang="en-us" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock/latest/userguide/quotas-runtime.html" hreflang="en" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/bedrock/latest/userguide/quotas-runtime.html" hreflang="es-es" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/bedrock/latest/userguide/quotas-runtime.html" hreflang="es" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/quotas-runtime.html" hreflang="fr-fr" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/quotas-runtime.html" hreflang="fr" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/bedrock/latest/userguide/quotas-runtime.html" hreflang="it-it" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/bedrock/latest/userguide/quotas-runtime.html" hreflang="it" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/quotas-runtime.html" hreflang="ja-jp" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/quotas-runtime.html" hreflang="ja" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/bedrock/latest/userguide/quotas-runtime.html" hreflang="ko-kr" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/bedrock/latest/userguide/quotas-runtime.html" hreflang="ko" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/bedrock/latest/userguide/quotas-runtime.html" hreflang="pt-br" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/bedrock/latest/userguide/quotas-runtime.html" hreflang="pt" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_cn/bedrock/latest/userguide/quotas-runtime.html" hreflang="zh-cn" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_tw/bedrock/latest/userguide/quotas-runtime.html" hreflang="zh-tw" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock/latest/userguide/quotas-runtime.html" hreflang="x-default" /><meta name="feedback-folder" content="2d8c2a09-1dac-41bf-9893-c0333d272b2c" /><meta name="feedback-item" content="Bedrock" /><meta name="this_doc_product" content="Amazon Bedrock" /><meta name="this_doc_guide" content="User Guide" /><head xmlns="http://www.w3.org/1999/xhtml"> <script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"/></head>
+<script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'bedrock'}"></script><meta id="panorama-serviceSubSection" value="User Guide" /><meta id="panorama-serviceConsolePage" value="Quotas for the bedrock-runtime endpoint" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><p><a href="quotas-runtime.md">View a markdown version of this page</a></p><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Quotas for the bedrock-runtime endpoint - Amazon Bedrock</title><meta name="pdf" content="/pdfs/bedrock/latest/userguide/bedrock-ug.pdf#quotas-runtime" /><meta name="rss" content="bedrock-ug.rss" /><meta name="forums" content="https://repost.aws/tags/TAQeKlaPaNRQ2tWB6P7KrMag" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=2d8c2a09-1dac-41bf-9893-c0333d272b2c&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/quotas-runtime.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/quotas-runtime.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/quotas-runtime.html" /><meta name="keywords" content="Amazon Bedrock,bedrock,quotas for Amazon Bedrock,token burndown rate,Amazon Bedrock service quotas,throughput limits,bedrock-runtime quotas,tokens per minute,tokens per day" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon Bedrock",
+        "item" : "https://docs.aws.amazon.com/bedrock/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "User Guide",
+        "item" : "https://docs.aws.amazon.com/bedrock/latest/userguide"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Capacity and Performance",
+        "item" : "https://docs.aws.amazon.com/bedrock/latest/userguide/capacity-limits-cost-optimization.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Quotas for Amazon Bedrock",
+        "item" : "https://docs.aws.amazon.com/bedrock/latest/userguide/quotas.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Quotas for the bedrock-runtime endpoint",
+        "item" : "https://docs.aws.amazon.com/bedrock/latest/userguide/quotas.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/bedrock/latest/userguide/bedrock-ug.pdf#quotas-runtime" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/bedrock/index.html">Amazon Bedrock</a><a href="what-is-bedrock.html">User Guide</a></div><div id="page-toc-src"><a href="#quotas-runtime-types">Quota types</a><a href="#quotas-runtime-other">Related runtime quotas</a><a href="#quotas-runtime-increase">Requesting a quota increase</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="quotas-runtime">Quotas for the bedrock-runtime endpoint</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>The <code class="code">bedrock-runtime.<code class="replaceable">region</code>.amazonaws.com</code> endpoint is the primary inference endpoint for Amazon Bedrock. Inference traffic to this endpoint is governed by per-model token-based quotas. You can view these quotas in the <a href="https://docs.aws.amazon.com/servicequotas/latest/userguide/gs-request-quota.html">Service Quotas console</a> by selecting <b>Amazon Bedrock</b> as the service, or in the <a href="https://docs.aws.amazon.com/general/latest/gr/bedrock.html#limits_bedrock">Amazon Bedrock service quotas</a> table in the AWS General Reference.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>A model's quotas on this endpoint are shared across every inference API you call it with, including <a href="./inference-invoke.html">InvokeModel</a>, <a href="./conversation-inference.html">Converse</a>, <a href="./inference-responses-api.html#bedrock-mantle-responses">Responses</a>, and Chat Completions. Although the quota names refer to <code class="code">InvokeModel</code>, they aren't per-API. Traffic to the <code class="code">bedrock-mantle</code> endpoint is counted separately — see <a href="./quotas-mantle.html">Quotas for the bedrock-mantle endpoint</a>.</p></div></div>
+        <h2 id="quotas-runtime-types">Quota types</h2>
+        
+        <p>Inference on the <code class="code">bedrock-runtime</code> endpoint is governed by the following per-model quotas:</p>
+        
+        <div class="table-container"><div class="table-contents"><table id="d0e1"><caption>bedrock-runtime per-model quotas</caption><thead>
+                    <tr>
+                        <th>Quota</th>
+                        <th>Scope</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1">Cross-Region InvokeModel tokens per minute for <code class="replaceable">$<span>{</span>model}</code></td>
+                        <td tabindex="-1">Per model, per Region</td>
+                        <td tabindex="-1">The maximum number of tokens per minute (input + output, combined) that your account can use for the model when invoked through a cross-Region inference profile.</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">On-demand InvokeModel tokens per minute for <code class="replaceable">$<span>{</span>model}</code></td>
+                        <td tabindex="-1">Per model, per Region</td>
+                        <td tabindex="-1">The maximum number of tokens per minute (input + output, combined) that your account can use for the model when invoked on-demand in a single Region.</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">Cross-Model Max Tokens Per Day</td>
+                        <td tabindex="-1">Per account, per Region</td>
+                        <td tabindex="-1">Maximum tokens per day across all supported Amazon Bedrock models for this account. Token count is estimated based on on-demand pricing; actual token consumption varies by model, input/output ratio, and cache usage.</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">InvokeModel requests per minute for <code class="replaceable">$<span>{</span>model}</code></td>
+                        <td tabindex="-1">Per model, per Region</td>
+                        <td tabindex="-1">The maximum number of inference requests per minute that your account can submit for the model. RPM is enforced for some models on the <code class="code">bedrock-runtime</code> endpoint and not others; see the Service Quotas console for the exact quotas that apply to your model.</td>
+                    </tr>
+                </table></div></div>
+        
+        <p>The <code class="code">bedrock-runtime</code> endpoint TPM quotas count input and output tokens together against a single per-model quota. The <code class="code">bedrock-mantle</code> endpoint applies separate input-tokens-per-minute and output-tokens-per-minute quotas; for details, see <a href="./quotas-mantle.html">Quotas for the bedrock-mantle endpoint</a>.</p>
+        
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>RPM quotas on the <code class="code">bedrock-runtime</code> endpoint are model-specific. Some models – for example, Anthropic Claude Opus 4.7 and Claude Opus 4.8 – do not have an RPM quota and are governed solely by the token-based quotas described in this section. For models that do have an RPM quota, view the exact value in the <a href="https://docs.aws.amazon.com/servicequotas/latest/userguide/gs-request-quota.html">Service Quotas console</a>.</p></div></div>
+        
+        <p>Output tokens are converted into quota usage through a model-specific burndown rate. For details on how token-based quotas are calculated and how the <code class="code">max_tokens</code> request parameter affects deductions, see <a href="./quotas-token-burndown.html">How tokens are counted in Amazon Bedrock</a>.</p>
+     
+        <h2 id="quotas-runtime-other">Related runtime quotas</h2>
+        
+        <p>The following Amazon Bedrock capabilities are served through the <code class="code">bedrock-runtime</code> endpoint and have their own separate quotas:</p>
+        
+        <div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><b>Custom inference profiles</b> – Application-defined inference profiles that wrap an underlying model. See <a href="./inference-profiles.html">Set up a model invocation resource using inference profiles</a>.</p>
+            </li><li class="listitem">
+                <p><b>Batch inference</b> – Asynchronous, large-volume inference jobs. See <a href="./batch-inference.html">Process multiple prompts with batch inference</a>.</p>
+            </li><li class="listitem">
+                <p><b>Provisioned Throughput</b> – Reserved model-unit capacity. See <a href="./prov-throughput.html">Increase model invocation capacity with Provisioned Throughput in Amazon Bedrock</a>.</p>
+            </li></ul></div>
+        
+        <p>These quotas apply only to the <code class="code">bedrock-runtime</code> endpoint and are not exposed on the <code class="code">bedrock-mantle</code> endpoint.</p>
+     
+        <h2 id="quotas-runtime-increase">Requesting a quota increase</h2>
+        
+        <p>The steps for requesting a quota increase for your account depend on the value in the <b>Adjustable</b> column in the quotas table in <a href="https://docs.aws.amazon.com/general/latest/gr/bedrock.html#limits_bedrock">Amazon Bedrock service quotas</a>.</p>
+        
+        <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>Before requesting a quota increase, verify that the model is not in a <em>Legacy</em> or <em>Deprecated</em> lifecycle status. Quota increases are not granted for models that are scheduled for retirement. Check the model's lifecycle status on the <a href="./model-lifecycle.html">Model lifecycle</a> page and consider migrating to the successor model instead.</p></div></div>
+        
+        <div class="itemizedlist">
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>If a quota is marked as <b>Yes</b>, you can adjust it by following the steps at <a href="https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html">Requesting a Quota Increase</a> in the Service Quotas User Guide.</p>
+            </li><li class="listitem">
+                <p>For any model, you can request an increase for the following quotas together:</p>
+                
+                <div class="itemizedlist">
+                     
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p>Cross-Region InvokeModel tokens per minute for <code class="replaceable">$<span>{</span>model}</code></p>
+                    </li><li class="listitem">
+                        <p>On-demand InvokeModel tokens per minute for <code class="replaceable">$<span>{</span>model}</code></p>
+                    </li><li class="listitem">
+                        <p>Cross-Model Max Tokens Per Day</p>
+                    </li></ul></div>
+                
+                <p>To request an increase for any combination of these quotas, request an increase for the <b>Cross-Region InvokeModel tokens per minute for <code class="replaceable">$<span>{</span>model}</code></b> quota by following the steps at <a href="https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html">Requesting a Quota Increase</a> in the Service Quotas User Guide. After you do so, the support team will reach out and offer you the option of also increasing the other two quotas.</p>
+                
+                <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Due to overwhelming demand, priority will be given to customers who generate traffic that consumes their existing quota allocation. Your request might be denied if you don't meet this condition.</p></div></div>
+            </li></ul></div>
+        
+        <p>For <code class="code">bedrock-mantle</code> quota increases, see <a href="./quotas-mantle.html#quotas-mantle-increase">Requesting a quota increase</a>.</p>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./count-tokens.html">CountTokens API</div><div id="next" class="next-link" accesskey="n" href="./quotas-mantle.html">bedrock-mantle quotas</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=2d8c2a09-1dac-41bf-9893-c0333d272b2c&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/quotas-runtime.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=2d8c2a09-1dac-41bf-9893-c0333d272b2c&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/quotas-runtime.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

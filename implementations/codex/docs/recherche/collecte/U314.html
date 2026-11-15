@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Geographic cross-Region inference - Amazon Bedrock</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="geographic-cross-region-inference" /><meta name="default_state" content="geographic-cross-region-inference" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/bedrock/latest/userguide/geographic-cross-region-inference.html" /><link rel="alternate" type="text/markdown" href="https://docs.aws.amazon.com/bedrock/latest/userguide/geographic-cross-region-inference.md" title="Markdown version" /><meta name="description" content="Geographic cross-Region inference keeps data processing within specified geographic boundaries (such as US, EU, and APAC). This option is ideal for organizations with data residency requirements and compliance regulations." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon Bedrock" /><meta name="guide" content="User Guide" /><meta name="abstract" content="User Guide for the Amazon Bedrock service." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/bedrock/latest/userguide/geographic-cross-region-inference.html" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/bedrock/latest/userguide/geographic-cross-region-inference.html" hreflang="id-id" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/bedrock/latest/userguide/geographic-cross-region-inference.html" hreflang="id" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/bedrock/latest/userguide/geographic-cross-region-inference.html" hreflang="de-de" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/bedrock/latest/userguide/geographic-cross-region-inference.html" hreflang="de" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock/latest/userguide/geographic-cross-region-inference.html" hreflang="en-us" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock/latest/userguide/geographic-cross-region-inference.html" hreflang="en" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/bedrock/latest/userguide/geographic-cross-region-inference.html" hreflang="es-es" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/bedrock/latest/userguide/geographic-cross-region-inference.html" hreflang="es" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/geographic-cross-region-inference.html" hreflang="fr-fr" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/geographic-cross-region-inference.html" hreflang="fr" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/bedrock/latest/userguide/geographic-cross-region-inference.html" hreflang="it-it" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/bedrock/latest/userguide/geographic-cross-region-inference.html" hreflang="it" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/geographic-cross-region-inference.html" hreflang="ja-jp" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/geographic-cross-region-inference.html" hreflang="ja" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/bedrock/latest/userguide/geographic-cross-region-inference.html" hreflang="ko-kr" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/bedrock/latest/userguide/geographic-cross-region-inference.html" hreflang="ko" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/bedrock/latest/userguide/geographic-cross-region-inference.html" hreflang="pt-br" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/bedrock/latest/userguide/geographic-cross-region-inference.html" hreflang="pt" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_cn/bedrock/latest/userguide/geographic-cross-region-inference.html" hreflang="zh-cn" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_tw/bedrock/latest/userguide/geographic-cross-region-inference.html" hreflang="zh-tw" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock/latest/userguide/geographic-cross-region-inference.html" hreflang="x-default" /><meta name="feedback-folder" content="2d8c2a09-1dac-41bf-9893-c0333d272b2c" /><meta name="feedback-item" content="Bedrock" /><meta name="this_doc_product" content="Amazon Bedrock" /><meta name="this_doc_guide" content="User Guide" /><head xmlns="http://www.w3.org/1999/xhtml"> <script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"/></head>
+<script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'bedrock'}"></script><meta id="panorama-serviceSubSection" value="User Guide" /><meta id="panorama-serviceConsolePage" value="Geographic cross-Region inference" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><p><a href="geographic-cross-region-inference.md">View a markdown version of this page</a></p><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Geographic cross-Region inference - Amazon Bedrock</title><meta name="pdf" content="/pdfs/bedrock/latest/userguide/bedrock-ug.pdf#geographic-cross-region-inference" /><meta name="rss" content="bedrock-ug.rss" /><meta name="forums" content="https://repost.aws/tags/TAQeKlaPaNRQ2tWB6P7KrMag" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=2d8c2a09-1dac-41bf-9893-c0333d272b2c&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/geographic-cross-region-inference.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/geographic-cross-region-inference.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/geographic-cross-region-inference.html" /><meta name="keywords" content="Amazon Bedrock,bedrock,throttling,cross-Region inference,multiple regions,quota throttling,global cross-Region inference" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon Bedrock",
+        "item" : "https://docs.aws.amazon.com/bedrock/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "User Guide",
+        "item" : "https://docs.aws.amazon.com/bedrock/latest/userguide"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Capacity and Performance",
+        "item" : "https://docs.aws.amazon.com/bedrock/latest/userguide/capacity-limits-cost-optimization.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Route model inference requests across AWS Regions with cross-Region inference",
+        "item" : "https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Geographic cross-Region inference",
+        "item" : "https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/bedrock/latest/userguide/bedrock-ug.pdf#geographic-cross-region-inference" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/bedrock/index.html">Amazon Bedrock</a><a href="what-is-bedrock.html">User Guide</a></div><div id="page-toc-src"><a href="#geographic-cris-considerations">Geographic cross-Region inference considerations</a><a href="#geographic-cris-iam-setup">IAM policy requirements for Geographic cross-Region inference</a><a href="#geographic-cris-scp-setup">Service Control Policy requirements for Geographic cross-Region inference</a><a href="#geographic-cris-usage">Use Geographic cross-Region inference</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="geographic-cross-region-inference">Geographic cross-Region inference</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Geographic cross-Region inference keeps data processing within specified geographic
+            boundaries (such as US, EU, and APAC). This option is ideal for organizations with data
+            residency requirements and compliance regulations.</p>
+            <h2 id="geographic-cris-considerations">Geographic cross-Region inference considerations</h2>
+
+            <p>Note the following information about Geographic cross-Region inference:</p>
+
+            <div class="itemizedlist">
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>Cross-Region inference requests to an inference profile tied to a
+                        geography (such as US, EU, and APAC) stay within that geography. Your data
+                        remains in the AWS Regions where it originally resides. For example, a
+                        request made within the US is kept within the AWS Regions in the US.
+                        Your input
+                        prompts and output results might move outside of your source Region during
+                        cross-Region inference. To the extent we store data for abuse detection,
+                        your input prompts and output results will be stored in the destination region.
+                        See <a href="./abuse-detection.html">Amazon Bedrock abuse detection</a>
+ for more information on which models require storage. All data will be transmitted
+                        encrypted across Amazon's secure network.</p>
+                </li><li class="listitem">
+                    <p>For default cross-Region throughput quotas when using inference
+                        profiles tied to a geography (such as US, EU, and APAC), see the
+                            <b>Cross-region model inference requests per minute
+                            for $<span>{</span>Model}</b> and <b>Cross-region model
+                            inference tokens per minute for $<span>{</span>Model}</b> values in <a href="https://docs.aws.amazon.com/general/latest/gr/bedrock.html#limits_bedrock">Amazon Bedrock service quotas</a> in the <em>AWS General
+                            Reference</em>.</p>
+                </li></ul></div>
+         
+            <h2 id="geographic-cris-iam-setup">IAM policy requirements for Geographic cross-Region inference</h2>
+
+            <p>To allow an IAM user or role to invoke a Geographic cross-Region inference
+                profile, you need to allow access to the following resources:</p>
+
+            <div class="orderedlist">
+                 
+                 
+                 
+            <ol><li>
+                    <p>The geography-specific cross-Region inference profile (these profiles have
+                        geographic prefixes such as <code class="code">us</code>, <code class="code">eu</code>,
+                            <code class="code">apac</code>, <code class="code">in</code>)</p>
+                </li><li>
+                    <p>The foundation model in the source Region</p>
+                </li><li>
+                    <p>The foundation model in all destination Regions listed in the geographic
+                        profile</p>
+                </li></ol></div>
+
+            <p>The following example policy grants the required permissions to use the Claude
+                Sonnet 4.5 foundation model with a Geographic cross-Region inference profile for the
+                US, where the source Region is <code class="code">us-east-1</code> and the destination Regions
+                are <code class="code">us-east-1</code>, <code class="code">us-east-2</code>, and
+                <code class="code">us-west-2</code>:</p>
+
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli ()--><code class=""><span>{</span>
+    "Version": "2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Sid": "GrantGeoCrisInferenceProfileAccess",
+            "Effect": "Allow",
+            "Action": "bedrock:InvokeModel",
+            "Resource": [
+                "arn:aws:bedrock:us-east-1:&lt;ACCOUNT_ID&gt;:inference-profile/us.anthropic.claude-sonnet-4-5-20250929-v1:0"
+            ]
+        },
+        <span>{</span>
+            "Sid": "GrantGeoCrisModelAccess",
+            "Effect": "Allow",
+            "Action": "bedrock:InvokeModel",
+            "Resource": [
+                "arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-sonnet-4-5-20250929-v1:0",
+                "arn:aws:bedrock:us-east-2::foundation-model/anthropic.claude-sonnet-4-5-20250929-v1:0",
+                "arn:aws:bedrock:us-west-2::foundation-model/anthropic.claude-sonnet-4-5-20250929-v1:0"
+            ],
+            "Condition": <span>{</span>
+                "StringEquals": <span>{</span>
+                    "bedrock:InferenceProfileArn": "arn:aws:bedrock:us-east-1:&lt;ACCOUNT_ID&gt;:inference-profile/us.anthropic.claude-sonnet-4-5-20250929-v1:0"
+                }
+            }
+        }
+    ]
+}</code></pre>
+
+            <p>The first statement grants <code class="code">bedrock:InvokeModel</code> API access to the
+                Geographic cross-Region inference profile for requests originating from the
+                requesting Region. The second statement grants <code class="code">bedrock:InvokeModel</code> API
+                access to the foundation model in both the requesting Region and all destination
+                Regions listed in the inference profile.</p>
+         
+            <h2 id="geographic-cris-scp-setup">Service Control Policy requirements for Geographic cross-Region inference</h2>
+
+            <p>Many organizations implement Regional access controls through Service Control
+                Policies in AWS Organizations for security and compliance. If your organization's
+                security policy uses SCPs to block unused Regions, you must either allow access to
+                all destination Regions listed in the Geographic cross-Region inference profile for
+                your source Region or add an inference-profile exception as described in the
+                following note.</p>
+
+            <p>If you use a Region allowlist without an inference-profile exception, you need to
+                understand the relationship between your source Region (where you make the API call)
+                and the destination Regions (where requests can be routed). Check the inference
+                profile documentation to identify all destination Regions for your source Region,
+                then ensure your SCPs allow access to all those destination Regions.</p>
+
+            <p>For example, if you're calling from us-east-1 (source Region) using the US Anthropic 
+                Claude Sonnet 4.5 Geographic profile, requests can be routed to us-east-1, us-east-2, 
+                and us-west-2 (destination Regions). If an SCP restricts access to only us-east-1
+                and doesn't include an inference-profile exception, cross-Region inference will
+                fail when trying to route to us-east-2 or us-west-2. To use the profile, either allow
+                all three destination Regions in your SCP or add an inference-profile
+                exception.</p>
+
+            <p>When configuring SCPs for Region exclusion, remember that blocking a destination
+                Region without an inference-profile exception will prevent cross-Region inference
+                from functioning properly, even if your source Region remains accessible. For SCP
+                requirements for Global cross-Region inference, see <a href="./global-cross-region-inference.html#global-cris-scp-setup">Service Control Policy requirements for Global cross-Region inference</a>.</p>
+
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>When a request uses a Geographic cross-Region inference profile, Amazon Bedrock
+                    evaluates authorization for the inference profile resource, the foundation
+                    model in the source Region, and the foundation model in each candidate
+                    destination Region. The <code class="code">bedrock:InferenceProfileArn</code> condition key
+                    is populated for the foundation model resource evaluations, but not for the
+                    inference profile resource evaluation.</p><p>Because the foundation model resource evaluations carry the destination
+                    Regions, you can use <code class="code">bedrock:InferenceProfileArn</code> in a Region-deny
+                    SCP to exempt cross-Region routing without adding those destination Regions to
+                    the Region allowlist for other services and actions. This exemption can't
+                    bypass the Region restriction on the originating call. The inference profile
+                    resource evaluation carries the source Region and doesn't include
+                        <code class="code">bedrock:InferenceProfileArn</code>.</p></div></div>
+
+            <p>To improve security, consider using the <code class="code">bedrock:InferenceProfileArn</code>
+                condition to limit the exception to specific inference profiles.</p>
+         
+            <h2 id="geographic-cris-usage">Use Geographic cross-Region inference</h2>
+
+            <p>To use Geographic cross-Region inference, you include an <a href="./inference-profiles.html">inference profile</a> when running model
+                inference in the following ways:</p>
+
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p><b>On-demand model inference</b> – Specify
+                        the ID of the inference profile as the <code class="code">modelId</code> when sending an
+                        <a href="https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_InvokeModel.html">InvokeModel</a>, <a href="https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_InvokeModelWithResponseStream.html">InvokeModelWithResponseStream</a>, <a href="https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html">Converse</a>, or <a href="https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_ConverseStream.html">ConverseStream</a> request.
+                        An inference profile defines one or more Regions to which it can route
+                        inference requests originating from your source Region. Cross-Region
+                        inference routes requests by using compute across the
+                        Regions defined in the inference profile. For more
+                        information, see <a href="./inference.html">Making inference requests</a></p>
+                </li><li class="listitem">
+                    <p><b>Batch inference</b> – Submit requests
+                        asynchronously with batch inference by specifying the ID of the inference
+                        profile as the <code class="code">modelId</code> when sending a <a href="https://docs.aws.amazon.com/bedrock/latest/APIReference/API_CreateModelInvocationJob.html">CreateModelInvocationJob</a> request.
+                        Using an inference profile lets you use compute across multiple
+                        AWS Regions. After
+                        the job is complete, you can retrieve the output files from the Amazon S3 bucket
+                        in the source Region.</p>
+                </li><li class="listitem">
+                    <p><b>Agents</b> – Specify the ID of the
+                        inference profile in the <code class="code">foundationModel</code> field in a
+                        <a href="https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_CreateAgent.html">CreateAgent</a> request. For more information, see <a href="./agents-create.html">Create and configure agent manually</a>.</p>
+                </li><li class="listitem">
+                    <p><b>Knowledge base response generation</b>
+                        – You can use cross-Region inference when generating a response after
+                        querying a knowledge base. For more information, see <a href="./knowledge-base-test.html">Test your knowledge base with queries and responses</a>.</p>
+                </li><li class="listitem">
+                    <p><b>Model evaluation</b> – You can submit
+                        an inference profile as a model to evaluate when submitting a model
+                        evaluation job. For more information, see <a href="./evaluation.html">Evaluate the performance of Amazon Bedrock resources</a>.</p>
+                </li><li class="listitem">
+                    <p><b>Prompt management</b> – You can use cross-Region
+                        inference when generating a response for a prompt you created in Prompt management. For
+                        more information, see <a href="./prompt-management.html">Construct and store reusable prompts with Prompt management in Amazon Bedrock</a></p>
+                </li><li class="listitem">
+                    <p><b>Prompt flows</b> – You can use
+                        cross-Region inference when generating a response for a prompt you define
+                        inline in a prompt node in a prompt flow. For more information, see <a href="./flows.html">Build an end-to-end generative AI workflow with Amazon Bedrock Flows</a>.</p>
+                </li></ul></div>
+
+            <p>To learn how to use an inference profile to send model invocation requests across
+                Regions, see <a href="./inference-profiles-use.html">Use an inference profile in model invocation</a>.</p>
+
+            <p>To learn more about cross-Region inference, see <a href="https://aws.amazon.com/blogs/machine-learning/getting-started-with-cross-region-inference-in-amazon-bedrock/" rel="noopener noreferrer" target="_blank"><span>Getting started with cross-Region inference in Amazon Bedrock</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+
+            <p>For detailed information about global cross-Region inference, including IAM
+                setup and service quota management, see <a href="./global-cross-region-inference.html">Global cross-Region inference</a>.</p>
+        <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./cross-region-inference.html">Cross-Region inference</div><div id="next" class="next-link" accesskey="n" href="./global-cross-region-inference.html">Global cross-Region inference</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=2d8c2a09-1dac-41bf-9893-c0333d272b2c&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/geographic-cross-region-inference.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=2d8c2a09-1dac-41bf-9893-c0333d272b2c&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/geographic-cross-region-inference.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

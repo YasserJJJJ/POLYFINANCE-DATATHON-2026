@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="fr-FR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Concepts d’ingénierie de requête - Amazon Bedrock</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="prompt-engineering-guidelines" /><meta name="default_state" content="prompt-engineering-guidelines" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/prompt-engineering-guidelines.html" /><link rel="alternate" type="text/markdown" href="https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/prompt-engineering-guidelines.md" title="Markdown version" /><meta name="description" content="Familiarisez-vous avec l’ingénierie de requête dans Amazon Bedrock." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon Bedrock" /><meta name="guide" content="Guide de l’utilisateur" /><meta name="abstract" content="Guide de l’utilisateur du service Amazon Bedrock." /><meta name="guide-locale" content="fr_fr" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/prompt-engineering-guidelines.html" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/bedrock/latest/userguide/prompt-engineering-guidelines.html" hreflang="id-id" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/bedrock/latest/userguide/prompt-engineering-guidelines.html" hreflang="id" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/bedrock/latest/userguide/prompt-engineering-guidelines.html" hreflang="de-de" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/bedrock/latest/userguide/prompt-engineering-guidelines.html" hreflang="de" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-engineering-guidelines.html" hreflang="en-us" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-engineering-guidelines.html" hreflang="en" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/bedrock/latest/userguide/prompt-engineering-guidelines.html" hreflang="es-es" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/bedrock/latest/userguide/prompt-engineering-guidelines.html" hreflang="es" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/prompt-engineering-guidelines.html" hreflang="fr-fr" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/prompt-engineering-guidelines.html" hreflang="fr" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/bedrock/latest/userguide/prompt-engineering-guidelines.html" hreflang="it-it" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/bedrock/latest/userguide/prompt-engineering-guidelines.html" hreflang="it" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/prompt-engineering-guidelines.html" hreflang="ja-jp" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/prompt-engineering-guidelines.html" hreflang="ja" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/bedrock/latest/userguide/prompt-engineering-guidelines.html" hreflang="ko-kr" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/bedrock/latest/userguide/prompt-engineering-guidelines.html" hreflang="ko" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/bedrock/latest/userguide/prompt-engineering-guidelines.html" hreflang="pt-br" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/bedrock/latest/userguide/prompt-engineering-guidelines.html" hreflang="pt" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_cn/bedrock/latest/userguide/prompt-engineering-guidelines.html" hreflang="zh-cn" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_tw/bedrock/latest/userguide/prompt-engineering-guidelines.html" hreflang="zh-tw" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-engineering-guidelines.html" hreflang="x-default" /><meta name="feedback-folder" content="2d8c2a09-1dac-41bf-9893-c0333d272b2c" /><meta name="feedback-item" content="Bedrock" /><meta name="this_doc_product" content="Amazon Bedrock" /><meta name="this_doc_guide" content="Guide de l’utilisateur" /><head xmlns="http://www.w3.org/1999/xhtml"> <script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"/></head>
+<script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'bedrock'}"></script><meta id="panorama-serviceSubSection" value="Guide de l’utilisateur" /><meta id="panorama-serviceConsolePage" value="Concepts d’ingénierie de requête" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><p><a href="prompt-engineering-guidelines.md">View a markdown version of this page</a></p><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Concepts d’ingénierie de requête - Amazon Bedrock</title><meta name="rss" content="bedrock-ug.rss" /><meta name="forums" content="https://repost.aws/fr/tags/TAQeKlaPaNRQ2tWB6P7KrMag" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=2d8c2a09-1dac-41bf-9893-c0333d272b2c&amp;topic_url=https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/prompt-engineering-guidelines.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/prompt-engineering-guidelines.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/prompt-engineering-guidelines.html" /><meta name="keywords" content="Amazon Bedrock,bedrock,Fonctionnalités supplémentaires,Caractéristiques de Bedrock,Ingénierie de requête,Définition des invites,Composants rapides,Structure rapide,Ingénierie rapide,Few-shot incitant,Zero-shot incitant,In-context apprentissage,Modèle d'invite,Mise en forme des invites,Appels d’API,Inférence" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon Bedrock",
+        "item" : "https://docs.aws.amazon.com/bedrock/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Guide de l’utilisateur",
+        "item" : "https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Fonctionnalités supplémentaires",
+        "item" : "https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/additional-capabilities.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Concepts d’ingénierie de requête",
+        "item" : "https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/additional-capabilities.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/bedrock/index.html">Amazon Bedrock</a><a href="what-is-bedrock.html">Guide de l’utilisateur</a></div><div id="page-toc-src"><a href="#what-is-a-prompt">Qu’est-ce qu’une invite ?</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><awsui-alert class="awsdocs-page-banner awsui-util-mb-l"><p>Les traductions sont fournies par des outils de traduction automatique. En cas de conflit entre le contenu d'une traduction et celui de la version originale en anglais, la version anglaise prévaudra.</p></awsui-alert><h1 class="topictitle" id="prompt-engineering-guidelines">Concepts d’ingénierie de requête</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p> L’<em>ingénierie de requête</em> désigne la pratique qui consiste à optimiser l’entrée de texte dans un grand modèle de langage (LLM) afin d’obtenir les réponses souhaitées. Les invites aident un LLM à effectuer une grande variété de tâches, notamment la classification, la réponse aux questions, la génération de code, l’écriture créative, etc. La qualité des invites que vous fournissez à un LLM peut avoir un impact sur la qualité des réponses du modèle. Cette section fournit les informations nécessaires pour faire vos premiers pas avec l’ingénierie de requête. Elles couvrent également les outils qui vous aideront à trouver le format d’invite le plus adapté à votre cas d’utilisation lors de l’utilisation d’un LLM dans Amazon Bedrock. </p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Tous les exemples de ce document sont obtenus par le biais d'appels d'API. La réponse peut varier en raison de la nature stochastique du processus de génération du LLM. Sauf indication contraire, les invites sont écrites par des employés AWS.</p></div></div><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Pour réduire les hallucinations, vous pouvez affiner votre invite à l’aide de techniques d’optimisation d’invite, utiliser des techniques telles que la génération à enrichissement contextuel (RAG) pour permettre au modèle d’accéder à des données plus pertinentes, ou utiliser un modèle différent susceptible de produire de meilleurs résultats.</p></div></div><p>Amazon Bedrock inclut des modèles de différents fournisseurs. Vous trouverez ci-dessous une liste des directives d’ingénierie de requête pour ces modèles.</p><div class="itemizedlist">
+		 
+		 
+		 
+		 
+
+		 
+		 
+		 
+		 
+
+		 
+
+	<ul class="itemizedlist"><li class="listitem">
+			<p><b>Guide sur les invites Amazon Nova Micro, Lite et Pro :</b> <a href="https://docs.aws.amazon.com/nova/latest/userguide/prompting.html">bonnes pratiques en matière d’invites pour les modèles de compréhension Amazon Nova</a> </p>
+		</li><li class="listitem">
+			<p><b>Guide sur les invites Amazon Nova Canvas :</b> <a href="https://docs.aws.amazon.com/nova/latest/userguide/image-generation.html">génération d’images avec Amazon Nova</a> </p>
+		</li><li class="listitem">
+			<p><b>Guide sur les invites Amazon Nova Reel :</b> <a href="https://docs.aws.amazon.com/nova/latest/userguide/video-generation.html">génération de vidéos avec Amazon Nova</a> </p>
+		</li><li class="listitem">
+			<p><b>AnthropicClaudeguide rapide du modèle : <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview" rel="noopener noreferrer" target="_blank"><span>https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></b> </p>
+		</li><li class="listitem">
+			<p><b>Cohereguide rapide : <a href="https://txt.cohere.com/how-to-train-your-pet-llm-prompt-engineering" rel="noopener noreferrer" target="_blank"><span>https://txt.cohere.com/how-to-train-your-pet-llm-prompt-engineering</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></b> </p>
+		</li><li class="listitem">
+			<p> <b>AI21 LabsGuide rapide du modèle Jurassic : <a href="https://docs.ai21.com/docs/prompt-engineering" rel="noopener noreferrer" target="_blank"><span>https://docs.ai21.com/docs/prompt-engineering</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></b> </p>
+		</li><li class="listitem">
+			<p> <b>MetaLlama 2guide rapide : https://ai.meta.com/llama/get-started/</b> <a href="https://ai.meta.com/llama/get-started/#prompting" rel="noopener noreferrer" target="_blank"><span>#prompting</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> </p>
+		</li><li class="listitem">
+			<p> <b>Stability AIguide rapide : <a href="https://platform.stability.ai/docs/getting-started" rel="noopener noreferrer" target="_blank"><span>https://platform.stability.ai/docs/getting-started</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></b> </p>
+		</li><li class="listitem">
+			<p> <b>Mistral AIguide rapide : <a href="https://docs.mistral.ai/guides/prompting_capabilities/" rel="noopener noreferrer" target="_blank"><span>https://docs.mistral.ai/guides/prompting_capabilities/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></b> </p>
+		</li></ul></div><p><b>Avertissement :</b> les exemples présentés dans ce document utilisent les modèles de texte actuellement disponibles dans Amazon Bedrock. Ce document contient également des consignes générales sur les invites. Pour consulter les guides spécifiques aux modèles, reportez-vous à leur documentation respective sur Amazon Bedrock. Ce document sert de point de départ. Bien que les exemples de réponses suivants soient générés à l’aide de modèles spécifiques sur Amazon Bedrock, vous pouvez également utiliser d’autres modèles dans Amazon Bedrock pour obtenir des résultats. Les résultats peuvent différer d’un modèle à l’autre, car chaque modèle possède ses propres caractéristiques de performance. La sortie que vous générez à l’aide des services d’IA correspond à votre contenu. En raison de la nature même du machine learning, la sortie peut ne pas être unique d’un client à l’autre. De même, les services peuvent générer des résultats identiques ou similaires d’un client à l’autre. </p>
+		<h2 id="what-is-a-prompt">Qu’est-ce qu’une invite ?</h2>
+
+		<p>Les invites sont un ensemble spécifique d’entrées fournies par vous, l’utilisateur. Elles guident les LLM sur Amazon Bedrock afin de générer une réponse ou une sortie appropriée pour une tâche ou une instruction donnée.</p>
+		<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Texte"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli ()--><code class="nohighlight"><b>User Prompt:</b>
+<em>Who invented the airplane?</em>
+</code></pre>
+		<p>Lorsqu’il est interrogé par cette invite, Titan génère une sortie :</p>
+		<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Texte"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli ()--><code class="nohighlight"><b>Output:</b>
+<em>The Wright brothers, Orville and Wilbur Wright are widely credited 
+with inventing and manufacturing the world's first successful airplane.</em>
+</code></pre>
+		<p>(Source de l'invite : AWS modèle utilisé : Amazon Titan Text)</p>
+
+
+		 
+			<h3 id="components-of-a-prompt">Éléments qui constituent une invite</h3>
+
+			<p>Une seule invite inclut plusieurs éléments, tels que la tâche ou l’instruction que vous souhaitez que les LLM exécutent, le contexte de la tâche (par exemple, une description du domaine concerné), des exemples de démonstration et le texte d’entrée que vous souhaitez que les LLM sur Amazon Bedrock utilisent dans leur réponse. En fonction de votre cas d’utilisation, de la disponibilité des données et de la tâche, votre invite doit combiner un ou plusieurs de ces éléments.</p>
+			<p>Prenons cet exemple d’invite demandant à Titan de résumer un avis :</p>
+
+			<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Texte"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli ()--><code class="nohighlight"><b>User Prompt:</b>
+<em>The following is text from a restaurant review:
+
+“I finally got to check out Alessandro’s Brilliant Pizza and it is now 
+one of my favorite restaurants in Seattle. The dining room has a beautiful view 
+over the Puget Sound but it was surprisingly not crowded. I ordered 
+the fried castelvetrano olives, a spicy Neapolitan-style pizza 
+and a gnocchi dish. The olives were absolutely decadent, and the pizza came 
+with a smoked mozzarella, which was delicious. The gnocchi was fresh and wonderful. 
+The waitstaff were attentive, and overall the experience was lovely. 
+I hope to return soon." 
+
+Summarize the above restaurant review in one sentence.</em>
+</code></pre>
+
+			<p>(Source du message : AWS)</p>
+			<p>Sur la base de cette invite, Titan répond par un résumé succinct d’une ligne de l’avis formulé sur le restaurant. L’avis mentionne les faits essentiels et transmet les principaux points, comme vous le souhaitez.</p>
+
+			<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Texte"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli ()--><code class="nohighlight"><b>Output: </b>
+<em>Alessandro's Brilliant Pizza is a fantastic restaurant in Seattle 
+with a beautiful view over Puget Sound, decadent and delicious food, 
+and excellent service.</em>
+</code></pre>
+
+			<p>(Modèle utilisé : Amazon Titan Text)</p>
+
+			<p>L’instruction <code class="userinput">Summarize the above restaurant review in one
+					sentence</code> et le texte de l’avis <code class="userinput">I finally got to check out
+					...</code> étaient tous deux nécessaires pour ce type de sortie. Sans l’un ou l’autre, le modèle ne disposerait pas de suffisamment d’informations pour produire un résumé sensé. L’<em>instruction</em> indique au LLM ce qu’il doit faire, et le texte est l’<em>entrée</em> sur laquelle le LLM agit. Le <em>contexte</em> (<code class="userinput">The following is text
+					from a restaurant review</code>) fournit des informations supplémentaires et des mots-clés qui guident le modèle pour utiliser l’entrée lors de la formulation de sa sortie. </p>
+
+			<p>Dans l’exemple ci-dessous, le texte <code class="userinput">Context: Climate change threatens people
+					with increased flooding ...</code> est l’<em>entrée</em> que le LLM peut utiliser pour mener à bien la <em>tâche</em> consistant à répondre à la question <code class="userinput">Question: What
+					organization calls climate change the greatest threat to global health in the
+					21st century?”</code>. </p>
+
+			<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Texte"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli ()--><code class="nohighlight"><b>User prompt:</b>
+<em>Context: Climate change threatens people with increased flooding, 
+extreme heat, increased food and water scarcity, more disease, and economic loss. 
+Human migration and conflict can also be a result. The World Health Organization (WHO) 
+calls climate change the greatest threat to global health in the 21st century. 
+Adapting to climate change through efforts like flood control measures 
+or drought-resistant crops partially reduces climate change risks, 
+although some limits to adaptation have already been reached. 
+Poorer communities are responsible for a small share of global emissions, 
+yet have the least ability to adapt and are most vulnerable to climate change. 
+The expense, time required, and limits of adaptation mean its success hinge 
+on limiting global warming.
+
+Question: What organization calls climate change the greatest threat 
+to global health in the 21st century?</em>
+</code></pre>
+
+			<p>(Source de l’invite : https://en.wikipedia.org/wiki/Climate_change)</p>
+
+			<p>AI21 Labs Jurassic répond avec le nom correct de l’organisation en fonction du contexte fourni dans l’invite.</p>
+
+			<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Texte"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli ()--><code class="nohighlight"><b>Output:</b>
+<em>The World Health Organization (WHO) calls climate change 
+the greatest threat to global health in the 21st century.</em>
+</code></pre>
+
+			<p>(Modèle utilisé : AI21 Labs Jurassic-2 Ultra v1)</p>
+		 
+
+		 
+			<h3 id="few-shot-prompting-vs-zero-shot-prompting">Few-shot Invitation ou incitation zéro</h3>
+			<p>Il est parfois utile de fournir quelques exemples pour aider les LLM à mieux calibrer leur sortie afin de mieux répondre à vos attentes. C’est ce que l’on appelle également l’<em>invite avec peu d’exemples</em> ou l’<em>apprentissage contextuel</em>, où l’<em>exemple</em> correspond à un exemple d’entrée associé à la sortie souhaitée. À titre d’illustration, voici d’abord un exemple d’invite de classification du sentiment sans exemple. Autrement dit, aucun exemple de paire entrée/sortie n’est fourni dans le texte de l’invite :</p>
+
+			<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Texte"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli ()--><code class="nohighlight"><b>User prompt:</b>
+<em>Tell me the sentiment of the following headline and categorize it 
+as either positive, negative or neutral: 
+New airline between Seattle and San Francisco offers a great opportunity 
+for both passengers and investors.</em>
+</code></pre>
+
+			<p>(Source du message : AWS)</p>
+
+			<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Texte"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli ()--><code class="nohighlight"><b>Output:</b>
+<em>Positive</em>
+</code></pre>
+
+			<p>(Modèle utilisé : Amazon Titan Text)</p>
+			<p>Voici la version d’une invite de classification du sentiment avec peu d’exemples :</p>
+
+			<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Texte"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli ()--><code class="nohighlight"><b>User prompt: </b>
+<em>Tell me the sentiment of the following headline and categorize it 
+as either positive, negative or neutral. Here are some examples:
+
+Research firm fends off allegations of impropriety over new technology.
+Answer: Negative
+
+Offshore windfarms continue to thrive as vocal minority in opposition dwindles.
+Answer: Positive
+
+Manufacturing plant is the latest target in investigation by state officials.
+Answer:</em>
+</code></pre>
+
+			<p>(Source du message : AWS)</p>
+
+			<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Texte"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli ()--><code class="nohighlight"><b>Output: </b>
+<em>Negative</em></code></pre>
+
+			<p>(Modèle utilisé : Amazon Titan Text)</p>
+			<p>L’exemple suivant utilise des modèles Anthropic Claude. Lorsque vous optez pour des modèles Anthropic Claude, il est recommandé d’utiliser des balises &lt;example&gt;&lt;/example&gt; pour inclure des exemples de démonstration. Nous vous recommandons également d’utiliser différents délimiteurs tels que <code class="code">H:</code> et <code class="code">A:</code> dans les exemples afin d’éviter toute confusion avec les délimiteurs <code class="code">Human:</code> et <code class="code">Assistant:</code> pour l’ensemble de l’invite. Notez que pour le dernier exemple d’invite avec peu d’exemples, le <code class="code">A:</code> final est abandonné au profit de <code class="code">Assistant:</code>, ce qui invite Anthropic Claude à générer la réponse à la place.</p>
+
+			<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Texte"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli ()--><code class="nohighlight"><b>User prompt: </b>
+
+
+<em>Human: Please classify the given email as "Personal" or "Commercial" related emails.
+Here are some examples.
+
+&lt;example&gt;
+H: Hi Tom, it's been long time since we met last time. We plan to have a party at my house this weekend. Will you be able to come over?
+A: Personal
+&lt;/example&gt;
+
+&lt;example&gt;
+H: Hi Tom, we have a special offer for you. For a limited time, our customers can save up to 35% of their total expense when you make reservations within two days. Book now and save money!
+A: Commercial
+&lt;/example&gt;
+
+H: Hi Tom, Have you heard that we have launched all-new set of products. Order now, you will save $100 for the new products. Please check our website.
+
+Assistant:</em>
+
+<b>Output: </b>
+<em>Commercial</em>
+</code></pre>
+
+			<p>(Source de l'invite : AWS, modèle utilisé : AnthropicClaude)</p>
+		 
+
+		 
+			<h3 id="prompt-template">Modèle d’invite</h3>
+			<p>Un modèle d’invite indique la mise en forme de l’invite avec un contenu échangeable. Les modèles d’invite sont des « recettes » d’utilisation des LLM pour différents cas d’utilisation tels que la classification, le résumé, la réponse aux questions, etc. Un modèle d’invite peut inclure des instructions, quelques exemples, ainsi qu’un contexte et des questions spécifiques adaptés à un cas d’utilisation donné. L’exemple suivant est un modèle que vous pouvez utiliser pour effectuer une classification du sentiment avec peu d’exemples à l’aide des modèles de texte Amazon Bedrock :</p>
+
+			<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Texte"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli ()--><code class="nohighlight"><b>Prompt template: </b>
+<em>"""Tell me the sentiment of the following 
+<span>{</span><span>{</span>Text Type, e.g., “restaurant review”}} and categorize it 
+as either <span>{</span><span>{</span>Sentiment A}} or <span>{</span><span>{</span>Sentiment B}}. 
+Here are some examples:
+
+Text: <span>{</span><span>{</span>Example Input 1}} 
+Answer: <span>{</span><span>{</span>Sentiment A}}
+
+Text: <span>{</span><span>{</span>Example Input 2}}
+Answer: <span>{</span><span>{</span>Sentiment B}}
+
+Text: <span>{</span><span>{</span>Input}}
+Answer:"""</em>
+</code></pre>
+
+			<p>Les utilisateurs peuvent copier et coller ce modèle, en saisissant leur propre texte et quelques exemples pour compléter les invites lors de l’utilisation de LLM dans Amazon Bedrock. D’autres modèles sont fournis dans cette section.</p>
+			<div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Les doubles accolades <code class="code"><span>{</span><span>{</span> and }}</code> indiquent les endroits où les informations spécifiques aux données doivent être insérées dans le modèle. Elles ne doivent pas être ajoutées dans le texte d’invite.</p></div></div>
+		 
+
+		 
+			<h3 id="important-notes-on-bedrock-llms-via-api">Maintien du rappel des demandes d’inférence d’Amazon Bedrock</h3>
+			<p>Si vous accédez aux modèles Amazon Bedrock à l’aide d’appels d’API, sachez que les modèles ne se souviennent pas des invites et des demandes précédentes, sauf si l’interaction précédente se trouve dans l’invite actuelle. L’inclusion des invites précédentes dans une demande vous permet d’avoir des interactions de type conversationnel ou de faire des demandes de suivi.</p>
+			<p>Si vous accédez aux modèles Anthropic Claude à l’aide d’appels d’API au lieu du terrain de jeu de texte Amazon Bedrock, vous devez encapsuler les invites dans un style conversationnel pour obtenir la réponse souhaitée (pour les familles de modèles Titan Text et AI21 Labs Jurassic, cela n’est pas nécessaire). L’exemple suivant illustre une invite de type conversationnel :</p>
+			<pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Texte"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli ()--><code class="nohighlight"><b>User prompt: </b>
+	
+	
+<em>Human: Describe where sea otters live in two sentences.
+
+Assistant:</em>
+
+<b>Output: </b>
+<em>Here is a two sentence description of where sea otters live:
+
+Sea otters live in the northern Pacific Ocean along the coasts of 
+Russia, Alaska, Canada, and the continental United States. 
+They prefer coastal habitats like rocky shores, kelp forests, 
+and estuaries where they have access to shallow, nearshore waters.</em>
+</code></pre>
+			<p>(Source de l'invite : AWS, modèle utilisé : AnthropicClaude)</p>
+			<p>Remarquez comment le contenu principal de l’invite est encapsulé : <code class="code">\n\nHuman:
+					<span>{</span><span>{</span>Main Content}}\n\nAssistant:</code>. Pour les Anthropic Claude modèles, les invites envoyées via l'API doivent contenir\n\nHuman : et. <code class="code">
+					\n\nAssistant:</code> </p>
+			<p>Pour utiliser le mode conversationnel sur Titan, vous pouvez utiliser le format de <code class="code">User: <span>{</span><span>{</span>}}
+					\n Bot: </code> lorsque vous rédigez une invite pour le modèle. </p>
+		 
+	<awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Avertissement" /> <strong>JavaScript est désactivé ou n'est pas disponible dans votre navigateur.</strong></p><p>Pour que vous puissiez utiliser la documentation AWS, Javascript doit être activé. Vous trouverez des instructions sur les pages d'aide de votre navigateur.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Conventions de rédaction</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./agents-invoke-agent.html">Invocation d’un agent</div><div id="next" class="next-link" accesskey="n" href="./what-is-prompt-engineering.html">Qu’est-ce que l’ingénierie de requête ?</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Cette page vous a-t-elle été utile ? - Oui</div><div class="content"><p>Merci de nous avoir fait part de votre satisfaction.</p><p>Si vous avez quelques minutes à nous consacrer, merci de nous indiquer ce qui vous a plu afin que nous puissions nous améliorer davantage.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Commentaire" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=2d8c2a09-1dac-41bf-9893-c0333d272b2c&amp;topic_url=https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/prompt-engineering-guidelines.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Cette page vous a-t-elle été utile ? - Non</div><div class="content"><p>Merci de nous avoir avertis que cette page avait besoin d'être retravaillée. Nous sommes désolés de ne pas avoir répondu à vos attentes.</p><p>Si vous avez quelques minutes à nous consacrer, merci de nous indiquer comment nous pourrions améliorer cette documentation.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Commentaire" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=2d8c2a09-1dac-41bf-9893-c0333d272b2c&amp;topic_url=https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/prompt-engineering-guidelines.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

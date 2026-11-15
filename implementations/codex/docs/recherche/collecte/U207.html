@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+        <link rel="icon" href="/themes/custom/cog_ebsco/images/favicon.ico" type="image/vnd.microsoft.icon" />
+      <meta charset="utf-8" />
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WVN26MP');</script>
+<noscript><style>form.antibot > * { display: none !important; } form.antibot noscript { display: block !important; }</style>
+</noscript><script>(function () {
+  var consentGroup = "C0004";
+  var apiKey = "f28a28777d370097d0528634e022357e";
+  var reviewMode = false;
+  var scriptsPromise = null;
+  var initialized = false;
+  var readyResolve;
+
+  window.ebscoAmplitudeAnalyticsReady = new Promise(function (resolve) {
+    readyResolve = resolve;
+  });
+
+  function getCookie(name) {
+    var prefix = name + '=';
+    var cookies = document.cookie ? document.cookie.split(';') : [];
+    for (var index = 0; index < cookies.length; index++) {
+      var cookie = cookies[index].trim();
+      if (cookie.indexOf(prefix) === 0) {
+        try {
+          return decodeURIComponent(cookie.substring(prefix.length));
+        }
+        catch (error) {
+          return '';
+        }
+      }
+    }
+    return '';
+  }
+
+  function hasConsent(group) {
+    if (reviewMode) {
+      return true;
+    }
+
+    var groups = window.OnetrustActiveGroups;
+    if (typeof groups === 'string' && groups.split(',').indexOf(group) !== -1) {
+      return true;
+    }
+
+    var consentCookie = getCookie('OptanonConsent');
+    var match = consentCookie.match(/(?:^|&)groups=([^&]*)/);
+    if (!match) {
+      return false;
+    }
+    try {
+      return decodeURIComponent(match[1]).split(',').some(function (cookieGroup) {
+        return cookieGroup === group + ':1';
+      });
+    }
+    catch (error) {
+      return false;
+    }
+  }
+
+  window.ebscoAmplitudeHasConsent = function () {
+    return hasConsent(consentGroup);
+  };
+
+  function loadAmplitudeScript() {
+    if (scriptsPromise) {
+      return scriptsPromise;
+    }
+    scriptsPromise = new Promise(function (resolve, reject) {
+      var src = 'https://cdn.amplitude.com/script/' + apiKey + '.js';
+      var existing = document.querySelector('script[src="' + src + '"]');
+      if (existing) {
+        if (existing.dataset.loaded === '1') {
+          resolve();
+          return;
+        }
+        existing.addEventListener('load', resolve, { once: true });
+        existing.addEventListener('error', reject, { once: true });
+        return;
+      }
+      var script = document.createElement('script');
+      script.src = src;
+      script.async = false;
+      script.addEventListener('load', function () {
+        script.dataset.loaded = '1';
+        resolve();
+      }, { once: true });
+      script.addEventListener('error', reject, { once: true });
+      document.head.appendChild(script);
+    });
+    return scriptsPromise;
+  }
+
+  function addAmplitudeIfAllowed() {
+    if (!hasConsent(consentGroup) || initialized) {
+      return;
+    }
+    loadAmplitudeScript().then(function () {
+      if (!window.amplitude || initialized) {
+        return;
+      }
+      var initialization = window.amplitude.init(apiKey, {
+        fetchRemoteConfig: true,
+        autocapture: true
+      });
+      var initializationPromise = initialization && initialization.promise &&
+        typeof initialization.promise.then === 'function'
+        ? initialization.promise
+        : initialization;
+      initialized = true;
+      Promise.resolve(initializationPromise).then(function () {
+        readyResolve(window.amplitude);
+      }).catch(function () {});
+    }).catch(function () {});
+  }
+
+  addAmplitudeIfAllowed();
+  window.addEventListener('OneTrustGroupsUpdated', addAmplitudeIfAllowed);
+})();</script>
+<meta name="description" content="~ Providers of DynaMed Plus® and Option Grid™ Decision Aids Come Together to Create the Future of Well-Informed Patient/Doctor Discussions for Choosing Healthcare Options ~" />
+<link rel="canonical" href="https://about.ebsco.com/news-center/press-releases/ebsco-health-dartmouth-and-option-gridtm-collaborative-founders-join" />
+<meta property="og:site_name" content="EBSCO Information Services, Inc. | about.ebsco.com" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://about.ebsco.com/news-center/press-releases/ebsco-health-dartmouth-and-option-gridtm-collaborative-founders-join" />
+<meta property="og:title" content="EBSCO Health, Dartmouth and Option Grid™ Collaborative Founders Join Forces to Improve Patient Engagement and Evidence-based Shared Decision Making - News | EBSCO" />
+<meta property="og:description" content="~ Providers of DynaMed Plus® and Option Grid™ Decision Aids Come Together to Create the Future of Well-Informed Patient/Doctor Discussions for Choosing Healthcare Options ~" />
+<meta property="og:image" content="https://assets.ebsco.com/m/295271a23064018c/original/ebsco-news-press-release-general-image-1200.png" />
+<meta name="twitter:title" content="EBSCO Health, Dartmouth and Option Grid™ Collaborative Founders Join Forces to Improve Patient Engagement and Evidence-based Shared Decision Making | EBSCO" />
+<meta name="twitter:image" content="https://assets.ebsco.com/m/295271a23064018c/original/ebsco-news-press-release-general-image-1200.png" />
+<meta name="google-site-verification" content="IO_s-DHVhe4huNSal1oa4FIuZprMcQRq3tDNch3QMKs" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "NewsArticle",
+            "headline": "EBSCO Health, Dartmouth and Option Grid™ Collaborative Founders Join Forces to Improve Patient Engagement and Evidence-based Shared Decision Making",
+            "description": "~ Providers of DynaMed Plus® and Option Grid™ Decision Aids Come Together to Create the Future of Well-Informed Patient/Doctor Discussions for Choosing Healthcare Options ~",
+            "datePublished": "2017-04-19T06:00:00-0400",
+            "dateModified": "2018-03-20T16:52:30-0400",
+            "author": {
+                "@type": "Organization",
+                "name": "EBSCO",
+                "url": "https://www.ebsco.com"
+            }
+        }
+    ]
+}</script>
+<link rel="alternate" type="text/markdown" title="EBSCO Health, Dartmouth and Option Grid™ Collaborative Founders Join Forces to Improve Patient Engagement and Evidence-based Shared Decision Making    " href="https://about.ebsco.com/news-center/press-releases/ebsco-health-dartmouth-and-option-gridtm-collaborative-founders-join.md" />
+<link rel="alternate" hreflang="en" href="https://about.ebsco.com/news-center/press-releases/ebsco-health-dartmouth-and-option-gridtm-collaborative-founders-join" />
+
+    <title>EBSCO Health, Dartmouth and Option Grid™ Collaborative Founders Join Forces to Improve Patient Engagement and Evidence-based Shared Decision Making - News | EBSCO</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://assets.ebsco.com">
+    <link rel="stylesheet" media="all" href="/sites/default/files/css/css_s3MGfysVny8F2JnXPczyPBQ6eIWPD5mtg3_yRMjyq4Q.css?delta=0&amp;language=en&amp;theme=cog_ebsco&amp;include=eJxlz0sOwyAMBNALJc2RIgNTQDIYYdM2t-9n05Qu_UZj2V7iDqdeNgTeXQcF30dxi_8NhpnUCVmiTFQo17XSLUey_FeQGzrTMamCuk9OHrMnuaccMHM2rAqGN-mn7CrV6A6Vgkn1NEcWR68ldjB0-dhOpXG2EbB5zqj2fmB93SnDVoPa0qhT7NSSbqGPRnz5ymXUNhxnTQiLHmoomyPFE5VLhng" />
+<link rel="stylesheet" media="all" href="/sites/default/files/css/css_bhFm8JH8Wj5JjXwSeRC2DoF6L_e4g87eAkI0JpPrrNo.css?delta=1&amp;language=en&amp;theme=cog_ebsco&amp;include=eJxlz0sOwyAMBNALJc2RIgNTQDIYYdM2t-9n05Qu_UZj2V7iDqdeNgTeXQcF30dxi_8NhpnUCVmiTFQo17XSLUey_FeQGzrTMamCuk9OHrMnuaccMHM2rAqGN-mn7CrV6A6Vgkn1NEcWR68ldjB0-dhOpXG2EbB5zqj2fmB93SnDVoPa0qhT7NSSbqGPRnz5ymXUNhxnTQiLHmoomyPFE5VLhng" />
+<link rel="stylesheet" media="all" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,700&amp;display=swap" />
+<link rel="stylesheet" media="all" href="/sites/default/files/css/css_ZiQPJoZmpws3TO42Hal4K3_A9KdaCOWrGRe0SWOBkjg.css?delta=3&amp;language=en&amp;theme=cog_ebsco&amp;include=eJxlz0sOwyAMBNALJc2RIgNTQDIYYdM2t-9n05Qu_UZj2V7iDqdeNgTeXQcF30dxi_8NhpnUCVmiTFQo17XSLUey_FeQGzrTMamCuk9OHrMnuaccMHM2rAqGN-mn7CrV6A6Vgkn1NEcWR68ldjB0-dhOpXG2EbB5zqj2fmB93SnDVoPa0qhT7NSSbqGPRnz5ymXUNhxnTQiLHmoomyPFE5VLhng" />
+
+    
+  </head>
+  <body class="path--node node-541 first-segment--news-center body-sidebars-none syspath--node-541 alias--news-center-press-releases-ebsco-health-dartmouth-and-option-gridtm-collaborative-founders-join nodetype--press_release logged-out">
+    <div id="skip">
+      <a class="visually-hidden focusable skip-link" href="#block-cog-ebsco-main-menu">
+        Skip to main navigation
+      </a>
+    </div>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WVN26MP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    <div  class="page-standard" id="pg__c">
+
+  <!-- ______________________ HEADER _______________________ -->
+
+  <header id="header" class="container header">
+          <div id="header-region">
+        <div>
+          
+
+
+
+
+  <div class="region region-header edl-nav-container" data-ebsco-amplitude-experiment="nav_layout_test">
+    <div class="edl-nav-row">
+      <div class="edl-navbar ebsco-main-nav">
+
+        <!-- Main logo component/pattern goes here -->
+                                    
+
+<a class="edl-site-logo "
+  href="/about">
+<svg role="img" aria-labelledby="title" width="119" height="22" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 119 27" style="enable-background:new 0 0 119 27;" xml:space="preserve">
+  <g>
+    <title id="title">EBSCO, research databases, ebooks, discovery service</title>
+    <path id="XMLID_25_" class="st0" d="M1,25.692v-1.462c2.564,0,3.29-0.769,3.29-2.846V5.616c0-2.077-0.727-2.846-3.29-2.846V1.308
+      h18.633l0.995,3.462c0.115,0.385,0.191,0.731,0.191,0.885c0,0.192-0.344,0.577-0.765,0.577c-0.268,0-0.383-0.154-0.803-0.808
+      c-1.722-2.577-3.941-3.038-7.346-3.038c-2.372,0-2.64,0.385-2.64,1.923v7.615h3.023c2.219,0,3.061-0.5,3.558-2.731
+      c0.077-0.423,0.153-0.462,0.727-0.5c0.459,0,0.65,0.115,0.65,0.731v7.538c0,0.385-0.306,0.5-0.727,0.5
+      c-0.421,0-0.497-0.115-0.536-0.269c-1.033-3.385-1.683-3.577-3.673-3.577H9.264v8.192c0,2.039,0.383,2.423,3.941,2.423
+      c4.706,0,6.007-1.423,7.92-4.731c0.115-0.192,0.191-0.308,0.65-0.308c0.421,0,0.574,0.115,0.574,0.269
+      c0,0.154-0.038,0.346-0.076,0.692l-0.842,5.539H1z"/>
+    <path id="XMLID_21_" class="st0" d="M28.624,5.616c0-2.077-0.727-2.846-3.52-2.846V1.308h9.871c6.198,0,9.565,2.077,9.565,5.731
+      c0,3.423-3.214,4.962-5.433,5.615v0.077c4.591,0.577,6.811,3.654,6.811,6.5c0,2.616-1.99,6.462-8.877,6.462H25.104v-1.462
+      c2.793,0,3.52-0.769,3.52-2.846V5.616z M33.598,10.654c0,1.116,0.536,1.5,2.104,1.5c2.372,0,4.247-1.039,4.247-4.731
+      c0-3.577-1.683-4.654-4.438-4.654c-1.531,0-1.913,0.615-1.913,2V10.654z M33.598,21.577c0,2.038,0.612,2.654,2.908,2.654
+      c3.061,0,4.591-2.154,4.591-5.231c0-3.692-2.372-5.385-5.586-5.385c-1.607,0-1.913,0.308-1.913,1.846V21.577z"/>
+    <path id="XMLID_19_" class="st0" d="M63.517,6.385c0,0.808-0.153,0.962-0.65,0.962c-0.421,0-0.574-0.231-1.071-1.231
+      c-0.88-1.808-2.831-3.654-5.28-3.654c-2.219,0-4.132,1.539-4.132,3.616c0,5.423,12.32,4.038,12.32,12.461
+      c0,3.385-1.875,7.462-8.953,7.462c-2.028,0-5.395-0.731-6.734-1.462c-0.268-0.346-0.612-3.385-0.612-5.039
+      c0-0.808,0.153-1.077,0.804-1.077s0.803,0.077,1.071,1.077c0.421,1.5,2.028,5.039,6.198,5.039c2.449,0,4.63-1.231,4.63-3.885
+      c0-5.731-12.32-5-12.32-12.654c0-4.769,4.591-7,8.341-7c3.597,0,6.007,1.077,6.237,1.385c0.038,0.538,0.153,1.038,0.153,2.538
+      V6.385z"/>
+    <path id="XMLID_17_" class="st0" d="M89.573,21.461c-0.115,1-0.268,1.423-0.612,1.846C88.387,24,85.287,26,79.893,26
+      c-7.155,0-12.894-5.615-12.894-12.5S72.738,1,79.893,1c4.4,0,9.489,1.846,9.489,3.577c0,1.692-0.268,3.154-0.268,3.769
+      c0,0.231-0.191,0.769-0.65,0.769c-0.383,0-0.536-0.115-1.071-1.538c-1.263-3.269-4.017-5.116-7.499-5.116
+      c-3.405,0-7.537,2.923-7.537,11.039c0,8.115,4.132,11.038,8.685,11.038c4.209,0,6.734-4,7.232-5.231
+      c0.344-0.808,0.459-0.885,0.918-0.885c0.383,0,0.612,0.192,0.612,0.5c0,0.231-0.038,0.577-0.076,1.192L89.573,21.461z"/>
+    <path id="XMLID_14_" class="st0" d="M105.106,1C112.261,1,118,6.616,118,13.5S112.261,26,105.106,26s-12.894-5.615-12.894-12.5
+      S97.951,1,105.106,1z M105.106,24.538c3.405,0,7.537-2.923,7.537-11.038c0-8.116-4.132-11.039-7.537-11.039
+      S97.568,5.385,97.568,13.5C97.568,21.615,101.701,24.538,105.106,24.538z"/>
+  </g>
+</svg>
+</a>
+        
+
+        <div class="edl-nav-container">
+          <div class="edl-nav-row">
+                          <div class="contextual-region">
+                <nav class="main-navigation">
+  <button class="menu-toggle" aria-label="Toggle navigation"><i class="fal fa-bars"></i></button>
+  <ul class="menu level-0">
+                            <li class="research__container menu-item is-mega-parent">
+        <a href="https://www.ebsco.com/">Start Your Research</a>
+
+                      </li>
+                                          <li class="menu-item is-mega-parent has-children">
+        <a href="">Solutions For</a>
+
+                        <div class="menu level-1">
+          <ul>
+                          <li class="menu-item is-parent has-children">
+                <a href="/academic-libraries">Academic Libraries</a>
+
+                                                  <ul class="menu level-2">
+                                          <li class="menu-item">
+                        <a href="/academic-libraries">Provide essential research databases, e-journals, and e-books to researchers. Manage library technology, acquisitions &amp; collection development.</a>
+                      </li>
+                                      </ul>
+                              </li>
+                          <li class="menu-item is-parent has-children">
+                <a href="/public-libraries">Public Libraries</a>
+
+                                                  <ul class="menu level-2">
+                                          <li class="menu-item">
+                        <a href="/public-libraries">Help build and manage collections, meet consumers&#039; information needs, promote lifelong learning and transform lives.</a>
+                      </li>
+                                      </ul>
+                              </li>
+                          <li class="menu-item is-parent has-children">
+                <a href="/schools">Schools</a>
+
+                                                  <ul class="menu level-2">
+                                          <li class="menu-item">
+                        <a href="/schools">Provide reliable resources and technology to support student research, curriculum delivery and information literacy skills development.</a>
+                      </li>
+                                      </ul>
+                              </li>
+                          <li class="menu-item is-parent has-children">
+                <a href="/health-care">Health Care</a>
+
+                                                  <ul class="menu level-2">
+                                          <li class="menu-item">
+                        <a href="/health-care">Provide evidence-based solutions, shared decision-making resources, health care business intelligence and peer-reviewed research information.</a>
+                      </li>
+                                      </ul>
+                              </li>
+                          <li class="menu-item is-parent has-children">
+                <a href="/corporations">Corporations</a>
+
+                                                  <ul class="menu level-2">
+                                          <li class="menu-item">
+                        <a href="/corporations">Empower employees to build soft skills, meet research and development needs, and succeed in the workplace.</a>
+                      </li>
+                                      </ul>
+                              </li>
+                          <li class="menu-item is-parent has-children">
+                <a href="/publishers-partnerships">Publishers</a>
+
+                                                  <ul class="menu level-2">
+                                          <li class="menu-item">
+                        <a href="/publishers-partnerships">Expand the reach of your content or service, increase your footprint in existing and new markets. </a>
+                      </li>
+                                      </ul>
+                              </li>
+                          <li class="menu-item is-parent has-children">
+                <a href="https://search.ebscohost.com/">Researchers &amp; Students</a>
+
+                                                  <ul class="menu level-2">
+                                          <li class="menu-item">
+                        <a href="https://search.ebscohost.com/">Find your organization to access our products to start your research.</a>
+                      </li>
+                                      </ul>
+                              </li>
+                          <li class="menu-item is-parent has-children">
+                <a href="/ebscohost-ai-exchange">AI</a>
+
+                                                  <ul class="menu level-2">
+                                          <li class="menu-item">
+                        <a href="/ebscohost-ai-exchange">Connect trusted, rights-cleared research content with AI systems to power more accurate and reliable outputs.</a>
+                      </li>
+                                      </ul>
+                              </li>
+                      </ul>
+                    <div class="footer-menu">
+            
+            <ul class="menu">
+                   <li>
+          <a href="https://search.ebscohost.com/">Access EBSCOhost</a>
+                  </li>
+               <li>
+          <a href="/products" data-drupal-link-system-path="node/3451">Explore Products</a>
+                  </li>
+               <li>
+          <a href="/contact" data-drupal-link-system-path="node/8326">Contact Us</a>
+                  </li>
+          </ul>
+  
+
+
+          </div>
+        </div>
+              </li>
+                                          <li class="menu-item is-mega-parent has-children">
+        <a href="">Products</a>
+
+                        <div class="menu level-1">
+          <ul>
+                          <li class="menu-item is-parent has-children">
+                <a href="">Technology &amp; Discovery</a>
+
+                                                  <ul class="menu level-2">
+                                          <li class="menu-item">
+                        <a href="/products/bibliograph">BiblioGraph</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/products/ebsco-discovery-service">EBSCO Discovery Service</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/academic-libraries/products/ebsco-folio">EBSCO FOLIO</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/products/ebsco-mobile-app-research-anytime-anywhere">EBSCO Mobile App</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/products/ebsco-resource-sharing-openrs">EBSCO Resource Sharing with OpenRS</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/products/ebscoadmin">EBSCOadmin</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/products/ebscohost-research-platform">EBSCOhost Research Platform</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/products/ereserve-plus">eReserve Plus</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/products/explora">Explora</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/products/full-text-finder">Full Text Finder</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/products/openathens-compass">OpenAthens Compass</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/products/panorama">Panorama</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/products/stacks">Stacks</a>
+                      </li>
+                                      </ul>
+                              </li>
+                          <li class="menu-item is-parent has-children">
+                <a href="">Databases &amp; Archives</a>
+
+                                                  <ul class="menu level-2">
+                                          <li class="menu-item">
+                        <a href="/products/digital-archives">Digital Archives</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/products/magazine-archives">Magazine Archives</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/products/research-databases">Research Databases</a>
+                      </li>
+                                      </ul>
+                              </li>
+                          <li class="menu-item is-parent has-children">
+                <a href="">Clinical Decisions</a>
+
+                                                  <ul class="menu level-2">
+                                          <li class="menu-item">
+                        <a href="/products/dynamed">DynaMed</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/clinical-decisions/dynamed-solutions/dynamedex">DynaMedex</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/health-care/products/dynamic-health">Dynamic Health</a>
+                      </li>
+                                      </ul>
+                              </li>
+                          <li class="menu-item is-parent has-children">
+                <a href="">Journals, E-Packages &amp; Magazines</a>
+
+                                                  <ul class="menu level-2">
+                                          <li class="menu-item">
+                        <a href="/products/flipster">Flipster</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/products/journal-subscription-services">Journal Subscription Services</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/products/ebsco-community-plus">EBSCO Community Plus</a>
+                      </li>
+                                      </ul>
+                              </li>
+                          <li class="menu-item is-parent has-children">
+                <a href="">Books &amp; E-Collections</a>
+
+                                                  <ul class="menu level-2">
+                                          <li class="menu-item">
+                        <a href="/products/ebscohost-collection-manager">EBSCOhost Collection Manager</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/products/ebooks">EBSCOhost eBooks</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/products/gobi-library-solutions">GOBI Library Solutions</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/products/mosaic">Mosaic</a>
+                      </li>
+                                      </ul>
+                              </li>
+                          <li class="menu-item is-parent has-children">
+                <a href="">Readers&#039; Advisory</a>
+
+                                                  <ul class="menu level-2">
+                                          <li class="menu-item">
+                        <a href="/novelist">NoveList</a>
+                      </li>
+                                      </ul>
+                              </li>
+                          <li class="menu-item is-parent has-children">
+                <a href="">Learning &amp; Test Prep</a>
+
+                                                  <ul class="menu level-2">
+                                          <li class="menu-item">
+                        <a href="/products/ebscolearning">EBSCOlearning</a>
+                      </li>
+                                      </ul>
+                              </li>
+                          <li class="menu-item is-parent has-children">
+                <a href="">Professional Services</a>
+
+                                                  <ul class="menu level-2">
+                                          <li class="menu-item">
+                        <a href="/products/ebsco-professional-services">EBSCO Professional Services</a>
+                      </li>
+                                      </ul>
+                              </li>
+                      </ul>
+                    <div class="footer-menu">
+            
+            <ul class="menu">
+                   <li>
+          <a href="https://search.ebscohost.com/">Access EBSCOhost</a>
+                  </li>
+               <li>
+          <a href="/products" data-drupal-link-system-path="node/3451">Explore Products</a>
+                  </li>
+               <li>
+          <a href="/contact" data-drupal-link-system-path="node/8326">Contact Us</a>
+                  </li>
+          </ul>
+  
+
+
+          </div>
+        </div>
+              </li>
+                                          <li class="menu-item is-mega-parent has-children">
+        <a href="">Insights</a>
+
+                        <div class="menu level-1">
+          <ul>
+                          <li class="menu-item is-parent has-children">
+                <a href="">Explore</a>
+
+                                                  <ul class="menu level-2">
+                                          <li class="menu-item">
+                        <a href="/blogs/ebscopost">EBSCOpost Blog</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/blogs/health-notes">EBSCO Health Notes Blog</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/blogs/novelist">NoveList Blog</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/resources">Resource Center</a>
+                      </li>
+                                      </ul>
+                              </li>
+                          <li class="menu-item is-parent has-children">
+                <a href="">Connect</a>
+
+                                                  <ul class="menu level-2">
+                                          <li class="menu-item">
+                        <a href="/news-center/events">Events</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/social">Social</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="https://more.ebsco.com/preference-center.html">Newsletters</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/news-center">News Center</a>
+                      </li>
+                                      </ul>
+                              </li>
+                          <li class="menu-item is-parent has-children">
+                <a href="">Learn</a>
+
+                                                  <ul class="menu level-2">
+                                          <li class="menu-item">
+                        <a href="https://connect.ebsco.com/">Get Support</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="https://connect.ebsco.com/s/academy">EBSCO Academy</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/promotional-materials">Promotional Materials</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/title-lists">Title Lists</a>
+                      </li>
+                                      </ul>
+                              </li>
+                      </ul>
+                    <div class="footer-menu">
+            
+            <ul class="menu">
+                   <li>
+          <a href="https://search.ebscohost.com/">Access EBSCOhost</a>
+                  </li>
+               <li>
+          <a href="/products" data-drupal-link-system-path="node/3451">Explore Products</a>
+                  </li>
+               <li>
+          <a href="/contact" data-drupal-link-system-path="node/8326">Contact Us</a>
+                  </li>
+          </ul>
+  
+
+
+          </div>
+        </div>
+              </li>
+                                          <li class="menu-item is-mega-parent has-children">
+        <a href="">Company</a>
+
+                        <div class="menu level-1">
+          <ul>
+                          <li class="menu-item is-parent has-children">
+                <a href="">Who We Are</a>
+
+                                                  <ul class="menu level-2">
+                                          <li class="menu-item">
+                        <a href="/about/mission">Mission</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/about/leadership">Leadership</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/offices">Offices</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/careers">Careers</a>
+                      </li>
+                                      </ul>
+                              </li>
+                          <li class="menu-item is-parent has-children">
+                <a href="">Commitments</a>
+
+                                                  <ul class="menu level-2">
+                                          <li class="menu-item">
+                        <a href="/technology/accessibility">Accessibility</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/open-for-research/open-access">Open Access</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/technology/artificial-intelligence-ai-0">Artificial Intelligence (AI)</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/linked-data">Linked Data</a>
+                      </li>
+                                      </ul>
+                              </li>
+                          <li class="menu-item is-parent has-children">
+                <a href="">Values</a>
+
+                                                  <ul class="menu level-2">
+                                          <li class="menu-item">
+                        <a href="/about/corporate-responsibility">Corporate Responsibility</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/about/our-people-and-community">Our People &amp; Community</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/about/ebsco-commitment">Trust &amp; Security</a>
+                      </li>
+                                          <li class="menu-item">
+                        <a href="/environmental-sustainability">Sustainability</a>
+                      </li>
+                                      </ul>
+                              </li>
+                      </ul>
+                    <div class="footer-menu">
+            
+            <ul class="menu">
+                   <li>
+          <a href="https://search.ebscohost.com/">Access EBSCOhost</a>
+                  </li>
+               <li>
+          <a href="/products" data-drupal-link-system-path="node/3451">Explore Products</a>
+                  </li>
+               <li>
+          <a href="/contact" data-drupal-link-system-path="node/8326">Contact Us</a>
+                  </li>
+          </ul>
+  
+
+
+          </div>
+        </div>
+              </li>
+      </ul>
+  <!-- Action menu component goes here -->
+  <div class="edl-navbar_sub-menu">
+      <span class="edl-showhide--container" aria-owns="actions__panels_search">
+      <!-- search icon -->
+      <a class="edl-navbar_sub-menu-item edl-navbar_search" aria-expanded="true" aria-controls="navbar_groupsearch__sect0" id="navbar_groupsearch__tabID_0" href="#">
+        <i class="far fa-search"></i>
+      </a>
+      </span>
+      <span class="edl-showhide--container actions__panels_site" aria-owns="actions__panels">
+      <!-- site select icon
+      <a class="edl-navbar_sub-menu-item edl-navbar_site-select edl-showhide--trigger trigger--is-toggle" aria-expanded="false" aria-controls="navbar_site__sect0" id="navbar_site__tabID_0" href="#">
+        <i class="fal fa-globe"></i><span id="displayLang"></span>
+
+      </a> -->
+      <a class="edl-navbar_sub-menu-item edl-navbar_site-select edl-showhide--trigger trigger--is-toggle"
+      aria-expanded="false"
+      aria-controls="navbar_site__sect0"
+      id="navbar_site__tabID_0"
+      href="#">
+        <i class="fal fa-globe"></i>
+        <span id="displayLang"></span>
+        <i class="chevron-icon"></i>
+    </a>
+
+
+      <!-- // ACTION MENU PANELS -->
+      <div id="actions__panels">
+
+          <!-- site select -->
+          <div class="edl-showhide--target" id="navbar_site__sect0" role="region" aria-labelledby="navbar_site__tabID_0" hidden>
+            
+
+
+<ul class="site-select">
+      <li >
+      <a href="/cs-cz/centrum-novinek/tiskove-zpravy">Čeština</a>
+    </li>
+      <li >
+      <a href="/de-de/nachrichten-news/pressemitteilungen">Deutsch</a>
+    </li>
+      <li class="is-selected">
+      <a href="">English</a>
+    </li>
+      <li >
+      <a href="/es/centro-noticias/comunicados-de-prensa">Español</a>
+    </li>
+      <li >
+      <a href="/fr-fr/news-center/press-releases">Français</a>
+    </li>
+      <li >
+      <a href="/it-it/news-center/press-releases">Italiano</a>
+    </li>
+      <li >
+      <a href="/nl-nl/nieuwsberichten/persberichten">Nederlands</a>
+    </li>
+      <li >
+      <a href="/pl-pl/news-center/komunikaty-prasowe">Polski</a>
+    </li>
+      <li >
+      <a href="/pt/news-center/press-releases">Português</a>
+    </li>
+      <li >
+      <a href="/tr-tr/news-center/press-releases">Türkçe</a>
+    </li>
+      <li >
+      <a href="/ar/news-center/press-releases">العربية</a>
+    </li>
+      <li >
+      <a href="/th-th/news-center/press-releases">ประเทศไทย</a>
+    </li>
+      <li >
+      <a href="/ja-jp/news-center/press-releases">日本語</a>
+    </li>
+      <li >
+      <a href="/zh-cn/news-center/press-releases">简体中文</a>
+    </li>
+      <li >
+      <a href="/zh-tw/news-center/press-releases">繁體中文</a>
+    </li>
+      <li >
+      <a href="/ko-kr/news-center/press-releases">한글</a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+      <!-- cta -->
+      <div class="edl-navbar_sub-menu-item edl-navbar_cta">
+                        
+  <a class="edl-btn
+    "href="/contact">
+        <span class="btn-text">Contact us</span>  </a>
+      </div>
+      </span>
+    </div>
+  </nav>
+
+              </div>
+                      </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="search-panel-wrapper">
+      
+  <div id="actions__panels_search">
+    <!-- search -->
+    <div id="navbar_groupsearch__sect0" role="region" aria-labelledby="navbar_groupsearch__tabID_0">
+      <div class="new-search">
+          <div id="search_group__site-search">
+            <form action="/search" method="get" id="views-exposed-form-acquia-search-page-1" accept-charset="UTF-8">
+  
+
+<div class="js-form-item form-item js-form-type-textfield form-item-search js-form-item-search form-no-label">
+              <input placeholder="Find information about our products, services and more" data-drupal-selector="edit-search" type="text" id="edit-search" name="search" value="" size="30" maxlength="128" class="form-text" autocomplete="off" aria-label="search" />
+
+        </div>
+<div data-drupal-selector="edit-actions" class="form-actions js-form-wrapper form-wrapper" id="edit-actions">
+        
+  <button class="edl-btn
+    edl-btn--form-submit button js-form-submit form-submit" data-drupal-selector="edit-submit-acquia-search" type="submit" id="edit-submit-acquia-search" value="Search" class="button js-form-submit form-submit">
+    <i class="far fa-search"></i>      </button>
+
+
+</div>
+
+
+</form>
+
+          </div>
+                    <div id="block-cog-ebsco-textbelow-search">
+            
+            <div class="field field--name-body field--type-text-with-summary field--label-hidden field__item"><p class="database-login-link">Looking for scholarly content to start your research? <a href="https://login.ebsco.com/"><span class="login-text">Log in to EBSCOhost </span><span class="external-link"><img src="https://assets.ebsco.com/transform/92752d0d-23e6-4598-a033-02858c64317a/external-link" width="16" height="16"></span></a></p>
+</div>
+      
+          </div> 
+      </div>
+    </div>
+  </div>
+    </div>
+  </div>
+
+      
+<!-- ////////// EDL Overlay ////////// -->
+<div class="edl-overlay"></div>
+  
+
+
+  <div id="actions__panels_search">
+    <!-- search -->
+    <div id="navbar_groupsearch__sect0" role="region" aria-labelledby="navbar_groupsearch__tabID_0">
+      <div class="new-search">
+          <div id="search_group__site-search">
+            <form action="/search" method="get" id="views-exposed-form-acquia-search-page-1" accept-charset="UTF-8">
+  
+
+<div class="js-form-item form-item js-form-type-textfield form-item-search js-form-item-search form-no-label">
+              <input placeholder="Find information about our products, services and more" data-drupal-selector="edit-search" type="text" id="edit-search" name="search" value="" size="30" maxlength="128" class="form-text" autocomplete="off" aria-label="search" />
+
+        </div>
+<div data-drupal-selector="edit-actions" class="form-actions js-form-wrapper form-wrapper" id="edit-actions">
+        
+  <button class="edl-btn
+    edl-btn--form-submit button js-form-submit form-submit" data-drupal-selector="edit-submit-acquia-search" type="submit" id="edit-submit-acquia-search" value="Search" class="button js-form-submit form-submit">
+    <i class="far fa-search"></i>      </button>
+
+
+</div>
+
+
+</form>
+
+          </div>
+                    <div id="block-cog-ebsco-textbelow-search">
+            
+            <div class="field field--name-body field--type-text-with-summary field--label-hidden field__item"><p class="database-login-link">Looking for scholarly content to start your research? <a href="https://login.ebsco.com/"><span class="login-text">Log in to EBSCOhost </span><span class="external-link"><img src="https://assets.ebsco.com/transform/92752d0d-23e6-4598-a033-02858c64317a/external-link" width="16" height="16"></span></a></p>
+</div>
+      
+          </div> 
+      </div>
+    </div>
+  </div>
+
+        </div>
+      </div>
+      </header>
+  <!-- /header -->
+
+  <!-- ______________________ Pre content _______________________ -->
+  
+  <!-- ______________________ MAIN _______________________ -->
+
+  <div class="clearfix" id="main">
+
+            <!-- /sidebar-first -->
+
+      <section id="content">
+
+        
+        <div id="content-area">
+            <div class="region region-content">
+    <div data-drupal-messages-fallback class="hidden"></div><div id="block-cog-ebsco-content" class="block block-system block-system-main-block">
+  
+    
+      
+
+    
+
+<article class="entity--type-node node node--type-press-release node--promoted node--view-mode-full">
+
+    <!-- ______________________ HERO BANNER _______________________ -->
+
+    <section  class="entity--type-node node node--type-press-release node--promoted node--view-mode-full pr__hero-wrapper">
+
+
+  <!-- Breadcrumb -->
+  <section class="edl-slab">
+    <div class="row">
+      <div class="edl-resources-breadcrumb">
+        <ul class="edl-left-breadcrumb">
+          <li>
+            <a class="edl-link" href="/news-center/press-releases">
+              <i class="fal fa-chevron-left"></i><span>Press Releases</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+      <section class="pr__banner-text">
+        <div class="row">
+          <div class="col-content--small">
+            <div class="pr-hero">
+
+              <h1 class="h2">
+            <div class="field field--name-field-release-long-title field--type-string-long field--label-hidden field__item">EBSCO Health, Dartmouth and Option Grid™ Collaborative Founders Join Forces to Improve Patient Engagement and Evidence-based Shared Decision Making    <br />
+</div>
+      </h1>
+
+              <span class="title">    <span > ~ Providers of DynaMed Plus® and Option Grid™ Decision Aids Come Together to Create the Future of Well-Informed Patient/Doctor Discussions for Choosing Healthcare Options ~</span>
+</span>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </section>
+
+
+
+    <!-- ______________________ CONTAINER _______________________ -->
+    <div class="pr-container">
+        <div class="row">
+           <div class="col-content--small">
+            <div class="pr-container-text">
+              <div class="pr-image">
+                <img src="https://assets.ebsco.com/m/74346fad5af330d6/original/ebsco-news-center-press-releases-default-image-healthcare-780.png" alt="Featured Health Care image" />
+              </div>
+              <div class="pr-text">
+                
+              
+
+
+                
+
+
+<p><strong>IPSWICH, Mass. — April 19, 2017 &nbsp;—</strong> <a href="https://health.ebsco.com/">EBSCO Health</a>, a division of <a href>EBSCO Information Services</a> and the creator of <a href="http://www.dynamed.com/home/"><em>DynaMed Plus<sup>®</sup></em></a>, has entered into a licensing arrangement with Dartmouth College and the founders of the Option Grid™ Collaborative to advance evidence-based shared decision making. With this new collaboration, EBSCO Health will combine methodologies utilized at The Dartmouth Institute for Health Policy and Clinical Practice (TDI) at the Geisel School of Medicine with EBSCO Health’s expertise in evidence-based medicine to develop a multitude of new patient decision aids to be distributed under the Option Grid trademark.</p>
+<p>Shared decision making is becoming an essential part of the patient-doctor relationship and an emerging focus in health care. The <a href="https://www.healthit.gov/sites/default/files/nlc_shared_decision_making_fact_sheet.pdf">National Learning Consortium</a> of the U.S. Department of Health and Human Services (HHS) says shared decision making is important in situations where “there is no single ‘right’ health care decision.” <a href="https://www.ahrq.gov/cahps/quality-improvement/improvement-guide/6-strategies-for-improving/communication/strategy6i-shared-decisionmaking.html">The Agency for Healthcare Research and Quality</a> (AHRQ) of HHS sees shared decision making as a way to provide consistent, evidence-based information to patients and “increase knowledge, improve risk estimates, increase patient’s involvement in decisions, and help clarify treatment preferences.”</p>
+<p>Patient decision aids are tools to help achieve shared decision making by enabling patients to understand and compare their healthcare options in the context of their personal preferences and values, and arrive at informed decisions. State and national efforts to require and incentivize shared decision making are underway, including legislative changes in Washington State that afford enhanced legal protection to physicians who use evidence-based decision aids, requirements of the Centers for Medicare and Medicaid Services (CMS) regarding the use of evidence-based decision aids to be eligible for payment for certain procedures, and the availability of funding opportunities from CMS to test shared decision making models.</p>
+<p>Option Grid decision aids are brief, easy-to-read decision aids that can be used in the clinical encounter, allowing patients and their doctors to compare healthcare options based on high-quality, evidence-based answers to patients’ commonly asked questions. Research shows Option Grid decision aids increase patient knowledge and shared decision making without increasing the length of a clinical visit.&nbsp;</p>
+<p>Since 2012, TDI has operated the Option Grid Collaborative — a network of researchers, practitioners and other individuals who have developed and disseminated Option Grid decision aids. The Option Grid Collaborative was founded by Glyn Elwyn, MD PhD, and Marie-Anne Durand, PhD, CPsychol, professors at the Geisel School of Medicine at Dartmouth, who are key opinion leaders in the field of shared decision making, having published international research and served on national advisory committees in United States and the United Kingdom.</p>
+<p>Dr. Elwyn notes that, as the demand for shared decision making resources increased, the Option Grid Collaborative recognized that a much larger-scale operation than that conducted by the Collaborative was required to keep pace with this demand. “As we began mapping out how to expand, we realized that EBSCO Health, with its product experience and search expertise, its evidence-based expertise, and its technological savvy has the wherewithal to expand significantly the resources needed to support shared decision making.” Professors Elwyn and Durand will serve as consultants to EBSCO Health, applying their expertise to the development and dissemination by EBSCO Health of new patient decision aids. Dartmouth will serve as EBSCO Health’s “preferred academic research partner” for conducting research primarily on the Option Grid decision aids that are developed by EBSCO Health.</p>
+<p>EBSCO Health Senior Vice President of Medical Product Management Betsy Jones says as a point-of-care provider, EBSCO Health is always looking for ways to impact the clinical workflow. “We created <em>DynaMed Plus</em> as a reaction to the way clinicians search for information and their research expectations. This research allowed <em>DynaMed Plus</em> to better fit into the clinical workflow and we expect to take the same approach with shared decision making. By having resources available during a patient/doctor encounter, shared decision making is more natural and better informs treatment decisions.”</p>
+<p>An April 4, 2017 article in the Journal of the American Medical Association titled “<a href="http://jamanetwork.com/journals/jama/article-abstract/2614196">Prime Time for Shared Decision Making</a>” calls for “the implementation of high-quality and achievable shared decision making,” including trustworthy decision aids that can be easily integrated into clinical practice with minimal burden. EBSCO Health believes that the new generation of EBSCO Health Option Grid decision aids will provide a considerable step forward to achieving that vision, allowing shared decision making to become a reality in the routine practice of healthcare.</p>
+<p>&nbsp;</p>
+<p><strong>About EBSCO Health</strong><br>
+EBSCO Health, part of EBSCO Information Services, is a leading provider of clinical decision support solutions, healthcare business intelligence, and medical research information for the healthcare industry. EBSCO Health users include professionals in medicine, nursing, and allied health. Flagship products include <em>CINAHL<sup>®</sup></em>, <em>DynaMed Plus<sup>®</sup></em>, <em>Nursing Reference Center™</em>, clinical e-books and e-journals,<em> EBSCO Discovery Service™</em>, licensed databases (such as <em>MEDLINE<sup>®</sup></em>), plus <em>EBSCONET<sup>®</sup></em>. EBSCO databases are powered by EBSCO<em>host<sup>®</sup></em>, the electronic resource favored by libraries around the world.</p>
+<p><strong>About EBSCO Information Services</strong><br>
+EBSCO Information Services (EBSCO) is the leading discovery service provider for libraries worldwide with more than 11,000 discovery customers in over 100 countries. <em>EBSCO Discovery Service™</em> (EDS) provides each institution with a comprehensive, single search box for its entire collection, offering unparalleled relevance ranking quality and extensive customization. EBSCO is also the preeminent provider of online research content for libraries, including hundreds of research databases, historical archives, point-of-care medical reference, and corporate learning tools serving millions of end users at tens of thousands of institutions. EBSCO is the leading provider of electronic journals &amp; books for libraries, with subscription management for more than 360,000 serials, including more than 57,000 e-journals, as well as online access to more than 1,000,000 e-books. For more information, visit the EBSCO website at: <a href>www.ebsco.com</a>. EBSCO Information Services is a division of EBSCO Industries Inc., a family owned company since 1944.</p>
+<p><strong>&nbsp;###</strong></p>
+<p><strong>For more information, please contact:</strong><br>
+Kathleen McEvoy<br>
+Vice President of Communications<br>
+(800) 653-2726 ext. 2594<br>
+<a href="mailto:kmcevoy@ebsco.com">kmcevoy@ebsco.com</a></p>
+
+      
+    
+                <div class="pr-social">
+                  <p>Share this:</p>
+                  <ul class="menu">
+                      <li class="menu-item__social menu-item__facebook">
+                          <a href="https://www.facebook.com/sharer.php?u=https://about.ebsco.com/news-center/press-releases/ebsco-health-dartmouth-and-option-gridtm-collaborative-founders-join" class="item link__facebook link__social" target="_blank">Facebook</a>
+                      </li>
+                      <li class="menu-item__social menu-item__twitter">
+                          <a href="https://twitter.com/intent/tweet?text=EBSCO%20Health%2C%20Dartmouth%20and%20Option%20Grid%E2%84%A2%20Collaborative%20Founders%20Join%20Forces%20to%20Improve%20Patient%20Engagement%20and%20Evidence-based%20Shared%20Decision%20Making%20%20%20%20&url=https://about.ebsco.com/news-center/press-releases/ebsco-health-dartmouth-and-option-gridtm-collaborative-founders-join&via=EBSCO News" class="item link__twitter link__social" target="_blank">Twitter</a>
+                      </li>
+                      <li class="menu-item__social menu-item__linkedin">
+                          <a href="http://www.linkedin.com/shareArticle?mini=true&url=https://about.ebsco.com/news-center/press-releases/ebsco-health-dartmouth-and-option-gridtm-collaborative-founders-join&title=EBSCO%20Health%2C%20Dartmouth%20and%20Option%20Grid%E2%84%A2%20Collaborative%20Founders%20Join%20Forces%20to%20Improve%20Patient%20Engagement%20and%20Evidence-based%20Shared%20Decision%20Making%20%20%20%20&source=EBSCO News" class="item link__linkedin link__social" target="_blank">LinkedIn</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+
+  </div>
+
+</article>
+
+  </div>
+
+  </div>
+
+        </div>
+
+        
+
+      </section>
+      <!-- /content-inner /content -->
+
+        <!-- /sidebar-second -->
+  </div>
+  <!-- /main -->
+
+  <!-- ______________________ Post content _______________________ -->
+
+  
+  <!-- ______________________ FOOTER _______________________ -->
+
+      <footer id="footer">
+            <section class="region region-footer">
+      <div class="row footer__row">
+        <div class="content footer__content">
+        
+
+<nav role="navigation" aria-label="ebsco footer menu" id="block-cog-ebsco-footer" class="block block-menu navigation block-system-menublock menu--footer">
+      
+        <div class="footer_menu_logo">
+        
+
+<a class="edl-site-logo "
+  href="/">
+<svg role="" aria-labelledby="title" width="119" height="22" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 119 27" style="enable-background:new 0 0 119 27;" xml:space="preserve">
+  <g>
+    <title id="title"></title>
+    <path id="XMLID_25_" class="st0" d="M1,25.692v-1.462c2.564,0,3.29-0.769,3.29-2.846V5.616c0-2.077-0.727-2.846-3.29-2.846V1.308
+      h18.633l0.995,3.462c0.115,0.385,0.191,0.731,0.191,0.885c0,0.192-0.344,0.577-0.765,0.577c-0.268,0-0.383-0.154-0.803-0.808
+      c-1.722-2.577-3.941-3.038-7.346-3.038c-2.372,0-2.64,0.385-2.64,1.923v7.615h3.023c2.219,0,3.061-0.5,3.558-2.731
+      c0.077-0.423,0.153-0.462,0.727-0.5c0.459,0,0.65,0.115,0.65,0.731v7.538c0,0.385-0.306,0.5-0.727,0.5
+      c-0.421,0-0.497-0.115-0.536-0.269c-1.033-3.385-1.683-3.577-3.673-3.577H9.264v8.192c0,2.039,0.383,2.423,3.941,2.423
+      c4.706,0,6.007-1.423,7.92-4.731c0.115-0.192,0.191-0.308,0.65-0.308c0.421,0,0.574,0.115,0.574,0.269
+      c0,0.154-0.038,0.346-0.076,0.692l-0.842,5.539H1z"/>
+    <path id="XMLID_21_" class="st0" d="M28.624,5.616c0-2.077-0.727-2.846-3.52-2.846V1.308h9.871c6.198,0,9.565,2.077,9.565,5.731
+      c0,3.423-3.214,4.962-5.433,5.615v0.077c4.591,0.577,6.811,3.654,6.811,6.5c0,2.616-1.99,6.462-8.877,6.462H25.104v-1.462
+      c2.793,0,3.52-0.769,3.52-2.846V5.616z M33.598,10.654c0,1.116,0.536,1.5,2.104,1.5c2.372,0,4.247-1.039,4.247-4.731
+      c0-3.577-1.683-4.654-4.438-4.654c-1.531,0-1.913,0.615-1.913,2V10.654z M33.598,21.577c0,2.038,0.612,2.654,2.908,2.654
+      c3.061,0,4.591-2.154,4.591-5.231c0-3.692-2.372-5.385-5.586-5.385c-1.607,0-1.913,0.308-1.913,1.846V21.577z"/>
+    <path id="XMLID_19_" class="st0" d="M63.517,6.385c0,0.808-0.153,0.962-0.65,0.962c-0.421,0-0.574-0.231-1.071-1.231
+      c-0.88-1.808-2.831-3.654-5.28-3.654c-2.219,0-4.132,1.539-4.132,3.616c0,5.423,12.32,4.038,12.32,12.461
+      c0,3.385-1.875,7.462-8.953,7.462c-2.028,0-5.395-0.731-6.734-1.462c-0.268-0.346-0.612-3.385-0.612-5.039
+      c0-0.808,0.153-1.077,0.804-1.077s0.803,0.077,1.071,1.077c0.421,1.5,2.028,5.039,6.198,5.039c2.449,0,4.63-1.231,4.63-3.885
+      c0-5.731-12.32-5-12.32-12.654c0-4.769,4.591-7,8.341-7c3.597,0,6.007,1.077,6.237,1.385c0.038,0.538,0.153,1.038,0.153,2.538
+      V6.385z"/>
+    <path id="XMLID_17_" class="st0" d="M89.573,21.461c-0.115,1-0.268,1.423-0.612,1.846C88.387,24,85.287,26,79.893,26
+      c-7.155,0-12.894-5.615-12.894-12.5S72.738,1,79.893,1c4.4,0,9.489,1.846,9.489,3.577c0,1.692-0.268,3.154-0.268,3.769
+      c0,0.231-0.191,0.769-0.65,0.769c-0.383,0-0.536-0.115-1.071-1.538c-1.263-3.269-4.017-5.116-7.499-5.116
+      c-3.405,0-7.537,2.923-7.537,11.039c0,8.115,4.132,11.038,8.685,11.038c4.209,0,6.734-4,7.232-5.231
+      c0.344-0.808,0.459-0.885,0.918-0.885c0.383,0,0.612,0.192,0.612,0.5c0,0.231-0.038,0.577-0.076,1.192L89.573,21.461z"/>
+    <path id="XMLID_14_" class="st0" d="M105.106,1C112.261,1,118,6.616,118,13.5S112.261,26,105.106,26s-12.894-5.615-12.894-12.5
+      S97.951,1,105.106,1z M105.106,24.538c3.405,0,7.537-2.923,7.537-11.038c0-8.116-4.132-11.039-7.537-11.039
+      S97.568,5.385,97.568,13.5C97.568,21.615,101.701,24.538,105.106,24.538z"/>
+  </g>
+</svg>
+</a>
+  </div>
+              <ul class="footer__menu nav__menu menu">
+                          <li class="footer__column-1 footer__primary-menu">
+          <span class="column">Column 1</span>
+                                    <ul class="menu">
+                          <li class="menu-item__company">
+          <span class="parent--technology parent no-link icon--white footer__nav-link fnExpander">Company</span>
+                                    <ul class="menu">
+                          <li>
+          <a href="/about/mission" data-drupal-link-system-path="node/2246">About EBSCO</a>
+                  </li>
+                      <li>
+          <a href="/about/leadership" class="item" target="_self" data-drupal-link-system-path="about/leadership">Leadership</a>
+                  </li>
+                      <li>
+          <a href="/offices" class="item" target="_self" data-drupal-link-system-path="node/8016">Offices</a>
+                  </li>
+                      <li>
+          <a href="/careers" class="parent" target="_self" data-drupal-link-system-path="node/88224">Careers</a>
+                  </li>
+          </ul>
+  
+                  </li>
+          </ul>
+  
+                  </li>
+                      <li class="footer__column-2 footer__primary-menu">
+          <span class="column">Column 2</span>
+                                    <ul class="menu">
+                          <li class="menu-item__commitments">
+          <span class="parent--technology parent no-link icon--white footer__nav-link fnExpander">Commitments</span>
+                                    <ul class="menu">
+                          <li>
+          <a href="/technology/accessibility" class="item" target="_self" data-drupal-link-system-path="node/3441">Accessibility</a>
+                  </li>
+                      <li>
+          <a href="/open-for-research/open-access" class="parent" target="_self" data-drupal-link-system-path="node/42126">Open Access</a>
+                  </li>
+                      <li>
+          <a href="/technology/artificial-intelligence-ai-0" class="item" target="_self" data-drupal-link-system-path="node/86533">Artificial Intelligence (AI)</a>
+                  </li>
+                      <li>
+          <a href="/linked-data" data-drupal-link-system-path="node/162221">Linked Data</a>
+                  </li>
+          </ul>
+  
+                  </li>
+          </ul>
+  
+                  </li>
+                      <li class="footer__column-3 footer__primary-menu">
+          <span class="column">Column 3</span>
+                                    <ul class="menu">
+                          <li class="menu-item__values">
+          <span class="parent--technology parent no-link icon--white footer__nav-link fnExpander">Values</span>
+                                    <ul class="menu">
+                          <li>
+          <a href="/about/corporate-responsibility" target="_self" data-drupal-link-system-path="node/20201">Corporate Responsibility</a>
+                  </li>
+                      <li>
+          <a href="/about/our-people-and-community" class="item" target="_self" data-drupal-link-system-path="node/42276">Our People &amp; Community</a>
+                  </li>
+                      <li>
+          <a href="/about/ebsco-commitment" data-drupal-link-system-path="node/38506">Trust &amp; Security</a>
+                  </li>
+                      <li>
+          <a href="/environmental-sustainability" data-drupal-link-system-path="node/46451">Sustainability</a>
+                  </li>
+          </ul>
+  
+                  </li>
+          </ul>
+  
+                  </li>
+                      <li class="footer__column-4 footer__primary-menu">
+          <span class="column">Column 4</span>
+                                    <ul class="menu">
+                          <li class="menu-item__log-in">
+          <span class="parent--helpful-links no-link icon--white footer__nav-link fnExpander">Log In</span>
+                                    <ul class="menu">
+                          <li>
+          <a href="https://search.ebscohost.com/">EBSCOhost</a>
+                  </li>
+                      <li>
+          <a href="http://eadmin.ebscohost.com/EAdmin/login.aspx" class="item" target="_blank">EBSCOadmin</a>
+                  </li>
+                      <li>
+          <a href="https://ecm.ebscohost.com/User/Login" class="item" target="_blank">EBSCOhost Collection Manager</a>
+                  </li>
+                      <li>
+          <a href="https://www.ebsconet.com/" class="item" target="_blank">EBSCONET</a>
+                  </li>
+                      <li>
+          <a href="https://connect.ebsco.com/s/loginpage" class="item" target="_blank">EBSCO Connect</a>
+                  </li>
+                      <li>
+          <a href="https://experience.ebsco.com">EBSCO Experience Manager</a>
+                  </li>
+                      <li>
+          <a href="https://www.gobi3.com/Pages/Login.aspx" class="item logins" target="_blank">GOBI</a>
+                  </li>
+          </ul>
+  
+                  </li>
+          </ul>
+  
+                  </li>
+                      <li class="footer__column-5">
+          <span class="column">Column 5</span>
+                                    <ul class="menu">
+                          <li class="menu-item__social-bar">
+          <span class="social--bar">Social bar</span>
+                                    <ul class="menu">
+                          <li>
+          <a href="https://www.facebook.com/EBSCOInfoServices" class="item link__facebook link__social" target="_blank">Facebook</a>
+                  </li>
+                      <li>
+          <a href="https://www.twitter.com/EBSCO" class="item link__twitter link__social" target="_blank">Twitter</a>
+                  </li>
+                      <li>
+          <a href="https://www.linkedin.com/company/ebsco-information-services" class="item link__linkedin link__social" target="_blank">LinkedIn</a>
+                  </li>
+                      <li>
+          <a href="https://www.youtube.com/user/ebscopublishing" class="item link__youtube link__social" target="_blank">YouTube</a>
+                  </li>
+                      <li>
+          <a href="https://www.instagram.com/ebscoinformationservices/" class="item link__instagram link__social" target="_blank">Instagram</a>
+                  </li>
+          </ul>
+  
+                  </li>
+                      <li class="menu-item__badges">
+          <span class="column">Badges</span>
+                                    <ul class="menu">
+                          <li>
+          <a href="https://apps.apple.com/us/app/ebsco-mobile/id1473281170" class="item store--links apple" target="_blank">App Store</a>
+                  </li>
+                      <li>
+          <a href="https://play.google.com/store/apps/details?id=com.ebsco.ebscomobile" class="item store--links google-play" target="_blank">Google Play</a>
+                  </li>
+          </ul>
+  
+                  </li>
+                      <li class="menu-item__policy-links">
+          <span class="policy--link">Policy links</span>
+                                    <ul class="menu">
+                          <li>
+          <a href="https://legal.ebsco.com/privacy-policy" class="item" target="_self">Privacy Policy</a>
+                  </li>
+                      <li>
+          <a href="https://legal.ebsco.com/terms-of-use" class="item" target="_self">Terms of Use</a>
+                  </li>
+                      <li>
+          <span class="footer__copyright">© 2026 EBSCO Information Services. All rights reserved</span>
+                  </li>
+          </ul>
+  
+                  </li>
+          </ul>
+  
+                  </li>
+          </ul>
+  
+
+
+  </nav>
+      </div>
+    </section>
+  
+    </footer>
+    <!-- /footer -->
+  
+</div>
+<div id="fnOverlay"></div>
+<!-- /page -->
+
+  </div>
+
+    
+    <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/541","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"colorbox":{"transition":"fade","speed":350,"opacity":0.95,"slideshow":false,"slideshowAuto":true,"slideshowSpeed":2500,"slideshowStart":"start slideshow","slideshowStop":"stop slideshow","current":"{current} of {total}","previous":"\u00ab Prev","next":"Next \u00bb","close":"Close","overlayClose":true,"returnFocus":true,"maxWidth":"780px","maxHeight":"100%","initialWidth":"300","initialHeight":"250","fixed":true,"scrolling":true,"mobiledetect":true,"mobiledevicewidth":"480px"},"ebscoAmplitude":{"client":{"deploymentKey":"client-xXrXcm0cFntuiP6czEpQjDSGMBA5oIPP","sdkUrl":"https:\/\/unpkg.com\/@amplitude\/experiment-js-client@1.22.0\/dist\/experiment.umd.js","reviewMode":false,"experiments":{"nav_layout_test":{"handler":"nav_layout_test","flagKey":"nav-layout-test","defaultVariant":"control","allowedVariants":["control","treatment"],"handlerSettings":{"treatmentVariant":"treatment","eligibleLanguages":["en"]},"reviewVariant":"treatment","reviewPayload":null}}}},"lang":"en","lang_prefix":"en","ajaxTrustedUrl":{"\/search":true},"user":{"uid":0,"permissionsHash":"8458649c37cee2fcca51a64459ab32636a1c41cea8f2f7ad1fcc5d7e967695d9"}}</script>
+<script src="/sites/default/files/js/js_029qaDFBua--KLUoMbr_wvA0xM09GdsmdorokjugSTw.js?scope=footer&amp;delta=0&amp;language=en&amp;theme=cog_ebsco&amp;include=eJxdj2sOwkAIhC9ks0ci-8CWlF0M0Gpv72qs0f3HzEdgJssMmCxLwMKQFGPJutV0yX-gRmpTizvN0UnaQGVH5XgMri1yX6jgaJPjZMiYXfSHzSwpduwHo3WfRZM8AjXyrwJqTA3DoC_vCxDrjcm30jkTNn8Fnnou2XxyNP-s1dUFrqI1DBoUa68Chma9JGSRlc7jauEcoP9cQZRmak-FN35X"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script src="/themes/custom/cog_ebsco/ebsco_design_library/js/main-navigation.js?v=2.1" defer></script>
+<script src="/themes/custom/cog_ebsco/ebsco_design_library/js/overlay.js?v=2" defer></script>
+<script src="/themes/custom/cog_ebsco/ebsco_design_library/js/showhide.js?v=2" defer></script>
+<script src="/themes/custom/cog_ebsco/ebsco_design_library/js/site-selector.js?v=2" defer></script>
+<script src="/themes/custom/cog_ebsco/js/dist/footer.js?v=2.7" defer></script>
+<script src="/themes/custom/cog_ebsco/js/dist/global.js?v=2.7" defer></script>
+<script src="/themes/custom/cog_ebsco/js/dist/main-navigation-24.js?v=2.7" defer></script>
+<script src="/themes/custom/cog_ebsco/js/dist/leadtracking.js?v=2.7" defer></script>
+<script src="/sites/default/files/js/js_jm41Qns2K4jzv8marhYWoDJE03_5GNxmRHjWIbwAmNQ.js?scope=footer&amp;delta=10&amp;language=en&amp;theme=cog_ebsco&amp;include=eJxdj2sOwkAIhC9ks0ci-8CWlF0M0Gpv72qs0f3HzEdgJssMmCxLwMKQFGPJutV0yX-gRmpTizvN0UnaQGVH5XgMri1yX6jgaJPjZMiYXfSHzSwpduwHo3WfRZM8AjXyrwJqTA3DoC_vCxDrjcm30jkTNn8Fnnou2XxyNP-s1dUFrqI1DBoUa68Chma9JGSRlc7jauEcoP9cQZRmak-FN35X"></script>
+
+  </body>
+</html>

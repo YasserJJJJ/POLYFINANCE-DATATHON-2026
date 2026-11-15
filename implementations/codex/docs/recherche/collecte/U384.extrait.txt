@@ -1,0 +1,81 @@
+Working with objects in Amazon S3 - Amazon Simple Storage Service 
+
+ View a markdown version of this page 
+
+ Working with objects in Amazon S3 - Amazon Simple Storage Service 
+
+ Documentation Amazon Simple Storage Service (S3) User Guide 
+
+Working with objects in Amazon S3
+
+To store your data in Amazon S3, you work with resources known as buckets and objects. A
+ bucket is a container for objects. An object is a file and any metadata that describes that
+ file.
+
+To store an object in Amazon S3, you create a bucket and then upload the object to a bucket.
+ When the object is in the bucket, you can open it, download it, and copy it. When you no
+ longer need an object or a bucket, you can clean up these resources.
+
+Note
+
+For more information about using the Amazon S3 Express One Zone storage class with directory buckets, see S3 Express One Zone and Working with directory buckets .
+
+Important
+
+ In the Amazon S3 console, when you choose Open or Download As for an object, these operations create presigned URLs. For the duration of five minutes, your object will be accessible to anyone who has access to these presigned URLs. For more information about presigned URLs, see Using presigned URLS .
+
+With Amazon S3, you pay only for what you use. For more information about Amazon S3 features and
+ pricing, see Amazon S3 . If you are a new Amazon S3 customer,
+ you can get started with Amazon S3 for free. For more information, see AWS Free Tier .
+
+Topics
+
+ Amazon S3 objects overview 
+
+ Naming Amazon S3 objects 
+
+ Working with object metadata 
+
+ Uploading objects 
+
+ Add preconditions to S3 operations with conditional requests 
+
+ Copying, moving, and renaming objects 
+
+ Downloading objects 
+
+ Checking object integrity in Amazon S3 
+
+ Deleting Amazon S3 objects 
+
+ Organizing, listing, and working with your objects 
+
+ Download and upload objects with presigned URLs 
+
+ Transforming objects with S3 Object Lambda 
+
+ Performing object operations in bulk with Batch Operations 
+
+ Querying data in place with Amazon S3 Select 
+
+ Javascript is disabled or is unavailable in your browser. 
+
+To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.
+
+ Document Conventions 
+
+Downloading objects from Requester Pays buckets
+
+Objects overview
+
+Did this page help you? - Yes
+
+Thanks for letting us know we're doing a good job!
+
+If you've got a moment, please tell us what we did right so we can do more of it.
+
+Did this page help you? - No
+
+Thanks for letting us know this page needs work. We're sorry we let you down.
+
+If you've got a moment, please tell us how we can make the documentation better.

@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta content="Learn about the AWS CLI 2.40.3 bedrock commands." name="description" />
+
+  
+    <title>bedrock &#8212; AWS CLI 2.40.3 Command Reference</title>
+  <link rel="stylesheet" type="text/css" href="../../_static/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/override.css" />
+  <script src="/SdkStatic/sdk-priv.js" async="true"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/guzzle.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="batch-delete-advanced-prompt-optimization-job" href="batch-delete-advanced-prompt-optimization-job.html" />
+    <link rel="prev" title="list-recommended-actions" href="../bcm-recommended-actions/list-recommended-actions.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-responsive.min.css" />
+  
+   
+
+<link rel="alternate" type="text/markdown" href="index.md" title="Markdown version" />
+  </head><body>
+  <div class="navbar navbar-fixed-top ">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="../../index.html">AWS CLI Command Reference</a>
+        <ul class="nav">
+<li><a class="nav-link" href="../../index.html">Home</a></li>
+<li><a class="nav-link" href="https://docs.aws.amazon.com/cli/latest/userguide/">User Guide</a></li>
+<li><a class="nav-link" href="https://forums.aws.amazon.com/forum.jspa?forumID=150">Forum</a></li>
+<li><a class="nav-link" href="https://github.com/aws/aws-cli">GitHub</a></li>
+        </ul>
+        <div class="pull-right" id="github-stars">
+          <iframe src="https://ghbtns.com/github-btn.html?user=aws&repo=aws-cli&type=watch&count=true&size=small"
+                  allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20px"  sandbox="allow-scripts"
+                  title="GitHub button showing the number of project stars."></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--REGION_DISCLAIMER_DO_NOT_REMOVE-->
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="batch-delete-advanced-prompt-optimization-job.html" title="batch-delete-advanced-prompt-optimization-job"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../bcm-recommended-actions/list-recommended-actions.html" title="list-recommended-actions"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">AWS CLI 2.40.3 Command Reference</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">aws</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">bedrock</a></li> 
+      </ul>
+    </div>
+    <div class="container">
+        
+    <div class="top-links">
+      <ul class="breadcrumb pull-right">
+        <li>
+          <a href="../bcm-recommended-actions/list-recommended-actions.html" title="previous chapter (use the left arrow)">&larr; list-recommended-actions</a>
+          <span class="divider">/</span>
+          
+        </li>
+          <li><a href="batch-delete-advanced-prompt-optimization-job.html" title="next chapter (use the right arrow)">batch-delete-advanced-prompt-optimization-job &rarr;</a></li>
+      </ul>
+    </div>
+  
+        <div class="document clearer">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo left-bar-other">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/logo.png" alt="Amazon Web Services logo" height="63" />
+  </a>
+</p>
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">bedrock</a><ul>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#available-commands">Available Commands</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+<div id="searchbox" style="display: none">
+    <h3>Quick search</h3>
+    <form class="form-search margin-top-1em" action="../../search.html" method="get">
+        <label for="searchbox">Search box</label>
+        <input id="searchbox" type="search" name="q" style="width: 105px" class="input-small search-query" autocomplete="off" />
+        <button type="submit" class="btn btn-small">Search</button>
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script src="../../_static/searchbox.js"></script><div class="left-bar-other">
+  <h3>Feedback</h3>
+  <p class="feedback">Did you find this page useful? Do you have a suggestion to improve the documentation? <a href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=AWS%20Command%20Line%20Interface&hidden_guide_name=Reference&topic_url=https%3A%2F%2Fdocs.aws.amazon.com%2Fcli%2Flatest%2Freference/bedrock/index.html">Give us feedback</a>.
+    <br />
+    If you would like to suggest an improvement or fix for the AWS CLI, check out our <a href="https://github.com/aws/aws-cli/blob/v2/CONTRIBUTING.rst">contributing guide</a> on GitHub.</p>
+</div><div class="left-bar-other">
+  <h3>User Guide</h3>
+  <p>First time using the AWS CLI? See the
+  <a href="https://docs.aws.amazon.com/cli/latest/userguide/">User Guide</a> for
+  help getting started.</p>
+</div>
+        </div>
+      </div>
+            <div class="body">
+              
+  <p>[ <a class="reference internal" href="../index.html#cli-aws"><span class="std std-ref">aws</span></a> ]</p>
+<div class="section" id="bedrock">
+<span id="cli-aws-bedrock"></span><h1>bedrock<a class="headerlink" href="#bedrock" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<p>Describes the API operations for creating, managing, fine-turning, and evaluating Amazon Bedrock models.</p>
+</div>
+<div class="section" id="available-commands">
+<h2>Available Commands<a class="headerlink" href="#available-commands" title="Permalink to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="batch-delete-advanced-prompt-optimization-job.html">batch-delete-advanced-prompt-optimization-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch-delete-evaluation-job.html">batch-delete-evaluation-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cancel-automated-reasoning-policy-build-workflow.html">cancel-automated-reasoning-policy-build-workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-advanced-prompt-optimization-job.html">create-advanced-prompt-optimization-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-automated-reasoning-policy.html">create-automated-reasoning-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-automated-reasoning-policy-test-case.html">create-automated-reasoning-policy-test-case</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-automated-reasoning-policy-version.html">create-automated-reasoning-policy-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-custom-model.html">create-custom-model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-custom-model-deployment.html">create-custom-model-deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-evaluation-job.html">create-evaluation-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-foundation-model-agreement.html">create-foundation-model-agreement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-guardrail.html">create-guardrail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-guardrail-version.html">create-guardrail-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-inference-profile.html">create-inference-profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-marketplace-model-endpoint.html">create-marketplace-model-endpoint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-model-copy-job.html">create-model-copy-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-model-customization-job.html">create-model-customization-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-model-import-job.html">create-model-import-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-model-invocation-job.html">create-model-invocation-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-prompt-router.html">create-prompt-router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-provisioned-model-throughput.html">create-provisioned-model-throughput</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-automated-reasoning-policy.html">delete-automated-reasoning-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-automated-reasoning-policy-build-workflow.html">delete-automated-reasoning-policy-build-workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-automated-reasoning-policy-test-case.html">delete-automated-reasoning-policy-test-case</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-custom-model.html">delete-custom-model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-custom-model-deployment.html">delete-custom-model-deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-enforced-guardrail-configuration.html">delete-enforced-guardrail-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-foundation-model-agreement.html">delete-foundation-model-agreement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-guardrail.html">delete-guardrail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-imported-model.html">delete-imported-model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-inference-profile.html">delete-inference-profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-marketplace-model-endpoint.html">delete-marketplace-model-endpoint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-model-invocation-logging-configuration.html">delete-model-invocation-logging-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-prompt-router.html">delete-prompt-router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-provisioned-model-throughput.html">delete-provisioned-model-throughput</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-resource-policy.html">delete-resource-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deregister-marketplace-model-endpoint.html">deregister-marketplace-model-endpoint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="export-automated-reasoning-policy-version.html">export-automated-reasoning-policy-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-account-data-retention.html">get-account-data-retention</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-advanced-prompt-optimization-job.html">get-advanced-prompt-optimization-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-automated-reasoning-policy.html">get-automated-reasoning-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-automated-reasoning-policy-annotations.html">get-automated-reasoning-policy-annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-automated-reasoning-policy-build-workflow.html">get-automated-reasoning-policy-build-workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-automated-reasoning-policy-build-workflow-result-assets.html">get-automated-reasoning-policy-build-workflow-result-assets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-automated-reasoning-policy-next-scenario.html">get-automated-reasoning-policy-next-scenario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-automated-reasoning-policy-test-case.html">get-automated-reasoning-policy-test-case</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-automated-reasoning-policy-test-result.html">get-automated-reasoning-policy-test-result</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-custom-model.html">get-custom-model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-custom-model-deployment.html">get-custom-model-deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-evaluation-job.html">get-evaluation-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-foundation-model.html">get-foundation-model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-foundation-model-availability.html">get-foundation-model-availability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-guardrail.html">get-guardrail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-imported-model.html">get-imported-model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-inference-profile.html">get-inference-profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-marketplace-model-endpoint.html">get-marketplace-model-endpoint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-model-copy-job.html">get-model-copy-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-model-customization-job.html">get-model-customization-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-model-import-job.html">get-model-import-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-model-invocation-job.html">get-model-invocation-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-model-invocation-logging-configuration.html">get-model-invocation-logging-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-prompt-router.html">get-prompt-router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-provisioned-model-throughput.html">get-provisioned-model-throughput</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-resource-policy.html">get-resource-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-use-case-for-model-access.html">get-use-case-for-model-access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-advanced-prompt-optimization-jobs.html">list-advanced-prompt-optimization-jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-automated-reasoning-policies.html">list-automated-reasoning-policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-automated-reasoning-policy-build-workflows.html">list-automated-reasoning-policy-build-workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-automated-reasoning-policy-test-cases.html">list-automated-reasoning-policy-test-cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-automated-reasoning-policy-test-results.html">list-automated-reasoning-policy-test-results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-custom-model-deployments.html">list-custom-model-deployments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-custom-models.html">list-custom-models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-enforced-guardrails-configuration.html">list-enforced-guardrails-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-evaluation-jobs.html">list-evaluation-jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-foundation-model-agreement-offers.html">list-foundation-model-agreement-offers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-foundation-models.html">list-foundation-models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-guardrails.html">list-guardrails</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-imported-models.html">list-imported-models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-inference-profiles.html">list-inference-profiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-marketplace-model-endpoints.html">list-marketplace-model-endpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-model-copy-jobs.html">list-model-copy-jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-model-customization-jobs.html">list-model-customization-jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-model-import-jobs.html">list-model-import-jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-model-invocation-jobs.html">list-model-invocation-jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-prompt-routers.html">list-prompt-routers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-provisioned-model-throughputs.html">list-provisioned-model-throughputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-tags-for-resource.html">list-tags-for-resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-account-data-retention.html">put-account-data-retention</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-enforced-guardrail-configuration.html">put-enforced-guardrail-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-model-invocation-logging-configuration.html">put-model-invocation-logging-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-resource-policy.html">put-resource-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-use-case-for-model-access.html">put-use-case-for-model-access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="register-marketplace-model-endpoint.html">register-marketplace-model-endpoint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start-automated-reasoning-policy-build-workflow.html">start-automated-reasoning-policy-build-workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start-automated-reasoning-policy-test-workflow.html">start-automated-reasoning-policy-test-workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stop-advanced-prompt-optimization-job.html">stop-advanced-prompt-optimization-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stop-evaluation-job.html">stop-evaluation-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stop-model-customization-job.html">stop-model-customization-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stop-model-invocation-job.html">stop-model-invocation-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tag-resource.html">tag-resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="untag-resource.html">untag-resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-automated-reasoning-policy.html">update-automated-reasoning-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-automated-reasoning-policy-annotations.html">update-automated-reasoning-policy-annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-automated-reasoning-policy-test-case.html">update-automated-reasoning-policy-test-case</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-custom-model-deployment.html">update-custom-model-deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-guardrail.html">update-guardrail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-marketplace-model-endpoint.html">update-marketplace-model-endpoint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-provisioned-model-throughput.html">update-provisioned-model-throughput</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+            </div>
+          <div class="clearfix"></div>
+        </div>
+        
+    <div class="footer-links">
+      <ul class="breadcrumb pull-right">
+        <li>
+          <a href="../bcm-recommended-actions/list-recommended-actions.html" title="previous chapter (use the left arrow)">&larr; list-recommended-actions</a>
+          <span class="divider">/</span>
+          
+        </li>
+          <li><a href="batch-delete-advanced-prompt-optimization-job.html" title="next chapter (use the right arrow)">batch-delete-advanced-prompt-optimization-job &rarr;</a></li>
+      </ul>
+    </div>
+  
+
+    </div>
+  <script type="text/javascript" src="https://media.amazonwebservices.com/js/sitecatalyst/s_code.min.js"></script>
+  <script type="text/javascript" src="../../_static/analytics.js"></script>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="batch-delete-advanced-prompt-optimization-job.html" title="batch-delete-advanced-prompt-optimization-job"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../bcm-recommended-actions/list-recommended-actions.html" title="list-recommended-actions"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">AWS CLI 2.40.3 Command Reference</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >aws</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">bedrock</a></li> 
+      </ul>
+    </div>
+  <div class="footer container">
+    &copy; Copyright 2026, Amazon Web Services. Created using <a href="https://www.sphinx-doc.org/">Sphinx</a>.
+  </div>
+
+
+
+  
+    
+  
+  </body>
+</html>

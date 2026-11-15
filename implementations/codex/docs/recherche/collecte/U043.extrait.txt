@@ -1,0 +1,682 @@
+TradingAgents/tradingagents/agents/rating.py at main · TauricResearch/TradingAgents · GitHub 
+
+ Skip to content 
+
+Navigation Menu
+
+ Sign in 
+
+ Products 
+
+ Platform 
+ GitHub Repository hosting, code review, and collaboration 
+
+ Copilot AI coding agent for tasks, projects, and automated work 
+
+ Build & Ship 
+ Actions CI/CD and automation 
+
+ Code Quality Quality analysis, fixes, and enforcement 
+
+ Codespaces Cloud development environments 
+
+ Secure 
+ Code Security Vulnerability detection and remediation 
+
+ Secret Protection Secret scanning and leak prevention 
+
+ All Features 
+
+ Developers 
+
+ Learn 
+ Documentation 
+
+ Training 
+
+ Certifications 
+
+ Build 
+ Build with Copilot 
+
+ Customize Copilot 
+
+ Integrations 
+
+ Explore 
+ Trending repos 
+
+ GitHub Sponsors 
+
+ Developer articles 
+
+ Changelog 
+ Changelog Your source for the latest features, improvements, and fixes across GitHub products, all in one place. 
+
+ Businesses 
+
+ By Stage 
+ Enterprises 
+
+ Team 
+
+ Startups 
+
+ Nonprofits 
+
+ By Industry 
+ Healthcare 
+
+ Financial services 
+
+ Manufacturing 
+
+ Government 
+
+ See all industries 
+
+ Evaluate GitHub 
+ Why GitHub 
+
+ Customer Stories 
+
+ Business insights 
+
+ Trust Center 
+
+ Add-ons 
+ GitHub Advanced Security Enterprise-grade code security 
+
+ Copilot for business Enterprise-grade AI features 
+
+ Premium Support Enterprise-grade 24/7 support 
+
+ Resources 
+
+ Learn & Connect 
+ Documentation 
+
+ Resource center 
+
+ Blog 
+
+ Events & webinars 
+
+ Community Forum 
+
+ Customer Stories 
+
+ Integrations 
+
+ Support 
+ Customer support 
+
+ Training 
+
+ GitHub Status 
+
+ Company 
+ About 
+
+ Partners 
+
+ Changelog 
+
+ GitHub Universe 
+ GitHub Universe The event for developers, by developers — talks, workshops, and what’s next for GitHub. 
+
+ Pricing 
+
+ Search / 
+
+ Sign in 
+ Sign up 
+Appearance settings
+
+ You signed in with another tab or window. Reload to refresh your session. 
+ You signed out in another tab or window. Reload to refresh your session. 
+ You switched accounts on another tab or window. Reload to refresh your session. 
+
+ Dismiss alert 
+
+{{ message }}
+
+ TauricResearch 
+
+ TradingAgents 
+
+Repository navigation
+
+ Code 
+
+ Issues 48  ( 48 ) 
+
+ Pull requests 99  ( 99 ) 
+
+ Discussions 
+
+ Actions 
+
+ Projects 
+
+ Security and quality 
+
+ Insights 
+
+ More items 
+
+ Files Expand file tree 
+
+ main 
+
+Breadcrumbs
+ 
+ TradingAgents 
+
+ / tradingagents 
+
+ / agents 
+ 
+ / 
+rating.py
+
+ Copy path 
+
+ Blame 
+
+ More file actions 
+
+ Blame 
+
+ More file actions 
+
+Latest commit
+
+History
+ History 
+
+ History 
+
+ 117 lines (94 loc) · 5.49 KB 
+
+ main 
+
+Breadcrumbs
+ 
+ TradingAgents 
+
+ / tradingagents 
+
+ / agents 
+ 
+ / 
+rating.py
+
+ Copy path 
+
+ Top 
+
+File metadata and controls
+
+Code
+
+Blame
+
+ 117 lines (94 loc) · 5.49 KB 
+
+ Raw 
+
+ Copy raw file 
+
+ Download raw file 
+
+ Open symbols panel 
+ Edit and raw actions 
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+17
+
+18
+
+19
+
+20
+
+21
+
+22
+
+23
+
+24
+
+25
+
+26
+
+27
+
+28
+
+29
+
+30
+
+31
+
+32
+
+33
+
+34
+
+35
+
+36
+
+37
+
+38
+
+39
+
+40
+
+41
+
+42
+
+43
+
+44
+
+45
+
+46 
+
+47
+
+48
+
+49
+
+50
+
+51
+
+52
+
+53
+
+54
+
+55 
+
+56
+
+57
+
+58
+
+59
+
+60
+
+61
+
+62
+
+63
+
+64
+
+65
+
+66
+
+67
+
+68
+
+69
+
+70
+
+71
+
+72
+
+73
+
+74
+
+75
+
+76
+
+77
+
+78
+
+79
+
+80
+
+81
+
+82
+
+83
+
+84
+
+85
+
+86
+
+87
+
+88
+
+89
+
+90
+
+91
+
+92
+
+93
+
+94
+
+95
+
+96 
+
+97
+
+98
+
+99
+
+100
+
+101
+
+102
+
+103
+
+104
+
+105
+
+106 
+
+107
+
+108
+
+109
+
+110
+
+111
+
+112
+
+113
+
+114
+
+115
+
+116
+
+117
+
+ """Shared 5-tier rating vocabulary and a deterministic heuristic parser. 
+
+ The same five-tier scale (Buy, Overweight, Hold, Underweight, Sell) is used by: 
+
+ - The Research Manager (investment plan recommendation) 
+
+ - The Portfolio Manager (final position decision; its free-text fallback is read here) 
+
+ - The memory log (rating tag stored alongside each decision entry) 
+
+ Centralising it here avoids drift between those call sites. 
+
+ ``extract_rating`` returns ``None`` when no rating can be found, and every 
+
+ caller turns that into ``REVIEW`` rather than a tradeable position: a decision 
+
+ nobody can read is not a Hold, and a Hold recorded in its place is quoted back to 
+
+ the next run as a call that was never made (#1170). 
+
+ """ 
+
+ from __future__ import annotations 
+
+ import re 
+
+ import unicodedata 
+
+ # Canonical, ordered 5-tier scale (most bullish to most bearish). 
+
+ RATINGS_5_TIER : tuple [ str , ...] = (
+
+ "Buy" , "Overweight" , "Hold" , "Underweight" , "Sell" ,
+
+)
+
+ # Signal emitted when the model's decision has no recognizable rating. It is not 
+
+ # a tradeable position: it flags output that needs a human/re-run rather than 
+
+ # silently degrading to Hold. Callers that map the signal onto the 5-tier enum 
+
+ # (e.g. ``PortfolioRating(signal)``) should guard with ``is_review`` first. 
+
+ RATING_REVIEW = "REVIEW" 
+
+ _RATING_SET = { r . lower () for r in RATINGS_5_TIER }
+
+ # Matches "Rating: X" / "rating - X" / "Rating — **X**" — tolerates markdown 
+
+ # bold wrappers and any dash or colon a model writes as the separator. "rating" 
+
+ # must start a word, so "Operating margin: Sell-side" is not a label. 
+
+ _RATING_LABEL_RE = re . compile ( r"(?<![a-z])rating\b[^:\-\u2010-\u2015]*[:\-\u2010-\u2015][\s*]*(\w+)" ,
+
+ re . IGNORECASE )
+
+ # The decision's own rating line, in the shape the Portfolio Manager is asked to 
+
+ # open with ("- **Rating**: X", "**Final Rating**: X", "## Our rating - X"): an 
+
+ # optional list marker, emphasis and heading marks, and only words naming the 
+
+ # decision itself before "rating". "Consensus rating: Buy" or "Trader's rating: 
+
+ # Buy" is someone else's rating. 
+
+ _OWN_QUALIFIER = r"(?:(?:final|our|overall|my|recommended|updated|revised|new|current)\s+)*" 
+
+ _RATING_LINE_RE = re . compile (
+
+ r"\s*(?P<item>(?:[-+*\u2022]|\d+[.)])\s+)?[\s*_#]*" + _OWN_QUALIFIER 
+
+ + r"rating[^\w:\-\u2010-\u2015]*[:\-\u2010-\u2015][\s*]*(?P<value>\w+)" ,
+
+ re . IGNORECASE ,
+
+)
+
+ # A line presenting the scale rather than a decision ("Rating Scale: Buy, ..."). 
+
+ _RATING_SCALE_RE = re . compile ( r"rating\s*(scale|options|legend)" , re . IGNORECASE )
+
+ def extract_rating ( text : str ) -> str | None :
+
+ """Extract a 5-tier rating from its label, or ``None`` if there is none. 
+
+ Reads an explicit "Rating: X" label (tolerant of markdown bold) in the 
+
+ NFKC-normalized text, so fullwidth punctuation like ``Rating：Overweight`` 
+
+ matches as ASCII does: the decision's opening rating line, else its own 
+
+ rating lines or, failing those, every label, when they agree. 
+
+ """ 
+
+ if not text :
+
+ return None 
+
+ norm = unicodedata . normalize ( "NFKC" , text )
+
+ # The decision is asked to open with its rating, so a first line (after any 
+
+ # headings) in that shape is the call. A list item there may also be a quote 
+
+ # heading a list of other parties' ratings, so it counts with the decision's 
+
+ # other rating lines, which leave out list items; failing those, every label 
+
+ # counts. Either way they must agree: ratings that differ, with nothing 
+
+ # marking which one is the call, are no call (#1170). Lines presenting the 
+
+ # scale itself are a legend the model echoed, not a call. 
+
+ lines = [ line for line in norm . splitlines () if line . strip () and not _RATING_SCALE_RE . search ( line )]
+
+ first = next (( line for line in lines if not line . lstrip (). startswith ( "#" )
+
+ or _RATING_LINE_RE . match ( line )), "" )
+
+ m = _RATING_LINE_RE . match ( first )
+
+ opening = m if m and m . group ( "value" ). lower () in _RATING_SET else None 
+
+ if opening and not opening . group ( "item" ):
+
+ return opening . group ( "value" ). capitalize ()
+
+ own = [ opening . group ( "value" ). capitalize ()] if opening else []
+
+ labels = []
+
+ for line in lines :
+
+ m = _RATING_LINE_RE . match ( line )
+
+ if m and not m . group ( "item" ) and m . group ( "value" ). lower () in _RATING_SET :
+
+ own . append ( m . group ( "value" ). capitalize ())
+
+ labels += [ v . capitalize () for v in _RATING_LABEL_RE . findall ( line ) if v . lower () in _RATING_SET ]
+
+ # Without a label there is no call to read: a rating word in the prose may be 
+
+ # one the text argues against ("not a Sell"), and reading it reports a 
+
+ # direction nobody decided. 
+
+ found = own or labels 
+
+ return found [ 0 ] if found and len ( set ( found )) == 1 else None 
+
+ def parse_rating ( text : str , default : str = RATING_REVIEW ) -> str :
+
+ """Extract a 5-tier rating, or ``REVIEW`` when the decision has none. 
+
+ For callers that need a string for every decision, such as the memory log's 
+
+ entry tag. The default is the review sentinel, never a tradeable rating. 
+
+ """ 
+
+ rating = extract_rating ( text )
+
+ return rating if rating is not None else default 
+
+ def run_rating ( final_state : dict ) -> str :
+
+ """A finished run's rating: the Portfolio Manager's own, else read from its decision. 
+
+ The fallback serves a state without ``final_rating``, such as a run an older 
+
+ version completed and a checkpoint hands back unchanged. 
+
+ """ 
+
+ return final_state . get ( "final_rating" ) or parse_rating ( final_state . get ( "final_trade_decision" , "" ))
+
+ def is_review ( signal : str ) -> bool :
+
+ """Whether a signal is the non-tradeable REVIEW sentinel (#1170).""" 
+
+ return signal == RATING_REVIEW 
+
+Footer
+
+ © 2026 GitHub, Inc.
+
+Footer navigation
+
+ Terms 
+
+ Privacy 
+
+ Security 
+
+ Status 
+
+ Community 
+
+ Docs 
+
+ Contact 
+
+ Manage cookies
+
+ Do not share my personal information
+
+ You can’t perform that action at this time.

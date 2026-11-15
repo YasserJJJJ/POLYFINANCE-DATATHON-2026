@@ -1,0 +1,262 @@
+{
+  "created_at": "2026-11-15T13:08:53.608642+00:00",
+  "git_commit": "bce93c5e806f8421cac62795410b30f9ad1557ae",
+  "product_content_unchanged": true,
+  "product_file_hashes": {
+    "alphaforge_app/personas.py": "07d6de16346678ba6bd514b59b612cccc8b9582dc258885b41846e8f5850c210",
+    "alphaforge_app/datasets.py": "ef920c0c6dc9bbe23f1e23c0c76047b45329497d4b5a8126b3314759cc523655",
+    "alphaforge_app/__init__.py": "47ee6ecaa3445fa2b147c7f09596a62bb89cd855a57f32a2fcdf2bc1c3fb920e",
+    "alphaforge_app/orchestrator.py": "09f29a3c49a6dcd6d4f8e195077263506bf846eb287a2c3c52e39eadafedf252",
+    "alphaforge_app/analytics.py": "fbe8fbdb57080c2652169aea66c5d35fcb54e31087847d05ce72f5e3cbf92b4f",
+    "alphaforge_app/main.py": "fa748dc4de6bca8b13749c8a8741a1bbe83deb16b8414a2db7bc13afd286d2e0",
+    "alphaforge_app/evidence.py": "ddfb8bb2b0bac59190d9d7ae7602e07f40374cb2d232d40025206e171f736535",
+    "alphaforge_app/bedrock.py": "ca9241560d5cc0cd12fb5ea8b883b0a0b56cef6c9e36bfd112c3b11ab1f9be94",
+    "alphaforge_app/static/index.html": "8b0339f470da695e37248961f155ddcbba01086ceca792ca4564e1a86fc8ee8d",
+    "alphaforge_app/static/app.css": "590d84bbc6b775e34b3e81bba08d01a42263c9aeca641fe22d4dd9a32496fd10",
+    "alphaforge_app/static/app.js": "c7cb8e0ba85368e0b72f589a1337c588fb8240243d5199881487bb433d700c10"
+  },
+  "new_model_calls": 0,
+  "representative_recorded_run": {
+    "path": "artifacts/ui-export.json",
+    "sha256": "502b8cad2554e371994d3273664a778827d28faf17b6f258842257ae68563c6e",
+    "report_id": "9861d0b6173640a18d7ede3664aeba25",
+    "created_at": "2026-11-15T12:13:15.141704+00:00",
+    "recorded_model_call_count": 2,
+    "tools": [
+      "compare_scenario",
+      "inspect_profile",
+      "read_evidence"
+    ],
+    "recorded_calls": [
+      {
+        "request_id": "135b729e-1f49-498b-a707-f76f83f8af59",
+        "model": "global.openai.gpt-6-astra",
+        "usage": {
+          "input_tokens": 1032,
+          "output_tokens": 77,
+          "total_tokens": 1109,
+          "cache_read_input_tokens": 0,
+          "cache_write_input_tokens": 0
+        },
+        "latency_ms": 1318,
+        "stop_reason": "tool_use",
+        "requested_tools": [
+          "compare_scenario",
+          "read_evidence",
+          "inspect_profile"
+        ]
+      },
+      {
+        "request_id": "37969d33-6b5f-4819-b85c-ad6068d7823e",
+        "model": "global.openai.gpt-6-astra",
+        "usage": {
+          "input_tokens": 2,
+          "output_tokens": 558,
+          "total_tokens": 3240,
+          "cache_read_input_tokens": 2680,
+          "cache_write_input_tokens": 0
+        },
+        "latency_ms": 8350,
+        "stop_reason": "end_turn",
+        "requested_tools": []
+      }
+    ],
+    "exact_comparison_reproduced": true,
+    "exact_scenarios_reproduced": true,
+    "baseline_metrics": {
+      "initial_value_cad": 10000.0,
+      "ending_value_cad": 17772.24,
+      "total_return_pct": 77.722433,
+      "cagr_pct": 12.19003,
+      "volatility_pct": 10.779947,
+      "max_drawdown_pct": -12.678804,
+      "drawdown_peak_date": "2025-01-30",
+      "drawdown_trough_date": "2025-04-08",
+      "worst_interval_pct": -4.750178,
+      "historical_expected_shortfall_95_pct": 1.59547,
+      "observed_intervals_per_year": 245.428558
+    },
+    "alternative_metrics": {
+      "initial_value_cad": 10000.0,
+      "ending_value_cad": 15804.05,
+      "total_return_pct": 58.040465,
+      "cagr_pct": 9.58681,
+      "volatility_pct": 11.214151,
+      "max_drawdown_pct": -18.56882,
+      "drawdown_peak_date": "2021-12-29",
+      "drawdown_trough_date": "2022-06-16",
+      "worst_interval_pct": -4.283617,
+      "historical_expected_shortfall_95_pct": 1.622993,
+      "observed_intervals_per_year": 245.428558
+    },
+    "data_files": {
+      "assets_universe.csv": {
+        "sha256": "f78de8ecb36d914a3448db63498cc9a04a34d805bccb79c481dda1650755467d",
+        "rows": 31
+      },
+      "prices_daily.csv": {
+        "sha256": "ff2a3f2d0a7d72ea835e8d616d041e0510f018340cef3d3e55b918830e8a569d",
+        "rows": 40049
+      },
+      "fx_usdcad_daily.csv": {
+        "sha256": "f04e218ac5b0145fd552b3d0dcfbf73e5e17bb9a6fb4562460dbec95cb8972b3",
+        "rows": 1245
+      },
+      "sources_metadata.csv": {
+        "sha256": "7ff17052c8235888c4984430830610ae0d81c0df71585afaacb87ba5fe531bdf",
+        "rows": 6
+      }
+    }
+  },
+  "semantic_inspection": {
+    "mode": "calculation_sans_inference",
+    "horizons_1_4_15_identical_comparisons": true,
+    "returned_horizons": [
+      1.0,
+      4.0,
+      15.0
+    ],
+    "withdrawal_in_free_text_identical_comparison": true,
+    "withdrawal_prompt": "Mon capital est de 10 000 CAD. Je dois retirer 3 000 CAD dans douze mois ; le reste peut rester investi quatre ans. Ce besoin est impératif. Analyse les possibilités.",
+    "withdrawal_still_listed_unknown": [
+      "Besoins de retrait",
+      "Capacité financière réelle à supporter une perte"
+    ],
+    "structured_withdrawals_http_status": 422,
+    "structured_withdrawals_error": {
+      "detail": [
+        {
+          "type": "extra_forbidden",
+          "loc": [
+            "body",
+            "withdrawals"
+          ],
+          "msg": "Extra inputs are not permitted",
+          "input": [
+            {
+              "amount_cad": 3000,
+              "months": 12
+            }
+          ]
+        }
+      ]
+    },
+    "scope": "En mode Bedrock, le modèle peut changer ticker/poids via l'outil. Il ne dispose pas d'un outil de formalisation des retraits. Aucune nouvelle génération n'a été testée ici."
+  },
+  "target_experience_illustration": {
+    "status": "illustration_arithmetique_uniquement_pas_un_resultat_du_produit",
+    "capital_cad": 100000,
+    "scenario_returns": {
+      "choc_actions": {
+        "reserve_nominale": 0.0,
+        "XBB.TO": -0.05,
+        "ZST.TO": 0.0,
+        "XIU.TO": -0.2,
+        "TSLA": -0.5
+      },
+      "choc_obligations": {
+        "reserve_nominale": 0.0,
+        "XBB.TO": -0.15,
+        "ZST.TO": -0.02,
+        "XIU.TO": -0.1,
+        "TSLA": -0.25
+      }
+    },
+    "assumptions": [
+      "Réserve nominale fictive, rendement nul, disponible à douze mois.",
+      "Ni frais, ni fiscalité, ni inflation ; allocations fractionnaires.",
+      "Chocs hypothétiques à douze mois, sans probabilité ni calibration empirique.",
+      "Le budget de perte porte sur ces chocs, pas sur le drawdown futur.",
+      "La réserve nominale n'est assimilée à aucun FNB du starter.",
+      "Le montant déplacé n'est pas une estimation des coûts de transaction."
+    ],
+    "results": {
+      "A_actuel": {
+        "weights": {
+          "reserve_nominale": 0.0,
+          "XBB.TO": 0.35,
+          "ZST.TO": 0.2,
+          "XIU.TO": 0.2,
+          "TSLA": 0.25
+        },
+        "reserve_cad": 0.0,
+        "withdrawal_cad": 30000.0,
+        "turnover_one_way_pct": 0.0,
+        "scenario_loss_cad": {
+          "choc_actions": 18250.0,
+          "choc_obligations": 13900.0
+        },
+        "reserve_constraint_met": false,
+        "tsla_cap_10pct_met": false,
+        "scenario_loss_budget_15000_met": false,
+        "wealth_after_withdrawal_cad": null
+      },
+      "B_TSLA_5pct_proportionnel": {
+        "weights": {
+          "reserve_nominale": 0.0,
+          "XBB.TO": 0.44333333333333336,
+          "ZST.TO": 0.25333333333333335,
+          "XIU.TO": 0.25333333333333335,
+          "TSLA": 0.05
+        },
+        "reserve_cad": 0.0,
+        "withdrawal_cad": 30000.0,
+        "turnover_one_way_pct": 20.0,
+        "scenario_loss_cad": {
+          "choc_actions": 9783.33,
+          "choc_obligations": 10940.0
+        },
+        "reserve_constraint_met": false,
+        "tsla_cap_10pct_met": true,
+        "scenario_loss_budget_15000_met": true,
+        "wealth_after_withdrawal_cad": null
+      },
+      "C_reserve_30pct": {
+        "weights": {
+          "reserve_nominale": 0.3,
+          "XBB.TO": 0.35,
+          "ZST.TO": 0.05,
+          "XIU.TO": 0.2,
+          "TSLA": 0.1
+        },
+        "reserve_cad": 30000.0,
+        "withdrawal_cad": 30000.0,
+        "turnover_one_way_pct": 30.0,
+        "scenario_loss_cad": {
+          "choc_actions": 10750.0,
+          "choc_obligations": 9850.0
+        },
+        "reserve_constraint_met": true,
+        "tsla_cap_10pct_met": true,
+        "scenario_loss_budget_15000_met": true,
+        "wealth_after_withdrawal_cad": {
+          "choc_actions": 59250.0,
+          "choc_obligations": 60150.0
+        }
+      },
+      "D_revision_reserve_40pct": {
+        "weights": {
+          "reserve_nominale": 0.4,
+          "XBB.TO": 0.3,
+          "ZST.TO": 0.0,
+          "XIU.TO": 0.2,
+          "TSLA": 0.1
+        },
+        "reserve_cad": 40000.0,
+        "withdrawal_cad": 40000.0,
+        "turnover_one_way_pct": 40.0,
+        "scenario_loss_cad": {
+          "choc_actions": 10500.0,
+          "choc_obligations": 9000.0
+        },
+        "reserve_constraint_met": true,
+        "tsla_cap_10pct_met": true,
+        "scenario_loss_budget_15000_met": true,
+        "wealth_after_withdrawal_cad": {
+          "choc_actions": 49500.0,
+          "choc_obligations": 51000.0
+        }
+      }
+    }
+  }
+}

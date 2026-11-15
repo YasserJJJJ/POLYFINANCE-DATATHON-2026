@@ -1,0 +1,466 @@
+{
+  "mode": "deterministic_control_real_finance_store_workflow_research_double",
+  "status": "waiting",
+  "current_view": {
+    "dossier_id": "829237b491924e7e95294fd945bb7eeb",
+    "id": "view",
+    "version": 1,
+    "type": "view",
+    "owner": "agent3",
+    "hash": "cb72ab6f9356ef35b1de97073a0cb316afa1f57d9664031f2a80d1452f89fa53",
+    "input_refs": [
+      "analysis@1",
+      "analysis_review@1",
+      "problem@1",
+      "research@1",
+      "research_review@1"
+    ],
+    "revision": 5,
+    "created_at": "2026-11-15T19:06:15.968278+00:00",
+    "content": {
+      "ai_used": false,
+      "checks": [],
+      "citations": [],
+      "claims": [],
+      "controls": {
+        "arithmetic": {
+          "failed_check_ids": [],
+          "limits": "Tolérances et hypothèses de la méthode ; consulter les contrôles détaillés.",
+          "method": [],
+          "scope": "Le sous-problème calculé et ses unités.",
+          "status": "not_established"
+        },
+        "documentary_grounding": {
+          "limits": "Extraction ciblée ; l'absence de preuve de garantie n'est pas une preuve de garantie.",
+          "method": "Captures et empreintes, sélection critique de l'Agent 1.",
+          "scope": "Versions et passages effectivement consultés.",
+          "status": "conditional"
+        },
+        "external_validity": {
+          "limits": "Scénarios hypothétiques et comparaisons rétrospectives seulement.",
+          "method": "Aucune validation externe revendiquée.",
+          "scope": "Décision d'investissement réelle ou performance future.",
+          "status": "not_established"
+        },
+        "fidelity": {
+          "limits": "Recopier un registre faux resterait fidèle ; ce contrôle ne prouve pas le calcul.",
+          "method": "Assemblage déterministe et résolution des pointeurs.",
+          "scope": "Identifiants de claims, pointeurs et texte financier issus du registre.",
+          "status": "sufficient"
+        },
+        "mandate": {
+          "limits": "Le mandat dépend de la justesse des déclarations ; aucune conformité réglementaire certifiée.",
+          "method": "Comparaison avec les entrées et contraintes typées.",
+          "scope": "Un retrait est prévu ; je n'ai pas donné son montant.",
+          "status": "insufficient"
+        }
+      },
+      "documentary_contradictions": [],
+      "documentary_issues": [],
+      "explanation": [],
+      "human_acceptance": null,
+      "inspected_evidence": [],
+      "limitations": [
+        "Instrument réel de réserve et conditions non qualifiés."
+      ],
+      "numeric_policy": "Les textes financiers et leurs valeurs sont produits par le code puis référencés ; aucun chiffre libre du modèle n’est affiché.",
+      "options": [],
+      "presentation": {
+        "claim_order": [],
+        "detail_level": "standard",
+        "emphasis": "conditions",
+        "follow_up_fields": [],
+        "reason": "Restitution de contrôle sans inférence."
+      },
+      "questions": [
+        {
+          "blocking": true,
+          "field": "withdrawal_cad",
+          "question": "Valeur nécessaire absente."
+        }
+      ],
+      "research_review": {
+        "ai_used": false,
+        "blocking_issues": [],
+        "capture_reused": false,
+        "decision": "calculate_conditionally",
+        "evidence_ids": [],
+        "invalid_method_selections": [],
+        "issues": [],
+        "method_ids": [],
+        "reason": "Corpus documentaire lu sans sélection par modèle.",
+        "selection_scope": "Pièces sélectionnées par Agent1 ; sélection distincte d'une preuve d'implication pour chaque claim.",
+        "unresolved": []
+      },
+      "sensitivity": [],
+      "status": "missing_input",
+      "summary": "Une information manque pour conclure. Les champs à clarifier sont indiqués ci-dessous.",
+      "title": "Décision fictive — réserve et retrait"
+    },
+    "ref": "view@1",
+    "usable": true
+  },
+  "current_analysis": {
+    "dossier_id": "829237b491924e7e95294fd945bb7eeb",
+    "id": "analysis",
+    "version": 1,
+    "type": "analysis",
+    "owner": "agent2",
+    "hash": "b3e7dc358e9a692d838d931c3ea7ade251cd78fc53131a042a6c2f9bbff6df7f",
+    "input_refs": [
+      "fact.capital_cad@1",
+      "fact.currency@1",
+      "fact.holdings@1",
+      "fact.scenarios@1",
+      "problem@1",
+      "research@1",
+      "research_review@1",
+      "baseline_stress@1"
+    ],
+    "revision": 4,
+    "created_at": "2026-11-15T19:06:15.962445+00:00",
+    "content": {
+      "chain": {
+        "baseline_stress_ref": "baseline_stress@1",
+        "conclusion_claim_ids": [],
+        "data": {
+          "code": [
+            {
+              "path": "alphaforge_app/decision/finance.py",
+              "sha256": "b0b6f715335c44e87b19e302139f939eb3918ae0d90b357a40e9707c7d3738d0"
+            },
+            {
+              "path": "alphaforge_app/analytics.py",
+              "sha256": "fbe8fbdb57080c2652169aea66c5d35fcb54e31087847d05ce72f5e3cbf92b4f"
+            },
+            {
+              "path": "alphaforge_app/datasets.py",
+              "sha256": "ef920c0c6dc9bbe23f1e23c0c76047b45329497d4b5a8126b3314759cc523655"
+            }
+          ],
+          "data": [],
+          "executed_at": "2026-11-15T19:06:15.956133+00:00",
+          "input_sha256": "6bbbee9e4af2da5b5ea5ff1493bb7446ce68c94f25136ea4b1a24a6937721653",
+          "model_inference_calls": 0,
+          "packages": {
+            "numpy": "2.5.4",
+            "scipy": "1.18.1"
+          }
+        },
+        "evidence_ref": "research@1",
+        "evidence_refs": [
+          "research@1"
+        ],
+        "implementation": "alphaforge_app.decision.finance.analyze",
+        "method": {
+          "id": "decision-finance-v2",
+          "version": 1
+        },
+        "problem_ref": "problem@1",
+        "question": "Un retrait est prévu ; je n'ai pas donné son montant."
+      },
+      "checks": [],
+      "claims": [],
+      "inputs": {
+        "assumptions": [
+          {
+            "id": "example_scope",
+            "origin": "assumed",
+            "text": "Exercice fictif ; réserve abstraite, coûts/fiscalité nuls, chocs CAD synthétiques sans probabilité ; aucun placement réel garanti."
+          }
+        ],
+        "capital_cad": 100000.0,
+        "clarifications": [],
+        "comparison": null,
+        "currency": "CAD",
+        "decision_type": "reserve_allocation",
+        "historical_policy": null,
+        "holdings": [
+          {
+            "ticker": "XBB.TO",
+            "weight": 0.35
+          },
+          {
+            "ticker": "ZST.TO",
+            "weight": 0.2
+          },
+          {
+            "ticker": "XIU.TO",
+            "weight": 0.2
+          },
+          {
+            "ticker": "TSLA",
+            "weight": 0.25
+          }
+        ],
+        "horizon_years": 4.0,
+        "knowledge_date": "2026-11-15",
+        "max_asset_weights": {
+          "TSLA": 0.1
+        },
+        "objective": "minimize_reallocated_capital",
+        "question": "Un retrait est prévu ; je n'ai pas donné son montant.",
+        "reserve_policy": "abstract_nominal",
+        "scenario_loss_limit_cad": 15000.0,
+        "scenarios": [
+          {
+            "horizon_months": 12.0,
+            "id": "actions",
+            "kind": "hypothetical",
+            "label": "Choc actions hypothétique",
+            "returns": {
+              "RESERVE_ABSTRAITE": 0.0,
+              "TSLA": -0.5,
+              "XBB.TO": -0.05,
+              "XIU.TO": -0.2,
+              "ZST.TO": 0.0
+            }
+          },
+          {
+            "horizon_months": 12.0,
+            "id": "obligations",
+            "kind": "hypothetical",
+            "label": "Choc obligations hypothétique",
+            "returns": {
+              "RESERVE_ABSTRAITE": 0.0,
+              "TSLA": -0.25,
+              "XBB.TO": -0.15,
+              "XIU.TO": -0.1,
+              "ZST.TO": -0.02
+            }
+          }
+        ],
+        "unknowns": [
+          "Instrument réel de réserve et conditions non qualifiés."
+        ],
+        "withdrawal_cad": null,
+        "withdrawal_months": 12.0
+      },
+      "limitations": [],
+      "method": {
+        "id": "decision-finance-v2",
+        "version": 1
+      },
+      "missing": [
+        {
+          "field": "withdrawal_cad",
+          "reason": "Valeur nécessaire absente."
+        }
+      ],
+      "options": [],
+      "provenance": {
+        "code": [
+          {
+            "path": "alphaforge_app/decision/finance.py",
+            "sha256": "b0b6f715335c44e87b19e302139f939eb3918ae0d90b357a40e9707c7d3738d0"
+          },
+          {
+            "path": "alphaforge_app/analytics.py",
+            "sha256": "fbe8fbdb57080c2652169aea66c5d35fcb54e31087847d05ce72f5e3cbf92b4f"
+          },
+          {
+            "path": "alphaforge_app/datasets.py",
+            "sha256": "ef920c0c6dc9bbe23f1e23c0c76047b45329497d4b5a8126b3314759cc523655"
+          }
+        ],
+        "data": [],
+        "executed_at": "2026-11-15T19:06:15.956133+00:00",
+        "input_sha256": "6bbbee9e4af2da5b5ea5ff1493bb7446ce68c94f25136ea4b1a24a6937721653",
+        "model_inference_calls": 0,
+        "packages": {
+          "numpy": "2.5.4",
+          "scipy": "1.18.1"
+        }
+      },
+      "sensitivity": [],
+      "status": "missing_input",
+      "verification_assessment": {
+        "failed_check_ids": [],
+        "status": "not_established"
+      }
+    },
+    "ref": "analysis@1",
+    "usable": true
+  },
+  "active_clarifications": [],
+  "visible_missing_fields": [
+    {
+      "blocking": true,
+      "field": "withdrawal_cad",
+      "question": "Valeur nécessaire absente."
+    },
+    {
+      "field": "withdrawal_cad",
+      "reason": "Valeur nécessaire absente."
+    }
+  ],
+  "historical_missing": [
+    [
+      {
+        "field": "withdrawal_cad",
+        "reason": "Valeur nécessaire absente."
+      }
+    ]
+  ],
+  "task_roles": [
+    "agent0",
+    "agent1",
+    "agent2",
+    "agent3",
+    "agent0"
+  ],
+  "questions": [
+    {
+      "dependencies": [
+        "evidence"
+      ],
+      "id": "method",
+      "question": "Quelle méthode répond au problème sous quelles hypothèses ?",
+      "reopen_if": "Méthode hors domaine ou preuve contradictoire",
+      "resolved_by": "Source de méthode lue et domaine explicité",
+      "result_refs": [
+        "research@1"
+      ],
+      "status": "conditional",
+      "type": "method_choice"
+    },
+    {
+      "dependencies": [],
+      "id": "evidence",
+      "question": "Les pièces établissent-elles les faits nécessaires ?",
+      "reopen_if": "Source corrigée, périmée ou nouvelle contradiction",
+      "resolved_by": "Captures datées, passages et portée",
+      "result_refs": [
+        "research@1"
+      ],
+      "status": "resolved",
+      "type": "evidence_requirement"
+    },
+    {
+      "dependencies": [
+        "evidence"
+      ],
+      "id": "real_reserve",
+      "question": "Un placement réel finance-t-il le retrait sans risque nominal ?",
+      "reopen_if": "Nouveau produit ou besoin de liquidité",
+      "resolved_by": "Produit, échéance, conditions et preuve de garantie",
+      "result_refs": [],
+      "status": "open",
+      "type": "evidence_requirement"
+    },
+    {
+      "dependencies": [
+        "evidence"
+      ],
+      "id": "data",
+      "question": "Les données sont-elles admissibles à la date de connaissance ?",
+      "reopen_if": "Date de connaissance, donnée ou convention modifiée",
+      "resolved_by": "Unités, devises, dates et hypothèses explicites",
+      "result_refs": [
+        "analysis@1"
+      ],
+      "status": "open",
+      "type": "data_requirement"
+    },
+    {
+      "dependencies": [
+        "method",
+        "data",
+        "profile"
+      ],
+      "id": "calculation",
+      "question": "Quelles options satisfont le problème ?",
+      "reopen_if": "Entrée ou méthode corrigée",
+      "resolved_by": "Outil admis, résultats et contrôles indépendants",
+      "result_refs": [
+        "analysis@1"
+      ],
+      "status": "open",
+      "type": "calculation"
+    },
+    {
+      "dependencies": [
+        "calculation"
+      ],
+      "id": "verification",
+      "question": "Les nombres, contraintes et conditions sont-ils contrôlés ?",
+      "reopen_if": "Défaut numérique ou preuve nouvelle",
+      "resolved_by": "Résidus, cas indépendants et limites documentés",
+      "result_refs": [
+        "analysis@1"
+      ],
+      "status": "missing_input",
+      "type": "verification"
+    },
+    {
+      "dependencies": [
+        "verification"
+      ],
+      "id": "conclusion",
+      "question": "Que peut-on conclure et sous quelles conditions ?",
+      "reopen_if": "Révision utilisateur ou résultat invalidé",
+      "resolved_by": "Claims liés aux calculs, limites conservées",
+      "result_refs": [
+        "view@1"
+      ],
+      "status": "open",
+      "type": "conclusion"
+    },
+    {
+      "dependencies": [
+        "decision"
+      ],
+      "id": "goal",
+      "question": "Un retrait est prévu ; je n'ai pas donné son montant.",
+      "reopen_if": "Modification du besoin",
+      "resolved_by": "Objectif traité dans le périmètre déclaré",
+      "result_refs": [
+        "qualification@2"
+      ],
+      "status": "waiting",
+      "type": "objective"
+    },
+    {
+      "dependencies": [
+        "profile",
+        "method"
+      ],
+      "id": "decision",
+      "question": "Quel problème financier résoudre ?",
+      "reopen_if": "Clarification ou preuve nouvelle",
+      "resolved_by": "Formulation admise et informations déterminantes établies",
+      "result_refs": [
+        "qualification@2"
+      ],
+      "status": "waiting",
+      "type": "decision"
+    },
+    {
+      "dependencies": [],
+      "id": "profile",
+      "question": "Quelles informations contraignent la décision ?",
+      "reopen_if": "Correction d'une déclaration",
+      "resolved_by": "Valeurs nécessaires explicitement déclarées",
+      "result_refs": [
+        "qualification@2"
+      ],
+      "status": "waiting",
+      "type": "subproblem"
+    },
+    {
+      "blocking": true,
+      "dependencies": [],
+      "field": "withdrawal_cad",
+      "id": "clarification.0",
+      "question": "Valeur nécessaire absente.",
+      "reopen_if": "Réponse humaine ou nouvelle preuve",
+      "resolved_by": "Précision explicite ou qualification de la pièce manquante",
+      "result_refs": [
+        "qualification@2"
+      ],
+      "status": "waiting",
+      "target": "human",
+      "type": "subproblem"
+    }
+  ]
+}

@@ -1,0 +1,422 @@
+
+
+## PAGE 1
+
+Event dashboard
+L'IA générative sur AWS
+Votre premier appel de modèle
+Votre premier appel de modèle
+Vous avez besoin d'une seule API : Converse. Elle fonctionne de la même façon pour tous les modèles de texte d'Amazon Bedrock, ce qui vous permet de changer de
+modèle sans réécrire votre code. Utilisez-la et ignorez l'ancienne API InvokeModel, qui demande un format de requête différent pour chaque fournisseur.
+Ouvrez AWS CloudShell 
+ et collez cette commande :
+La commande renvoie la réponse JSON complète. Pour obtenir seulement le texte :
+La requête content[?text].text garde seulement les blocs qui contiennent du texte. Elle fonctionne aussi avec les modèles qui renvoient un bloc de
+raisonnement avant la réponse (voir la section « Quand l'appel échoue » plus bas).
+Avec un prompt système, l'endroit où vous placez les règles :
+Relisez les réponses. Lors de nos tests, Nova 2 Lite a décrit ce bêta de 1,8 comme « 80 % plus volatil que le S&P 500 ». C'est inexact : le bêta mesure la sensibilité aux
+mouvements du marché, pas la volatilité totale. Les petits modèles font ce type d'erreur. Vériﬁez les explications ﬁnancières, ou comparez avec un modèle plus
+puissant (voir Choisir un modèle).
+boto3 est déjà installé dans CloudShell et dans JupyterLab de SageMaker Uniﬁed Studio.
+Les champs utiles de la réponse :
+output.message.content
+La réponse. Lisez les blocs qui contiennent text, pas seulement le premier bloc
+usage.inputTokens / usage.outputTokens
+Ce que l'appel vous coûte
+stopReason
+end_turn est normal. max_tokens signiﬁe que la réponse a été coupée : augmentez maxTokens
+metrics.latencyMs
+Pour savoir si la réponse sera assez rapide en démonstration
+Converse est sans état. Le modèle ne garde aucune mémoire entre deux appels : pour poursuivre une conversation, vous renvoyez tout l'historique à chaque appel.
+C'est le malentendu le plus fréquent chez les nouveaux utilisateurs de l'API.
+Si la deuxième réponse mentionne une tolérance au risque élevée, votre gestion de l'historique fonctionne.
+En démonstration, un texte qui s'affiche au fur et à mesure semble beaucoup plus rapide que le même texte qui arrive d'un bloc après quatre secondes. Le streaming
+n'est disponible qu'avec un SDK : l'AWS CLI n'a pas de commande converse-stream.
+Une application a souvent besoin de données, pas de prose. Si vous donnez un schéma JSON à Bedrock, la réponse respecte ce schéma : c'est la fonction de sorties
+structurées (structured outputs). Bedrock contraint le décodage du modèle selon votre schéma, et la réponse se lit avec json.loads du premier coup.
+Exemple : extraire des signaux d'une nouvelle ﬁnancière.
+La nouvelle ci-dessus est un exemple ﬁctif. Sortie réelle du code ci-dessus :
+Trois points à connaître :
+Le schéma est passé sous forme de chaîne. Utilisez json.dumps(SCHEMA), pas le dictionnaire.
+additionalProperties: false est obligatoire, et certaines fonctions de JSON Schema ne sont pas prises en charge : pas de minLength, de maximum ni de
+schémas récursifs.
+Le premier appel avec un nouveau schéma peut être plus lent. Bedrock compile une grammaire, puis la garde en cache pendant 24 heures. Faites un appel de test
+avant votre démonstration.
+Vous pouvez aussi ajouter "strict": True à une déﬁnition d'outil dans toolConfig, ce qui verrouille les arguments que le modèle passe à votre outil. C'est la
+même garantie, appliquée aux agents.
+Voici les erreurs que vous rencontrerez vraiment.
+ValidationException: Invocation of model ID <id> with on-demand throughput isn't supported
+Le modèle exige un proﬁl d'inférence et vous avez utilisé l'identiﬁant sans préﬁxe. Ajoutez le préﬁxe global. ou us. :
+Voir Choisir un modèle pour savoir quels modèles l'exigent.
+ValidationException: ... temperature is deprecated for this model (ou top_p)
+Claude Sonnet 5, Opus 5 et Opus 5.5 refusent les paramètres temperature et topP. Retirez-les de inferenceConfig et gardez seulement maxTokens. Nova 2 Lite,
+Claude Haiku 4.5 et Claude Sonnet 4.6 les acceptent.
+ValidationException: The provided model identifier is invalid
+Souvent une faute de frappe, ou un modèle qui n'existe pas dans votre région. Vériﬁez dans votre propre compte :
+AccessDeniedException
+Le plus souvent, c'est le tout premier appel à un modèle Anthropic dans un compte neuf, pendant qu'une étape unique au niveau du compte se propage. Attendez
+deux minutes et réessayez. Si l'erreur persiste, essayez un modèle Amazon Nova. Si Nova fonctionne et pas Claude, c'est cette étape du compte : un mentor AWS peut
+vous aider.
+ThrottlingException
+Vous appelez plus vite que le quota du compte ne le permet. Réessayez avec un délai croissant (backoff exponentiel) plutôt qu'immédiatement. Conﬁgurez boto3
+pour qu'il le fasse à votre place :
+ExpiredTokenException ou InvalidClientTokenId
+Vos identiﬁants temporaires ont expiré. Récupérez-en de nouveaux depuis la page de l'événement dans Workshop Studio, ou utilisez CloudShell, qui s'en occupe pour
+vous. Voir Accès AWS CLI et SDK.
+Le texte de la réponse est vide ou content[0]["text"] lève une KeyError
+Vous avez appelé un modèle qui peut renvoyer deux blocs de contenu : son raisonnement d'abord (reasoningContent), puis la réponse (text). C'est le cas
+d'openai.gpt-oss-120b-1:0, de Claude Sonnet 5 et de Claude Opus 5.5. Cherchez le bloc de texte par son nom, pas par sa position :
+Ce code fonctionne avec tous les modèles : prenez cette habitude. Si le texte est vide et que stopReason vaut max_tokens, le raisonnement a utilisé tous les tokens
+: augmentez maxTokens.
+Choisir un modèle : quels modèles utiliser parmi les dizaines disponibles
+Garde-fous : garder le modèle dans le cadre du déﬁ
+Construire des agents : quand répondre ne suffit plus et qu'il faut agir
+Votre premier appel de modèle
+Il n'y a pas de page « Model access » à visiter avant de commencer. L'accès aux modèles de fondation serverless est activé par défaut. Si un tutoriel de 2024 ou 2025 vous demande
+de demander l'accès à chaque modèle, cette étape n'existe plus.
+En ligne de commande
+aws bedrock-runtime converse \
+  --region us-east-1 \
+  --model-id global.amazon.nova-2-lite-v1:0 \
+  --messages '[{"role":"user","content":[{"text":"Expliquez en deux phrases ce qu’est la volatilité annualisée d’une action, pour un investis
+  --inference-config '{"maxTokens":300,"temperature":0.7}'
+1
+2
+3
+4
+5
+aws bedrock-runtime converse \
+  --region us-east-1 \
+  --model-id global.amazon.nova-2-lite-v1:0 \
+  --messages '[{"role":"user","content":[{"text":"Expliquez en deux phrases ce qu’est la volatilité annualisée d’une action, pour un investis
+  --query 'output.message.content[?text].text' --output text
+1
+2
+3
+4
+5
+aws bedrock-runtime converse \
+  --region us-east-1 \
+  --model-id global.amazon.nova-2-lite-v1:0 \
+  --system '[{"text":"Vous expliquez des indicateurs financiers à des fins éducatives pour un persona fictif. Vous ne donnez jamais de consei
+  --messages '[{"role":"user","content":[{"text":"Persona : Audacieux (tolérance au risque élevée). Indicateur : bêta de 1,8 pour NVDA par ra
+  --query 'output.message.content[?text].text' --output text
+1
+2
+3
+4
+5
+6
+Les paramètres --messages, --system et --inference-config doivent être passés en JSON. La syntaxe abrégée (shorthand) de l'AWS CLI ne fonctionne pas pour eux.
+En Python
+import boto3
+from botocore.exceptions import ClientError
+client = boto3.client("bedrock-runtime", region_name="us-east-1")
+MODEL_ID = "global.amazon.nova-2-lite-v1:0"
+SYSTEM = (
+    "Vous êtes un analyste financier pédagogue. Vous expliquez des notions à des fins éducatives, "
+    "sans jamais donner de conseil financier personnalisé. Soyez concis et factuel."
+)
+try:
+    response = client.converse(
+        modelId=MODEL_ID,
+        system=[{"text": SYSTEM}],
+        messages=[
+            {
+                "role": "user",
+                "content": [{"text": (
+                    "Persona : investisseur Prudent (tolérance au risque faible). "
+                    "Expliquez ce que signifie un drawdown maximal de -34 % pour le FNB QQQ "
+                    "sur la période 2020-2024, en trois phrases."
+                )}],
+            }
+        ],
+        inferenceConfig={"maxTokens": 500, "temperature": 0.3},
+    )
+    # Concaténer les blocs de texte : certains modèles renvoient d'abord un bloc de raisonnement
+    blocks = response["output"]["message"]["content"]
+    print("".join(b["text"] for b in blocks if "text" in b))
+    print("---")
+    print("Tokens :", response["usage"])
+    print("Latence (ms) :", response["metrics"]["latencyMs"])
+    print("Raison d'arrêt :", response["stopReason"])
+except ClientError as e:
+    print(f"L'appel à {MODEL_ID} a échoué : {e}")
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+Le chiffre de -34 % est donné au modèle dans le prompt. Le modèle explique, il ne calcule pas. Calculez vos indicateurs (rendement, volatilité, drawdown, bêta) avec pandas à partir
+de données sourcées, puis demandez au modèle de les expliquer. Un modèle peut se tromper sur un chiffre ou inventer un fait sur un titre.
+Champ
+Pourquoi c'est utile
+Tenir une conversation
+import boto3
+client = boto3.client("bedrock-runtime", region_name="us-east-1")
+MODEL_ID = "global.amazon.nova-2-lite-v1:0"
+messages = []
+def ask(question: str) -> str:
+    messages.append({"role": "user", "content": [{"text": question}]})
+    response = client.converse(
+        modelId=MODEL_ID,
+        messages=messages,
+        inferenceConfig={"maxTokens": 500},
+    )
+    reply = response["output"]["message"]
+    messages.append(reply)          # garder la réponse du modèle dans l'historique
+    return "".join(b["text"] for b in reply["content"] if "text" in b)
+print(ask("Nous travaillons avec le persona Audacieux (tolérance au risque élevée). Retenez-le et répondez seulement « Noté »."))
+print(ask("Quelle est la tolérance au risque de notre persona ? Une phrase."))
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+Streaming
+import boto3
+client = boto3.client("bedrock-runtime", region_name="us-east-1")
+response = client.converse_stream(
+    modelId="global.amazon.nova-2-lite-v1:0",
+    messages=[{"role": "user", "content": [{"text": "Expliquez en un paragraphe la différence de risque entre un FNB (fonds négocié en bours
+)
+for event in response["stream"]:
+    if "contentBlockDelta" in event:
+        print(event["contentBlockDelta"]["delta"].get("text", ""), end="", flush=True)
+print()
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+Obtenir une sortie structurée
+import json
+import boto3
+client = boto3.client("bedrock-runtime", region_name="us-east-1")
+NEWS = """La Banque Royale du Canada a publié un bénéfice net trimestriel de 4,5 milliards de dollars,
+en hausse de 12 % sur un an, porté par la gestion de patrimoine. La banque a toutefois augmenté
+ses provisions pour pertes sur créances, citant un ralentissement de l'économie canadienne."""
+SCHEMA = {
+    "type": "object",
+    "properties": {
+        "sentiment": {"type": "string", "enum": ["positif", "neutre", "negatif"]},
+        "tickers": {"type": "array", "items": {"type": "string"}},
+        "faits_chiffres": {"type": "array", "items": {"type": "string"}},
+        "risques_mentionnes": {"type": "array", "items": {"type": "string"}},
+    },
+    "required": ["sentiment", "tickers", "faits_chiffres", "risques_mentionnes"],
+    "additionalProperties": False,
+}
+response = client.converse(
+    modelId="global.anthropic.claude-haiku-4-5-20251001-v1:0",
+    messages=[{"role": "user", "content": [{"text": f"Analysez cette nouvelle financière :\n{NEWS}"}]}],
+    inferenceConfig={"maxTokens": 500},
+    outputConfig={"textFormat": {"type": "json_schema", "structure": {"jsonSchema": {
+        "name": "analyse_nouvelle",
+        "description": "Signaux structurés extraits d'une nouvelle financière",
+        "schema": json.dumps(SCHEMA),   # attention : une *chaîne* JSON, pas un dict
+    }}}},
+)
+blocks = response["output"]["message"]["content"]
+data = json.loads("".join(b["text"] for b in blocks if "text" in b))
+print(json.dumps(data, indent=2, ensure_ascii=False))
+print("Sentiment :", data["sentiment"])
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+{
+  "sentiment": "neutre",
+  "tickers": ["RY"],
+  "faits_chiffres": [
+    "Bénéfice net trimestriel de 4,5 milliards de dollars",
+    "Hausse de 12 % sur un an du bénéfice net",
+    "Bénéfice porté par la gestion de patrimoine",
+    "Augmentation des provisions pour pertes sur créances"
+  ],
+  "risques_mentionnes": [
+    "Ralentissement de l'économie canadienne",
+    "Hausse des pertes sur créances"
+  ]
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+Tous les modèles ne prennent pas en charge cette fonction. Ce code a été testé avec succès en novembre 2026 avec Claude Haiku 4.5, Claude Sonnet 5 et Claude Opus 5.5. Nova 2
+Lite refuse le champ avec This model doesn't support the outputConfig field. Pour un pipeline d'extraction en volume, Haiku 4.5 est un bon choix : rapide, moins coûteux,
+et le schéma est garanti.
+Si vous devez utiliser un modèle sans sorties structurées, demandez du JSON dans le prompt système avec temperature: 0.0 (sur les modèles qui acceptent ce paramètre).
+Retirez ensuite les balises markdown et placez json.loads dans un try/except, car la garantie n'existe plus.
+Quand l'appel échoue
+# Échoue
+--model-id anthropic.claude-sonnet-5
+# Fonctionne
+--model-id global.anthropic.claude-sonnet-5
+1
+2
+3
+4
+aws bedrock list-foundation-models --region us-east-1 \
+  --query 'modelSummaries[?modelLifecycle.status==`ACTIVE`].modelId' \
+  --output text | tr '\t' '\n' | sort | grep -i claude
+1
+2
+3
+import boto3
+from botocore.config import Config
+client = boto3.client(
+    "bedrock-runtime",
+    region_name="us-east-1",
+    config=Config(retries={"max_attempts": 5, "mode": "adaptive"}),
+)
+1
+2
+3
+4
+5
+6
+7
+8
+blocks = response["output"]["message"]["content"]
+text = "".join(b["text"] for b in blocks if "text" in b)
+1
+2
+Pour la suite
+Previous
+Next
+Introduction à AWS
+Amazon Bedrock
+Kiro
+Outils de développement
+Amazon Quick
+AWS Lambda
+Amazon S3
+AWS IAM
+AWS Glue
+Amazon Athena
+Accès AWS CLI et SDK
+L'IA générative sur AWS
+Votre premier appel de modèle
+Choisir un modèle
+Garde-fous
+Bases de connaissances et RAG
+Data Automation
+Construire des agents
+Démarrages rapides
+Données ﬁnancières publiques
+Nettoyage et exportation
+Ressources
+AWS account access
+Open AWS console
+(us-east-1)
+Get AWS CLI credentials
+Share feedback
+Workshop catalog in AWS Builder
+Center
+Exit event
+AWS Workshop Studio
+adamlarhlimi2006
+© 2008 - 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+Privacy policy
+Terms of use
+Cookie preferences

@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Retry behavior - AWS SDKs and Tools</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="feature-retry-behavior" /><meta name="default_state" content="feature-retry-behavior" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><meta name="description" content="When a request to an AWS service fails due to a transient error or throttling, the SDK can automatically retry the request. This page explains how to choose a retry mode and configure max attempts, and describes the internal mechanics including exponential backoff, retry quotas, and service-specific behavior. Relevant to the following SDKs and tools: AWS CLI,AWS SDK for C++,AWS SDK for Go,AWS SDK for Java,AWS SDK for JavaScript,AWS SDK for Kotlin,AWS SDK for .NET,AWS SDK for PHP,AWS SDK for Python (Boto3),AWS SDK for Ruby,AWS SDK for Rust,AWS SDK for Swift,AWS Tools for Windows PowerShell." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS SDKs and Tools" /><meta name="guide" content="Reference Guide" /><meta name="abstract" content="A guide to common features and functionality of the AWS SDKs and developer tools. Includes maintenance and support policies, as well as a complete reference for configuring your AWS credentials and other settings." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/sdkref/latest/guide/feature-retry-behavior.html" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/sdkref/latest/guide/feature-retry-behavior.html" hreflang="id-id" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/sdkref/latest/guide/feature-retry-behavior.html" hreflang="id" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/sdkref/latest/guide/feature-retry-behavior.html" hreflang="de-de" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/sdkref/latest/guide/feature-retry-behavior.html" hreflang="de" /><link rel="alternate" href="https://docs.aws.amazon.com/sdkref/latest/guide/feature-retry-behavior.html" hreflang="en-us" /><link rel="alternate" href="https://docs.aws.amazon.com/sdkref/latest/guide/feature-retry-behavior.html" hreflang="en" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/sdkref/latest/guide/feature-retry-behavior.html" hreflang="es-es" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/sdkref/latest/guide/feature-retry-behavior.html" hreflang="es" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/sdkref/latest/guide/feature-retry-behavior.html" hreflang="fr-fr" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/sdkref/latest/guide/feature-retry-behavior.html" hreflang="fr" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/sdkref/latest/guide/feature-retry-behavior.html" hreflang="it-it" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/sdkref/latest/guide/feature-retry-behavior.html" hreflang="it" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/sdkref/latest/guide/feature-retry-behavior.html" hreflang="ja-jp" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/sdkref/latest/guide/feature-retry-behavior.html" hreflang="ja" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/sdkref/latest/guide/feature-retry-behavior.html" hreflang="ko-kr" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/sdkref/latest/guide/feature-retry-behavior.html" hreflang="ko" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/sdkref/latest/guide/feature-retry-behavior.html" hreflang="pt-br" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/sdkref/latest/guide/feature-retry-behavior.html" hreflang="pt" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_cn/sdkref/latest/guide/feature-retry-behavior.html" hreflang="zh-cn" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_tw/sdkref/latest/guide/feature-retry-behavior.html" hreflang="zh-tw" /><link rel="alternate" href="https://docs.aws.amazon.com/sdkref/latest/guide/feature-retry-behavior.html" hreflang="x-default" /><meta name="feedback-item" content="AWS Docs SDK Reference" /><meta name="this_doc_product" content="AWS SDKs and Tools" /><meta name="this_doc_guide" content="Reference Guide" /><head xmlns="http://www.w3.org/1999/xhtml"> <script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"/></head>
+<script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'sdkref'}"></script><meta id="panorama-serviceSubSection" value="Reference Guide" /><meta id="panorama-serviceConsolePage" value="Retry behavior" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><p><a href="feature-retry-behavior.md">View a markdown version of this page</a></p><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Retry behavior - AWS SDKs and Tools</title><meta name="pdf" content="/pdfs/sdkref/latest/guide/aws-sdk-ref.pdf#feature-retry-behavior" /><meta name="rss" content="aws-sdk-ref.rss" /><meta name="forums" content="https://repost.aws/" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=AWS%20Docs%20SDK%20Reference&amp;topic_url=https://docs.aws.amazon.com/en_us/sdkref/latest/guide/feature-retry-behavior.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/sdkref/latest/guide/feature-retry-behavior.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/sdkref/latest/guide/feature-retry-behavior.html" /><meta name="keywords" content="AWS SDKs Tools,configuration,authentication,Creating service clients,Resolving global settings,Precedence Order,SDK functionality,list standardized features SDKs Tools,cross-sdk features,common SDK functionality,global settings,Retry API requests,API maximum number of attempts,retry mode,exponential backoff,retry quota,token bucket" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "none",
+        "item" : "https://docs.aws.amazon.com/sdkref/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Reference Guide",
+        "item" : "https://docs.aws.amazon.com/sdkref/latest/guide"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "AWS SDKs and tools settings reference",
+        "item" : "https://docs.aws.amazon.com/sdkref/latest/guide/settings-reference.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "AWS SDKs and Tools standardized features",
+        "item" : "https://docs.aws.amazon.com/sdkref/latest/guide/standardized-features.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "Retry behavior",
+        "item" : "https://docs.aws.amazon.com/sdkref/latest/guide/standardized-features.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/sdkref/latest/guide/aws-sdk-ref.pdf#feature-retry-behavior" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="overview.html">Reference Guide</a></div><div id="page-toc-src"><a href="#configuring-retries">Configuring retries</a><a href="#how-retries-work">How retries work</a><a href="#feature-retry-behavior-sdk-compat">Support by AWS SDKs and tools</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="feature-retry-behavior">Retry behavior</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>The behavior described on this page requires opting in until it becomes the default behavior. Set
+                <code class="code">AWS_NEW_RETRIES_2026=true</code> in your environment. Without this setting, your SDK uses pre-2026 retry behavior,
+            which differs in backoff timing, retry quota costs, and service-specific defaults. For details, see the <a href="https://aws.amazon.com/blogs/developer/announcing-updated-retry-behavior-for-aws-sdks-and-tools/" rel="noopener noreferrer" target="_blank"><span>announcement blog post</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></div></div><p>When a request to an AWS service fails due to a transient error or throttling, the SDK can automatically retry the request.
+        This page covers how to configure retries and how they work internally.</p><div class="itemizedlist">
+         
+         
+    <ul class="itemizedlist"><li class="listitem">
+            <p><a href="#configuring-retries">Configuring retries</a>: Choose a retry mode, set max attempts, and
+                understand configuration precedence.</p>
+        </li><li class="listitem">
+            <p><a href="#how-retries-work">How retries work</a>: Retry flow, error classification, backoff
+                formula, retry quota mechanics, and service-specific behavior.</p>
+        </li></ul></div>
+        <h2 id="configuring-retries">Configuring retries</h2>
+
+        <p>You control which retry strategy the SDK uses and how many times it retries.</p>
+
+         
+            <h3 id="choosing-a-retry-mode">Choosing a retry mode</h3>
+
+            <p>The retry mode determines how the SDK behaves when a request fails. Three modes are available:
+                    <b>standard</b>, <b>adaptive</b>, and <b>legacy</b>.</p>
+
+            <div class="table-container"><div class="table-contents"><table id="d0e1"><thead>
+                        <tr>
+                            <th></th>
+                            <th>Standard</th>
+                            <th>Adaptive</th>
+                            <th>Legacy</th>
+                        </tr>
+                    </thead>
+                        <tr>
+                            <td tabindex="-1">Retry quota</td>
+                            <td tabindex="-1">Yes</td>
+                            <td tabindex="-1">Yes</td>
+                            <td tabindex="-1">Varies by SDK</td>
+                        </tr>
+                        <tr>
+                            <td tabindex="-1">Can delay initial request</td>
+                            <td tabindex="-1">No</td>
+                            <td tabindex="-1">Yes</td>
+                            <td tabindex="-1">No</td>
+                        </tr>
+                        <tr>
+                            <td tabindex="-1">Error-type-specific backoff</td>
+                            <td tabindex="-1">Yes</td>
+                            <td tabindex="-1">Yes</td>
+                            <td tabindex="-1">Varies by SDK</td>
+                        </tr>
+                        <tr>
+                            <td tabindex="-1">Standardized across SDKs</td>
+                            <td tabindex="-1">Yes</td>
+                            <td tabindex="-1">Yes</td>
+                            <td tabindex="-1">No</td>
+                        </tr>
+                        <tr>
+                            <td tabindex="-1">Recommendation</td>
+                            <td tabindex="-1">Default for all workloads</td>
+                            <td tabindex="-1">Single-resource, throttling-heavy, latency-tolerant</td>
+                            <td tabindex="-1">Backward compatibility only</td>
+                        </tr>
+                    </table></div></div>
+
+             
+                <h4 id="standard-mode">Standard mode (default)</h4>
+                <p>Standard mode retries failed requests using exponential backoff with jitter. It uses shorter delays for transient
+                    errors (such as network timeouts) and longer delays for throttling errors (such as
+                    <code class="code">ThrottlingException</code>).</p>
+                <p>Standard mode includes a <b>retry quota</b>, a token bucket that deducts tokens for each
+                    retry and replenishes tokens when requests succeed. When the available tokens are exhausted, the SDK returns the error
+                    without retrying, so your application fails fast instead of waiting through retries that are unlikely to succeed. This also
+                    helps service disruptions resolve faster by reducing retry traffic. During normal operation, the quota stays full and has no
+                    effect. The retry quota never delays or blocks the initial request. Only retries are affected. For details, see <a href="#retry-quota-token-bucket">Retry quota (token bucket)</a>.</p>
+                <p>Use standard mode unless you have a specific reason to choose another mode.</p>
+             
+
+             
+                <h4 id="adaptive-mode">Adaptive mode</h4>
+                <p>Adaptive mode includes everything in standard mode, plus a <b>client-side rate
+                        limiter</b>. The rate limiter tracks throttling responses and adjusts the rate at which the SDK sends
+                    requests. Unlike standard mode, adaptive mode can delay or block the <em>initial</em> request, not just
+                    retries, when throttling is detected.</p>
+                <p>The rate limiter operates per SDK client instance. All requests from a client share the same rate limit, regardless
+                    of which API operation or resource they target.</p>
+                <p><b>When to use adaptive mode:</b></p>
+                <div class="itemizedlist">
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p>Your client targets a single resource (for example, one DynamoDB table) and you expect frequent throttling
+                            responses. This is common in automated workflows, batch processors, or AI workloads that call a single API
+                            operation at high volume.</p>
+                    </li><li class="listitem">
+                        <p>You want the SDK to automatically slow down when the service signals throttling.</p>
+                    </li></ul></div>
+                <p><b>When not to use adaptive mode:</b></p>
+                <div class="itemizedlist">
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p>Your client sends requests to multiple resources or serves multiple tenants. Throttling on one resource
+                            causes the rate limiter to slow all requests from that client, including requests to unaffected
+                            resources.</p>
+                    </li><li class="listitem">
+                        <p>You need predictable latency on the initial request.</p>
+                    </li></ul></div>
+                <p>Adaptive mode is not recommended as a general default.</p>
+             
+
+             
+                <h4 id="legacy-mode">Legacy mode</h4>
+                <p>Legacy mode is the retry behavior each SDK used before standard mode was introduced. It does not include a
+                    standardized retry quota. Some SDKs (such as Java) had their own retry quota implementations in legacy mode, but the
+                    behavior is not consistent across SDKs. Without a standardized quota, a client continues to retry at full rate during
+                    service disruptions. This ties up threads and connections on requests unlikely to succeed, while adding load that can
+                    delay service recovery.</p>
+                <p>Legacy mode varies across SDKs. The retry count, backoff timing, retryable error sets, and throttling
+                    behavior differ between languages. Code that depends on legacy retry behavior may behave differently when moved between
+                    SDKs.</p>
+                <p><b>Available in:</b> Java, Python, Ruby, PHP, C++, CLI</p>
+                <p><b>Not available in:</b> .NET, Go, Kotlin, Rust, Swift, JavaScript</p>
+                <p>Legacy mode exists for backward compatibility. If you currently use legacy mode, switch to standard mode.</p>
+             
+         
+
+         
+            <h3 id="retry-settings">Retry settings</h3>
+            <p>The following settings control retry behavior. You can set them through <a href="./environment-variables.html">environment variables</a>, the <a href="./file-format.html">shared config
+                    file</a> (<code class="code">~/.aws/config</code>), or client configuration in code.</p>
+
+            <div class="table-container"><div class="table-contents"><table id="d0e2"><thead>
+                        <tr>
+                            <th>Setting</th>
+                            <th>What it controls</th>
+                            <th>Environment variable</th>
+                            <th>Config file key</th>
+                            <th>Default</th>
+                        </tr>
+                    </thead>
+                        <tr>
+                            <td tabindex="-1">Retry mode</td>
+                            <td tabindex="-1">Which retry strategy to use</td>
+                            <td tabindex="-1"><code class="code">AWS_RETRY_MODE</code></td>
+                            <td tabindex="-1"><code class="code">retry_mode</code></td>
+                            <td tabindex="-1"><code class="code">standard</code></td>
+                        </tr>
+                        <tr>
+                            <td tabindex="-1">Max attempts</td>
+                            <td tabindex="-1">Total attempts including the initial request</td>
+                            <td tabindex="-1"><code class="code">AWS_MAX_ATTEMPTS</code></td>
+                            <td tabindex="-1"><code class="code">max_attempts</code></td>
+                            <td tabindex="-1"><code class="code">3</code> (see notes)</td>
+                        </tr>
+                    </table></div></div>
+            <p>A max attempts value of <code class="code">3</code> means the SDK makes one initial request and up to two retries. Set max attempts
+                to <code class="code">1</code> to disable retries entirely.</p>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The DynamoDB and DynamoDB Streams clients default to <code class="code">4</code> max attempts. These services use a shorter base
+                    backoff delay (25 ms instead of 50 ms) to match their low-latency profile. The additional attempt keeps the last
+                    retry's maximum backoff comparable to other services. You can override this with the same settings shown
+                    in the preceding table.</p></div></div>
+         
+
+         
+            <h3 id="configuration-precedence">Configuration precedence</h3>
+            <p>When you specify the same setting in multiple places, the SDK resolves the value using the following precedence, from
+                highest to lowest:</p>
+            <div class="orderedlist">
+                 
+                 
+                 
+                 
+            <ol><li>
+                    <p><b>Explicit client configuration in code.</b> A value set directly on the SDK client
+                        or its configuration object.</p>
+                </li><li>
+                    <p><b><a href="./environment-variables.html">Environment
+                                variable</a>.</b> For example, <code class="code">AWS_RETRY_MODE</code> or
+                            <code class="code">AWS_MAX_ATTEMPTS</code>.</p>
+                </li><li>
+                    <p><b><a href="./file-format.html">Shared config
+                                file</a>.</b> The <code class="code">retry_mode</code> or <code class="code">max_attempts</code> key in
+                            <code class="code">~/.aws/config</code>.</p>
+                </li><li>
+                    <p><b>SDK default.</b> The built-in default for the setting.</p>
+                </li></ol></div>
+            <p>This follows the standard <a href="./settings-reference.html">AWS SDK configuration
+                    precedence</a>. A value set at a higher level always overrides a value set at a lower level. For example, if you
+                set <code class="code">AWS_RETRY_MODE=adaptive</code> as an environment variable and <code class="code">retry_mode=standard</code> in
+                    <code class="code">~/.aws/config</code>, the SDK uses adaptive mode.</p>
+         
+
+         
+            <h3 id="language-specific-configuration">Language-specific configuration</h3>
+            <p>The cross-SDK settings described on this page (<code class="code">retry_mode</code> and <code class="code">max_attempts</code>) work in all
+                SDKs. However, the API for configuring retries in code varies by language. See your SDK's developer guide for
+                language-specific configuration options such as custom backoff strategies, additional retryable errors, and retry quota
+                tuning.</p>
+         
+     
+        <h2 id="how-retries-work">How retries work</h2>
+
+        <p>This section describes how AWS SDKs handle failed requests: which errors trigger retries, how long the SDK waits between
+            attempts, and when it stops retrying.</p>
+
+         
+            <h3 id="what-happens-when-a-request-fails">What happens when a request fails</h3>
+            <p>When you make an API call through an AWS SDK, the SDK follows this sequence:</p>
+            <div class="orderedlist">
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+            <ol><li>
+                    <p><b><a href="#adaptive-mode">Adaptive mode</a> only:</b> The SDK checks the
+                        client-side rate limiter. If throttling has been detected, the SDK may delay or block the request before sending
+                        it.</p>
+                </li><li>
+                    <p>The SDK sends the request to the AWS service endpoint.</p>
+                </li><li>
+                    <p>If the service returns a successful response, the SDK returns the result to your code.</p>
+                </li><li>
+                    <p>If the request fails, the SDK classifies the error as <em>transient</em>,
+                            <em>throttling</em>, or <em>non-retryable</em>. See <a href="#which-errors-are-retried">Which errors are retried</a>.</p>
+                </li><li>
+                    <p>If the error is non-retryable, the SDK returns the error to your code immediately. No retry is
+                        attempted.</p>
+                </li><li>
+                    <p>If the error is retryable, the SDK checks whether it has reached the maximum number of attempts. If so, it
+                        returns the error to your code.</p>
+                </li><li>
+                    <p>The SDK checks the <a href="#retry-quota-token-bucket">Retry quota (token bucket)</a>. If the token budget is depleted, the SDK does not retry and
+                        returns the error to your code. Exception: for <a href="#long-polling-operations">Long-polling operations</a>, the SDK still applies a backoff delay before returning the
+                        error.</p>
+                </li><li>
+                    <p>The SDK computes a backoff delay based on the error type and the retry attempt number. See <a href="#how-long-does-the-sdk-wait">How long does the SDK wait</a>.</p>
+                </li><li>
+                    <p>The SDK waits for the computed delay, then sends the request again from step 2.</p>
+                </li></ol></div>
+            <p>The SDK repeats this loop until the request succeeds, the maximum number of attempts is reached, the retry quota is
+                depleted, or a non-retryable error occurs. The entire process is automatic. Your application sees either a successful
+                response or a final error.</p>
+         
+
+         
+            <h3 id="which-errors-are-retried">Which errors are retried</h3>
+            <p>The SDK classifies each failed request into one of three categories: transient, throttling, or non-retryable. This
+                classification determines whether the SDK retries the request and how long it waits before retrying.</p>
+            <p>Classification is based on the <b>error code</b> and <b>HTTP status
+                    code</b> in the service response. For example, an HTTP 400 with the error code <code class="code">RequestTimeout</code> is
+                classified as transient and retried. An HTTP 400 with <code class="code">ValidationException</code> is classified as non-retryable and
+                returned immediately.</p>
+
+             
+                <h4 id="error-classification">Error classification</h4>
+
+                <p><b>Transient errors</b> are retried with a short base delay (50 ms):</p>
+                <div class="table-container"><div class="table-contents"><table id="d0e3"><thead>
+                            <tr>
+                                <th>Error code</th>
+                            </tr>
+                        </thead>
+                            <tr>
+                                <td tabindex="-1"><code class="code">RequestTimeout</code></td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1"><code class="code">RequestTimeoutException</code></td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1"><code class="code">InternalError</code></td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1"><code class="code">IDPCommunicationError</code></td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1"><em>I/O Failure (Connection reset, DNS resolution failure, socket
+                                    timeout)</em></td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1"><em>(any HTTP 500, 502, 503, or 504 without a recognized error
+                                    code)</em></td>
+                            </tr>
+                        </table></div></div>
+
+                <p><b>Throttling errors</b> are retried with a longer base delay (1,000 ms):</p>
+                <div class="table-container"><div class="table-contents"><table id="d0e4"><thead>
+                            <tr>
+                                <th>Error code</th>
+                            </tr>
+                        </thead>
+                            <tr>
+                                <td tabindex="-1"><code class="code">Throttling</code></td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1"><code class="code">ThrottlingException</code></td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1"><code class="code">ThrottledException</code></td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1"><code class="code">RequestThrottledException</code></td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1"><code class="code">TooManyRequestsException</code></td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1"><code class="code">ProvisionedThroughputExceededException</code></td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1"><code class="code">TransactionInProgressException</code></td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1"><code class="code">LimitExceededException</code></td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1"><code class="code">PriorRequestNotComplete</code></td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1"><code class="code">RequestThrottled</code></td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1"><code class="code">EC2ThrottledException</code></td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1"><code class="code">RequestLimitExceeded</code></td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1"><code class="code">SlowDown</code></td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1"><code class="code">BandwidthLimitExceeded</code></td>
+                            </tr>
+                        </table></div></div>
+
+                <p><b>Non-retryable errors</b> (such as <code class="code">AccessDeniedException</code>,
+                        <code class="code">ValidationException</code>, <code class="code">ResourceNotFoundException</code>) are returned to your code
+                    immediately.</p>
+                <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>An HTTP 5XX with a throttling error code is classified as a throttling error, not a transient error, even
+                        though 5XX errors are normally transient. The SDK matches on error code first, then falls back to HTTP status
+                        code.</p></div></div>
+                <p>Throttling errors mean the service actively rejected your request due to rate limits, so the SDK waits longer
+                    before retrying to give the service time to recover capacity. See <a href="#how-long-does-the-sdk-wait">How long does the SDK wait</a> for the specific delays.</p>
+             
+         
+
+         
+            <h3 id="how-long-does-the-sdk-wait">How long does the SDK wait</h3>
+            <p>The SDK uses <b>exponential backoff with full jitter</b>. On average, each retry waits longer
+                than the last, with randomization to spread out requests from multiple clients.</p>
+
+             
+                <h4 id="base-delays-by-error-type">Base delays by error type</h4>
+                <p>The base delay depends on whether the error is transient or throttling:</p>
+                <div class="table-container"><div class="table-contents"><table id="d0e5"><thead>
+                            <tr>
+                                <th>Error type</th>
+                                <th>Base delay</th>
+                                <th>Rationale</th>
+                            </tr>
+                        </thead>
+                            <tr>
+                                <td tabindex="-1">Transient (non-throttling)</td>
+                                <td tabindex="-1">50 ms</td>
+                                <td tabindex="-1">Transient errors typically resolve within milliseconds. A short base delay gives fast
+                                    recovery.</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Throttling</td>
+                                <td tabindex="-1">1,000 ms</td>
+                                <td tabindex="-1">The service has rate-limited the request. A longer base delay gives time to recover
+                                    capacity.</td>
+                            </tr>
+                        </table></div></div>
+             
+
+             
+                <h4 id="backoff-formula">Backoff formula</h4>
+                <p>The SDK computes each retry delay using this formula:</p>
+                <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (none)--><code class="nohighlight">delay = random(0, 1) × min(20,000 ms, base_delay × 2^retry)</code></pre>
+                <p>Where:</p>
+                <div class="itemizedlist">
+                     
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="code">random(0, 1)</code> returns a uniformly distributed value between 0 and 1</p>
+                    </li><li class="listitem">
+                        <p><code class="code">base_delay</code> is 50 ms for transient errors or 1,000 ms for throttling errors</p>
+                    </li><li class="listitem">
+                        <p><code class="code">retry</code> starts at 0 for the first retry (the second overall request attempt)</p>
+                    </li></ul></div>
+                <p>The maximum backoff cap is <b>20 seconds</b>. No individual delay exceeds 20 seconds
+                    regardless of how many attempts have occurred.</p>
+             
+
+             
+                <h4 id="worked-examples">Worked examples</h4>
+
+                <p><b>Example 1: Transient error, 3 max attempts</b></p>
+                <div class="table-container"><div class="table-contents"><table id="d0e6"><thead>
+                            <tr>
+                                <th>Step</th>
+                                <th>What happens</th>
+                                <th>Delay</th>
+                            </tr>
+                        </thead>
+                            <tr>
+                                <td tabindex="-1">Attempt 1</td>
+                                <td tabindex="-1">Initial request. Service returns HTTP 503.</td>
+                                <td tabindex="-1">(none)</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Attempt 2</td>
+                                <td tabindex="-1">SDK waits random(0, 50 ms). Retry fails with 503.</td>
+                                <td tabindex="-1">0–50 ms (avg ~25 ms)</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Attempt 3</td>
+                                <td tabindex="-1">SDK waits random(0, 100 ms). Retry succeeds.</td>
+                                <td tabindex="-1">0–100 ms (avg ~50 ms)</td>
+                            </tr>
+                        </table></div></div>
+                <p>Total added latency averages about 75 ms across both retries.</p>
+
+                <p><b>Example 2: Throttling error, 3 max attempts</b></p>
+                <div class="table-container"><div class="table-contents"><table id="d0e7"><thead>
+                            <tr>
+                                <th>Step</th>
+                                <th>What happens</th>
+                                <th>Delay</th>
+                            </tr>
+                        </thead>
+                            <tr>
+                                <td tabindex="-1">Attempt 1</td>
+                                <td tabindex="-1">Initial request. Service returns 429 <code class="code">Throttling</code>.</td>
+                                <td tabindex="-1">(none)</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Attempt 2</td>
+                                <td tabindex="-1">SDK waits random(0, 1,000 ms). Retry returns 429.</td>
+                                <td tabindex="-1">0–1,000 ms (avg ~500 ms)</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Attempt 3</td>
+                                <td tabindex="-1">SDK waits random(0, 2,000 ms). Retry succeeds.</td>
+                                <td tabindex="-1">0–2,000 ms (avg ~1,000 ms)</td>
+                            </tr>
+                        </table></div></div>
+                <p>Total added latency averages about 1,500 ms across both retries.</p>
+
+                <p><b>Example 3: Transient error, hitting the backoff cap</b></p>
+                <p>With a 50 ms base delay, the computed delay before capping would be:</p>
+                <div class="table-container"><div class="table-contents"><table id="d0e8"><thead>
+                            <tr>
+                                <th>Retry attempt</th>
+                                <th>Computed max delay</th>
+                                <th>After 20 s cap</th>
+                            </tr>
+                        </thead>
+                            <tr>
+                                <td tabindex="-1">1</td>
+                                <td tabindex="-1">50 ms</td>
+                                <td tabindex="-1">50 ms</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">2</td>
+                                <td tabindex="-1">100 ms</td>
+                                <td tabindex="-1">100 ms</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">5</td>
+                                <td tabindex="-1">800 ms</td>
+                                <td tabindex="-1">800 ms</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">9</td>
+                                <td tabindex="-1">12,800 ms</td>
+                                <td tabindex="-1">12,800 ms</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">10</td>
+                                <td tabindex="-1">25,600 ms</td>
+                                <td tabindex="-1"><b>20,000 ms</b></td>
+                            </tr>
+                        </table></div></div>
+                <p>The cap takes effect at the 10th retry (11th attempt) for transient errors. For throttling errors with a 1,000 ms
+                    base, the cap takes effect at the 6th retry.</p>
+                <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>With the default of 3 max attempts (1 initial request + 2 retries), the backoff cap is never reached. This
+                        table illustrates what happens if you increase <code class="code">max_attempts</code> well beyond the default.</p></div></div>
+             
+
+             
+                <h4 id="why-jitter-matters">Why jitter matters</h4>
+                <p>The random multiplier is called <em>full jitter</em>. Without it, all clients that hit an error at the
+                    same time would retry at the same time, creating a burst of retry traffic (the "thundering herd" problem). Full jitter
+                    spreads retries uniformly across the entire backoff window so the service receives a steady trickle of requests
+                    instead of synchronized spikes.</p>
+                <p>For example, suppose 1,000 clients all receive a 503 at the same moment. Full jitter distributes their first
+                    retries uniformly across a 50 ms window instead of having all 1,000 retry at exactly 50 ms.</p>
+             
+
+             
+                <h4 id="server-directed-retry-timing">Server-directed retry timing</h4>
+                <p>Some AWS services include an <code class="code">x-amz-retry-after</code> header in error responses. The header value is a
+                    delay in milliseconds. When this header is present, the SDK uses the server-specified delay, clamped to a minimum of
+                    the computed backoff delay and a maximum of the computed backoff delay plus 5,000 ms. Since the computed backoff is
+                    itself capped at 20 seconds, the effective maximum server-directed delay is 25 seconds. The SDK does not apply jitter
+                    to this value, because the service is expected to jitter it. This allows the service to communicate exactly when it
+                    expects to have capacity available.</p>
+             
+         
+
+         
+            <h3 id="retry-quota-token-bucket">Retry quota (token bucket)</h3>
+            <p>The SDK maintains an internal token budget that tracks the ratio of successful requests to failures. When failures are
+                widespread, the budget depletes and the SDK returns errors directly. Your application fails fast instead of waiting
+                through retries that are unlikely to succeed. This also reduces retry traffic, helping service disruptions resolve faster.</p>
+
+             
+                <h4 id="how-the-retry-quota-works">How the retry quota works</h4>
+                <p>The token budget starts full. Each retry attempt deducts tokens. When a retry succeeds, the SDK restores the tokens
+                    consumed by that retry. When a request succeeds on the first try (no retries needed), the SDK restores 1 token. When
+                    the budget reaches zero, the SDK stops retrying and returns errors directly to your code.</p>
+                <div class="table-container"><div class="table-contents"><table id="d0e9"><thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                            <tr>
+                                <td tabindex="-1">Budget capacity</td>
+                                <td tabindex="-1">500 tokens</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Cost per transient (non-throttling) retry</td>
+                                <td tabindex="-1">14 tokens</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Cost per throttling retry</td>
+                                <td tabindex="-1">5 tokens</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Tokens restored on success after retry</td>
+                                <td tabindex="-1">Amount consumed by the last retry (14 or 5)</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Tokens restored on success without retry</td>
+                                <td tabindex="-1">1 token</td>
+                            </tr>
+                        </table></div></div>
+                <p>The higher cost for transient retries reflects their different failure pattern. Transient errors like 500s and
+                    connection failures often indicate a service-wide problem. In these situations, continued retrying is unlikely to
+                    succeed. It adds latency to your calls, ties up client resources, and can delay recovery for everyone. Throttling
+                    errors signal that the service needs more time before the request can succeed. The SDK waits longer between retries to
+                    improve the likelihood of success.</p>
+             
+
+             
+                <h4 id="when-does-the-quota-block-retries">When does the quota block retries</h4>
+                <p>The retry quota tracks tokens at all times, but only blocks retries when the budget is depleted. During normal
+                    operation, nearly all requests succeed and the budget stays full. The quota has no observable effect on
+                    retries.</p>
+                <p>A successful retry restores only its own token cost (14 or 5 tokens), not the cost of earlier failed retries in the
+                    same request. For example, if the first retry fails and the second succeeds, the budget loses 14 tokens net. The
+                    budget drains fastest when retries exhaust all attempts without succeeding, but it also drains gradually when requests
+                    need multiple retries before succeeding.</p>
+                <p>With the default of 3 max attempts, the quota begins to drain when more than approximately <b>22%</b> of requests result in sustained transient failures, or more than approximately
+                        <b>32%</b> for throttling errors. Below these rates, successful requests replenish the
+                    budget faster than failed retries drain it.</p>
+                <p>The budget's starting balance of 500 tokens provides a buffer that absorbs short bursts of failures. A brief spike
+                    in errors, even a severe one, does not block retries unless it persists long enough to drain the buffer.</p>
+             
+
+             
+                <h4 id="practical-implications">Practical implications</h4>
+                <div class="itemizedlist">
+                     
+                     
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p><b>Low failure rates:</b> The quota has no effect. The budget stays at or near
+                            capacity.</p>
+                    </li><li class="listitem">
+                        <p><b>During a service disruption:</b> If a high percentage of your requests fail for a
+                            sustained period, the quota depletes and your client gets errors back immediately instead of waiting through
+                            retries. This reduces client-side latency, frees up threads and connections, and helps the service recover
+                            faster.</p>
+                    </li><li class="listitem">
+                        <p><b>Recovery:</b> As the service recovers and requests start succeeding again,
+                            successful retries restore their full token cost and first-try successes restore 1 token. The budget
+                            gradually refills and retries resume automatically.</p>
+                    </li><li class="listitem">
+                        <p><b>Scope:</b> The token budget is typically scoped to a single SDK client
+                            instance. The exact scope may vary by SDK. It is not shared across processes or hosts.</p>
+                    </li></ul></div>
+             
+         
+
+         
+            <h3 id="service-specific-behavior">Service-specific behavior</h3>
+
+             
+                <h4 id="dynamodb">DynamoDB</h4>
+                <p>DynamoDB clients use tuned defaults optimized for DynamoDB's low-latency profile:</p>
+                <div class="table-container"><div class="table-contents"><table id="d0e10"><thead>
+                            <tr>
+                                <th>Setting</th>
+                                <th>General default</th>
+                                <th>DynamoDB default</th>
+                            </tr>
+                        </thead>
+                            <tr>
+                                <td tabindex="-1">Transient (non-throttling) base delay</td>
+                                <td tabindex="-1">50 ms</td>
+                                <td tabindex="-1">25 ms</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Throttling base delay</td>
+                                <td tabindex="-1">1,000 ms</td>
+                                <td tabindex="-1">1,000 ms</td>
+                            </tr>
+                            <tr>
+                                <td tabindex="-1">Max attempts</td>
+                                <td tabindex="-1">3</td>
+                                <td tabindex="-1">4</td>
+                            </tr>
+                        </table></div></div>
+                <p>These defaults apply to both Amazon DynamoDB and DynamoDB Streams.</p>
+             
+
+             
+                <h4 id="long-polling-operations">Long-polling operations</h4>
+                <p>Certain AWS operations use long polling. They can hold a connection open waiting for work to arrive. These
+                    operations receive special retry treatment:</p>
+                <div class="itemizedlist">
+                     
+                     
+                     
+                     
+                <ul class="itemizedlist"><li class="listitem">
+                        <p><code class="code">SQS.ReceiveMessage</code></p>
+                    </li><li class="listitem">
+                        <p><code class="code">SFN.GetActivityTask</code></p>
+                    </li><li class="listitem">
+                        <p><code class="code">SWF.PollForActivityTask</code></p>
+                    </li><li class="listitem">
+                        <p><code class="code">SWF.PollForDecisionTask</code></p>
+                    </li></ul></div>
+                <p><b>Special behavior:</b> When the retry quota is depleted and retries are blocked (step
+                    7 in <a href="#what-happens-when-a-request-fails">What happens when a request fails</a>), the SDK still applies a backoff delay before returning the
+                    error to your code.</p>
+                <p>This matters because long-polling operations are typically called in a tight loop. Your code calls
+                        <code class="code">ReceiveMessage</code>, processes any messages, then immediately calls <code class="code">ReceiveMessage</code> again.
+                    Without the forced backoff, a depleted token budget would cause the SDK to return errors with no delay. Your polling
+                    loop would then immediately send the next request, spiking client CPU usage and generating additional traffic. The
+                    forced backoff delay breaks this cycle, keeping client resource usage and polling rate manageable during
+                    failures.</p>
+             
+         
+     
+        <h2 id="feature-retry-behavior-sdk-compat">Support by AWS SDKs and tools</h2>
+        <p>The following table lists the availability of the updated retry behavior in each SDK. For SDK-specific details including
+            minimum version, before-and-after defaults, and code examples, see the GitHub tracking issue.</p>
+        <div class="table-container"><div class="table-contents disable-scroll"><table id="d0e11"><thead>
+                    <tr>
+                        <th>SDK</th>
+                        <th>Supported</th>
+                        <th>GitHub tracking issue</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td tabindex="-1"><a href="https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/">SDK for Java 2.x</a></td>
+                        <td align="center" style="text-align: center;" tabindex="-1">Yes</td>
+                        <td tabindex="-1"><a href="https://github.com/aws/aws-sdk-java-v2/discussions/6984" rel="noopener noreferrer" target="_blank"><span>Tracking issue</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><a href="https://docs.aws.amazon.com/boto3/latest/">SDK for Python (Boto3)</a></td>
+                        <td align="center" style="text-align: center;" tabindex="-1">Yes</td>
+                        <td tabindex="-1"><a href="https://github.com/boto/boto3/discussions/4789" rel="noopener noreferrer" target="_blank"><span>Tracking issue</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><a href="https://docs.aws.amazon.com/sdk-for-net/latest/developer-guide/">SDK for .NET 4.x</a></td>
+                        <td align="center" style="text-align: center;" tabindex="-1">Yes</td>
+                        <td tabindex="-1"><a href="https://github.com/aws/aws-sdk-net/issues/4411" rel="noopener noreferrer" target="_blank"><span>Tracking issue</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><a href="https://docs.aws.amazon.com/powershell/latest/userguide/">Tools for PowerShell V5</a></td>
+                        <td align="center" style="text-align: center;" tabindex="-1">Yes</td>
+                        <td tabindex="-1"><a href="https://github.com/aws/aws-tools-for-powershell/issues/418" rel="noopener noreferrer" target="_blank"><span>Tracking issue</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><a href="https://docs.aws.amazon.com/sdk-for-javascript/latest/developer-guide/">SDK for JavaScript 3.x</a></td>
+                        <td align="center" style="text-align: center;" tabindex="-1">Yes</td>
+                        <td tabindex="-1"><a href="https://github.com/aws/aws-sdk-js-v3/issues/8037" rel="noopener noreferrer" target="_blank"><span>Tracking issue</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><a href="https://docs.aws.amazon.com/sdk-for-php/latest/developer-guide/">SDK for PHP 3.x</a></td>
+                        <td align="center" style="text-align: center;" tabindex="-1">Yes</td>
+                        <td tabindex="-1"><a href="https://github.com/aws/aws-sdk-php/discussions/3285" rel="noopener noreferrer" target="_blank"><span>Tracking issue</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><a href="https://docs.aws.amazon.com/sdk-for-kotlin/latest/developer-guide/">SDK for Kotlin</a></td>
+                        <td align="center" style="text-align: center;" tabindex="-1">Yes</td>
+                        <td tabindex="-1"><a href="https://github.com/aws/aws-sdk-kotlin/discussions/1885" rel="noopener noreferrer" target="_blank"><span>Tracking issue</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><a href="https://docs.aws.amazon.com/sdk-for-rust/latest/dg/">SDK for Rust</a></td>
+                        <td align="center" style="text-align: center;" tabindex="-1">Yes</td>
+                        <td tabindex="-1"><a href="https://github.com/awslabs/aws-sdk-rust/discussions/1431" rel="noopener noreferrer" target="_blank"><span>Tracking issue</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><a href="https://docs.aws.amazon.com/sdk-for-swift/latest/developer-guide/">SDK for Swift</a></td>
+                        <td align="center" style="text-align: center;" tabindex="-1">See tracking issue</td>
+                        <td tabindex="-1"><a href="https://github.com/awslabs/aws-sdk-swift/discussions/2166" rel="noopener noreferrer" target="_blank"><span>Tracking issue</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><a href="https://docs.aws.amazon.com/sdk-for-ruby/latest/developer-guide/">SDK for Ruby 3.x</a></td>
+                        <td align="center" style="text-align: center;" tabindex="-1">See tracking issue</td>
+                        <td tabindex="-1"><a href="https://github.com/aws/aws-sdk-ruby/discussions/3390" rel="noopener noreferrer" target="_blank"><span>Tracking issue</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><a href="https://docs.aws.amazon.com/sdk-for-go/v2/developer-guide/">SDK for Go V2 (1.x)</a></td>
+                        <td align="center" style="text-align: center;" tabindex="-1">See tracking issue</td>
+                        <td tabindex="-1"><a href="https://github.com/aws/aws-sdk-go-v2/issues/3416" rel="noopener noreferrer" target="_blank"><span>Tracking issue</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><a href="https://docs.aws.amazon.com/sdk-for-cpp/latest/developer-guide/">SDK for C++</a></td>
+                        <td align="center" style="text-align: center;" tabindex="-1">See tracking issue</td>
+                        <td tabindex="-1"><a href="https://github.com/aws/aws-sdk-cpp/issues/3832" rel="noopener noreferrer" target="_blank"><span>Tracking issue</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1"><a href="https://docs.aws.amazon.com/cli/latest/userguide/">AWS CLI v2</a></td>
+                        <td align="center" style="text-align: center;" tabindex="-1">See tracking issue</td>
+                        <td tabindex="-1"><a href="https://github.com/aws/aws-cli/discussions/10329" rel="noopener noreferrer" target="_blank"><span>Tracking issue</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
+                    </tr>
+                </table></div></div>
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./feature-imds-client.html">IMDS client</div><div id="next" class="next-link" accesskey="n" href="./feature-compression.html">Request compression</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=AWS Docs SDK Reference&amp;topic_url=https://docs.aws.amazon.com/en_us/sdkref/latest/guide/feature-retry-behavior.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=AWS Docs SDK Reference&amp;topic_url=https://docs.aws.amazon.com/en_us/sdkref/latest/guide/feature-retry-behavior.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

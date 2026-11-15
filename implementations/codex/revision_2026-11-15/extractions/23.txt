@@ -1,0 +1,87 @@
+
+
+## PAGE 1
+
+Event dashboard
+Introduction à AWS
+Amazon S3
+Amazon S3
+Amazon Simple Storage Service (Amazon S3) est un service de stockage d'objets qui offre une grande évolutivité, une haute disponibilité des données, de la sécurité
+et de bonnes performances. Il permet de stocker et de protéger n'importe quelle quantité de données pour presque tous les cas d'usage : lacs de données,
+applications infonuagiques, applications mobiles.
+Pour le déﬁ AlphaForge AI : S3 est l'endroit où ranger les données de votre projet. Par exemple : historiques de prix téléchargés en CSV ou Parquet, rapports annuels
+et 10-K en PDF, séries macroéconomiques de la Banque du Canada ou de FRED, documents à indexer dans une base de connaissances, et résultats de vos simulations.
+S3 alimente aussi Amazon Athena et Amazon Quick.
+Le démarrage rapide Créer un compartiment S3 détaille ces étapes.
+Bien démarrer avec Amazon S3 
+Tutoriels 
+Créer, conﬁgurer et utiliser des compartiments Amazon S3 
+Téléverser, télécharger et utiliser des objets dans Amazon S3 
+Gérer votre stockage Amazon S3 
+Analyses et informations 
+Développer avec Amazon S3 
+Exemples de code pour Amazon S3 avec les SDK AWS 
+Pour en savoir plus, consultez le Guide de l'utilisateur Amazon S3 
+.
+Amazon S3
+Introduction à Amazon S3
+Les commandes de base
+ACCOUNT=$(aws sts get-caller-identity --query Account --output text)
+BUCKET="datathon-${ACCOUNT}-donnees"     # le nom doit être unique dans tout AWS
+aws s3 mb "s3://${BUCKET}" --region us-east-1
+aws s3 cp prix.csv "s3://${BUCKET}/prix/prix.csv"
+aws s3 ls "s3://${BUCKET}/" --recursive
+1
+2
+3
+4
+5
+6
+Les compartiments sont privés par défaut. Gardez-les ainsi : n'ajoutez pas de politique qui les rend publics. Les données du compte sont détruites le lundi 16 novembre à 13 h 59 ;
+consultez Nettoyage et exportation pour récupérer ce que vous voulez garder.
+Ressources utiles
+AWS Events
+AWS re:Invent 2022 - Deep dive on Amazon S3 (STG203
+AWS re:Invent 2022 - Deep dive on Amazon S3 (STG203
+AWS re:Invent 2022 - Deep dive on Amazon S3 (STG203
+AWS re:Invent 2022 - Deep dive on Amazon S3 (STG203
+Regarder sur
+Previous
+Next
+Polyfinances 2026
+Datathon PolyFinances 2026
+Commencer
+Utilisation responsable
+SageMaker Uniﬁed Studio et
+notebook d'introduction
+Introduction à AWS
+Amazon Bedrock
+Kiro
+Outils de développement
+Amazon Quick
+AWS Lambda
+Amazon S3
+AWS IAM
+AWS Glue
+Amazon Athena
+Accès AWS CLI et SDK
+L'IA générative sur AWS
+Construire des agents
+Démarrages rapides
+Données ﬁnancières publiques
+Nettoyage et exportation
+Ressources
+AWS account access
+Open AWS console
+(us-east-1)
+Get AWS CLI credentials
+Share feedback
+Workshop catalog in AWS Builder
+Center
+Exit event
+AWS Workshop Studio
+adamlarhlimi2006
+© 2008 - 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+Privacy policy
+Terms of use
+Cookie preferences

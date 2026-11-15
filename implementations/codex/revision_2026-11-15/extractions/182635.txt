@@ -1,0 +1,440 @@
+
+
+## PAGE 1
+
+Event dashboard
+Construire des agents
+Amazon Bedrock AgentCore
+Amazon Bedrock AgentCore
+AgentCore est la plateforme gérée autour de votre agent. Strands vous permet de construire un agent ; AgentCore fournit les briques que vous auriez sinon à
+construire vous-même : un index web à interroger, une mémoire qui survit à un redémarrage, une passerelle qui transforme des API en outils, un environnement
+d'exécution serverless, des contrôles de politique et des traces.
+Voyez-le comme un menu, pas comme une décision. Prenez une capacité et laissez le reste, et distinguez en particulier deux choses très différentes :
+Les capacités utilisables dès maintenant, depuis un agent qui tourne sur votre ordinateur : la recherche web (voir plus bas) et la mémoire. Elles changent ce que
+votre agent sait faire.
+L'hébergement, qui peut attendre : Runtime. Il change l'endroit où tourne votre agent, et le jury ne l'évalue pas.
+us-east-1, la région de l'atelier, prend en charge toutes les capacités d'AgentCore.
+Vous n'avez pas besoin de tout. Pour un projet d'une ﬁn de semaine, regardez d'abord Web Search et Memory.
+Web Search
+L'index web d'Amazon comme outil d'agent. Résultats actuels et cités, sans scraper à écrire
+Memory
+Mémoire à court et à long terme, en service géré
+Runtime
+Hébergement serverless de votre agent, avec des sessions qui peuvent durer longtemps
+Gateway
+Transforme vos API et fonctions Lambda existantes en outils d'agent (MCP)
+Identity
+Permet à un agent d'agir pour le compte d'un utilisateur auprès d'autres systèmes
+Harness
+Une boucle d'agent entièrement gérée : modèle, prompt et outils déclarés en conﬁguration, invocation en un appel d'API. Repose sur Strands
+Code Interpreter
+Exécution de code isolée pour l'agent
+Browser
+Un vrai navigateur que l'agent peut piloter
+Observability
+Traces et journaux dans Amazon CloudWatch, basés sur OpenTelemetry
+Policy
+Règles qui limitent ce que l'agent peut faire, en langage naturel ou en Cedar
+Evaluations
+Évaluer les réponses de l'agent de façon systématique plutôt qu'à l'impression
+Payments, Optimization,
+Registry
+Transactions d'agent, optimisation, et catalogue d'agents et d'outils approuvés. Payments est hors sujet pour le Datathon : aucune transaction
+réelle
+La CLI est distribuée sur npm, pas sur pip. Elle demande Node.js 20.12 ou plus récent, et uv pour les modèles de projet Python.
+Les commandes de cette page correspondent à la version 1.0.1 de la CLI (novembre 2026). Les versions 0.x utilisaient d'autres options (--project-name, --
+framework, etc.) : si un ancien tutoriel ne correspond pas, ﬁez-vous à agentcore --help plutôt qu'au tutoriel. Lancée sans option, agentcore ouvre une interface
+interactive dans le terminal.
+Créez un projet à partir du modèle Python Strands :
+agentcore create --help liste les autres modèles : Strands en TypeScript, LangChain, Vercel AI SDK, serveur MCP avec FastMCP, A2A, etc. Lancez agentcore
+create sans option pour choisir un autre fournisseur de modèles que Bedrock.
+Le code de l'agent se trouve dans app/agent/. Pour y mettre l'agent de la page Strands Agents :
+1. Dans app/agent/main.py, collez vos fonctions @tool (par exemple mesures_de_risque et variation_usd_cad), ajoutez-les à la liste tools, retirez l'outil
+d'exemple add_numbers et remplacez DEFAULT_SYSTEM_PROMPT par votre prompt système.
+2. Dans app/agent/pyproject.toml, ajoutez "yfinance" et "requests" à la liste dependencies.
+3. Le modèle est déﬁni dans app/agent/model/load.py (global.anthropic.claude-sonnet-5-5 par défaut). Sonnet 5.5 n'est pas disponible dans les comptes
+du Datathon : remplacez-le par global.anthropic.claude-sonnet-5, sans temperature.
+Puis la boucle dans laquelle vous passerez votre temps :
+Chaque commande add accepte d'autres options : consultez agentcore add <ressource> --help.
+C'est là qu'AgentCore se rend utile pour une démo.
+Une trace montre les décisions de l'agent étape par étape : quel outil, quels arguments, quel résultat, quelle conclusion. La montrer à l'écran répond à la question «
+comment savoir qu'il n'invente pas ? » avant que le jury ne la pose.
+L'agent généré renvoie sa réponse en ﬂux (server-sent events) : chaque ligne data: contient un événement Strands en JSON. Le code ci-dessous reconstitue le
+texte.
+Le harness est une boucle d'agent gérée. Vous déclarez le modèle, le prompt système et les outils en conﬁguration, et vous l'invoquez en un seul appel ; AgentCore
+gère l'orchestration, l'exécution des outils et la mémoire. Il repose sur Strands, donc les concepts restent les mêmes. Le harness lui-même n'est pas facturé à part :
+vous payez les capacités qu'il utilise.
+La conﬁguration se trouve dans app/AnalysteRisque/harness.yaml (modèle global.anthropic.claude-sonnet-5-5 par défaut, à remplacer par
+global.anthropic.claude-sonnet-5 ; liste tools) et le prompt système dans app/AnalysteRisque/system-prompt.md. Modiﬁez-les, puis relancez agentcore
+deploy.
+Si le harness ne suffit plus, agentcore export harness le convertit en code Strands modiﬁable, sans repartir de zéro.
+Web Search est un outil géré, adossé à l'index web d'Amazon. Il renvoie des résultats actuels avec titre, URL, extrait et date de publication. Les requêtes restent dans
+AWS, il n'y a pas d'API de recherche tierce à souscrire, et votre agent continue de tourner sur votre ordinateur : seul l'outil est géré. C'est utile pour les actualités
+ﬁnancières et les communiqués récents.
+Prix : 7 $ US par 1 000 requêtes. Disponible dans us-east-1, eu-west-1 et ap-northeast-1.
+Trois étapes : un rôle, une passerelle, une cible. Le tout est prêt en quelques secondes.
+create-gateway renvoie un gatewayUrl qui se termine par /mcp : c'est l'adresse qu'appelle votre code. Vériﬁez que la passerelle est à l'état READY :
+Dans un projet agentcore, la CLI propose un raccourci : agentcore add gateway --name recherche --authorizer-type AWS_IAM, puis agentcore add
+gateway-connector --gateway recherche --connector web-search --name web-search-tool, suivis de agentcore deploy. Nous avons vériﬁé la
+conﬁguration produite, pas le déploiement.
+La passerelle parle MCP sur HTTP et autorise les requêtes avec SigV4 : vous signez la requête avec vos identiﬁants AWS habituels, sans clé d'API. Le plus simple est
+d'envelopper l'appel dans un @tool Strands ordinaire :
+Ajoutez-le ensuite à côté de vos propres outils. C'est l'agent Strands de la page précédente, avec une capacité de plus :
+Vériﬁez dans la réponse que chaque affirmation tirée du web est accompagnée de son URL, et que l'agent dit clairement quand il n'a rien trouvé au lieu d'inventer.
+Ancrer un modèle dans des résultats de recherche, puis lui demander de les citer, est la façon la moins coûteuse de gagner la conﬁance du jury.
+maxResults accepte de 1 à 25, 10 par défaut. Les requêtes sont limitées à 200 caractères. Avec la version 1.2.0 ou plus récente du connecteur, vous pouvez aussi
+passer, par requête, des listes de domaines à inclure ou exclure et des bornes de date de publication. C'est utile pour restreindre un agent à quelques sources
+ﬁnancières ﬁables, ou pour respecter la date d'une simulation.
+Runtime est facturé à la seconde sur la consommation réelle de CPU et la mémoire maximale : un agent inactif sans tâche de fond coûte très peu. Memory est
+facturé par événement stocké et par récupération. La recherche web est facturée par millier de requêtes. Les appels de modèles sont facturés à part par Bedrock et
+représentent généralement le montant le plus élevé.
+Deux points de vigilance : si vous utilisez des instances Runtime plutôt que les microVM par défaut, le stockage attaché est facturé même quand la session est
+arrêtée ; et les sessions peuvent durer longtemps, donc une session oubliée continue de coûter.
+Les comptes AWS du Datathon sont fermés et toutes les données détruites le lundi 16 novembre à 13 h 59. Récupérez avant cette heure le code et les résultats que
+vous voulez garder : voir Nettoyage et exportation. Pour supprimer les ressources d'un projet agentcore avant cela :
+Une passerelle créée avec l'AWS CLI n'est pas gérée par agentcore. Supprimez-la vous-même :
+Une passerelle inactive ne coûte rien (la facturation se fait par recherche) : vous pouvez la laisser en place pendant la ﬁn de semaine.
+Documentation d'Amazon Bedrock AgentCore 
+AgentCore Getting Started sur Skill Builder (en français) 
+Atelier Building Agentic Workﬂows on AWS 
+Amazon Bedrock AgentCore
+L'erreur la plus courante avec AgentCore est de le traiter comme une décision de déploiement. Une équipe passe le dimanche matin à faire fonctionner agentcore deploy et
+arrive à la démo avec moins à montrer que l'équipe qui a fait tourner le même agent localement. Empruntez une capacité ; remettez l'hébergement à plus tard.
+Ce qu'il contient
+Composant
+Rôle
+Installer la CLI
+npm install -g @aws/agentcore
+agentcore --version
+1
+2
+Si agentcore --version échoue ou se comporte bizarrement, un ancien paquet Python du même nom masque la CLI. Retirez-le avec pip uninstall bedrock-agentcore-
+starter-toolkit, puis ouvrez un nouveau terminal.
+Créer, tester localement, déployer
+agentcore create --name PortefeuilleIA --template agent-python-strands
+cd PortefeuilleIA
+1
+2
+Le modèle de projet déclare aussi une ressource AgentCore Memory (agentMemory, avec quatre stratégies de mémoire à long terme), créée au premier déploiement. Si vous n'en
+avez pas besoin, retirez-la : agentcore remove memory --name agentMemory.
+agentcore dev            # exécute l'agent localement
+agentcore deploy         # empaquette, téléverse et crée les ressources dans le compte
+agentcore status         # ce qui est déployé
+agentcore invoke --runtime agent --payload '{"prompt": "Profil Prudent : quel est le risque de XBB.TO ?"}'
+1
+2
+3
+4
+agentcore dev démarre un serveur local sur 0.0.0.0:8080, donc joignable depuis le réseau Wi-Fi de l'événement. Arrêtez-le (Ctrl+C) dès que vous ne l'utilisez plus.
+Le premier agentcore deploy est lent, car il prépare AWS CDK dans votre compte. Les déploiements suivants sont bien plus rapides. Si vous comptez déployer, faites un premier
+déploiement tôt, avant d'être sous pression.
+Ajouter des capacités
+agentcore add memory --name memoireInvestisseur                  # mémoire persistante
+agentcore add gateway --name outils --authorizer-type AWS_IAM    # exposer vos API comme outils d'agent
+agentcore add harness --name AnalysteRisque                      # un agent géré, défini en configuration
+agentcore deploy                                                 # appliquer
+1
+2
+3
+4
+Passerelle sans authentiﬁcation
+Précisez toujours --authorizer-type AWS_IAM pour une passerelle. Sans cette option, la CLI 1.0.1 déclare la passerelle avec authorizerType: NONE : une fois déployée,
+n'importe qui connaissant son URL peut appeler vos outils. Vériﬁez la valeur dans agentcore/agentcore.json avant agentcore deploy.
+Déboguer
+agentcore logs runtime --name agent --since 30m
+agentcore logs runtime --name agent --since 30m --level error
+agentcore logs runtime --name agent --query "timeout"
+agentcore traces runtime list --name agent
+agentcore traces runtime get TRACE_ID --name agent    # écrit la trace dans TRACE_ID.json
+1
+2
+3
+4
+5
+6
+Invoquer depuis votre code
+import json
+import uuid
+import boto3
+client = boto3.client("bedrock-agentcore", region_name="us-east-1")
+response = client.invoke_agent_runtime(
+    agentRuntimeArn="ARN_DE_VOTRE_RUNTIME",
+    runtimeSessionId=str(uuid.uuid4()),          # au moins 33 caractères
+    payload=json.dumps({"prompt": "Profil Prudent : quel est le risque de XBB.TO ?"}).encode(),
+    qualifier="DEFAULT",
+)
+for ligne in response["response"].iter_lines():
+    if ligne.startswith(b"data: "):
+        evenement = json.loads(ligne[6:])
+        delta = evenement.get("event", {}).get("contentBlockDelta", {}).get("delta", {})
+        print(delta.get("text", ""), end="", flush=True)
+print()
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+runtimeSessionId doit compter au moins 33 caractères ; un UUID convient. Réutilisez le même identiﬁant de session d'un appel à l'autre pour poursuivre une conversation ;
+générez-en un nouveau pour repartir de zéro.
+Le harness, pour ne pas écrire la boucle
+agentcore create --name AnalyseRisque
+cd AnalyseRisque
+agentcore add harness --name AnalysteRisque \
+  --system-prompt "Vous expliquez le risque de placements à des investisseurs fictifs. Simulation uniquement, pas de conseil financier person
+agentcore deploy
+agentcore invoke --harness AnalysteRisque --prompt "Qu'est-ce que la perte maximale d'un FNB ?"
+1
+2
+3
+4
+5
+6
+Recherche web : donner des données actuelles à votre agent
+Attention à la cohérence temporelle. La recherche web renvoie l'information d'aujourd'hui. Ne l'utilisez pas pour alimenter une simulation datée dans le passé sans ﬁltrer par date
+de publication : sinon, votre simulation utilise de l'information qui n'était pas encore publiée.
+La configurer une fois
+ACCOUNT=$(aws sts get-caller-identity --query Account --output text)
+# 1. Un rôle de service que la passerelle assume
+cat > /tmp/trust.json <<EOF
+{"Version":"2012-10-17","Statement":[{"Effect":"Allow",
+ "Principal":{"Service":"bedrock-agentcore.amazonaws.com"},"Action":"sts:AssumeRole"}]}
+EOF
+cat > /tmp/perms.json <<EOF
+{"Version":"2012-10-17","Statement":[
+ {"Effect":"Allow","Action":"bedrock-agentcore:InvokeGateway",
+  "Resource":"arn:aws:bedrock-agentcore:us-east-1:${ACCOUNT}:gateway/*"},
+ {"Effect":"Allow","Action":"bedrock-agentcore:InvokeWebSearch",
+  "Resource":"arn:aws:bedrock-agentcore:us-east-1:aws:tool/web-search.v1"}
+]}
+EOF
+aws iam create-role --role-name websearch-gw \
+  --assume-role-policy-document file:///tmp/trust.json
+aws iam put-role-policy --role-name websearch-gw \
+  --policy-name websearch --policy-document file:///tmp/perms.json
+# 2. Une passerelle MCP autorisée par vos propres identifiants AWS
+aws bedrock-agentcore-control create-gateway \
+  --name my-websearch \
+  --role-arn "arn:aws:iam::${ACCOUNT}:role/websearch-gw" \
+  --authorizer-type AWS_IAM --protocol-type MCP --region us-east-1
+# 3. Le connecteur web-search géré, rattaché à cette passerelle
+aws bedrock-agentcore-control create-gateway-target \
+  --gateway-identifier <GATEWAY_ID> \
+  --name web-search-tool \
+  --target-configuration '{"mcp":{"connector":{
+      "source":{"connectorId":"web-search","version":"1.1.0"},
+      "configurations":[{"name":"WebSearch","parameterValues":{}}]}}}' \
+  --credential-provider-configurations '[{"credentialProviderType":"GATEWAY_IAM_ROLE"}]' \
+  --region us-east-1
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+aws bedrock-agentcore-control get-gateway \
+  --gateway-identifier <GATEWAY_ID> --region us-east-1 --query status
+1
+2
+L'outil est exposé sous le nom <nom-de-la-cible>___WebSearch : le nom de la cible, puis trois traits de soulignement. Avec la cible web-search-tool ci-dessus, l'outil s'appelle
+web-search-tool___WebSearch. Une erreur ici est la cause la plus probable d'un premier appel qui échoue.
+L'appeler depuis un agent Strands
+import json
+import boto3
+import requests
+from botocore.auth import SigV4Auth
+from botocore.awsrequest import AWSRequest
+from strands import tool
+GATEWAY_URL = "https://<GATEWAY_ID>.gateway.bedrock-agentcore.us-east-1.amazonaws.com/mcp"
+REGION = "us-east-1"
+@tool
+def web_search(query: str) -> list:
+    """Recherche sur le web des informations actuelles et citées
+    (actualités financières, communiqués de résultats, annonces).
+    Args:
+        query: Ce qu'il faut chercher, 200 caractères au plus
+    """
+    body = json.dumps({
+        "jsonrpc": "2.0", "id": 1, "method": "tools/call",
+        "params": {"name": "web-search-tool___WebSearch",
+                   "arguments": {"query": query, "maxResults": 3}},
+    })
+    creds = boto3.Session(region_name=REGION).get_credentials().get_frozen_credentials()
+    req = AWSRequest(method="POST", url=GATEWAY_URL, data=body,
+                     headers={"Content-Type": "application/json",
+                              "Accept": "application/json, text/event-stream"})
+    SigV4Auth(creds, "bedrock-agentcore", REGION).add_auth(req)
+    raw = requests.post(GATEWAY_URL, data=body, headers=dict(req.headers), timeout=60).text
+    # La passerelle répond en server-sent events ; le JSON est sur la ligne "data:"
+    for line in raw.splitlines():
+        if line.startswith("data:"):
+            raw = line[5:].strip()
+    payload = json.loads(json.loads(raw)["result"]["content"][0]["text"])
+    return [{"title": r.get("title"), "url": r.get("url"),
+             "snippet": (r.get("text") or "")[:300]}
+            for r in payload.get("results", [])]
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+agent = Agent(
+    model=BedrockModel(model_id="global.amazon.nova-2-lite-v1:0", region_name="us-east-1"),
+    system_prompt=(
+        "Vous expliquez le risque de placements à un investisseur fictif. "
+        "Utilisez les outils pour les chiffres. Utilisez web_search pour l'actualité récente, "
+        "et citez toujours les URL utilisées avec leur date de publication. "
+        "Simulation uniquement, pas de conseil financier personnalisé. Soyez concis."
+    ),
+    tools=[mesures_de_risque, variation_usd_cad, web_search],
+)
+agent("Profil Audacieux : quel est le risque de SHOP.TO sur un an, "
+      "et quelles nouvelles récentes pourraient l'expliquer ?")
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+Vous devez afficher les citations. Les conditions d'utilisation acceptable d'AgentCore exigent de conserver et d'afficher les URL renvoyées avec chaque résultat dans tout ce que
+vous présentez aux utilisateurs. L'extraction massive et la construction de votre propre index à partir des résultats ne sont pas permises.
+Filtrer les résultats
+Coûts et nettoyage
+agentcore remove all --yes
+agentcore deploy --yes    # le projet est vide : la pile CloudFormation est supprimée
+1
+2
+aws bedrock-agentcore-control delete-gateway-target \
+  --gateway-identifier <GATEWAY_ID> --target-id <TARGET_ID> --region us-east-1
+aws bedrock-agentcore-control delete-gateway \
+  --gateway-identifier <GATEWAY_ID> --region us-east-1
+aws iam delete-role-policy --role-name websearch-gw --policy-name websearch
+aws iam delete-role --role-name websearch-gw
+1
+2
+3
+4
+5
+6
+7
+Les rôles IAM créés par défaut par la CLI servent au développement et aux tests. Ils donnent des accès larges et ne conviennent pas à la production. Dites-le si le jury pose une
+question sur la sécurité.
+Pour aller plus loin
+Previous
+Next
+Accès AWS CLI et SDK
+L'IA générative sur AWS
+Votre premier appel de modèle
+Choisir un modèle
+Garde-fous
+Bases de connaissances et RAG
+Data Automation
+Construire des agents
+Fonctionnement des agents
+Strands Agents
+Amazon Bedrock AgentCore
+MCP
+Démarrages rapides
+Données ﬁnancières publiques
+Nettoyage et exportation
+Ressources
+AWS account access
+Open AWS console
+(us-east-1)
+Get AWS CLI credentials
+Share feedback
+Workshop catalog in AWS Builder
+Center
+Exit event
+AWS Workshop Studio
+adamlarhlimi2006
+© 2008 - 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+Privacy policy
+Terms of use
+Cookie preferences

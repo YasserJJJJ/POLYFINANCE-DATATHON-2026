@@ -1,0 +1,159 @@
+{
+  "at": "2026-11-15T20:24:21.269Z",
+  "independent_of_folio_author": true,
+  "checks": [
+    {
+      "name": "Robert réel r5 et minimum30000",
+      "passed": true
+    },
+    {
+      "name": "Présentation ne change pas les chiffres",
+      "passed": true
+    },
+    {
+      "name": "Objectif et contraintes visibles avant la planche",
+      "passed": true
+    },
+    {
+      "name": "Preuve valeur30000 et pointeur",
+      "passed": true
+    },
+    {
+      "name": "Focus revient au chiffre",
+      "passed": true
+    },
+    {
+      "name": "4 options identiques au contrat",
+      "passed": true
+    },
+    {
+      "name": "Variante40k réelle et sansinférence",
+      "passed": true
+    },
+    {
+      "name": "Comparaison etdelta présents",
+      "passed": true
+    },
+    {
+      "name": "Undo retournearchiveinitiale",
+      "passed": true
+    },
+    {
+      "name": "Impossible120k aucuneoption",
+      "passed": true
+    },
+    {
+      "name": "Impossibleexplicitementaffiché",
+      "passed": true
+    },
+    {
+      "name": "Mobilepasoverflowglobal",
+      "passed": true
+    },
+    {
+      "name": "Mobiledeeppasoverflowglobal",
+      "passed": true
+    },
+    {
+      "name": "AucuneerreurJS",
+      "passed": true
+    }
+  ],
+  "observations": [
+    {
+      "case": "120k overview",
+      "headline": "Les contraintes\nne se rencontrent pas.",
+      "interpretation": "CE QUE LE RÉSULTAT PERMET DE DIRE\n\nLe minimum ne dit pas tout.\n\nCette valeur minimise le capital déplacé sous les contraintes précisées. Elle ne sélectionne pas automatiquement le risque le plus faible.\n\nLes pertes diffèrent selon la répartition. Ce choix mérite une comparaison : le premier optimum ne minimise ni le risque, ni les frais réels.\n\nMême portefeuille de départ · comparaison d’états, pas opérations successives.\n\nCe qui change, en CAD\nGrandeur\tAvant\tAprès\tÉcart\nRetrait à 12 mois\t30 000\t120 000\t+90 000\nBudget de perte par choc\t15 000\t15 000\t0\nMinimum à réallouer\t30 000\tnon établi\t—\nEntrées conservées\n\nCapital 100 000 CAD, positions initiales, chocs, plafond TSLA 10 %.\n\nCalculs réexécutés\n\nAllocation, contraintes, minimum et conclusion. Aucun cache d’artefacts réutilisé ; aucun agent relancé.\n\n← Revenir à l’état précédent"
+    },
+    {
+      "case": "lossbudget0",
+      "minimum": 100000,
+      "headline": "Préparer le retrait,\nsans tout déplacer."
+    }
+  ],
+  "errors": [],
+  "contrast_static_css_pairs": [
+    {
+      "usage": "Texte principal",
+      "foreground": "#20372c",
+      "background": "#eee9dd",
+      "ratio": 10.54
+    },
+    {
+      "usage": "Texte secondaire",
+      "foreground": "#596257",
+      "background": "#eee9dd",
+      "ratio": 5.24
+    },
+    {
+      "usage": "Accent/erreur",
+      "foreground": "#a33726",
+      "background": "#eee9dd",
+      "ratio": 5.54
+    },
+    {
+      "usage": "Texte sur bouton",
+      "foreground": "#f6f2e8",
+      "background": "#20372c",
+      "ratio": 11.42
+    },
+    {
+      "usage": "Texte option sélectionnée",
+      "foreground": "#20372c",
+      "background": "#e0e3d5",
+      "ratio": 9.8
+    },
+    {
+      "usage": "Séparateurs non informatifs",
+      "foreground": "#b7b9a8",
+      "background": "#eee9dd",
+      "ratio": 1.65
+    }
+  ],
+  "contrast_limit": "Calcul des couleurs CSS, texture et anticrénelage exclus. Pas de graphique à axe numérique dans Folio ; la comparaison utilise un tableau et des barres proportionnelles avec labels.",
+  "correction_verification": {
+    "at": "2026-11-15T20:27:39.747Z",
+    "cases": [
+      {
+        "id": "impossible",
+        "title": "Les contraintes\nne se rencontrent pas.",
+        "passed": true
+      },
+      {
+        "id": "allcapital",
+        "title": "Le mandat exige\nde tout déplacer.",
+        "passed": true,
+        "minimum": 100000
+      }
+    ],
+    "dialog_axe_after_shared_fix": {
+      "violations": [],
+      "incomplete": [],
+      "passes": 27
+    },
+    "essential_axe_after_landmark_fix": {
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "nodes": 1
+        },
+        {
+          "id": "color-contrast",
+          "nodes": 106
+        }
+      ],
+      "passes": 43
+    },
+    "shared_infeasibility_retest": {
+      "at": "2026-11-15T20:30:02.185Z",
+      "delta_faithful": true,
+      "method_shortfall_20000": true,
+      "proof_no_allocation": true,
+      "method_excerpt": "L’APPAREIL CRITIQUE\n\nLes conditions\ndu calcul.\nComprendre le conflit\n\nAucune allocation ni minimum établis. Un certificat algébrique suffit ici ; le programme linéaire n’a pas été exécuté.\n\nLe retrait doit être financé par la réserve, elle-même limitée au capital : retrait ≤ réserve ≤ capital.\n\n120 000 − 100 000 = 20 000 CAD de déficit.\n\nSans apport extérieur, ces contraintes sont incompatibles. Ce certificat porte sur ce sous-ensemble nécessaire ; il ne constitue pas un IIS global.\n\nAllocation long-only entièrement financée par le capital déclaré ; aucun apport extérieur.\nRéserve abstraite nominale disponible à l'échéance, à rendement nul.\nLe retrait doit être financé par cette réserve dès l'allocation initiale.\nInspecter le contrôle de faisabilité",
+      "proof_excerpt": "Du problème au résultat\n\nLe retrait demandé de 120,000.00 CAD dépasse le capital de 100,000.00 CAD de 20,000.00 CAD. Le financement par la réserve abstraite est impossible dans ce modèle, sans apport extérieur.\n\n120 000 CAD\n/checks/0/withdrawal_cad\n100 000 CAD\n/checks/0/capital_cad\n20 000 CAD\n/checks/0/shortfall_cad\nCe que le calcul établit\n\nL’impossibilité sous les contraintes contrôlées. Aucune allocation ni minimum n’est établi.\n\nLe certificat ou le diagnostic ci-dessous précise le domaine de cette impossibilité.\n\nHypothèses et contrôles\nAllocation long-only entièrement financée par le capital déclaré ; aucun apport extérieur.\nRéserve abstraite nominale disponible à l'échéance, à rendemen",
+      "delta_excerpt": "LA CORRECTION, RENDUE VISIBLE\n\nMême portefeuille de départ · comparaison d’états, pas opérations successives.\n\nCe qui change, en CAD\nGrandeur\tAvant\tAprès\tÉcart\nRetrait à 12 mois\t30 000\t120 000\t+90 000\nBudget de perte par choc\t15 000\t15 000\t0\nMinimum à réallouer\t30 000\tnon établi\t—\nEntrées conservées\n\nCapital 100 000 CAD, positions initiales, chocs, plafond TSLA 10 %.\n\nFaisabilité réexaminée\n\nAucune allocation ni minimum établis ; le contrôle d’infaisabilité arrête la résolution. Aucun cache d’artefacts réutilisé ; aucun agent relancé.\n\n← Revenir à l’état précédent",
+      "harness_note": "Initial exact-match expected lowercase aucune but UI uses Aucune. Assertion corrected case-insensitively; no product change required."
+    }
+  }
+}

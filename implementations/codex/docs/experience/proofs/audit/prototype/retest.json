@@ -1,0 +1,81 @@
+{
+  "timestamp": "2026-11-15T19:59:57.532Z",
+  "checks": [
+    {
+      "name": "Edited form marks previous calculation stale",
+      "pass": true
+    },
+    {
+      "name": "Stale result cannot be adopted",
+      "pass": true
+    },
+    {
+      "name": "Reset restores original withdrawal",
+      "pass": true
+    },
+    {
+      "name": "Reset masks previous result",
+      "pass": true
+    },
+    {
+      "name": "Cached result identifies base r5",
+      "pass": false
+    },
+    {
+      "name": "Adopt cached result uses actual base r5",
+      "pass": true
+    },
+    {
+      "name": "Restore actual base min30",
+      "pass": true
+    },
+    {
+      "name": "r15 no unsupported multiple-optima callout",
+      "pass": true
+    },
+    {
+      "name": "r15 states no witness found",
+      "pass": true
+    },
+    {
+      "name": "r15 chart no unsupported alternative claim",
+      "pass": true
+    },
+    {
+      "name": "Options contrast corrected",
+      "pass": true
+    },
+    {
+      "name": "Certificate proof 20000 CAD",
+      "pass": true
+    },
+    {
+      "name": "Certificate says algebra no solver",
+      "pass": true
+    },
+    {
+      "name": "Impossible fits 320",
+      "pass": true,
+      "detail": {
+        "width": 320,
+        "body": 320,
+        "root": 320
+      }
+    },
+    {
+      "name": "Navigation during calculation causes no uncaught error",
+      "pass": false,
+      "detail": [
+        "Cannot set properties of null (setting 'disabled')"
+      ]
+    },
+    {
+      "name": "Navigation preserved home",
+      "pass": true
+    }
+  ],
+  "pageErrors": [
+    "Cannot set properties of null (setting 'disabled')"
+  ],
+  "axe": []
+}

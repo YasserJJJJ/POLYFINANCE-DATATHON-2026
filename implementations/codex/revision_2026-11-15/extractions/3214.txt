@@ -1,0 +1,170 @@
+
+
+## PAGE 1
+
+Event dashboard
+Introduction à AWS
+Amazon Athena
+Amazon Athena
+Amazon Athena est un service de requêtes interactif et sans serveur qui exécute du SQL standard directement sur des ﬁchiers stockés dans Amazon S3. Aucune
+base de données à provisionner, aucun cluster à démarrer, aucune donnée à charger. Vous pointez Athena vers vos ﬁchiers, vous décrivez leur structure une fois, et
+vous les interrogez.
+C'est presque idéal pour un datathon. Déposez un ﬁchier CSV ou Parquet dans un compartiment, et vous pouvez l'interroger une minute plus tard. Athena prend
+aussi en charge Apache Spark, pour les rares cas où le SQL ne suffit pas.
+Pour le déﬁ AlphaForge AI : Athena vous permet d'explorer des historiques de prix, des séries de taux ou des données macroéconomiques sans construire de
+pipeline. Il fonctionne aussi très bien derrière une application d'IA générative : donnez à votre agent un outil qui exécute une requête Athena, et le modèle répond à
+partir de chiffres réels plutôt que de sa mémoire.
+C'est la forme que prennent la plupart des projets orientés données :
+CSV / Parquet dans S3  →  Athena (SQL)  →  outil de votre agent, ou tableau de bord Quick
+Combiner Athena et un agent donne une démo convaincante. Le modèle n'invente pas les chiffres : il appelle un outil qui exécute du SQL, et vous pouvez montrer la
+requête qu'il a choisie. C'est plus exact et plus vériﬁable que de demander au modèle de raisonner sur des chiffres collés dans un prompt, et cela répond directement
+à l'exigence de traçabilité des sources.
+1. Préparer un ﬁchier de prix. Sur votre poste ou dans un notebook, avec pip install yfinance pandas :
+Vériﬁez les conditions d'utilisation de chaque source de données. La page Données ﬁnancières publiques présente d'autres sources.
+2. Créer un compartiment et y déposer le ﬁchier. Athena a aussi besoin d'un emplacement où écrire les résultats des requêtes :
+3. Une petite fonction pour exécuter une requête et afficher le résultat. Collez-la dans le même terminal :
+4. Décrire le ﬁchier, puis l'interroger :
+Vous pouvez aussi écrire ces requêtes dans l'éditeur de requêtes de la console Athena 
+, ou laisser un robot d'exploration AWS Glue déduire le schéma à votre place.
+Qu'est-ce qu'Amazon Athena ? 
+Bien démarrer avec Athena 
+Utiliser Athena SQL 
+Créer des tables dans Athena 
+Utiliser Apache Spark dans Amazon Athena 
+Référence CLI d'Athena 
+Pour en savoir plus, consultez le Guide de l'utilisateur Amazon Athena 
+.
+Amazon Athena
+Introduction à Amazon Athena
+Le schéma à connaître
+Exemple : des prix quotidiens interrogés en SQL
+import yfinance as yf
+tickers = ["XIU.TO", "XBB.TO", "SPY"]
+prix = yf.download(tickers, start="2020-01-01", end="2026-10-31", auto_adjust=True, progress=False)["Close"]
+# Format long : une ligne par (date, ticker), ce qu'Athena lit le plus simplement
+prix = prix.stack().rename("cloture").reset_index()
+prix.columns = ["date_seance", "ticker", "cloture"]
+prix.to_csv("prix.csv", index=False)
+print(prix.tail())
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+ACCOUNT=$(aws sts get-caller-identity --query Account --output text)
+BUCKET="datathon-${ACCOUNT}-athena"
+aws s3 mb "s3://${BUCKET}" --region us-east-1
+aws s3 cp prix.csv "s3://${BUCKET}/prix/prix.csv"
+1
+2
+3
+4
+5
+athena_sql () {
+  QID=$(aws athena start-query-execution --region us-east-1 \
+    --query-string "$1" \
+    --result-configuration "OutputLocation=s3://${BUCKET}/resultats/" \
+    --query QueryExecutionId --output text)
+  while true; do
+    STATE=$(aws athena get-query-execution --region us-east-1 --query-execution-id "$QID" \
+      --query 'QueryExecution.Status.State' --output text)
+    case "$STATE" in SUCCEEDED|FAILED|CANCELLED) break ;; esac
+    sleep 1
+  done
+  if [ "$STATE" = "SUCCEEDED" ]; then
+    aws athena get-query-results --region us-east-1 --query-execution-id "$QID" \
+      --query 'ResultSet.Rows[].Data[*].VarCharValue' --output text
+  else
+    aws athena get-query-execution --region us-east-1 --query-execution-id "$QID" \
+      --query 'QueryExecution.Status.StateChangeReason' --output text
+  fi
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+athena_sql "CREATE DATABASE IF NOT EXISTS datathon"
+athena_sql "CREATE EXTERNAL TABLE IF NOT EXISTS datathon.prix (
+  date_seance date, ticker string, cloture double)
+  ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+  LOCATION 's3://${BUCKET}/prix/'
+  TBLPROPERTIES ('skip.header.line.count'='1')"
+# Variation entre la première et la dernière séance de chaque année (prix ajustés)
+athena_sql "SELECT ticker, year(date_seance) AS annee,
+  round(max_by(cloture, date_seance) / min_by(cloture, date_seance) - 1, 4) AS variation
+  FROM datathon.prix GROUP BY 1, 2 ORDER BY 1, 2"
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+Athena facture selon la quantité de données analysées. Avec des ﬁchiers de la taille d'un datathon, c'est négligeable. L'habitude qui compte à grande échelle, et qui mérite une
+mention dans votre documentation technique, consiste à stocker les données en Parquet et à les partitionner (par exemple par année) : cela réduit à la fois le coût et le temps de
+requête.
+Ressources utiles
+Amazon Web Services
+Amazon Athena for Apache Spark | Amazon Web Service
+Amazon Athena for Apache Spark | Amazon Web Service
+Amazon Athena for Apache Spark | Amazon Web Service
+Amazon Athena for Apache Spark | Amazon Web Service
+Regarder sur
+Previous
+Next
+Introduction à AWS
+Amazon Bedrock
+Kiro
+Outils de développement
+Amazon Quick
+AWS Lambda
+Amazon S3
+AWS IAM
+AWS Glue
+Amazon Athena
+Accès AWS CLI et SDK
+L'IA générative sur AWS
+Construire des agents
+Démarrages rapides
+Données ﬁnancières publiques
+Nettoyage et exportation
+Ressources
+AWS account access
+Open AWS console
+(us-east-1)
+Get AWS CLI credentials
+Share feedback
+Workshop catalog in AWS Builder
+Center
+Exit event
+AWS Workshop Studio
+adamlarhlimi2006
+© 2008 - 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+Privacy policy
+Terms of use
+Cookie preferences

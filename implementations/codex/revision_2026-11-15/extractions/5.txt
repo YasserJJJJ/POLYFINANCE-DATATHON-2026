@@ -1,0 +1,122 @@
+
+
+## PAGE 1
+
+Event dashboard
+Commencer
+SageMaker Uniﬁed Studio et notebook d'introduction
+SageMaker Uniﬁed Studio et notebook d'introduction
+Amazon SageMaker Uniﬁed Studio vous donne JupyterLab et Code Editor dans le navigateur, avec les permissions de votre compte AWS. C'est un bon endroit pour
+exécuter le notebook d'introduction du Datathon et pour travailler à plusieurs dans le même projet.
+Vous utilisez un domaine basé sur IAM : vous entrez dans SageMaker Uniﬁed Studio avec le rôle que vous utilisez déjà dans la console. Il n'y a ni utilisateur, ni mot de
+passe, ni authentiﬁcation multifacteur à conﬁgurer.
+1. Depuis Workshop Studio, ouvrez la console avec Open AWS console et vériﬁez que la région est us-east-1.
+2. Ouvrez la console Amazon SageMaker 
+.
+3. Dans la section Amazon SageMaker Uniﬁed Studio, choisissez Get started.
+4. L'écran Set up Amazon SageMaker Uniﬁed Studio affiche votre rôle actuel comme rôle de connexion. Gardez-le.
+5. Pour le rôle d'exécution, laissez SageMaker Uniﬁed Studio créer un nouveau rôle avec les permissions par défaut.
+6. Laissez l'intégration S3 Tables et le chiffrement par défaut (clé gérée par AWS).
+7. Choisissez Set up. La création prend une à deux minutes. Un projet est créé automatiquement et vous arrivez sur sa page.
+Si l'écran de conﬁguration signale une permission manquante, ne la contournez pas : appelez un mentor AWS.
+Vos coéquipiers se connectent au compte avec le même rôle. Pour ouvrir le projet :
+1. Dans la console Amazon SageMaker 
+ (région us-east-1), ouvrez SageMaker Uniﬁed Studio.
+2. Choisissez le projet créé à l'étape 1.
+Le code de vos notebooks s'exécute avec le rôle d'exécution du projet, et non avec votre rôle de console. Ce rôle peut appeler les modèles, mais pas toujours le reste
+de Bedrock (lister les modèles, créer un garde-fou ou une base de connaissances). Ajoutez-lui la politique AmazonBedrockFullAccess :
+1. Ouvrez la console IAM, page des rôles 
+.
+2. Cherchez AmazonSageMaker-ExecutionRole et choisissez le rôle créé à l'étape 1 (son nom se termine par la date et l'heure de création).
+3. Dans l'onglet Permissions, choisissez Add permissions > Attach policies.
+4. Cherchez AmazonBedrockFullAccess, cochez-la, puis choisissez Add permissions.
+Ou, dans CloudShell :
+Si votre projet utilise d'autres services depuis un notebook (S3, Athena, etc.) et qu'un appel échoue avec AccessDeniedException, ajoutez la permission manquante
+au même rôle.
+1. Dans le projet, choisissez Code spaces dans le menu de gauche.
+2. Choisissez Create, puis la carte JupyterLab. Gardez l'instance proposée (par exemple ml.t3.medium) et l'image par défaut, puis choisissez Create.
+3. Quand l'espace est prêt, choisissez Open.
+Chaque membre de l'équipe peut créer son propre espace, ou vous pouvez en partager un. Un espace JupyterLab s'arrête après 60 minutes d'inactivité : vos ﬁchiers
+restent sur son volume, il suffit de le redémarrer.
+Le notebook montre comment récupérer des données ﬁnancières publiques (Yahoo Finance, Banque du Canada, FRED, SEC EDGAR), calculer des indicateurs de
+risque, appeler Amazon Bedrock, extraire des données structurées d'un texte et construire un petit agent. Il est en français et s'appuie sur le déﬁ AlphaForge AI.
+Prenez-le comme point de départ, pas comme une solution.
+Télécharger le notebook Introduction-Datathon.ipynb 
+Si votre navigateur affiche le contenu du ﬁchier au lieu de le télécharger, faites un clic droit sur le lien et choisissez Enregistrer le lien sous, avec le nom
+Introduction-Datathon.ipynb.
+1. Dans JupyterLab, cliquez sur l'icône Upload ﬁles (ﬂèche vers le haut) au-dessus de l'explorateur de ﬁchiers et choisissez Introduction-Datathon.ipynb.
+2. Ouvrez le notebook et choisissez le noyau Python 3 s'il vous est demandé.
+3. Exécutez les cellules dans l'ordre. La première installe les bibliothèques nécessaires.
+Sur votre ordinateur, copiez les identiﬁants AWS CLI temporaires depuis la page de l'événement Workshop Studio, collez les commandes export dans votre terminal,
+puis :
+JupyterLab écoute par défaut sur localhost seulement. Gardez ce réglage.
+Les ﬁchiers de vos espaces JupyterLab disparaissent avec le compte, le lundi 16 novembre à 13 h 59. Poussez votre code dans GitHub au fur et à mesure et
+téléchargez ce que vous voulez garder. Voir Nettoyage et exportation.
+Conﬁgurer un domaine basé sur IAM (documentation AWS) 
+Code spaces dans les domaines basés sur IAM 
+Guide de l'utilisateur d'Amazon SageMaker Uniﬁed Studio 
+SageMaker Unified Studio et notebook d'introduction
+C'est optionnel. Vous pouvez aussi travailler sur votre ordinateur, dans CloudShell ou avec l'outil de votre choix. Le notebook fonctionne partout où Python a accès aux identiﬁants
+de votre compte AWS.
+1. Créer le domaine (une seule personne par équipe)
+Un compte ne peut avoir qu'un seul domaine basé sur IAM par région. Une seule personne de l'équipe fait cette étape. Les autres attendent qu'elle ait terminé, puis passent à
+l'étape 2.
+2. Ouvrir le projet (toute l'équipe)
+3. Donner l'accès complet à Amazon Bedrock (une seule personne)
+# Le rôle le plus récent (son nom se termine par sa date de création)
+ROLE=$(aws iam list-roles --query 'Roles[].RoleName' --output text | tr '\t' '\n' \
+  | grep '^AmazonSageMaker-ExecutionRole-' | sort | tail -1)
+echo "$ROLE"
+aws iam attach-role-policy --role-name "$ROLE" --policy-arn arn:aws:iam::aws:policy/AmazonBedrockFullAccess
+1
+2
+3
+4
+5
+4. Démarrer JupyterLab
+5. Ouvrir le notebook d'introduction
+Si le premier appel à un modèle Claude échoue avec AccessDeniedException, faites d'abord un appel depuis CloudShell (voir Commencer), attendez quelques minutes, puis
+réexécutez la cellule. Le premier appel à un modèle Anthropic active ces modèles pour tout le compte.
+Exécuter le notebook ailleurs
+python3 -m venv .venv
+source .venv/bin/activate          # Windows : .venv\Scripts\activate
+pip install jupyterlab boto3 pandas requests
+export AWS_DEFAULT_REGION=us-east-1
+jupyter lab
+1
+2
+3
+4
+5
+Avant la fin du Datathon
+Pour aller plus loin
+Previous
+Next
+Polyfinances 2026
+Datathon PolyFinances 2026
+Commencer
+Utilisation responsable
+SageMaker Uniﬁed Studio et
+notebook d'introduction
+Introduction à AWS
+Accès AWS CLI et SDK
+L'IA générative sur AWS
+Construire des agents
+Démarrages rapides
+Données ﬁnancières publiques
+Nettoyage et exportation
+Ressources
+AWS account access
+Open AWS console
+(us-east-1)
+Get AWS CLI credentials
+Share feedback
+Workshop catalog in AWS Builder
+Center
+Exit event
+AWS Workshop Studio
+adamlarhlimi2006
+© 2008 - 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+Privacy policy
+Terms of use
+Cookie preferences

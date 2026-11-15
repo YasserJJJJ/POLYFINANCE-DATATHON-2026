@@ -1,0 +1,154 @@
+Vue d’ensemble - Amazon Bedrock 
+
+ View a markdown version of this page 
+
+ Vue d’ensemble - Amazon Bedrock 
+
+ Documentation Amazon Bedrock Guide de l’utilisateur 
+
+ Démarrage rapide Modèles pris en charge Nouveautés Commencez à construire 
+
+Les traductions sont fournies par des outils de traduction automatique. En cas de conflit entre le contenu d'une traduction et celui de la version originale en anglais, la version anglaise prévaudra.
+ 
+Vue d’ensemble
+
+Amazon Bedrock est un service entièrement géré qui fournit un accès sécurisé de niveau professionnel aux modèles de base très performants des principales sociétés d'IA, vous permettant de créer et de faire évoluer des applications d'IA génératives.
+
+Démarrage rapide
+
+Lisez le Démarrage rapide pour écrire votre premier appel d'API à l'aide d'Amazon Bedrock en moins de cinq minutes. Pour les nouvelles applications, nous recommandons le bedrock-runtime point de terminaison.
+
+ Messages API 
+
+ from anthropic import Anthropic
+from aws_bedrock_token_generator import provide_token
+
+token = provide_token(region="us-east-1")
+
+client = Anthropic(
+ base_url="https://bedrock-runtime.us-east-1.amazonaws.com/anthropic",
+ api_key=token,
+)
+
+response = client.messages.create(
+ model="global.anthropic.claude-opus-4-7",
+ max_tokens=1024,
+ messages=[ { "role": "user", "content": "Can you explain the features of Amazon Bedrock?"}]
+)
+print(response) 
+
+ Responses API 
+
+ from openai import OpenAI
+
+client = OpenAI()
+
+response = client.responses.create(
+ model="global.openai.gpt-5.6-sol",
+ input="Can you explain the features of Amazon Bedrock?"
+ )
+print(response) 
+
+ Chat Completions API 
+
+ from openai import OpenAI
+
+client = OpenAI()
+
+response = client.chat.completions.create(
+ model="global.openai.gpt-5.6-sol",
+ messages=[ { "role": "user", "content": "Can you explain the features of Amazon Bedrock?"}]
+ )
+print(response) 
+
+ Converse API 
+
+ import boto3
+
+client = boto3.client('bedrock-runtime', region_name='us-east-1')
+response = client.converse(
+ modelId='anthropic.claude-opus-4-7',
+ messages=[
+ { 
+ 'role': 'user',
+ 'content': [ { 'text': 'Can you explain the features of Amazon Bedrock?'}]
+ }
+ ]
+)
+print(response) 
+
+ Invoke API 
+
+ import json
+import boto3
+
+client = boto3.client('bedrock-runtime', region_name='us-east-1')
+response = client.invoke_model(
+ modelId='anthropic.claude-opus-4-7',
+ body=json.dumps( { 
+ 'anthropic_version': 'bedrock-2023-05-31',
+ 'messages': [ { 'role': 'user', 'content': 'Can you explain the features of Amazon Bedrock?'}],
+ 'max_tokens': 1024
+ })
+ )
+ print(json.loads(response['body'].read())) 
+
+Modèles pris en charge
+
+Amazon Bedrock prend en charge plus de 100 modèles de base proposés par les principaux fournisseurs du secteur, notamment Amazon,Anthropic,,DeepSeek, Moonshot AIMiniMax, OpenAI et. xAI
+
+ Amazon Nova 
+
+ Claude 
+
+ DeepSeek 
+
+ Kimi 
+
+ MiniMax 
+
+ OpenAI 
+
+ Xai 
+
+Nouveautés
+
+ OpenAI GPT-6 L'Astra est désormais généralement disponible sur Amazon Bedrock  : l' GPT-6 Astra est le modèle le plus récent et OpenAI le plus performant. Il peut raisonner en faisant des choix difficiles dans le cadre de tâches professionnelles. Il peut écrire et concevoir un contenu raffiné. Il peut également utiliser des ordinateurs et des navigateurs Web. Le modèle possède une fenêtre contextuelle de 1 050 000 jetons partagée entre l'entrée et la sortie, avec jusqu'à 128 000 jetons de sortie. Consultez la carte du modèle GPT-6 Astra pour plus de détails.
+
+ Grok 4.6 xAI est xAI désormais disponible dans Amazon Bedrock  : le dernier modèle phare d'Amazon, conçu pour les agents de longue durée, le codage et le travail de connaissance, avec une fenêtre contextuelle de 500 000 et des efforts de raisonnement configurables (faible, moyen, élevé, xhigh). Disponible dans toutes les régions AWS où Amazon Bedrock est proposé. Consultez la carte modèle Grok 4.6 pour plus de détails.
+
+ Amazon Bedrock étend la prise en charge des API et ajoute l'inférence interrégionale pour les OpenAI modèles  : OpenAI GPT-5.6 Sol, Terra et Luna sont désormais disponibles sur le bedrock-runtime terminal via les API Responses, Converse et Chat Completions, et prennent désormais en charge l'inférence globale et géointerrégionale pour un débit plus élevé et un coût par jeton inférieur (y compris le nouveau US Geo CRIS). Voir Cross-Region l'inférence pour plus de détails.
+
+ Daybreak Red et Daybreak Blue sont OpenAI désormais disponibles sur Amazon Bedrock (disponibilité limitée)  : modèles de cybersécurité spécialisés issus OpenAI de l'initiative Daybreak, disponibles pour les clients éligibles. Daybreak Red (GPT-5.6 Cyber) est spécialement formé pour la recherche sur les vulnérabilités, la reproduction des exploits et le développement de solutions d'atténuation. Daybreak Blue (GPT-5.6 Sol) dispose de dispositifs de protection calibrés pour les activités de cybersécurité défensive. Consultez les modèles de cartes Daybreak Red : GPT-5.6 Cyber et Daybreak Blue : GPT-5.6 Sol pour plus de détails.
+
+La recherche sur le Web est désormais disponible dans Amazon Bedrock  : un outil intégré côté serveur qui fonde les OpenAI modèles GPT sur Amazon Bedrock sur les connaissances actuelles du Web grâce à un seul paramètre d'utilisation des outils dans l'API Responses, sans qu'aucun fournisseur de recherche tiers ne soit intégré. La recherche utilise un index Web AWS hébergé, et Fetch peut éventuellement le récupérer depuis le Web externe sous un contrôle IAM explicite. Disponible dans l'est des États-Unis (Virginie du Nord), dans l'est des États-Unis (Ohio) et dans l'ouest des États-Unis (Oregon). Voir Recherche sur le Web pour plus de détails.
+
+ OpenAI GPT-5.6 Sol, Terra et Luna sont désormais disponibles dans Amazon Bedrock  : une famille de modèles allant du OpenAI raisonnement avancé à l'inférence rapide et rentable, désormais généralement disponible via l'API Responses sur Amazon Bedrock. Consultez les cartes modèles GPT-5.6 Sol , GPT-5.6 Terra et GPT-5.6 Luna pour plus de détails.
+
+Commencez à construire
+
+Découvrez les API et les points de terminaison pris en charge par Amazon Bedrock.
+
+Créez à l'aide Faire des demandes d'inférence des opérations fournies par Amazon Bedrock.
+
+ Personnalisation de votre modèle pour améliorer ses performances en fonction de votre cas d’utilisation 
+
+ JavaScript est désactivé ou n'est pas disponible dans votre navigateur. 
+
+Pour que vous puissiez utiliser la documentation AWS, Javascript doit être activé. Vous trouverez des instructions sur les pages d'aide de votre navigateur.
+
+ Conventions de rédaction 
+
+Démarrage rapide
+
+Cette page vous a-t-elle été utile ? - Oui
+
+Merci de nous avoir fait part de votre satisfaction.
+
+Si vous avez quelques minutes à nous consacrer, merci de nous indiquer ce qui vous a plu afin que nous puissions nous améliorer davantage.
+
+Cette page vous a-t-elle été utile ? - Non
+
+Merci de nous avoir avertis que cette page avait besoin d'être retravaillée. Nous sommes désolés de ne pas avoir répondu à vos attentes.
+
+Si vous avez quelques minutes à nous consacrer, merci de nous indiquer comment nous pourrions améliorer cette documentation.

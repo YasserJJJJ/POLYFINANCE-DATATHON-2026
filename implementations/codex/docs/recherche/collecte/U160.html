@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A Survey of Optimization Modeling Meets LLMs: Progress and Future Directions | IJCAI</title>
+<meta name='robots' content='max-image-preview:large' />
+<meta name="citation_title" content="A Survey of Optimization Modeling Meets LLMs: Progress and Future Directions">
+<meta name="citation_author" content="Xiao, Ziyang">
+<meta name="citation_author_institution" content="The State Key Laboratory of Blockchain and Data Security , Zhejiang University">
+<meta name="citation_author" content="Xie, Jingrong">
+<meta name="citation_author_institution" content="The State Key Laboratory of Blockchain and Data Security , Zhejiang University">
+<meta name="citation_author" content="Xu, Lilin">
+<meta name="citation_author_institution" content="The State Key Laboratory of Blockchain and Data Security , Zhejiang University">
+<meta name="citation_author" content="Guan, Shisi">
+<meta name="citation_author_institution" content="The State Key Laboratory of Blockchain and Data Security , Zhejiang University">
+<meta name="citation_author" content="Zhu, Jingyan">
+<meta name="citation_author_institution" content="The State Key Laboratory of Blockchain and Data Security , Zhejiang University">
+<meta name="citation_author" content="Han, Xiongwei">
+<meta name="citation_author_institution" content="Huawei Noah&#039;s Ark Lab">
+<meta name="citation_author" content="Fu, Xiaojin">
+<meta name="citation_author_institution" content="Huawei Noah&#039;s Ark Lab">
+<meta name="citation_author" content="Yu, WingYin">
+<meta name="citation_author_institution" content="Huawei Noah&#039;s Ark Lab">
+<meta name="citation_author" content="Wu, Han">
+<meta name="citation_author_institution" content="Huawei Noah&#039;s Ark Lab">
+<meta name="citation_author" content="Shi, Wei">
+<meta name="citation_author_institution" content="Huawei Noah&#039;s Ark Lab">
+<meta name="citation_author" content="Kang, Qingcan">
+<meta name="citation_author_institution" content="Huawei Noah&#039;s Ark Lab">
+<meta name="citation_author" content="Duan, Jiahui">
+<meta name="citation_author_institution" content="Huawei Noah&#039;s Ark Lab">
+<meta name="citation_author" content="Zhong, Tao">
+<meta name="citation_author_institution" content="Huawei Noah&#039;s Ark Lab">
+<meta name="citation_author" content="Yuan, Mingxuan">
+<meta name="citation_author_institution" content="Huawei Noah&#039;s Ark Lab">
+<meta name="citation_author" content="Zeng, Jia">
+<meta name="citation_author_institution" content="Huawei Noah&#039;s Ark Lab">
+<meta name="citation_author" content="Wang, Yuan">
+<meta name="citation_author_institution" content="School of Business , Singapore University of Social Sciences">
+<meta name="citation_author" content="Chen, Gang">
+<meta name="citation_author_institution" content="The State Key Laboratory of Blockchain and Data Security , Zhejiang University">
+<meta name="citation_author" content="Zhang, Dongxiang">
+<meta name="citation_author_institution" content="The State Key Laboratory of Blockchain and Data Security , Zhejiang University; Hangzhou High-Tech Zone (Binjiang ) Institute of Blockchain and Data Security">
+<meta name="citation_publication_date" content="2025">
+<meta name="citation_conference_title" content="Proceedings of the Thirty-Fourth International Joint Conference on Artificial Intelligence">
+<meta name="citation_publisher" content="International Joint Conferences on Artificial Intelligence Organization">
+<meta name="citation_firstpage" content="10742">
+<meta name="citation_lastpage" content="10750">
+<meta name="citation_doi" content="10.24963/ijcai.2025/1192">
+<meta name="citation_pdf_url" content="https://ijcai.org/proceedings/2025/1192.pdf">
+<meta name="citation_abstract_html_url" content="https://ijcai.org/proceedings/2025/1192">
+<link rel="canonical" href="https://ijcai.org/proceedings/2025/1192">
+<link rel="alternate" type="text/markdown" href="https://ijcai.org/proceedings/2025/1192.md">
+<link rel="alternate" type="application/json" href="https://ijcai.org/proceedings/2025/1192.json">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"A Survey of Optimization Modeling Meets LLMs: Progress and Future Directions","name":"A Survey of Optimization Modeling Meets LLMs: Progress and Future Directions","abstract":"By virtue of its great utility in solving real-world problems, optimization modeling has been widely employed for optimal decision-making across various sectors, but it requires substantial expertise from operations research professionals. With the advent of large language models (LLMs), new opportunities have emerged to automate the procedure of mathematical modeling. This survey presents a comprehensive and timely review of recent advancements that cover the entire technical stack, including data synthesis and fine-tuning for the base model,  inference frameworks, benchmark datasets, and performance evaluation. In addition, we conducted an in-depth analysis on the quality of benchmark datasets, which was found to have a surprisingly high error rate.  We cleaned the datasets and constructed a new leaderboard with fair performance evaluation in terms of base LLM model and datasets. We also build an online portal that integrates resources of cleaned datasets, code and paper repository to benefit the community.  Finally, we identify  limitations in current methodologies and outline future research opportunities.","author":[{"@type":"Person","name":"Ziyang Xiao","url":"https://ijcai.org/authors/ziyang-xiao/","affiliation":{"@type":"Organization","name":"The State Key Laboratory of Blockchain and Data Security , Zhejiang University"}},{"@type":"Person","name":"Jingrong Xie","url":"https://ijcai.org/authors/jingrong-xie/","affiliation":{"@type":"Organization","name":"The State Key Laboratory of Blockchain and Data Security , Zhejiang University"}},{"@type":"Person","name":"Lilin Xu","url":"https://ijcai.org/authors/lilin-xu/","affiliation":{"@type":"Organization","name":"The State Key Laboratory of Blockchain and Data Security , Zhejiang University"}},{"@type":"Person","name":"Shisi Guan","url":"https://ijcai.org/authors/shisi-guan/","affiliation":{"@type":"Organization","name":"The State Key Laboratory of Blockchain and Data Security , Zhejiang University"}},{"@type":"Person","name":"Jingyan Zhu","url":"https://ijcai.org/authors/jingyan-zhu/","affiliation":{"@type":"Organization","name":"The State Key Laboratory of Blockchain and Data Security , Zhejiang University"}},{"@type":"Person","name":"Xiongwei Han","url":"https://ijcai.org/authors/xiongwei-han/","affiliation":{"@type":"Organization","name":"Huawei Noah's Ark Lab"}},{"@type":"Person","name":"Xiaojin Fu","url":"https://ijcai.org/authors/xiaojin-fu/","affiliation":{"@type":"Organization","name":"Huawei Noah's Ark Lab"}},{"@type":"Person","name":"WingYin Yu","url":"https://ijcai.org/authors/wingyin-yu/","affiliation":{"@type":"Organization","name":"Huawei Noah's Ark Lab"}},{"@type":"Person","name":"Han Wu","url":"https://ijcai.org/authors/han-wu/","affiliation":{"@type":"Organization","name":"Huawei Noah's Ark Lab"}},{"@type":"Person","name":"Wei Shi","url":"https://ijcai.org/authors/wei-shi/","affiliation":{"@type":"Organization","name":"Huawei Noah's Ark Lab"}},{"@type":"Person","name":"Qingcan Kang","url":"https://ijcai.org/authors/qingcan-kang/","affiliation":{"@type":"Organization","name":"Huawei Noah's Ark Lab"}},{"@type":"Person","name":"Jiahui Duan","url":"https://ijcai.org/authors/jiahui-duan/","affiliation":{"@type":"Organization","name":"Huawei Noah's Ark Lab"}},{"@type":"Person","name":"Tao Zhong","url":"https://ijcai.org/authors/tao-zhong/","affiliation":{"@type":"Organization","name":"Huawei Noah's Ark Lab"}},{"@type":"Person","name":"Mingxuan Yuan","url":"https://ijcai.org/authors/mingxuan-yuan/","affiliation":{"@type":"Organization","name":"Huawei Noah's Ark Lab"}},{"@type":"Person","name":"Jia Zeng","url":"https://ijcai.org/authors/jia-zeng/","affiliation":{"@type":"Organization","name":"Huawei Noah's Ark Lab"}},{"@type":"Person","name":"Yuan Wang","url":"https://ijcai.org/authors/yuan-wang/","affiliation":{"@type":"Organization","name":"School of Business , Singapore University of Social Sciences"}},{"@type":"Person","name":"Gang Chen","url":"https://ijcai.org/authors/gang-chen/","affiliation":{"@type":"Organization","name":"The State Key Laboratory of Blockchain and Data Security , Zhejiang University"}},{"@type":"Person","name":"Dongxiang Zhang","url":"https://ijcai.org/authors/dongxiang-zhang/","affiliation":{"@type":"Organization","name":"The State Key Laboratory of Blockchain and Data Security , Zhejiang University; Hangzhou High-Tech Zone (Binjiang ) Institute of Blockchain and Data Security"}}],"datePublished":"2025","isPartOf":{"@type":"Book","name":"Proceedings of the Thirty-Fourth International Joint Conference on Artificial Intelligence","isbn":"978-1-956792-06-5","url":"https://ijcai.org/proceedings/2025/"},"publisher":{"@type":"Organization","name":"International Joint Conferences on Artificial Intelligence Organization"},"url":"https://ijcai.org/proceedings/2025/1192","keywords":"Natural Language Processing: NLP: Applications","identifier":{"@type":"PropertyValue","propertyID":"DOI","value":"10.24963/ijcai.2025/1192"},"sameAs":"https://doi.org/10.24963/ijcai.2025/1192","pageStart":10742,"pageEnd":10750,"encoding":{"@type":"MediaObject","encodingFormat":"application/pdf","contentUrl":"https://ijcai.org/proceedings/2025/1192.pdf"}}</script>
+<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<style id="wp-emoji-styles-inline-css">
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+/*# sourceURL=wp-emoji-styles-inline-css */
+</style>
+<style id="wp-block-library-inline-css">
+:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}:root .has-text-align-center{text-align:center}:root .has-text-align-left{text-align:left}:root .has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{word-wrap:normal!important;border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;word-break:normal!important}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style^=border-color],[style*=";border-color"],[style*="; border-color"]){border-style:solid}html :where([style^=border-top-color],[style*=";border-top-color"],[style*="; border-top-color"]){border-top-style:solid}html :where([style^=border-right-color],[style*=";border-right-color"],[style*="; border-right-color"]){border-right-style:solid}html :where([style^=border-bottom-color],[style*=";border-bottom-color"],[style*="; border-bottom-color"]){border-bottom-style:solid}html :where([style^=border-left-color],[style*=";border-left-color"],[style*="; border-left-color"]){border-left-style:solid}html :where([style^=border-width],[style*=";border-width"],[style*="; border-width"]){border-style:solid}html :where([style^=border-top-width],[style*=";border-top-width"],[style*="; border-top-width"]){border-top-style:solid}html :where([style^=border-right-width],[style*=";border-right-width"],[style*="; border-right-width"]){border-right-style:solid}html :where([style^=border-bottom-width],[style*=";border-bottom-width"],[style*="; border-bottom-width"]){border-bottom-style:solid}html :where([style^=border-left-width],[style*=";border-left-width"],[style*="; border-left-width"]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
+/*# sourceURL=/wp-includes/css/dist/block-library/common.min.css */
+</style>
+<style id="classic-theme-styles-inline-css">
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+</style>
+<style id="wp-block-styles-placeholder-inline-css">
+:root { --wp-internal-comment: "Placeholder for wp_hoist_late_printed_styles() to replace with the block styles printed at wp_footer." }
+/*# sourceURL=wp-block-styles-placeholder-inline-css */
+</style>
+<style id="wp-global-styles-placeholder-inline-css">
+:root { --wp-internal-comment: "Placeholder for wp_hoist_late_printed_styles() to replace with the global-styles printed at wp_footer." }
+/*# sourceURL=wp-global-styles-placeholder-inline-css */
+</style>
+<link rel='stylesheet' id='ijcai-main-css' href='https://ijcai.org/wp-content/themes/ijcai/assets/css/main.css?ver=1.0.14' media='all' />
+<link rel='stylesheet' id='ijcai-archive-css' href='https://ijcai.org/wp-content/themes/ijcai/assets/css/archive.css?ver=1.1.1' media='all' />
+<link rel="https://api.w.org/" href="https://ijcai.org/wp-json/" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://ijcai.org/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress 7.1.4" />
+<link rel="icon" href="https://ijcai.org/wp-content/themes/ijcai/assets/img/favicon.ico?v=2" sizes="any">
+<link rel="icon" href="https://ijcai.org/wp-content/themes/ijcai/assets/img/favicon.svg?v=2" type="image/svg+xml">
+<link rel="apple-touch-icon" href="https://ijcai.org/wp-content/themes/ijcai/assets/img/apple-touch-icon.png?v=2">
+</head>
+<body class="wp-theme-ijcai ijcai-archive ijcai-archive--article">
+
+<header class="site-header">
+    <div class="site-header__bar">
+        <span class="site-header__spacer"></span>
+        <a href="https://ijcai.org/" class="site-logo">
+            <img src="https://ijcai.org/wp-content/themes/ijcai/assets/img/logo.svg"
+                 width="247" height="105" alt="IJCAI">
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation"
+                aria-expanded="false" aria-controls="nav-panel">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+    <nav id="nav-panel" class="nav-panel" aria-label="Primary Navigation">
+        <ul id="menu-primary" class="nav-panel__menu"><li id="menu-item-230" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-230"><a href="https://ijcai.org/future_conferences/">Conferences</a>
+<ul class="sub-menu">
+	<li id="menu-item-231" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-231"><a href="https://ijcai.org/future_conferences/">Future Conferences</a></li>
+	<li id="menu-item-232" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-232"><a href="https://ijcai.org/past_conferences/">Past Conferences</a></li>
+</ul>
+</li>
+<li id="menu-item-233" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-233"><a href="https://ijcai.org/all_proceedings/">Proceedings</a>
+<ul class="sub-menu">
+	<li id="menu-item-234" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-234"><a href="/proceedings/2026/">IJCAI 2026 Proceedings</a></li>
+	<li id="menu-item-235" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-235"><a href="https://ijcai.org/all_proceedings/">All Proceedings</a></li>
+</ul>
+</li>
+<li id="menu-item-236" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-236"><a href="https://ijcai.org/awards/">Awards</a></li>
+<li id="menu-item-237" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-237"><a href="https://ijcai.org/trustees/current_trustees/">Trustees/officers</a>
+<ul class="sub-menu">
+	<li id="menu-item-238" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-238"><a href="https://ijcai.org/trustees/current_trustees/">Current trustees</a></li>
+	<li id="menu-item-239" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-239"><a href="https://ijcai.org/trustees/trustees_elect/">Trustees Elect</a></li>
+	<li id="menu-item-240" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-240"><a href="https://ijcai.org/officers/ijcai_secretariat/">IJCAI Secretariat</a></li>
+	<li id="menu-item-241" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-241"><a href="https://ijcai.org/officers/sponsorship_publicity/">IJCAI Sponsorship and Publicity Officers</a></li>
+	<li id="menu-item-242" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-242"><a href="https://ijcai.org/officers/ijcai_team/">IJCAI Team</a></li>
+	<li id="menu-item-243" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-243"><a href="https://ijcai.org/officers/local_arrangements_chairs/">Local Arrangements Chairs</a></li>
+	<li id="menu-item-244" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-244"><a href="https://ijcai.org/trustees/former_trustees_serving_on_the_executive_committee/">Former Trustees serving on the Executive Committee</a></li>
+	<li id="menu-item-245" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-245"><a href="https://ijcai.org/officers/other_former_officers/">Other Former Officers</a></li>
+</ul>
+</li>
+<li id="menu-item-246" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-246"><a href="https://ijcai.org/aijd/">AI Journal</a></li>
+<li id="menu-item-247" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-247"><a href="https://ijcai.org/aboutijcai/">About</a>
+<ul class="sub-menu">
+	<li id="menu-item-248" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-248"><a href="https://ijcai.org/aboutijcai/">About IJCAI</a></li>
+	<li id="menu-item-314" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-314"><a href="https://ijcai.org/documents/">Documents</a></li>
+	<li id="menu-item-249" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-249"><a href="https://ijcai.org/contact/">Contact Information</a></li>
+</ul>
+</li>
+</ul>    </nav>
+</header>
+
+<main id="main" class="site-main">
+    <div class="page-banner" style="background-image: url('https://ijcai.org/wp-content/themes/ijcai/assets/img/banners/proceedings.jpg?v=1');">
+    <details class="section-nav section-nav--overlay">
+    <summary>Proceedings</summary>
+    <ul>
+                    <li>
+                <a href="/proceedings/2026/">
+                    IJCAI 2026 Proceedings                </a>
+            </li>
+                    <li>
+                <a href="https://ijcai.org/all_proceedings/">
+                    All Proceedings                </a>
+            </li>
+            </ul>
+</details>
+</div>
+    <article class="panel archive-record">
+        <nav class="archive-crumbs" aria-label="Breadcrumb">
+            <a href="https://ijcai.org/all_proceedings/">Proceedings</a>
+                            <span aria-hidden="true">›</span>
+                <a href="https://ijcai.org/proceedings/2025/">IJCAI 2025</a>
+                    </nav>
+
+        
+        <div class="entry-content">
+            <div class="article">
+    <div class="article__grid">
+        <div class="article__main">
+            <h1 class="article__title">A Survey of Optimization Modeling Meets LLMs: Progress and Future Directions</h1>
+
+            <p class="article__authors">
+                <span title="The State Key Laboratory of Blockchain and Data Security , Zhejiang University"><a href="https://ijcai.org/authors/ziyang-xiao/">Ziyang Xiao</a></span>, <span title="The State Key Laboratory of Blockchain and Data Security , Zhejiang University"><a href="https://ijcai.org/authors/jingrong-xie/">Jingrong Xie</a></span>, <span title="The State Key Laboratory of Blockchain and Data Security , Zhejiang University"><a href="https://ijcai.org/authors/lilin-xu/">Lilin Xu</a></span>, <span title="The State Key Laboratory of Blockchain and Data Security , Zhejiang University"><a href="https://ijcai.org/authors/shisi-guan/">Shisi Guan</a></span>, <span title="The State Key Laboratory of Blockchain and Data Security , Zhejiang University"><a href="https://ijcai.org/authors/jingyan-zhu/">Jingyan Zhu</a></span>, <span title="Huawei Noah&#039;s Ark Lab"><a href="https://ijcai.org/authors/xiongwei-han/">Xiongwei Han</a></span>, <span title="Huawei Noah&#039;s Ark Lab"><a href="https://ijcai.org/authors/xiaojin-fu/">Xiaojin Fu</a></span>, <span title="Huawei Noah&#039;s Ark Lab"><a href="https://ijcai.org/authors/wingyin-yu/">WingYin Yu</a></span>, <span title="Huawei Noah&#039;s Ark Lab"><a href="https://ijcai.org/authors/han-wu/">Han Wu</a></span>, <span title="Huawei Noah&#039;s Ark Lab"><a href="https://ijcai.org/authors/wei-shi/">Wei Shi</a></span>, <span title="Huawei Noah&#039;s Ark Lab"><a href="https://ijcai.org/authors/qingcan-kang/">Qingcan Kang</a></span>, <span title="Huawei Noah&#039;s Ark Lab"><a href="https://ijcai.org/authors/jiahui-duan/">Jiahui Duan</a></span>, <span title="Huawei Noah&#039;s Ark Lab"><a href="https://ijcai.org/authors/tao-zhong/">Tao Zhong</a></span>, <span title="Huawei Noah&#039;s Ark Lab"><a href="https://ijcai.org/authors/mingxuan-yuan/">Mingxuan Yuan</a></span>, <span title="Huawei Noah&#039;s Ark Lab"><a href="https://ijcai.org/authors/jia-zeng/">Jia Zeng</a></span>, <span title="School of Business , Singapore University of Social Sciences"><a href="https://ijcai.org/authors/yuan-wang/">Yuan Wang</a></span>, <span title="The State Key Laboratory of Blockchain and Data Security , Zhejiang University"><a href="https://ijcai.org/authors/gang-chen/">Gang Chen</a></span>, <span title="The State Key Laboratory of Blockchain and Data Security , Zhejiang University; Hangzhou High-Tech Zone (Binjiang ) Institute of Blockchain and Data Security"><a href="https://ijcai.org/authors/dongxiang-zhang/">Dongxiang Zhang</a></span>            </p>
+
+            <div class="article__actions">
+                                                    <a class="action action--pdf" href="/proceedings/2025/1192.pdf"><span class="action__icon" aria-hidden="true">PDF</span>Download</a>
+                                <a class="action action--bib" href="/proceedings/2025/bibtex/1192"><span class="action__icon" aria-hidden="true">Bib</span>BibTeX</a>
+                <a class="action action--cite" href="#cite" data-tab-open="cite"><span class="action__icon" aria-hidden="true">“”</span>Cite</a>
+            </div>
+
+            <p class="article__venue">
+                <a href="/proceedings/2025/">Proceedings of the Thirty-Fourth International Joint Conference on Artificial Intelligence</a>.
+                Survey Track. Pages 10742-10750.
+            </p>
+                            <p class="article__doi"><a href="https://doi.org/10.24963/ijcai.2025/1192">https://doi.org/10.24963/ijcai.2025/1192</a></p>
+                                    <p class="article__copyright">&copy; 2025 International Joint Conferences on Artificial Intelligence</p>
+
+                            <div class="article__keywords">
+                    <p class="eyebrow">Keywords</p>
+                    <ul>
+                                                    <li>Natural Language Processing: NLP: Applications</li>
+                                            </ul>
+                </div>
+                    </div>
+
+        <div class="article__abstract">
+            <p class="eyebrow">Abstract</p>
+                            <p>By virtue of its great utility in solving real-world problems, optimization modeling has been widely employed for optimal decision-making across various sectors, but it requires substantial expertise from operations research professionals. With the advent of large language models (LLMs), new opportunities have emerged to automate the procedure of mathematical modeling. This survey presents a comprehensive and timely review of recent advancements that cover the entire technical stack, including data synthesis and fine-tuning for the base model,  inference frameworks, benchmark datasets, and performance evaluation. In addition, we conducted an in-depth analysis on the quality of benchmark datasets, which was found to have a surprisingly high error rate.  We cleaned the datasets and constructed a new leaderboard with fair performance evaluation in terms of base LLM model and datasets. We also build an online portal that integrates resources of cleaned datasets, code and paper repository to benefit the community.  Finally, we identify  limitations in current methodologies and outline future research opportunities.</p>                    </div>
+    </div>
+
+    <div class="article-tabs" data-tabs>
+        <div class="article-tabs__list" role="tablist">
+                            <button role="tab" id="tab-references" aria-controls="references" aria-selected="true">References (42)</button>
+                                        <button role="tab" id="tab-fulltext" aria-controls="fulltext" aria-selected="false">Full text</button>
+                                    <button role="tab" id="tab-cite" aria-controls="cite" aria-selected="false">Cite</button>
+            <button role="tab" id="tab-data" aria-controls="data" aria-selected="false">Data</button>
+        </div>
+
+                    <section role="tabpanel" id="references" aria-labelledby="tab-references">
+                <ol class="references">
+                                            <li value="1">
+                            [AhmadiTeshnizi et al., 2024] Ali AhmadiTeshnizi, Wenzhi Gao, and Madeleine Udell. Optimus: Scalable optimization modeling with (MI)LP solvers and large language models. In Forty-first International Conference on Machine Learning, ICML 2024, Vienna, Austria, July 21-27, 2024. OpenReview.net, 2024.                                                                                </li>
+                                            <li value="2">
+                            [Astorga et al., 2024] Nicolás Astorga, Tennison Liu, Yuanzhang Xiao, and Mihaela van der Schaar. Autoformulation of mathematical optimization models using llms, 2024.                                                                                </li>
+                                            <li value="3">
+                            [Besta et al., 2024] Maciej Besta, Nils Blach, Ales Ku- bicek, Robert Gerstenberger, Lukas Gianinazzi, Joanna Gajda, Tomasz Lehmann, Michał Podstawski, Hubert Niewiadomski, Piotr Nyczyk, and Torsten Hoefler. Graph of Thoughts: Solving Elaborate Problems with Large Language Models. Proceedings of the AAAI Conference on Artificial Intelligence, 38(16):17682-17690, Mar 2024.                                                                                </li>
+                                            <li value="4">
+                            [Chen et al., 2023] Hao Chen, Gonzalo E. Constante-Flores, and Can Li. Diagnosing infeasible optimization problems using large language models. CoRR, abs/2308.12923, 2023.                                                                                </li>
+                                            <li value="5">
+                            [Chu et al., 2024] Zheng Chu, Jingchang Chen, Qianglong Chen, Weijiang Yu, Tao He, Haotian Wang, Weihua Peng, Ming Liu, Bing Qin, and Ting Liu. Navigate through enigmatic labyrinth A survey of chain of thought reasoning: Advances, frontiers and future. pages 1173- 1203. Association for Computational Linguistics, 2024.                                                                                </li>
+                                            <li value="6">
+                            [Cobbe et al., 2021] Karl Cobbe, Vineet Kosaraju, Mo- hammad Bavarian, Mark Chen, Heewoo Jun, Lukasz Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano, Christopher Hesse, and John Schulman. Training verifiers to solve math word problems. CoRR, abs/2110.14168, 2021.                                                                                </li>
+                                            <li value="7">
+                            [Cuthbertson, 1998] Richard W. Cuthbertson. The logic of logistics: Theory, algorithms and applications for logistics management. J. Oper. Res. Soc., 49(9):1016-1017, 1998.                                                                                </li>
+                                            <li value="8">
+                            [de Matos and Ormerod, 2000] Paula A. Leal de Matos and Richard J. Ormerod. The application of operational research to european air traffic flow management - understanding the context. Eur. J. Oper. Res., 123(1):125- 144, 2000.                                                                                </li>
+                                            <li value="9">
+                            [Delgado et al., 2022] Erwin J Delgado, Xavier Cabezas, Carlos Martin-Barreiro, Víctor Leiva, and Fernando Rojas. An equity-based optimization model to solve the location problem for healthcare centers applied to hospital beds and covid-19 vaccination. Mathematics, 10(11):1825, 2022.                                                                                </li>
+                                            <li value="10">
+                            [Ethayarajh et al., 2024] Kawin Ethayarajh, Winnie Xu, Niklas Muennighoff, Dan Jurafsky, and Douwe Kiela. KTO: model alignment as prospect theoretic optimization. CoRR, abs/2402.01306, 2024.                                                                                </li>
+                                            <li value="11">
+                            [Guo et al., 2025] Daya Guo, Dejian Yang, Haowei Zhang, Junxiao Song, Ruoyu Zhang, Runxin Xu, Qihao Zhu, Shirong Ma, Peiyi Wang, and Xiao Bi et al. Deepseek- r1: Incentivizing reasoning capability in llms via reinforcement learning. CoRR, abs/2501.12948, 2025.                                                                                </li>
+                                            <li value="12">
+                            [Gurobi Optimization, 2023] Gurobi Optimization. 2023 state of mathematical optimization report, 2023.                                                                                </li>
+                                            <li value="13">
+                            [haoxuan deng et al., 2024] haoxuan deng, Bohao Zheng, Yirui Jiang, and Trung Hieu Tran. CAFA: Coding as auto- formulation can boost large language models in solving linear programming problem. In The 4th Workshop on Mathematical Reasoning and AI at NeurIPS&#039;24, 2024.                                                                                </li>
+                                            <li value="14">
+                            [Huang et al., 2024] Xuhan Huang, Qingning Shen, Yan Hu, Anningzhe Gao, and Benyou Wang. Mamo: a mathematical modeling benchmark with solvers, 2024.                                                                                </li>
+                                            <li value="15">
+                            [Jiang et al., 2024] Caigao Jiang, Xiang Shu, Hong Qian, Xingyu Lu, Jun Zhou, Aimin Zhou, and Yang Yu. LL- MOPT: learning to define and solve general optimization problems from scratch. CoRR, abs/2410.13213, 2024.                                                                                </li>
+                                            <li value="16">
+                            [Jiao et al., 2024] Zihao Jiao, Mengyi Sha, Haoyu Zhang, Xinyu Jiang, and Wei Qi. City-leo: Toward transparent city management using LLM with end-to-end optimization. CoRR, abs/2406.10958, 2024.                                                                                </li>
+                                            <li value="17">
+                            [JU et al., 2024] Da JU, Song Jiang, Andrew Cohen, Aaron Foss, Sasha Mitts, Arman Zharmagambetov, Brandon Amos, Xian Li, Justine T. Kao, Maryam Fazel-Zarandi, and Yuandong Tian. To the globe (TTG): towards language-driven guaranteed travel planning. CoRR, abs/2410.16456, 2024.                                                                                </li>
+                                            <li value="18">
+                            [Li et al., 2023a] Beibin Li, Konstantina Mellou, Bo Zhang, Jeevan Pathuri, and Ishai Menache. Large language mod- els for supply chain optimization. CoRR, abs/2307.03875, 2023.                                                                                </li>
+                                            <li value="19">
+                            [Li et al., 2023b] Ran Li, Chuanqing Pu, Junyi Tao, Canbing Li, Feilong Fan, Yue Xiang, and Sijie Chen. Llm-based frameworks for power engineering from routine to novel tasks, 2023.                                                                                </li>
+                                            <li value="20">
+                            [Li et al., 2024] Sirui Li, Janardhan Kulkarni, Ishai Men- ache, Cathy Wu, and Beibin Li. Towards foundation models for mixed integer linear programming. CoRR, abs/2410.08288, 2024.                                                                                </li>
+                                            <li value="21">
+                            [OpenAI, 2024] OpenAI. Learning to reason with llms. https://openai.com/index/learning-to-reason-with-llms/, 2024. [Accessed 19-09-2024].                                                                                        <a class="ref-link" href="https://openai.com/index/learning-to-reason-with-llms/,2024" rel="nofollow">Link</a>
+                                                    </li>
+                                            <li value="22">
+                            [Pang et al., 2024] Jing-Cheng Pang, Heng-Bo Fan, Pengyuan Wang, Jia-Hao Xiao, Nan Tang, Si-Hang Yang, Chengxing Jia, Sheng-Jun Huang, and Yang Yu. Empowering language models with active inquiry for deeper understanding, 2024.                                                                                </li>
+                                            <li value="23">
+                            [Parashar et al., 2025] Aditya Parashar, Natalia Kosilova, and Ari Kobren. WIQOR: A dataset for what-if analysis of operations research problems, 2025.                                                                                </li>
+                                            <li value="24">
+                            [Qian et al., 2024] Chen Qian, Zihao Xie, Yifei Wang, Wei Liu, Yufan Dang, Zhuoyun Du, Weize Chen, Cheng Yang, Zhiyuan Liu, and Maosong Sun. Scaling large-language- model-based multi-agent collaboration, 2024.                                                                                </li>
+                                            <li value="25">
+                            [Ramamonjison et al., 2023] Rindranirina Ramamonjison, Timothy T. L. Yu, Raymond Li, Haley Li, Giuseppe Carenini, Bissan Ghaddar, Shiqi He, Mahdi Mostajabdaveh, Amin Banitalebi-Dehkordi, Zirui Zhou, and Yong Zhang. Nl4opt competition: Formulating optimization problems based on their natural language descriptions. CoRR, abs/2303.08233, 2023.                                                                                </li>
+                                            <li value="26">
+                            [Runnwerth et al., 2020] Mila Runnwerth, Markus Stocker, and Sören Auer. Operational Research Literature as a Use Case for the Open Research Knowledge Graph, page 327-334. Springer International Publishing, 2020.                                                                                </li>
+                                            <li value="27">
+                            [Sprague et al., 2024] Zayne Sprague, Fangcong Yin, Juan Diego Rodriguez, Dongwei Jiang, Manya Wadhwa, Prasann Singhal, Xinyu Zhao, Xi Ye, Kyle Mahowald, and Greg Durrett. To cot or not to cot? chain-of-thought helps mainly on math and symbolic reasoning, 2024.                                                                                </li>
+                                            <li value="28">
+                            [Tang et al., 2024] Zhengyang Tang, Chenyu Huang, Xin Zheng, Shixi Hu, Zizhuo Wang, Dongdong Ge, and Benyou Wang. ORLM: training large language models for optimization modeling. CoRR, abs/2405.17743, 2024.                                                                                </li>
+                                            <li value="29">
+                            [Wang et al., 2024a] Teng Wang, Wing-Yin Yu, Ruifeng She, Wenhan Yang, Taijie Chen, and Jianping Zhang. Leveraging large language models for solving rare MIP challenges. CoRR, abs/2409.04464, 2024.                                                                                </li>
+                                            <li value="30">
+                            [Wang et al., 2024b] Zhuohan Wang, Ziwei Zhu, Yizhou Han, Yufeng Lin, Zhihang Lin, Ruoyu Sun, and Tian Ding. Optibench: Benchmarking large language models in optimization modeling with equivalence-detection evaluation, 2024.                                                                                </li>
+                                            <li value="31">
+                            [Wei et al., 2022] Jason Wei, Xuezhi Wang, Dale Schuur- mans, Maarten Bosma, Brian Ichter, Fei Xia, Ed H. Chi, Quoc V. Le, and Denny Zhou. Chain-of-thought prompting elicits reasoning in large language models. 2022.                                                                                </li>
+                                            <li value="32">
+                            [Wu et al., 2025] Yang Wu, Yifan Zhang, Yurong Wu, Yuran Wang, Junkai Zhang, and Jian Cheng. Evo- step: Evolutionary generation and stepwise validation for optimizing LLMs in OR, 2025.                                                                                </li>
+                                            <li value="33">
+                            [Xiao and Zhang, 2023] Ziyang Xiao and Dongxiang Zhang. A deep reinforcement learning agent for geometry online tutoring. Knowl. Inf. Syst., 65(4):1611-1625, 2023.                                                                                </li>
+                                            <li value="34">
+                            [Xiao et al., 2024a] Ziyang Xiao, Dongxiang Zhang, Xiong- wei Han, Xiaojin Fu, Wing Yin Yu, Tao Zhong, Sai Wu, Yuan Wang, Jianwei Yin, and Gang Chen. Enhancing LLM reasoning via vision-augmented prompting. In Amir Globersons, Lester Mackey, Danielle Belgrave, Angela Fan, Ulrich Paquet, Jakub M. Tomczak, and Cheng Zhang, editors, Advances in Neural Information Processing Systems 38: Annual Conference on Neural Information Processing Systems 2024, NeurIPS 2024, Vancouver, BC, Canada, December 10 -15, 2024, 2024.                                                                                </li>
+                                            <li value="35">
+                            [Xiao et al., 2024b] Ziyang Xiao, Dongxiang Zhang, Yangjun Wu, Lilin Xu, Yuan Jessica Wang, Xiongwei Han, Xiaojin Fu, Tao Zhong, Jia Zeng, Mingli Song, and Gang Chen. Chain-of-experts: When llms meet complex operations research problems. OpenReview.net, 2024.                                                                                </li>
+                                            <li value="36">
+                            [Xing et al., 2024] Linzi Xing, Xinglu Wang, Yuxi Feng, Zhenan Fan, Jing Xiong, Zhijiang Guo, Xiaojin Fu, Rindra Ramamonjison, Mahdi Mostajabdaveh, Xiongwei Han, Zirui Zhou, and Yong Zhang. Towards human-aligned evaluation for linear programming word problems. In LREC/COLING, pages 16550-16556, 2024.                                                                                </li>
+                                            <li value="37">
+                            [Yang et al., 2025] Zhicheng Yang, Yiwei Wang, Yinya Huang, Zhijiang Guo, Wei Shi, Xiongwei Han, Liang Feng, Linqi Song, Xiaodan Liang, and Jing Tang. Optibench meets resocratic: Measure and improve LLMs for optimization modeling. In The Thirteenth International Conference on Learning Representations, 2025.                                                                                </li>
+                                            <li value="38">
+                            [Yao et al., 2023] Shunyu Yao, Dian Yu, Jeffrey Zhao, Izhak Shafran, Tom Griffiths, Yuan Cao, and Karthik Narasimhan. Tree of thoughts: Deliberate problem solving with large language models. 2023.                                                                                </li>
+                                            <li value="39">
+                            [Zhang et al., 2023] Dongxiang Zhang, Ziyang Xiao, Yuan Wang, Mingli Song, and Gang Chen. Neural TSP solver with progressive distillation. In Brian Williams, Yiling Chen, and Jennifer Neville, editors, Thirty-Seventh AAAI Conference on Artificial Intelligence, AAAI 2023, Thirty-Fifth Conference on Innovative Applications of Artificial Intelligence, IAAI 2023, Thirteenth Symposium on Educational Advances in Artificial Intelligence, EAAI 2023, Washington, DC, USA, February 7-14, 2023, pages 12147-12154. AAAI Press, 2023.                                                                                </li>
+                                            <li value="40">
+                            [Zhang et al., 2024a] Jihai Zhang, Wei Wang, Siyan Guo, Li Wang, Fangquan Lin, Cheng Yang, and Wotao Yin. Solving general natural-language-description optimization problems with large language models. pages 483-490. Association for Computational Linguistics, 2024.                                                                                </li>
+                                            <li value="41">
+                            [Zhang et al., 2024b] Yifei Zhang, Xintao Wang, Jiaqing Liang, Sirui Xia, Lida Chen, and Yanghua Xiao. Chain- of-knowledge: Integrating knowledge reasoning into large language models by learning from knowledge graphs, 2024.                                                                                </li>
+                                            <li value="42">
+                            [Zhang et al., 2025] Yansen Zhang, Qingcan Kang, Wing Yin YU, HaileiGong, Xiaojin Fu, Xiongwei Han, Tao Zhong, and Chen Ma. Decision information meets large language models: The future of explainable operations research. In The Thirteenth International Conference on Learning Representations, 2025.                                                                                </li>
+                                    </ol>
+                <p class="tab-note">References were extracted automatically from the PDF and may contain errors.</p>
+            </section>
+        
+                    <section role="tabpanel" id="fulltext" aria-labelledby="tab-fulltext" hidden>
+                <p class="tab-note">Full text extracted automatically from the PDF; figures, tables and equations may differ. The PDF is the version of record.</p>
+                <div class="fulltext"><h2>1 Introduction</h2>
+<p>Optimization modeling aims to mathematically model complex decision-making problems that arise from a wide range of industry sectors, including supply chain [Cuthbertson, 1998], healthcare [Delgado et al., 2022], air traffic flow management [de Matos and Ormerod, 2000; Zhang et al., 2023] and geometry problems [Xiao and Zhang, 2023]. Despite its potential to enhance operational efficiency, there exists an expertise barrier that limits the broader adoption of modeling tools. According to a survey of Gurobi users, 81% of them hold advanced degrees, with nearly half specializing in operations research [Gurobi Optimization, 2023].</p>
+<p>To automate the procedure and reduce the dependence on domain-specific modeling experts, NL4Opt (Natural Language for Optimization) [Ramamonjison et al., 2023] has mathematical model and generate the code. Numerous works have been proposed in this rapidly expanding field:</p>
+<p>∗Corresponding Author.</p>
+<ul>
+<li style="list-style-type: '· ';">Domain-specific LLM. Representative works such as ORLM [Tang et al., 2024] and LLMOPT [Jiang et al., 2024] take advantage of data synthesis and instruction tuning to enhance the capability of base model for optimization modeling.</li>
+<li style="list-style-type: '· ';">Advanced Inference Framework: Various reasoning frameworks have emerged, include multi-agent systems (e.g. Chain-of-Experts [Xiao et al., 2024b] and OptiMUS [AhmadiTeshnizi et al., 2024]) and chain-ofthought variants (e.g. Tree of Thoughts [Yao et al., 2023], Autoformulation [Astorga et al., 2024]).</li>
+<li style="list-style-type: '· ';">Benchmark Datasets and Evaluation. There have been multiple benchmark datasets released, such as IndustryOR [Tang et al., 2024], NL4Opt [Ramamonjison et al., 2023] and MAMO [Huang et al., 2024]. However, these datasets vary significantly in quality, and evaluation methods lack standardization across different studies.</li>
+</ul>
+<p>Thus, it is of high necessity to present a just-in-time survey to summarize the progress and indicate possible future research directions. In this paper, we propose the first systematic review of optimization modeling in the era of LLMs. As shown in Figure 3, we present a detailed taxonomy of the various methodologies employed to harness the power of LLMs for optimization modeling. Besides, we noticed that existing benchmark datasets are associated with high error rates and performed data cleaning to enhance quality. We constructed a new leader-board with fair comparison in terms of base model and benchmark datasets, and deliver new insights of performance evaluation. To benefit the community, these datasets and implementation code are accessible from our online portal 1 .</p>
+<h2>2 Background</h2>
+<h2>2.1 ProblemDefinition</h2>
+<p>Optimization modeling transforms a problem description in natural language P into a model M. Mathematically, an optimization model is defined by an objective and a set of constraints, as shown in Equation 1.</p>
+<div class="formula-not-decoded">Formula not decoded</div>
+<p>Here, x is the vector of decision variables, f(x) denotes the objective function, gi(x) and hj(x) represent the inequality and equality constraints respectively.</p>
+<h2>2.2 Abstract Model and Concrete Model</h2>
+<p>In practice, optimization models can be categorized into two types: abstract models and concrete models. A model whose parameters are denoted by mathematical symbols called a abstract model, while a model whose parameters are specified by numerical values is called a concrete model. Correspondingly, optimization modeling can be divided into two types: concrete modeling and abstract modeling, as illustrated in Figure 2. Concrete modeling directly translates a problem description containing numerical parameters into a concrete model. In contrast, abstract modeling follows a modeldata separation approach where the problem description only contains the model structure, with parameters are provided separately at a later stage.</p>
+<p><a href="https://llm4or.github.io/LLM4OR">1 https://llm4or.github.io/LLM4OR</a></p>
+<figure><figcaption><div class="caption">Figure 2: Comparison between concrete and abstract models. The right part illustrates a linear programming formulation example.</div></figcaption><img src="/proceedings/2025/fulltext/1192/image_000001_9ee61bf1666884ce268f1f742a952640fb641ddadba0a86d78b671f631887863.png"></figure>
+<h2>3 Technical Stack of OptimizationModeling</h2>
+<p>This section presents a typical technical stack for applying LLMs to optimization modeling. The pipeline consists of four key steps: (1) data preparation and LLM fine-tuning; (2) inference; (3) benchmarking; and (4) evaluation. Figure 3 shows the representative works in each step of this pipeline.</p>
+<h2>3.1 Data Synthesis and Fine-tuning</h2>
+<h2>Data Synthesis Methods</h2>
+<p>It is a common practice to fine-tune language models for specialized domains such as optimization modeling. However, fine-tuning requires a substantial amount of high-quality training data. In the field of optimization modeling, data availability is limited due to the scarcity of problem sources and the high cost of problem annotation. To address this challenge, current approaches employ data synthesis to generate training datasets. Formally, the data synthesis process can be defined as seed → {P ′ ,M′ }, where P ′ represents the generated problem description, M′ denotes the corresponding modeling and seed is the seed data of generation process. Depending on the primary focus of the generation process, existing works can be divided into two approaches: problemcentric and model-centric.</p>
+<p>Problem-centric The problem-centric approach involves two steps. First, it takes an existing problem P and generates a new problem P ′ . Then, it automatically produces the corresponding model M′ using LLMs, with human experts filtering out low-quality annotations. In the first step, ORInstruct [Tang et al., 2024] devises three primitives to increase the diversity of a problem: modifying constraints and objectives, rephrasing questions for scenario diversity, and adding multiple modeling techniques for linguistic diversity. Besides, the data augmentation pipeline introduced in LLMOPT [Jiang et al., 2024] proposes seven primitives to further enhance diversity by incorporating new instructions on modifying the problem type and scenario. Beyond diversity, Evo-Step-Instruct [Wu et al., 2025] introduces complexity as an additional dimension, along with a method to modify constraints, parameters, and objectives progressively to create more challenging problems. However, the problem-centric approach is limited in its ability to escalate complexity. As the complexity grows, generating a valid solution model becomes more difficult, leading to a higher risk of errors in annotations. To address this, Evo-Step-Instruct employs a sophisticated workflow to filter out unqualified data.</p>
+<figure><figcaption><div class="caption">Figure 3: Left: Taxonomy of LLMs-based optimization modeling, organized according to the LLMs&#x27; technical stack. Right: Representative works for each category are presented in chronological order. The dashed arrows indicates where later works build upon techniques proposed in earlier studies.</div></figcaption><img src="/proceedings/2025/fulltext/1192/image_000002_b198929abf6d492d7ece83ea3c0842a8ab3b1ff47ddc79335948abefd7df4c9e.png"></figure>
+<p>Model-centric The model-centric method adopts a different approach by first generating an augmented model M′ and then crafting a corresponding problem description P ′ . Compared to problem-centric approach, this methodology provides more fine-grained control over instance types and difficulty while ensuring the labeled model remains solvable. MILP-Evolve [Li et al., 2024] pioneer this approach by using existing model code as input, prompting LLMs to add, delete, or mutate code elements to evolve new models. However, since this work focus solely on generating MILP instances, it does not incorporate the problem description generation step. Similarly, OptiBench [Wang et al., 2024b] prioritizes model code generation but differs by using simple seeds such as model types (e.g., MILPs or MIPs), problem classes (e.g., knapsack problem), and domains (e.g., cargo loading) instead of existing models. This approach enables better control over dataset distribution. After code generation, LLMs transform the solver code into detailed word description. Another work, ReSocratic [Yang et al., 2025], extends this paradigm by defining models as semantically rich formatted demonstrations. Unlike pure code, these demonstrations incorporate structured data for variables, objective functions, and constraints, along with their natural language descriptions, resulting in richer semantic content. ReSocratic employs a multi-step sampling method with LLMs to first generate such documentation, which is then transforms into comprehensive problem descriptions as data points.</p>
+<h2>Fine-tuning Methods</h2>
+<p>Once the data is prepared, the next step is to fine-tune open-source LLMs to enhance their optimization modeling capabilities. Fine-tuning typically involves two key steps: model instruction training and model alignment. Existing works [Tang et al., 2024; Wang et al., 2024a; Wu et al., 2025] focus on the first step by applying supervised finetuning (SFT) with synthetic data. Meanwhile, LLMOPT [Jiang et al., 2024] introduces Kahneman-Tversky Optimization (KTO) [Ethayarajh et al., 2024], which further aligns model outputs with human preferences and helps mitigate biases. Despite these advancements, there remains a notable gap in research exploring innovative training techniques and paradigms for optimization modeling, highlighting the need for further investigation.</p>
+<h2>3.2 Inference</h2>
+<p>During the inference stage, trained LLMs translate the problem description P into the modeling result M, which can be either executable code or structured documentation. As with other domain-specific tasks, prompt engineering is a straightforward yet effective method for applying LLMs to optimization modeling problems. Moreover, as illustrated in Figure 4, the capabilities of LLMs can be enhanced along two dimensions. One approach involves inference-time scaling, which encourages LLMs to generate additional intermediate reasoning steps (referred to as "X-of-thought"). The other Scaling on LLMs' Inference Scaling on LLMs Agent approach scales up the single LLM to the LLM-based multiagent system (referred to as "multi-expert").</p>
+<figure><img src="/proceedings/2025/fulltext/1192/image_000003_978f60a441d3ce5ab3df49dfade9b084e80a02bdf7e9ceedc719581166a6e7f0.png"></figure>
+<p>Figure 4: Three types of inference methods.</p>
+<p>Prompt At the advent of ChatGPT, NL4Opt [Ramamonjison et al., 2023] pioneers the use of ChatGPT for solving optimization modeling problems. This work introduces a simple prompt template comprising three components: the problem description, task instructions, and format control. Since then, many studies have leveraged LLMs for optimization modeling via prompt engineering, which varies between training-based and training-free approaches.</p>
+<p>For training-based approaches, prompts are primarily designed for format control, helping the model generate output that conforms to the training set's label format. For example, ORLM [Tang et al., 2024] prompts the model to first produce a plain-text description of the model and then generate the corresponding code. Similarly, LLMOPT [Jiang et al., 2024] instructs the trained LLM to output a five-element formulation, while RareMIP [Wang et al., 2024a] prompts the model to generate LaTeX code that details the modelbuilding process. Additionally, TTG [JU et al., 2024] uses prompts to produce JSON output, which can be easily parsed into a symbolic model suitable for solvers.</p>
+<p>For training-free approaches, the goal shifts toward infusing richer domain knowledge into LLMs through the prompt. For instance, OptiChat [Chen et al., 2023] provides the LLM with step-by-step instructions that mimic the guidance of an optimization expert, thereby equipping the model with domain-specific insights. It also employs few-shot learning by supplying examples of optimization problems paired with expert solutions. Similarly, City-LEO [Jiao et al., 2024] adopts in-context learning techniques to construct its LLM pipeline, and another work [Li et al., 2023b] incorporates prior knowledge into prompt design to further enhance LLM performance on routine tasks.</p>
+<p>Although prompt engineering can be rapidly implemented, it only scratches the surface of what LLMs can achieve in tackling complex modeling problems. Much of their potential remains untapped. The following sections introduce two promising directions to unleash this power: X-of-thought and Multi-Agent.</p>
+<p>X-of-Thought To enhance the reasoning capabilities of LLMs and tackle increasingly complex optimization modeling problems, researchers have begun exploring LLMs' potential during inference time. The chain-of-thought (CoT) approach [Wei et al., 2022] pioneers LLM reasoning by encouraging the model to think step-by-step, effectively bridging logical gaps during inference. Building on this foundation, Tree of Thoughts (ToT) [Yao et al., 2023] and Graph of Thoughts (GoT) [Besta et al., 2024] further enhance reasoning by employing tree- and graph-structured exploration of intermediate thoughts. Collectively, these approaches are known as "X-of-thought" [Chu et al., 2024]. Although originally designed for general reasoning tasks, these methods have also been successfully applied to optimization modeling [Xiao et al., 2024b].</p>
+<p>Subsequently, several X-of-thought methods tailored for optimization modeling have emerged. For instance, CAFA [haoxuan deng et al., 2024] defines the inference process as a linear sequence of steps that explicitly captures the reasoning required for modeling. Furthermore, Autoformulation [Astorga et al., 2024] treats the modeling process as a Monte Carlo Tree Search, where each level of the tree corresponds to a specific modeling step-sequentially addressing parameters and decision variables, the objective function, equality constraints, and inequality constraints. This framework integrates an LLM with two key components: (1) a dynamic formulation hypothesis generator responsible for exploring the Monte Carlo Tree, and (2) an evaluator that provides feedback on the correctness of solutions at the leaf nodes.</p>
+<p>Recently, OpenAI's o1 [OpenAI, 2024] has attracted significant attention for its exceptional reasoning capabilities in tackling complex problems, including optimization modeling. It explicitly integrates an extended internal chain-ofthought into its inference process, representing a promising direction that merits further investigation.</p>
+<p>Multi-Expert Another approach to scaling language models for complex reasoning is the use of multi-agent collaboration systems [Qian et al., 2024]. In the field of optimization modeling, LLMs are adapted to mimic human experts and collaborate to complete the entire modeling process. This system is referred to as multi-expert system. Early examples include OptiMUS [AhmadiTeshnizi et al., 2024] and Chain-of-Experts (CoE) [Xiao et al., 2024b]. Both systems predefine a set of LLM-based experts, with two key roles: a formulator for optimization modeling and a programmer for code generation. They differ in how they manage the workflow: OptiMUS uses a predefined workflow to engage experts in collaborative problem-solving, while CoE employs a special expert called the "Conductor" to orchestrate the entire process. Additionally, CoE introduces a system-level reflection mechanism to adjust answers based on external feedback.</p>
+<p>Subsequently, the OptiGuide framework [Li et al., 2023a] is proposed with a focus on improving the reliability and readability of modeling results. Specifically, it incorporates a safeguard agent to address potential output errors and an interpreter that generates human-readable explanations of both the modeling results and the solver's solution. Similarly, OptLLM [Zhang et al., 2024a] includes a diagnostic agent that reformulates the modeling output based on internal feedback when code fails syntax tests. Explainable Operations Research (EOR) [Zhang et al., 2025] adopts a similar framework to OptiGuide but focuses on what-if analysis for optimization modeling, in which way it can evaluate the impact of complex constraint changes on decision-making.</p>
+<p>Compared to X-of-Thought, the merits of multi-expert methods lie in their interpretable intermediate results and better capability of safeguarding against potential errors hidden in the output, making them a popular direction for future research.</p>
+<h2>3.3 Benchmarks</h2>
+<p>To evaluate performance of LLMs-based optimization modeling methods, several benchmarks have been proposed. As discussed in Section 2, these benchmarks can be categorized into two types: concrete modeling and abstract modeling.</p>
+<p>Concrete Modeling NL4Opt [Ramamonjison et al., 2023] is the first optimization modeling benchmark proposed in a competition, featuring a test set of 289 instances. However, NL4Opt primarily focuses on simple optimization modeling problems. To address the need for more challenging cases, IndustryOR [Tang et al., 2024] is introduced, consisting of 100 real-world industry cases. IndustryOR covers a variety of problem types-including mixed integer programming and nonlinear integer programming-and features descriptions with or without tabular data, thereby increasing problem complexity. However, IndustryOR suffers from quality control issues, which result in a high error rate. To overcome this limitation, ReSocratic [Yang et al., 2025] introduces a comprehensive framework that applies multiple filters to remove erroneous cases, efficiently improving dataset quality and expanding the test set to 605 instances. While the annotations in these three benchmarks focus solely on providing an objective as final answer, MAMO [Huang et al., 2024] goes a step further by including optimal variable information, offering additional perspectives for evaluating model correctness. Note that MAMO also categorize problems into three classes: EasyLP, ComplexLP and ODE. Our study primarily focuses on the former two categories. All these benchmarks are designed for end-to-end modeling tasks. WIQOR [Parashar et al., 2025], on the other hand, employs what-if analyses to assess performance, providing insights into whether LLMs possess a deeper understanding of the modeling process.</p>
+<p>Abstract Modeling ComplexOR [Xiao et al., 2024b] is an abstract modeling benchmark introduced in the CoE, containing 37 instances collected from both industrial and academic scenarios. In ComplexOR, numerical parameter values are separated from the problem descriptions. NLP4LP [AhmadiTeshnizi et al., 2024] is another early abstract modeling benchmark, extending the number of instances to 269. Although both datasets are relatively small, the subsequent release of OptiBench [Wang et al., 2024b] offers a larger collection of 816 instances following a model-data separation format. While most existing research focuses on concrete modeling, abstract modeling is more prevalent in industrial scenarios due to its reusability. However, developing highquality benchmarks for abstract modeling remains challenging because of its inherent complexity.</p>
+<table><caption><div class="caption">Table 1: Quality statistics of optimization modeling benchmarks.</div></caption><tbody><tr><th>Dataset</th><th>Size</th><th>Complexity</th><th>Error Rate</th></tr><tr><th>NL4Opt</th><td>289</td><td>5.59</td><td>≥ 26.4%</td></tr><tr><th>IndustryOR</th><td>100</td><td>14.06</td><td>≥ 54.0%</td></tr><tr><th>EasyLP</th><td>652</td><td>7.12</td><td>≥ 8.13%</td></tr><tr><th>ComplexLP</th><td>211</td><td>13.35</td><td>≥ 23.7%</td></tr><tr><th>ReSocratic</th><td>605</td><td>7.45</td><td>≥ 16.0%</td></tr><tr><th>NLP4LP</th><td>269</td><td>5.58</td><td>≥ 21.7%</td></tr><tr><th>ComplexOR</th><td>37</td><td>5.98</td><td>≥ 24.3%</td></tr></tbody></table>
+<figure><figcaption><div class="caption">Figure 5: Statistics of complexity distribution for each benchmark visualized using a violin plot. X-axis shows different benchmarks, and y-axis shows the complexity indicator.</div></figcaption><img src="/proceedings/2025/fulltext/1192/image_000004_e330e91f567d6d53fba800d9a38781b0267f617f35f0a48faf558bf4901ab7c5.png"></figure>
+<h2>Analysis on Benchmarks</h2>
+<p>To assess the quality of current benchmarks, we conduct an in-depth analysis of them. The results are shown in Table 1 and Figure 5. We evaluate three key statistical features: (1) Data Size: the number of instances in the benchmark's test set; (2) Complexity: for each problem, we first use standard prompting to generate a model and then use the number of variables and constraints in the model to indicate its complexity; (3) Error Rate: to compute this metric, we have 11 human experts manually identify errors in the problems, and each error case is cross-validated by at least three different experts.</p>
+<p>According to our results, we obtain several key findings. First, in current benchmarks, the error rate is relatively high. As shown in Table 1, except for EasyLP in MAMO, the error rates of other benchmarks exceed 15%, with IndustryOR even reaching as high as 54%, indicating that these benchmarks are not entirely reliable for evaluation. The errors can be caused by three main factors: (1) logical errors in problem descriptions, such as unbounded constraints; (2) poorly defined parameters that lead to unsolvable models; and (3) incorrect ground truth data. To address these issues, we manually filter all error cases and compile a unified, cleaned collection of optimization modeling benchmarks to facilitate future research.</p>
+<p>Takeaway #1: The high error rates in current benchmarks undermine their reliability. We curate a cleaned and unified set of optimization modeling benchmarks to facilitate more accurate evaluation.</p>
+<table><caption><div class="caption">Table 2: Performance comparison of existing fully open-source methods on cleaned benchmarks in a unified setting (use GPT-4o for trainingfree methods and use accuracy as metric). All results are reproduced using our standardized evaluation method.</div></caption><tbody><tr><th>Methods</th><th>NL4Opt</th><th>IndustryOR</th><th>EasyLP</th><th>ComplexLP</th><th>NLP4LP</th><th>ReSocratic</th><th>ComplexOR</th></tr><tr><th>Standard CoT CAFA</th><td>61.2% 62.2% 66.7% 68.1%</td><td>38.1% 40.5% 31.2% 41.1%</td><td>70.3% 49.5% 71.2%</td><td>57.7% 42.3% 50.6% 44.5%</td><td>73.6% 74.7% 50.0%</td><td>48.4% 43.6% 71.2% 40.1%</td><td>42.9% 39.2% 57.1%</td></tr><tr><th>Chain-of-Experts</th><td></td><td></td><td>94.4%</td><td></td><td>87.4%</td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>46.4%</td></tr><tr><th>ORLM-LLaMA-3 8B</th><td>73.8%</td><td>42.9%</td><td>90.4%</td><td>59.5%</td><td>76.4%</td><td>61.8%</td><td>50.0%</td></tr></tbody></table>
+<p>Second, our analysis of benchmark complexity reveals that current benchmarks mainly cover simple cases and exhibit an imbalanced distribution. As shown in Table 1, NL4Opt, NLP4LP, and ComplexOR clearly present low levels of challenge. Figure 5 further shows that most instances concentrate at the simple and medium complexity levels, with instances of complexity greater than 10 being very scarce, which indicates a lack of truly complex cases.</p>
+<p>Takeaway #2: Existing benchmarks are dominated by simple and moderate problems, with very few challenging cases. This imbalance highlights the need for more highcomplexity benchmarks.</p>
+<h2>3.4 Evaluation</h2>
+<p>Evaluating optimization models can be challenging because it is often difficult to determine the correctness of the results. There are two primary approaches exist. The first is objectivewise evaluation, which focuses exclusively on the final objective value produced by the solver. The second is model-wise evaluation, where the generated model is directly compared against a ground truth model.</p>
+<p>Objective-wise In objective-wise evaluation, the focus is solely on the correctness of the final objective. This approach originates from mathematical word problems [Cobbe et al., 2021], where LLMs directly generate a final answer and compare it to the ground truth, referred as the exact answer match method. However, in optimization modeling, LLMs produce a model rather than a final answer. To address this, a test-driven method is introduced in Chain-of-Experts (CoE) [Xiao et al., 2024b], where a solver takes the generated model (with specified parameters), computes the final objective, and compares it to the ground truth. Subsequent works, including ORLM [Tang et al., 2024], CAFA [haoxuan deng et al., 2024], and Autoformulation [Astorga et al., 2024], adopt this same test-driven method.</p>
+<p>Model-wise While objective-wise evaluation is straightforward, it has a notable limitation: a correct objective value does not necessarily guarantee a correct model. To address this, model-wise evaluation is introduced. NL4Opt [Ramamonjison et al., 2023] pioneers a protocol that converts modeling results into a canonical formulation, where the coefficients of the objective function and constraints are extracted into matrices and then are compared with ground truth. Although this method captures model correctness comprehensively, it provides only a binary metric and fails to reflect the degree of correctness, which is essential for finegrained assessments. To overcome this limitation, a graphbased evaluation method [Xing et al., 2024] is proposed, representing modeling results as a graph and using graph edit distance to produce a continuous correctness score between 0 to 1. Building on this, a modified graph isomorphism testing algorithm [Wang et al., 2024b] offers even more precise evaluation, with theoretical guarantees ensuring the correctness of its comparisons.</p>
+<h2>Evaluation Result of Existing Methods</h2>
+<p>In this survey, we observe that the reported evaluation results across existing works often exhibit inconsistencies, making fair comparisons challenging. These discrepancies arise primarily from three factors.</p>
+<ul>
+<li style="list-style-type: '· ';">Choice of Base Model: Researchers use different commercial LLMs as base model. For example, Chainof-Experts employs GPT-3.5, whereas Autoformulation uses GPT4-mini, due to the rapid evolution of LLMs.</li>
+<li style="list-style-type: '· ';">Dataset Preprocessing Approaches: Different strategies are used for handling incorrect samples and decimal precision, resulting in varying preprocessing pipelines.</li>
+<li style="list-style-type: '· ';">Evaluation Metrics: Metrics also vary: ORLM reports micro and macro average accuracy, whereas Chain-ofExperts focuses on compile error rates.</li>
+</ul>
+<p>These factors collectively contribute to the difficulty of establishing a consistent leader-board for optimization modeling methods.</p>
+<p>To address the challenge of inconsistent evaluations and create a fair comparison, we adopt a unified setting to assess all fully open-source optimization modeling methods on our cleaned benchmarks. Specifically, we employ the cuttingedge commercial LLM gpt-4o-2024-08-06 as the base model for all training-free methods. We report accuracy as the evaluation metric, as it is the most widely accepted measure.</p>
+<p>Regarding optimization modeling methods, we strive to evaluate every fully open-source approach. However, many methods mentioned in Subsection 3.2 remain closed-source, including LLMOPT [Jiang et al., 2024], RareMIP [Wang et al., 2024a], Autoformulation [Astorga et al., 2024], OptLLM [Zhang et al., 2024a], LLM Routine [Li et al., 2023b], City-LEO [Jiao et al., 2024], and TTG [JU et al., 2024]. Three other methods, including OptiChat [Chen et al., 2023], OptiGuide [Li et al., 2023a], and EOR [Zhang et al., 2025], are interactive and thus not directly comparable to end-toend approaches. Additionally, OptiMUS [AhmadiTeshnizi et al., 2024] requires a preprocessing step that is unavailable for most benchmarks, leading us to exclude it. For broader comparison, we include standard and chain-of-thought prompting as baselines.</p>
+<p>Takeaway #3: The evaluation results reported in existing works lack a unified standard. And the open-source landscape in optimization modeling remains limited.</p>
+<p>Table 2 shows the overall results, revealing several key observations. First, Chain-of-Experts and ORLM are two competitive methods in optimization modeling. While Chainof-Experts works well for simpler tasks, ORLM surpasses it on more complex datasets such as IndustryOR and ComplexLP, indicating that trained models may be more effective in challenging scenarios. Second, contrary to popular belief, CoT does not always yield better results than standard prompting. On certain datasets, it even leads to a noticeable drop in performance, supporting the idea that CoT should be applied selectively [Sprague et al., 2024]. Finally, the performance of CAFA is comparable to CoT, likely as CAFA can be viewed as a specialized form of CoT prompting.</p>
+<p>Takeaway #4: Three key findings: (1) Chain-of-Experts and ORLM emerge as the most competetive frameworks; (2) CoT prompting does not always outperform standard prompting; (3) The performance of CAFA resembles that of a specialized CoT strategy.</p>
+<h2>4 Online Portal for OptimizationModeling</h2>
+<p>We develop a website portal that integrates the resources of LLM-based optimization modeling and provides great convenience for researchers to follow the topic. First, we provide the download links for both original and cleaned version of benchmark datasets. Second, we collect and publish the implementation of existing solutions and provide a leader-board to report their performance on the benchmarks. Thirdly, we continue to update the latest research papers on this promising research domain. We believe such an integrated portal brings significant benefit for the community.</p>
+<h2>5 Challenges and Future Directions</h2>
+<h2>5.1 ReasoningModel for OptimizationModeling</h2>
+<p>A prominent trend in recent LLM research is enhancing the reasoning capabilities of base models. The release of OpenAI o1 [OpenAI, 2024] demonstrates impressive performance on complex mathematical tasks. However, these advances have not yet been transferred to optimization modeling. One key obstacle is that training a reasoning model heavily relies on long chain-of-thought data, which is difficult to annotate in the context of optimization modeling. To bridge this gap, Deepseek R1 Zero [Guo et al., 2025] proposed a promising alternative by using pure reinforcement learning for training, enabling LLMs to develop reasoning capabilities without requiring supervised chain-of-thought annotations. This reinforcement learning strategy is also promising for optimization modeling, where the modeling process can be formulated as a Markov Decision Process and solver feedback can be used as reward to train the reasoning model.</p>
+<h2>5.2 Explainable Modeling Processes</h2>
+<p>The black-box nature of LLMs, most existing studies treat optimization modeling as an end-to-end process. However, the explainability of this process is also crucial for realworld applications, as it allows experts to effectively debug, modify, and understand the generated models. Recent work like Explainable Operations Research [Zhang et al., 2025] has made progress in this direction by developing methods to evaluate how modeling decisions impact outcomes. More research efforts to develop a trustworthy and user-friendly modeling framework are encouraged.</p>
+<h2>5.3 Domain Knowledge Injection</h2>
+<p>The optimization modeling process relies heavily on domain knowledge [Xiao et al., 2024a]. As demonstrated by a research [Runnwerth et al., 2020], much of this specialized knowledge, including conception and empirical insights, can be stored in a knowledge graph. Incorporating such domainspecific knowledge into LLMs to aid the modeling process remains a significant challenge. A recent work [Zhang et al., 2024b] uses rule mining to construct training data from knowledge graphs and introduces a learning method to integrate knowledge graphs with LLMs, offering a promising pathway for advancing the field of optimization modeling.</p>
+<h2>5.4 Human-in-the-LoopModeling</h2>
+<p>Existing inference approaches have primarily focused on the modeling capabilities of LLMs and have not explored human intervention during the inference process. Recent research indicates that LLMs can proactively query humans for domain-specific knowledge when needed [Pang et al., 2024]. These characteristics offer an opportunity to open up a new paradigm, human-in-the-loop modeling, where human experts contribute external knowledge, clarifications, and insights at critical points. To develop such a collaborative system, we need to overcome the following challenges. First, effective mechanisms are needed to identify when human intervention is required, since LLMs themselves lack this capability. Second, an effective human-in-the-loop framework should ensure that humans can seamlessly integrate their expertise into the inference process.</p>
+<h2>6 Conclusion</h2>
+<p>This survey provides a timely overview of the rapid progress in applying LLMs to optimization modeling. We present a thorough taxonomy of existing works across data synthesis, model fine-tuning, inference approaches, benchmarks, and evaluation methods, offering a structured understanding of the technical stack. We also highlight persisting challenges, particularly in data quality and evaluation protocols, that hinder reliable performance comparisons. To address these gaps, we evaluate current open-source methods on a set of cleaned and standardized benchmarks, revealing several key insights. Building on these findings and the latest advances, we propose promising directions to inspire further research in this emerging field.</p>
+<h2>Acknowledgments</h2>
+<p>The work is supported by the National Key Research and Development Project of China (2022YFF0902000), the Fundamental Research Funds for the Central Universities (2262024-00145, 226-2024-00216).</p></div>
+            </section>
+        
+        
+        <section role="tabpanel" id="cite" aria-labelledby="tab-cite" hidden>
+            <div class="cite" data-cite>
+                <div class="cite__formats" role="radiogroup" aria-label="Citation format">
+                                            <button type="button" data-format="acm" aria-pressed="true">ACM</button>
+                                            <button type="button" data-format="apa" aria-pressed="false">APA</button>
+                                            <button type="button" data-format="bibtex" aria-pressed="false">BibTeX</button>
+                                            <button type="button" data-format="ris" aria-pressed="false">RIS</button>
+                                    </div>
+                                    <div class="cite__text" data-format-text="acm" >Ziyang Xiao, Jingrong Xie, Lilin Xu, Shisi Guan, Jingyan Zhu, Xiongwei Han, Xiaojin Fu, WingYin Yu, Han Wu, Wei Shi, Qingcan Kang, Jiahui Duan, Tao Zhong, Mingxuan Yuan, Jia Zeng, Yuan Wang, Gang Chen, and Dongxiang Zhang. 2025. A Survey of Optimization Modeling Meets LLMs: Progress and Future Directions. In <i>Proceedings of the Thirty-Fourth International Joint Conference on Artificial Intelligence, IJCAI-25</i>. IJCAI, 10742–10750. https://doi.org/10.24963/ijcai.2025/1192</div>
+                                    <div class="cite__text" data-format-text="apa" hidden>Xiao, Z., Xie, J., Xu, L., Guan, S., Zhu, J., Han, X., Fu, X., Yu, W., Wu, H., Shi, W., Kang, Q., Duan, J., Zhong, T., Yuan, M., Zeng, J., Wang, Y., Chen, G., &amp; Zhang, D. (2025). A Survey of Optimization Modeling Meets LLMs: Progress and Future Directions. In <i>Proceedings of the Thirty-Fourth International Joint Conference on Artificial Intelligence, IJCAI-25</i> (pp. 10742–10750). IJCAI. https://doi.org/10.24963/ijcai.2025/1192</div>
+                                                    <pre class="cite__text" data-format-text="bibtex" hidden>@inproceedings{ijcai2025p1192,
+  title     = {A Survey of Optimization Modeling Meets LLMs: Progress and Future Directions},
+  author    = {Xiao, Ziyang and Xie, Jingrong and Xu, Lilin and Guan, Shisi and Zhu, Jingyan and Han, Xiongwei and Fu, Xiaojin and Yu, WingYin and Wu, Han and Shi, Wei and Kang, Qingcan and Duan, Jiahui and Zhong, Tao and Yuan, Mingxuan and Zeng, Jia and Wang, Yuan and Chen, Gang and Zhang, Dongxiang},
+  booktitle = {Proceedings of the Thirty-Fourth International Joint Conference on
+               Artificial Intelligence, {IJCAI-25}},
+  publisher = {International Joint Conferences on Artificial Intelligence Organization},
+  editor    = {James Kwok},
+  pages     = {10742--10750},
+  year      = {2025},
+  month     = {8},
+  note      = {Survey Track},
+  doi       = {10.24963/ijcai.2025/1192},
+  url       = {https://doi.org/10.24963/ijcai.2025/1192},
+}
+</pre>
+                                    <pre class="cite__text" data-format-text="ris" hidden>TY  - CPAPER
+TI  - A Survey of Optimization Modeling Meets LLMs: Progress and Future Directions
+AU  - Xiao, Ziyang
+AU  - Xie, Jingrong
+AU  - Xu, Lilin
+AU  - Guan, Shisi
+AU  - Zhu, Jingyan
+AU  - Han, Xiongwei
+AU  - Fu, Xiaojin
+AU  - Yu, WingYin
+AU  - Wu, Han
+AU  - Shi, Wei
+AU  - Kang, Qingcan
+AU  - Duan, Jiahui
+AU  - Zhong, Tao
+AU  - Yuan, Mingxuan
+AU  - Zeng, Jia
+AU  - Wang, Yuan
+AU  - Chen, Gang
+AU  - Zhang, Dongxiang
+T2  - Proceedings of the Thirty-Fourth International Joint Conference on Artificial Intelligence, IJCAI-25
+PB  - International Joint Conferences on Artificial Intelligence Organization
+PY  - 2025
+SP  - 10742
+EP  - 10750
+DO  - 10.24963/ijcai.2025/1192
+UR  - https://doi.org/10.24963/ijcai.2025/1192
+ER  - 
+</pre>
+                                <button type="button" class="button" data-copy>Copy</button>
+                <span class="cite__copied" role="status" hidden>Copied</span>
+            </div>
+        </section>
+
+        <section role="tabpanel" id="data" aria-labelledby="tab-data" hidden>
+            <p>Machine-readable versions of this paper, for tools and AI agents:</p>
+            <ul>
+                <li><a href="/proceedings/2025/1192.md">Markdown</a> — metadata, abstract, full text and references</li>
+                <li><a href="/proceedings/2025/1192.json">JSON</a> — metadata and structured references</li>
+                <li><a href="/proceedings/2025/bibtex/1192">BibTeX</a></li>
+            </ul>
+        </section>
+    </div>
+
+    <nav class="article-nav" aria-label="Previous and next paper">
+                    <a class="article-nav__prev" href="/proceedings/2025/1191" title="A Comprehensive and Systematic Review for Deep Learning-Based De Novo Peptide Sequencing">◀ <span class="screen-reader-text">Previous paper</span></a>
+                            <a class="article-nav__next" href="/proceedings/2025/1193" title="A Survey of Pathology Foundation Model: Progress and Future Directions"><span class="screen-reader-text">Next paper</span> ▶</a>
+            </nav>
+</div>
+        </div>
+    </article>
+</main>
+
+<section class="image-grid">
+            <a class="image-grid__tile" href="https://ijcai.org/">
+            <span class="image-grid__img">
+                <img src="https://ijcai.org/wp-content/themes/ijcai/assets/img/grid/welcome.jpg" alt="" loading="lazy">
+            </span>
+            <span class="image-grid__caption">Welcome</span>
+        </a>
+            <a class="image-grid__tile" href="https://ijcai.org/future_conferences/">
+            <span class="image-grid__img">
+                <img src="https://ijcai.org/wp-content/themes/ijcai/assets/img/grid/future-conferences.jpg" alt="" loading="lazy">
+            </span>
+            <span class="image-grid__caption">Future Conferences</span>
+        </a>
+            <a class="image-grid__tile" href="https://ijcai.org/aijd/">
+            <span class="image-grid__img">
+                <img src="https://ijcai.org/wp-content/themes/ijcai/assets/img/grid/ai-journal.png" alt="" loading="lazy">
+            </span>
+            <span class="image-grid__caption">AI Journal Division</span>
+        </a>
+            <a class="image-grid__tile" href="https://ijcai.org/all_proceedings/">
+            <span class="image-grid__img">
+                <img src="https://ijcai.org/wp-content/themes/ijcai/assets/img/grid/proceedings.jpg" alt="" loading="lazy">
+            </span>
+            <span class="image-grid__caption">IJCAI Proceedings</span>
+        </a>
+            <a class="image-grid__tile" href="https://ijcai.org/aboutijcai/">
+            <span class="image-grid__img">
+                <img src="https://ijcai.org/wp-content/themes/ijcai/assets/img/grid/about.jpg" alt="" loading="lazy">
+            </span>
+            <span class="image-grid__caption">About IJCAI</span>
+        </a>
+            <a class="image-grid__tile" href="https://ijcai.org/awards/">
+            <span class="image-grid__img">
+                <img src="https://ijcai.org/wp-content/themes/ijcai/assets/img/grid/awards.jpg" alt="" loading="lazy">
+            </span>
+            <span class="image-grid__caption">IJCAI Awards</span>
+        </a>
+    </section>
+
+<footer class="site-footer">
+    <div class="site-footer__bottom">
+        <div class="container">
+            <div class="footer-columns">
+                                    <div class="footer-column">
+                        <ul id="menu-footer-1" class="footer-menu"><li id="menu-item-250" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-250"><a href="https://ijcai.org/future_conferences/">Conferences</a>
+<ul class="sub-menu">
+	<li id="menu-item-251" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-251"><a href="https://ijcai.org/future_conferences/">Future Conferences</a></li>
+	<li id="menu-item-252" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-252"><a href="https://ijcai.org/past_conferences/">Past Conferences</a></li>
+</ul>
+</li>
+<li id="menu-item-253" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-253"><a href="https://ijcai.org/all_proceedings/">Proceedings</a>
+<ul class="sub-menu">
+	<li id="menu-item-254" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-254"><a href="/proceedings/2026/">IJCAI 2026 Proceedings</a></li>
+	<li id="menu-item-255" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-255"><a href="https://ijcai.org/all_proceedings/">All Proceedings</a></li>
+</ul>
+</li>
+<li id="menu-item-256" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-256"><a href="https://ijcai.org/awards/">Awards</a></li>
+</ul>                    </div>
+                                    <div class="footer-column">
+                        <ul id="menu-footer-2" class="footer-menu"><li id="menu-item-257" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-257"><a href="https://ijcai.org/trustees/current_trustees/">Trustees/officers</a>
+<ul class="sub-menu">
+	<li id="menu-item-258" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-258"><a href="https://ijcai.org/trustees/current_trustees/">Current trustees</a></li>
+	<li id="menu-item-259" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-259"><a href="https://ijcai.org/trustees/trustees_elect/">Trustees Elect</a></li>
+	<li id="menu-item-260" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-260"><a href="https://ijcai.org/officers/ijcai_secretariat/">IJCAI Secretariat</a></li>
+	<li id="menu-item-261" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-261"><a href="https://ijcai.org/officers/sponsorship_publicity/">IJCAI Sponsorship and Publicity Officers</a></li>
+	<li id="menu-item-262" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-262"><a href="https://ijcai.org/officers/ijcai_team/">IJCAI Team</a></li>
+	<li id="menu-item-263" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-263"><a href="https://ijcai.org/officers/local_arrangements_chairs/">Local Arrangements Chairs</a></li>
+	<li id="menu-item-264" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-264"><a href="https://ijcai.org/trustees/former_trustees_serving_on_the_executive_committee/">Former Trustees serving on the Executive Committee</a></li>
+	<li id="menu-item-265" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-265"><a href="https://ijcai.org/officers/other_former_officers/">Other Former Officers</a></li>
+</ul>
+</li>
+</ul>                    </div>
+                                    <div class="footer-column">
+                        <ul id="menu-footer-3" class="footer-menu"><li id="menu-item-266" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-266"><a href="https://ijcai.org/aijd/">AI Journal</a></li>
+<li id="menu-item-267" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-267"><a href="https://ijcai.org/aboutijcai/">About</a>
+<ul class="sub-menu">
+	<li id="menu-item-268" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-268"><a href="https://ijcai.org/aboutijcai/">About IJCAI</a></li>
+	<li id="menu-item-313" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-313"><a href="https://ijcai.org/documents/">Documents</a></li>
+	<li id="menu-item-269" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269"><a href="https://ijcai.org/contact/">Contact Information</a></li>
+</ul>
+</li>
+</ul>                    </div>
+                            </div>
+
+            <a href="#top" class="back-to-top">
+                <span class="back-to-top__triangle"></span>
+                <span>Back to top</span>
+            </a>
+
+            <div class="legal-row">
+                                <a href="https://ijcai.org/publication_ethics/">Publication Ethics</a>
+                                                    <a href="https://ijcai.org/privacy_policy/">Privacy</a>
+                                <span>&copy; 2026 International Joint Conferences on Artificial Intelligence</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/ijcai/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<style id="global-styles-inline-css">
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}.wp-block-button{--wp--preset--dimension--25: 25%;--wp--preset--dimension--50: 50%;--wp--preset--dimension--75: 75%;--wp--preset--dimension--100: 100%;}:where(body) { margin: 0; }:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+<script id="ijcai-archive-js" src="https://ijcai.org/wp-content/themes/ijcai/assets/js/archive.js?ver=1.1.0"></script>
+<script id="ijcai-main-js" src="https://ijcai.org/wp-content/themes/ijcai/assets/js/main.js?ver=1.0.2"></script>
+<script id="wp-emoji-settings" type="application/json">
+{"baseUrl":"https://s.w.org/images/core/emoji/17.0.2/72x72/","ext":".png","svgUrl":"https://s.w.org/images/core/emoji/17.0.2/svg/","svgExt":".svg","source":{"concatemoji":"https://ijcai.org/wp-includes/js/wp-emoji-release.min.js?ver=7.1.4"}}
+</script>
+<script type="module">
+/*! This file is auto-generated */
+var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof HTMLScriptElement))throw new Error("Element missing: "+e);const r=JSON.parse(t.text),s=(window._wpemojiSettings=r,"wpEmojiSettingsSupports"),o=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(s,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const r=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===r[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,r){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!r(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,r){let a;const s=(a="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),o=(s.textBaseline="top",s.font="600 32px Arial",{});return e.forEach(e=>{o[e]=t(s,e,n,r)}),o}function a(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}r.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(s));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(o),u.toString(),c.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"});const a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=e=>{i(n=e.data),a.terminate(),t(n)})}catch(e){}i(n=f(o,u,c,p))}t(n)}).then(e=>{for(const n in e)r.supports[n]=e[n],r.supports.everything=r.supports.everything&&r.supports[n],"flag"!==n&&(r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&r.supports[n]);var t;r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&!r.supports.flag,r.supports.everything||((t=r.source||{}).concatemoji?a(t.concatemoji):t.wpemoji&&t.twemoji&&(a(t.twemoji),a(t.wpemoji)))});
+//# sourceURL=https://ijcai.org/wp-includes/js/wp-emoji-loader.min.js
+</script>
+</body>
+</html>

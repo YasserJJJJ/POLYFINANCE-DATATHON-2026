@@ -1,0 +1,103 @@
+{
+  "id": "fedca8757f2540e7a2348bc22f63dd54",
+  "request": {
+    "request_id": "e6657e74-c767-49a3-ae5c-8e5c0b98d170",
+    "prompt": "Exercice fictif Folio : je prépare un retrait dans douze mois. Le montant du retrait, mon capital et mes positions ne sont pas encore connus. Ne les invente pas.",
+    "facts": {},
+    "use_ai": true
+  },
+  "status": "waiting",
+  "runs": 1,
+  "questions": [
+    {
+      "blocking": true,
+      "field": "reserve_policy",
+      "question": "L’exercice doit-il utiliser une réserve abstraite à valeur nominale constante, ou un instrument réel à préciser ?"
+    },
+    {
+      "blocking": true,
+      "field": "scenarios",
+      "question": "Quels scénarios hypothétiques faut-il tester, avec quel horizon en mois et quels rendements par position ? Ils pourront être précisés lorsque les positions seront connues."
+    },
+    {
+      "blocking": true,
+      "field": "scenario_loss_limit_cad",
+      "question": "Quelle limite de perte en CAD faut-il imposer dans les scénarios ?"
+    },
+    {
+      "blocking": true,
+      "field": "max_asset_weights",
+      "question": "Des plafonds de poids par actif doivent-ils être imposés ? Si oui, lesquels, exprimés en fractions ?"
+    },
+    {
+      "blocking": true,
+      "field": "reserve_policy",
+      "question": "L’exercice doit-il utiliser une réserve abstraite à nominal constant, conformément au périmètre de la méthode, ou porter sur un instrument réel à qualifier ?"
+    },
+    {
+      "blocking": true,
+      "field": "capital_cad,withdrawal_cad,holdings",
+      "question": "Lorsqu’ils seront connus, pourrez-vous fournir le capital et le montant du retrait en CAD, ainsi que les positions et leurs poids ? Ces données restent en attente, sans estimation de remplacement."
+    },
+    {
+      "blocking": true,
+      "field": "scenarios",
+      "question": "Quels scénarios hypothétiques souhaitez-vous imposer, avec pour chacun son horizon en mois et le rendement de chaque position ?"
+    },
+    {
+      "blocking": true,
+      "field": "scenario_loss_limit_cad,max_asset_weights",
+      "question": "Quelle limite de perte en CAD et quels plafonds de poids doivent être respectés ? Précisez explicitement s’il n’y a aucun plafond de poids."
+    },
+    {
+      "blocking": true,
+      "field": "research_scope",
+      "question": "Préciser si la réserve est abstraite à nominal constant ou constituée d’un instrument réel."
+    },
+    {
+      "blocking": true,
+      "field": "research_scope",
+      "question": "Fournir le montant du retrait, le capital, les positions et leurs poids, ainsi que la devise de valorisation."
+    },
+    {
+      "blocking": true,
+      "field": "research_scope",
+      "question": "Définir les scénarios, leurs horizons et rendements par position, la limite de perte et les éventuels plafonds de poids."
+    },
+    {
+      "blocking": true,
+      "field": "research_scope",
+      "question": "Qualifier les propriétés contractuelles de la réserve si un instrument réel est retenu."
+    },
+    {
+      "blocking": true,
+      "field": "research_scope",
+      "question": "Effectuer les contrôles runtime avant toute conclusion de calcul."
+    }
+  ],
+  "aws_calls": [
+    {
+      "role": "agent0",
+      "status": "complete",
+      "request_id": "1beda9c2-f976-4b4d-8f70-ddc7a865b40b",
+      "provider": "amazon-bedrock-runtime",
+      "model": "global.openai.gpt-6-astra"
+    },
+    {
+      "role": "agent1",
+      "status": "complete",
+      "request_id": "941f1473-bf10-4783-b537-d8a6b7a26984",
+      "provider": "amazon-bedrock-runtime",
+      "model": "global.openai.gpt-6-astra"
+    },
+    {
+      "role": "agent0",
+      "status": "complete",
+      "request_id": "aa208603-c19b-40bb-8b65-3d0688be34de",
+      "provider": "amazon-bedrock-runtime",
+      "model": "global.openai.gpt-6-astra"
+    }
+  ],
+  "transport_loss_retried_without_duplicate": true,
+  "errors": []
+}

@@ -1,0 +1,89 @@
+{
+  "dossier": "4089e4b0d70f40b6b20d832fa261e1dc",
+  "model_calls": 0,
+  "scope": "Recalcul local avec le moteur courant ; aucune inférence rejouée.",
+  "status": "compared",
+  "analysis_ref": "analysis@2",
+  "original_method": "reserve-turnover-lp-v1",
+  "current_method": "reserve-turnover-lp-v1",
+  "comparisons": {
+    "status": true,
+    "options": true,
+    "claims": true
+  },
+  "equivalent": true,
+  "original_claims": [
+    {
+      "id": "minimum_reallocation",
+      "kind": "conditional_optimality",
+      "result_refs": [
+        {
+          "pointer": "/options/1/metrics/turnover_cad/value",
+          "unit": "CAD"
+        }
+      ],
+      "scope": "Branche abstraite, contraintes déclarées et tolérances numériques.",
+      "text": "Dans ce modèle, le minimum de capital réalloué est de 40,000.00 CAD."
+    },
+    {
+      "id": "reserve_scope",
+      "kind": "limitation",
+      "result_refs": [],
+      "scope": "Aucun résultat hors du modèle.",
+      "text": "La réserve est abstraite ; aucune garantie d'un instrument réel n'est établie."
+    },
+    {
+      "id": "multiple_optima",
+      "kind": "numerical_witness",
+      "result_refs": [
+        {
+          "pointer": "/optimal_face/non_unique_witness_found",
+          "unit": "boolean"
+        }
+      ],
+      "scope": "Extrêmes sur la face optimale à tolérance ; aucun optimum de risque recherché.",
+      "text": "Plusieurs allocations atteignent le minimum à la tolérance déclarée ; aucun critère de départage n'a été inventé."
+    }
+  ],
+  "recomputed_claims": [
+    {
+      "id": "minimum_reallocation",
+      "kind": "conditional_optimality",
+      "text": "Dans ce modèle, le minimum de capital réalloué est de 40,000.00 CAD.",
+      "result_refs": [
+        {
+          "pointer": "/options/1/metrics/turnover_cad/value",
+          "unit": "CAD"
+        }
+      ],
+      "scope": "Branche abstraite, contraintes déclarées et tolérances numériques."
+    },
+    {
+      "id": "reserve_scope",
+      "kind": "limitation",
+      "text": "La réserve est abstraite ; aucune garantie d'un instrument réel n'est établie.",
+      "result_refs": [],
+      "scope": "Aucun résultat hors du modèle."
+    },
+    {
+      "id": "multiple_optima",
+      "kind": "numerical_witness",
+      "text": "Plusieurs allocations atteignent le minimum à la tolérance déclarée ; aucun critère de départage n'a été inventé.",
+      "result_refs": [
+        {
+          "pointer": "/optimal_face/non_unique_witness_found",
+          "unit": "boolean"
+        }
+      ],
+      "scope": "Extrêmes sur la face optimale à tolérance ; aucun optimum de risque recherché."
+    }
+  ],
+  "tolerance": {
+    "relative": 1e-10,
+    "absolute": 1e-08
+  },
+  "source_run_id": "f73fe180d6c04c38a13e49b024dacb30",
+  "source_bundle_verified": true,
+  "source_bundle_object": "25f23a1fc54bd2cbcd71a8de00aeb495264df06ecbe5620ef9fb1ce631cfda79",
+  "interpretation": "L'égalité numérique ne valide ni données fournisseur ni choix personnel. Une différence de méthode exige examen ; aucune migration implicite des entrées."
+}

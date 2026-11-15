@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#172b26">
+  <meta name="description" content="AlphaForge — un laboratoire de décision financière : comparer, comprendre et explorer les preuves.">
+  <title>AlphaForge — L’atelier de décision</title>
+  <link rel="stylesheet" href="/static/app.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#workspace">Aller au contenu</a>
+  <aside class="sidebar" aria-label="Navigation principale">
+    <a class="brand" href="/" aria-label="AlphaForge, accueil">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M4 25 15.7 5 28 25h-6.1L15.7 14.6 9.6 25H4Z" fill="currentColor"/><path d="m13.6 24 2.2-3.8L18 24h-4.4Z" fill="currentColor"/></svg>
+      <span>AlphaForge<span class="brand-dot">.</span></span>
+    </a>
+    <div class="workspace-label">VOTRE ESPACE D’ANALYSE</div>
+    <nav>
+      <button class="nav-item active" data-view="atelier" aria-current="page">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="3" width="5" height="5" rx="1"/><rect x="12" y="3" width="5" height="5" rx="1"/><rect x="3" y="12" width="5" height="5" rx="1"/><rect x="12" y="12" width="5" height="5" rx="1"/></svg>L’atelier<span class="nav-arrow">↗</span>
+      </button>
+      <button class="nav-item" data-view="preuves">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 2.5h7l3 3v12H5z"/><path d="M12 2.5V6h3M8 10h4M8 13h4"/></svg>Dossier de preuves<span class="nav-count" id="source-count">—</span>
+      </button>
+      <button class="nav-item" data-view="methode">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14"/><circle cx="7" cy="5" r="2"/><circle cx="13" cy="10" r="2"/><circle cx="8" cy="15" r="2"/></svg>La méthode
+      </button>
+    </nav>
+    <div class="sidebar-note">
+      <span class="small-orbit" aria-hidden="true">✳</span>
+      <p>Une décision est plus utile lorsqu’on peut en examiner les raisons.</p>
+      <span>Comprendre. Comparer. Réviser.</span>
+    </div>
+    <div class="sidebar-footer"><span class="live-dot"></span>LABORATOIRE DE SIMULATION<br><small>PolyFinances · Datathon 2026</small></div>
+  </aside>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="breadcrumb"><span>AlphaForge</span><span class="crumb-divider">/</span><strong id="view-label">L’atelier</strong></div>
+      <div class="topbar-actions">
+        <span class="environment-badge"><span class="live-dot"></span>Session locale</span>
+        <button class="icon-button" id="export-btn" title="Exporter le dossier de cette analyse" aria-label="Exporter le dossier de cette analyse" disabled>
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v9m-3-3 3 3 3-3M4 12v4h12v-4"/></svg>
+        </button>
+        <button class="reset-button" id="reset-btn"><span aria-hidden="true">+</span> Nouveau scénario</button>
+      </div>
+    </header>
+    <main id="workspace">
+      <div class="global-message" id="global-message" role="alert" hidden></div>
+      <section class="view" id="view-atelier">
+        <div class="page-intro">
+          <div><p class="eyebrow"><span></span> LE LABORATOIRE DE DÉCISION</p><h1>Comprendre avant de choisir<span>.</span></h1><p class="intro-copy">Vos hypothèses. Des conséquences mesurables. Les preuves pour en discuter.</p></div>
+          <div class="edition-mark"><span>01 — EXPLORER</span><strong>Le choix éclairé</strong></div>
+        </div>
+        <div class="scenario-strip">
+          <div class="strip-label"><span class="step-marker">01</span><div>Choisir un point de départ<small>Trois situations fictives, trois questions différentes.</small></div></div>
+          <div class="persona-options" id="persona-options" role="group" aria-label="Scénario de référence"></div>
+        </div>
+        <div class="atelier-grid">
+          <div class="primary-column">
+            <section class="question-card">
+              <div class="section-line"><label class="section-kicker" for="prompt">LA QUESTION À ÉCLAIRER</label><span class="subtle-tag">Modifiable</span></div>
+              <textarea id="prompt" rows="3" maxlength="8000" placeholder="Décrivez ce que vous aimeriez comprendre…" aria-describedby="prompt-help"></textarea>
+              <div class="question-footer"><p id="prompt-help">L’agent étudie votre demande et s’appuie sur les calculs et les sources.</p><button id="analyze-btn" class="primary-button"><span class="sparkle" aria-hidden="true">✳</span><span>Analyser avec l’agent</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10 5l5 5-5 5"/></svg></button></div>
+            </section>
+            <div class="analysis-status" id="analysis-status" aria-live="polite"><span class="status-dot"></span><span>Préparation de l’instantané…</span></div>
+            <section class="result-card" id="result-card" aria-busy="true">
+              <div class="result-heading">
+                <div><p class="eyebrow">02 — COMPARER LES CONSÉQUENCES</p><h2>Un même historique.<br>Deux hypothèses.</h2></div>
+                <div class="chart-switch" role="group" aria-label="Mesure du graphique"><button data-chart="value" class="active" aria-pressed="true">Évolution</button><button data-chart="drawdown" aria-pressed="false">Reculs</button></div>
+              </div>
+              <div class="chart-caption"><span id="chart-subtitle">Valeur de 100 $ simulés · CAD</span><span class="historical-tag">Historique observé</span></div>
+              <div class="chart-container" id="chart-container"><div class="empty-chart"><span class="loader"></span><p>Les courbes apparaîtront après le calcul.</p></div></div>
+              <div class="chart-legend"><span><i class="legend-dot baseline"></i>Scénario de départ</span><span><i class="legend-dot alternative"></i>Hypothèse modifiée</span><small id="chart-period"></small></div>
+              <div class="metric-grid" id="metric-grid"></div>
+              <p class="chart-footnote">Une comparaison du passé, pas une projection. Les dividendes sont inclus et les actifs convertis en CAD.</p>
+            </section>
+            <section class="insight-card" id="insight-card" hidden>
+              <div class="insight-topline"><p class="eyebrow">03 — COMPRENDRE LE COMPROMIS</p><span id="insight-mode">Lecture des calculs</span></div>
+              <h2 id="summary-title"></h2><p id="summary-text"></p>
+              <div class="findings-list" id="findings-list"></div>
+              <div class="revision-conditions" id="revision-conditions"></div>
+              <button class="text-link inverse" data-view="preuves">Examiner le dossier de preuves <span aria-hidden="true">↗</span></button>
+            </section>
+            <section class="scenario-card" id="scenario-card" hidden>
+              <div class="section-title"><div><p class="eyebrow">CHANGER DE PERSPECTIVE</p><h2>Quand le marché se tend</h2></div><span class="small-label">Fenêtres historiques</span></div>
+              <div id="stress-scenarios"></div>
+              <p class="chart-footnote">Chaque fenêtre recommence avec les poids initiaux de l’allocation. Ces épisodes passés ne couvrent pas tous les risques futurs.</p>
+            </section>
+          </div>
+          <aside class="controls-column" aria-label="Profil et hypothèses">
+            <section class="profile-card">
+              <div class="section-line"><p class="section-kicker">LE CONTEXTE</p><span class="subtle-tag">Profil fictif</span></div>
+              <div class="profile-identity"><span class="avatar" id="profile-avatar">R</span><div><h2 id="profile-name">Robert</h2><span id="profile-age">59 ans · Préservation</span></div><span class="profile-symbol" aria-hidden="true">↗</span></div>
+              <p id="profile-description">Préserver son capital, sans ignorer un titre qui l’intrigue.</p>
+              <div class="profile-fields"><label>Horizon déclaré<div class="input-unit"><input id="horizon" type="number" min="1" max="50" step="1" value="4"><span>ans</span></div></label><label>Capital simulé<div class="input-unit"><input id="capital" type="number" min="1" max="1000000000" step="1000" value="10000"><span>CAD</span></div></label></div>
+              <details class="portfolio-editor"><summary><span>Portefeuille de départ</span><span id="portfolio-total">100 %</span><span class="chevron" aria-hidden="true">⌄</span></summary><div id="portfolio-rows"></div><button class="add-holding" id="add-holding">+ Ajouter un actif</button><p class="field-note">Avoirs et montants inventés pour la démonstration. Chaque hypothèse est modifiable.</p></details>
+            </section>
+            <section class="hypothesis-card">
+              <div class="section-line"><p class="section-kicker">ET SI ON CHANGEAIT…</p><span class="change-icon" aria-hidden="true">⇄</span></div>
+              <label class="field-label" for="focus-ticker">L’exposition directe à</label><select id="focus-ticker" aria-label="Actif dont l’exposition est modifiée"></select>
+              <div class="weight-comparison"><div><span>Départ</span><strong id="baseline-weight">25<small>%</small></strong></div><span class="weight-arrow" aria-hidden="true">→</span><div class="new-weight"><span>Nouvelle hypothèse</span><div class="weight-input"><input id="focus-weight" type="number" min="0" max="100" step="1" value="5" aria-label="Nouvelle exposition en pourcentage"><span>%</span></div></div></div>
+              <input type="range" id="focus-slider" min="0" max="100" step="1" value="5" aria-label="Ajuster l’exposition de l’hypothèse"><div class="range-labels"><span>0 %</span><span>50 %</span><span>100 %</span></div>
+              <p class="field-note">Les autres positions sont ajustées proportionnellement. La somme reste égale à 100 %.</p>
+              <label class="comfort-label" for="comfort">Repère personnel de baisse<span><input id="comfort" type="number" min="0" max="100" step="1" value="15" aria-label="Repère personnel de baisse en pourcentage"> %</span></label>
+              <p class="field-note comfort-note">Un point de discussion, pas une perte maximale garantie.</p>
+              <button class="recalculate-button" id="recalculate-btn"><span aria-hidden="true">↻</span> Recalculer la comparaison</button>
+              <button class="undo-button" id="undo-btn" disabled>Revenir à l’analyse précédente</button>
+              <div class="dirty-note" id="dirty-note" hidden>Hypothèses modifiées : les résultats affichés doivent être recalculés.</div>
+            </section>
+            <section class="reading-card" id="reading-card"><span class="reading-icon" aria-hidden="true">◎</span><h3>Ce que les chiffres ne disent pas</h3><p>L’horizon et les besoins de liquidité donnent du sens au risque. Cinq ans d’historique ne décrivent pas tous les futurs possibles.</p><button class="text-link" data-view="methode">Comprendre la méthode <span aria-hidden="true">↗</span></button></section>
+          </aside>
+        </div>
+      </section>
+      <section class="view" id="view-preuves" hidden>
+        <div class="page-intro"><div><p class="eyebrow"><span></span> DES CONCLUSIONS INSPECTABLES</p><h1>Remonter à la preuve<span>.</span></h1><p class="intro-copy">Les sources utilisées, les actions exécutées et ce qui reste à préciser.</p></div><button class="secondary-button" data-view="atelier">← Revenir à l’atelier</button></div>
+        <div class="evidence-layout"><div><section class="evidence-panel"><div class="section-title"><h2>Les sources</h2><span class="small-label" id="sources-label">Références du dossier</span></div><div class="source-list" id="source-list"></div></section><section class="evidence-panel"><div class="section-title"><h2>Ce qui reste ouvert</h2><span class="small-label">Limites et inconnues</span></div><div id="limitations-list" class="limitations-list"></div></section></div><section class="evidence-panel trace-panel"><div class="section-title"><h2>Le travail effectué</h2></div><p class="panel-description">Actions réellement exécutées pour cette analyse.</p><div id="trace-list"></div><div id="agent-detail"></div></section></div>
+      </section>
+      <section class="view" id="view-methode" hidden>
+        <div class="page-intro"><div><p class="eyebrow"><span></span> LE CADRE DE L’EXPÉRIENCE</p><h1>Le calcul et ses limites<span>.</span></h1><p class="intro-copy">Une méthode lisible pour savoir ce que l’on peut conclure.</p></div><button class="secondary-button" data-view="atelier">← Revenir à l’atelier</button></div>
+        <div class="method-grid"><article class="method-card"><span>01</span><h2>Une demande, un contexte</h2><p>Robert, Amira et Mateo sont les situations de référence du concours. Les avoirs, montants et repères chiffrés sont des hypothèses de démonstration ajoutées et modifiables.</p><p>L’agent peut préciser la demande, identifier des contradictions et sélectionner des outils. Les inconnues restent explicites.</p></article><article class="method-card"><span>02</span><h2>Deux allocations comparables</h2><p>On modifie le poids direct d’un actif et l’on redimensionne proportionnellement les autres positions. Les deux portefeuilles sont rejoués sur un même calendrier dans une même devise : le dollar canadien.</p><p>Cette variante est une expérience. Elle n’est pas annoncée comme une allocation optimale.</p></article><article class="method-card"><span>03</span><h2>Des mesures reproductibles</h2><p>Les prix ajustés incluent les distributions selon la convention du fournisseur. Le CAGR mesure la croissance composée historique ; la baisse maximale mesure le plus grand recul depuis un sommet observé.</p><p>Les hypothèses exactes de calendrier, de change et de détention sont documentées avec le moteur de calcul.</p></article><article class="method-card"><span>04</span><h2>Une conclusion conditionnelle</h2><p>L’historique n’est pas une prévision. Le jeu sélectionné comporte un biais de sélection, et les compositions des FNB ainsi que les preuves ESG sont incomplètes.</p><p>L’agent explique les résultats disponibles. Une donnée manquante ne devient pas un fait par la génération d’un texte.</p></article></div>
+        <div class="method-footer"><div><strong>Inspecter la méthode complète</strong><p>Conventions, sources, calculs et vérifications du moteur.</p></div><a href="/api/source/method" target="_blank" rel="noopener" class="secondary-button">Ouvrir la documentation ↗</a></div>
+      </section>
+      <footer class="page-footer"><span>AlphaForge — Le laboratoire de décision financière.</span><span>Simulation pédagogique · Aucune transaction réelle</span></footer>
+    </main>
+  </div>
+</body>
+</html>

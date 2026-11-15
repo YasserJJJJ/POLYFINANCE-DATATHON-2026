@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="fr-FR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Vue d’ensemble - Amazon Bedrock AgentCore</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="what-is-bedrock-agentcore" /><meta name="default_state" content="what-is-bedrock-agentcore" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/fr_fr/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" /><link rel="alternate" type="text/markdown" href="https://docs.aws.amazon.com/fr_fr/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.md" title="Markdown version" /><meta name="description" content="Amazon Bedrock AgentCore est une plateforme agentique permettant de créer, de déployer et d'exploiter des agents hautement efficaces en toute sécurité et à grande échelle, en utilisant n'importe quel framework et modèle de base. Vous pouvez ainsi permettre aux agents de prendre des mesures sur les outils et les données avec les autorisations et la gouvernance appropriées, d'exécuter les agents en toute sécurité à grande échelle et de surveiller les performances et la qualité des agents en production, le tout sans aucune gestion d'infrastructure. AgentCore AgentCore les services fonctionnent ensemble ou indépendamment avec n'importe quel framework open source tel que CrewAI, LangGraph LlamaIndex, et Strands Agents et avec n'importe quel modèle de base. Vous n'avez donc pas à choisir entre la flexibilité open source et une sécurité et une fiabilité de niveau entreprise." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon Bedrock AgentCore" /><meta name="guide" content="Guide du développeur" /><meta name="guide-locale" content="fr_fr" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/fr_fr/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" hreflang="id-id" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" hreflang="id" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" hreflang="de-de" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" hreflang="de" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" hreflang="en-us" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" hreflang="en" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" hreflang="es-es" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" hreflang="es" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" hreflang="fr-fr" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" hreflang="fr" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" hreflang="it-it" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" hreflang="it" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" hreflang="ja-jp" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" hreflang="ja" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" hreflang="ko-kr" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" hreflang="ko" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" hreflang="pt-br" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" hreflang="pt" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_cn/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" hreflang="zh-cn" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_tw/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" hreflang="zh-tw" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" hreflang="x-default" /><meta name="feedback-item" content="bedrock-agentcore" /><meta name="this_doc_product" content="Amazon Bedrock AgentCore" /><meta name="this_doc_guide" content="Guide du développeur" /><head xmlns="http://www.w3.org/1999/xhtml"> <script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"/></head>
+<script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'bedrock-agentcore'}"></script><meta id="panorama-serviceSubSection" value="Guide du développeur" /><meta id="panorama-serviceConsolePage" value="Vue d’ensemble" /><meta name="uiVersion" content="2024.10" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><p><a href="what-is-bedrock-agentcore.md">View a markdown version of this page</a></p><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Vue d’ensemble - Amazon Bedrock AgentCore</title><meta name="pdf" content="bedrock-agentcore-dg.pdf#what-is-bedrock-agentcore" /><meta name="rss" content="bedrock-agentcore-dg.rss" /><meta name="forums" content="https://repost.aws/fr/search/content?globalSearch=Amazon Bedrock AgentCore" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=bedrock-agentcore&amp;topic_url=https://docs.aws.amazon.com/fr_fr/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/fr_fr/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/fr_fr/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon Bedrock AgentCore",
+        "item" : "https://docs.aws.amazon.com/bedrock-agentcore/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Guide du développeur",
+        "item" : "https://docs.aws.amazon.com/fr_fr/bedrock-agentcore/latest/devguide"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Vue d’ensemble",
+        "item" : "https://docs.aws.amazon.com/fr_fr/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="bedrock-agentcore-dg.pdf#what-is-bedrock-agentcore" target="_blank" rel="noopener noreferrer" title="Ouvrir le PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/bedrock-agentcore/index.html">Amazon Bedrock AgentCore</a><a href="what-is-bedrock-agentcore.html">Guide du développeur</a></div><div id="page-toc-src"><a href="#what-is-bedrock-agentcore-overview">Qu'est-ce qu'Amazon Bedrock ? AgentCore</a><a href="#core-services-in-agentcore">Les principaux services d'Amazon Bedrock AgentCore</a><a href="#what-you-can-build-with-agentcore">Que pouvez-vous créer avec Amazon Bedrock ? AgentCore</a><a href="#agentcore-pricing">Tarification d'Amazon Bedrock AgentCore</a><a href="#next-steps">Étapes suivantes</a></div><awsdocs-doc-page-banner></awsdocs-doc-page-banner><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><awsui-alert class="awsdocs-page-banner awsui-util-mb-l"><p>Les traductions sont fournies par des outils de traduction automatique. En cas de conflit entre le contenu d'une traduction et celui de la version originale en anglais, la version anglaise prévaudra.</p></awsui-alert><h1 class="topictitle" id="what-is-bedrock-agentcore">Vue d’ensemble</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div>
+      <h2 id="what-is-bedrock-agentcore-overview">Qu'est-ce qu'Amazon Bedrock ? AgentCore</h2>
+      <p>Amazon Bedrock  AgentCore  est une plateforme agentique permettant de créer, de déployer et d'exploiter des agents hautement efficaces en toute sécurité et à grande échelle, en utilisant n'importe quel framework et modèle de base. Vous pouvez ainsi permettre aux agents de prendre des mesures sur les outils et les données avec les autorisations et la gouvernance appropriées, d'exécuter les agents en toute sécurité à grande échelle et de surveiller les performances et la qualité des agents en production, le tout sans aucune gestion d'infrastructure.  AgentCore  AgentCore les services fonctionnent ensemble ou indépendamment avec n'importe quel framework open source tel que CrewAI,  LangGraph LlamaIndex, et Strands Agents et avec n'importe quel modèle de base. Vous n'avez donc pas à choisir entre la flexibilité open source et une sécurité et une fiabilité de niveau entreprise.</p>
+      <div class="mediaobject">
+          
+            <img src="images/agentcore_all_components_final.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="Qu'est-ce que c'est AgentCore ?" />
+          
+          
+      </div>
+    
+      <h2 id="core-services-in-agentcore">Les principaux services d'Amazon Bedrock AgentCore</h2>
+      <p>Amazon Bedrock  AgentCore  inclut les services et fonctionnalités modulaires suivants que vous pouvez utiliser ensemble ou indépendamment :</p>
+      <div class="table-container"><div class="table-contents"><table id="d0e1"><thead>
+               <tr>
+                  <th align="left" style="text-align: left;vertical-align: top;">Service</th>
+                  <th align="left" style="text-align: left;vertical-align: top;">Description</th>
+                  <th align="left" style="text-align: left;vertical-align: top;">Intégrations</th>
+               </tr>
+            </thead>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p> <a href="./harness.html">Harnais</a> </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Une boucle d'agent gérée qui vous permet de définir et d'invoquer des agents d'intelligence artificielle avec un seul appel d'API. Spécifiez un modèle, une invite système et des outils intégrés. Harness gère l'orchestration, l'exécution des outils, la gestion de la mémoire et la génération de réponses. Chaque session s'exécute dans une microVM isolée avec accès au système de fichiers et au shell, prenant en charge des cas d'utilisation tels que la génération de code, l'analyse de données et la recherche approfondie. Apportez votre propre image de conteneur pour les environnements personnalisés avec des dépendances supplémentaires.</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>AgentCore Harness fonctionne avec Amazon Bedrock, OpenAI, Google Gemini et  OpenAI-compatible  n'importe quel fournisseur de modèles. S'intègre à  AgentCore  la mémoire, à la passerelle, au navigateur, à l'interpréteur de code et à l'observabilité. Prend en charge les serveurs MCP distants, les fonctions en ligne et les environnements de conteneurs personnalisés.</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p> <a href="./agents-tools-runtime.html">Exécution</a> </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Un environnement d'exécution sécurisé et sans serveur spécialement conçu pour le déploiement et le dimensionnement d'agents et d'outils d'IA dynamiques. Runtime fournit des démarrages à froid rapides pour les interactions en temps réel, une prise en charge étendue de l'exécution pour les agents asynchrones, une véritable isolation des sessions, une identité intégrée et une prise en charge des charges de travail agentiques multimodales et multi-agents.</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>AgentCore Runtime fonctionne avec des frameworks personnalisés et n'importe quel framework open source, notamment CrewAI, Google ADK  LangGraph LlamaIndex, OpenAI Agents SDK et Strands Agents, tout modèle de base intégré ou extérieur à Amazon Bedrock, notamment OpenAI, Gemini de Google, Claude d'Anthropic, Amazon Nova, Meta Llama et Mistral, ainsi que des protocoles populaires tels que MCP et A2A.</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p> <a href="./memory.html">Mémoire</a> </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Un moyen de créer des agents sensibles au contexte avec un contrôle total sur ce dont ils se souviennent et apprennent. Supporte à la fois la mémoire à court terme pour les conversations à plusieurs tours et la mémoire à long terme qui persiste d'une session à l'autre, avec la possibilité non seulement de partager des mémoires entre agents, mais également de tirer des leçons des expériences.</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>AgentCore La mémoire fonctionne avec  LangGraph LangChain, Strands,  LlamaIndex</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p> <a href="./gateway.html">Passerelle</a> </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Un moyen sécurisé de convertir vos API, vos fonctions Lambda et vos services existants en outils compatibles avec le Model Context Protocol (MCP) et de vous connecter à des serveurs MCP préexistants, en les mettant à la disposition des agents d'intelligence artificielle via des points de terminaison Gateway en quelques lignes de code.</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Toutes les API, les outils MCP, Lambda et les intégrations populaires, notamment Salesforce, Zoom, JIRA, Slack, etc.</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p> <a href="./identity.html">Identité</a> </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Un service de gestion de l'identité, de l'accès et de l'authentification des agents sécurisé et évolutif, compatible avec les fournisseurs d'identité existants, qui élimine le besoin de migration des utilisateurs ou de reconstruction des flux d'authentification.</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Tous les fournisseurs d'IdP et d'identifiants tels qu'Amazon Cognito, Okta, Microsoft Azure Entra ID, Auth0, etc.</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p> <a href="./code-interpreter-tool.html">Interprète de code</a> </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Un environnement sandbox isolé permettant aux agents d'exécuter du code, d'améliorer leur précision et d'étendre leur capacité à résoudre des tâches complexes de bout en bout.</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Plusieurs langages, dont Python,  JavaScript  et  TypeScript</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p> <a href="./browser-tool.html">Navigateur</a> </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Un environnement d'exécution de navigateur basé sur le cloud rapide et sécurisé permettant aux agents d'intelligence artificielle d'interagir avec des applications Web, de remplir des formulaires, de naviguer sur des sites Web et d'extraire des informations dans un environnement entièrement géré.</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Tout modèle de base ou framework d'automatisation de navigateur populaire, y compris Playwright et  BrowserUse</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p> <a href="./observability.html">Observabilité</a> </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Une vue unifiée pour suivre, déboguer et surveiller les performances des agents en production. Il propose des visualisations détaillées de chaque étape du flux de travail des agents, ce qui vous permet d'inspecter le chemin d'exécution d'un agent, d'auditer les sorties intermédiaires et de corriger les problèmes de performance et les défaillances.</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Toute pile de surveillance et d'observabilité qui s'intègre aux données de télémétrie émises dans un format standardisé  OpenTelemetry  (OTEL) compatible</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p> <a href="./payments.html">Paiements</a> </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Un service entièrement géré qui permet aux agents d'intelligence artificielle d'accéder aux API payantes, aux serveurs MCP et au contenu à l'aide du protocole x402 et du protocole MPP (Machine Payments Protocol). Payments permet l'intégration du portefeuille, des limites de dépenses configurables et une observabilité de bout en bout pour les opérations de paiement des agents.</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>AgentCore payments prend en charge les fournisseurs de portefeuilles Coinbase CDP et Stripe (Privy),  AgentCore  Gateway, Strands Agents, tout point de  MPP-compatible  terminaison ou compatible x402, Identity  AgentCore  and Observability  AgentCore  optimisés par Amazon pour une surveillance unifiée.  CloudWatch </p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p> <a href="./evaluations.html">Évaluations</a> </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Un service d'évaluation spécialement conçu pour une évaluation des agents automatisée, cohérente et basée sur les données.  AgentCore Les évaluations mesurent dans quelle mesure vos agents et vos outils exécutent les tâches, traitent les cas critiques et garantissent la fiabilité des résultats dans divers contextes et entrées. Les évaluations fournissent des signaux de qualité mesurables, aident les équipes à optimiser les performances grâce à des informations structurées et garantissent que votre agent respecte les normes fonctionnelles et comportementales avant et après le déploiement.</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>AgentCore Les évaluations prennent en charge les évaluations des sessions, des traces et des intervalles générés à partir de Strands Agent ou de  LangGraph  frameworks, et instrumentées à l'aide  OpenTelemetry  de ou.  OpenInference Tous les résultats sont intégrés dans  AgentCore  Observability, développé par Amazon  CloudWatch  pour une surveillance unifiée.</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p> <a href="./optimization.html">Optimisation</a> </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Un service d'amélioration continue qui utilise des  AI-generated  recommandations, des ensembles de configuration versionnés et des  A/B  tests pour améliorer les performances des agents grâce à des modifications de configuration basées sur les données. Au lieu d'une optimisation manuelle basée sur des conjectures, vous orientez le service vers les traces des agents pour générer des améliorations et les valider à l'aide d'expériences contrôlées.</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>AgentCore l'optimisation s'appuie sur les  AgentCore  évaluations et fonctionne avec des agents instrumentés  OpenTelemetry  via  AgentCore  Observability. Prend en charge l'optimisation des instructions du système et de la description des outils grâce à la division du trafic via  AgentCore  Gateway à des fins de  A/B  test.</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p> <a href="./policy.html">Stratégie</a> </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Une fonctionnalité qui fournit un contrôle déterministe pour garantir que les agents opèrent dans le respect des limites définies et des règles métier sans les ralentir. Créez facilement des règles précises à l'aide d'un langage naturel ou d'un langage politique, <a href="https://dogwood-policy.github.io/dogwood/index.html" rel="noopener noreferrer" target="_blank"><span>Dogwood</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, compatible avec le langage de politique open source AWS de <a href="https://www.cedarpolicy.com/en" rel="noopener noreferrer" target="_blank"><span>Cedar</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> ().</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>S'intègre à  AgentCore  Gateway pour intercepter chaque appel d'outil avant son exécution. Vous pouvez définir les outils auxquels les agents peuvent accéder, les actions qu'ils peuvent effectuer et dans quelles conditions.</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p> <a href="./registry.html">Registre</a> </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Un catalogue centralisé pour découvrir et gérer les agents, les serveurs MCP, les outils, les compétences et les ressources personnalisées au sein de votre organisation. Registry fournit un flux de travail régi pour la publication, la révision et l'approbation des ressources, avec une sémantique hybride et une recherche par mot clé afin que les agents et les développeurs puissent trouver les bons outils.</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>AgentCore Le registre fonctionne avec n'importe quel serveur, agent, compétence ou ressource personnalisée MCP, déployé sur AWS On-Prem  ou sur tout autre environnement cloud.</p>
+                  </td>
+               </tr>
+            </table></div></div>
+    
+      <h2 id="what-you-can-build-with-agentcore">Que pouvez-vous créer avec Amazon Bedrock ? AgentCore</h2>
+      <p>Avec Amazon Bedrock AgentCore, les développeurs peuvent accélérer la mise en production des agents d'intelligence artificielle grâce à l'évolutivité, à la fiabilité et à la sécurité indispensables à un déploiement dans le monde réel. Voici quelques cas d'utilisation courants pour lesquels vous devez envisager de tirer parti  AgentCore  :</p>
+      <div class="itemizedlist">
+          
+          
+          
+      <ul class="itemizedlist"><li class="listitem">
+            <p> <strong>Agents</strong> </p>
+            <p>Créez des applications d'IA autonomes qui raisonnent, utilisent des outils et maintiennent le contexte. Déployez des agents pour le support client, l'automatisation des flux de travail, l'analyse des données ou l'assistance au codage. Votre agent fonctionne sans serveur avec des sessions isolées, une mémoire persistante et une observabilité intégrée.</p>
+         </li><li class="listitem">
+            <p> <strong>Outils et serveurs MCP (Model Context Protocol)</strong> </p>
+            <p>Transformez les API, les bases de données ou les services existants en outils utilisables par tous les  MCP-compatible  agents. Déployez une passerelle qui intègre vos fonctions Lambda ou vos spécifications OpenAPI pour rendre votre backend instantanément accessible aux agents sans avoir à réécrire le code.</p>
+         </li><li class="listitem">
+            <p> <strong>Plateformes d'agents</strong> </p>
+            <p>Fournissez à vos développeurs internes ou à vos clients une voie pavée pour créer et déployer des agents à l'aide d'outils approuvés, de magasins de mémoire partagée et d'un accès régi aux services d'entreprise. Centralisez l'observabilité, l'authentification et la conformité tout en permettant aux équipes de déployer plus rapidement des fonctionnalités pilotées par des agents.</p>
+         </li></ul></div>
+    
+      <h2 id="agentcore-pricing">Tarification d'Amazon Bedrock AgentCore</h2>
+      <p>AgentCore propose une tarification flexible basée sur la consommation, sans engagement initial ni frais minimaux. Pour plus d'informations, consultez <a href="https://aws.amazon.com/bedrock/agentcore/pricing/" rel="noopener noreferrer" target="_blank"><span>AgentCore les tarifs</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.  AgentCore peut utiliser et stocker votre contenu pour améliorer votre expérience ou vos performances en matière de service. Ces améliorations seront destinées à votre usage personnel  AgentCore  et non à celui des autres clients.</p>
+    
+      <h2 id="next-steps">Étapes suivantes</h2>
+      <p>Si vous utilisez Amazon Bedrock pour la première fois AgentCore, nous vous recommandons de commencer par lire les sections suivantes :</p>
+      <div class="itemizedlist">
+          
+          
+      <ul class="itemizedlist"><li class="listitem">
+            <p> <a href="./runtime-get-started-cli.html">Commencez avec la  AgentCore  CLI</a> </p>
+         </li><li class="listitem">
+            <p> <a href="./develop-agents.html">Comprendre les interfaces disponibles pour utiliser Amazon Bedrock  AgentCore</a> </p>
+         </li></ul></div>
+   <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Avertissement" /> <strong>JavaScript est désactivé ou n'est pas disponible dans votre navigateur.</strong></p><p>Pour que vous puissiez utiliser la documentation AWS, Javascript doit être activé. Vous trouverez des instructions sur les pages d'aide de votre navigateur.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Conventions de rédaction</a></div><div class="prev-next"><div id="next" class="next-link" accesskey="n" href="./agentcore-regions.html"> AWS Régions prises en charge</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Cette page vous a-t-elle été utile ? - Oui</div><div class="content"><p>Merci de nous avoir fait part de votre satisfaction.</p><p>Si vous avez quelques minutes à nous consacrer, merci de nous indiquer ce qui vous a plu afin que nous puissions nous améliorer davantage.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Commentaire" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=bedrock-agentcore&amp;topic_url=https://docs.aws.amazon.com/fr_fr/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Cette page vous a-t-elle été utile ? - Non</div><div class="content"><p>Merci de nous avoir avertis que cette page avait besoin d'être retravaillée. Nous sommes désolés de ne pas avoir répondu à vos attentes.</p><p>Si vous avez quelques minutes à nous consacrer, merci de nous indiquer comment nous pourrions améliorer cette documentation.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Commentaire" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=bedrock-agentcore&amp;topic_url=https://docs.aws.amazon.com/fr_fr/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

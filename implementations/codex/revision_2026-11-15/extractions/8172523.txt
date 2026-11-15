@@ -1,0 +1,342 @@
+
+
+## PAGE 1
+
+Event dashboard
+Données ﬁnancières publiques
+Données ﬁnancières publiques
+Cette page vous aide à trouver des sources, à organiser vos ﬁchiers et à éviter les erreurs de données qui affaiblissent une démonstration.
+Les symboles de l'énoncé (RY.TO, TD.TO, SHOP.TO, AAPL, MSFT, NVDA, SPY, QQQ, XIU.TO, XBB.TO, AGG, TLT, GLD, BTC-USD, etc.) sont des repères. Vous pouvez analyser un
+seul instrument ou en choisir d'autres, à condition d'expliquer votre choix et vos sources.
+Yahoo Finance via yﬁnance 
+Prix quotidiens (ouverture, haut, bas,
+clôture, clôture ajustée, volume),
+dividendes, fractionnements,
+actions, FNB, cryptoactifs
+Bibliothèque Python : pip install yfinance
+Bibliothèque non officielle, sans
+lien avec Yahoo, prévue pour la
+recherche et l'éducation. Les
+conditions d'utilisation de Yahoo
+s'appliquent aux données
+téléchargées
+Banque du Canada, API Valet 
+Taux de change quotidiens (dont
+FXUSDCAD), taux d'intérêt,
+rendements obligataires canadiens
+API REST en JSON ou CSV, sans clé
+Taux publiés les jours ouvrables
+canadiens seulement
+FRED (Federal Reserve Bank of
+St. Louis) 
+Séries macroéconomiques
+américaines : inﬂation, chômage,
+taux directeur, rendements du Trésor
+(ex. DGS10)
+Téléchargement CSV sans clé
+(https://fred.stlouisfed.org/graph/fredgraph.csv?
+id=DGS10) ou API 
+ avec une clé gratuite
+Chaque série indique sa source
+d'origine et ses conditions
+Statistique Canada 
+IPC, emploi, PIB, autres indicateurs
+canadiens
+Tableaux téléchargeables en CSV, Service de données Web
+(SDW) 
+Notez la date de diffusion de
+chaque donnée, pas seulement
+la période couverte
+SEC EDGAR 
+Dépôts des sociétés américaines (10-
+K, 10-Q, 8-K), données ﬁnancières
+XBRL
+API JSON sur data.sec.gov, sans clé
+En-tête User-Agent avec un
+courriel obligatoire, sinon la SEC
+refuse la requête. Limite : 10
+requêtes par seconde
+SEDAR+ 
+Dépôts des émetteurs canadiens :
+rapports annuels, états ﬁnanciers,
+notices annuelles
+Recherche sur le site
+Lisez les conditions d'utilisation
+du site avant tout
+téléchargement automatisé
+Sites des émetteurs de FNB, par
+exemple iShares Canada 
+,
+Vanguard Canada 
+, State
+Street SPDR 
+Composition, pondérations, frais,
+secteurs, pays
+Fiche de chaque FNB, souvent avec un ﬁchier CSV ou Excel
+des titres détenus
+Notez la date de composition du
+ﬁchier
+Pages de relations avec les
+investisseurs des sociétés
+Communiqués de résultats, rapports
+annuels, présentations
+Téléchargement manuel (PDF, HTML)
+Bonne source pour une base de
+connaissances ou l'extraction
+de documents
+Registry of Open Data on
+AWS 
+Jeux de données publics déjà dans
+S3, dont GDELT 
+ (événements tirés
+de l'actualité mondiale)
+Lecture directe depuis S3 ou Athena, sans téléchargement
+Peu de données de marché.
+Selon sa ﬁche, la copie de GDELT
+sur AWS n'est plus mise à jour
+L'énoncé propose une organisation possible. C'est une suggestion, pas une liste de ﬁchiers fournis ni une liste minimale à produire. Ne créez que les ﬁchiers dont
+votre méthode a besoin.
+assets_universe.csv
+Identiﬁant, symbole, nom, classe d'actifs, marché, devise, secteur, pays, date de référence
+yﬁnance, sites des émetteurs
+prices_daily.csv
+Date, symbole, ouverture, haut, bas, clôture, clôture ajustée, volume
+yﬁnance
+corporate_actions.csv
+Symbole, date, type d'événement, montant ou ratio, devise, source
+yﬁnance (dividendes, fractionnements)
+fundamentals.csv
+Entreprise, exercice ou trimestre, revenus, bénéﬁces, actifs, dette, ﬂux de trésorerie, date
+de publication
+SEC EDGAR (XBRL), SEDAR+, rapports annuels
+fund_holdings.csv
+Symbole du FNB, date de composition, instrument détenu, poids, secteur, pays
+Sites des émetteurs de FNB
+macro_series.csv
+Indicateur, pays, période, date de publication, valeur, unité, fréquence
+Banque du Canada, FRED, Statistique Canada
+fx_rates.csv
+Date, paire de devises, taux, source, convention de cotation
+Banque du Canada (Valet)
+news_references.csv
+Date de publication, titre, entité liée, source, URL, catégorie ou mots-clés
+Communiqués, dépôts réglementaires, actualités
+datées
+investor_profiles.csv
+Persona, objectifs, horizon, risque, besoins de liquidité, contraintes (ﬁctifs)
+Généré par votre équipe
+example_portfolios.csv
+Scénario ﬁctif, actif, quantité ou pondération, devise, date de valorisation
+Généré par votre équipe
+Pour les comparaisons ou les simulations, l'énoncé mentionne trois à cinq ans de données comme point de départ utile, sans l'imposer.
+Ce script télécharge cinq ans de prix quotidiens pour quatre actifs avec yﬁnance, puis le taux FXUSDCAD de la Banque du Canada. Il enregistre prices_daily.csv et
+fx_rates.csv, puis convertit un actif américain en dollars canadiens. Il fonctionne dans CloudShell, dans un notebook SageMaker Uniﬁed Studio ou sur votre
+ordinateur (pandas 2.1 ou plus récent).
+Copiez ensuite les ﬁchiers dans votre bucket S3 (voir Créer un bucket S3). Un préﬁxe par ﬁchier facilite les requêtes Athena :
+La SEC exige un en-tête User-Agent qui identiﬁe l'auteur de la requête avec un courriel. Remplacez le nom et le courriel par les vôtres. Cet exemple liste les dépôts
+d'Apple (CIK 0000320193) :
+Les données ﬁnancières XBRL d'une société sont à https://data.sec.gov/api/xbrl/companyfacts/CIK##########.json, avec le même en-tête. Le ﬁchier
+https://www.sec.gov/files/company_tickers.json fait la correspondance entre symboles et numéros CIK.
+Les proﬁls d'investisseurs et les portefeuilles d'exemple doivent être ﬁctifs. Un modèle peut les produire en quelques secondes. Cette commande utilise Nova 2 Lite,
+peu coûteux :
+Relisez le résultat : un modèle peut produire des valeurs incohérentes (par exemple un horizon de 30 ans pour un besoin de liquidité élevé). Corrigez-les à la main ou
+précisez la consigne. Indiquez clairement dans vos livrables que ces proﬁls sont ﬁctifs.
+Ces règles viennent de l'énoncé. Le jury valorise une démarche crédible et vériﬁable, pas le meilleur rendement passé.
+Traçabilité. Pour chaque donnée, gardez la source, la date, la devise et les traitements appliqués. Les colonnes source et currency du script ci-dessus servent à
+cela. Votre README doit lister toutes les sources.
+Cohérence temporelle. Distinguez la date de l'observation et la date de publication. Un 10-K couvre un exercice terminé des semaines avant son dépôt ; un chiffre
+d'inﬂation est publié après le mois qu'il mesure. Dans une simulation, n'utilisez jamais une information qui n'était pas encore publiée à la date simulée. Le
+direction="backward" de merge_asof applique ce principe aux taux de change.
+Comparabilité.
+La clôture ajustée (adj_close) tient compte des dividendes et des fractionnements ; la clôture brute (close) non. Utilisez la clôture ajustée pour comparer des
+rendements.
+Convertissez les actifs en une seule devise avant de les comparer. FXUSDCAD est exprimé en dollars canadiens pour 1 dollar américain.
+Les calendriers diffèrent : la Bourse de Toronto, les bourses américaines et la Banque du Canada n'ont pas les mêmes jours fériés, et les cryptoactifs se négocient
+tous les jours.
+Signalez les données manquantes et le biais de sélection (par exemple, ne retenir que des sociétés qui existent encore aujourd'hui).
+Licences. Respectez les conditions d'accès, de conservation et de redistribution de chaque source.
+Aucune donnée personnelle ou bancaire réelle. N'utilisez aucun compte client, aucun renseignement bancaire conﬁdentiel et aucune donnée personnelle. Les proﬁls
+et les portefeuilles sont ﬁctifs.
+Simulation uniquement. Votre prototype n'exécute aucune transaction réelle et ne se présente pas comme un conseil ﬁnancier personnalisé. Distinguez dans
+l'interface les faits, les hypothèses et les scénarios.
+Commencez petit. Quelques actifs et cinq ans de données quotidiennes suffisent pour une démonstration, et vous itérez beaucoup plus vite.
+Mettez en cache. Téléchargez les données une fois, enregistrez-les en CSV ou en Parquet, puis travaillez sur les ﬁchiers. Vous évitez les limites de requêtes et votre
+démonstration ne dépend pas du réseau.
+Utilisez Parquet avec Athena. Plus rapide et moins coûteux à interroger que le CSV ; pandas le produit en une ligne (df.to_parquet(...)).
+Écrivez vos hypothèses. Horizon, fréquence de rééquilibrage, frais, taux sans risque : le jury posera la question. Notez-les dans votre documentation technique.
+Stocker les ﬁchiers dans S3
+Interroger les données avec Athena
+Rendre des rapports annuels interrogeables avec une base de connaissances
+Extraire des chiffres de documents avec Bedrock Data Automation
+Données financières publiques
+Aucun jeu de données n'est imposé. Le déﬁ AlphaForge AI demande d'utiliser des données ﬁnancières publiques, et vous choisissez librement les actifs. Si l'organisation distribue
+des ﬁchiers, leurs dates de référence et leurs licences seront précisées par PolyFinances. L'énoncé peut changer sur place : l'énoncé officiel du Datathon fait foi, pas cette page.
+Sources publiques
+Source
+Données
+Accès
+À savoir
+Vériﬁez la licence de chaque source et indiquez-la dans votre README. Certaines sources limitent la conservation ou la redistribution des données. Ne publiez pas un ﬁchier de
+prix complet dans un dépôt GitHub public si sa licence ne le permet pas : publiez plutôt le script qui le télécharge.
+Structure de fichiers suggérée
+Fichier
+Contenu illustratif
+Sources possibles
+Exemple : prix et taux USD/CAD en CSV
+pip install yfinance pandas requests
+1
+import pandas as pd
+import requests
+import yfinance as yf
+SYMBOLES = ["RY.TO", "XIU.TO", "SPY", "AGG"]
+DEBUT = "2021-11-01"
+FIN = "2026-11-01"  # yfinance exclut la date de fin
+# 1. Prix quotidiens (Yahoo Finance, via yfinance)
+brut = yf.download(SYMBOLES, start=DEBUT, end=FIN, auto_adjust=False, progress=False)
+prix = (
+    brut.stack(level="Ticker", future_stack=True)
+    .reset_index()
+    .rename(columns={"Date": "date", "Ticker": "symbol", "Open": "open", "High": "high",
+                     "Low": "low", "Close": "close", "Adj Close": "adj_close", "Volume": "volume"})
+    [["date", "symbol", "open", "high", "low", "close", "adj_close", "volume"]]
+    .dropna(subset=["close"])
+)
+prix["currency"] = prix["symbol"].map({s: yf.Ticker(s).fast_info["currency"] for s in SYMBOLES})
+prix["source"] = "Yahoo Finance via yfinance"
+prix.to_csv("prices_daily.csv", index=False)
+# 2. Taux de change USD/CAD (Banque du Canada, API Valet, sans clé)
+reponse = requests.get(
+    "https://www.bankofcanada.ca/valet/observations/FXUSDCAD/json",
+    params={"start_date": DEBUT, "end_date": FIN},
+    timeout=30,
+)
+reponse.raise_for_status()
+fx = pd.DataFrame(
+    [{"date": o["d"], "rate": float(o["FXUSDCAD"]["v"])} for o in reponse.json()["observations"]]
+)
+fx["pair"] = "USDCAD"
+fx["quote_convention"] = "CAD pour 1 USD"
+fx["source"] = "Banque du Canada, série Valet FXUSDCAD"
+fx.to_csv("fx_rates.csv", index=False)
+# 3. Exemple : clôture ajustée de SPY convertie en CAD.
+# merge_asof prend le dernier taux publié à la date du prix ou avant (jours fériés différents).
+spy = prix[prix["symbol"] == "SPY"].sort_values("date").copy()
+spy["date"] = pd.to_datetime(spy["date"]).astype("datetime64[ns]")
+fx["date"] = pd.to_datetime(fx["date"]).astype("datetime64[ns]")
+spy_cad = pd.merge_asof(spy, fx[["date", "rate"]], on="date", direction="backward")
+spy_cad["adj_close_cad"] = spy_cad["adj_close"] * spy_cad["rate"]
+print(prix.groupby(["symbol", "currency"]).size())
+print(spy_cad[["date", "adj_close", "rate", "adj_close_cad"]].tail(3))
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+# $BUCKET contient le nom de votre bucket (voir Créer un bucket S3)
+aws s3 cp prices_daily.csv s3://$BUCKET/raw/prices_daily/
+aws s3 cp fx_rates.csv     s3://$BUCKET/raw/fx_rates/
+1
+2
+3
+Dépôts SEC EDGAR
+curl -s -H "User-Agent: Datathon PolyFinances equipe-NN prenom.nom@polymtl.ca" \
+  "https://data.sec.gov/submissions/CIK0000320193.json" -o apple_submissions.json
+1
+2
+Générer les données fictives
+aws bedrock-runtime converse \
+  --region us-east-1 \
+  --model-id global.amazon.nova-2-lite-v1:0 \
+  --system '[{"text":"Vous générez des données fictives pour une simulation financière éducative. Répondez uniquement en CSV, sans commentai
+  --messages '[{"role":"user","content":[{"text":"Génère investor_profiles.csv avec 6 investisseurs fictifs (2 par persona : Prudent, Équili
+  --inference-config '{"maxTokens":2000,"temperature":0.7}' \
+  --query 'output.message.content[?text != null] | [0].text' --output text \
+  | sed -E '/^[`]{3}/d' > investor_profiles.csv
+cat investor_profiles.csv
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+Règles de qualité
+Conseils pratiques
+Et ensuite
+Previous
+Next
+Bases de connaissances et RAG
+Data Automation
+Construire des agents
+Fonctionnement des agents
+Strands Agents
+Amazon Bedrock AgentCore
+MCP
+Démarrages rapides
+Bucket S3
+Assistants de code IA
+Kiro
+Claude Code sur Bedrock
+Codex sur Bedrock
+Données ﬁnancières publiques
+Nettoyage et exportation
+Ressources
+AWS account access
+Open AWS console
+(us-east-1)
+Get AWS CLI credentials
+Share feedback
+Workshop catalog in AWS Builder
+Center
+Exit event
+AWS Workshop Studio
+adamlarhlimi2006
+© 2008 - 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+Privacy policy
+Terms of use
+Cookie preferences

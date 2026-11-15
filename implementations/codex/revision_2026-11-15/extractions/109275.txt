@@ -1,0 +1,107 @@
+
+
+## PAGE 1
+
+Event dashboard
+Construire des agents
+Fonctionnement des agents
+Fonctionnement des agents
+Prenez cinq minutes avant d'écrire du code. Le vocabulaire est utilisé de façon incohérente partout, et connaître le mécanisme réel rend le débogage évident.
+Un agent est un modèle dans une boucle, avec des outils. C'est toute l'idée.
+1. Vous donnez au modèle un objectif et la liste des outils qu'il peut utiliser, chacun avec un nom, une description et un schéma de paramètres.
+2. Le modèle répond soit par une réponse, soit par une demande d'appel d'outil.
+3. S'il a demandé un outil, votre code exécute cet outil et renvoie le résultat au modèle.
+4. On recommence jusqu'à ce que le modèle produise une réponse ou qu'une limite soit atteinte.
+Le détail que l'on oublie : le modèle n'exécute jamais rien. Il émet une demande structurée du type « appelle mesures_de_risque avec ticker=XBB.TO et
+periode=1y ». Votre programme exécute la fonction et renvoie le résultat. Le modèle décide seulement quoi appeler et quand.
+Deux conséquences :
+Le modèle ne peut faire que ce que vos outils permettent. Un agent est exactement aussi dangereux que les outils que vous lui donnez, et c'est aussi ainsi que
+vous le rendez sûr. Un agent sans outil de transaction ne peut passer aucun ordre.
+Les descriptions de vos outils sont du prompt engineering. Le modèle choisit ses outils d'après les mots que vous avez utilisés pour les décrire. Une docstring
+vague produit un agent qui choisit le mauvais outil. Cela ressemble à une erreur du modèle, mais c'est une erreur de documentation.
+Un outil est une fonction avec une bonne description. Concrètement :
+nom :         mesures_de_risque
+description : Calcule le rendement, la volatilité annualisée et la perte maximale
+              d'un titre à partir de ses prix de clôture ajustés.
+paramètres :  ticker (chaîne, obligatoire), periode (chaîne, facultatif, ex. 1y)
+renvoie :     nom, devise, période couverte, chiffres et source
+De bons outils sont petits, à usage unique et décrits honnêtement. Trois outils précis valent mieux qu'un outil avec un paramètre mode qui fait huit choses.
+Faites calculer les chiffres par vos outils, pas par le modèle. Les modèles se trompent en arithmétique ; une fonction Python qui calcule une volatilité ne se trompe
+pas.
+Les outils doivent aussi échouer de façon informative. Renvoyer {"erreur": "Symbole introuvable, vérifiez le ticker"} permet au modèle de se corriger
+et de s'expliquer. Lever une exception non gérée interrompt simplement l'exécution.
+Par défaut, un modèle ne se souvient de rien entre deux appels : vous renvoyez toute la conversation à chaque fois. Cela suffit pour une session. Deux types de
+mémoire vont plus loin :
+La mémoire à court terme est la conversation en cours. Vous la gérez en conservant la liste des messages. Le seul vrai problème est qu'elle grossit jusqu'à coûter
+cher ou dépasser la fenêtre de contexte.
+La mémoire à long terme persiste entre les sessions : cet utilisateur ﬁctif a le proﬁl Équilibré, il a déjà écarté les cryptomonnaies, il préfère des réponses courtes.
+AgentCore Memory fournit ce service géré.
+Les architectures multi-agents sont à la mode, et sous la pression du temps c'est surtout un piège. Le déﬁ le dit aussi : le nombre d'agents n'est pas une ﬁn en soi. Un
+deuxième agent se justiﬁe quand les deux tâches demandent vraiment des outils, des instructions ou des modèles différents. Par exemple, un agent rapide et peu
+coûteux qui trie les questions et conﬁe les analyses difficiles à un modèle plus capable.
+Si vous ne pouvez pas expliquer en une phrase pourquoi le travail demande deux agents, utilisez-en un.
+L'agent boucle sans ﬁn. Il appelle un outil, n'aime pas le résultat, le rappelle. Fixez toujours une limite au nombre de tours ; Strands l'accepte directement (voir
+Strands Agents).
+L'agent invente des paramètres. Votre schéma manque d'une contrainte, ou la description ne dit pas à quoi ressemble une valeur valide. Donnez un exemple dans la
+description (XBB.TO, BTC-USD, AAAA-MM-JJ).
+L'agent utilise le mauvais outil. Les descriptions de deux outils se chevauchent. Réécrivez-les pour que la frontière soit évidente.
+L'agent invente des faits sur un titre. Lors d'un de nos essais, un modèle a décrit XBB.TO comme un fonds de petites capitalisations ; c'est un FNB obligataire. Faites
+renvoyer par l'outil le nom et le type de l'instrument, pour que le modèle n'ait pas à les deviner.
+Ça marche une fois, puis ça ralentit ou échoue. Chaque tour de boucle est un appel au modèle. Un agent qui répond à une question peut facilement en faire dix. Gérez
+ThrottlingException avec des tentatives espacées : voir Utilisation responsable.
+C'est trop lent pour la démo. Chaque tour ajoute de la latence. Moins d'outils, un modèle plus petit et un prompt système plus serré aident. Un prompt système qui
+demande au modèle de ne pas tout revériﬁer aide aussi.
+Un agent est opaque par défaut. Les équipes qui convainquent rendent le raisonnement visible : quels outils ont été appelés, dans quel ordre, avec quels arguments,
+et ce qu'ils ont renvoyé. Affichez la trace pendant la démo, ou montrez-la dans votre interface.
+La trace répond aussi à plusieurs règles du déﬁ :
+Traçabilité des sources : chaque chiffre vient d'un outil qui indique sa source (Yahoo Finance, Banque du Canada, SEC EDGAR, etc.).
+Faits, hypothèses, scénarios : demandez à l'agent de séparer ce que disent les données de ce qu'il en conclut.
+Cohérence temporelle : faites renvoyer la période couverte et la date de publication des données, pour montrer qu'une simulation n'utilise pas d'information
+publiée après la date simulée.
+Étape suivante : en construire un avec Strands Agents.
+Fonctionnement des agents
+La boucle
+Les outils
+La mémoire
+Pour un projet d'une ﬁn de semaine, une mémoire à court terme dans une liste Python suffit généralement. Ajoutez une mémoire persistante seulement si « se souvenir d'une
+session à l'autre » fait partie de ce que vous démontrez. Dans ce cas, c'est un point fort à montrer.
+Un agent ou plusieurs
+Ce qui tourne mal
+Ce qu'il faut montrer au jury
+Previous
+Next
+AWS Lambda
+Amazon S3
+AWS IAM
+AWS Glue
+Amazon Athena
+Accès AWS CLI et SDK
+L'IA générative sur AWS
+Votre premier appel de modèle
+Choisir un modèle
+Garde-fous
+Bases de connaissances et RAG
+Data Automation
+Construire des agents
+Fonctionnement des agents
+Strands Agents
+Amazon Bedrock AgentCore
+MCP
+Démarrages rapides
+Données ﬁnancières publiques
+Nettoyage et exportation
+Ressources
+AWS account access
+Open AWS console
+(us-east-1)
+Get AWS CLI credentials
+Share feedback
+Workshop catalog in AWS Builder
+Center
+Exit event
+AWS Workshop Studio
+adamlarhlimi2006
+© 2008 - 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+Privacy policy
+Terms of use
+Cookie preferences

@@ -1,0 +1,62 @@
+{
+  "mode": "deterministic_control_real_finance_store_workflow_research_double",
+  "status": "waiting",
+  "current_view": null,
+  "current_analysis": null,
+  "active_clarifications": [],
+  "visible_missing_fields": [],
+  "historical_missing": [
+    [
+      {
+        "field": "withdrawal_cad",
+        "reason": "Valeur nécessaire absente."
+      }
+    ]
+  ],
+  "task_roles": [
+    "agent0",
+    "agent1",
+    "agent2",
+    "agent3",
+    "agent0"
+  ],
+  "questions": [
+    {
+      "dependencies": [
+        "decision"
+      ],
+      "id": "goal",
+      "question": "Un retrait est prévu ; je n'ai pas donné son montant.",
+      "reopen_if": "Modification du besoin ou du mandat",
+      "resolved_by": "Objectif et mandat explicites",
+      "result_refs": [
+        "problem@2"
+      ],
+      "status": "resolved",
+      "type": "objective"
+    },
+    {
+      "dependencies": [
+        "profile",
+        "method"
+      ],
+      "id": "decision",
+      "question": "Quel problème financier résoudre ?",
+      "reopen_if": "Nouvelle contradiction ou unité de décision",
+      "resolved_by": "Formulation admise et unités vérifiées",
+      "result_refs": [],
+      "status": "resolved",
+      "type": "decision"
+    },
+    {
+      "dependencies": [],
+      "id": "profile",
+      "question": "Quelles informations contraignent la décision ?",
+      "reopen_if": "Correction d'une déclaration",
+      "resolved_by": "Valeurs déclarées ou conditionnelles identifiées",
+      "result_refs": [],
+      "status": "resolved",
+      "type": "subproblem"
+    }
+  ]
+}

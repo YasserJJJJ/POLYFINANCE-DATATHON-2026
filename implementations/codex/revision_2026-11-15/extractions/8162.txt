@@ -1,0 +1,106 @@
+
+
+## PAGE 1
+
+Event dashboard
+L'IA générative sur AWS
+L'IA générative sur AWS
+La plupart des projets du Datathon passeront par Amazon Bedrock. Bedrock est une API unique devant un catalogue de modèles de fondation d'Amazon, d'Anthropic,
+d'OpenAI, de Meta, de Mistral, de DeepSeek, de Qwen et d'autres fournisseurs. AWS gère l'infrastructure et les GPU. Vous envoyez le même type de requête à chaque
+modèle, et vous changez de modèle en modiﬁant une chaîne de caractères.
+Conséquence pratique : commencez avec le modèle le moins coûteux qui pourrait suffire, et passez à un modèle plus puissant seulement quand vous pouvez
+montrer une erreur précise du premier.
+Distinguer ces trois niveaux vous évitera de la confusion en lisant la documentation AWS :
+Modèles
+Le modèle lui-même. Du texte en entrée, du texte en sortie.
+Amazon Bedrock, API Converse
+Agents
+Un modèle avec des outils, de la mémoire et une boucle, pour qu'il puisse agir
+Strands Agents, Amazon Bedrock AgentCore : voir Construire des agents
+Applications
+Des produits ﬁnis qui intègrent déjà l'IA
+Kiro, Amazon Quick
+Une règle simple : si la réponse à votre problème est « générer du texte » (expliquer un ratio, résumer un 10-K), il vous faut un modèle. Si c'est « chercher une
+information, décider, puis agir » (récupérer des prix, calculer une volatilité, comparer deux FNB), il vous faut un agent.
+Votre premier appel de modèle
+Un appel qui fonctionne en CLI et en Python, et la signiﬁcation des erreurs courantes
+Choisir un modèle
+Quels identiﬁants de modèle utiliser, le coût, et le piège des proﬁls d'inférence
+Garde-fous
+Refuser le conseil ﬁnancier personnalisé, ﬁltrer les données personnelles, rester dans le sujet
+Bases de connaissances et RAG
+Ancrer les réponses dans des rapports annuels ou des 10-K, avec citations
+Data Automation
+Extraire des chiffres de rapports ﬁnanciers PDF sous forme de JSON
+Un petit modèle avec un bon prompt donne souvent de meilleurs résultats qu'un grand modèle avec un prompt vague. Quatre éléments comptent le plus :
+Séparez le rôle et la tâche. Le prompt system déﬁnit qui est le modèle et quelles sont les règles. Le message user contient la demande précise. Ne mélangez pas
+tout dans un seul bloc.
+Imposez le format de sortie. Si vous avez besoin de JSON, donnez un schéma à Bedrock avec les sorties structurées : la réponse respectera le schéma. Sinon, soyez
+concret : si vous voulez trois puces, écrivez « trois puces ». Les modèles suivent les consignes concrètes et improvisent autour des consignes ﬂoues.
+Donnez des exemples. Deux ou trois exemples d'entrée et de sortie attendue (prompting « few-shot ») sont presque toujours plus efficaces que des paragraphes
+d'explication.
+Dites au modèle quoi faire quand il ne sait pas. Sans consigne, un modèle devine. Une ligne comme Si les données fournies ne contiennent pas la réponse,
+répondez « donnée non disponible » et arrêtez-vous. évite beaucoup d'erreurs gênantes en démonstration.
+Pour ce déﬁ, trois consignes supplémentaires sont utiles dans le prompt system :
+Faits, hypothèses, scénarios. Demandez au modèle d'étiqueter chaque affirmation comme fait (avec sa source), hypothèse ou scénario. Les règles du déﬁ exigent
+cette distinction.
+Date de simulation. Donnez au modèle la date simulée et seulement les données publiées avant cette date. Le modèle a pu apprendre des faits postérieurs à cette
+date pendant son entraînement : précisez qu'il ne doit pas les utiliser.
+Pas de conseil personnalisé. Indiquez que l'outil produit une analyse éducative pour un persona ﬁctif, pas une recommandation à une personne réelle. Un garde-
+fou peut renforcer cette règle.
+Pour aller plus loin, consultez les recommandations de prompt engineering 
+ de la documentation Bedrock et la page Ressources.
+Avant d'écrire du code, essayez vos prompts dans la console. La console Amazon Bedrock 
+ propose un playground de chat : vous pouvez tester un prompt sur
+plusieurs modèles côte à côte, ajuster les paramètres et comparer les réponses. C'est la façon la plus rapide de vériﬁer qu'une idée fonctionne, et elle ne demande
+aucune conﬁguration.
+Dix minutes dans le playground avant une heure de code, c'est un bon investissement.
+L'IA générative sur AWS
+Les trois niveaux
+Niveau
+Ce que c'est
+Ce que vous utilisez
+Pages de cette section
+Page
+Contenu
+Rédiger un prompt, en quatre points
+Quand un prompt ne fonctionne pas, ne l'allongez pas d'abord. Essayez de le rendre plus court et plus précis. Un long prompt noie la consigne importante.
+Le playground de la console
+Previous
+Next
+Introduction à AWS
+Amazon Bedrock
+Kiro
+Outils de développement
+Amazon Quick
+AWS Lambda
+Amazon S3
+AWS IAM
+AWS Glue
+Amazon Athena
+Accès AWS CLI et SDK
+L'IA générative sur AWS
+Votre premier appel de modèle
+Choisir un modèle
+Garde-fous
+Bases de connaissances et RAG
+Data Automation
+Construire des agents
+Démarrages rapides
+Données ﬁnancières publiques
+Nettoyage et exportation
+Ressources
+AWS account access
+Open AWS console
+(us-east-1)
+Get AWS CLI credentials
+Share feedback
+Workshop catalog in AWS Builder
+Center
+Exit event
+AWS Workshop Studio
+adamlarhlimi2006
+© 2008 - 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+Privacy policy
+Terms of use
+Cookie preferences

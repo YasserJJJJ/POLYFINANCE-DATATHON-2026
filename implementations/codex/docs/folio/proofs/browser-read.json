@@ -1,0 +1,90 @@
+{
+  "mode": "read",
+  "started_at": "2026-11-15T20:42:42.264Z",
+  "observations": [
+    {
+      "name": "proof_context_and_focus",
+      "id": "method",
+      "excerpt": "Du problème au résultat\n\nLa méthode et ses contrôles effectifs.\n\nLe contrepoint indépendant\n\nCette règle atteint elle aussi le minimum de 30 000 CAD. Le LP ne prouve aucune supériorité de la couche agentique.\n\nVendre TSLA à 10 %, financer le solde du retrait proportionnellement aux trois autres posi"
+    },
+    {
+      "name": "read_reload_adaptation_no_mutation",
+      "case": "robert",
+      "revision": 5,
+      "conditions": "La référence simple atteint aussi le minimum. Aucune supériorité des agents n’est démontrée sur cet objectif.2 chocs hypothétiques à 12 mois, sans probabilités. Ils ne bornent pas les pertes futures.Réserve abstraite nominale : aucun placement réel garanti. Frais, impôts et inflation exclus.Horizon déclaré : 4 ans. Le calcul ne simule pas toute cette durée.Aucun frais, impôt ni inflation modélisé.Réserve abstraite à rendement nul disponible à l'échéance ; aucun instrument réel assimilé.Plafonds d'exposition à t0 ; pas sur les poids après retrait ou variation des cours.Chocs de valeur en CAD à l'échéance du retrait, sans probabilités.Le minimum de capital réalloué ne minimise ni frais réels ni risque ni rendement.Ces chocs ne mesurent pas un drawdown de trajectoire et ne bornent pas la perte future.L'horizon du solde ne reçoit aucune prévision ; aucun calcul à quatre ans n'est inféré.L'univers admissible est celui des positions déclarées, y compris les poids zéro, plus la réserve abstraite.Instrument réel de réserve et conditions non qualifiés."
+    },
+    {
+      "name": "proof_context_and_focus",
+      "id": "method",
+      "excerpt": "Du problème au résultat\n\nLa méthode et ses contrôles effectifs.\n\nHypothèses et méthode\n{\n  \"assumptions\": [\n    \"Achat-conservation; dividendes réinvestis dans chaque actif via adj_close; aucun rééquilibrage entre actifs.\",\n    \"Hors frais de transaction, frais de change et impôts; frais internes de"
+    },
+    {
+      "name": "read_reload_adaptation_no_mutation",
+      "case": "amira",
+      "revision": 5,
+      "conditions": "Comparaison rétrospective sur un instantané acquis en novembre 2026. Ce résultat ne démontre pas ce qui aurait été connu au début de la période, ni une performance future.L’horizon déclaré de 15 ans n’est pas une durée de prévision.Comparaison rétrospective, pas prévision ni backtest de sélection historiquement réalisable : univers et prix ajustés acquis en 2026.Le drawdown est le creux observé sur cette grille; il ne borne pas une perte future et ignore les mouvements entre observations.La volatilité annualisée suppose des intervalles comparables et une mise à l'échelle en racine du temps; week-ends et jours fériés créent des intervalles inégaux.Le taux FX est une moyenne indicative, pas un cours exécutable synchronisé avec la clôture des actifs.L'heure de valorisation est une convention documentaire; les fichiers ne contiennent pas l'historique des heures exactes de publication.Les fenêtres historiques sont descriptives, choisies à l'avance dans le code; aucune probabilité de scénario futur ne leur est attribuée.Aucun score ESG, exposition réelle des FNB, valorisation fondamentale ou capacité personnelle de perte n'est déduit de ces données.La date de connaissance filtre aussi la disponibilité de la capture ; elle ne rend pas le prix ajusté point-in-time.Aucun rendement manquant n'est imputé ; la comparaison exige les prix sur la grille commune.Les fenêtres historiques réinitialisent l'allocation à leur début ; ce ne sont pas des chocs futurs.L'horizon déclaré n'est pas prédit par cette histoire.Les plafonds portent sur les poids initiaux ; ils ne contraignent pas les poids après variation des cours.Compositions de FNB et exclusions ESG non établies."
+    }
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/dossiers/examples",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/dossiers/examples",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/dossiers/examples",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/49ed5ae5903f41c297909b644ff7599a",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/dossiers/examples",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/49ed5ae5903f41c297909b644ff7599a",
+      "method": "GET"
+    }
+  ],
+  "health": {
+    "status": "ok",
+    "version": "0.7.0",
+    "hosting": "local",
+    "application": "alphaforge",
+    "workspace": "/Users/vpro/Documents/ChatGPT/CALIBRE/Datathon_AlphaForge",
+    "inference": "AWS Bedrock",
+    "region": "us-east-1"
+  },
+  "status": "passed",
+  "finished_at": "2026-11-15T20:42:49.134Z"
+}

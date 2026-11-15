@@ -1,0 +1,110 @@
+Comparing commits - GitHub Docs
+Skip to main content
+Skip to content
+Collapse sidebar
+Expand sidebar
+In this article
+Comparing commits
+Compare branches, tags, commits, forks, and dates to analyze changes and track repository history effectively.
+Copy markdown
+In this article
+To compare different versions of your repository, append
+/compare
+to your repository's path. The compare page uses
+base
+as the starting point and
+compare
+as the endpoint.
+Comparing branches
+Use the Compare view to compare branches or start a pull request.
+Navigate to
+https://github.com/OWNER/REPOSITORY/compare
+.
+Use the
+base
+dropdown menu to select the branch you want to compare against.
+Use the
+compare
+dropdown menu to select the branch that contains the changes.
+Review the commits and changed files in the comparison.
+See
+Branches
+.
+Comparing tags
+Compare release tags to review changes between releases. See
+Comparing releases
+.
+Navigate to
+https://github.com/OWNER/REPOSITORY/compare
+.
+Select the older tag from the
+base
+dropdown menu.
+Select the newer tag from the
+compare
+dropdown menu.
+Review the commits and changed files in the comparison.
+Note
+If a branch and a tag have the same name, the branch is used. To compare the tag, add
+tags/
+before the tag name.
+Comparing commits
+You can compare two commits or Git Object IDs (OIDs) directly by editing the compare URL.
+Navigate to the repository's compare page.
+In the URL, enter the older commit as the base and the newer commit as the compare point.
+For example, this URL uses the shortened SHA codes to compare commits
+f75c570
+and
+3391dcc
+:
+https://github.com/github-linguist/linguist/compare/f75c570..3391dcc
+.
+See
+Branches
+.
+Comparing across forks
+Use owner-qualified branch names to compare branches across forks.
+Navigate to the base repository's compare page.
+Click
+compare across forks
+if the option is shown.
+Select the base repository and branch.
+Select the head fork and compare branch.
+You can also edit the URL directly. For example, use
+octocat:main
+as
+base
+and
+octo-org:main
+as
+compare
+to compare the
+main
+branches of repositories owned by
+octocat
+and
+octo-org
+. See
+Forks
+.
+Comparisons across commits
+To compare a commit with earlier commits, use Git's
+^
+or
+~N
+notation in the compare URL. For example,
+96d29b7~5...96d29b7
+compares
+96d29b7
+with the commit five commits before it.
+Differences between commit views
+The repository commit history and a single file's commit history can show different results. A file's history shows commits that affected that file, while the repository history shows the broader branch history. If a file's history does not include the commit you need, use the repository's commits page instead.
+See
+the "History Simplification"
+section of the
+git log
+documentation.
+Further reading
+Changing the base branch of a pull request
+Signing commits
+Searching commits

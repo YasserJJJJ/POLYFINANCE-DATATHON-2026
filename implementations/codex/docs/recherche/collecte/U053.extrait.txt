@@ -1,0 +1,115 @@
+What does "Restricted license - for non-production use only" mean? – Gurobi Help Center 
+
+ Skip to main content 
+
+ Documentation 
+
+ Status 
+
+ Community 
+
+ Get Help 
+
+ English (United States)
+
+ 日本語
+
+ Sign in
+
+ Sign in
+
+ Documentation 
+
+ Status 
+
+ Community 
+
+ Get Help 
+
+ English (United States)
+
+ 日本語
+
+ Gurobi Help Center 
+
+ Knowledge Base 
+
+ Accounts and Licensing 
+
+ Other Licensing Topics 
+
+ Articles in this section
+
+ How does thread-based capacity work for Single Use, WLS Single Use, and Floating Use licenses?
+
+ What is the Signature in LP and MPS files?
+
+ What does "Restricted license - for non-production use only" mean?
+
+ How do I resolve an "ERROR 10009: License expired"?
+
+ How do I resolve ERROR 10009?
+
+ How do I resolve an "ERROR 10009: Version number is xx, license is for version yy"?
+
+ How do I resolve an "ERROR 10009: License has expired" for an Academic WLS license?
+
+ How do I resolve the error "License expired 2026-11-23"?
+
+ How do I request a transfer of my Gurobi license?
+
+ How do I resolve an "Error 10009: Unable to open Gurobi license file"?
+
+ See more 
+
+ What does "Restricted license - for non-production use only" mean?
+
+ Gwyneth Butera
+
+ November 24, 2025 15:44 
+ Updated 
+
+The message
+ Restricted license - for non-production use only 
+indicates that Gurobi is using a size-limited license included with the pip and conda installation of gurobipy. This license allows you to solve models with a maximum of 2000 variables and 2000 constraints (or 200 variables for models with quadratic terms). It is intended for research, development, and evaluation purposes only and is not permitted for commercial use.
+
+If your model exceeds these size limits, this license may give the following error
+ Model too large for size-limited Gurobi license 
+If you already have a full license (academic, commercial or evaluation) and still see this error, Gurobi is not detecting your license file correctly. To resolve this issue, please see the article How do I resolve a "Model too large for size-limited Gurobi license" error? .
+
+Further information
+
+ How do I resolve the error "License expired 2025-11-24"? 
+
+ Gurobi OptiMods error: "Given data exceeds Gurobi trial license limits" 
+
+ Google Colab: Installation and Licensing 
+
+ How do I resolve a "Model too large for size-limited Gurobi license" error? 
+
+Related to
+
+ License
+
+Was this article helpful?
+
+ Yes 
+ No 
+
+ 0 out of 0 found this helpful 
+
+ Return to top
+
+Related articles
+
+ How do I resolve a "Model too large for size-limited Gurobi license" error? 
+
+ How do I resolve the error "License expired 2026-11-23"? 
+
+ Google Colab: Installation and Licensing 
+
+ How do I install Gurobi Optimizer? 
+
+ What is the Signature in LP and MPS files? 
+
+ © Gurobi Optimization, LLC. All rights reserved.

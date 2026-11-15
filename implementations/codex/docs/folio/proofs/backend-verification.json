@@ -1,0 +1,317 @@
+{
+  "schema_version": "folio-backend-verification-v1",
+  "recorded_at": "2026-11-15T20:53:43.166660+00:00",
+  "author_role": "p6_donnees, auteur du backend Folio ; ne constitue pas sa revue indépendante",
+  "record_kind": "Compte rendu rétrospectif de commandes réellement exécutées, puis recoupement documentaire et SQL en lecture seule.",
+  "new_test_runs_for_this_documentation": 0,
+  "inference_calls_for_backend_tests": 0,
+  "last_complete_test_run": {
+    "command": ".venv/bin/python -m pytest tests/test_folio_api.py tests/test_decision_store_review.py tests/test_decision_service_review.py -q",
+    "execution_date": "2026-11-15",
+    "exact_start_time_retained": false,
+    "exec_session_id": 59572,
+    "result": "36 passed, 13 warnings in 4.08s",
+    "exit_code": 0,
+    "passed": 36,
+    "failed": 0,
+    "warnings": 13,
+    "elapsed_seconds": 4.08,
+    "stdout_provenance": "Sortie functions.write_stdin de cette session, conservée dans le fil de travail ; aucun fichier stdout brut distinct créé.",
+    "warning": "LangSmith emploie asyncio.iscoroutinefunction, déprécié dans Python 3.15 en vue de Python 3.16. Ce sont des avertissements ; aucun traçage extérieur ni inférence dans ces tests.",
+    "suites": [
+      {
+        "path": "tests/test_folio_api.py",
+        "sha256": "4ab21bff25fd1053d5cb893ffac017968573824c9467031255ddbcbfe4833fcf",
+        "count": 14,
+        "test_names": [
+          "test_durable_creation_same_key_across_independent_store_connections",
+          "test_command_and_mutation_rollback_together",
+          "test_object_is_not_published_before_complete_durable_write",
+          "test_crash_after_intake_before_dispatch_resumes_same_run",
+          "test_revise_replay_does_not_fail_stale_revision_or_duplicate_run",
+          "test_variant_replay_preserves_parent_and_returns_one_child",
+          "test_variant_from_history_uses_historical_inputs_and_keeps_current_lease",
+          "test_variant_keeps_extracted_origin_and_cross_dossier_source",
+          "test_historical_heads_events_agents_and_receipts_do_not_leak_future",
+          "test_revision_intake_archive_has_no_old_analysis_and_has_new_run",
+          "test_preview_isolated_numeric_provenance_and_no_inference",
+          "test_preview_impossible_and_missing_do_not_invent_allocations",
+          "test_preview_preserves_documentary_blocker_except_independent_budget_certificate",
+          "test_export_historical_and_invalid_commands"
+        ]
+      },
+      {
+        "path": "tests/test_decision_store_review.py",
+        "sha256": "0d5112dc35dcdbc5858bb20f7d07079583a5bdf9a9b083d60c64bae03846d187",
+        "count": 14,
+        "test_names": [
+          "test_logical_analysis_cannot_be_created_as_an_agent0_assertion",
+          "test_staged_output_cannot_rely_on_a_head_invalidated_in_same_commit",
+          "test_staged_new_dependency_resolves_to_new_version_atomically",
+          "test_commit_cannot_add_unobserved_dependency",
+          "test_read_set_cannot_be_changed_by_worker",
+          "test_correction_hides_old_conclusions_immediately_and_reuses_independent_evidence",
+          "test_late_result_cannot_publish_after_correction",
+          "test_superseded_run_cannot_start_a_new_task",
+          "test_completed_commit_is_reused_after_store_reopen_without_new_revision",
+          "test_variant_is_separate_and_preserves_parent_and_origin_revision",
+          "test_display_event_is_separate_from_acceptance_and_financial_revision",
+          "test_successful_operation_receipt_is_reused_after_restart",
+          "test_qualification_cannot_adopt_unquoted_numbers_nested_in_holdings",
+          "test_agent2_clarification_choice_does_not_execute_financial_calculation"
+        ]
+      },
+      {
+        "path": "tests/test_decision_service_review.py",
+        "sha256": "1285ea900152882615fae4fb82d27f9fddb3c7f08278d6f7ece81969da589e19",
+        "count": 8,
+        "test_names": [
+          "test_four_roles_have_separate_model_calls_commits_and_observed_inputs",
+          "test_structured_aws_failure_survives_to_run_and_retries_only_failed_role",
+          "test_agent2_clarification_does_not_execute_the_declined_finance_tool",
+          "test_agent1_deepen_performs_a_bounded_new_search_before_analysis",
+          "test_nested_extraction_cannot_introduce_unquoted_weights",
+          "test_persisted_local_dossiers_can_be_opened_without_aws_session",
+          "test_agent1_cannot_select_a_method_identifier_absent_from_research",
+          "test_explanation_research_tracks_the_asked_topic_on_revision"
+        ]
+      }
+    ],
+    "counting_note": "36 tests distincts de ce dernier passage. Ne pas additionner les passages intermédiaires comme des preuves indépendantes."
+  },
+  "earlier_executed_passages": [
+    {
+      "command": ".venv/bin/python -m pytest tests/test_decision_store_review.py tests/test_decision_service_review.py -q",
+      "exec_session_id": 96165,
+      "result": "22 passed, 13 warnings in 2.36s"
+    },
+    {
+      "command": ".venv/bin/python -m pytest tests/test_folio_api.py -q",
+      "exec_session_id": 37416,
+      "result": "11 passed, 13 warnings in 2.62s",
+      "scope": "Première version des tests Folio avant ajouts de robustesse et de variantes historiques."
+    },
+    {
+      "command": ".venv/bin/python -m pytest tests/test_folio_api.py -q",
+      "exec_session_id": 25215,
+      "result": "1 failed, 10 passed, 13 warnings in 2.66s",
+      "cause": "Erreur de placement d’une assertion dans le test de l’aperçu : current_revision attendu à tort dans preview, au lieu de GET dossier. Assertion déplacée au test GET ; aucun défaut backend attribué à cet échec."
+    },
+    {
+      "command": ".venv/bin/python -m pytest tests/test_folio_api.py -q -k 'preview_isolated or export_historical or revision_intake'",
+      "exec_session_id": 47307,
+      "result": "3 passed, 8 deselected, 13 warnings in 1.55s",
+      "scope": "Vérification ciblée après correction du test et ajout des faits avant qualification."
+    },
+    {
+      "command": ".venv/bin/python -m pytest tests/test_folio_api.py tests/test_decision_store_review.py -q",
+      "exec_session_id": 94057,
+      "result": "26 passed, 13 warnings in 3.41s",
+      "scope": "Publication atomique des objets et métadonnées historiques."
+    },
+    {
+      "command": ".venv/bin/python -m pytest tests/test_folio_api.py -q -k export_historical",
+      "exec_session_id": 41147,
+      "result": "1 passed, 11 deselected, 13 warnings in 2.30s",
+      "scope": "Empreinte de l’export identique à source.export_sha256 de la projection."
+    }
+  ],
+  "verified_behaviors": [
+    "Deux connexions Store concurrentes, même request_id/corps : un seul dossier/run ; corps différent : conflit.",
+    "Clé API, mutations de dossier et run commis dans la même transaction ; erreur injectée avant commit : rollback des trois.",
+    "Arrêt simulé après réception durable mais avant dispatch : même dossier/run repris, puis aucun nouveau run ou commit au rejeu.",
+    "Rejeu d’une correction accepté malgré le bail devenu ancien, sans créer une autre révision ; requête différente sous même clé refusée.",
+    "Variante distincte, parent inchangé ; source historique explicite réutilisée avec bail courant ; origine et hash des faits parents conservés.",
+    "Archive reconstruite par écritures et invalidations : aucune tâche, preuve ou analyse future ; nouvelles corrections masquent immédiatement l’ancienne conclusion.",
+    "Aperçu 40 000 exécuté par le moteur réel sans inférence ni écriture de dossier, sans prétendre un réemploi d’artefacts ou une revalidation documentaire.",
+    "Retrait 120 000 face à 1 00000 : certificat d’écart 20 000, aucune allocation et aucun minimum ; retrait inconnu : question explicite.",
+    "Source documentaire bloquante : aperçu d’allocation refusé ; le certificat budgétaire indépendant reste permis.",
+    "Export de révision avec analyse et provenance exactes ; valeurs booléennes dans un champ numérique refusées."
+  ],
+  "source_files_at_documentation": [
+    {
+      "path": "alphaforge_app/decision/folio_api.py",
+      "sha256": "097b280ab2c82177d74e56eb18f19ef003a8b2de76ccbf98cc7007b885f666da"
+    },
+    {
+      "path": "alphaforge_app/decision/folio_projection.py",
+      "sha256": "2fd82565add7ee9e55902fc60521bcd9cbeb6e04d8ef007340da53a6cbaf2666"
+    },
+    {
+      "path": "alphaforge_app/decision/store.py",
+      "sha256": "6fb96e5812402335d9965912878907b28bfa7902d04b5e26279c1f31e1d27a49"
+    },
+    {
+      "path": "alphaforge_app/decision/service.py",
+      "sha256": "755db8b9e4dd90bd220b5db840ac61d4651e225f7fe92bc8d0c94f1fcab0e845"
+    },
+    {
+      "path": "alphaforge_app/decision/finance.py",
+      "sha256": "7f277003e42216d8e68c5d042a4cfec6363962a171679a694799ccff3f37085e"
+    }
+  ],
+  "version_evidence_cross_check": {
+    "method": "Lecture des champs des captures JSON désignées et des tableaux audit_revisions/live_cases ; aucun moteur ni modèle relancé.",
+    "rows": [
+      {
+        "file": "docs/folio/proofs/robert-latest.json",
+        "file_sha256": "42d73ac969646c2cb8681f696595801f09e053446109e909d2bed53cbabd3265",
+        "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+        "revision": 5,
+        "status": "complete",
+        "analysis_ref": "analysis@1",
+        "analysis_sha256": "33f65b28e784f1618c44ec57ccd8f6e6b0a906b537bc5c875660a697806dce59",
+        "withdrawal_cad": 30000.0,
+        "scenario_loss_limit_cad": 15000.0,
+        "minimum_reallocation_cad": 30000.0,
+        "scope_note": "Nom historique de fichier : capture initiale r5, pas promesse que cette version est encore courante."
+      },
+      {
+        "file": "docs/folio/proofs/robert-r10-source.json",
+        "file_sha256": "30d6cacf57988bfffcfa1c2988cb747ff1ea04c27cf557f5d2fa00f3483cd15b",
+        "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+        "revision": 10,
+        "status": "complete",
+        "analysis_ref": "analysis@2",
+        "analysis_sha256": "8a8b5182fedd268c288c2dc2e9dbe13284fd50ac86ca231040e2973392a710bf",
+        "withdrawal_cad": 40000.0,
+        "scenario_loss_limit_cad": 15000.0,
+        "minimum_reallocation_cad": 40000.0
+      },
+      {
+        "file": "docs/folio/proofs/robert-r15-source.json",
+        "file_sha256": "11bb66ff386fada74dfd6ffa3a3028a1a42a8aec538e4aca3fbbd0a27f3e2228",
+        "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+        "revision": 15,
+        "status": "complete",
+        "analysis_ref": "analysis@3",
+        "analysis_sha256": "3bec2d333d8a4fc30ab9c595fbbbc61297bf0e8b2a2dc22fb7b3b9836e8078dc",
+        "withdrawal_cad": 1000.0,
+        "scenario_loss_limit_cad": 15000.0,
+        "minimum_reallocation_cad": 14999.999999999996,
+        "scope_warning": "Saisie de revue erronée conservée : retrait fixé à 1 000 au lieu du budget de perte ; ce n’est pas la révision de profil attendue. Correction réelle en r20."
+      },
+      {
+        "file": "docs/folio/proofs/robert-r20-source.json",
+        "file_sha256": "7875fdea824c0ae69e39af7d5c40963bb5fc0970c59f9f869b9a8082da7253e0",
+        "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+        "revision": 20,
+        "status": "complete",
+        "analysis_ref": "analysis@4",
+        "analysis_sha256": "397a6c8e4dd4cb6d4051c3f237d957b67f5a2036c0a2d5b33b15f11e4d13ed39",
+        "withdrawal_cad": 40000.0,
+        "scenario_loss_limit_cad": 1000.0,
+        "minimum_reallocation_cad": 74400.0,
+        "scope_note": "Retrait 40 000 et budget de perte 1 000 ; minimum 74 400. La révision attendue est r20 pour cette étude Folio."
+      },
+      {
+        "file": "docs/folio/proofs/amira-latest.json",
+        "file_sha256": "154de2ef28839780dbebfc1277bba53d74699959afff8c3aae07c95be1c95c4a",
+        "dossier_id": "49ed5ae5903f41c297909b644ff7599a",
+        "revision": 5,
+        "status": "complete",
+        "analysis_ref": "analysis@1",
+        "analysis_sha256": "cdba90d45ab5718dd82ea33e841dc1d7d2262a8f9d3859523c2e9f95958659d0",
+        "withdrawal_cad": null,
+        "scenario_loss_limit_cad": null,
+        "minimum_reallocation_cad": null
+      },
+      {
+        "file": "docs/folio/proofs/amira-variant-source.json",
+        "file_sha256": "2c5ade6fba7b11d4ac94696a88f7323142e66b6a1151afa4ce806becd0e437ca",
+        "dossier_id": "4a654c3cd06646c5a7765ff58820633d",
+        "revision": 5,
+        "status": "complete",
+        "analysis_ref": "analysis@1",
+        "analysis_sha256": "18f780169c924cc02009d489ece96f8da94f017571709d2212fa93830d903339",
+        "withdrawal_cad": null,
+        "scenario_loss_limit_cad": null,
+        "minimum_reallocation_cad": null
+      },
+      {
+        "file": "docs/folio/proofs/folio-export-r5.json",
+        "file_sha256": "160bf028cb9c582289fc5b622d2539666789d79ae98262864f466d8d94b82842",
+        "dossier_id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+        "revision": 5,
+        "status": "complete",
+        "analysis_ref": "analysis@1",
+        "analysis_sha256": "33f65b28e784f1618c44ec57ccd8f6e6b0a906b537bc5c875660a697806dce59",
+        "withdrawal_cad": 30000.0,
+        "scenario_loss_limit_cad": 15000.0,
+        "minimum_reallocation_cad": 30000.0
+      }
+    ],
+    "reports": [
+      {
+        "path": "docs/folio/proofs/audit_revisions.json",
+        "sha256": "bd065b4e07c82a8ba0ef85d727d33376fe16de09e68ff696dd974495ec902ae9"
+      },
+      {
+        "path": "docs/folio/proofs/audit_variant.json",
+        "sha256": "cdeb3c33b3a99d591359a72891ba8d11d9fa0fa1d161d748cc30c8c228e91077"
+      },
+      {
+        "path": "docs/folio/proofs/live_cases.json",
+        "sha256": "7dd4aa0da432a65c60831457d8f74d85dd0fbfc9091f5ac8374075d5f8e861ef"
+      },
+      {
+        "path": "docs/folio/proofs/engine_preserved.json",
+        "sha256": "e9bdc996b8980703be9aeb6bdaee79337d67afdd17cc053e576ba3c923dd4a88"
+      }
+    ],
+    "findings": [
+      "Le tableau distingue correctement r15 (mauvaise saisie de revue) de r20 (correction du budget de perte). Ne pas présenter r15 comme budget de perte 1 000.",
+      "robert-latest.json et amira-latest.json sont les captures initiales r5 ; les révisions nouvelles ont des fichiers distincts.",
+      "Les captures *-source.json et folio-export-r5.json sont les sources brutes à privilégier pour contrôler les hashes. Une capture resérialisée par JavaScript peut perdre .0 sans changer la valeur économique.",
+      "Le rapport engine_preserved.json annonce le même SHA de finance.py avant/après ; le fichier actuel correspond à ce SHA."
+    ]
+  },
+  "migration_read_only_observation": {
+    "date": "2026-11-15",
+    "database": "runtime/decision/dossiers.sqlite3",
+    "connection": "sqlite3.connect(file:.../dossiers.sqlite3?mode=ro, uri=True)",
+    "sql_read": [
+      "SELECT sql FROM sqlite_master WHERE name='api_commands'",
+      "PRAGMA user_version",
+      "PRAGMA table_info(dossiers)",
+      "SELECT kind,COUNT(*) FROM api_commands GROUP BY kind",
+      "SELECT COUNT(*) FROM api_commands c LEFT JOIN dossiers d ON d.id=c.dossier_id LEFT JOIN runs r ON r.id=c.run_id WHERE d.id IS NULL OR r.id IS NULL"
+    ],
+    "schema_change": "CREATE TABLE IF NOT EXISTS api_commands (request_id TEXT PRIMARY KEY,kind TEXT NOT NULL,body_hash TEXT NOT NULL,dossier_id TEXT NOT NULL,run_id TEXT NOT NULL,created_at TEXT NOT NULL)",
+    "db_user_version": 0,
+    "formal_migration_framework": false,
+    "dossiers_columns_unchanged": [
+      "id",
+      "title",
+      "revision",
+      "status",
+      "active_run_id",
+      "created_at",
+      "updated_at",
+      "origin"
+    ],
+    "commands_observed": {
+      "create": 3,
+      "revise": 4
+    },
+    "commands_with_missing_dossier_or_run": 0,
+    "scope": "Migration additive à l’ouverture de Store. Les origines historiques ne sont pas réécrites ; inherited_from est ajouté aux nouveaux faits de variantes. Ce recoupement ne constitue pas un audit octet par octet de toute la base avant/après."
+  },
+  "hash_contract": {
+    "artifact": "SHA256 de store.canonical(artifact.content).",
+    "export_header": "X-Content-SHA256 porte sur store.canonical(snapshot), et non sur tous les octets bruts du fichier JSON exporté.",
+    "file_sha256": "Les file_sha256 de ce rapport portent, eux, sur les octets bruts du fichier.",
+    "numeric_lexical_limit": "La sérialisation canonique Python distingue100000.0 de 1 00000. JSON.parse/stringify JavaScript peut supprimer .0 et rompre le hash sans changer la valeur numérique. Télécharger le corps brut du serveur.",
+    "historical_boundary": "revision=N représente l’état après le commit financier N. Le suivi vivant postérieur (affichage, activité ou erreur sans nouvelle révision financière) est distinct ; source.snapshot_sha256 et source.export_sha256 en donnent les portées."
+  },
+  "limitations": [
+    "Idempotence du dossier/run/commit local uniquement. Si AWS traite une requête et que sa réponse se perd avant le reçu durable, aucune garantie de facturation exactement une fois. Le reçu incertain est explicite.",
+    "La garantie de clé request_id s’applique au transport Folio et aux appels service/store qui fournissent cette clé. L’ancienne API sans clé conserve son comportement antérieur.",
+    "Les tests d’arrêt injectent des exceptions aux points critiques et rouvrent Store ; ils ne simulent pas une coupure électrique ni toutes les interleavings possibles entre processus.",
+    "La publication des nouveaux objets suppose un système de fichiers POSIX local avec liens exclusifs et fsync, et SQLite local. Déploiement NFS/multi-hôte et réplication non qualifiés.",
+    "Les octets d’un objet existant ne sont jamais remplacés. Une corruption déjà présente provoque une erreur d’intégrité explicite ; elle n’est pas réparée automatiquement.",
+    "La nouvelle table api_commands est créée de façon additive, sans versionnement formel de migration ; retour à un ancien binaire ou migration de schéma plus importante non testé ici.",
+    "Les aperçus sont des calculs sans agents et sans relecture de sources. Ils ne produisent aucun nouvel artefact métier vérifié ; l’applicabilité documentaire doit être réexaminée avant adoption.",
+    "Les tests utilisent des doubles déclarés pour les modèles et la recherche. Les nouvelles inférences AWS réelles et la revue navigateur relèvent des rapports indépendants voisins, pas de ces 36 tests."
+  ]
+}

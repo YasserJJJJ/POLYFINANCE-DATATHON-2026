@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#eee9dd">
+  <title>Folio — AlphaForge</title>
+  <link rel="stylesheet" href="/static/folio/fonts/fonts.css">
+  <link rel="stylesheet" href="/static/folio/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Aller au contenu</a>
+  <div id="app"><main id="main" class="opening"><p class="kicker">Folio / AlphaForge</p><h1>Ouvrir le dossier.</h1><p role="status">Chargement de la bibliothèque…</p></main></div>
+  <dialog id="evidence" class="evidence-dialog" aria-labelledby="proof-title">
+    <button class="proof-close" data-action="close-proof" aria-label="Fermer la preuve">Fermer ×</button>
+    <div id="proof-content" class="proof-content"></div>
+  </dialog>
+  <script type="module" src="/static/folio/controller.js"></script>
+</body>
+</html>

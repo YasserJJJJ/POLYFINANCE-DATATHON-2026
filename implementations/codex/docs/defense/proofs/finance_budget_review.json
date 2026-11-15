@@ -1,0 +1,221 @@
+{
+  "executed_at": "2026-11-15T19:14:25.696822+00:00",
+  "scope": "Pydantic et outils financiers déterministes; zéro inférence",
+  "code_sha256": {
+    "alphaforge_app/decision/models.py": "a4f30c1ef79a3cd1ecf8c5ec4ad8628df80b13b0d24c9d99af0cd600ff5ca037",
+    "alphaforge_app/decision/finance.py": "7f277003e42216d8e68c5d042a4cfec6363962a171679a694799ccff3f37085e",
+    "alphaforge_app/decision/service.py": "8c7862672a2bbed7a3244e12898574f3e5cc4b93996c5d629279667fb87f0680",
+    "alphaforge_app/decision/tool_contracts.py": "ce443706710639a222b37dd90c7bb9a13f38835699a60dac0b189f9c78d3d6b6"
+  },
+  "numeric_boolean_cases": [
+    {
+      "field": "capital_cad",
+      "submitted": true,
+      "accepted": false,
+      "errors": [
+        {
+          "location": [
+            "capital_cad"
+          ],
+          "message": "Value error, Une valeur numérique ne peut pas être un booléen."
+        }
+      ]
+    },
+    {
+      "field": "withdrawal_cad",
+      "submitted": true,
+      "accepted": false,
+      "errors": [
+        {
+          "location": [
+            "withdrawal_cad"
+          ],
+          "message": "Value error, Une valeur numérique ne peut pas être un booléen."
+        }
+      ]
+    },
+    {
+      "field": "withdrawal_months",
+      "submitted": true,
+      "accepted": false,
+      "errors": [
+        {
+          "location": [
+            "withdrawal_months"
+          ],
+          "message": "Value error, Une valeur numérique ne peut pas être un booléen."
+        }
+      ]
+    },
+    {
+      "field": "horizon_years",
+      "submitted": true,
+      "accepted": false,
+      "errors": [
+        {
+          "location": [
+            "horizon_years"
+          ],
+          "message": "Value error, Une valeur numérique ne peut pas être un booléen."
+        }
+      ]
+    },
+    {
+      "field": "scenario_loss_limit_cad",
+      "submitted": false,
+      "accepted": false,
+      "errors": [
+        {
+          "location": [
+            "scenario_loss_limit_cad"
+          ],
+          "message": "Value error, Une valeur numérique ne peut pas être un booléen."
+        }
+      ]
+    },
+    {
+      "field": "max_asset_weights",
+      "submitted": {
+        "TSLA": false
+      },
+      "accepted": false,
+      "errors": [
+        {
+          "location": [
+            "max_asset_weights",
+            "TSLA"
+          ],
+          "message": "Value error, Une valeur numérique ne peut pas être un booléen."
+        }
+      ]
+    },
+    {
+      "field": "holdings",
+      "submitted": [
+        {
+          "ticker": "TSLA",
+          "weight": true
+        }
+      ],
+      "accepted": false,
+      "errors": [
+        {
+          "location": [
+            "holdings",
+            0,
+            "weight"
+          ],
+          "message": "Value error, Une valeur numérique ne peut pas être un booléen."
+        }
+      ]
+    },
+    {
+      "field": "comparison",
+      "submitted": {
+        "ticker": "TSLA",
+        "target_weight": false
+      },
+      "accepted": false,
+      "errors": [
+        {
+          "location": [
+            "comparison",
+            "target_weight"
+          ],
+          "message": "Value error, Une valeur numérique ne peut pas être un booléen."
+        }
+      ]
+    },
+    {
+      "field": "scenarios.0.returns.TSLA",
+      "submitted": false,
+      "accepted": false,
+      "errors": [
+        {
+          "location": [
+            "scenarios",
+            0,
+            "returns",
+            "TSLA"
+          ],
+          "message": "Value error, Une valeur numérique ne peut pas être un booléen."
+        }
+      ]
+    }
+  ],
+  "outside_diagnostic_domain": [
+    {
+      "change": {
+        "withdrawal_cad": 100000
+      },
+      "applicable": false,
+      "outcome": {
+        "error": "Entrées hors domaine du diagnostic budgétaire borné."
+      }
+    },
+    {
+      "change": {
+        "withdrawal_cad": 99999
+      },
+      "applicable": false,
+      "outcome": {
+        "error": "Entrées hors domaine du diagnostic budgétaire borné."
+      }
+    },
+    {
+      "change": {
+        "currency": "USD"
+      },
+      "applicable": false,
+      "outcome": {
+        "error": "Entrées hors domaine du diagnostic budgétaire borné."
+      }
+    },
+    {
+      "change": {
+        "reserve_policy": "real_instrument_unknown"
+      },
+      "applicable": false,
+      "outcome": {
+        "error": "Entrées hors domaine du diagnostic budgétaire borné."
+      }
+    },
+    {
+      "change": {
+        "objective": "compare_historical"
+      },
+      "applicable": false,
+      "outcome": {
+        "error": "Entrées hors domaine du diagnostic budgétaire borné."
+      }
+    },
+    {
+      "change": {
+        "capital_cad": true
+      },
+      "applicable": false,
+      "outcome": {
+        "error": "Entrées hors domaine du diagnostic budgétaire borné."
+      }
+    },
+    {
+      "change": {
+        "capital_cad": 0
+      },
+      "applicable": false,
+      "outcome": {
+        "error": "Entrées hors domaine du diagnostic budgétaire borné."
+      }
+    },
+    {
+      "change": {
+        "capital_cad": 10000000000000.0
+      },
+      "applicable": false,
+      "outcome": {
+        "error": "Entrées hors domaine du diagnostic budgétaire borné."
+      }
+    }
+  ],
+  "workflow_control_cases": "Tests scriptés explicites dans test_p5_finance_review.py; aucun client modèle ni reçu AWS."
+}

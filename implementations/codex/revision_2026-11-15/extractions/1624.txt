@@ -1,0 +1,286 @@
+
+
+## PAGE 1
+
+Event dashboard
+L'IA générative sur AWS
+Garde-fous
+Garde-fous
+Un garde-fou (guardrail) est un ﬁltre placé entre les utilisateurs et le modèle, dans les deux sens. Pour ce déﬁ, il vous aide à respecter deux règles : l'outil ne se
+présente pas comme un conseil ﬁnancier personnalisé, et il ne traite aucune donnée bancaire ou client réelle.
+Amazon Bedrock Guardrails peut appliquer six types de politiques :
+Sujets refusés (denied
+topics)
+Refuse des sujets entiers que vous décrivez en langage courant
+Refuser « Dois-je acheter NVDA avec mon CELI ? » ou « Passe un
+ordre sur mon compte de courtage »
+Filtres de contenu
+Bloque la haine, les insultes, le contenu sexuel, la violence, les
+comportements répréhensibles et les attaques par injection de prompt
+Toute interface ouverte au public ou au jury
+Filtres de mots
+Bloque des mots et expressions exacts
+Des formulations interdites comme « rendement garanti »
+Informations sensibles
+Détecte et masque ou bloque les données personnelles (PII)
+Bloquer un numéro d'assurance sociale, un numéro de carte ou
+de compte bancaire ; masquer les noms et courriels
+Ancrage contextuel
+(contextual grounding)
+Rejette les réponses que la source fournie ne soutient pas
+Empêcher un assistant d'inventer un chiffre absent du 10-K
+Raisonnement automatisé
+(automated reasoning)
+Vériﬁe les réponses par rapport à des règles formelles
+Vériﬁer qu'une réponse respecte les règles que vous avez
+déﬁnies pour un persona
+La console Amazon Bedrock → Guardrails 
+ vous guide politique par politique, avec un panneau de test. C'est la façon la plus rapide de créer votre premier garde-
+fou.
+Voici l'équivalent en CLI, que vous pouvez versionner dans votre dépôt :
+Quelques contraintes à connaître si vous modiﬁez cet exemple :
+Le nom d'un sujet refusé n'accepte pas les accents : lettres non accentuées, chiffres, espaces et -_!?. seulement.
+La déﬁnition d'un sujet est limitée à 200 caractères, chaque exemple à 100 caractères, avec au plus 5 exemples.
+Dans un argument bash entre apostrophes, une apostrophe s'écrit '\'', comme dans l'exemple ci-dessus. Pour éviter ce piège, placez le JSON dans un ﬁchier et
+passez file://topics.json.
+Le niveau de protection CLASSIC prend en charge l'anglais, le français et l'espagnol. Le niveau STANDARD couvre plus de langues, mais exige que le garde-fou
+utilise l'inférence interrégionale.
+Évitez de bloquer le cœur de votre projet. Votre outil explique des risques pour des personas ﬁctifs (Prudent, Équilibré, Audacieux). La déﬁnition ci-dessus vise
+l'utilisateur réel et son propre argent, pas l'analyse d'un persona. Testez les deux cas avec apply-guardrail (plus bas) : « Pour le persona Prudent, expliquez le
+risque de taux de TLT » doit passer.
+La réponse contient un guardrailId et une version. Notez-les : vous en avez besoin pour utiliser le garde-fou. Pour les retrouver plus tard :
+Ajoutez le garde-fou à un appel Converse et il s'applique automatiquement :
+En Python :
+C'est moins coûteux, plus rapide, et pratique dans un script de test. apply-guardrail exige --guardrail-identifier, --guardrail-version, --source et --
+content :
+La réponse indique l'action appliquée et renvoie le texte masqué : vous pouvez vériﬁer le résultat dans un test. Préparez une courte liste de questions qui doivent
+passer (analyses de personas) et de questions qui doivent être bloquées (conseil personnalisé, transaction réelle), et exécutez-la après chaque modiﬁcation.
+Si vous construisez un agent, une API plus récente est conçue pour ce type de traﬁc : elle évalue une séquence complète de messages plutôt qu'un seul tour. La
+commande aws bedrock-runtime invoke-guardrail-checks exige --messages et --checks ; consultez aws bedrock-runtime invoke-guardrail-checks
+help pour le détail. Les garde-fous s'intègrent aussi aux politiques d'AgentCore, ce qui permet de gouverner un agent déployé de façon centralisée plutôt qu'appel
+par appel. Voir Construire des agents.
+Créez le garde-fou avant la démonstration, pas après. Les équipes qui l'ajoutent à la ﬁn découvrent que leur prompt faisait déjà un travail que le garde-fou duplique
+ou contredit.
+Ne bloquez pas trop. Régler tous les ﬁltres sur HIGH peut produire un assistant qui refuse des questions raisonnables, ce qui est un autre type d'échec en
+démonstration. Testez avec les vraies questions de vos utilisateurs.
+Montrez-le en action. En démonstration, poser volontairement une question de conseil personnalisé et voir l'outil refuser poliment convainc davantage qu'une
+diapositive sur l'IA responsable.
+Publiez une version. DRAFT convient pendant le développement. Publiez une version avant votre démonstration, pour qu'une modiﬁcation de dernière minute ne
+casse pas ce que vous allez présenter.
+Les comptes AWS sont fermés et toutes les données détruites le lundi 16 novembre à 13 h 59. Voir Nettoyage et exportation.
+Garde-fous
+Politique
+Ce qu'elle fait
+Exemple pour le Datathon
+L'ancrage contextuel est la politique que la plupart des équipes oublient. Il détecte une hallucination au moment où elle se produit, au lieu d'espérer que le prompt l'ait évitée.
+C'est utile pour la traçabilité des sources exigée par le déﬁ.
+Un garde-fou ne remplace pas une démarche responsable. Votre interface doit quand même indiquer qu'il s'agit d'une simulation à but éducatif, et votre documentation doit
+expliquer vos limites. Voir Utilisation responsable.
+Créer un garde-fou
+aws bedrock create-guardrail \
+  --region us-east-1 \
+  --name "datathon-garde-fou" \
+  --description "Pas de conseil financier personnalise, pas de donnees personnelles" \
+  --blocked-input-messaging "Cet outil sert à l'analyse et à la simulation. Il ne donne pas de conseil financier personnalisé et ne passe au
+  --blocked-outputs-messaging "Je ne peux pas répondre à cette demande. Cet outil fournit des analyses à titre éducatif seulement." \
+  --content-policy-config '{
+    "filtersConfig": [
+      {"type": "HATE",          "inputStrength": "HIGH", "outputStrength": "HIGH"},
+      {"type": "INSULTS",       "inputStrength": "HIGH", "outputStrength": "HIGH"},
+      {"type": "SEXUAL",        "inputStrength": "HIGH", "outputStrength": "HIGH"},
+      {"type": "VIOLENCE",      "inputStrength": "HIGH", "outputStrength": "HIGH"},
+      {"type": "MISCONDUCT",    "inputStrength": "HIGH", "outputStrength": "HIGH"},
+      {"type": "PROMPT_ATTACK", "inputStrength": "HIGH", "outputStrength": "NONE"}
+    ]
+  }' \
+  --topic-policy-config '{
+    "topicsConfig": [
+      {
+        "name": "ConseilFinancierPersonnalise",
+        "definition": "Recommander à l'\''utilisateur réel d'\''acheter, de vendre ou de détenir un titre précis avec son propre argent, sel
+        "examples": [
+          "J'\''ai 20 000 $ dans mon CELI, est-ce que je devrais acheter NVDA demain ?",
+          "Dois-je vendre mes actions TD maintenant ?",
+          "Combien de mon épargne devrais-je mettre en bitcoin ?"
+        ],
+        "type": "DENY"
+      },
+      {
+        "name": "TransactionsReelles",
+        "definition": "Passer, préparer ou automatiser un ordre réel d'\''achat ou de vente auprès d'\''un courtier ou d'\''une plateforme d
+        "examples": [
+          "Passe un ordre d'\''achat de 50 actions SHOP.TO sur mon compte de courtage.",
+          "Connecte-toi à mon courtier et vends mes FNB."
+        ],
+        "type": "DENY"
+      }
+    ]
+  }' \
+  --sensitive-information-policy-config '{
+    "piiEntitiesConfig": [
+      {"type": "NAME",                              "action": "ANONYMIZE"},
+      {"type": "EMAIL",                             "action": "ANONYMIZE"},
+      {"type": "PHONE",                             "action": "ANONYMIZE"},
+      {"type": "ADDRESS",                           "action": "ANONYMIZE"},
+      {"type": "CA_SOCIAL_INSURANCE_NUMBER",        "action": "BLOCK"},
+      {"type": "CREDIT_DEBIT_CARD_NUMBER",          "action": "BLOCK"},
+      {"type": "US_BANK_ACCOUNT_NUMBER",            "action": "BLOCK"},
+      {"type": "INTERNATIONAL_BANK_ACCOUNT_NUMBER", "action": "BLOCK"}
+    ]
+  }'
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+PROMPT_ATTACK s'applique seulement à l'entrée : son outputStrength doit être NONE. C'est une erreur fréquente au premier essai.
+aws bedrock list-guardrails --region us-east-1 \
+  --query 'guardrails[].[name,id,version,status]' --output table
+1
+2
+L'appliquer à chaque appel de modèle
+aws bedrock-runtime converse \
+  --region us-east-1 \
+  --model-id global.amazon.nova-2-lite-v1:0 \
+  --guardrail-config '{"guardrailIdentifier":"VOTRE_GUARDRAIL_ID","guardrailVersion":"DRAFT","trace":"enabled"}' \
+  --messages '[{"role":"user","content":[{"text":"J’ai 20 000 $ dans mon CELI. Est-ce que je devrais tout mettre dans NVDA ?"}]}]'
+1
+2
+3
+4
+5
+import boto3
+client = boto3.client("bedrock-runtime", region_name="us-east-1")
+response = client.converse(
+    modelId="global.amazon.nova-2-lite-v1:0",
+    messages=[{"role": "user", "content": [{"text": "J'ai 20 000 $ dans mon CELI. Est-ce que je devrais tout mettre dans NVDA ?"}]}],
+    guardrailConfig={
+        "guardrailIdentifier": "VOTRE_GUARDRAIL_ID",
+        "guardrailVersion": "DRAFT",
+        "trace": "enabled",
+    },
+)
+print("Raison d'arrêt :", response["stopReason"])      # 'guardrail_intervened' quand le garde-fou agit
+blocks = response["output"]["message"]["content"]
+print("".join(b["text"] for b in blocks if "text" in b))
+if "trace" in response:
+    print(response["trace"])                            # quelle politique a bloqué, et pourquoi
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+Utilisez "trace": "enabled" pendant le développement. La trace indique quelle politique a agi, ce qui transforme « il refuse et je ne sais pas pourquoi » en correction de deux
+secondes. stopReason vaut guardrail_intervened quand un garde-fou a agi.
+Tester un garde-fou sans appeler de modèle
+aws bedrock-runtime apply-guardrail \
+  --region us-east-1 \
+  --guardrail-identifier VOTRE_GUARDRAIL_ID \
+  --guardrail-version DRAFT \
+  --source INPUT \
+  --content '[{"text":{"text":"Mon courriel est etudiant@example.com, analysez le risque du persona Prudent"}}]'
+1
+2
+3
+4
+5
+6
+Garde-fous pour les agents
+Conseils
+Nettoyage
+aws bedrock delete-guardrail --region us-east-1 --guardrail-identifier VOTRE_GUARDRAIL_ID
+1
+Previous
+Next
+AWS Lambda
+Amazon S3
+AWS IAM
+AWS Glue
+Amazon Athena
+Accès AWS CLI et SDK
+L'IA générative sur AWS
+Votre premier appel de modèle
+Choisir un modèle
+Garde-fous
+Bases de connaissances et RAG
+Data Automation
+Construire des agents
+Démarrages rapides
+Données ﬁnancières publiques
+Nettoyage et exportation
+Ressources
+AWS account access
+Open AWS console
+(us-east-1)
+Get AWS CLI credentials
+Share feedback
+Workshop catalog in AWS Builder
+Center
+Exit event
+AWS Workshop Studio
+adamlarhlimi2006
+© 2008 - 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+Privacy policy
+Terms of use
+Cookie preferences

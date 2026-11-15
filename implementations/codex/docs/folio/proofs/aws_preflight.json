@@ -1,0 +1,59 @@
+{
+  "verified_at": "2026-11-15T20:34:21.610312+00:00",
+  "session": {
+    "id": "01a1e0bf-9b5c-78f3-bbeb-726cd456fb5d",
+    "cwd": "/Users/vpro/Documents/ChatGPT/CALIBRE/Datathon_AlphaForge",
+    "model_provider": "amazon-bedrock-runtime",
+    "agent_path": "/root/p6_audit"
+  },
+  "health": {
+    "status": "ok",
+    "version": "0.5.0",
+    "hosting": "local",
+    "application": "alphaforge",
+    "workspace": "/Users/vpro/Documents/ChatGPT/CALIBRE/Datathon_AlphaForge",
+    "inference": "AWS Bedrock",
+    "region": "us-east-1"
+  },
+  "aws_identity": {
+    "account_id": "471112821226",
+    "role_arn": "arn:aws:sts::471112821226:assumed-role/WSParticipantRole/Participant",
+    "region": "us-east-1",
+    "profile": "alphaforge",
+    "provider": "amazon-bedrock-runtime",
+    "endpoint": "https://bedrock-runtime.us-east-1.amazonaws.com",
+    "verified_at": "2026-11-15T20:34:21Z",
+    "sts_request_id": "6d40b808-7fb4-4144-8ec5-07e74c990fb1"
+  },
+  "model": "global.openai.gpt-6-astra",
+  "runtime_endpoint": "https://bedrock-runtime.us-east-1.amazonaws.com",
+  "access_scope": "STS et construction client Bedrock vérifiés ; autorisation Converse vérifiable au résultat réel, pas présumée depuis STS.",
+  "examples": [
+    {
+      "id": "robert",
+      "historical_policy": null
+    },
+    {
+      "id": "amira",
+      "historical_policy": {
+        "redistribution": "proportional_other_holdings",
+        "window": {
+          "kind": "all_common_available"
+        }
+      }
+    }
+  ],
+  "inference_profile": {
+    "inferenceProfileId": "global.openai.gpt-6-astra",
+    "status": "ACTIVE",
+    "type": "SYSTEM_DEFINED",
+    "models": [
+      {
+        "modelArn": "arn:aws:bedrock:::foundation-model/openai.gpt-6-astra"
+      },
+      {
+        "modelArn": "arn:aws:bedrock:us-east-1::foundation-model/openai.gpt-6-astra"
+      }
+    ]
+  }
+}

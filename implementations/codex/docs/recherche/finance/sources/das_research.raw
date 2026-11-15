@@ -1,0 +1,2445 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sanjiv Ranjan Das — Research & Publications</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: #2d2d2d;
+        background: #f5f5f0;
+        line-height: 1.6;
+      }
+      .logo-bar {
+        text-align: center;
+        padding: 2rem 2rem 0;
+      }
+      .logo-bar img {
+        max-width: 280px;
+        height: auto;
+      }
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 2.5rem 2rem 3rem;
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 3rem;
+      }
+      .sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .photo-card {
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+      .photo-card img {
+        width: 100%;
+        display: block;
+      }
+      .main-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .hero-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 2rem 2.5rem;
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+      }
+      .hero-card h2 {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #1a1a2e;
+        margin-bottom: 0.3rem;
+      }
+      .quick-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .quick-links a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.6rem 1.2rem;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        text-decoration: none;
+        color: #1a1a2e;
+        font-weight: 500;
+        font-size: 0.93rem;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s,
+          background 0.2s;
+      }
+      .quick-links a:hover {
+        border-color: #1a1a2e;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        background: #fafaf6;
+      }
+      .quick-links .icon {
+        font-size: 1.15rem;
+      }
+      footer {
+        text-align: center;
+        padding: 2rem 1rem 1.5rem;
+        color: #999;
+        font-size: 0.82rem;
+      }
+
+      details {
+        margin-bottom: 1.2rem;
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        border: 1px solid #eee;
+      }
+      summary {
+        padding: 1.2rem 1.5rem;
+        font-weight: 700;
+        font-size: 1.1rem;
+        cursor: pointer;
+        background: #fff;
+        border-bottom: 1px solid transparent;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #1a1a2e;
+      }
+      summary::-webkit-details-marker {
+        display: none;
+      }
+      summary::after {
+        content: "⊕";
+        font-size: 1.4rem;
+        color: #888;
+      }
+      details[open] summary {
+        border-bottom: 1px solid #eee;
+      }
+      details[open] summary::after {
+        content: "⊖";
+      }
+
+      .details-content {
+        padding: 1.5rem;
+        background: #fafaf6;
+      }
+
+      .pub-card {
+        display: flex;
+        gap: 1.5rem;
+        background: #fff;
+        border-radius: 10px;
+        padding: 1.2rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+        border: 1px solid #eee;
+        align-items: flex-start;
+      }
+      .pub-card img {
+        width: 50px;
+        height: auto;
+        object-fit: contain;
+        flex-shrink: 0;
+        border: 1px solid #eee;
+        padding: 2px;
+        background: #fff;
+      }
+      .pub-info {
+        flex-grow: 1;
+        font-size: 0.95rem;
+      }
+      .pub-number {
+        font-weight: 700;
+        color: #1a1a2e;
+        margin-right: 0.3rem;
+      }
+      .pub-info a {
+        color: #1a1a2e;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+      .pub-info i {
+        color: #555;
+      }
+
+      @media (max-width: 760px) {
+        .container {
+          grid-template-columns: 1fr;
+          padding: 1.5rem 1rem;
+          gap: 2rem;
+        }
+        .sidebar {
+          align-items: center;
+        }
+        .photo-card {
+          max-width: 200px;
+        }
+        .pub-card {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1rem;
+        }
+        .pub-card img {
+          width: 60px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="logo-bar">
+      <img src="graphics/scu-primary-logo.png" alt="Santa Clara University" />
+    </div>
+    <div class="container">
+      <aside class="sidebar">
+        <div class="photo-card">
+          <img
+            src="graphics/sanjiv_corridor2_suit.jpg"
+            alt="Sanjiv Ranjan Das"
+          />
+        </div>
+        <div class="quick-links">
+          <a href="index.html"
+            ><span class="icon">&#8962;</span> Back to Home</a
+          >
+          <a
+            href="https://scholar.google.com/citations?user=d33zFzkAAAAJ&hl=en"
+            target="_blank"
+            ><span class="icon">&#128200;</span> Google Scholar</a
+          >
+          <a href="srdvita.pdf"
+            ><span class="icon">&#128196;</span> Curriculum Vitae</a
+          >
+          <a href="bio-candid.html" target="_blank"
+            ><span class="icon">&#128100;</span> Bio</a
+          >
+        </div>
+      </aside>
+      <section class="main-content">
+        <div class="hero-card">
+          <h2>Research & Publications</h2>
+          <p>
+            Sanjiv Ranjan Das &middot; Professor of Finance and Data Science
+          </p>
+          <p style="font-size: 0.9rem; margin-top: 0.8rem">
+            Summary on
+            <a
+              href="http://scholargps.com/scholars/14983491543680/sanjiv-ranjan-das"
+              target="_blank"
+              >ScholarGPS</a
+            >. Papers on
+            <a href="http://ssrn.com/author=17108" target="_blank">SSRN</a>.
+          </p>
+        </div>
+        <details open>
+          <summary>Books and Teaching Notes</summary>
+          <div class="details-content">
+            <div class="pub-card">
+              <img src="graphics/academia.png" alt="icon" />
+              <div class="pub-info">
+                "Academic Life: (A)musings from the Ivory Tower"
+                <a
+                  href="https://srdas.github.io/Papers/AcademicLife.pdf"
+                  target="_blank"
+                  >PDF.</a
+                >
+                [A collection of essays and notes to myself about academic
+                life.]
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/nlp.png" alt="icon" />
+              <div class="pub-info">
+                "Natural Language Processing" (web book)
+                <a href="http://srdas.github.io/NLPBook/" target="_blank"
+                  >Read here.</a
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/DSTMAA.png" alt="icon" />
+              <div class="pub-info">
+                "Data Science: Theories, Models, Algorithms, and Analytics" (web
+                book -- work in progress)
+                <a
+                  href="http://srdas.github.io/Papers/DSA_Book.pdf"
+                  target="_blank"
+                  >Read here.</a
+                >
+                <a href="http://srdas.github.io/MLBook/" target="_blank"
+                  >Real-time web version (using R)</a
+                >
+                <a
+                  href="https://app.box.com/s/8uduwzfyezeoupqii76u7a6ro3somole"
+                  target="_blank"
+                  >Data for the examples in the book</a
+                >
+                <a href="http://srdas.github.io/MLBook2/" target="_blank"
+                  >Real-time web version (WIP: using Python and R)</a
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/derbook_cover.png" alt="icon" />
+              <div class="pub-info">
+                "Derivatives: Principles and Practice" (1st edition 2010, 2nd
+                edition 2016), (Rangarajan Sundaram and Sanjiv Das), McGraw
+                Hill.
+                <a
+                  href="http://www.amazon.com/Derivatives-Rangarajan-Sundaram/dp/0072949317/ref=sr_1_1?ie=UTF8&s=books&qid=1268798971&sr=8-1"
+                  target="_blank"
+                  >[Amazon]</a
+                >
+                <a
+                  href="http://productsearch.barnesandnoble.com/search/results.aspx?WRD=sundaram+das"
+                  target="_blank"
+                  >[BarnesNoble]</a
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/dnn.png" alt="icon" />
+              <div class="pub-info">
+                "Deep Learning" (web book with Subir Varma -- work in progress)
+                <a href="http://srdas.github.io/DLBook/" target="_blank"
+                  >Real-time web version</a
+                >
+                <a href="http://srdas.github.io/DLBook2/" target="_blank"
+                  >Real-time web version (using Python and R)</a
+                >
+              </div>
+            </div>
+          </div>
+        </details>
+        <details>
+          <summary>Machine Learning / NLP / FinTech / Big Data</summary>
+          <div class="details-content">
+             <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "A Case Study in  AI Assisted Research: Forecasting Financial Variables with a Foundation Model" (2026), (with Tarang Goyal and Mohini Yadav),  <I>Journal of Investment Management</I>, v24(4).
+                <a href="https://github.com/srdas/timeseries-fm" target="_blank"
+                  >[GitHub]</a
+                > <a href="https://arxiv.org/abs/2605.21504" target="_blank"
+                  >[arXiv]</a
+                > <a href="https://srdas.github.io/Papers/chronos2.pdf" target="_blank"
+                  >[PDF]</a
+                >.
+              </div>
+            </div>
+
+            <div class="pub-card">
+              <img src="graphics/neurips.png" alt="icon" />
+              <div class="pub-info">
+                "Agents' Last Exam" (2026), (with several co-authors),
+                <i>The Fortieth Annual Conference on Neural Information Processing Systems, NeurIPS</i>
+                <a
+                  href="https://arxiv.org/abs/2606.05405"
+                  target="_blank"
+                  >[PDF]</a
+                >.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/aixb.avif" alt="icon" />
+              <div class="pub-info">
+                "Converting Expert Deliberation into Financial Signals Through A Context-Aware NLP Pipeline" (2026), 
+                (with Vivek Batra, Kristen Chen, Samuel Judge, Harshad Khadilkar, Sukrit Mittal, Amir Nasrollahzadeh, Daniel Ostrov, Jacob Sisk).
+                <i>AIxB: Artificial Intelligence x Business conference proceedings</i>, <a href="https://www.aixb.org/" target="blank">aixb.org</a>
+                <a href="https://arxiv.org/abs/2608.18911" target="_blank"
+                  >[PDF]</a>.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JFinDS.png" alt="icon" />
+              <div class="pub-info">
+                "A Meta Reinforcement Learning Approach to Goals-Based Wealth
+                Management" (2026), (with Harshad Khadilkar, Sukrit Mittal,
+                Daniel Ostrov, Deep Srivastav, Hungjen Wang), forthcoming,
+                <i>Journal of Finance and Data Science</i>
+                <a
+                  href="https://www.sciencedirect.com/science/article/pii/S2405918826000115?via%3Dihub"
+                  target="_blank"
+                  >[PDF]</a
+                >.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Yield Curve Forecasting with Machine Learning and Econometrics:
+                A Comparative Analysis" (2025), (with Aman Singh, Tokunbo
+                Ogunfunmi).
+                <i>Journal of Investment Management</i>, v23(4), 37-58.
+                <a href="https://arxiv.org/abs/2605.09842" target="_blank"
+                  >[arXiv]</a
+                >.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/IEEE.gif" alt="icon" />
+              <div class="pub-info">
+                "Reinforcement learning for Multiple Goals in Goals-Based Wealth
+                Management" (2024),
+                <i
+                  >Proceedings of the AIxB 2024: IEEE International Conference
+                  on AI x Business</i
+                >, <a href="https://www.aixb.org" target="_blank">[AIxB]</a>,
+                (with Sukrit Mittal, Daniel Ostrov, Anand Radhakrishnan, Deep
+                Srivastav, Hungjen Wang),
+                <a href="Papers/GBWM_RL_AIxB.pdf" target="_blank">[PDF]</a>.
+                <i
+                  >[Reinforcement learning performs as well as dynamic
+                  programming with minimal training for goals-based wealth
+                  management problems.</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/informs.png" alt="icon" />
+              <div class="pub-info">
+                "Credit Risk Modeling with Graph Machine Learning" (2023), (with
+                Xin Huang, Soji Adeshina, Patrick Yang, Leonardo Bachega),
+                <i>INFORMS Journal on Data Science</i>, v2(2), 197-217.
+                <a
+                  href="https://pubsonline.informs.org/doi/epdf/10.1287/ijds.2022.00018"
+                  target="_blank"
+                  >[PDF]</a
+                >. <br /><i
+                  >[Using SEC filing text to construct a corporate graph and
+                  improve on tabular credit rating algorithms using graph
+                  machine learning.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/arfe.png" alt="icon" />
+              <div class="pub-info">
+                "Algorithmic Fairness", 2023, (with Richard Stanton, Nancy
+                Wallace), <i>Annual Review of Financial Economics</i>, v15,
+                565-593.
+                <a
+                  href="https://www.annualreviews.org/doi/abs/10.1146/annurev-financial-110921-125930"
+                  target="_blank"
+                  >[JOURNAL]</a
+                >. <br /><i
+                  >[A review of algorithmic bias in finance, with metrics and an
+                  application to mortgage lending.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/isca.png" alt="icon" />
+              <div class="pub-info">
+                "Utility-Preserving Privacy-Enabled Speech Embeddings for
+                Emotion Detection" (with Chandrashekhar Lavania, Xin Huang, Kyu
+                Han), proceedings of <i>Interspeech 2023</i>, 3612-3616, doi:
+                10.21437/Interspeech.2023-1075.
+                <a
+                  href="https://www.isca-speech.org/archive/interspeech_2023/lavania23_interspeech.html"
+                  target="_blank"
+                  >[CONF]</a
+                >. <br /><i
+                  >[A novel embedding shuffling scheme to prepare speech
+                  embeddings that may be used for emotion detection and other
+                  tasks but suppresses speaker identification to promote
+                  privacy.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/intellisys2023.png" alt="icon" />
+              <div class="pub-info">
+                "A System for Analyzing Human Capability at Scale" (2023), (with
+                Daniel Zhu, Dave Ulrich, Norm Smallwood). Accepted at
+                <i>IntelliSys 2023</i>
+                <a href="Papers/HCscale_IntelliSys.pdf" target="_blank">[PDF]</a
+                >.
+                <a
+                  href="https://link.springer.com/book/10.1007/978-3-031-47715-7"
+                  target="_blank"
+                  >[Conf Volume]</a
+                >
+                <a
+                  href="https://link.springer.com/chapter/10.1007/978-3-031-47715-7_21"
+                  target="_blank"
+                  >[Conf Publication]</a
+                >
+                <a
+                  href="https://www.youtube.com/watch?v=KjoiZC2-vMU"
+                  target="_blank"
+                  >[Conf Interview]</a
+                >
+                <br /><i
+                  >[Machine learning to build a prototype system to analyze HC
+                  using SEC filings applied to 5,760 companies. Creates a
+                  dashboard for each firm on the quantity of reporting over four
+                  dimensions of HC: talent, leadership, organization, and human
+                  resources operations.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/EIEH.gif" alt="icon" />
+              <div class="pub-info">
+                "Digitization and data frames for card index records" 2023,
+                (with Someswar Amujala and Angela Vossmeyer),
+                <i>Explorations in Economic History</i>, v87 (January), 101469,
+                <a
+                  href="https://reader.elsevier.com/reader/sd/pii/S001449832200047X"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br /><i
+                  >[A machine learning pipeline to construct a dataset of
+                  handwritten and typewritten loan cards from the Great
+                  Depression.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/IEEE.png" alt="icon" />
+              <div class="pub-info">
+                "Intelligent Probabilistic Forecasts of VIX and its Volatility
+                using Machine Learning Methods," (2022), (with Aerambamoorthy
+                Thavaneswaran, You Liang, Ruppa K. Thulasiram, Janakumar
+                Bhanushali), Proceedings of
+                <i
+                  >IEEE Computational Intelligence for Financial Engineering and
+                  Economics</i
+                >, Helsinki.
+                <a
+                  href="https://ieeexplore.ieee.org/document/9776069"
+                  target="_blank"
+                  >[IEEE]</a
+                >.
+                <a href="10.1109/CIFEr52523.2022.9776069" target="_blank"
+                  >[DOI]</a
+                >. <br /><i
+                  >[Machine learning for better forecasts of the level and
+                  volatility of the VIX.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JFinDS.png" alt="icon" />
+              <div class="pub-info">
+                "FinLex: An Effective Use of Word Embeddings for Financial
+                Lexicon Generation'' 2021, (with Michele Donini, Muhammad Bilal
+                Zafar, John He, Krishnaram Kenthapadi),
+                <i>Journal of Finance and Data Science</i>, v8 (November), 1-11.
+                <a
+                  href="https://doi.org/10.1016/j.jfds.2021.10.001"
+                  target="_blank"
+                  >[DOI]</a
+                >.
+                <a
+                  href="https://www.sciencedirect.com/science/article/pii/S2405918821000131"
+                  target="_blank"
+                  >[WEB]</a
+                >. <br /><i
+                  >[A simple algorithm to generate contextual words lists for
+                  NLP scoring from seed words.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JFDS_cover.PNG" alt="icon" />
+              <div class="pub-info">
+                "Fairness measures for machine learning in finance" 2021 (with
+                Michele Donini, Jason Gelman, Kevin Haas, Mila Hardt, Jared
+                Katzman, Krishnaram Kenthapadi, Pedro Larroy, Pinar Yilmaz,
+                Bilal Zafar ), <i>Journal of Financial Data Science</i>, v3(4),
+                33-64.
+                <a
+                  href="https://jfds.pm-research.com/content/3/4/33"
+                  target="_blank"
+                  >[JFDS]</a
+                >. <br /><i
+                  >[A machine learning pipeline for fairness-aware machine
+                  learning (FAML) in finance that encompasses metrics for
+                  fairness (and accuracy).]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JFDS_cover.PNG" alt="icon" />
+              <div class="pub-info">
+                "Context, Language Modeling, and Multimodal Data in Finance"
+                2021 (with Connor Goggins, John He, George Karypis, Sandeep
+                Krishnamurthy, Mitali Mahajan, Nagpurnanand Prabhala, Dylan
+                Slack, Rob van Dusen, Shenghua Yue, Sheng Zha and Shuai Zheng),
+                <i>Journal of Financial Data Science</i>, v3(3), 52-66.
+                <a
+                  href="https://doi.org/10.3905/jfds.2021.1.063"
+                  target="_blank"
+                  >[JFDS]</a
+                >. <br /><i
+                  >[Multimodal (long text, numerical, and categorical) data for
+                  financial machine learning. Showcases a financial language
+                  model pre-trained on Wiki text and SEC filings.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/acm.png" alt="icon" />
+              <div class="pub-info">
+                "Amazon SageMaker Clarify: Machine Learning Bias Detection and
+                Explainability in the Cloud'' 2021 (with M. Hardt, X. Chen, X.
+                Cheng, M. Donini, J. Gelman, S. Gollaprolu, J. He, P. Larroy, X.
+                Liu, N. McCarthy, A. Rathi, S. Rees, A. Siva, K. Vasist, P.
+                Yilmaz, B. Zafar, K. Haas, T. Hill, K. Kenthapadi, Krishnaram).
+                <a href="https://kdd.org/kdd2021/" target="_blank"
+                  >KDD '21, Research Track</a
+                >, August, 2974-2983.
+                <a
+                  href="https://dl.acm.org/doi/10.1145/3447548.3467177"
+                  target="_blank"
+                  >[KDD]</a
+                >
+                <br /><i
+                  >[The paper presents how biases are detected and
+                  explainability are provided in an ML pipeline.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/COMPSAC.png" alt="icon" />
+              <div class="pub-info">
+                "Multimodal Machine Learning for Credit Modeling", 2021 (with
+                Cuong Nguyen, John He, Shenghua Yue, Vinay Hanumaiah, Xavier
+                Ragot, Li Zhang).
+                <i
+                  >The 1st IEEE International Workshop on Dynamic Data Science &
+                  Big Data Analytics in Finance</i
+                >, (<a
+                  href="https://ieeecompsac.computer.org/2021/dds-bdaf-dynamic-data-science-big-data-analytics-in-finance/"
+                  target="_blank"
+                  >[DDS-BDAF 2021]</a
+                >).
+                <a
+                  href="https://ieeexplore.ieee.org/document/9529883"
+                  target="_blank"
+                  >[IEEE]</a
+                >. <br /><i
+                  >[Multimodal machine learning is used to enhance tabular ML
+                  with text data in an ensemble model.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/ACL.png" alt="icon" />
+              <div class="pub-info">
+                "On the Lack of Robustness of Neural Text Classifiers", 2021
+                (with Bilal Zafar, Michele Donini, Dylan Slack, Cedric
+                Archambeau, Krishnaram Kenthapadi).
+                <i
+                  >The Joint Conference of the 59th Annual Meeting of the
+                  Association for Computational Linguistics and the 11th
+                  International Joint Conference on Natural Language
+                  Processing</i
+                >, (<a href="https://2021.aclweb.org" target="_blank"
+                  >[ACL-IJCNLP 2021]</a
+                >), August, 3730-3740.
+                <a
+                  href="https://aclanthology.org/2021.findings-acl.327/"
+                  target="_blank"
+                  >[ACL]</a
+                >
+                <br /><i
+                  >[Develops metrics and tests whether feature importance is
+                  stable across NLP classifiers.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/fmalogo_main.gif" alt="icon" />
+              <div class="pub-info">
+                "The Future of FinTech", 2019, <i>Financial Management</i>,
+                Special Issue on Fintech, v48, 981-1007. DOI: 10.1111/ ma.12297.
+                <a href="Papers/fintech.pdf" target="_blank">[PDF]</a>. <br /><i
+                  >[A survery and prognostication on the opportunities and
+                  pitfalls of fintech, with a suggested taxonomy.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JFDS_cover.PNG" alt="icon" />
+              <div class="pub-info">
+                "Zero-Revelation RegTech: Detecting Risk through Linguistic
+                Analysis of Corporate Emails and News", (2019), (with Seoyoung
+                Kim and Bhushan Kothari),
+                <i>Journal of Financial Data Science</i>, 2019, v1(2), 8-34.
+                Summary for the Columbia Law School blog:
+                <a
+                  href="https://jfds.pm-research.com/content/1/2/8/tab-article-info"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br /><i
+                  >[How a software system might detect early firm distress
+                  through an anonymous reading of emails.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/BigData.png" alt="icon" />
+              <div class="pub-info">
+                "Research Challenges in Financial Data Modeling and Analysis"
+                2017, (with Lewis Alexander, Zachary Ives, H.V. Jagadish, and
+                Claire Monteleoni).
+                <i>Big Data</i>, v5(3), 177-188.
+                <a
+                  href="https://www.liebertpub.com/doi/10.1089/big.2016.0074"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br />[<i
+                  >The paper reviews the significant research challenges to be
+                  addressed, and progress made, in the cleaning, transformation,
+                  integration, modeling, and analytics of Big Data sources for
+                  finance. </i
+                >]
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/FTF.jpg" alt="icon" />
+              <div class="pub-info">
+                "Text and Context: Language Analytics for Finance", (2014),
+                <i>Foundations and Trends in Finance</i>, v8(3), 145-260.
+                <a
+                  href="https://www.amazon.com/Text-Context-Language-Analytics-Foundations/dp/1601989105"
+                  target="_blank"
+                  >[Monograph]</a
+                >.
+                <a
+                  href="https://www.researchgate.net/publication/286160119_Text_and_Context_Language_Analytics_in_Finance"
+                  target="_blank"
+                  >[PDF]</a
+                >. <br />[<i
+                  >A comprehensive survey of comcepts, tools, techniques, and
+                  empirical literature on textual processing in finance.</i
+                >]
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/IEEE.gif" alt="icon" />
+              <div class="pub-info">
+                "Extracting, Linking and Integrating Data from Public Sources: A
+                Financial Case Study," (2011), (with Douglas Burdick, Mauricio
+                A. Hernandez, Howard Ho, Georgia Koutrika, Rajasekar
+                Krishnamurthy, Lucian Popa, Ioana Stanoi, Shivakumar
+                Vaithyanathan),
+                <i>IEEE Data Engineering Bulletin</i>, 34(3), 60-67.
+                <a
+                  href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.230.5548"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br />[<i
+                  >Financial forensics using big financial data from public
+                  sources.</i
+                >]
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/MS_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Yahoo for Amazon! Sentiment Extraction from Small Talk on the
+                Web," (with Mike Chen), (2007), <i>Management Science</i>, v53,
+                1375-1388.
+                <a href="https://www.jstor.org/stable/20122297" target="_blank"
+                  >[JSTOR]</a
+                >. <br />[<i
+                  >A methodology for parsing internet stock chat to develop a
+                  sentiment index. Assesses whether small traders opinions
+                  contain information not in prices. </i
+                >]
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/fmalogo_main.gif" alt="icon" />
+              <div class="pub-info">
+                "eInformation: A Clinical Study of Investor Discussion and
+                Sentiment," (with Asis Martinez-Jerez and Peter Tufano), 2005,
+                <i>Financial Management</i>, v34(5), 103-137.
+                <a
+                  href="https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1755-053X.2005.tb00112.x"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br />[<i
+                  >Examines the interaction of chat room information and news. </i
+                >]
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/CFA.png" alt="icon" />
+              <div class="pub-info">
+                "Multiple Regression and Machine Learning," (2018), (with
+                Richard A. DeFusco, Dennis W. McLeavey, Jerald E. Pinto, and
+                David E. Runkle), <i>CFA Institute</i>, reading 8 in the 2019
+                CFA Program Curriculum for CFA Level II.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Machine Learning in Finance: The Case of Deep Learning for
+                Option Pricing" (2017), (with Robbie Culkin).
+                <i>Journal of Investment Management</i>, v15(4), 92-100.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/FD.png" alt="icon" />
+              <div class="pub-info">
+                "Big Data's Big Muscle," (2016),
+                <i>Finance and Development (IMF)</i>, September, 14(2), 26-28.
+                <br /><i>[Economics in the machine age.]</i>
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/HNAF_Wiley.jpg" alt="icon" />
+              <div class="pub-info">
+                "News Analytics: Framework, Techniques and Metrics," The
+                Handbook of News Analytics in Finance, May 2011, John Wiley &
+                Sons, U.K.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/IEEE_IS_cover.jpg" alt="icon" />
+              <div class="pub-info">
+                "The Finance Web: Internet Information and Markets," (2010),
+                <i>IEEE Intelligent Systems</i>, 25(2), Mar/Apr, 74--78.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Financial Applications with Parallel R," (2009), (with Brian
+                Granger), <i>Journal of Investment Management</i>, 7(4), 66-77
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Multiple-Core Processors for Finance Applications," 2006,
+                <i>Journal of Investment Management</i>, v4(2), 76-81.
+              </div>
+            </div>
+          </div>
+        </details>
+        <details>
+          <summary>
+            Portfolio Optimization/ Behavioral Finance / Wealth Management
+          </summary>
+          <div class="details-content">
+            <div class="pub-card">
+              <img src="graphics/jpef.jpg" alt="icon" />
+              <div class="pub-info">
+                "Augmenting the Funded Ratio: New Metrics for Liability Based
+                Plans" (2026) (with Dan Ostrov, Anand Radhakrishnan, Deep
+                Srivastav, Wylie Tollette), forthcoming
+                <i>Journal of Pension Economics and Finance</i>
+                <a href="Papers/NewMetrics.pdf" target="_blank">[PDF]</a>.
+                <a href="https://www.cambridge.org/core/journals/journal-of-pension-economics-and-finance/article/augmenting-the-funded-ratio-new-metrics-for-liabilitybased-plans/ADADE047A251D1245EE6D972A3DF6D70" target="_blank">[JPEF]</a>.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Markowitz Wealth Management to Pension Plans" 2025 (transcript
+                of a talk given in honor of Harry Markowitz)
+                <i>Journal of Investment Management</i>, v25(2)
+                <a
+                  href="https://joim.com/markowitz-wealth-management-to-pension-plans-augmenting-the-funded-ratio-with-new-metrics/"
+                  target="_blank"
+                  >[Journal]</a
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Unrealistic Expectations: The Futility of Precisely Estimating
+                a Stock’s Expected Return" 2024 (with Daniel Ostrov),
+                <i>Journal of Investment Management</i>, v22(1), 58-64.
+                <a href="Papers/joim_unreal.pdf" target="_blank">[PDF]</a>.
+                <br /><i
+                  >[Revisits the difficulty of estimating mean returns for
+                  portfolio optimization. We need 400 years of data to achieve
+                  reasonable accuracy.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/jwm.jpg" alt="icon" />
+              <div class="pub-info">
+                "Lifestyle, Longevity, and Legacy Risks with Annuities in
+                Retirement Portfolio Decumulation" 2023, (with Daniel Ostrov,
+                Anand Radhakrishnan, Deep Srivastav),
+                <i>Journal of Wealth Management</i>, v26(2), 9-34.
+                <a href="Papers/GBWM_Annuities.pdf" target="_blank">[PDF]</a>.
+                <br /><i
+                  >[Examines the tradeoff between consumption, leaving a legacy,
+                  modulated by life expectancy. Should we ever buy
+                  annuities?]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Efficient Goal Probabilities: A New Frontier" 2023, (with
+                Daniel Ostrov, Anand Radhakrishnan, Deep Srivastav),
+                <i>Journal of Investment Management</i>, v21(3).
+                <a href="Papers/EGPF.pdf" target="_blank">[PDF]</a>. <br /><i
+                  >[How to generate Pareto-optimal goal probability frontiers in
+                  goals-based wealth management.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "The Role of Options in Goals-Based Wealth Management" 2023,
+                (with Greg Ross), <i>Journal of Investment Management</i>,
+                v21(1).
+                <a
+                  href="Papers/DasRoss_GBWMOptions_JOIM_FINAL.pdf"
+                  target="_blank"
+                  >[PDF]</a
+                >. <br /><i
+                  >[Improving goal based outcome trading strategies using
+                  options.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/jwm.jpg" alt="icon" />
+              <div class="pub-info">
+                "Optimal Goals-Based Investment Strategies For Switching Between
+                Bull and Bear Markets," (2022), (with Daniel Ostrov, Aviva
+                Casanova, Anand Radhakrishnan, Deep Srivastav),
+                <i>Journal of Wealth Management</i>, v24(4), 8-36.
+                <a href="Papers/RiskRegimes.pdf" target="_blank">[PDF]</a>.
+                <a
+                  href="https://www.pm-research.com/content/iijwealthmgmt/24/4/8"
+                  target="_blank"
+                  >[JWM]</a
+                >
+                <br /><i
+                  >[Goals-based wealth management with regime changes. Unless
+                  regime cognizance is high, a single regime approach may be
+                  better.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JRFM.png" alt="icon" />
+              <div class="pub-info">
+                "Combining Investment and Tax Strategies for Optimizing Lifetime
+                Solvency under Uncertain Returns and Mortality" (2021), (with
+                Dan Ostrov, Aviva Casanova, Anand Radhakrishnan, Deep
+                Srivastav), <i>Journal of Risk and Financial Management</i>,
+                v14(7), 285.
+                <a
+                  href="https://www.mdpi.com/1911-8074/14/7/285/htm"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br /><i
+                  >[Goals-based wealth management combined with tax optimization
+                  across taxable and tax-deductible accounts, fully accounting
+                  for longevity risk.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JBF_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Dynamic Optimization for Multi-Goals Wealth Management." 2021
+                (with Dan Ostrov, Anand Radhakrishnan, Deep Srivastav),
+                <i>Journal of Banking and Finance</i>, v140, 106192.
+                <a
+                  href="https://www.sciencedirect.com/science/article/abs/pii/S0378426621001515"
+                  target="_blank"
+                  >[JBF]</a
+                >,
+                <a
+                  href="https://doi.org/10.1016/j.jbankfin.2021.106192"
+                  target="_blank"
+                  >[DOI]</a
+                >.
+                <a href="Papers/MultWealthGoals.pdf" target="_blank">[PDF]</a>.
+                <br /><i
+                  >[Goals-based wealth management with multiple, concurrent, and
+                  partial goals.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Dynamic Goals-Based Wealth Management using Reinforcement
+                Learning." 2020, (with Subir Varma),
+                <i>Journal of Investment Management</i>, Special Issue on
+                Machine Learning in Investment Management, v18(2), 37-56.
+                <a href="Papers/GBWM_RL_FINAL.pdf" target="_blank">[PDF]</a>.
+                <br /><i
+                  >[Goals-based wealth management implemented with reinforcement
+                  learning, as well as a gentle introduction to reinforcement
+                  learning for finance.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/CompMgtSci.PNG" alt="icon" />
+              <div class="pub-info">
+                "Dynamic Portfolio Allocation in Goals-Based Wealth Management",
+                (2020), (with Dan Ostrov, Anand Radhakrishnan, and Deep
+                Srivastav),
+                <i>Computational Management Science</i>, v17, June, 613-640,
+                DOI:10.1007/s10287-019-00351-7.
+                <a href="Papers/GBWM_DP2.pdf" target="_blank">[PDF]</a>.
+                <br /><i
+                  >[Goals-based wealth management implemented with dynamic
+                  programming outperforms target date funds.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "A New Approach to Goals-Based Wealth Management" (2018), (with
+                Dan Ostrov, Anand Radhakrishnan, Deep Srivastav),
+                <i>Journal of Investment Management</i>, v16(3), 1-27.
+                <a href="https://www.joim.com/markowitz-award/" target="_blank"
+                  >[Paper]</a
+                >. <br /><i
+                  >[New framework and mathematics for implementing goals-based
+                  wealth management, where risk is redefined as the likelihood
+                  of not meeting one's goals. Winner of the Harry Markowitz
+                  Award for Best Paper.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JEDC_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Options and Structured Products in Behavioral Portfolios,"
+                (with Meir Statman), (2013),
+                <i>Journal of Economic Dynamics and Control</i>, 37(1), 137-153.
+                <a
+                  href="http://www.sciencedirect.com/science/article/pii/S0165188912001595"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br />[<i
+                  >Explores the roles in behavioral portfolios of option
+                  collars, capital guaranteed notes, and barrier range notes, in
+                  the presence of fat-tailed outcomes using copulas. </i
+                >]
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JFQA_cover.jpg" alt="icon" />
+              <div class="pub-info">
+                "Portfolio Optimization with Mental Accounts," (2010), (with
+                Harry Markowitz, Jonathan Scheid, and Meir Statman),
+                <i>Journal of Financial and Quantitative Analysis</i>, v45(2),
+                311-334.
+                <a
+                  href="https://ideas.repec.org/a/cup/jfinqa/v45y2010i02p311-334_00.html"
+                  target="_blank"
+                  >[Paper]</a
+                >.
+                <a href="Papers/DMSS_typo_correction.pdf" target="_blank"
+                  >[Correction of typo in the paper]</a
+                >. <br />[<i
+                  >Mean-variance optimization is reconciled with behavioral
+                  porfolio theory. Mental accounts optimization leads to better
+                  aggregate portfolios.</i
+                >]
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/jcr.gif" alt="icon" />
+              <div class="pub-info">
+                "The Long and Short of it: Why are stocks with shorter
+                run-lengths preferred?" (2010), (with Priya Raghubir),
+                <i>Journal of Consumer Research</i>. 36(6), 964-982.
+                <a href="Papers/runlength_summary.pdf" target="_blank"
+                  >[Non-technical summary]</a
+                >.
+                <a
+                  href="https://www.jstor.org/stable/10.1086/644762"
+                  target="_blank"
+                  >[JSTOR]</a
+                >. <br />[<i
+                  >People responding to stock charts are systematically biased
+                  against stocks with longer run lengths, even if these stocks
+                  are no riskier than those with shorter runs.</i
+                >]
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/RFS_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Fee Speech: Signaling, Risk-sharing and the Impact of Fee
+                Structures on Investor Welfare,'' (with Rangarajan Sundaram),
+                2002, <i>Review of Financial Studies</i>, v15, 1465-1497.
+                <a
+                  href="https://academic.oup.com/rfs/article-lookup/doi/10.1093/rfs/15.5.1465"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br /><i
+                  >[Compares fulcrum vs incentive fees structures from the
+                  standpoint of investor welfare. Contrary to regulatory
+                  intuition, incentive structures are often optimal.]
+                </i>
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/FAJ_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "The Psychology of Financial Decision Making: A Case for
+                Theory-Driven Experimental Enquiry,'' 1999, (with Priya
+                Raghubir),
+                <i>Financial Analyst's Journal</i>, Nov-Dec 1999, v55(6), 56-79.
+                <a
+                  href="https://doi.org/10.2469/faj.v55.n6.2314"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br /><i
+                  >[Surveys the anomalies literature in Finance and shows how
+                  experimental studies may be used to disentangle competing
+                  hypotheses for the same anomaly.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JEDC_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "A Theory of Optimal Timing and Selectivity,'' (with George
+                Chacko), 1999, <i>Journal of Economic Dynamics and Control</i>,
+                v23(7), 929-966.
+                <a
+                  href="http://www.sciencedirect.com/science/article/pii/S0165188998000505"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br /><i
+                  >[Dynamic optimal portfolio choice model for determining
+                  optimal effort allocation to timing and stock selection in
+                  asset allocation.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JoIS_cover.jpg" alt="icon" />
+              <div class="pub-info">
+                "Efficient Rebalancing of Taxable Portfolios" (2017), (with Dan
+                Ostrov, Dennis Ding, Vincent Newell),
+                <i>Journal of Investment Strategies</i>, v7(1), 1-40.
+                <a
+                  href="Papers/taxopt_slides_RFinance_2015_05.pdf"
+                  target="_blank"
+                  >[SLIDES RFinance]</a
+                >.
+                <a href="Papers/taxopt_slides2.pdf" target="_blank"
+                  >[SLIDES JOIM]</a
+                >. <br /><i
+                  >[An efficient numerical algorithm for tax-efficient portfolio
+                  rebalancing while carrying the entire cost basis, for long
+                  horizons.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/jpm_cover.jpg" alt="icon" />
+              <div class="pub-info">
+                "Coming up Short: Managing Underfunded Portfolios in an LDI-ES
+                Framework" (2014), (with Seoyoung Kim and Meir Statman),
+                <i>Journal of Portfolio Management</i>, 41(1), 95-108. <br /><i
+                  >[Provides a new definition of underfunded portfolios, and
+                  compares four remedies for underfunding.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/IJISAFM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "A Numerical Algorithm for Consumption/Investment Problems,"
+                (with Rangarajan Sundaram), 2002,
+                <i
+                  >International Journal of Intelligent Systems in Accounting,
+                  Finance and Management</i
+                >, (Special Issue on Computational Methods in Economics and
+                Finance), December, 55-69. <br /><i
+                  >[A simple regression approach to solving optimal consumption
+                  and portfolio problems with diffusions and jumps.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/CIR_cover.jpg" alt="icon" />
+              <div class="pub-info">
+                "How Diversified are Internationally Diversified Portfolios:
+                Time-Variation in the Covariances between International
+                Returns," 1998, (with Raman Uppal),
+                <i>Canadian Investment Review</i>, Spring, 7-11. <br /><i
+                  >[Internation portfolio risk has systemic components. ]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                ``Risk, Reward, and Beyond: On the Behavioral Sensitivities of
+                Mean-Variance Efficient Portfolios,'' (2018), (with Jurgen
+                Vandenbroucke), <i>Journal of Investment Management</i>, 16(4).
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/jwm.jpg" alt="icon" />
+              <div class="pub-info">
+                "Portfolios for Investors Who Want to Reach Their Goals While
+                Staying on the Mean-Variance Efficient Frontier," (2011), (with
+                Harry Markowitz, Jonathan Scheid, and Meir Statman),
+                <i>Journal of Wealth Management</i>, Fall, 14(2), 25-31.
+                <br /><i
+                  >[A framework for goal driven mental accounting and behavioral
+                  portfolio allocation that extends mean-variance
+                  portfolios.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/QAFM_cover.jpg" alt="icon" />
+              <div class="pub-info">
+                "The Regulation of Fee Structures in Mutual Funds: A Theoretical
+                Analysis,'' (with Rangarajan Sundaram), 1998, NBER WP No 6639,
+                in the Courant Institute of Mathematical Sciences, special
+                volume on
+                <i>Quantitative Analysis in Financial Markets</i>, Volume III,
+                2001.
+              </div>
+            </div>
+          </div>
+        </details>
+        <details>
+          <summary>
+            Correlated Systems: Networks / Systemic Risk / Banking / Structured
+            Finance
+          </summary>
+          <div class="details-content">
+            <div class="pub-card">
+              <img src="graphics/JIFMIM.gif" alt="icon" />
+              <div class="pub-info">
+                "Banking Networks, Systemic Risk, and the Credit Cycle in
+                Emerging Markets" (2022), (with Madhu Kalimipalli and Subhankar
+                Nayak),
+                <i
+                  >Journal of International Financial Markets, Institutions &
+                  Money</i
+                >, v80 (september), 101633,
+                <a
+                  href="https://www.sciencedirect.com/science/article/pii/S104244312200107X?dgcid=coauthor"
+                  target="_blank"
+                  >[Paper]</a
+                >
+                <br /><i>[Systemic risk in emerging markets using networks.]</i>
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JMCB.jpg" alt="icon" />
+              <div class="pub-info">
+                "Bank Regulation, Network Topology, and Systemic Risk: Evidence
+                from the Great Depression" (2021), (with Kris Mitchener and
+                Angela Vossmeyer).
+                <i>Journal of Money, Credit and Banking</i>, v54(5), 1261-1312.
+                <a href="Papers/BankSys.pdf" target="_blank">[PDF]</a>.
+                <a
+                  href="https://onlinelibrary.wiley.com/doi/abs/10.1111/jmcb.12871"
+                  target="_blank"
+                  >[JMCB]</a
+                >. Profiled on
+                <a
+                  href="https://voxeu.org/article/bank-networks-and-systemic-risk-great-depression"
+                  target="_blank"
+                  >[VOX]</a
+                >
+                <br /><i
+                  >[Network topology mattered in the Great Depression and graph
+                  theory may be used to improve bank failure prediction.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JFDS_cover.PNG" alt="icon" />
+              <div class="pub-info">
+                "Dynamic Systemic Risk: Networks in Data Science", 2019, (with
+                Seoyoung Kim and Dan Ostrov),
+                <i>Journal of Financial Data Science</i>, v1(1), 141-158.
+                <a
+                  href="https://jfds.pm-research.com/content/1/1/141"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br /><i
+                  >[Extending the Merton default risk model to systemic risk on
+                  networks.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JAI.png" alt="icon" />
+              <div class="pub-info">
+                "Matrix Metrics: Network-Based Systemic Risk Scoring", (2016).
+                <i>Journal of Alternative Investments</i>, Special Issue on
+                Systemic Risk, v18(4), 33-51.
+                <a
+                  href="https://jai.pm-research.com/content/18/4/33"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br />[<i
+                  >A new approach to identifying system-wide financial risk,
+                  SIFIs, and several other measures of systemic risk. This paper
+                  won the First Prize in the MIT-CFP competition 2016 for the
+                  best paper on SIFIs (systemically important financial
+                  institutions). It also won the best paper award at the R
+                  Finance conference, Chicago 2015. </i
+                >]
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JF_cover.jpg" alt="icon" />
+              <div class="pub-info">
+                "Systemic Risk and International Portfolio Choice," (with Raman
+                Uppal), 2004, <i>Journal of Finance</i>, v59(6), 2809-2834.
+                <a href="https://www.jstor.org/stable/3694790" target="_blank"
+                  >[JSTOR]</a
+                >. <br />[<i
+                  >A model for portfolio optimization with systemic risk. The
+                  loss resulting from diminished diversification is small, while
+                  that from holding very highly levered positions is large. </i
+                >]
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JBF_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "A Theory of Banking Structure," 1999, (with Ashish Nanda),
+                <i>Journal of Banking and Finance</i>, v23(6), 863-895.
+                <a
+                  href="http://www.sciencedirect.com/science/article/pii/S037842669800123X"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br /><i
+                  >[A theory to analyze the specialization of banking activities
+                  based by function based upon two dimensions: the degree of
+                  information asymmetry and the degree of verifiability of the
+                  value of the service rendered. ]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JFI_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Managing Rollover Risk with Capital Structure Covenants in
+                Structured Finance Vehicles" (2017), (with Seoyoung Kim),
+                <i>Journal of Fixed Income</i>, 26(4), 92-112. <br /><i
+                  >[We propose a covenant-based capital structure that mitigates
+                  rollover problems in SIVs and is Pareto-improving for equity
+                  and debt holders in the SPV.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JRFM.png" alt="icon" />
+              <div class="pub-info">
+                "The Design and Risk Management of Structured Finance Vehicles"
+                (2016), (with Seoyoung Kim),
+                <i>Journal of Risk and Financial Management</i>, Special Issue
+                on Credit Risk, 1-12. doi:10.3390/jrfm9040012 <br /><i
+                  >[Risk management for special investment vehicles is
+                  difficult, but necessary. Post the recent subprime financial
+                  crisis, we inform the creation of safer SIVs in structured
+                  finance, and propose avenues of mitigating risks faced by
+                  senior debt through deleveraging policies in the form of
+                  leverage risk controls and contingent capital.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JFI_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Going for Broke: Restructuring Distressed Debt Portfolios"
+                (2014), (with Seoyoung Kim), <i>Journal of Fixed Income</i>,
+                24(3), 5-27. <br /><i
+                  >[Optimizing portfolios where the return distributions of the
+                  assets is endogenous. The gains from restructuring distressed
+                  debt portfolios are large.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/jfsr_cover.jpg" alt="icon" />
+              <div class="pub-info">
+                "Basel II: Correlation Related Issues" (2007),
+                <i>Journal of Financial Services Research</i>, v32, 17-38.
+                <br /><i
+                  >[Analysis of correlation related issues arising in the
+                  implementation of the Basel II accord.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JFI_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Correlated Default Risk," (2006), (with Laurence Freed, Gary
+                Geng, and Nikunj Kapadia),
+                <i>Journal of Fixed Income</i>, Fall 2006, 7-32. <br /><i
+                  >[Empirical evidence on the nature of credit correlations.
+                  Correlations increase as markets worsen. Regime switching
+                  models are needed to explain dynamic correlations.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/jpm_cover.jpg" alt="icon" />
+              <div class="pub-info">
+                "Financial Communities" (with Jacob Sisk), 2005,
+                <i>Journal of Portfolio Management</i>, v31(4), Summer, 112-123.
+                <br /><i
+                  >[Applying graph theory to understanding investor networks to
+                  develop trading rules. ]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Correlated Default Processes: A Criterion-Based Copula
+                Approach," (with Gary Geng), 2004,
+                <i>Journal of Investment Management</i>, v2(2), 44-70, Special
+                Issue on Default Risk.
+                <a
+                  href="https://www.joim.com/ArticleContainer.asp?artid=70&print=false&Key=GQ6!WiJQSJrlrcVJSoeGhEJF7LVNhzfb0M!Nz!0SO5foSMK6!WiHQSJrlrcVJSoeGhEJ"
+                  target="_blank"
+                  >[PDF]</a
+                >
+                <br /><i
+                  >[Which copula and marginal distributions best describe
+                  default probability correlations? Develops models and
+                  methodology to answer this question. ]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JFI_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Bayesian Migration in Credit Ratings Based on Probabilities of
+                Default," (with Rong Fan and Gary Geng), 2002,
+                <i>Journal of Fixed Income</i>, December, v12(3), 17-23.
+                <br /><i
+                  >[Bayesian model for predicting rating changes based on the
+                  dynamics of default probabilities.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JFI_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "The Impact of Correlated Default Risk on Credit Portfolios,"
+                (with Gifford Fong, and Gary Geng), 2001,
+                <i>Journal of Fixed Income</i>, v11(3), 9-19. <br /><i
+                  >[The connection between credit portfolio loss distributions
+                  and credit correlations. ]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Contagion", 2003,
+                <i>Journal of Investment Management</i>, v1(3), 78-84.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/EC_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Useful things to know about Correlated Default Risk," (with
+                Gifford Fong, Laurence Freed, Gary Geng, and Nikunj Kapadia),
+                2001,&nbsp; <i>Extra Credit</i>, November-December, 14-23.
+              </div>
+            </div>
+          </div>
+        </details>
+        <details>
+          <summary>Venture Capital</summary>
+          <div class="details-content">
+            <div class="pub-card">
+              <img src="graphics/JFinDS.png" alt="icon" />
+              <div class="pub-info">
+                "CapitalVX: A Machine Learning Model for Startup Selection and
+                Exit Prediction'' 2021, (with Greg Ross, Daniel Sciro, Hussain
+                Raza),
+                <i>Journal of Finance and Data Science</i>, v7, 94-114.
+                <a
+                  href="https://doi.org/10.1016/j.jfds.2021.04.001"
+                  target="_blank"
+                  >[WEB]</a
+                >.
+                <a
+                  href="https://www.sciencedirect.com/science/article/pii/S2405918821000040"
+                  target="_blank"
+                  >[WEB]</a
+                >. <br /><i
+                  >[A machine learning model that attains 80-90% accuracy for
+                  predicting startup success.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JFQA_cover.jpg" alt="icon" />
+              <div class="pub-info">
+                "Venture Capital Communities" 2020, (with Amit Bubna and
+                Nagpurnanand Prabhala),
+                <i>Journal of Financial and Quantitative Analysis</i>, v55(2),
+                621-651.
+                <a
+                  href="https://www.cambridge.org/core/journals/journal-of-financial-and-quantitative-analysis/article/abs/venture-capital-communities/F03EA32CAFAD40A296EC2C1E30009832"
+                  target="_blank"
+                  >[JFQA]</a
+                >
+                <br /><i
+                  >[VCs work in communities and do better for startup firms.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/jfsr_cover.jpg" alt="icon" />
+              <div class="pub-info">
+                "The Fast and the Curious: VC Drift" (2020), (with Amit Bubna
+                and Paul Hanouna).
+                <i>Journal of Financial Services Research</i>, v57(1), 69-113.
+                <a
+                  href="https://link.springer.com/epdf/10.1007/s10693-018-0302-0?author_access_token=vXWYslojKTHLRUNzPKvt4_e4RwlQNchNByi7wbcMAY6UpylhNByX64V6LSRJKFjCdEiYF1JiFTdcdu4De5TadfF95pfuOKOh6A3Edv_zecugvosePyIK1iM3Vb1DQgs5Sz5-79hzpIBl6hxo8jIwiQ%3D%3D"
+                  target="_blank"
+                  >[Link]</a
+                >
+                <br /><i
+                  >[VCs who evidence style drift underperform those who do
+                  not.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/jfint_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Polishing Diamonds in the Rough: The Sources of Syndicated
+                Venture Performance," (2011), (with Hoje Jo and Yongtae Kim),
+                <i>Journal of Financial Intermediation</i> 20(2), 199--230.
+                <a
+                  href="https://www.sciencedirect.com/science/article/pii/S1042957310000379"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br />[<i
+                  >Syndicate-financed firms fare better---higher return
+                  multiples come from better selection, but time-to-exit and
+                  likelihood of exit are better on accont of superior monitoring
+                  by the syndicate.</i
+                >]
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/jpm_cover.jpg" alt="icon" />
+              <div class="pub-info">
+                "Digital Portfolios." (2013),
+                <i>Journal of Portfolio Management</i>, v39(2), 41-48. <br /><i
+                  >[Constructing portfolios of assets with a binary payoff,
+                  large versus zero, and the differences in this optimization
+                  versus standard mean-variance portfolio construction.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Private Equity Returns: An Empirical Examination of the Exit of
+                Venture-Backed Companies," (with Murali Jagannathan and Atulya
+                Sarin), 2003, <i>Journal of Investment Management</i>, v1(1),
+                152-177. <br /><i
+                  >[Gains from venture-backed investments depend upon the
+                  industry, the stage of the firm being financed, the valuation
+                  at the time of financing, and the prevailing market sentiment.
+                  Helps understand the risk premium required for the valuation
+                  of private equity investments ]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Venture Capital Syndication", (with Hoje Jo and Yongtae Kim),
+                2004
+                <i>Journal of Investment Management</i>, v2(4), 132-143.
+              </div>
+            </div>
+          </div>
+        </details>
+        <details>
+          <summary>
+            Derivatives / Interest-rate, Default, and Liquidity Risk
+          </summary>
+          <div class="details-content">
+            <div class="pub-card">
+              <img src="graphics/JEDC_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Local Volatility and the Recovery Rate of Credit Default
+                Swaps", 2018, (with Jeroen Jansen and Frank Fabozzi).
+                <i>Journal of Economic Dynamics and Control</i>, v92, 1-29.
+                <a
+                  href="https://www.sciencedirect.com/science/article/pii/S0165188918301180"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br />[<i
+                  >Implied recovery rates on default using information from the
+                  CDS markets and the volatility surface.</i
+                >]
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JBF_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "An Index-Based Measure of Liquidity,'' 2016, (with George
+                Chacko and Rong Fan).
+                <i>Journal of Banking and Finance</i>, 68, 162-178.
+                <a
+                  href="https://www.sciencedirect.com/science/article/pii/S0378426616300164"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br />[<i>
+                  Develops a new measure of liquidity for all sectors of the
+                  markets using ETFs. RFinance Best Paper Award, May 2016. This
+                  paper won the S&P SPIVA 2012 Award for innovation of an
+                  index.</i
+                >]
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JBF_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Credit Spreads with Dynamic Debt" (with Seoyoung Kim), (2015),
+                <i>Journal of Banking and Finance</i>, v50, 121-140.
+                <a
+                  href="https://www.sciencedirect.com/science/article/pii/S0378426614003124"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br />[<i
+                  >Extends the Merton risky debt model from static debt to
+                  dynamic debt and generates credit spread term structures that
+                  are closer to those in the data. Won the National Stock
+                  Exchange of India Best Paper Award, at the Center for Analytic
+                  Finance Conference, ISB, Hyderabad</i
+                >]
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/jfe.gif" alt="icon" />
+              <div class="pub-info">
+                "Did CDS Trading Improve the Market for Corporate Bonds?" (with
+                Madhu Kalimipalli and Subhankar Nayak), (2014),
+                <i>Journal of Financial Economics</i> 111, 495-525.
+                <a
+                  href="https://www.sciencedirect.com/science/article/pii/S0304405X1300281X"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br />[<i
+                  >The inception of CDS trading in a reference name renders its
+                  bonds less efficient, with no improvement in market quality or
+                  liquidity</i
+                >]
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JBF_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Strategic Loan Modification: An Options-Based Response to
+                Strategic Default," (with Ray Meadows), (2013),
+                <i>Journal of Banking and Finance</i> 37, 636-647.
+                <a
+                  href="http://www.sciencedirect.com/science/article/pii/S0378426612003056"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br />[<i
+                  >A closed-form solution for mortgage debt with default and
+                  optimal loan modificatoin thereon.</i
+                >]
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JFQA_cover.jpg" alt="icon" />
+              <div class="pub-info">
+                "The Principal Principle," (2012),
+                <i>Journal of Financial and Quantitative Analysis</i>, 47(6),
+                1215-1246.
+                <a
+                  href="http://journals.cambridge.org/repo_A884JKBk"
+                  target="_blank"
+                  >[PDF]</a
+                >.
+                <a href="https://www.jstor.org/stable/23351982" target="_blank"
+                  >[JSTOR]</a
+                >. <br />[<i
+                  >Optimal approaches for mortgage loan modification. Principal
+                  reduction is optimal, and better than rate reductions,
+                  maturity extensions, and principal forebearance.
+                  Shared-appreciation mortgages solve moral hazard.</i
+                >]
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/anor.jpg" alt="icon" />
+              <div class="pub-info">
+                "Run Lengths and Liquidity," (with Paul Hanouna), (2010),
+                <i>Annals of Operations Resarch</i>, Special Issue on Risk and
+                Uncertainty, 176(1), 127-152.
+                <a
+                  href="https://doi.org/10.1007/s10479-008-0508-x"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br />[<i
+                  >The run signature of a stock is shown to be mathematically
+                  related to liquidity. Runs are priced factors. </i
+                >]
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JEDC_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Implied Recovery,'' (with Paul Hanouna), (2009),
+                <i>Journal of Economic Dynamics and Control</i>, 33(11),
+                1837-1857.
+                <a
+                  href="https://ideas.repec.org/a/eee/dyncon/v33y2009i11p1837-1857.html"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br />[<i
+                  >How to use the term structure of CDS spreads to jointly
+                  identify the term structures of forward default probability
+                  and recovery rates. </i
+                >]
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JBF_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Accounting-based versus market-based cross-sectional models of
+                CDS spreads," (with Paul Hanouna and Atulya Sarin), (2009),
+                <i>Journal of Banking and Finance</i>, 33, 719-730.
+                <a
+                  href="http://www.sciencedirect.com/science/article/pii/S0378426608002732"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br />[<i
+                  >Accounting models explain spreads as well as market-based
+                  ones, but a hybrid mix does best.</i
+                >]
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/jfint_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Hedging Credit: Equity Liquidity Matters," (with Paul Hanouna),
+                (2009),
+                <i>Journal of Financial Intermediation</i>, v18(1), 112-123.
+                <a
+                  href="http://www.sciencedirect.com/science/article/pii/S1042957308000521"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br />[<i
+                  >Hedging in CDS markets provides a mechanism by which equity
+                  market liquidity impacts CDS spreads </i
+                >]
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/MS_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "An Integrated Model for Hybrid Securities," (with Raghu
+                Sundaram), (2007), <i>Management Science</i>, v53, 1439-1451.
+                <a
+                  href="http://dx.doi.org/10.1287/mnsc.1070.0702"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br />[<i
+                  >A general flexible model for pricing derivative securities
+                  that depend on equity, interest rate and credit risk, using
+                  observables. Delivers dynamic implied default
+                  probabilities.</i
+                >]
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JF_cover.jpg" alt="icon" />
+              <div class="pub-info">
+                "Common Failings: How Corporate Defaults are Correlated" (with
+                Darrell Duffie, Nikunj Kapadia and Leandro Saita). (2007)
+                <i>Journal of Finance</i>, v62, 93-117.
+                <a
+                  href="https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1540-6261.2007.01202.x"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br />[<i
+                  >New approach to test for defaul contagion using a stochastic
+                  time change. Doubly stochastic models are refuted by the
+                  data.</i
+                >]
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/FAJ_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Pricing Credit derivatives with Rating Transitions," (with
+                Viral Acharya and Rangarajan Sundaram), 2002,
+                <i>Financial Analysts Journal</i>, May-June, 28-44.
+                <a
+                  href="https://tandfonline.com/doi/abs/10.2469/faj.v58.n3.2536"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br /><i
+                  >[A HJM type two-factor model in risk free rates and spreads
+                  that also accounts for rating transitions, allowing seamless
+                  pricing of many credit derivatives. ]
+                </i>
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOE_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "The Surprise Element: Jumps in Interest Rates", 2002,
+                <i>Journal of Econometrics</i>, v106, 27-65.
+                <a
+                  href="http://www.sciencedirect.com/science/article/pii/S0304407601000859"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br /><i
+                  >[Estimation methodology for interest rates with jumps. A
+                  flexible specification that accommodates Federal Reserve
+                  Activity.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/RFS_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Pricing Interest Rate Derivatives: A General Approach,''(with
+                George Chacko), 2002, <i>Review of Financial Studies</i>,
+                v15(1), 195-241.
+                <a
+                  href="https://academic.oup.com/rfs/article-lookup/doi/10.1093/rfs/15.1.195"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br /><i
+                  >[General affine option pricing for interest rate derivatives
+                  covering a wide range of securities, allowing for M factors
+                  with N diffusions and L jumps.]
+                </i>
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/MS_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "A Discrete-Time Approach to Arbitrage-Free Pricing of Credit
+                Derivatives,'' (with Rangarajan Sundaram), 2000,
+                <i>Management Science</i>, v46(1), 46-62.
+                <a
+                  href="http://pubsonline.informs.org/doi/abs/10.1287/mnsc.46.1.46.15124"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br /><i>[HJM style two factor model for credit risk. ] </i>
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JFQA_cover.jpg" alt="icon" />
+              <div class="pub-info">
+                "Of Smiles and Smirks: A Term Structure Perspective,'' 1999,
+                (with Rangarajan Sundaram),
+                <i>Journal of Financial and Quantitative Analysis</i>, v34(2),
+                211-240.
+                <a href="https://www.jstor.org/stable/2676279" target="_blank"
+                  >[JSTOR]</a
+                >. <br /><i
+                  >[Explains how the shape of the volatility smile is determined
+                  by jumps and stochastic volatility. ]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JEDC_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "A Direct Discrete-Time Approach to Poisson-Gaussian Bond Option
+                Pricing in the Heath-Jarrow-Morton Model," 1999,
+                <i>Journal of Economic Dynamics and Control</i>, v23(3),
+                333-369.
+                <a
+                  href="http://www.sciencedirect.com/science/article/pii/S0165188998000311"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br /><i
+                  >[HJM tree with jumps. Fast, fully recombining dynamics. ]
+                </i>
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/RESTAT_cover.jpg" alt="icon" />
+              <div class="pub-info">
+                "The Central Tendency: A Second Factor in Bond Yields," 1998,
+                (with Silverio Foresi and Pierluigi Balduzzi),
+                <i>The Review of Economics and Statistics</i>, v80(1), 60-72.
+                <a
+                  href="http://www.mitpressjournals.org/doi/10.1162/003465398557339"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br /><i
+                  >[Model of the term structure with stochastic long-run mean.
+                  Related to Federal Reserve acitivity.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/frl.jpg" alt="icon" />
+              <div class="pub-info">
+                "Options on Portfolios with Higher-Order Moments," (2009), (with
+                Rishabh Bhandari), <i>Finance Research Letters</i>, v6, 122-129.
+                <br /><i
+                  >[How to model fat-tailed portfolio distributions for options
+                  on a multivariate system of assets, calibrated to the return
+                  means, covariance matrix, coskewness and cokurtosis
+                  tensors.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Dealing with Dimension: Option Pricing on Factor Trees,"
+                (2009), (with Brian Granger),
+                <i>Journal of Investment Management</i>, 7(2), 73-85. <br /><i
+                  >[Multifactor representations of securities on
+                  high-dimensional trees. Allows you to price options on
+                  multiple assets in a unified fraamework. Computational results
+                  assess using multithreading.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JFI_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Modeling Correlated Default with a Forest of Binomial Trees,"
+                (2007), (with Santhosh Bandreddi and Rong Fan),
+                <i>Journal of Fixed Income</i>. Winter, 1-20. <br /><i
+                  >[Extends the Das-Sundaram hybrid securities model to
+                  correlated default modeling. ]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/qfcover.gif" alt="icon" />
+              <div class="pub-info">
+                "A Simple Model for Pricing Equity Options with Markov Switching
+                State Variables" (2006), (with Donald Aingworth and Rajeev
+                Motwani),
+                <i>Quantitative Finance</i>, v6(2), 95-105. <br /><i
+                  >[A tree model for options when the underlying has regime
+                  switches.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Monte Carlo Markov Chain Methods for Derivative Pricing and
+                Risk Assessment,"(with Alistair Sinclair), 2005,
+                <i>Journal of Investment Management</i>, v3(1), 29-44.
+                <a
+                  href="https://www.joim.com/ArticleContainer.asp?artid=125&print=false&Key=GQ6!WiJQSJrlrcVJSoeGhEQF7LVNhzfb0M!Nz!0SO5foSMK6!WiHQSJrlrcVJSoeGhEQ"
+                  target="_blank"
+                  >[PDF]</a
+                >
+                <br /><i
+                  >[Randomized algorithm using MCMC on very large option pricing
+                  trees where incomplete information about the value of an asset
+                  may be exploited to undertake fast and accurate pricing. Proof
+                  that a fully polynomial randomized approximation scheme
+                  (FPRAS) is available.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/REDR_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Discrete-Time Bond and Option Pricing for Jump-Diffusion
+                Processes," 1997, <i>Review of Derivatives Research</i>, v1(3),
+                211-244. <br /><i
+                  >[Extends the finite-differencing approach for interest rate
+                  derivatives to jump processes.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JFI_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "A Simple Approach to Three Factor Affine Models of the Term
+                Structure," (with Pierluigi Balduzzi, Silverio Foresi and
+                Rangarajan Sundaram), 1996, <i>Journal of Fixed Income</i>,
+                v6(3), 43-53. <br /><i
+                  >[ An easy way to calibrate three factor models using method
+                  of moments. ]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JFI_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Analytical Approximations of the Term Structure for
+                Jump-diffusion Processes: A Numerical Analysis," 1996, (with
+                Jamil Baz), <i>Journal of Fixed Income</i>, v6(1), 78-86.
+                <br /><i
+                  >[An exact solution to an approximate PDE may be better than
+                  an approximate solution to an exact PDDE for term structure
+                  models. ]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JAF_cover.jpg" alt="icon" />
+              <div class="pub-info">
+                "Revisiting Markov Chain Term Structure Models: Extensions and
+                Applications," 1996, <i>Financial Practice and Education</i>,
+                v6(1), 33-45. <br /><i
+                  >[A new pedagogy for Markov models of interest rates. ]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/REDR_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Exact Solutions for Bond and Options Prices with Systematic
+                Jump Risk," 1996, (with Silverio Foresi),
+                <i>Review of Derivatives Research</i>, v1(1), 7-24. <br /><i
+                  >[First paper to show that affine solutions exist for
+                  jump-diffusion term structure models.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOD_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Pricing Credit Sensitive Debt when Interest Rates, Credit
+                Ratings and Credit Spreads are Stochastic," 1996, (with Peter
+                Tufano), <i>The Journal of Financial Engineering</i>, v5(2),
+                161-198. <br /><i
+                  >[Rating based model for credit derivatives with correlation
+                  between recovery rates, interest rates and default
+                  probabilities. ]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOD_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Credit Risk Derivatives," <i>Journal of Derivatives</i>, 1995,
+                pg 7-21. Claims Analysis in Corporate Finance,'' edited by
+                Michel Crouhy, Dan Galai, and Zvi Wiener, World Scientific Press
+                2019.) <br /><i
+                  >[Introduces early models for pricing credit derivatives as
+                  compound options. ]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <div class="pub-info">
+                ``Credit Risk Derivatives,'',
+                <i>Contingent Claims Analysis in Corporate Finance</i>, (2019)
+                editors Michel Crouhy, Dan Galai, Zvi Wiener. (Reprint of
+                article in Journal of Derivatives, 1995.)
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/fame.jpg" alt="icon" />
+              <div class="pub-info">
+                "Did CDS Trading Improve the Market for Corporate Bonds,"
+                (2016), (with Madhu Kalimipalli and Subhankar Nayak),
+                <i>Finance and Accounting Memos</i> Issue 3, 45--49. <br /><i
+                  >[CDS trading adversely impacted the bond market.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Random Lattices for Option Pricing Problems in Finance,"
+                (2011),
+                <i>Journal of Investment Management</i>, 9(2), 88-106.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Implementing Option Pricing Models using Python and Cython,"
+                (2010), (with Brian Granger),
+                <i>Journal of Investment Management</i>, 9(4), 72-84
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/EQF.jpg" alt="icon" />
+              <div class="pub-info">
+                "Recovery Swaps," (2009), (with Paul Hanouna),
+                <i>Encyclopedia of Quantitative Finance</i>, John Wiley and
+                Sons, U.K., 1507--1509
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/EQF.jpg" alt="icon" />
+              <div class="pub-info">
+                "Recovery Rates," (2009),(with Paul Hanouna),
+                <i>Encyclopedia of Quantitative Finance</i>, John Wiley and
+                Sons, U.K., 1505--1507
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                ``A Simple Model for Pricing Securities with a Debt-Equity
+                Linkage,'' 2008, in
+                <i> Innovations in Investment Management</i>, Bloomberg Press,
+                85-112.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Credit Default Swap Spreads", 2006, (with Paul Hanouna),
+                <i>Journal of Investment Management</i>, v4(3), 93-105.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Recovery Risk," 2005,
+                <i>Journal of Investment Management</i>, v3(1), 113-120.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Liquidity and the Bond Markets, (with Jan Ericsson and Madhu
+                Kalimipalli), 2003,
+                <i>Journal of Investment Management</i>, v1(4), 95-103.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JEL_cover.jpg" alt="icon" />
+              <div class="pub-info">
+                "Modern Pricing of Interest Rate Derivatives - Book Review",
+                2004, <i>Journal of Economic Literature</i>, vXLII, 528-529.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/QAFM_cover.jpg" alt="icon" />
+              <div class="pub-info">
+                "A Discrete-Time Approach to Arbitrage-Free Pricing of Credit
+                Derivatives,'' (with Rangarajan Sundaram), reprinted in the
+                Courant Institute of Mathematical Sciences, special volume on
+                <i>Quantitative Analysis in Financial Markets</i>, Volume III,
+                2001.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/AFIVT_cover.jpg" alt="icon" />
+              <div class="pub-info">
+                "Stochastic Mean Models of the Term Structure,'' (with Pierluigi
+                Balduzzi, Silverio Foresi and Rangarajan Sundaram), 2000,
+                <i>Advanced Fixed-Income Valuation Tools </i>, edited by N.
+                Jegadeesh and B. Tuckman, John Wiley & Sons, Inc., 128-161.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/AFIVT_cover.jpg" alt="icon" />
+              <div class="pub-info">
+                "Interest Rate Modeling with Jump-Diffusion Processes,'' 2000,
+                <i>Advanced Fixed-Income Valuation Tools </i>, edited by N.
+                Jegadeesh and B. Tuckman, John Wiley & Sons, Inc., 162-189.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/FCR_cover.jpg" alt="icon" />
+              <div class="pub-info">
+                Comments on 'Pricing Excess-of-Loss Reinsurance Contracts
+                against Catastrophic Loss,' by J. David Cummins, C. Lewis, and
+                Richard Phillips, in <i>The Financing of Catastrophe Risk</i>,
+                Kenneth A Froot (Ed.), University of Chicago Press, 1999,
+                141-145.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/HCD_cover.jpg" alt="icon" />
+              <div class="pub-info">
+                "Pricing Credit Derivatives,'' 1999,
+                <i>Handbook of Credit Derivatives</i>, eds J. Francis, J. Frost
+                and J.G. Whittaker, 101-138.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/PEC_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "On the Recursive Implementation of Term Structure Models,''
+                1998, <i>Pecunia</i>, The Netherlands, Summer 1998, 45-49.
+              </div>
+            </div>
+          </div>
+        </details>
+        <details>
+          <summary>Asset Pricing</summary>
+          <div class="details-content">
+            <div class="pub-card">
+              <img src="graphics/RFS_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Efficiency with Costly Information: A Reinterpretation of
+                Evidence from Managed Portfolios," (with Edwin Elton, Martin
+                Gruber and Matt Hlavka), <i>Review of Financial Studies</i>,
+                vol. 6(1), 1993, pp 1-22.
+                <a
+                  href="https://academic.oup.com/rfs/article-lookup/doi/10.1093/rfs/6.1.1"
+                  target="_blank"
+                  >[Paper]</a
+                >. <br /><i
+                  >[Mutual funds are not informationally efficient. You are
+                  better off buying the index.]
+                </i>
+                <br />
+                Presented and Reprinted in the Proceedings of The Seminar on the
+                Analysis of Security Prices at the Center for Research in
+                Security Prices at the University of Chicago, Graduate School of
+                Business.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/MDPI_algo.png" alt="icon" />
+              <div class="pub-info">
+                "Are Markets Truly Efficient? Experiments using Deep Learning
+                Algorithms for Market Movement Prediction", 2018, (with Karthik
+                Mokashi and Robbie Culkin).
+                <i>Algorithms</i>, v11, 138, doi:10.3390/a11090138.
+                <a
+                  href="https://www.mdpi.com/1999-4893/11/9/138/pdf"
+                  target="_blank"
+                  >[Online]</a
+                >.
+                <a
+                  href="https://app.box.com/s/u1bbbf8kvjqtuxiu7lmgkkv6gu61bhcc"
+                  target="_blank"
+                  >[Correction, updated programs and data.]</a
+                >. <br /><i
+                  >[How to use Deep Learning to undertake a large-scale test of
+                  efficiency of the stock index.]</i
+                >
+              </div>
+            </div>
+          </div>
+        </details>
+        <details>
+          <summary>Miscellaneous Topics</summary>
+          <div class="details-content">
+            <div class="pub-card">
+              <img src="graphics/mktletters.gif" alt="icon" />
+              <div class="pub-info">
+                "The Firm's Management of Social Interactions," (2005) (with D.
+                Godes, D. Mayzlin, Y. Chen, S. Das, C. Dellarocas, B. Pfeieffer,
+                B. Libai, S. Sen, M. Shi, and P. Verlegh).
+                <i>Marketing Letters</i>, v16, 415-428.Ê <br /><i
+                  >[A framework for how word-of-mouth communication is modeled
+                  in the practice of marketing. ]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/AEL_cover.jpg" alt="icon" />
+              <div class="pub-info">
+                "Macroeconomic Implications of Search Theory for the Labor
+                Market," 1997, <i>Applied Economics Letters</i>, December, v4,
+                719-723. <br /><i
+                  >[Connects option pricing theory to labor search theory.
+                  Calibrates to labor market data.]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/FMII_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Auction Theory: A Summary with Applications and Evidence from
+                the Treasury Markets," 1996, (with Rangarajan Sundaram),
+                <i>Financial Markets, Institutions and Instruments</i>, v5(5),
+                1-36. <br /><i
+                  >[A survey of models and literature on Treasury Auctions. ]</i
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Power Laws," 2005, (with Jacob Sisk),
+                <i>Journal of Investment Management</i>, v3(3), 84-91.
+                <a
+                  href="https://www.joim.com/ArticleContainer.asp?artID=154"
+                  target="_blank"
+                  >[PDF]</a
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Genetic Algorithms," 2005,
+                <i>Journal of Investment Management</i>, v3(2), 77-82.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Technical Analysis", (with David Tien), 2004
+                <i>Journal of Investment Management</i>, v2(1), 79-85.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "Hedge Funds", 2003,
+                <i>Journal of Investment Management</i>, v1(2), 76-81. Reprinted
+                in "Working Papers on Hedge Funds," in The World of Hedge Funds:
+                Characteristics and Analysis, 2005, World Scientific.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/JOIM_cover.gif" alt="icon" />
+              <div class="pub-info">
+                "The Internet and Investors", 2003,
+                <i>Journal of Investment Management</i>, v1(1), 213-217.
+              </div>
+            </div>
+          </div>
+        </details>
+        <details>
+          <summary>Manuscripts and Working Papers</summary>
+          <div class="details-content">
+            <div class="pub-card">
+              <img src="graphics/frog2.gif" alt="icon" />
+              <div class="pub-info">
+                ``CARL: Chat Assisted Reinforcement Learning'' (with Harshad Khadilkar, Sukrit Mittal, Daniel Ostrov, Jacob Sisk).
+                <a href="https://arxiv.org/pdf/2610.31014" target="_blank"
+                  >[PDF]</a>.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/frog2.gif" alt="icon" />
+              <div class="pub-info">
+                ``Multimodal Machine Learning on Financial Data'' (with John He, Shenghua Yue, Xin Huang, Li Zhang).
+                <a href="http://srdas.github.io/Papers/MultiModal_FinanceML.pdf" target="_blank"
+                  >[PDF]</a>.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/frog2.gif" alt="icon" />
+              <div class="pub-info">
+                "Project Lifecycles in Open Source Software" (with Brian
+                Granger, Piyush Jain, David Qiu, Andrii Iersoshenko, Michael
+                Chin).
+                <a href="https://github.com/srdas/oss-lifecycle" target="_blank"
+                  >[GitHub]</a
+                > <a href="https://arxiv.org/abs/2605.12738" target="_blank"
+                  >[arXiv]</a
+                >.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/frog2.gif" alt="icon" />
+              <div class="pub-info">
+                "PPLqa: An Unsupervised Information-Theoretic Quality Metric for
+                Comparing Generative Large Language Models", (with Gerald
+                Friedland, Xin Huang, Yueying Cui, Vishaal Kapoor, Ashish
+                Khetan),
+                <a href="https://arxiv.org/abs/2411.15320" target="_blank"
+                  >[arXiv]</a
+                >
+                <a
+                  href="https://www.linkedin.com/posts/geraldfriedland_pplqa-an-unsupervised-information-theoretic-activity-7267182872237658112-CJqh/"
+                  target="_blank"
+                  >[LinkedIn]</a
+                >
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/frog2.gif" alt="icon" />
+              <div class="pub-info">
+                "Diverse Counterfactual Explanations for Anomaly Detection in
+                Time Series", (with Deborah Sulem, Michele Donini, Muhammad
+                Bilal Zafar, Francois-Xavier Aubet, Jan Gasthaus, Tim
+                Januschowski, Krishnaram Kenthapadi, Cedric Archambeau),
+                <a href="https://arxiv.org/abs/2203.11103" target="_blank"
+                  >[arXiv]</a
+                >.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/frog2.gif" alt="icon" />
+              <div class="pub-info">
+                "More Than Words: Towards Better Quality Interpretations of Text
+                Classifiers", (with Muhammad Bilal Zafar, Philipp Schmidt,
+                Michele Donini, Cédric Archambeau, Felix Biessmann, Krishnaram
+                Kenthapadi),
+                <a href="https://arxiv.org/abs/2112.12444" target="_blank"
+                  >[arXiv]</a
+                >.
+              </div>
+            </div>
+            <div class="pub-card">
+              <img src="graphics/frog2.gif" alt="icon" />
+              <div class="pub-info">
+                "Measuring Productivity and User Engagement from Workplace
+                Network Interactions" (with Ivan Galea, Kailin Hu, Mugdha
+                Potdar, Preethi Subbrayan Ranganathan, Mark Scarr, Anand
+                Subramanian, Hariharan Swaminathan, Xiang Zhang)
+                <a href="Papers/boxpaper_kdd.pdf" target="_blank">[PDF]</a>.
+              </div>
+            </div>
+          </div>
+        </details>
+      </section>
+    </div>
+    <footer>Sanjiv Ranjan Das &middot; Santa Clara University</footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var pubInfos = document.querySelectorAll(".pub-info");
+        for (var i = 0; i < pubInfos.length; i++) {
+          var numSpan = document.createElement("span");
+          numSpan.className = "pub-number";
+          numSpan.innerHTML = i + 1 + ". ";
+          pubInfos[i].insertBefore(numSpan, pubInfos[i].firstChild);
+        }
+      });
+    </script>
+  </body>
+</html>

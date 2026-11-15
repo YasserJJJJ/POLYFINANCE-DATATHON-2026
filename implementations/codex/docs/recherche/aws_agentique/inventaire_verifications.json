@@ -1,0 +1,123 @@
+{
+  "checked_at": "2026-11-15T13:54:29.929978+00:00",
+  "profile": "alphaforge",
+  "region": "us-east-1",
+  "expected_account": "471112821226",
+  "session_metadata": {
+    "session_id": "01a1df0e-3fb7-7343-953c-31488e56a455",
+    "agent_path": "/root/aws_runtime",
+    "model_provider": "amazon-bedrock-runtime",
+    "evidence_level": "declarative metadata; not network interception"
+  },
+  "versions": {
+    "boto3": "1.44.3",
+    "botocore": "1.44.3",
+    "httpx": "0.28.1",
+    "jsonschema": "4.26.0"
+  },
+  "probes": [
+    {
+      "label": "team_identity",
+      "service": "sts",
+      "operation": "get_caller_identity",
+      "status": "success",
+      "request_id": "6748ed55-ddcc-45c7-9cd8-24db5410563b",
+      "http_status": 200,
+      "result": {
+        "Account": "471112821226",
+        "Arn": "arn:aws:sts::471112821226:assumed-role/WSParticipantRole/Participant"
+      }
+    },
+    {
+      "label": "astra_profile",
+      "service": "bedrock",
+      "operation": "get_inference_profile",
+      "status": "success",
+      "request_id": "445e4038-2cf8-4dea-8ae1-4708a0d8ddc6",
+      "http_status": 200,
+      "result": {
+        "inferenceProfileId": "global.openai.gpt-6-astra",
+        "inferenceProfileName": "Global OpenAI GPT-6 Astra",
+        "status": "ACTIVE",
+        "type": "SYSTEM_DEFINED",
+        "models": [
+          {
+            "modelArn": "arn:aws:bedrock:::foundation-model/openai.gpt-6-astra"
+          },
+          {
+            "modelArn": "arn:aws:bedrock:us-east-1::foundation-model/openai.gpt-6-astra"
+          }
+        ]
+      }
+    },
+    {
+      "label": "bedrock_logging_configuration",
+      "service": "bedrock",
+      "operation": "get_model_invocation_logging_configuration",
+      "status": "success",
+      "request_id": "4fe973c1-15fc-492b-8039-235e16721496",
+      "http_status": 200,
+      "result": {
+        "configured": false,
+        "config_keys": []
+      }
+    },
+    {
+      "label": "agentcore_runtimes_list",
+      "service": "bedrock-agentcore-control",
+      "operation": "list_agent_runtimes",
+      "status": "success",
+      "request_id": "9d885239-20d1-4ca7-9168-177f10f01f3b",
+      "http_status": 200,
+      "result": {
+        "returned_count": 0,
+        "next_token_present": false
+      }
+    }
+  ],
+  "inference_calls_during_research": 0,
+  "mutations": 0,
+  "limitations": [
+    "No service access is inferred from STS alone.",
+    "No inference destination country is inferred from the us-east-1 endpoint or global profile name.",
+    "Listing an AgentCore runtime does not exercise it."
+  ],
+  "document_search_calls_during_research": 1,
+  "document_search_proof": "preuve_web_search.json",
+  "shared_session_metadata_proof": "../verification_route_codex.json",
+  "previous_inference_evidence": {
+    "source": "artifacts/ui-export.json",
+    "new_call": false,
+    "model": "global.openai.gpt-6-astra",
+    "request_ids": [
+      "135b729e-1f49-498b-a707-f76f83f8af59",
+      "37969d33-6b5f-4819-b85c-ad6068d7823e"
+    ],
+    "limitation": "Prior product run; not a new test of four-role product or live research."
+  },
+  "untested_services": [
+    "S3 (no known project bucket; prior inventory only)",
+    "Athena",
+    "Glue",
+    "SageMaker runtime",
+    "Lambda execution",
+    "Knowledge Bases",
+    "Guardrails",
+    "AgentCore Gateway",
+    "AgentCore Memory",
+    "AgentCore Code Interpreter",
+    "AgentCore Browser",
+    "Step Functions",
+    "Amazon Quick"
+  ],
+  "quotas": "Account-specific quotas not queried; documentation only.",
+  "local_data": [
+    "data/Datathon_Case_Officiel_2026_FR.md",
+    "data/alphaforge_starter/assets_universe.csv",
+    "data/alphaforge_starter/prices_daily.csv",
+    "data/alphaforge_starter/sources_metadata.csv",
+    "data/alphaforge_starter/macro_rates.csv",
+    "data/alphaforge_starter/corporate_actions.csv",
+    "data/alphaforge_starter/fx_usdcad_daily.csv"
+  ]
+}

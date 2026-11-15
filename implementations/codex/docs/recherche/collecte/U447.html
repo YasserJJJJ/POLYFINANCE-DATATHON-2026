@@ -1,0 +1,502 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta content="Learn about the AWS CLI 2.40.3 glue commands." name="description" />
+
+  
+    <title>glue &#8212; AWS CLI 2.40.3 Command Reference</title>
+  <link rel="stylesheet" type="text/css" href="../../_static/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/override.css" />
+  <script src="/SdkStatic/sdk-priv.js" async="true"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/guzzle.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="associate-glossary-terms" href="associate-glossary-terms.html" />
+    <link rel="prev" title="withdraw-byoip-cidr" href="../globalaccelerator/withdraw-byoip-cidr.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-responsive.min.css" />
+  
+   
+
+<link rel="alternate" type="text/markdown" href="index.md" title="Markdown version" />
+  </head><body>
+  <div class="navbar navbar-fixed-top ">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="../../index.html">AWS CLI Command Reference</a>
+        <ul class="nav">
+<li><a class="nav-link" href="../../index.html">Home</a></li>
+<li><a class="nav-link" href="https://docs.aws.amazon.com/cli/latest/userguide/">User Guide</a></li>
+<li><a class="nav-link" href="https://forums.aws.amazon.com/forum.jspa?forumID=150">Forum</a></li>
+<li><a class="nav-link" href="https://github.com/aws/aws-cli">GitHub</a></li>
+        </ul>
+        <div class="pull-right" id="github-stars">
+          <iframe src="https://ghbtns.com/github-btn.html?user=aws&repo=aws-cli&type=watch&count=true&size=small"
+                  allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20px"  sandbox="allow-scripts"
+                  title="GitHub button showing the number of project stars."></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--REGION_DISCLAIMER_DO_NOT_REMOVE-->
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="associate-glossary-terms.html" title="associate-glossary-terms"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../globalaccelerator/withdraw-byoip-cidr.html" title="withdraw-byoip-cidr"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">AWS CLI 2.40.3 Command Reference</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">aws</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">glue</a></li> 
+      </ul>
+    </div>
+    <div class="container">
+        
+    <div class="top-links">
+      <ul class="breadcrumb pull-right">
+        <li>
+          <a href="../globalaccelerator/withdraw-byoip-cidr.html" title="previous chapter (use the left arrow)">&larr; withdraw-byoip-cidr</a>
+          <span class="divider">/</span>
+          
+        </li>
+          <li><a href="associate-glossary-terms.html" title="next chapter (use the right arrow)">associate-glossary-terms &rarr;</a></li>
+      </ul>
+    </div>
+  
+        <div class="document clearer">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo left-bar-other">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/logo.png" alt="Amazon Web Services logo" height="63" />
+  </a>
+</p>
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">glue</a><ul>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#available-commands">Available Commands</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+<div id="searchbox" style="display: none">
+    <h3>Quick search</h3>
+    <form class="form-search margin-top-1em" action="../../search.html" method="get">
+        <label for="searchbox">Search box</label>
+        <input id="searchbox" type="search" name="q" style="width: 105px" class="input-small search-query" autocomplete="off" />
+        <button type="submit" class="btn btn-small">Search</button>
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script src="../../_static/searchbox.js"></script><div class="left-bar-other">
+  <h3>Feedback</h3>
+  <p class="feedback">Did you find this page useful? Do you have a suggestion to improve the documentation? <a href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=AWS%20Command%20Line%20Interface&hidden_guide_name=Reference&topic_url=https%3A%2F%2Fdocs.aws.amazon.com%2Fcli%2Flatest%2Freference/glue/index.html">Give us feedback</a>.
+    <br />
+    If you would like to suggest an improvement or fix for the AWS CLI, check out our <a href="https://github.com/aws/aws-cli/blob/v2/CONTRIBUTING.rst">contributing guide</a> on GitHub.</p>
+</div><div class="left-bar-other">
+  <h3>User Guide</h3>
+  <p>First time using the AWS CLI? See the
+  <a href="https://docs.aws.amazon.com/cli/latest/userguide/">User Guide</a> for
+  help getting started.</p>
+</div>
+        </div>
+      </div>
+            <div class="body">
+              
+  <p>[ <a class="reference internal" href="../index.html#cli-aws"><span class="std std-ref">aws</span></a> ]</p>
+<div class="section" id="glue">
+<span id="cli-aws-glue"></span><h1>glue<a class="headerlink" href="#glue" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<p>Defines the public endpoint for the Glue service.</p>
+</div>
+<div class="section" id="available-commands">
+<h2>Available Commands<a class="headerlink" href="#available-commands" title="Permalink to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="associate-glossary-terms.html">associate-glossary-terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch-create-partition.html">batch-create-partition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch-delete-connection.html">batch-delete-connection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch-delete-partition.html">batch-delete-partition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch-delete-table.html">batch-delete-table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch-delete-table-version.html">batch-delete-table-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch-get-blueprints.html">batch-get-blueprints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch-get-crawlers.html">batch-get-crawlers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch-get-custom-entity-types.html">batch-get-custom-entity-types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch-get-data-quality-result.html">batch-get-data-quality-result</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch-get-data-quality-result-v2.html">batch-get-data-quality-result-v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch-get-data-quality-ruleset-evaluation-run.html">batch-get-data-quality-ruleset-evaluation-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch-get-dev-endpoints.html">batch-get-dev-endpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch-get-iterable-forms.html">batch-get-iterable-forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch-get-jobs.html">batch-get-jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch-get-partition.html">batch-get-partition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch-get-table-optimizer.html">batch-get-table-optimizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch-get-triggers.html">batch-get-triggers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch-get-workflows.html">batch-get-workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch-put-data-quality-statistic-annotation.html">batch-put-data-quality-statistic-annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch-stop-job-run.html">batch-stop-job-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch-update-partition.html">batch-update-partition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cancel-data-quality-rule-recommendation-run.html">cancel-data-quality-rule-recommendation-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cancel-data-quality-ruleset-evaluation-run.html">cancel-data-quality-ruleset-evaluation-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cancel-ml-task-run.html">cancel-ml-task-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cancel-statement.html">cancel-statement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="check-schema-version-validity.html">check-schema-version-validity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-blueprint.html">create-blueprint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-catalog.html">create-catalog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-classifier.html">create-classifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-column-statistics-task-settings.html">create-column-statistics-task-settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-connection.html">create-connection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-crawler.html">create-crawler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-custom-entity-type.html">create-custom-entity-type</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-data-quality-evaluation-config.html">create-data-quality-evaluation-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-data-quality-ruleset.html">create-data-quality-ruleset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-database.html">create-database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-dev-endpoint.html">create-dev-endpoint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-glossary.html">create-glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-glossary-term.html">create-glossary-term</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-glue-identity-center-configuration.html">create-glue-identity-center-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-integration.html">create-integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-integration-resource-property.html">create-integration-resource-property</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-integration-table-properties.html">create-integration-table-properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-job.html">create-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-ml-transform.html">create-ml-transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-partition.html">create-partition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-partition-index.html">create-partition-index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-registry.html">create-registry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-schema.html">create-schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-script.html">create-script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-security-configuration.html">create-security-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-session.html">create-session</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-table.html">create-table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-table-optimizer.html">create-table-optimizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-trigger.html">create-trigger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-usage-profile.html">create-usage-profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-user-defined-function.html">create-user-defined-function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-workflow.html">create-workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-asset.html">delete-asset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-asset-type.html">delete-asset-type</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-attachment.html">delete-attachment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-blueprint.html">delete-blueprint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-catalog.html">delete-catalog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-classifier.html">delete-classifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-column-statistics-for-partition.html">delete-column-statistics-for-partition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-column-statistics-for-table.html">delete-column-statistics-for-table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-column-statistics-task-settings.html">delete-column-statistics-task-settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-connection.html">delete-connection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-connection-type.html">delete-connection-type</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-crawler.html">delete-crawler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-custom-entity-type.html">delete-custom-entity-type</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-data-quality-evaluation-config.html">delete-data-quality-evaluation-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-data-quality-ruleset.html">delete-data-quality-ruleset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-database.html">delete-database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-dev-endpoint.html">delete-dev-endpoint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-form-type.html">delete-form-type</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-glossary.html">delete-glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-glossary-term.html">delete-glossary-term</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-glue-identity-center-configuration.html">delete-glue-identity-center-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-integration.html">delete-integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-integration-resource-property.html">delete-integration-resource-property</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-integration-table-properties.html">delete-integration-table-properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-job.html">delete-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-ml-transform.html">delete-ml-transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-partition.html">delete-partition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-partition-index.html">delete-partition-index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-registry.html">delete-registry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-resource-policy.html">delete-resource-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-schema.html">delete-schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-schema-versions.html">delete-schema-versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-security-configuration.html">delete-security-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-session.html">delete-session</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-table.html">delete-table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-table-optimizer.html">delete-table-optimizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-table-version.html">delete-table-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-trigger.html">delete-trigger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-usage-profile.html">delete-usage-profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-user-defined-function.html">delete-user-defined-function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-workflow.html">delete-workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="describe-connection-type.html">describe-connection-type</a></li>
+<li class="toctree-l1"><a class="reference internal" href="describe-entity.html">describe-entity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="describe-inbound-integrations.html">describe-inbound-integrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="describe-integrations.html">describe-integrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="disassociate-glossary-terms.html">disassociate-glossary-terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-asset.html">get-asset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-asset-type.html">get-asset-type</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-blueprint.html">get-blueprint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-blueprint-run.html">get-blueprint-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-blueprint-runs.html">get-blueprint-runs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-catalog.html">get-catalog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-catalog-import-status.html">get-catalog-import-status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-catalogs.html">get-catalogs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-classifier.html">get-classifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-classifiers.html">get-classifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-column-statistics-for-partition.html">get-column-statistics-for-partition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-column-statistics-for-table.html">get-column-statistics-for-table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-column-statistics-task-run.html">get-column-statistics-task-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-column-statistics-task-runs.html">get-column-statistics-task-runs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-column-statistics-task-settings.html">get-column-statistics-task-settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-connection.html">get-connection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-connections.html">get-connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-crawler.html">get-crawler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-crawler-metrics.html">get-crawler-metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-crawlers.html">get-crawlers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-custom-entity-type.html">get-custom-entity-type</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-dashboard-url.html">get-dashboard-url</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-data-catalog-encryption-settings.html">get-data-catalog-encryption-settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-data-catalog-export-configuration.html">get-data-catalog-export-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-data-quality-evaluation-config.html">get-data-quality-evaluation-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-data-quality-model.html">get-data-quality-model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-data-quality-model-result.html">get-data-quality-model-result</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-data-quality-result.html">get-data-quality-result</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-data-quality-result-v2.html">get-data-quality-result-v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-data-quality-rule-recommendation-run.html">get-data-quality-rule-recommendation-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-data-quality-ruleset.html">get-data-quality-ruleset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-data-quality-ruleset-evaluation-run.html">get-data-quality-ruleset-evaluation-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-database.html">get-database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-databases.html">get-databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-dataflow-graph.html">get-dataflow-graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-dev-endpoint.html">get-dev-endpoint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-dev-endpoints.html">get-dev-endpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-entity-records.html">get-entity-records</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-form-type.html">get-form-type</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-glossary.html">get-glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-glossary-term.html">get-glossary-term</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-glue-identity-center-configuration.html">get-glue-identity-center-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-integration-resource-property.html">get-integration-resource-property</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-integration-table-properties.html">get-integration-table-properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-job.html">get-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-job-bookmark.html">get-job-bookmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-job-run.html">get-job-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-job-runs.html">get-job-runs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-job-upgrade-analysis.html">get-job-upgrade-analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-jobs.html">get-jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-mapping.html">get-mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-materialized-view-refresh-task-run.html">get-materialized-view-refresh-task-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-ml-task-run.html">get-ml-task-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-ml-task-runs.html">get-ml-task-runs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-ml-transform.html">get-ml-transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-ml-transforms.html">get-ml-transforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-partition.html">get-partition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-partition-indexes.html">get-partition-indexes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-partitions.html">get-partitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-plan.html">get-plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-registry.html">get-registry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-resource-policies.html">get-resource-policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-resource-policy.html">get-resource-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-schema.html">get-schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-schema-by-definition.html">get-schema-by-definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-schema-version.html">get-schema-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-schema-versions-diff.html">get-schema-versions-diff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-security-configuration.html">get-security-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-security-configurations.html">get-security-configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-session.html">get-session</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-session-endpoint.html">get-session-endpoint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-statement.html">get-statement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-system-logs-for-job-run.html">get-system-logs-for-job-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-system-logs-for-session.html">get-system-logs-for-session</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-table.html">get-table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-table-optimizer.html">get-table-optimizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-table-version.html">get-table-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-table-versions.html">get-table-versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-tables.html">get-tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-tags.html">get-tags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-trigger.html">get-trigger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-triggers.html">get-triggers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-unfiltered-partition-metadata.html">get-unfiltered-partition-metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-unfiltered-partitions-metadata.html">get-unfiltered-partitions-metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-unfiltered-table-metadata.html">get-unfiltered-table-metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-usage-profile.html">get-usage-profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-user-defined-function.html">get-user-defined-function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-user-defined-functions.html">get-user-defined-functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-workflow.html">get-workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-workflow-run.html">get-workflow-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-workflow-run-properties.html">get-workflow-run-properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-workflow-runs.html">get-workflow-runs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="import-catalog-to-glue.html">import-catalog-to-glue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-asset-types.html">list-asset-types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-blueprints.html">list-blueprints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-column-statistics-task-runs.html">list-column-statistics-task-runs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-connection-types.html">list-connection-types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-crawlers.html">list-crawlers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-crawls.html">list-crawls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-custom-entity-types.html">list-custom-entity-types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-data-quality-evaluation-configs.html">list-data-quality-evaluation-configs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-data-quality-results.html">list-data-quality-results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-data-quality-results-v2.html">list-data-quality-results-v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-data-quality-rule-recommendation-runs.html">list-data-quality-rule-recommendation-runs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-data-quality-ruleset-evaluation-runs.html">list-data-quality-ruleset-evaluation-runs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-data-quality-rulesets.html">list-data-quality-rulesets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-data-quality-statistic-annotations.html">list-data-quality-statistic-annotations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-data-quality-statistics.html">list-data-quality-statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-dev-endpoints.html">list-dev-endpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-entities.html">list-entities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-form-types.html">list-form-types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-glossaries.html">list-glossaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-glossary-terms.html">list-glossary-terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-integration-resource-properties.html">list-integration-resource-properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-integration-table-properties.html">list-integration-table-properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-iterable-forms.html">list-iterable-forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-jobs.html">list-jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-materialized-view-refresh-task-runs.html">list-materialized-view-refresh-task-runs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-ml-transforms.html">list-ml-transforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-registries.html">list-registries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-schema-versions.html">list-schema-versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-schemas.html">list-schemas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-sessions.html">list-sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-statements.html">list-statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-table-optimizer-runs.html">list-table-optimizer-runs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-triggers.html">list-triggers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-usage-profiles.html">list-usage-profiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-workflows.html">list-workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modify-integration.html">modify-integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="publish-data-quality-result-v2.html">publish-data-quality-result-v2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-asset.html">put-asset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-asset-type.html">put-asset-type</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-attachment.html">put-attachment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-data-catalog-encryption-settings.html">put-data-catalog-encryption-settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-data-catalog-export-configuration.html">put-data-catalog-export-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-data-quality-profile-annotation.html">put-data-quality-profile-annotation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-form-type.html">put-form-type</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-resource-policy.html">put-resource-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-schema-version-metadata.html">put-schema-version-metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-workflow-run-properties.html">put-workflow-run-properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="query-schema-version-metadata.html">query-schema-version-metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="register-connection-type.html">register-connection-type</a></li>
+<li class="toctree-l1"><a class="reference internal" href="register-schema-version.html">register-schema-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="remove-schema-version-metadata.html">remove-schema-version-metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reset-job-bookmark.html">reset-job-bookmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resume-workflow-run.html">resume-workflow-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="run-statement.html">run-statement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search-assets.html">search-assets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search-tables.html">search-tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start-blueprint-run.html">start-blueprint-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start-column-statistics-task-run.html">start-column-statistics-task-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start-column-statistics-task-run-schedule.html">start-column-statistics-task-run-schedule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start-crawler.html">start-crawler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start-crawler-schedule.html">start-crawler-schedule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start-data-quality-rule-recommendation-run.html">start-data-quality-rule-recommendation-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start-data-quality-ruleset-evaluation-run.html">start-data-quality-ruleset-evaluation-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start-export-labels-task-run.html">start-export-labels-task-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start-import-labels-task-run.html">start-import-labels-task-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start-job-run.html">start-job-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start-job-upgrade-analysis.html">start-job-upgrade-analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start-materialized-view-refresh-task-run.html">start-materialized-view-refresh-task-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start-ml-evaluation-task-run.html">start-ml-evaluation-task-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start-ml-labeling-set-generation-task-run.html">start-ml-labeling-set-generation-task-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start-trigger.html">start-trigger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start-workflow-run.html">start-workflow-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stop-column-statistics-task-run.html">stop-column-statistics-task-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stop-column-statistics-task-run-schedule.html">stop-column-statistics-task-run-schedule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stop-crawler.html">stop-crawler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stop-crawler-schedule.html">stop-crawler-schedule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stop-job-upgrade-analysis.html">stop-job-upgrade-analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stop-materialized-view-refresh-task-run.html">stop-materialized-view-refresh-task-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stop-session.html">stop-session</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stop-trigger.html">stop-trigger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stop-workflow-run.html">stop-workflow-run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tag-resource.html">tag-resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test-connection.html">test-connection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="untag-resource.html">untag-resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-asset.html">update-asset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-blueprint.html">update-blueprint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-catalog.html">update-catalog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-classifier.html">update-classifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-column-statistics-for-partition.html">update-column-statistics-for-partition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-column-statistics-for-table.html">update-column-statistics-for-table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-column-statistics-task-settings.html">update-column-statistics-task-settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-connection.html">update-connection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-crawler.html">update-crawler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-crawler-schedule.html">update-crawler-schedule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-data-quality-evaluation-config.html">update-data-quality-evaluation-config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-data-quality-ruleset.html">update-data-quality-ruleset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-database.html">update-database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-dev-endpoint.html">update-dev-endpoint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-glossary.html">update-glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-glossary-term.html">update-glossary-term</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-glue-identity-center-configuration.html">update-glue-identity-center-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-integration-resource-property.html">update-integration-resource-property</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-integration-table-properties.html">update-integration-table-properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-job.html">update-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-job-from-source-control.html">update-job-from-source-control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-ml-transform.html">update-ml-transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-partition.html">update-partition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-registry.html">update-registry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-schema.html">update-schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-source-control-from-job.html">update-source-control-from-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-table.html">update-table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-table-optimizer.html">update-table-optimizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-trigger.html">update-trigger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-usage-profile.html">update-usage-profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-user-defined-function.html">update-user-defined-function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-workflow.html">update-workflow</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+            </div>
+          <div class="clearfix"></div>
+        </div>
+        
+    <div class="footer-links">
+      <ul class="breadcrumb pull-right">
+        <li>
+          <a href="../globalaccelerator/withdraw-byoip-cidr.html" title="previous chapter (use the left arrow)">&larr; withdraw-byoip-cidr</a>
+          <span class="divider">/</span>
+          
+        </li>
+          <li><a href="associate-glossary-terms.html" title="next chapter (use the right arrow)">associate-glossary-terms &rarr;</a></li>
+      </ul>
+    </div>
+  
+
+    </div>
+  <script type="text/javascript" src="https://media.amazonwebservices.com/js/sitecatalyst/s_code.min.js"></script>
+  <script type="text/javascript" src="../../_static/analytics.js"></script>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="associate-glossary-terms.html" title="associate-glossary-terms"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../globalaccelerator/withdraw-byoip-cidr.html" title="withdraw-byoip-cidr"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">AWS CLI 2.40.3 Command Reference</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >aws</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">glue</a></li> 
+      </ul>
+    </div>
+  <div class="footer container">
+    &copy; Copyright 2026, Amazon Web Services. Created using <a href="https://www.sphinx-doc.org/">Sphinx</a>.
+  </div>
+
+
+
+  
+    
+  
+  </body>
+</html>

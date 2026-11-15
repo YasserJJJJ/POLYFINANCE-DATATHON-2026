@@ -1,0 +1,86 @@
+{
+  "checked_at": "2026-11-15T17:39:36.433623+00:00",
+  "versions": {
+    "langgraph": "1.2.22",
+    "langgraph-checkpoint-sqlite": "3.1.3",
+    "langchain-core": "1.8.1",
+    "langsmith": "0.14.17",
+    "beautifulsoup4": "4.15.0",
+    "pypdf": "7.1.0",
+    "fonttools": "4.68.0",
+    "boto3": "1.44.3",
+    "botocore": "1.44.3"
+  },
+  "engines": [
+    {
+      "engine": "langgraph",
+      "status": "passed",
+      "failure_status": "error",
+      "resumed_status": "complete",
+      "calls": [
+        {
+          "role": "agent0",
+          "step_index": 0
+        },
+        {
+          "role": "agent1",
+          "step_index": 1
+        },
+        {
+          "role": "agent2",
+          "step_index": 2
+        },
+        {
+          "role": "agent2",
+          "step_index": 2
+        },
+        {
+          "role": "agent3",
+          "step_index": 3
+        }
+      ],
+      "waiting_did_not_synthesize_approval": true,
+      "duration_ms": 29,
+      "scope": "single-process restart via fresh instances; temporary persistent SQLite; synthetic roles"
+    },
+    {
+      "engine": "explicit_machine_reference",
+      "status": "passed",
+      "failure_status": "error",
+      "resumed_status": "complete",
+      "calls": [
+        {
+          "role": "agent0",
+          "step_index": 0
+        },
+        {
+          "role": "agent1",
+          "step_index": 1
+        },
+        {
+          "role": "agent2",
+          "step_index": 2
+        },
+        {
+          "role": "agent2",
+          "step_index": 2
+        },
+        {
+          "role": "agent3",
+          "step_index": 3
+        }
+      ],
+      "waiting_did_not_synthesize_approval": true,
+      "duration_ms": 9,
+      "scope": "single-process restart via fresh instances; temporary persistent SQLite; synthetic roles"
+    }
+  ],
+  "decision": "langgraph",
+  "reason": "Both pass the small persistence/transition fixture. LangGraph retains supported graph/checkpoint machinery; the domain commit contract remains independent.",
+  "limitations": [
+    "Not a throughput benchmark or distributed-worker qualification.",
+    "Strands was reviewed during conception but not installed or run in this comparison.",
+    "Commit-before-checkpoint, cycles, budgets and tracing are exercised in tests/test_decision_workflow.py."
+  ],
+  "aws_calls_in_this_run": false
+}

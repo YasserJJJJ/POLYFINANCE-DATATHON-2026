@@ -1,0 +1,289 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1550" height="1760" viewBox="0 0 1550 1760" role="img" aria-labelledby="title desc">
+<title id="title">AlphaForge : architecture locale implémentée</title>
+<desc id="desc">Quatre agents distincts pilotés par LangGraph. Boucles Agent1 vers Agent1 et retours Agent1 ou Agent3 vers Agent0. Les agents utilisent Bedrock AWS, des recherches documentaires et deux familles de calculs. Le noyau SQLite valide les ChangeSets et conserve les révisions et artefacts. Renvoi A : le dossier fournit le contexte versionné des rôles. Renvoi B : sa projection fournit la vue courante et l'historique à l'interface. Renvoi C : une correction humaine produit une nouvelle révision, invalide les pièces dépendantes et lance un nouveau run via Agent0. Recherche générale partielle et cloud non déployé.</desc>
+<!-- Companion layout to architecture.mmd. Manually arranged to keep role loops and implementation layers readable; same implemented components and status. -->
+<defs><marker id="navy" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#506a83"/></marker><marker id="orange" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#b87526"/></marker></defs>
+<g font-family="Arial, Helvetica, sans-serif"><rect width="1550" height="1760" fill="#ffffff"/>
+<text x="55" y="56" font-size="32" fill="#143650" font-weight="700" text-anchor="start">
+<tspan x="55" dy="0">AlphaForge · architecture locale implémentée</tspan>
+</text>
+<text x="55" y="88" font-size="18" fill="#243c51" font-weight="400" text-anchor="start">
+<tspan x="55" dy="0">Quatre rôles distincts · revue indépendante Prompt 5 · appels AWS vérifiés · 15 novembre 2026</tspan>
+</text>
+<path d="M58 118 H100" fill="none" stroke="#506a83" stroke-width="3" marker-end="url(#navy)"/>
+<text x="113" y="124" font-size="16" fill="#243c51" font-weight="400" text-anchor="start">
+<tspan x="113" dy="0">parcours principal</tspan>
+</text>
+<path d="M320 118 H362" fill="none" stroke="#b87526" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#orange)"/>
+<text x="375" y="124" font-size="16" fill="#243c51" font-weight="400" text-anchor="start">
+<tspan x="375" dy="0">réouverture / correction</tspan>
+</text>
+<rect x="692" y="108" width="14" height="14" rx="3" fill="#e9edf9" stroke="#8195bd" stroke-width="1.4"/>
+<text x="716" y="124" font-size="16" fill="#243c51" font-weight="400" text-anchor="start">
+<tspan x="716" dy="0">persistance locale</tspan>
+</text>
+<rect x="936" y="108" width="14" height="14" rx="3" fill="#fff0d9" stroke="#cfa154" stroke-width="1.4"/>
+<text x="960" y="124" font-size="16" fill="#243c51" font-weight="400" text-anchor="start">
+<tspan x="960" dy="0">service AWS distant</tspan>
+</text>
+<rect x="55" y="155" width="275" height="110" rx="14" fill="#f6f9fc" stroke="#c3d1de" stroke-width="1.4"/>
+<text x="77" y="185" font-size="23" fill="#143650" font-weight="700" text-anchor="start">
+<tspan x="77" dy="0">Utilisateur</tspan>
+</text>
+<text x="77" y="218" font-size="18" fill="#243c51" font-weight="400" text-anchor="start">
+<tspan x="77" dy="0">Question et faits déclarés</tspan>
+<tspan x="77" dy="24.48">Corrections explicites</tspan>
+</text>
+<rect x="400" y="155" width="460" height="110" rx="14" fill="#f6f9fc" stroke="#c3d1de" stroke-width="1.4"/>
+<text x="422" y="185" font-size="23" fill="#143650" font-weight="700" text-anchor="start">
+<tspan x="422" dy="0">Interface locale + API FastAPI</tspan>
+</text>
+<text x="422" y="218" font-size="18" fill="#243c51" font-weight="400" text-anchor="start">
+<tspan x="422" dy="0">Vue courante, preuves, archives, export JSON</tspan>
+<tspan x="422" dy="24.48">Correction avec base_revision → nouveau run</tspan>
+</text>
+<rect x="930" y="155" width="565" height="110" rx="14" fill="#e9edf9" stroke="#8195bd" stroke-width="1.4"/>
+<text x="952" y="185" font-size="23" fill="#233861" font-weight="700" text-anchor="start">
+<tspan x="952" dy="0">LangGraph · orchestration et reprise</tspan>
+</text>
+<text x="952" y="218" font-size="18" fill="#243c51" font-weight="400" text-anchor="start">
+<tspan x="952" dy="0">Callbacks des rôles · état, attente et erreurs</tspan>
+<tspan x="952" dy="24.48">Checkpoints SQLite distincts des révisions métier</tspan>
+</text>
+<path d="M330 210 H400" fill="none" stroke="#506a83" stroke-width="2" marker-end="url(#navy)"/>
+<path d="M860 210 H930" fill="none" stroke="#506a83" stroke-width="2" marker-end="url(#navy)"/>
+<path d="M1210 265 V299" fill="none" stroke="#506a83" stroke-width="2" marker-end="url(#navy)"/>
+<text x="1226" y="290" font-size="16" fill="#243c51" font-weight="400" text-anchor="start">
+<tspan x="1226" dy="0">pilote les transitions</tspan>
+</text>
+<rect x="45" y="303" width="1460" height="442" rx="18" fill="#f6f9fc" stroke="#c3d1de" stroke-width="1.4"/>
+<text x="67" y="328" font-size="16" fill="#506a83" font-weight="700" text-anchor="start">
+<tspan x="67" dy="0">PARCOURS DES AGENTS</tspan>
+</text>
+<path d="M1345 430 V349 H160 V430" fill="none" stroke="#b87526" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#orange)"/>
+<text x="1020" y="339" font-size="17" fill="#956021" font-weight="600" text-anchor="start">
+<tspan x="1020" dy="0">Agent3 : résultat incomplet</tspan>
+</text>
+<path d="M505 430 V389 H255 V430" fill="none" stroke="#b87526" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#orange)"/>
+<text x="287" y="378" font-size="16" fill="#956021" font-weight="600" text-anchor="start">
+<tspan x="287" dy="0">Agent1 : clarifier / budget épuisé</tspan>
+</text>
+<path d="M705 430 V409 H790 V542 H735" fill="none" stroke="#b87526" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#orange)"/>
+<text x="815" y="413" font-size="16" fill="#956021" font-weight="600" text-anchor="start">
+<tspan x="815" dy="0">Agent1 approfondit ×1</tspan>
+</text>
+<rect x="55" y="430" width="300" height="160" rx="14" fill="#163b59" stroke="#163b59" stroke-width="1.4"/>
+<text x="75" y="460" font-size="15" fill="#bcd7e8" font-weight="700" text-anchor="start">
+<tspan x="75" dy="0">AGENT 0</tspan>
+</text>
+<text x="75" y="490" font-size="20" fill="#ffffff" font-weight="700" text-anchor="start">
+<tspan x="75" dy="0">Qualification</tspan>
+</text>
+<text x="75" y="521" font-size="17" fill="#edf5fb" font-weight="400" text-anchor="start">
+<tspan x="75" dy="0">Formaliser le problème</tspan>
+<tspan x="75" dy="23.12">Tracer faits et inconnues</tspan>
+<tspan x="75" dy="23.12">Déclencher une clarification</tspan>
+</text>
+<rect x="435" y="430" width="300" height="160" rx="14" fill="#163b59" stroke="#163b59" stroke-width="1.4"/>
+<text x="455" y="460" font-size="15" fill="#bcd7e8" font-weight="700" text-anchor="start">
+<tspan x="455" dy="0">AGENT 1</tspan>
+</text>
+<text x="455" y="490" font-size="20" fill="#ffffff" font-weight="700" text-anchor="start">
+<tspan x="455" dy="0">Recherche et revue</tspan>
+</text>
+<text x="455" y="521" font-size="17" fill="#edf5fb" font-weight="400" text-anchor="start">
+<tspan x="455" dy="0">Examiner pièces et méthodes</tspan>
+<tspan x="455" dy="23.12">Dates, conflits et preuves retenues</tspan>
+<tspan x="455" dy="23.12">Approfondissement borné</tspan>
+</text>
+<rect x="815" y="430" width="300" height="160" rx="14" fill="#163b59" stroke="#163b59" stroke-width="1.4"/>
+<text x="835" y="460" font-size="15" fill="#bcd7e8" font-weight="700" text-anchor="start">
+<tspan x="835" dy="0">AGENT 2</tspan>
+</text>
+<text x="835" y="490" font-size="20" fill="#ffffff" font-weight="700" text-anchor="start">
+<tspan x="835" dy="0">Analyse et résolution</tspan>
+</text>
+<text x="835" y="521" font-size="17" fill="#edf5fb" font-weight="400" text-anchor="start">
+<tspan x="835" dy="0">Choisir un outil admis</tspan>
+<tspan x="835" dy="23.12">Calculer et contrôler</tspan>
+<tspan x="835" dy="23.12">Inspecter données et hypothèses</tspan>
+</text>
+<rect x="1195" y="430" width="300" height="160" rx="14" fill="#163b59" stroke="#163b59" stroke-width="1.4"/>
+<text x="1215" y="460" font-size="15" fill="#bcd7e8" font-weight="700" text-anchor="start">
+<tspan x="1215" dy="0">AGENT 3</tspan>
+</text>
+<text x="1215" y="490" font-size="20" fill="#ffffff" font-weight="700" text-anchor="start">
+<tspan x="1215" dy="0">Restitution et interaction</tspan>
+</text>
+<text x="1215" y="521" font-size="17" fill="#edf5fb" font-weight="400" text-anchor="start">
+<tspan x="1215" dy="0">Ordonner les claims existants</tspan>
+<tspan x="1215" dy="23.12">Conserver limites et questions</tspan>
+<tspan x="1215" dy="23.12">Aucun chiffre modèle libre</tspan>
+</text>
+<path d="M355 510 H435" fill="none" stroke="#506a83" stroke-width="3" marker-end="url(#navy)"/>
+<path d="M735 510 H815" fill="none" stroke="#506a83" stroke-width="3" marker-end="url(#navy)"/>
+<path d="M1115 510 H1195" fill="none" stroke="#506a83" stroke-width="3" marker-end="url(#navy)"/>
+<rect x="55" y="626" width="300" height="69" rx="10" fill="#fff5e6" stroke="#d6ae6e" stroke-width="1.4"/>
+<text x="72" y="650" font-size="17" fill="#694715" font-weight="600" text-anchor="start">
+<tspan x="72" dy="0">Après réouverture : attente</tspan>
+<tspan x="72" dy="23.12">d’une correction humaine</tspan>
+</text>
+<path d="M185 590 V626" fill="none" stroke="#b87526" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#orange)"/>
+<path d="M55 660 H22 V208 H55" fill="none" stroke="#b87526" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#orange)"/>
+<path d="M330 590 V608 H385 V716" fill="none" stroke="#506a83" stroke-width="2"/>
+<path d="M585 590 V716" fill="none" stroke="#506a83" stroke-width="2"/>
+<path d="M965 590 V608 H1165 V716" fill="none" stroke="#506a83" stroke-width="2"/>
+<path d="M1345 590 V716" fill="none" stroke="#506a83" stroke-width="2"/>
+<path d="M385 716 H1345" fill="none" stroke="#506a83" stroke-width="2"/>
+<path d="M790 716 V790" fill="none" stroke="#506a83" stroke-width="2" marker-end="url(#navy)"/>
+<text x="763" y="625" font-size="19" fill="#233861" font-weight="600" text-anchor="start">
+<tspan x="763" dy="0">Chaque rôle propose un ChangeSet.</tspan>
+</text>
+<text x="763" y="653" font-size="19" fill="#233861" font-weight="600" text-anchor="start">
+<tspan x="763" dy="0">Le noyau seul valide et écrit le dossier.</tspan>
+</text>
+<rect x="55" y="790" width="970" height="195" rx="14" fill="#e9edf9" stroke="#8195bd" stroke-width="1.4"/>
+<text x="78" y="826" font-size="25" fill="#233861" font-weight="700" text-anchor="start">
+<tspan x="78" dy="0">Noyau transactionnel · SQLite du dossier + artefacts immuables</tspan>
+</text>
+<text x="78" y="865" font-size="19" fill="#233861" font-weight="400" text-anchor="start">
+<tspan x="78" dy="0">read_set observé · droits par rôle · versions · conflits · invalidations</tspan>
+<tspan x="78" dy="25.840000000000003">Commit métier et retour de tâche sauvegardés ensemble ; tentatives conservées</tspan>
+<tspan x="78" dy="25.840000000000003">Questions, preuves, calculs et vue courante restent liés à leurs versions</tspan>
+<tspan x="78" dy="25.840000000000003">Le dossier fait autorité ; un checkpoint ne remplace jamais une révision.</tspan>
+<tspan x="78" dy="25.84">Demandes sources immuables · code archivé pour les nouveaux runs</tspan>
+</text>
+<rect x="1060" y="790" width="435" height="195" rx="14" fill="#f1f4fc" stroke="#8195bd" stroke-width="1.4"/>
+<text x="1080" y="826" font-size="24" fill="#233861" font-weight="700" text-anchor="start">
+<tspan x="1080" dy="0">Archives et réutilisation</tspan>
+</text>
+<text x="1080" y="859" font-size="16" fill="#233861" font-weight="400" text-anchor="start">
+<tspan x="1080" dy="0">Pièces archivées ; versions valides réutilisées</tspan>
+<tspan x="1080" dy="21.76">Diagnostic lié à capital, positions, chocs et devise</tspan>
+<tspan x="1080" dy="21.76">Retrait seul modifié : diagnostic réutilisé</tspan>
+<tspan x="1080" dy="21.76">Pertes confrontées à celles du calcul principal</tspan>
+</text>
+<path d="M1025 891 H1060" fill="none" stroke="#506a83" stroke-width="2" marker-end="url(#navy)"/>
+<path d="M285 985 V1034" fill="none" stroke="#506a83" stroke-width="2"/>
+<path d="M285 1034 H1265" fill="none" stroke="#506a83" stroke-width="2"/>
+<path d="M285 1034 V1057" fill="none" stroke="#506a83" stroke-width="2" marker-end="url(#navy)"/>
+<path d="M775 1034 V1057" fill="none" stroke="#506a83" stroke-width="2" marker-end="url(#navy)"/>
+<path d="M1265 1034 V1057" fill="none" stroke="#506a83" stroke-width="2" marker-end="url(#navy)"/>
+<text x="790" y="1013" font-size="18" fill="#506a83" font-weight="500" text-anchor="middle">
+<tspan x="790" dy="0">Opérations des rôles avant commit · entrées, résultats et erreurs journalisés</tspan>
+</text>
+<rect x="55" y="1057" width="460" height="265" rx="14" fill="#fff0d9" stroke="#cfa154" stroke-width="1.4"/>
+<text x="77" y="1094" font-size="23" fill="#613d09" font-weight="700" text-anchor="start">
+<tspan x="77" dy="0">AWS Bedrock · inférence</tspan>
+</text>
+<text x="77" y="1127" font-size="14" fill="#94691f" font-weight="700" text-anchor="start">
+<tspan x="77" dy="0">APPELÉ PAR LES QUATRE RÔLES</tspan>
+</text>
+<text x="77" y="1164" font-size="18" fill="#613d09" font-weight="400" text-anchor="start">
+<tspan x="77" dy="0">Runtime Converse · profil alphaforge</tspan>
+<tspan x="77" dy="24.48">Région d’entrée us-east-1</tspan>
+<tspan x="77" dy="24.48">global.openai.gpt-6-astra</tspan>
+<tspan x="77" dy="24.48">request_id, usage et erreurs conservés</tspan>
+<tspan x="77" dy="24.48">Aucune inférence auxiliaire hors AWS</tspan>
+</text>
+<rect x="545" y="1057" width="460" height="265" rx="14" fill="#e8f3ee" stroke="#5c9c85" stroke-width="1.4"/>
+<text x="567" y="1094" font-size="23" fill="#153e32" font-weight="700" text-anchor="start">
+<tspan x="567" dy="0">Agent1 · documentation</tspan>
+</text>
+<text x="567" y="1127" font-size="14" fill="#36745d" font-weight="700" text-anchor="start">
+<tspan x="567" dy="0">LECTURES LOCALES ET SERVICES DISTANTS</tspan>
+</text>
+<text x="567" y="1164" font-size="18" fill="#153e32" font-weight="400" text-anchor="start">
+<tspan x="567" dy="0">Corpus et inventaire réel des données</tspan>
+<tspan x="567" dy="24.48">InvokeWebSearch AWS, puis captures HTTPS</tspan>
+<tspan x="567" dy="24.48">Passages, hashes et dates de connaissance</tspan>
+<tspan x="567" dy="24.48">Snippets distincts des documents lus</tspan>
+<tspan x="567" dy="24.48">Requêtes bornées · aucun WebAnswer</tspan>
+<tspan x="567" dy="24.48">Conflit bloquant : arrêt du calcul dépendant</tspan>
+</text>
+<rect x="1035" y="1057" width="460" height="265" rx="14" fill="#e8f3ee" stroke="#5c9c85" stroke-width="1.4"/>
+<text x="1057" y="1094" font-size="23" fill="#153e32" font-weight="700" text-anchor="start">
+<tspan x="1057" dy="0">Agent2 · calcul et données</tspan>
+</text>
+<text x="1057" y="1127" font-size="14" fill="#36745d" font-weight="700" text-anchor="start">
+<tspan x="1057" dy="0">DEUX FAMILLES FINANCIÈRES</tspan>
+</text>
+<text x="1057" y="1164" font-size="17" fill="#153e32" font-weight="400" text-anchor="start">
+<tspan x="1057" dy="0">① Stress CAD / réallocation · SciPy-HiGHS</tspan>
+<tspan x="1057" dy="23.12">② Historique CAD, politique explicite</tspan>
+<tspan x="1057" dy="23.12">Inspection des fichiers et de leurs hashes</tspan>
+<tspan x="1057" dy="23.12">Diagnostic initial indépendant du retrait</tspan>
+<tspan x="1057" dy="23.12">Claims chiffrés produits et vérifiés par code</tspan>
+<tspan x="1057" dy="23.12">Retrait &gt; capital : certificat borné, sans LP</tspan>
+</text>
+<g transform="translate(0,182)">
+<rect x="55" y="1355" width="460" height="137" rx="14" fill="#edf6f1" stroke="#95bba9" stroke-width="1.4"/>
+<text x="77" y="1389" font-size="17" fill="#286149" font-weight="700" text-anchor="start">
+<tspan x="77" dy="0">OPÉRATIONNEL</tspan>
+</text>
+<text x="77" y="1421" font-size="18" fill="#153e32" font-weight="400" text-anchor="start">
+<tspan x="77" dy="0">Quatre rôles, route AWS, reprise et révisions.</tspan>
+<tspan x="77" dy="24.48">Calculs, contrôle des dépendances et traces.</tspan>
+</text>
+<rect x="545" y="1355" width="460" height="137" rx="14" fill="#fff5e6" stroke="#d6ae6e" stroke-width="1.4"/>
+<text x="567" y="1389" font-size="17" fill="#94611c" font-weight="700" text-anchor="start">
+<tspan x="567" dy="0">PARTIEL</tspan>
+</text>
+<text x="567" y="1421" font-size="17" fill="#694715" font-weight="400" text-anchor="start">
+<tspan x="567" dy="0">Recherche critique ciblée ; corpus et requêtes bornés.</tspan>
+<tspan x="567" dy="23.12">Méthodes limitées aux deux familles qualifiées.</tspan>
+</text>
+<rect x="1035" y="1355" width="460" height="137" rx="14" fill="#f3f4f6" stroke="#a5afbb" stroke-width="1.4"/>
+<text x="1057" y="1389" font-size="17" fill="#596575" font-weight="700" text-anchor="start">
+<tspan x="1057" dy="0">PRÉVU / NON DÉPLOYÉ</tspan>
+</text>
+<text x="1057" y="1421" font-size="18" fill="#596575" font-weight="400" text-anchor="start">
+<tspan x="1057" dy="0">Extensions à qualifier avant exécution.</tspan>
+<tspan x="1057" dy="24.48">Stockage et exécution cloud non déployés.</tspan>
+</text>
+<text x="55" y="1527" font-size="16" fill="#596575" font-weight="400" text-anchor="start">
+<tspan x="55" dy="0">Portée : simulation et comparaisons sous hypothèses ; aucune validité financière externe revendiquée.</tspan>
+</text>
+<text x="55" y="1551" font-size="15" fill="#697a89" font-weight="400" text-anchor="start">
+<tspan x="55" dy="0">Sources d’implémentation : decision/service.py · store.py · workflow.py · research.py · finance.py · inspection.py</tspan>
+</text>
+</g>
+<!-- Paired labels keep the read/projection/correction exchanges explicit without long crossing arrows. -->
+<g aria-label="Renvoi A : contexte versionné du dossier vers les rôles">
+<path d="M1000 790 V785" fill="none" stroke="#49678e" stroke-width="1.8"/>
+<circle cx="1000" cy="773" r="12" fill="#e9edf9" stroke="#49678e" stroke-width="1.5"/>
+<text x="1000" y="778" text-anchor="middle" font-size="15" fill="#233861" font-weight="700">A</text>
+<text x="1020" y="778" font-size="15" fill="#49678e">Vers le contexte des rôles</text>
+<circle cx="404" cy="327" r="12" fill="#e9edf9" stroke="#49678e" stroke-width="1.5"/>
+<text x="404" y="332" text-anchor="middle" font-size="15" fill="#233861" font-weight="700">A</text>
+<text x="425" y="333" font-size="16" fill="#49678e">Contexte versionné lu par les rôles</text>
+</g>
+<g aria-label="Renvoi B : projection du dossier vers l’interface">
+<path d="M1025 926 H1028 M872 193 H860" fill="none" stroke="#49678e" stroke-width="1.8"/>
+<circle cx="1040" cy="926" r="12" fill="#e9edf9" stroke="#49678e" stroke-width="1.5"/>
+<text x="1040" y="931" text-anchor="middle" font-size="15" fill="#233861" font-weight="700">B</text>
+<circle cx="884" cy="193" r="12" fill="#e9edf9" stroke="#49678e" stroke-width="1.5"/>
+<text x="884" y="198" text-anchor="middle" font-size="15" fill="#233861" font-weight="700">B</text>
+</g>
+<g aria-label="Renvoi C : correction humaine, invalidation et nouveau run Agent0">
+<path d="M680 265 V271 M51 842 H55 M345 422 V430" fill="none" stroke="#b87526" stroke-width="1.8"/>
+<circle cx="680" cy="283" r="12" fill="#fff5e6" stroke="#b87526" stroke-width="1.5"/>
+<text x="680" y="288" text-anchor="middle" font-size="15" fill="#956021" font-weight="700">C</text>
+<text x="700" y="288" font-size="15" fill="#956021">Correction</text>
+<circle cx="39" cy="842" r="12" fill="#fff5e6" stroke="#b87526" stroke-width="1.5"/>
+<text x="39" y="847" text-anchor="middle" font-size="15" fill="#956021" font-weight="700">C</text>
+<circle cx="345" cy="410" r="12" fill="#fff5e6" stroke="#b87526" stroke-width="1.5"/>
+<text x="345" y="415" text-anchor="middle" font-size="15" fill="#956021" font-weight="700">C</text>
+</g>
+<rect x="55" y="1345" width="1440" height="172" rx="14" fill="#f6f9fc" stroke="#c3d1de" stroke-width="1.4"/>
+<text x="78" y="1375" font-size="16" fill="#506a83" font-weight="700">ÉCHANGES DU DOSSIER · RENVOIS A / B / C</text>
+<circle cx="83" cy="1403" r="12" fill="#e9edf9" stroke="#49678e" stroke-width="1.5"/>
+<text x="83" y="1408" text-anchor="middle" font-size="15" fill="#233861" font-weight="700">A</text>
+<text x="110" y="1409" font-size="18" fill="#233861">Dossier → rôles : versions utilisables et pièces réellement lues ; le noyau enregistre le read_set.</text>
+<circle cx="83" cy="1440" r="12" fill="#e9edf9" stroke="#49678e" stroke-width="1.5"/>
+<text x="83" y="1445" text-anchor="middle" font-size="15" fill="#233861" font-weight="700">B</text>
+<text x="110" y="1446" font-size="18" fill="#233861">Dossier / vue courante → API / interface : résultats, pièces, historique et export.</text>
+<circle cx="83" cy="1477" r="12" fill="#fff5e6" stroke="#b87526" stroke-width="1.5"/>
+<text x="83" y="1482" text-anchor="middle" font-size="15" fill="#956021" font-weight="700">C</text>
+<text x="110" y="1483" font-size="17" fill="#694715">Correction UI → contrôle base_revision, nouvelle révision et invalidation des dépendants → nouveau run Agent0.</text>
+</g></svg>

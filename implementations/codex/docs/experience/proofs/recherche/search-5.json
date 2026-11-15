@@ -1,0 +1,86 @@
+{
+  "query": "site:observablehq.com/plot tip accessibility chart table tooltip",
+  "results": [
+    {
+      "title": "Tip mark",
+      "url": "https://observablehq.com/plot/marks/tip",
+      "snippet": "Tip mark ^0.6.7 ​ The tip mark displays text, or several name-value pairs, in a floating box anchored to a given position in x and y. The tip mark is often paired with the pointer transform to reveal details on demand when hovering over a chart, as in this line chart of Apple stock price: \n\nnationality: true, y: (d) => `${d}m`, x: (d) => `${d}kg`, stroke: false } } }).plot() ``` The tip mark supports nine different orientations specified by the anchor option: the four sides (top, right, bottom, left), the four corners (top-left, top-right, bottom-right, bottom-left), and middle. Note that when middle is used, the tip will obscure its anchor point. \n\n``` Plot.plot({ height: 160, marks: [ Plot.frame({strokeOpacity: 0.2}), [ \"top\", \"right\", \"bottom\", \"left\", // sides \"top-left\", \"top-right\", \"bottom-right\", \"bottom-left\", // corners \"middle\" ].map((anchor) => [ \n\nPlot.dot({length: 1}, {frameAnchor: anchor, fill: \"blue\"}), Plot.tip([anchor], {frameAnchor: anchor, anchor}) ]) ] }) ``` If you don’t specify an explicit anchor, the tip mark will choose one automatically, using the preferredAnchor ^0.6.12 if it fits. The preferred anchor defaults to bottom, except when using the tip option and the pointerY pointing mode, in which case it defaults to left. In some cases, it may not be possible to fit the tip within the plot’s frame; consider setting the plot’s style to overflow: visible; to prevent the tip from being truncated. \n\nTip options ​ The following position options are supported: - x, x1, or x2 - the horizontal↔︎ position channel - y, y1, or y2 - the vertical↕︎ position channel - frameAnchor - fallback position if x or y are otherwise unspecified \n\n``` Plot.tip([\"Danger! This tip is red.\"], { anchor: \"bottom\", frameAnchor: \"bottom\", fill: \"red\" }).plot() ``` These standard text options control the display of text within the tip: - monospace - if true, changes the default fontFamily and metrics to monospace \n\n- textOverflow - how to wrap or clip lines longer than the specified line width tip(data, options) ​ ``` Plot.tip(aapl, {x: \"Date\", y: \"Close\"}) ``` Returns a new tip mark with the given data and options. ",
+      "published_at_index_claim": "2016-05-12 00:00:00+00:00"
+    },
+    {
+      "title": "Pointer transform",
+      "url": "https://observablehq.com/plot/interactions/pointer",
+      "snippet": "Try the different modes on the line chart below to get a feel for their behavior. Pointing mode: ``` Plot.lineY(aapl, {x: \"Date\", y: \"Close\", tip: \"x\"}).plot() ``` “One-dimensional” is a slight misnomer: the pointerX and pointerY transforms consider distance in both dimensions, but the distance along the non-dominant dimension is divided by 100. Below, the pointerX transform is applied to a multi-series line chart; the closest point in x is chosen, while y is used to “break ties” such that you can focus different series by moving the mouse vertically. \n\n``` Plot.plot({ marks: [ Plot.ruleY([0]), Plot.lineY(industries, {x: \"date\", y: \"unemployed\", stroke: \"industry\", tip: \"x\"}) ] }) ``` One-dimensional pointing makes even small bars or rects easily hoverable. If you switch the histogram below to two-dimensional pointing, you must hover near a rect’s centroid (shown in red) to trigger a tip, whereas one-dimensional pointing triggers the tip anywhere in the chart. \n\n``` Plot.plot({ height: 160, y: {axis: \"right\", grid: true, nice: true}, marks: [ Plot.lineY(aapl, {x: \"Date\", y: \"Close\"}), Plot.ruleX(aapl, Plot.pointerX({x: \"Date\", py: \"Close\", stroke: \"red\"})), Plot.dot(aapl, Plot.pointerX({x: \"Date\", y: \"Close\", stroke: \"red\"})), \n\n``` const plot = Plot.plot(options); plot.addEventListener(\"input\", (event) => { console.log(plot.value); }); ``` Pointer options ​ The following options control the pointer transform: - px - the horizontal↔︎ target position; bound to the x scale \n\npointerX(options) ​ ``` Plot.tip(aapl, Plot.pointerX({x: \"Date\", y: \"Close\"})) ``` Like pointer, except the determination of the closest point considers mostly the x (horizontal↔︎) position; this should be used for plots where x is the dominant dimension, such as time in a time-series chart, the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart. \n\npointerY(options) ​ ``` Plot.tip(alphabet, Plot.pointerY({x: \"frequency\", y: \"letter\"})) ``` Like pointer, except the determination of the closest point considers mostly the y (vertical↕︎) position; this should be used for plots where y is the dominant dimension, such as time in a time-series chart, the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart. ",
+      "published_at_index_claim": null
+    },
+    {
+      "title": "Interactions",
+      "url": "https://observablehq.com/plot/features/interactions",
+      "snippet": "Pointing ​ When looking at a scatterplot, the reader may wonder, what abstract values does this dot represent? The pointer transform can provide an answer: it dynamically filters a mark such that only the data closest to the pointer (such as the mouse) is rendered. The pointer transform is often paired with the tip mark for interactive tooltips, revealing exact values as the pointer moves over the plot. The tip can show additional fields not otherwise visible, such as the name and sport of Olympic athletes below. \n\n``` Plot.dot(olympians, { x: \"weight\", y: \"height\", stroke: \"sex\", channels: {name: \"name\", sport: \"sport\"}, tip: true }).plot() ``` The crosshair mark uses the pointer transform internally to display a rule and a text showing the x (horizontal↔︎ position) and y (vertical↕︎ position) value of the nearest data. \n\n``` Plot.plot({ marks: [ Plot.dot(olympians, {x: \"weight\", y: \"height\", stroke: \"sex\"}), Plot.crosshair(olympians, {x: \"weight\", y: \"height\"}) ] }) ``` These values are displayed atop the axes on the edge of the frame; unlike the tip mark, the crosshair mark will not obscure other marks in the plot. ",
+      "published_at_index_claim": null
+    }
+  ],
+  "receipts": [
+    {
+      "tool_id": "aws_sts_identity",
+      "version": "1.0",
+      "execution_id": "20b9bcd42963491b3ffcc77c",
+      "started_at": "2026-11-15T19:47:58.325238+00:00",
+      "finished_at": "2026-11-15T19:47:58.501398+00:00",
+      "status": "success",
+      "account_id": "471112821226",
+      "region": "us-east-1",
+      "profile": "alphaforge",
+      "provider_request_id": "509b46a7-fdfc-4f71-a561-3e02b5798a87"
+    },
+    {
+      "tool_id": "aws_invoke_web_search",
+      "version": "1.0",
+      "execution_id": "f281191590fa27728eefc937",
+      "started_at": "2026-11-15T19:47:58.325238+00:00",
+      "finished_at": "2026-11-15T19:47:59.000582+00:00",
+      "status": "success",
+      "parameters": {
+        "webSearchId": "web-search.v1",
+        "searchQuery": "site:observablehq.com/plot tip accessibility chart table tooltip",
+        "maxResults": 3,
+        "filters": {
+          "domainFilter": {
+            "include": [
+              "observablehq.com"
+            ]
+          }
+        }
+      },
+      "account_id": "471112821226",
+      "profile": "alphaforge",
+      "region": "us-east-1",
+      "provider_request_id": "c3c21cb4-0e81-4a9e-a0b4-574cdcbd606c",
+      "result_count": 3,
+      "raw_result_count": 3,
+      "discarded_domain_count": 0,
+      "results": [
+        {
+          "title": "Tip mark",
+          "url": "https://observablehq.com/plot/marks/tip",
+          "snippet": "Tip mark ^0.6.7 ​ The tip mark displays text, or several name-value pairs, in a floating box anchored to a given position in x and y. The tip mark is often paired with the pointer transform to reveal details on demand when hovering over a chart, as in this line chart of Apple stock price: \n\nnationality: true, y: (d) => `${d}m`, x: (d) => `${d}kg`, stroke: false } } }).plot() ``` The tip mark supports nine different orientations specified by the anchor option: the four sides (top, right, bottom, left), the four corners (top-left, top-right, bottom-right, bottom-left), and middle. Note that when middle is used, the tip will obscure its anchor point. \n\n``` Plot.plot({ height: 160, marks: [ Plot.frame({strokeOpacity: 0.2}), [ \"top\", \"right\", \"bottom\", \"left\", // sides \"top-left\", \"top-right\", \"bottom-right\", \"bottom-left\", // corners \"middle\" ].map((anchor) => [ \n\nPlot.dot({length: 1}, {frameAnchor: anchor, fill: \"blue\"}), Plot.tip([anchor], {frameAnchor: anchor, anchor}) ]) ] }) ``` If you don’t specify an explicit anchor, the tip mark will choose one automatically, using the preferredAnchor ^0.6.12 if it fits. The preferred anchor defaults to bottom, except when using the tip option and the pointerY pointing mode, in which case it defaults to left. In some cases, it may not be possible to fit the tip within the plot’s frame; consider setting the plot’s style to overflow: visible; to prevent the tip from being truncated. \n\nTip options ​ The following position options are supported: - x, x1, or x2 - the horizontal↔︎ position channel - y, y1, or y2 - the vertical↕︎ position channel - frameAnchor - fallback position if x or y are otherwise unspecified \n\n``` Plot.tip([\"Danger! This tip is red.\"], { anchor: \"bottom\", frameAnchor: \"bottom\", fill: \"red\" }).plot() ``` These standard text options control the display of text within the tip: - monospace - if true, changes the default fontFamily and metrics to monospace \n\n- textOverflow - how to wrap or clip lines longer than the specified line width tip(data, options) ​ ``` Plot.tip(aapl, {x: \"Date\", y: \"Close\"}) ``` Returns a new tip mark with the given data and options. ",
+          "published_at_index_claim": "2016-05-12 00:00:00+00:00"
+        },
+        {
+          "title": "Pointer transform",
+          "url": "https://observablehq.com/plot/interactions/pointer",
+          "snippet": "Try the different modes on the line chart below to get a feel for their behavior. Pointing mode: ``` Plot.lineY(aapl, {x: \"Date\", y: \"Close\", tip: \"x\"}).plot() ``` “One-dimensional” is a slight misnomer: the pointerX and pointerY transforms consider distance in both dimensions, but the distance along the non-dominant dimension is divided by 100. Below, the pointerX transform is applied to a multi-series line chart; the closest point in x is chosen, while y is used to “break ties” such that you can focus different series by moving the mouse vertically. \n\n``` Plot.plot({ marks: [ Plot.ruleY([0]), Plot.lineY(industries, {x: \"date\", y: \"unemployed\", stroke: \"industry\", tip: \"x\"}) ] }) ``` One-dimensional pointing makes even small bars or rects easily hoverable. If you switch the histogram below to two-dimensional pointing, you must hover near a rect’s centroid (shown in red) to trigger a tip, whereas one-dimensional pointing triggers the tip anywhere in the chart. \n\n``` Plot.plot({ height: 160, y: {axis: \"right\", grid: true, nice: true}, marks: [ Plot.lineY(aapl, {x: \"Date\", y: \"Close\"}), Plot.ruleX(aapl, Plot.pointerX({x: \"Date\", py: \"Close\", stroke: \"red\"})), Plot.dot(aapl, Plot.pointerX({x: \"Date\", y: \"Close\", stroke: \"red\"})), \n\n``` const plot = Plot.plot(options); plot.addEventListener(\"input\", (event) => { console.log(plot.value); }); ``` Pointer options ​ The following options control the pointer transform: - px - the horizontal↔︎ target position; bound to the x scale \n\npointerX(options) ​ ``` Plot.tip(aapl, Plot.pointerX({x: \"Date\", y: \"Close\"})) ``` Like pointer, except the determination of the closest point considers mostly the x (horizontal↔︎) position; this should be used for plots where x is the dominant dimension, such as time in a time-series chart, the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart. \n\npointerY(options) ​ ``` Plot.tip(alphabet, Plot.pointerY({x: \"frequency\", y: \"letter\"})) ``` Like pointer, except the determination of the closest point considers mostly the y (vertical↕︎) position; this should be used for plots where y is the dominant dimension, such as time in a time-series chart, the binned quantitative dimension in a histogram, or the categorical dimension of a bar chart. ",
+          "published_at_index_claim": null
+        },
+        {
+          "title": "Interactions",
+          "url": "https://observablehq.com/plot/features/interactions",
+          "snippet": "Pointing ​ When looking at a scatterplot, the reader may wonder, what abstract values does this dot represent? The pointer transform can provide an answer: it dynamically filters a mark such that only the data closest to the pointer (such as the mouse) is rendered. The pointer transform is often paired with the tip mark for interactive tooltips, revealing exact values as the pointer moves over the plot. The tip can show additional fields not otherwise visible, such as the name and sport of Olympic athletes below. \n\n``` Plot.dot(olympians, { x: \"weight\", y: \"height\", stroke: \"sex\", channels: {name: \"name\", sport: \"sport\"}, tip: true }).plot() ``` The crosshair mark uses the pointer transform internally to display a rule and a text showing the x (horizontal↔︎ position) and y (vertical↕︎ position) value of the nearest data. \n\n``` Plot.plot({ marks: [ Plot.dot(olympians, {x: \"weight\", y: \"height\", stroke: \"sex\"}), Plot.crosshair(olympians, {x: \"weight\", y: \"height\"}) ] }) ``` These values are displayed atop the axes on the edge of the frame; unlike the tip mark, the crosshair mark will not obscure other marks in the plot. ",
+          "published_at_index_claim": null
+        }
+      ],
+      "mode": "ranked_search_no_WebAnswer",
+      "measured_cost": null
+    }
+  ]
+}

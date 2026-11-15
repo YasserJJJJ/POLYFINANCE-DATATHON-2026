@@ -1,0 +1,225 @@
+Safeguard tiers for guardrails policies - Amazon Bedrock 
+
+ View a markdown version of this page 
+
+ Safeguard tiers for guardrails policies - Amazon Bedrock 
+
+ Documentation Amazon Bedrock User Guide 
+
+ Available safeguard tiers Key differences between safeguard tiers Choosing a safeguard tier for your use case Migrating your guardrail to Standard tier Supported Regions for safeguard tiers 
+
+Safeguard tiers for guardrails policies
+
+Amazon Bedrock Guardrails provides safeguard tiers for specific policies. Safeguard tiers
+ have distinct performance characteristics and language support for different application requirements and use cases.
+
+Choosing a tier gives you control over when to adopt new capabilities or maintain consistency
+ with your current guardrails setup.
+
+The following guardrails policies support safeguard tiers:
+
+Content filters ( text ) and prompt attacks 
+
+ Denied topics 
+
+ Contextual grounding
+ checks 
+
+Available safeguard tiers
+
+Amazon Bedrock Guardrails provides the following safeguard tiers:
+
+ Standard tier 
+
+Provides more robust performance compared to Classic tier and has more comprehensive
+ language and code-related prompt support. For example, protection against prompt attacks
+ performs more consistently and reliably with Standard tier. Guardrails with Standard tier also
+ use cross-Region inference . Standard tier
+ supported with content filters and denied topics provides protection against harmful content
+ introduced within code elements including comments, variable and function names, and string
+ literals. For contextual grounding checks, Standard tier supports responses that include
+ reasoning or conversational content and returns more consistent scores for differently worded
+ responses with the same meaning.
+
+ Classic tier 
+
+Provides established guardrails functionality supporting English, French, and Spanish
+ languages.
+
+Key differences between safeguard tiers
+
+Understanding the differences between safeguard tiers helps you choose the right option for
+ your application:
+
+ Feature 
+ Standard tier 
+ Classic tier 
+
+ Content filter and prompt attacks 
+ More robust than Classic tier 
+ Established performance 
+
+ Denied topics 
+ Maximum of 1,000 characters per definition 
+ Maximum of 200 characters per definition 
+
+ Contextual grounding checks 
+ More robust than Classic tier. Supports responses that include reasoning or
+ conversational content. 
+ Established performance. Strict grounding only. 
+
+ Language support 
+ Extensive language
+ support 
+ English, French, Spanish 
+
+ Cross-Region inference 
+ Supported 
+ Not supported 
+
+ Prompt leakage detection 
+ Supported 
+ Not supported 
+
+ Coding use case support 
+ Enhanced support for content filters, prompt attacks, and denied topics when handling
+ code-related prompts and responses 
+ N/A 
+
+Choosing a safeguard tier for your use case
+
+Determining the safeguard tier to use for your guardrail policies depends on your
+ application requirements.
+
+For example, consider Standard tier when:
+
+Your application handles multiple languages
+
+You need higher accuracy and performance for content filters, prompt attacks, denied
+ topics, and contextual grounding checks
+
+Strict grounding blocks too many valid responses because your application's responses
+ summarize, reason over, or converse about the grounding source rather than restate it
+
+Alternatively, you might still use Classic tier when:
+
+Your application primarily uses English, French, or Spanish content
+
+You need time before migrating from an existing guardrails implementation to Standard
+ tier
+
+Your contextual grounding thresholds are tuned for Classic tier and have not been
+ re-tested against Standard tier
+
+Migrating your guardrail to Standard tier
+
+To configure an existing guardrail with Standard tier, do the following:
+
+ Modify your guardrail to use Standard tier and
+ cross-Region inference . 
+
+(Recommended) Consider rolling out your updated guardrail using a phased approach by
+ starting with noncritical workloads.
+
+Supported Regions for safeguard tiers
+
+Safeguard tiers are supported in the following AWS Regions where Amazon Bedrock Guardrails is available:
+
+US East (N. Virginia)
+
+US East (Ohio)
+
+US West (N. California)
+
+US West (Oregon)
+
+Canada (Central)
+
+Europe (Frankfurt)
+
+Europe (Stockholm)
+
+Europe (Milan)
+
+Europe (Spain)
+
+Europe (Ireland)
+
+Europe (London)
+
+Europe (Paris)
+
+Asia Pacific (Taipei)
+
+Asia Pacific (Tokyo)
+
+Asia Pacific (Seoul)
+
+Asia Pacific (Mumbai)
+
+Asia Pacific (Singapore)
+
+Asia Pacific (Sydney)
+
+Asia Pacific (Jakarta)
+
+Asia Pacific (Melbourne)
+
+Asia Pacific (Malaysia)
+
+Asia Pacific (Thailand)
+
+Middle East (UAE)
+
+Israel (Tel Aviv)
+
+AWS GovCloud (US-West)
+
+Standard tier for contextual grounding checks is available in the following Regions:
+
+US East (N. Virginia)
+
+US East (Ohio)
+
+US West (N. California)
+
+US West (Oregon)
+
+Europe (Frankfurt)
+
+Europe (Ireland)
+
+Europe (Milan)
+
+Europe (Paris)
+
+Europe (Spain)
+
+Europe (Stockholm)
+
+Asia Pacific (Tokyo)
+
+Requests that specify Standard tier for contextual grounding checks in any other Region fail
+ with a validation error.
+
+ Javascript is disabled or is unavailable in your browser. 
+
+To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.
+
+ Document Conventions 
+
+Supported Regions/models
+
+Supported languages
+
+Did this page help you? - Yes
+
+Thanks for letting us know we're doing a good job!
+
+If you've got a moment, please tell us what we did right so we can do more of it.
+
+Did this page help you? - No
+
+Thanks for letting us know this page needs work. We're sorry we let you down.
+
+If you've got a moment, please tell us how we can make the documentation better.

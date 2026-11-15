@@ -1,0 +1,59 @@
+{
+  "mode": "fault_injection_real_finance_plus_insufficient_check_no_model",
+  "status": "complete",
+  "view_status": "error",
+  "arithmetic_control": {
+    "failed_check_ids": [
+      "independent_recomputation"
+    ],
+    "limits": "Tolérances et hypothèses de la méthode ; consulter les contrôles détaillés.",
+    "method": [
+      {
+        "dual_sign_error": 0.0,
+        "id": "constraints",
+        "method": "Résidus primal, stationnarité et dualité",
+        "numerical_checks_pass": true,
+        "primal_dual_objective_gap": 0.0,
+        "primal_max_residual_fraction": 0.0,
+        "scope": "Ce LP uniquement ; aucune validation d'instrument.",
+        "stationarity_max_residual": 0.0,
+        "status": "sufficient",
+        "tolerance": 1e-08
+      },
+      {
+        "attained": true,
+        "gap_fraction": 0.0,
+        "id": "independent_lower_bound",
+        "lower_bound_fraction": 0.3,
+        "method": "Demi-L1 = somme des augmentations = somme des diminutions",
+        "scope": "T ≥ max(achat nécessaire de réserve, ventes imposées par plafonds).",
+        "status": "sufficient"
+      },
+      {
+        "id": "multiple_optima",
+        "method": "Min/max de chaque poids à rotation ≤ minimum + tolérance",
+        "non_unique_witness_found": true,
+        "scope": "Extrêmes sur la face optimale à tolérance ; aucun optimum de risque recherché.",
+        "status": "sufficient"
+      },
+      {
+        "id": "independent_recomputation",
+        "method": "Controlled arithmetic-verification failure injection.",
+        "scope": "The claimed minimum cannot be verified.",
+        "status": "insufficient"
+      },
+      {
+        "artifact_ref": "baseline_stress@1",
+        "id": "baseline_branch_consistency",
+        "method": "Comparaison des pertes initiales avec le diagnostic indépendant du retrait.",
+        "reused": false,
+        "scope": "Égalité des pertes sous les chocs ; pas admissibilité du portefeuille au retrait.",
+        "status": "sufficient"
+      }
+    ],
+    "scope": "Le sous-problème calculé et ses unités.",
+    "status": "insufficient"
+  },
+  "claims": [],
+  "options": []
+}

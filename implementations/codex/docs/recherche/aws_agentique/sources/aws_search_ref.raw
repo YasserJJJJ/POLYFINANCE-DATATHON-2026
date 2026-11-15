@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>AgentCore Web Search request and response - Amazon Bedrock AgentCore</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="web-search-api-reference" /><meta name="default_state" content="web-search-api-reference" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/web-search-api-reference.html" /><link rel="alternate" type="text/markdown" href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/web-search-api-reference.md" title="Markdown version" /><meta name="description" content="This page describes the fields of an InvokeWebSearch request, the rules that the API applies to them, and the response." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon Bedrock AgentCore" /><meta name="guide" content="Developer Guide" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/web-search-api-reference.html" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/bedrock-agentcore/latest/devguide/web-search-api-reference.html" hreflang="id-id" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/bedrock-agentcore/latest/devguide/web-search-api-reference.html" hreflang="id" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/bedrock-agentcore/latest/devguide/web-search-api-reference.html" hreflang="de-de" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/bedrock-agentcore/latest/devguide/web-search-api-reference.html" hreflang="de" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/web-search-api-reference.html" hreflang="en-us" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/web-search-api-reference.html" hreflang="en" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/bedrock-agentcore/latest/devguide/web-search-api-reference.html" hreflang="es-es" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/bedrock-agentcore/latest/devguide/web-search-api-reference.html" hreflang="es" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/bedrock-agentcore/latest/devguide/web-search-api-reference.html" hreflang="fr-fr" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/bedrock-agentcore/latest/devguide/web-search-api-reference.html" hreflang="fr" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/bedrock-agentcore/latest/devguide/web-search-api-reference.html" hreflang="it-it" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/bedrock-agentcore/latest/devguide/web-search-api-reference.html" hreflang="it" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/bedrock-agentcore/latest/devguide/web-search-api-reference.html" hreflang="ja-jp" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/bedrock-agentcore/latest/devguide/web-search-api-reference.html" hreflang="ja" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/bedrock-agentcore/latest/devguide/web-search-api-reference.html" hreflang="ko-kr" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/bedrock-agentcore/latest/devguide/web-search-api-reference.html" hreflang="ko" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/bedrock-agentcore/latest/devguide/web-search-api-reference.html" hreflang="pt-br" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/bedrock-agentcore/latest/devguide/web-search-api-reference.html" hreflang="pt" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_cn/bedrock-agentcore/latest/devguide/web-search-api-reference.html" hreflang="zh-cn" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_tw/bedrock-agentcore/latest/devguide/web-search-api-reference.html" hreflang="zh-tw" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/web-search-api-reference.html" hreflang="x-default" /><meta name="feedback-item" content="bedrock-agentcore" /><meta name="this_doc_product" content="Amazon Bedrock AgentCore" /><meta name="this_doc_guide" content="Developer Guide" /><head xmlns="http://www.w3.org/1999/xhtml"> <script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"/></head>
+<script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'bedrock-agentcore'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="AgentCore Web Search request and response" /><meta name="uiVersion" content="2024.10" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><p><a href="web-search-api-reference.md">View a markdown version of this page</a></p><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>AgentCore Web Search request and response - Amazon Bedrock AgentCore</title><meta name="pdf" content="/pdfs/bedrock-agentcore/latest/devguide/bedrock-agentcore-dg.pdf#web-search-api-reference" /><meta name="rss" content="bedrock-agentcore-dg.rss" /><meta name="forums" content="https://repost.aws/search/content?globalSearch=Amazon Bedrock AgentCore" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=bedrock-agentcore&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock-agentcore/latest/devguide/web-search-api-reference.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/bedrock-agentcore/latest/devguide/web-search-api-reference.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/bedrock-agentcore/latest/devguide/web-search-api-reference.html" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon Bedrock AgentCore",
+        "item" : "https://docs.aws.amazon.com/bedrock-agentcore/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Search the web using Amazon Bedrock AgentCore Web Search",
+        "item" : "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/web-search-api.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "AgentCore Web Search request and response",
+        "item" : "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/web-search-api.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/bedrock-agentcore/latest/devguide/bedrock-agentcore-dg.pdf#web-search-api-reference" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/bedrock-agentcore/index.html">Amazon Bedrock AgentCore</a><a href="what-is-bedrock-agentcore.html">Developer Guide</a></div><div id="page-toc-src"><a href="#web-search-api-request">Request fields</a><a href="#web-search-api-response">Response</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="web-search-api-reference">AgentCore Web Search request and response</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>This page describes the fields of an <code class="code">InvokeWebSearch</code> request, the rules that the API applies to them, and the response.</p>
+      <h2 id="web-search-api-request">Request fields</h2>
+      <p>You call the API on the Amazon Bedrock AgentCore data plane endpoint, for example <code class="code">bedrock-agentcore.us-east-1.amazonaws.com</code>. The AWS SDKs and the AWS Command Line Interface (AWS CLI) sign each request for you with AWS Signature Version 4 (SigV4) for the service name <code class="code">bedrock-agentcore</code>.</p>
+      <div class="table-container"><div class="table-contents"><table id="d0e1"><thead>
+               <tr>
+                  <th align="left" style="text-align: left;vertical-align: top;">Field</th>
+                  <th align="left" style="text-align: left;vertical-align: top;">Type</th>
+                  <th align="left" style="text-align: left;vertical-align: top;">Required</th>
+                  <th align="left" style="text-align: left;vertical-align: top;">Description</th>
+               </tr>
+            </thead>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>
+                        <code class="code">webSearchId</code>
+                     </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>string</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Yes</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>The identifier of the web search tool to invoke. The AWS managed web search tool is <code class="code">web-search.v1</code>. The request sends this value in the URI path.</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>
+                        <code class="code">searchQuery</code>
+                     </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>string</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Yes</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>The text to search for. The text must be 1–200 characters long.</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>
+                        <code class="code">maxResults</code>
+                     </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>integer</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>No</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>The maximum number of results to return, from 1 to 25. If you don’t specify a value, the API returns up to 25 results.</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>
+                        <code class="code">filters</code>
+                     </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>object</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>No</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>The filters that narrow the results. The object can contain <code class="code">domainFilter</code>, <code class="code">publishedDateFilter</code>, or both.</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>
+                        <code class="code">filters.domainFilter.include</code>
+                     </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>array of strings</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>No</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>The domains to return results from. The API doesn’t return results from other domains. The list holds 1–100 domain names.</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>
+                        <code class="code">filters.domainFilter.exclude</code>
+                     </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>array of strings</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>No</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>The domains that the API never returns results from. The list holds 1–100 domain names.</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>
+                        <code class="code">filters.publishedDateFilter.publishedAfter</code>
+                     </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>timestamp</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>No</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>The start of the publication time range, inclusive. The API returns only results published at or after this time. For example, <code class="code">2026-01-01T00:00:00Z</code>.</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>
+                        <code class="code">filters.publishedDateFilter.publishedBefore</code>
+                     </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>timestamp</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>No</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>The end of the publication time range, inclusive. The API returns only results published at or before this time. For example, <code class="code">2026-01-31T23:59:59Z</code>.</p>
+                  </td>
+               </tr>
+            </table></div></div>
+      <p>The API applies the following rules to the request:</p>
+      <div class="itemizedlist">
+          
+          
+          
+          
+      <ul class="itemizedlist"><li class="listitem">
+            <p>
+               <strong>Domain names</strong> – Specify a domain name only, such as <code class="code">example.net</code>, without a scheme or a path. A root domain also matches its subdomains. For example, <code class="code">example.net</code> also matches <code class="code">docs.example.net</code>. You can specify <code class="code">include</code>, <code class="code">exclude</code>, or both. Each domain name can be up to 253 characters long.</p>
+         </li><li class="listitem">
+            <p>
+               <strong>Publication times</strong> – Each value is a timestamp. The AWS SDKs and the AWS CLI send it as a date-time in Coordinated Universal Time (UTC), for example <code class="code">2026-01-01T00:00:00Z</code>. If you pass a date without a time, such as <code class="code">2026-01-01</code> to the AWS CLI, it means midnight UTC at the start of that day. To include a whole day in <code class="code">publishedBefore</code>, use the last second of that day, for example <code class="code">2026-01-31T23:59:59Z</code>. You can specify <code class="code">publishedAfter</code>, <code class="code">publishedBefore</code>, or both. If <code class="code">publishedAfter</code> is later than <code class="code">publishedBefore</code>, the request fails with a <code class="code">ValidationException</code>.</p>
+         </li><li class="listitem">
+            <p>
+               <strong>Other fields</strong> – The request body can contain only <code class="code">searchQuery</code>, <code class="code">maxResults</code>, and <code class="code">filters</code>. The API rejects a request that contains any other top-level field with a <code class="code">ValidationException</code>.</p>
+         </li><li class="listitem">
+            <p>
+               <strong>Body size</strong> – The request body can be up to 32 KiB.</p>
+         </li></ul></div>
+    
+      <h2 id="web-search-api-response">Response</h2>
+      <p>The response contains a <code class="code">results</code> array with the search results, in ranked order. The API doesn’t paginate. It returns up to <code class="code">maxResults</code> results in a single response, and it can return fewer.</p>
+      <p>Each result contains the following fields:</p>
+      <div class="table-container"><div class="table-contents"><table id="d0e2"><thead>
+               <tr>
+                  <th align="left" style="text-align: left;vertical-align: top;">Field</th>
+                  <th align="left" style="text-align: left;vertical-align: top;">Type</th>
+                  <th align="left" style="text-align: left;vertical-align: top;">Always present</th>
+                  <th align="left" style="text-align: left;vertical-align: top;">Description</th>
+               </tr>
+            </thead>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>
+                        <code class="code">text</code>
+                     </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>string</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Yes</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>A text extract from the page.</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>
+                        <code class="code">title</code>
+                     </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>string</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>No</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>The title of the page.</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>
+                        <code class="code">url</code>
+                     </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>string</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>No</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>The URL of the page.</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>
+                        <code class="code">publishedAt</code>
+                     </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>timestamp</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>No</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>The time the page was published. The API omits this field when the publication time isn’t known.</p>
+                  </td>
+               </tr>
+            </table></div></div>
+      <p>The following example shows a response body with one result:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (json)--><code class="json "><span>{</span>
+    "results": [
+        <span>{</span>
+            "title": "Release highlights",
+            "url": "https://docs.example.net/releases/highlights",
+            "text": "The January release adds support for scheduled reports and improves search performance...",
+            "publishedAt": "2026-01-15T17:00:00Z"
+        }
+    ]
+}</code></pre>
+      <p>For the errors that the API returns, see <a href="./web-search-api-troubleshooting.html#web-search-api-errors">Troubleshoot AgentCore Web Search</a>.</p>
+   <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./web-search-api-get-started.html">Get started</div><div id="next" class="next-link" accesskey="n" href="./web-search-api-privatelink.html">
+         AWS PrivateLink</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=bedrock-agentcore&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock-agentcore/latest/devguide/web-search-api-reference.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=bedrock-agentcore&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock-agentcore/latest/devguide/web-search-api-reference.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

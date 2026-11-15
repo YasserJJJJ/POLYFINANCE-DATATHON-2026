@@ -1,0 +1,614 @@
+GitHub - Valdecy/pyDecision: pyDecision is a comprehensive Python library that encompasses a wide array of Multi-Criteria Decision Analysis (MCDA) methods. These powerful and versatile tools assist in making effective decisions by comparing alternatives based on multiple criteria, making it a valuable resource for researchers, analysts, and decision-makers. · GitHub 
+
+ Skip to content 
+
+Navigation Menu
+
+ Sign in 
+
+ Products 
+
+ Platform 
+ GitHub Repository hosting, code review, and collaboration 
+
+ Copilot AI coding agent for tasks, projects, and automated work 
+
+ Build & Ship 
+ Actions CI/CD and automation 
+
+ Code Quality Quality analysis, fixes, and enforcement 
+
+ Codespaces Cloud development environments 
+
+ Secure 
+ Code Security Vulnerability detection and remediation 
+
+ Secret Protection Secret scanning and leak prevention 
+
+ All Features 
+
+ Developers 
+
+ Learn 
+ Documentation 
+
+ Training 
+
+ Certifications 
+
+ Build 
+ Build with Copilot 
+
+ Customize Copilot 
+
+ Integrations 
+
+ Explore 
+ Trending repos 
+
+ GitHub Sponsors 
+
+ Developer articles 
+
+ Changelog 
+ Changelog Your source for the latest features, improvements, and fixes across GitHub products, all in one place. 
+
+ Businesses 
+
+ By Stage 
+ Enterprises 
+
+ Team 
+
+ Startups 
+
+ Nonprofits 
+
+ By Industry 
+ Healthcare 
+
+ Financial services 
+
+ Manufacturing 
+
+ Government 
+
+ See all industries 
+
+ Evaluate GitHub 
+ Why GitHub 
+
+ Customer Stories 
+
+ Business insights 
+
+ Trust Center 
+
+ Add-ons 
+ GitHub Advanced Security Enterprise-grade code security 
+
+ Copilot for business Enterprise-grade AI features 
+
+ Premium Support Enterprise-grade 24/7 support 
+
+ Resources 
+
+ Learn & Connect 
+ Documentation 
+
+ Resource center 
+
+ Blog 
+
+ Events & webinars 
+
+ Community Forum 
+
+ Customer Stories 
+
+ Integrations 
+
+ Support 
+ Customer support 
+
+ Training 
+
+ GitHub Status 
+
+ Company 
+ About 
+
+ Partners 
+
+ Changelog 
+
+ GitHub Universe 
+ GitHub Universe The event for developers, by developers — talks, workshops, and what’s next for GitHub. 
+
+ Pricing 
+
+ Search / 
+
+ Sign in 
+ Sign up 
+Appearance settings
+
+ You signed in with another tab or window. Reload to refresh your session. 
+ You signed out in another tab or window. Reload to refresh your session. 
+ You switched accounts on another tab or window. Reload to refresh your session. 
+
+ Dismiss alert 
+
+{{ message }}
+
+ Valdecy 
+
+ pyDecision 
+
+Repository navigation
+
+ Code 
+
+ Issues 
+
+ Pull requests 
+
+ Actions 
+
+ Projects 
+
+ Security and quality 
+
+ Insights 
+
+ More items 
+
+ pyDecision 
+ Public 
+
+ Notifications You must be signed in to change notification settings 
+
+ Fork 86  ( 86 ) 
+
+ Star 374  ( 374 ) You must be signed in to star a repository 
+
+ About 
+
+pyDecision is a comprehensive Python library that encompasses a wide array of Multi-Criteria Decision Analysis (MCDA) methods. These powerful and versatile tools assist in making effective decisions by comparing alternatives based on multiple criteria, making it a valuable resource for researchers, analysts, and decision-makers.
+
+ Topics 
+
+ ahp chatgpt electre electre-i electre-ii electre-iii electre-iv electre-tri gaia mcda mcdm promethee python-mcda-library topsis 
+
+ Resources 
+
+ Readme 
+
+ License 
+
+ Activity 
+
+ Stars 
+
+ 374 stars 
+
+ Watchers 
+
+ 7 watching 
+
+ Forks 
+
+ 86 forks 
+
+ Report repository 
+
+ master 
+
+ Branches Tags 
+
+ Go to file 
+
+ Code 
+ Open more actions menu 
+
+Latest commit
+
+History
+ 408 Commits 
+
+ 408 Commits 
+
+Folders and files
+
+ Name Name 
+ Last commit message 
+ 
+ Last commit date 
+
+ examples 
+
+ examples 
+
+ pyDecision 
+
+ pyDecision 
+
+ LICENSE 
+
+ LICENSE 
+
+ README.md 
+
+ README.md 
+
+ setup.py 
+
+ setup.py 
+
+ View all files 
+
+Repository files navigation
+
+ README 
+
+ License 
+
+ More items 
+
+Citation
+
+PEREIRA, V.; BASILIO, M.P.; SANTOS, C.H.T (2026). Enhancing Decision Analysis with a Large Language Model: pyDecision a Comprehensive Library of MCDA Methods in Python. Journal of Modelling in Management, Vol. 21 No. 2 pp. 481---521, doi: https://doi.org/10.1108/JM2-04-2024-0118 
+
+pyDecision - MCDA Studio
+
+New to Python or prefer a graphical interface? The pyDecision - MCDA Studio lets you run your analysis in clicks, not lines of code.
+
+ import pyDecision 
+
+ # Start the web service using: 
+ pyDecision . web_app ()
+
+ # Terminate the web service using: 
+ pyDecision . web_stop () 
+
+ Preview -- pyDecision - MCDA Studio -- in Google Colab 
+
+ This Google Colab Demo is intended for quick demos only. For the best experience, run the Web UI locally or open it directly in a full browser. 
+
+Introduction
+
+A python library with the following MCDA methods: AHP (Analytic Hierarchy Process); ANP (Analytic Network Process); Fuzzy AHP ; PPF AHP (Proportional Picture Fuzzy AHP); ARAS (Additive Ratio ASsessment); Fuzzy ARAS ; Borda ; BWM (Best-Worst Method); Simplified BWM ; Fuzzy BWM ; CILOS (Criterion Impact LOSs); CoCoSo (COmbined COmpromise SOlution); CODAS (Combinative Distance-based Assessment); Copeland ; COPRAS (Complex PRoportional Assessment); Fuzzy COPRAS ; CPP-Tri (Composition of Probabilistic Preferences); CRADIS (Compromise Ranking of Alternatives from Distance to Ideal Solution); CRITIC (CRiteria Importance Through Intercriteria Correlation); Fuzzy CRITIC ; DEMATEL (DEcision MAking Trial and Evaluation Laboratory); Fuzzy DEMATEL ; EDAS (Evaluation based on Distance from Average Solution); Fuzzy EDAS ; ELECTRE (ELimination Et Choix Traduisant la REalite I, I_s, I_v, II, III, IV, Tri-B, Tri-nB, Tri-C, Tri-nC); Entropy ; Flowsort ; FUCOM (Full Consistency Method); Fuzzy FUCOM ; GRA (Grey Relational Analysis); IDOCRIW (Integrated Determination of Objective CRIteria Weights); LaRa (Laplacian Ranking); LMAW (Logarithm Methodology of Additive Weights); MABAC (Multi-Attributive Border Approximation area Comparison); MACBETH (Measuring Attractiveness by a Categorical Based Evaluation TecHnique); MAIRCA (Multi-Attributive Ideal-Real Comparative Analysis); MARA (Magnitude of the Area for the Ranking of Alternatives) ; MARCOS (Measurement of Alternatives and Ranking according to COmpromise Solution); MAUT (Multi-attribute Utility Theory); MEM (Multiplex Electionis Methodus); MEREC (MEthod based on the Removal Effects of Criteria); MOORA (Multi-Objective Optimization on the basis of Ratio Analysis); Fuzzy MOORA ; MOOSRA (Multi-Objective Optimisation on the Basis of Simple Ratio Analysis); MULTIMOORA (Multi-Objective Optimization on the basis of Ratio Analisys Multiplicative Form); OCRA (Operational Competitiveness RAting); ODO-OVO (Ontologic Decision Optimization and Ontologic Vector Optimization); Fuzzy OCRA ; OPA (Ordinal Priority Approach); ORESTE (Organisation Rangement Et SynThesE de donnees relationnelles); PIV (Proximity Indexed Value); PROMETHEE (Preference Ranking Organization METHod for Enrichment Evaluation I, II, III, IV, V, VI, Gaia); EC PROMETHEE ; RANCOM (RANking COMparison); RAFSI (Ranking of Alternatives through Functional mapping of criterion sub-intervals into a Single Interval); REGIME (REGIonal Multicriteria Elimination); ROC (Rank Ordered Centroid); ROV (Range Of Value); RRW (Rank Reciprocal Weighting); RSW (Rank Summed Weight); SABINA (Smooth Adaptive Bandwidth Integrated Net-flow Aggregation); SAW (Simple Additive Weighting); SECA (Simultaneous Evaluation of Criteria and Alternatives); SMART (Simple Multi-Attribute Rating Technique); SPOTIS (Stable Preference Ordering Towards Ideal Solution); TODIM (TOmada de Decisao Interativa e Multicriterio - Interactive and Multicriteria Decision Making); PSI (Preference Selection Index); MPSI (Modified Preference Selection Index); TOPSIS (Technique for Order of Preference by Similarity to Ideal Solution); Fuzzy TOPSIS ; UTADIS (UTilites Additives DIScriminantes I, II, III); VIKOR (VIseKriterijumska Optimizacija I Kompromisno Resenje); Fuzzy VIKOR ; WINGS (Weighted Influence Non-linear Gauge System); WISP (Integrated Simple Weighted Sum Product); Simple WISP ; WSM (Weighted Sum Model); Fuzzy WSM ; WPM (Weighted Product Model); Fuzzy WPM ; WASPAS (Weighted Aggregates Sum Product Assessment); Fuzzy WASPAS .
+
+pyDecision offers an array of features, including the comparison of ranking alternatives and comparison of criterion weights from various methods. The library is also fully integrated with chatGPT , Gemini , and others LLMs , elevating result interpretation through AI. Additionally, pyDecision provides the flexibility to import results from custom methods or those not yet implemented in the library for comparison.
+
+Usage
+
+Install
+
+ pip install pyDecision 
+
+Import
+
+ # Import AHP 
+ from pyDecision . algorithm import ahp_method 
+
+ # Parameters 
+ weight_derivation = 'geometric' # 'mean'; 'geometric' or 'max_eigen' 
+
+ # Dataset 
+ dataset = np . array ([
+ #g1 g2 g3 g4 g5 g6 g7 
+ [ 1 , 1 / 3 , 1 / 5 , 1 , 1 / 4 , 1 / 2 , 3 ], #g1 
+ [ 3 , 1 , 1 / 2 , 2 , 1 / 3 , 3 , 3 ], #g2 
+ [ 5 , 2 , 1 , 4 , 5 , 6 , 5 ], #g3 
+ [ 1 , 1 / 2 , 1 / 4 , 1 , 1 / 4 , 1 , 2 ], #g4 
+ [ 4 , 3 , 1 / 5 , 4 , 1 , 3 , 2 ], #g5 
+ [ 2 , 1 / 3 , 1 / 6 , 1 , 1 / 3 , 1 , 1 / 3 ], #g6 
+ [ 1 / 3 , 1 / 3 , 1 / 5 , 1 / 2 , 1 / 2 , 3 , 1 ] #g7 
+])
+
+ # Call AHP Function 
+ weights , rc = ahp_method ( dataset , wd = weight_derivation )
+
+ # Weigths 
+ for i in range ( 0 , weights . shape [ 0 ]):
+ print ( 'w(g' + str ( i + 1 ) + '): ' , round ( weights [ i ], 3 ))
+ 
+ # Consistency Ratio 
+ print ( 'RC: ' + str ( round ( rc , 2 )))
+ if ( rc > 0.10 ):
+ print ( 'The solution is inconsistent, the pairwise comparisons must be reviewed' )
+ else :
+ print ( 'The solution is consistent' ) 
+
+Try it in Colab :
+
+AHP ( Colab Demo ) ( Paper )
+
+Fuzzy AHP ( Colab Demo ) ( Paper )
+
+PPF AHP ( Colab Demo ) ( Paper )
+
+ANP ( Colab Demo ) ( Paper )
+
+ARAS ( Colab Demo ) ( Paper )
+
+Fuzzy ARAS ( Colab Demo ) ( Paper )
+
+Borda ( Colab Demo ) ( Paper )
+
+BWM ( Colab Demo ) ( Paper )
+
+Simplified BWM ( Colab Demo ) ( Paper )
+
+Fuzzy BWM ( Colab Demo ) ( Paper )
+
+CILOS ( Colab Demo ) ( Paper )
+
+CoCoSo ( Colab Demo ) ( Paper )
+
+CODAS ( Colab Demo ) ( Paper )
+
+Copeland ( Colab Demo ) ( Paper )
+
+COPRAS ( Colab Demo ) ( Paper )
+
+Fuzzy COPRAS ( Colab Demo ) ( Paper )
+
+CPP-Tri ( Colab Demo ) ( Paper )
+
+CRADIS ( Colab Demo ) ( Paper )
+
+CRITIC ( Colab Demo ) ( Paper )
+
+Fuzzy CRITIC ( Colab Demo ) ( Paper )
+
+DEMATEL ( Colab Demo ) ( Paper )
+
+Fuzzy DEMATEL ( Colab Demo ) ( Paper )
+
+EDAS ( Colab Demo ) ( Paper )
+
+Fuzzy EDAS ( Colab Demo ) ( Paper )
+
+ELECTRE I ( Colab Demo ) ( Paper )
+
+ELECTRE I_s ( Colab Demo ) ( Paper )
+
+ELECTRE I_v ( Colab Demo ) ( Paper )
+
+ELECTRE II ( Colab Demo ) ( Paper )
+
+ELECTRE III ( Colab Demo ) ( Paper )
+
+ELECTRE IV ( Colab Demo ) ( Paper )
+
+ELECTRE Tri-B ( Colab Demo ) ( Paper )
+
+ELECTRE Tri-nB ( Colab Demo ) ( Paper )
+
+ELECTRE Tri-C ( Colab Demo ) ( Paper )
+
+ELECTRE Tri-nC ( Colab Demo ) ( Paper )
+
+Entropy ( Colab Demo ) ( Paper )
+
+Flowsort ( Colab Demo ) ( Paper )
+
+FUCOM ( Colab Demo ) ( Paper )
+
+Fuzzy FUCOM ( Colab Demo ) ( Paper )
+
+GRA ( Colab Demo ) ( Paper )
+
+IDOCRIW ( Colab Demo ) ( Paper )
+
+LaRa ( Colab Demo ) ( Paper ) ( Supplement )
+
+LMAW ( Colab Demo ) ( Paper )
+
+MABAC ( Colab Demo ) ( Paper )
+
+MACBETH ( Colab Demo ) ( Paper )
+
+MAIRCA ( Colab Demo ) ( Paper )
+
+MARA ( Colab Demo ) ( Paper )
+
+MARCOS ( Colab Demo ) ( Paper )
+
+MAUT ( Colab Demo ) ( Paper )
+
+MEM ( Colab Demo ) ( Paper )
+
+MEREC ( Colab Demo ) ( Paper )
+
+Fuzzy MEREC ( Colab Demo ) ( Paper )
+
+MOORA ( Colab Demo ) ( Paper )
+
+Fuzzy MOORA ( Colab Demo ) ( Paper )
+
+MOOSRA ( Colab Demo ) ( Paper )
+
+MULTIMOORA ( Colab Demo ) ( Paper )
+
+OCRA ( Colab Demo ) ( Paper )
+
+Fuzzy OCRA ( Colab Demo ) ( Paper )
+
+ODO-OVO ( Colab Demo ) ( Paper )
+
+OPA ( Colab Demo ) ( Paper )
+
+ORESTE ( Colab Demo ) ( Paper )
+
+PIV ( Colab Demo ) ( Paper )
+
+PROMETHEE I ( Colab Demo ) ( Paper )
+
+PROMETHEE II ( Colab Demo ) ( Paper )
+
+PROMETHEE III ( Colab Demo ) ( Paper )
+
+PROMETHEE IV ( Colab Demo ) ( Paper )
+
+PROMETHEE V ( Colab Demo ) ( Paper )
+
+PROMETHEE VI ( Colab Demo ) ( Paper )
+
+PROMETHEE Gaia ( Colab Demo ) ( Paper )
+
+EC PROMETHEE ( Colab Demo ) ( Paper )
+
+PSI ( Colab Demo ) ( Paper )
+
+MPSI ( Colab Demo ) ( Paper )
+
+RAFSI ( Colab Demo ) ( Paper )
+
+RANCOM ( Colab Demo ) ( Paper )
+
+REGIME ( Colab Demo ) ( Paper )
+
+ROC ( Colab Demo ) ( Paper )
+
+ROV ( Colab Demo ) ( Paper )
+
+RRW ( Colab Demo ) ( Paper )
+
+RSW ( Colab Demo ) ( Paper )
+
+SABINA ( Colab Demo ) ( Paper )
+
+SAW ( Colab Demo ) ( Paper )
+
+SECA ( Colab Demo ) ( Paper )
+
+SMART ( Colab Demo ) ( Paper )
+
+SPOTIS ( Colab Demo ) ( Paper )
+
+TODIM ( Colab Demo ) ( Paper )
+
+TOPSIS ( Colab Demo ) ( Paper )
+
+Fuzzy TOPSIS ( Colab Demo ) ( Paper )
+
+UTADIS I ( Colab Demo ) ( Paper )
+
+UTADIS II ( Colab Demo ) ( Paper )
+
+UTADIS III ( Colab Demo ) ( Paper )
+
+VIKOR ( Colab Demo ) ( Paper )
+
+Fuzzy VIKOR ( Colab Demo ) ( Paper )
+
+WINGS ( Colab Demo ) ( Paper )
+
+WISP, Simple WISP ( Colab Demo ) ( Paper )
+
+WSM, WPM, WASPAS ( Colab Demo ) ( Paper )
+
+Fuzzy WSM, Fuzzy WPM, Fuzzy WASPAS ( Colab Demo ) ( Paper )
+
+Compare Methods:
+
+Compare - Ranks & Ask chatGPT ( Colab Demo )
+
+Compare - Fuzzy Ranks & Ask chatGPT ( Colab Demo )
+
+Compare - Weights & Ask chatGPT ( Colab Demo )
+
+Compare - Fuzzy Weights & Ask chatGPT ( Colab Demo )
+
+Compare - Ask other LLMs ( Colab Demo )
+
+Advanced MCDA Methods:
+
+ 3MOAHP - Inconsistency Reduction Technique for AHP and Fuzzy-AHP Methods
+
+ EC-PROMETHEE - A Committee Approach for Outranking Problems
+
+ EC-TOPSIS - A Committee Approach for Outranking Problems
+
+ ELECTRE-Tree - Algorithm to infer the ELECTRE Tri-B method parameters
+
+ MCDM Scheduler - A MCDM approach for Scheduling Problems
+
+ Ranking-Trees - Algorithm to infer the ELECTRE II, III, IV and PROMETHEE I, II, III, IV method parameters
+
+ pyMissingAHP - A Method to Infer AHP Missing Pairwise Comparisons
+
+ pyRankMCDA - A Rank Aggregation Library for MCDA problems
+
+Acknowledgement
+
+This section is dedicated to everyone who helped improve or correct the code. Thank you very much!
+
+Sabir Mohammedi Taieb (23.JANUARY.2023) - https://sabir97.github.io/ - Universite Abdelhamid Ibn Badis Mostaganem (Algeria)
+
+ About 
+
+pyDecision is a comprehensive Python library that encompasses a wide array of Multi-Criteria Decision Analysis (MCDA) methods. These powerful and versatile tools assist in making effective decisions by comparing alternatives based on multiple criteria, making it a valuable resource for researchers, analysts, and decision-makers.
+
+ Topics 
+
+ ahp chatgpt electre electre-i electre-ii electre-iii electre-iv electre-tri gaia mcda mcdm promethee python-mcda-library topsis 
+
+ Resources 
+
+ Readme 
+
+ License 
+
+ Activity 
+
+ Stars 
+
+ 374 stars 
+
+ Watchers 
+
+ 7 watching 
+
+ Forks 
+
+ 86 forks 
+
+ Report repository 
+
+ Releases 
+
+ Packages 
+
+ Contributors 
+
+ Languages 
+
+Footer
+
+ © 2026 GitHub, Inc.
+
+Footer navigation
+
+ Terms 
+
+ Privacy 
+
+ Security 
+
+ Status 
+
+ Community 
+
+ Docs 
+
+ Contact 
+
+ Manage cookies
+
+ Do not share my personal information
+
+ You can’t perform that action at this time.

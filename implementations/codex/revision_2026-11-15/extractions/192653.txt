@@ -1,0 +1,87 @@
+
+
+## PAGE 1
+
+Event dashboard
+Construire des agents
+Construire des agents
+Un chatbot répond. Un agent agit. Demandez « ce FNB convient-il à une investisseuse au proﬁl Prudent ? » : un chatbot écrit un paragraphe général. Un agent
+récupère les prix du FNB, calcule sa volatilité et sa perte maximale, consulte le taux USD/CAD de la Banque du Canada si le FNB est coté en dollars américains, puis
+explique le résultat en citant ses sources.
+Les deux utilisent le même modèle. L'agent a trois choses de plus que le chatbot : des outils, une mémoire et une boucle.
+Fonctionnement des agents
+La boucle, les outils et la mémoire : le modèle mental, en cinq minutes
+Strands Agents
+Un agent d'analyse de risque fonctionnel en Python, sur votre ordinateur, en une dizaine de minutes
+Amazon Bedrock AgentCore
+Recherche web, mémoire persistante et hébergement de cet agent dans le nuage
+MCP
+Brancher votre agent sur des outils existants au lieu d'écrire chaque intégration
+Le temps est court. Choisissez délibérément.
+Si personne dans l'équipe ne code : vous pouvez quand même construire un agent. Ne l'écrivez pas vous-même : décrivez-le à un assistant de programmation IA et
+laissez-le écrire et exécuter le code pendant que vous le dirigez. Commencez avec un seul outil, gardez une portée minuscule et consacrez le temps gagné à la
+démarche, aux personas et au récit de la démo.
+Si une personne code un peu : un agent Strands Agents qui tourne localement est réaliste en un après-midi. Ne le déployez pas. Lancez-le depuis un ordinateur
+pendant la démo. Le jury n'évalue pas l'infrastructure.
+Si l'équipe est forte techniquement : construisez avec Strands, puis ajoutez une capacité d'AgentCore, par exemple la recherche web avec citations ou une mémoire
+entre les sessions. Montrer la trace (ce que l'agent a décidé, avec quelles données, et pourquoi) convainc particulièrement, parce que cela répond directement à la
+question de la conﬁance et de la traçabilité des sources.
+Deux options prises en charge par AWS, qui se complètent :
+Strands Agents est un SDK open source. Vous écrivez l'agent en Python ou en TypeScript, il s'exécute où vous le lancez, et Amazon Bedrock est son fournisseur de
+modèles par défaut. C'est le point de départ.
+Amazon Bedrock AgentCore est la plateforme gérée pour exécuter des agents : recherche web, mémoire persistante, passerelle qui transforme vos API en outils
+d'agent, environnement d'exécution serverless, identité, contrôles de politique, observabilité, et une boucle d'agent gérée appelée harness. Le harness repose sur
+Strands, donc les concepts restent les mêmes d'un outil à l'autre.
+La façon la plus courante de rater un projet d'agent, c'est la portée. Un agent avec cinq outils qui fait une chose mal perd contre un agent avec un outil qui fait une
+chose bien.
+Le nombre d'agents ou d'outils n'est pas une ﬁn en soi. Le jury valorise une démarche crédible, utile et bien démontrée, pas la complexité. Choisissez la seule décision
+que votre agent améliore (par exemple : expliquer à chaque persona le risque d'un ensemble d'actifs), donnez-lui le minimum d'outils nécessaires, et consacrez le
+reste du temps à rendre la démo lisible : quels outils il a appelés, avec quelles données, et pourquoi.
+Construire des agents
+Aucune transaction réelle
+Un agent du Datathon travaille en simulation uniquement. Ne lui donnez aucun outil capable de passer un ordre, de se connecter à un compte de courtage ou de manipuler des
+données bancaires ou de clients réels. Ses réponses ne doivent pas se présenter comme un conseil ﬁnancier personnalisé.
+Pages de cette section
+Page
+Ce que vous obtenez
+Quel chemin choisir
+D'où viennent les briques
+Gardez une portée réaliste
+Commencez avec un seul outil. Ajoutez le deuxième seulement quand le premier fonctionne bien.
+Previous
+Next
+AWS Lambda
+Amazon S3
+AWS IAM
+AWS Glue
+Amazon Athena
+Accès AWS CLI et SDK
+L'IA générative sur AWS
+Votre premier appel de modèle
+Choisir un modèle
+Garde-fous
+Bases de connaissances et RAG
+Data Automation
+Construire des agents
+Fonctionnement des agents
+Strands Agents
+Amazon Bedrock AgentCore
+MCP
+Démarrages rapides
+Données ﬁnancières publiques
+Nettoyage et exportation
+Ressources
+AWS account access
+Open AWS console
+(us-east-1)
+Get AWS CLI credentials
+Share feedback
+Workshop catalog in AWS Builder
+Center
+Exit event
+AWS Workshop Studio
+adamlarhlimi2006
+© 2008 - 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+Privacy policy
+Terms of use
+Cookie preferences

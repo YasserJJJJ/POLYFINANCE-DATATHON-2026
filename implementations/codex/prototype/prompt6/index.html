@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#182f45">
+  <title>AlphaForge — Le carnet de décision</title>
+  <link rel="stylesheet" href="assets/fonts.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Aller au contenu</a>
+  <header class="topbar">
+    <a href="#accueil" class="brand" aria-label="AlphaForge, accueil"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 26 16 5l12 21M9 18h14M11 26l5-9 5 9"/></svg><span>AlphaForge<span class="brand-dot">.</span></span></a>
+    <nav aria-label="Navigation principale"><a href="#accueil">Les dossiers</a><a href="canvas.html">Le canvas <span aria-hidden="true">↗</span></a></nav>
+    <button class="prototype-badge" data-action="about">Prototype de référence <span>v0.1</span></button>
+  </header>
+  <main id="main" tabindex="-1"><div class="loading">Ouverture des dossiers archivés…</div></main>
+  <footer><span>Décisions fictives. Preuves réelles. Conclusions conditionnelles.</span><button class="text-button" data-action="about">Ce qui fonctionne ici ↗</button></footer>
+  <dialog id="panel" aria-labelledby="panel-title"><div class="dialog-head"><div id="panel-heading"></div><button class="icon-button" id="close-panel" aria-label="Fermer">×</button></div><div id="panel-body"></div></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

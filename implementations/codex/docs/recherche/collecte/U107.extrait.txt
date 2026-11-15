@@ -1,0 +1,5310 @@
+Regional availability by models - Amazon Bedrock 
+
+ View a markdown version of this page 
+
+ Regional availability by models - Amazon Bedrock 
+
+ Documentation Amazon Bedrock User Guide 
+
+ Inference options at a glance AI21 Labs Amazon Anthropic Cohere DeepSeek Google Luma Meta MiniMax Mistral AI Moonshot AI NVIDIA OpenAI Qwen Stability AI TwelveLabs Writer xAI Z.AI 
+
+Regional availability by models
+
+Amazon Bedrock gives you three options so you can match the routing behavior of your inference calls to the scale, compliance, and cost requirements of your workload.
+
+Process to enabling Bedrock models in GovCloud
+
+Accessing Bedrock foundation models in AWS GovCloud (US) requires initiating the access request through the standard AWS account linked to your GovCloud account. You must first agree to the model's End User License Agreement (EULA) in a standard region ( us-east-1 or us-west-2 ), then enable the model in your GovCloud account. You can do this in two ways:
+
+ Console: Sign in to your linked standard AWS account, open the Amazon Bedrock Chat/Text playground, choose the model, and run a prompt to establish the EULA.
+
+ AWS CLI: Run aws bedrock list-foundation-models to get the model ID, then aws bedrock list-foundation-model-agreement-offers --model-id <model-id> to get the offer token, and finally aws bedrock create-foundation-model-agreement --model-id <model-id> --offer-token <offerToken> .
+
+After completing either method, go to your GovCloud account and enable the model via the Model Access page. It may take a few minutes for entitlements to propagate. For the full walkthrough, see Process to enabling Bedrock models in GovCloud .
+
+ In-Region: Your requests never leave the AWS Region you specify. Use this when regulations require strict single-Region data processing.
+
+ Geographic (Geo): Bedrock routes your request to a Region within a defined geography (US, Canada, EU, Asia Pacific, Japan, Australia, or India), keeping data within that geography. Use this when you have data residency requirements tied to a geography rather than a single Region. Some Regions belong to more than one geography: from Asia Pacific (Sydney), for example, you can use either the au prefix, which routes only among Australian Regions, or the apac prefix, which can route to any supported Asia Pacific Region, so choose the prefix that matches your data residency requirement.
+
+ Global: Bedrock routes your request to a supported commercial Region worldwide. For some models, global cross-Region inference is priced lower per token than geographic cross-Region inference. Use this when you have no data residency constraints.
+
+Inference options at a glance
+
+ In-Region 
+ Geographic (Geo) Cross-Region 
+ Global Cross-Region 
+
+ How it works 
+ Request is processed entirely within the single AWS Region you specify 
+ Bedrock routes the request to a Region within a defined geography (US, CA, EU, APAC, JP, AU, IN) 
+ Bedrock routes the request to any supported commercial Region worldwide 
+
+ Data residency 
+ Strictly within one Region 
+ Within geographic boundaries (e.g., all EU Regions); prompts and outputs may move within the geography but not outside it 
+ No geographic restrictions; data may be processed in any commercial Region 
+
+ Request routing 
+ Processed in the Region you specify; subject to per-Region service quotas 
+ Routed to a Region within the geography 
+ Routed to a supported commercial Region worldwide 
+
+ Pricing 
+ Standard on-demand pricing for that Region 
+ Priced at source Region rates; no surcharge for cross-Region routing 
+ Priced at source Region rates; no surcharge for cross-Region routing. For some models, the per-token price is lower than geographic cross-Region inference 
+
+ modelId format 
+ Direct model ID: anthropic.claude-3-5-sonnet-20241022-v2:0 
+ Geography prefix + model ID: us.anthropic.claude-3-5-sonnet-20241022-v2:0 
+ Global prefix + model ID: global.anthropic.claude-3-5-sonnet-20241022-v2:0 
+
+ Best for 
+ Strict single-Region compliance; Provisioned Throughput workloads 
+ Data residency regulations scoped to a geography (e.g., GDPR in EU, data sovereignty requirements) 
+ Cost efficiency with no data residency constraints 
+
+Now, let us look at Regional availability across all the models supported by Amazon Bedrock.
+
+AI21 Labs
+
+ Jamba 1.5 Large 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+ Legacy (EOL: 2026-11-26) 
+
+ Jamba 1.5 Mini 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+ Legacy (EOL: 2026-11-26) 
+
+Amazon
+
+ Nova 2 Sonic 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-west-2 (Oregon) 
+
+ eu-north-1 (Stockholm) 
+
+ ap-northeast-1 (Tokyo) 
+
+ Nova 2.5 Sonic 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-west-2 (Oregon) 
+
+ eu-north-1 (Stockholm) 
+
+ ap-northeast-1 (Tokyo) 
+
+ Nova 2 Lite 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ il-central-1 (Tel Aviv) 
+
+ me-central-1 (UAE) 
+
+ Amazon Nova Multimodal Embeddings 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ Titan Text Embeddings V2 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ us-gov-east-1 (AWS GovCloud (US-East)) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ ca-central-1 (Canada) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-2 (Sydney) 
+
+ sa-east-1 (São Paulo) 
+
+ Titan Multimodal Embeddings G1 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ sa-east-1 (São Paulo) 
+
+ Titan Embeddings G1 - Text 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-west-2 (Oregon) 
+
+ eu-central-1 (Frankfurt) 
+
+ ap-northeast-1 (Tokyo) 
+
+ Titan Embeddings G1 - Text v2 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-west-2 (Oregon) 
+
+ Nova Reel — amazon.nova-reel-v1:1 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+ Legacy (EOL: 2026-09-30) 
+
+ Rerank 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ eu-central-1 (Frankfurt) 
+
+ ap-northeast-1 (Tokyo) 
+
+ Nova Pro 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-7 (Thailand) 
+
+ il-central-1 (Tel Aviv) 
+
+ me-central-1 (UAE) 
+
+ Nova Reel — amazon.nova-reel-v1:0 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+ Legacy (EOL: 2026-09-30) 
+
+ eu-west-1 (Ireland) 
+ Legacy (EOL: 2026-09-30) 
+
+ ap-northeast-1 (Tokyo) 
+ Legacy (EOL: 2026-09-30) 
+
+ Nova Lite 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ il-central-1 (Tel Aviv) 
+
+ me-central-1 (UAE) 
+
+ Nova Canvas 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+ Legacy (EOL: 2026-09-30) 
+
+ eu-west-1 (Ireland) 
+ Legacy (EOL: 2026-09-30) 
+
+ ap-northeast-1 (Tokyo) 
+ Legacy (EOL: 2026-09-30) 
+
+ Nova Micro 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ il-central-1 (Tel Aviv) 
+
+Anthropic
+
+ Claude Fable 5.2 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ il-central-1 (Tel Aviv) 
+
+ me-central-1 (UAE) 
+
+ me-south-1 (Bahrain) 
+
+ af-south-1 (Cape Town) 
+
+ sa-east-1 (São Paulo) 
+
+ mx-central-1 (Mexico) 
+
+ us-gov-east-1 (AWS GovCloud (US-East)) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ Claude Mythos 5.2 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ il-central-1 (Tel Aviv) 
+
+ me-central-1 (UAE) 
+
+ me-south-1 (Bahrain) 
+
+ af-south-1 (Cape Town) 
+
+ sa-east-1 (São Paulo) 
+
+ mx-central-1 (Mexico) 
+
+ us-gov-east-1 (AWS GovCloud (US-East)) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ Claude Haiku 5.5 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ il-central-1 (Tel Aviv) 
+
+ me-central-1 (UAE) 
+
+ me-south-1 (Bahrain) 
+
+ af-south-1 (Cape Town) 
+
+ sa-east-1 (São Paulo) 
+
+ mx-central-1 (Mexico) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ us-gov-east-1 (AWS GovCloud (US-East)) 
+
+ Claude Sonnet 5.5 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ il-central-1 (Tel Aviv) 
+
+ me-central-1 (UAE) 
+
+ me-south-1 (Bahrain) 
+
+ af-south-1 (Cape Town) 
+
+ sa-east-1 (São Paulo) 
+
+ mx-central-1 (Mexico) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ us-gov-east-1 (AWS GovCloud (US-East)) 
+
+ Claude Opus 5.5 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ il-central-1 (Tel Aviv) 
+
+ me-central-1 (UAE) 
+
+ me-south-1 (Bahrain) 
+
+ af-south-1 (Cape Town) 
+
+ sa-east-1 (São Paulo) 
+
+ mx-central-1 (Mexico) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ us-gov-east-1 (AWS GovCloud (US-East)) 
+
+ Claude Fable 5.1 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ il-central-1 (Tel Aviv) 
+
+ me-central-1 (UAE) 
+
+ me-south-1 (Bahrain) 
+
+ af-south-1 (Cape Town) 
+
+ sa-east-1 (São Paulo) 
+
+ mx-central-1 (Mexico) 
+
+ us-gov-east-1 (AWS GovCloud (US-East)) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ Claude Mythos 5.1 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ il-central-1 (Tel Aviv) 
+
+ me-central-1 (UAE) 
+
+ me-south-1 (Bahrain) 
+
+ af-south-1 (Cape Town) 
+
+ sa-east-1 (São Paulo) 
+
+ mx-central-1 (Mexico) 
+
+ Claude Opus 5 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ il-central-1 (Tel Aviv) 
+
+ me-central-1 (UAE) 
+
+ me-south-1 (Bahrain) 
+
+ af-south-1 (Cape Town) 
+
+ sa-east-1 (São Paulo) 
+
+ mx-central-1 (Mexico) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ us-gov-east-1 (AWS GovCloud (US-East)) 
+
+ Claude Sonnet 5 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ il-central-1 (Tel Aviv) 
+
+ me-central-1 (UAE) 
+
+ me-south-1 (Bahrain) 
+
+ af-south-1 (Cape Town) 
+
+ sa-east-1 (São Paulo) 
+
+ mx-central-1 (Mexico) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ us-gov-east-1 (AWS GovCloud (US-East)) 
+
+ Claude Mythos 5 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ Claude Fable 5 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ il-central-1 (Tel Aviv) 
+
+ me-central-1 (UAE) 
+
+ me-south-1 (Bahrain) 
+
+ af-south-1 (Cape Town) 
+
+ sa-east-1 (São Paulo) 
+
+ mx-central-1 (Mexico) 
+
+ Claude Sonnet 4 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ EOL: 2026-10-14 
+ EOL: 2026-10-14 
+
+ us-east-2 (Ohio) 
+
+ EOL: 2026-10-14 
+ EOL: 2026-10-14 
+
+ us-west-1 (N. California) 
+
+ EOL: 2026-10-14 
+
+ us-west-2 (Oregon) 
+
+ EOL: 2026-10-14 
+ EOL: 2026-10-14 
+
+ eu-central-1 (Frankfurt) 
+
+ EOL: 2026-10-14 
+
+ eu-north-1 (Stockholm) 
+
+ EOL: 2026-10-14 
+
+ eu-south-1 (Milan) 
+
+ EOL: 2026-10-14 
+
+ eu-south-2 (Spain) 
+
+ EOL: 2026-10-14 
+
+ eu-west-1 (Ireland) 
+
+ EOL: 2026-10-14 
+ EOL: 2026-10-14 
+
+ eu-west-3 (Paris) 
+
+ EOL: 2026-10-14 
+
+ il-central-1 (Tel Aviv) 
+
+ EOL: 2026-10-14 
+
+ ap-east-2 (Taipei) 
+
+ EOL: 2026-10-14 
+
+ ap-northeast-1 (Tokyo) 
+
+ EOL: 2026-10-14 
+ EOL: 2026-10-14 
+
+ ap-northeast-2 (Seoul) 
+
+ EOL: 2026-10-14 
+
+ ap-northeast-3 (Osaka) 
+
+ EOL: 2026-10-14 
+
+ ap-south-1 (Mumbai) 
+
+ EOL: 2026-10-14 
+
+ ap-south-2 (Hyderabad) 
+
+ EOL: 2026-10-14 
+
+ ap-southeast-1 (Singapore) 
+
+ EOL: 2026-10-14 
+
+ ap-southeast-2 (Sydney) 
+
+ EOL: 2026-10-14 
+
+ ap-southeast-3 (Jakarta) 
+
+ EOL: 2026-10-14 
+
+ ap-southeast-4 (Melbourne) 
+
+ EOL: 2026-10-14 
+
+ ap-southeast-5 (Malaysia) 
+
+ EOL: 2026-10-14 
+
+ ap-southeast-7 (Thailand) 
+
+ EOL: 2026-10-14 
+
+ Claude Sonnet 4.6 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ il-central-1 (Tel Aviv) 
+
+ me-central-1 (UAE) 
+
+ me-south-1 (Bahrain) 
+
+ af-south-1 (Cape Town) 
+
+ sa-east-1 (São Paulo) 
+
+ mx-central-1 (Mexico) 
+
+ Claude Opus 4.8 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ us-gov-east-1 (AWS GovCloud (US-East)) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ il-central-1 (Tel Aviv) 
+
+ me-central-1 (UAE) 
+
+ me-south-1 (Bahrain) 
+
+ af-south-1 (Cape Town) 
+
+ sa-east-1 (São Paulo) 
+
+ mx-central-1 (Mexico) 
+
+ Claude Opus 4.7 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ il-central-1 (Tel Aviv) 
+
+ me-central-1 (UAE) 
+
+ me-south-1 (Bahrain) 
+
+ af-south-1 (Cape Town) 
+
+ sa-east-1 (São Paulo) 
+
+ mx-central-1 (Mexico) 
+
+ Claude Opus 4.6 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ il-central-1 (Tel Aviv) 
+
+ me-central-1 (UAE) 
+
+ me-south-1 (Bahrain) 
+
+ af-south-1 (Cape Town) 
+
+ sa-east-1 (São Paulo) 
+
+ mx-central-1 (Mexico) 
+
+ Claude Opus 4.5 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ il-central-1 (Tel Aviv) 
+
+ me-central-1 (UAE) 
+
+ me-south-1 (Bahrain) 
+
+ af-south-1 (Cape Town) 
+
+ sa-east-1 (São Paulo) 
+
+ mx-central-1 (Mexico) 
+
+ Claude Haiku 4.5 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ us-gov-east-1 (AWS GovCloud (US-East)) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ il-central-1 (Tel Aviv) 
+
+ me-central-1 (UAE) 
+
+ me-south-1 (Bahrain) 
+
+ af-south-1 (Cape Town) 
+
+ sa-east-1 (São Paulo) 
+
+ mx-central-1 (Mexico) 
+
+ Claude Sonnet 4.5 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+ 
+ EOL: 2027-04-08 
+ EOL: 2027-04-08 
+
+ us-east-2 (Ohio) 
+ 
+ EOL: 2027-04-08 
+ EOL: 2027-04-08 
+
+ us-west-1 (N. California) 
+ 
+ EOL: 2027-04-08 
+ EOL: 2027-04-08 
+
+ us-west-2 (Oregon) 
+ 
+ EOL: 2027-04-08 
+ EOL: 2027-04-08 
+
+ us-gov-east-1 (AWS GovCloud (US-East)) 
+ 
+ EOL: 2027-04-08 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+ 
+ EOL: 2027-04-08 
+
+ ca-central-1 (Canada) 
+ 
+ EOL: 2027-04-08 
+ EOL: 2027-04-08 
+
+ ca-west-1 (Calgary) 
+
+ EOL: 2027-04-08 
+
+ eu-central-1 (Frankfurt) 
+ 
+ EOL: 2027-04-08 
+ EOL: 2027-04-08 
+
+ eu-central-2 (Zurich) 
+ 
+ EOL: 2027-04-08 
+ EOL: 2027-04-08 
+
+ eu-north-1 (Stockholm) 
+ 
+ EOL: 2027-04-08 
+ EOL: 2027-04-08 
+
+ eu-south-1 (Milan) 
+ 
+ EOL: 2027-04-08 
+ EOL: 2027-04-08 
+
+ eu-south-2 (Spain) 
+ 
+ EOL: 2027-04-08 
+ EOL: 2027-04-08 
+
+ eu-west-1 (Ireland) 
+ 
+ EOL: 2027-04-08 
+ EOL: 2027-04-08 
+
+ eu-west-2 (London) 
+ 
+ EOL: 2027-04-08 
+ EOL: 2027-04-08 
+
+ eu-west-3 (Paris) 
+ 
+ EOL: 2027-04-08 
+ EOL: 2027-04-08 
+
+ ap-east-2 (Taipei) 
+
+ EOL: 2027-04-08 
+
+ ap-northeast-1 (Tokyo) 
+ 
+ EOL: 2027-04-08 
+ EOL: 2027-04-08 
+
+ ap-northeast-2 (Seoul) 
+
+ EOL: 2027-04-08 
+
+ ap-northeast-3 (Osaka) 
+ 
+ EOL: 2027-04-08 
+ EOL: 2027-04-08 
+
+ ap-south-1 (Mumbai) 
+
+ EOL: 2027-04-08 
+
+ ap-south-2 (Hyderabad) 
+
+ EOL: 2027-04-08 
+
+ ap-southeast-1 (Singapore) 
+
+ EOL: 2027-04-08 
+
+ ap-southeast-2 (Sydney) 
+ 
+ EOL: 2027-04-08 
+ EOL: 2027-04-08 
+
+ ap-southeast-3 (Jakarta) 
+
+ EOL: 2027-04-08 
+
+ ap-southeast-4 (Melbourne) 
+ 
+ EOL: 2027-04-08 
+ EOL: 2027-04-08 
+
+ ap-southeast-5 (Malaysia) 
+
+ EOL: 2027-04-08 
+
+ ap-southeast-6 (New Zealand) 
+ 
+ EOL: 2027-04-08 
+ EOL: 2027-04-08 
+
+ ap-southeast-7 (Thailand) 
+
+ EOL: 2027-04-08 
+
+ il-central-1 (Tel Aviv) 
+
+ EOL: 2027-04-08 
+
+ me-central-1 (UAE) 
+
+ EOL: 2027-04-08 
+
+ me-south-1 (Bahrain) 
+
+ EOL: 2027-04-08 
+
+ af-south-1 (Cape Town) 
+
+ EOL: 2027-04-08 
+
+ sa-east-1 (São Paulo) 
+
+ EOL: 2027-04-08 
+
+ mx-central-1 (Mexico) 
+
+ EOL: 2027-04-08 
+
+ Claude Opus 4.1 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ EOL: 2027-01-08 
+
+ us-east-2 (Ohio) 
+
+ EOL: 2027-01-08 
+
+ us-west-2 (Oregon) 
+
+ EOL: 2027-01-08 
+
+ Claude 3 Haiku 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+ EOL: 2026-09-10 
+ EOL: 2026-09-10 
+
+ us-east-2 (Ohio) 
+
+ EOL: 2026-09-10 
+
+ us-west-2 (Oregon) 
+ EOL: 2026-09-10 
+ EOL: 2026-09-10 
+
+ us-gov-east-1 (GovCloud) 
+
+ EOL: 2026-09-10 
+
+ us-gov-west-1 (GovCloud) 
+ EOL: 2026-09-10 
+
+ ca-central-1 (Canada) 
+
+ eu-central-1 (Frankfurt) 
+ EOL: 2026-09-10 
+ EOL: 2026-09-10 
+
+ eu-central-2 (Zurich) 
+
+ eu-west-1 (Ireland) 
+ EOL: 2026-09-10 
+ EOL: 2026-09-10 
+
+ eu-west-2 (London) 
+ EOL: 2026-09-10 
+
+ eu-west-3 (Paris) 
+ EOL: 2026-09-10 
+ EOL: 2026-09-10 
+
+ ap-northeast-1 (Tokyo) 
+ EOL: 2026-09-10 
+
+ ap-northeast-2 (Seoul) 
+ EOL: 2026-11-13 
+
+ ap-south-1 (Mumbai) 
+ EOL: 2026-11-13 
+
+ ap-southeast-1 (Singapore) 
+ EOL: 2026-11-13 
+
+ ap-southeast-2 (Sydney) 
+ EOL: 2026-09-10 
+
+ sa-east-1 (São Paulo) 
+
+ Claude 3 Sonnet 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+ EOL: 2026-07-30 
+ EOL: 2026-07-30 
+
+ us-west-2 (Oregon) 
+ EOL: 2026-07-30 
+ EOL: 2026-07-30 
+
+ ca-central-1 (Canada) 
+ EOL: 2026-07-30 
+
+ eu-central-1 (Frankfurt) 
+ EOL: 2026-07-30 
+ EOL: 2026-07-30 
+
+ eu-west-1 (Ireland) 
+
+ EOL: 2026-07-30 
+
+ eu-west-2 (London) 
+ EOL: 2026-07-30 
+
+ eu-west-3 (Paris) 
+
+ EOL: 2026-07-30 
+
+ ap-south-1 (Mumbai) 
+ EOL: 2026-07-30 
+
+ ap-southeast-1 (Singapore) 
+
+ EOL: 2026-07-30 
+
+ ap-southeast-2 (Sydney) 
+ EOL: 2026-07-30 
+
+ sa-east-1 (São Paulo) 
+ EOL: 2026-07-30 
+
+ Claude 3.7 Sonnet 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+ EOL: 2026-07-30 
+ EOL: 2026-07-30 
+
+ us-east-2 (Ohio) 
+
+ EOL: 2026-07-30 
+
+ us-west-2 (Oregon) 
+ EOL: 2026-07-30 
+ EOL: 2026-07-30 
+
+ eu-central-1 (Frankfurt) 
+ EOL: 2026-07-30 
+ EOL: 2026-07-30 
+
+ eu-north-1 (Stockholm) 
+
+ EOL: 2026-07-30 
+
+ eu-west-1 (Ireland) 
+
+ EOL: 2026-07-30 
+
+ eu-west-2 (London) 
+ EOL: 2026-07-30 
+
+ eu-west-3 (Paris) 
+
+ EOL: 2026-07-30 
+
+ ap-south-1 (Mumbai) 
+
+ EOL: 2026-07-30 
+
+ Claude 3.5 Sonnet V2:0 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ EOL: 2026-07-30 
+
+ us-east-2 (Ohio) 
+
+ EOL: 2026-07-30 
+
+ us-west-2 (Oregon) 
+
+ EOL: 2026-07-30 
+
+ ap-northeast-2 (Seoul) 
+
+ EOL: 2026-07-30 
+
+ ap-south-1 (Mumbai) 
+
+ EOL: 2026-07-30 
+
+ ap-southeast-1 (Singapore) 
+
+ EOL: 2026-07-30 
+
+ ap-southeast-2 (Sydney) 
+
+ EOL: 2026-07-30 
+
+ Claude 3.5 Sonnet 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+ EOL: 2026-07-30 
+ EOL: 2026-07-30 
+
+ us-east-2 (Ohio) 
+
+ EOL: 2026-07-30 
+
+ us-west-2 (Oregon) 
+ EOL: 2026-07-30 
+ EOL: 2026-07-30 
+
+ eu-central-1 (Frankfurt) 
+ EOL: 2026-07-30 
+ EOL: 2026-07-30 
+
+ eu-central-2 (Zurich) 
+ EOL: 2026-07-30 
+
+ eu-west-1 (Ireland) 
+
+ EOL: 2026-07-30 
+
+ eu-west-3 (Paris) 
+
+ EOL: 2026-07-30 
+
+ ap-northeast-1 (Tokyo) 
+ EOL: 2026-07-30 
+
+ ap-northeast-2 (Seoul) 
+ EOL: 2026-07-30 
+
+ ap-south-1 (Mumbai) 
+
+ EOL: 2026-07-30 
+
+ ap-southeast-1 (Singapore) 
+ EOL: 2026-07-30 
+
+Cohere
+
+ Embed v4 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ sa-east-1 (São Paulo) 
+
+ Embed English 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ sa-east-1 (São Paulo) 
+
+ Embed Multilingual 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ sa-east-1 (São Paulo) 
+
+ Rerank 3.5 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ eu-central-1 (Frankfurt) 
+
+ ap-northeast-1 (Tokyo) 
+
+ Command R 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+ Legacy (EOL: 2026-08-19) 
+
+ us-west-2 (Oregon) 
+ Legacy (EOL: 2026-08-19) 
+
+ Command R+ 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+ Legacy (EOL: 2026-08-19) 
+
+ us-west-2 (Oregon) 
+ Legacy (EOL: 2026-08-19) 
+
+DeepSeek
+
+ DeepSeek V3.2 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ sa-east-1 (São Paulo) 
+
+ DeepSeek-V3.1 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ DeepSeek-R1 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+Google
+
+ Gemma 4 31B 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ eu-central-1 (Frankfurt) 
+
+ Gemma 4 26B-A4B 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ eu-central-1 (Frankfurt) 
+
+ Gemma 4 E2B 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ eu-central-1 (Frankfurt) 
+
+ Gemma 3 27B PT 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-south-1 (Milan) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ sa-east-1 (São Paulo) 
+
+ Gemma 3 12B IT 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-south-1 (Milan) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ sa-east-1 (São Paulo) 
+
+ Gemma 3 4B IT 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-south-1 (Milan) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ sa-east-1 (São Paulo) 
+
+Luma
+
+ Ray V2:0 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-west-2 (Oregon) 
+
+Meta
+
+ Llama 4 Maverick 17B Instruct 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ Llama 4 Scout 17B Instruct 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ Llama 3 70B Instruct 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-west-2 (Oregon) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ ca-central-1 (Canada) 
+
+ eu-west-2 (London) 
+
+ ap-south-1 (Mumbai) 
+
+ Llama 3 8B Instruct 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-west-2 (Oregon) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ ca-central-1 (Canada) 
+
+ eu-west-2 (London) 
+
+ ap-south-1 (Mumbai) 
+
+ Llama 3.3 70B Instruct 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ Llama 3.2 90B Instruct 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ Legacy (EOL: 2026-07-07) 
+
+ us-east-2 (Ohio) 
+
+ Legacy (EOL: 2026-07-07) 
+
+ us-west-2 (Oregon) 
+
+ Legacy (EOL: 2026-07-07) 
+
+ Llama 3.2 11B Instruct 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ Legacy (EOL: 2026-07-07) 
+
+ us-east-2 (Ohio) 
+
+ Legacy (EOL: 2026-07-07) 
+
+ us-west-2 (Oregon) 
+
+ Legacy (EOL: 2026-07-07) 
+
+ Llama 3.2 3B Instruct 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ Legacy (EOL: 2026-07-07) 
+
+ us-east-2 (Ohio) 
+
+ Legacy (EOL: 2026-07-07) 
+
+ us-west-2 (Oregon) 
+
+ Legacy (EOL: 2026-07-07) 
+
+ eu-central-1 (Frankfurt) 
+
+ Legacy (EOL: 2026-07-07) 
+
+ eu-west-1 (Ireland) 
+
+ Legacy (EOL: 2026-07-07) 
+
+ eu-west-3 (Paris) 
+
+ Legacy (EOL: 2026-07-07) 
+
+ Llama 3.2 1B Instruct 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ Legacy (EOL: 2026-07-07) 
+
+ us-east-2 (Ohio) 
+
+ Legacy (EOL: 2026-07-07) 
+
+ us-west-2 (Oregon) 
+
+ Legacy (EOL: 2026-07-07) 
+
+ eu-central-1 (Frankfurt) 
+
+ Legacy (EOL: 2026-07-07) 
+
+ eu-west-1 (Ireland) 
+
+ Legacy (EOL: 2026-07-07) 
+
+ eu-west-3 (Paris) 
+
+ Legacy (EOL: 2026-07-07) 
+
+ Llama 3.1 405B Instruct 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-2 (Ohio) 
+
+ Legacy (EOL: 2026-07-07) 
+
+ us-west-2 (Oregon) 
+ Legacy (EOL: 2026-07-07) 
+
+ Llama 3.1 70B Instruct 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ Llama 3.1 8B Instruct 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+MiniMax
+
+ MiniMax M2 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-south-1 (Milan) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ sa-east-1 (São Paulo) 
+
+ MiniMax M2.1 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ sa-east-1 (São Paulo) 
+
+ MiniMax M2.5 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-west-2 (Oregon) 
+
+ MiniMax M2.5 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ sa-east-1 (São Paulo) 
+
+Mistral AI
+
+ Magistral Small 2509 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-south-1 (Milan) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ sa-east-1 (São Paulo) 
+
+ Pixtral Large 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-3 (Paris) 
+
+ Mistral Large 2407 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-west-2 (Oregon) 
+
+ Mistral Small 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ Mistral Large 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ sa-east-1 (São Paulo) 
+
+ Voxtral Small 24B 2507 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-south-1 (Milan) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ sa-east-1 (São Paulo) 
+
+ Mixtral 8x7B Instruct 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ sa-east-1 (São Paulo) 
+
+ Mistral 7B Instruct 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ sa-east-1 (São Paulo) 
+
+ Voxtral Mini 3B 2507 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-south-1 (Milan) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ sa-east-1 (São Paulo) 
+
+ Mistral Large 3 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ sa-east-1 (São Paulo) 
+
+ Ministral 14B 3.0 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-south-1 (Milan) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ sa-east-1 (São Paulo) 
+
+ Ministral 3 8B 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-south-1 (Milan) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ sa-east-1 (São Paulo) 
+
+ Ministral 3B 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-south-1 (Milan) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ sa-east-1 (São Paulo) 
+
+ Devstral 2 123B 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ sa-east-1 (São Paulo) 
+
+Moonshot AI
+
+ Kimi K3.1 Pro - Highspeed 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ il-central-1 (Tel Aviv) 
+
+ me-central-1 (UAE) 
+
+ me-south-1 (Bahrain) 
+
+ af-south-1 (Cape Town) 
+
+ sa-east-1 (São Paulo) 
+
+ Kimi K3 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ il-central-1 (Tel Aviv) 
+
+ me-central-1 (UAE) 
+
+ me-south-1 (Bahrain) 
+
+ af-south-1 (Cape Town) 
+
+ sa-east-1 (São Paulo) 
+
+ Kimi K2.5 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ sa-east-1 (São Paulo) 
+
+NVIDIA
+
+ NVIDIA Nemotron Nano 12B v2 VL BF16 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-south-1 (Milan) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ sa-east-1 (São Paulo) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ us-gov-east-1 (AWS GovCloud (US-East)) 
+
+ NVIDIA Nemotron Nano 9B v2 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-south-1 (Milan) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ sa-east-1 (São Paulo) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ us-gov-east-1 (AWS GovCloud (US-East)) 
+
+ Nemotron Nano 3 30B 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-south-1 (Milan) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ sa-east-1 (São Paulo) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ us-gov-east-1 (AWS GovCloud (US-East)) 
+
+ NVIDIA Nemotron 3 Super 120B 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-south-1 (Milan) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-southeast-2 (Sydney) 
+
+ sa-east-1 (São Paulo) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-north-1 (Stockholm) 
+
+ ap-southeast-3 (Jakarta) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ us-gov-east-1 (AWS GovCloud (US-East)) 
+
+OpenAI
+
+ GPT-6.1 Sol 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ af-south-1 (Cape Town) 
+
+ il-central-1 (Tel Aviv) 
+
+ mx-central-1 (Mexico) 
+
+ sa-east-1 (São Paulo) 
+
+ GPT-6.1 Terra 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ af-south-1 (Cape Town) 
+
+ il-central-1 (Tel Aviv) 
+
+ mx-central-1 (Mexico) 
+
+ sa-east-1 (São Paulo) 
+
+ GPT-6 Astra 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ af-south-1 (Cape Town) 
+
+ il-central-1 (Tel Aviv) 
+
+ mx-central-1 (Mexico) 
+
+ sa-east-1 (São Paulo) 
+
+ GPT-6 Sol 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ af-south-1 (Cape Town) 
+
+ il-central-1 (Tel Aviv) 
+
+ mx-central-1 (Mexico) 
+
+ sa-east-1 (São Paulo) 
+
+ GPT-6 Luna 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ af-south-1 (Cape Town) 
+
+ il-central-1 (Tel Aviv) 
+
+ mx-central-1 (Mexico) 
+
+ sa-east-1 (São Paulo) 
+
+ GPT-5.6 Sol 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ il-central-1 (Tel Aviv) 
+
+ me-central-1 (UAE) 
+
+ me-south-1 (Bahrain) 
+
+ af-south-1 (Cape Town) 
+
+ sa-east-1 (São Paulo) 
+
+ Daybreak Red: GPT-5.6 Cyber 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-2 (Ohio) 
+
+ us-gov-east-1 (AWS GovCloud (US-East)) 
+
+ Daybreak Blue: GPT-5.6 Sol 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-2 (Ohio) 
+
+ GPT-5.6 Terra 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ il-central-1 (Tel Aviv) 
+
+ me-central-1 (UAE) 
+
+ me-south-1 (Bahrain) 
+
+ af-south-1 (Cape Town) 
+
+ sa-east-1 (São Paulo) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ us-gov-east-1 (AWS GovCloud (US-East)) 
+
+ GPT-5.6 Luna 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ il-central-1 (Tel Aviv) 
+
+ me-central-1 (UAE) 
+
+ me-south-1 (Bahrain) 
+
+ af-south-1 (Cape Town) 
+
+ sa-east-1 (São Paulo) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ us-gov-east-1 (AWS GovCloud (US-East)) 
+
+ GPT-5.5 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ GPT-5.4 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ us-gov-east-1 (AWS GovCloud (US-East)) 
+
+ GPT OSS Safeguard 120B 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-south-1 (Milan) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ sa-east-1 (São Paulo) 
+
+ gpt-oss-120b 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ sa-east-1 (São Paulo) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ us-gov-east-1 (AWS GovCloud (US-East)) 
+
+ GPT OSS Safeguard 20B 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-south-1 (Milan) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ sa-east-1 (São Paulo) 
+
+ gpt-oss-20b 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ sa-east-1 (São Paulo) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ us-gov-east-1 (AWS GovCloud (US-East)) 
+
+Qwen
+
+ Qwen3 Coder Next 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ eu-west-2 (London) 
+
+ ap-southeast-2 (Sydney) 
+
+ Qwen3 Coder 480B A35B Instruct 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ Qwen3 235B A22B 2507 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ Qwen3 VL 235B A22B 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-south-1 (Milan) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ sa-east-1 (São Paulo) 
+
+ Qwen3 Next 80B A3B 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-south-1 (Milan) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ sa-east-1 (São Paulo) 
+
+ Qwen3 32B 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ sa-east-1 (São Paulo) 
+
+ Qwen3-Coder-30B-A3B-Instruct 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ sa-east-1 (São Paulo) 
+
+Stability AI
+
+ Stable Diffusion 3.5 Large 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-west-2 (Oregon) 
+
+ Stable Image Core 1.0 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-west-2 (Oregon) 
+
+ Stable Image Ultra 1.0 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-west-2 (Oregon) 
+
+ Stable Image Control Structure 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ Stable Image Conservative Upscale 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ Stable Image Fast Upscale 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ Stable Image Control Sketch 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ Stable Image Search and Recolor 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ Stable Image Creative Upscale 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ Stable Image Erase Object 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ Stable Image Inpaint 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ Stable Image Outpaint 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ Stable Image Search and Replace 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ Stable Image Style Transfer 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ Stable Image Style Guide 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ Stable Image Remove Background 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+TwelveLabs
+
+ Marengo Embed 3.0 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ eu-west-1 (Ireland) 
+
+ ap-northeast-2 (Seoul) 
+
+ Marengo Embed v2.7 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ eu-west-1 (Ireland) 
+
+ Pegasus v1.5 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ il-central-1 (Tel Aviv) 
+
+ af-south-1 (Cape Town) 
+
+ mx-central-1 (Mexico) 
+
+ sa-east-1 (São Paulo) 
+
+ Pegasus v1.2 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-7 (Thailand) 
+
+ il-central-1 (Tel Aviv) 
+
+ me-central-1 (UAE) 
+
+ me-south-1 (Bahrain) 
+
+ af-south-1 (Cape Town) 
+
+ sa-east-1 (São Paulo) 
+
+ mx-central-1 (Mexico) 
+
+Writer
+
+ Palmyra Vision 7B 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ Palmyra X5 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ Palmyra X4 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+xAI
+
+ Grok 4.7 
+
+ Region 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-7 (Thailand) 
+
+ ap-east-2 (Taipei) 
+
+ me-central-1 (UAE) 
+
+ il-central-1 (Tel Aviv) 
+
+ sa-east-1 (São Paulo) 
+
+ us-gov-east-1 (AWS GovCloud (US-East)) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ Grok 4.6 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+ us-gov-east-1 (AWS GovCloud (US-East)) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ il-central-1 (Tel Aviv) 
+
+ me-central-1 (UAE) 
+
+ me-south-1 (Bahrain) 
+
+ af-south-1 (Cape Town) 
+
+ sa-east-1 (São Paulo) 
+
+ Grok 4.3 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-west-2 (Oregon) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-gov-west-1 (AWS GovCloud (US-West)) 
+
+Z.AI
+
+ GLM 4.7 Flash 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ sa-east-1 (São Paulo) 
+
+ GLM 4.7 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ sa-east-1 (São Paulo) 
+
+ GLM 5 
+
+ Region 
+ In-Region ( bedrock-mantle ) 
+ In-Region ( bedrock-runtime ) 
+ Geo ( bedrock-runtime ) 
+ Global ( bedrock-runtime ) 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-2 (Oregon) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-west-2 (London) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ sa-east-1 (São Paulo) 
+
+ GLM 5.3 
+
+ Region 
+ In-Region 
+ Geo 
+ Global 
+
+ us-east-1 (N. Virginia) 
+
+ us-east-2 (Ohio) 
+
+ us-west-1 (N. California) 
+
+ us-west-2 (Oregon) 
+
+ ca-central-1 (Canada) 
+
+ ca-west-1 (Calgary) 
+
+ eu-central-1 (Frankfurt) 
+
+ eu-central-2 (Zurich) 
+
+ eu-north-1 (Stockholm) 
+
+ eu-south-1 (Milan) 
+
+ eu-south-2 (Spain) 
+
+ eu-west-1 (Ireland) 
+
+ eu-west-2 (London) 
+
+ eu-west-3 (Paris) 
+
+ ap-east-2 (Taipei) 
+
+ ap-northeast-1 (Tokyo) 
+
+ ap-northeast-2 (Seoul) 
+
+ ap-northeast-3 (Osaka) 
+
+ ap-south-1 (Mumbai) 
+
+ ap-south-2 (Hyderabad) 
+
+ ap-southeast-1 (Singapore) 
+
+ ap-southeast-2 (Sydney) 
+
+ ap-southeast-3 (Jakarta) 
+
+ ap-southeast-4 (Melbourne) 
+
+ ap-southeast-5 (Malaysia) 
+
+ ap-southeast-6 (New Zealand) 
+
+ ap-southeast-7 (Thailand) 
+
+ il-central-1 (Tel Aviv) 
+
+ af-south-1 (Cape Town) 
+
+ mx-central-1 (Mexico) 
+
+ sa-east-1 (São Paulo) 
+
+ Javascript is disabled or is unavailable in your browser. 
+
+To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.
+
+ Document Conventions 
+
+Endpoint availability
+
+Inference profiles with limited model selection
+
+Did this page help you? - Yes
+
+Thanks for letting us know we're doing a good job!
+
+If you've got a moment, please tell us what we did right so we can do more of it.
+
+Did this page help you? - No
+
+Thanks for letting us know this page needs work. We're sorry we let you down.
+
+If you've got a moment, please tell us how we can make the documentation better.

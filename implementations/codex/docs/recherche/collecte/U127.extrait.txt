@@ -1,0 +1,628 @@
+GitHub - awslabs/agentcore-samples: Amazon Bedrock Agentcore accelerates AI agents into production with the scale, reliability, and security, critical to real-world deployment. · GitHub 
+
+ Skip to content 
+
+Navigation Menu
+
+ Sign in 
+
+ Products 
+
+ Platform 
+ GitHub Repository hosting, code review, and collaboration 
+
+ Copilot AI coding agent for tasks, projects, and automated work 
+
+ Build & Ship 
+ Actions CI/CD and automation 
+
+ Code Quality Quality analysis, fixes, and enforcement 
+
+ Codespaces Cloud development environments 
+
+ Secure 
+ Code Security Vulnerability detection and remediation 
+
+ Secret Protection Secret scanning and leak prevention 
+
+ All Features 
+
+ Developers 
+
+ Learn 
+ Documentation 
+
+ Training 
+
+ Certifications 
+
+ Build 
+ Build with Copilot 
+
+ Customize Copilot 
+
+ Integrations 
+
+ Explore 
+ Trending repos 
+
+ GitHub Sponsors 
+
+ Developer articles 
+
+ Changelog 
+ Changelog Your source for the latest features, improvements, and fixes across GitHub products, all in one place. 
+
+ Businesses 
+
+ By Stage 
+ Enterprises 
+
+ Team 
+
+ Startups 
+
+ Nonprofits 
+
+ By Industry 
+ Healthcare 
+
+ Financial services 
+
+ Manufacturing 
+
+ Government 
+
+ See all industries 
+
+ Evaluate GitHub 
+ Why GitHub 
+
+ Customer Stories 
+
+ Business insights 
+
+ Trust Center 
+
+ Add-ons 
+ GitHub Advanced Security Enterprise-grade code security 
+
+ Copilot for business Enterprise-grade AI features 
+
+ Premium Support Enterprise-grade 24/7 support 
+
+ Resources 
+
+ Learn & Connect 
+ Documentation 
+
+ Resource center 
+
+ Blog 
+
+ Events & webinars 
+
+ Community Forum 
+
+ Customer Stories 
+
+ Integrations 
+
+ Support 
+ Customer support 
+
+ Training 
+
+ GitHub Status 
+
+ Company 
+ About 
+
+ Partners 
+
+ Changelog 
+
+ GitHub Universe 
+ GitHub Universe The event for developers, by developers — talks, workshops, and what’s next for GitHub. 
+
+ Pricing 
+
+ Search / 
+
+ Sign in 
+ Sign up 
+Appearance settings
+
+ You signed in with another tab or window. Reload to refresh your session. 
+ You signed out in another tab or window. Reload to refresh your session. 
+ You switched accounts on another tab or window. Reload to refresh your session. 
+
+ Dismiss alert 
+
+{{ message }}
+
+ awslabs 
+
+ agentcore-samples 
+
+Repository navigation
+
+ Code 
+
+ Issues 278  ( 278 ) 
+
+ Pull requests 331  ( 331 ) 
+
+ Discussions 
+
+ Actions 
+
+ Projects 
+
+ Security and quality 
+
+ Insights 
+
+ More items 
+
+ agentcore-samples 
+ Public 
+
+ Notifications You must be signed in to change notification settings 
+
+ Fork 1.4k  ( 1.4k ) 
+
+ Star 3.5k  ( 3.5k ) You must be signed in to star a repository 
+
+ About 
+
+Amazon Bedrock Agentcore accelerates AI agents into production with the scale, reliability, and security, critical to real-world deployment.
+
+ aws.amazon.com/bedrock/agentcore/ 
+
+ Topics 
+
+ agent agentic-ai agents authentication bedrock core gateway identity-management memory-management production-code runtime 
+
+ Resources 
+
+ Readme 
+
+ Apache-2.0 license 
+
+ Code of conduct 
+
+ Code of conduct 
+
+ Contributing 
+
+ Contributing 
+
+ Security policy 
+
+ Security policy 
+
+ Activity 
+
+ Custom properties 
+
+ Stars 
+
+ 3.5k stars 
+
+ Watchers 
+
+ 26 watching 
+
+ Forks 
+
+ 1.4k forks 
+
+ Report repository 
+
+ main 
+
+ Branches Tags 
+
+ Go to file 
+
+ Code 
+ Open more actions menu 
+
+Latest commit
+
+History
+ 746 Commits 
+
+ 746 Commits 
+
+Folders and files
+
+ Name Name 
+ Last commit message 
+ 
+ Last commit date 
+
+ .github 
+
+ .github 
+
+ 00-getting-started 
+
+ 00-getting-started 
+
+ 01-features 
+
+ 01-features 
+
+ 02-use-cases 
+
+ 02-use-cases 
+
+ 03-integrations 
+
+ 03-integrations 
+
+ 04-infrastructure-as-code 
+
+ 04-infrastructure-as-code 
+
+ 05-blueprints 
+
+ 05-blueprints 
+
+ .checkov.yaml 
+
+ .checkov.yaml 
+
+ .gitignore 
+
+ .gitignore 
+
+ .secrets.baseline 
+
+ .secrets.baseline 
+
+ CODE_OF_CONDUCT.md 
+
+ CODE_OF_CONDUCT.md 
+
+ CONTRIBUTING.md 
+
+ CONTRIBUTING.md 
+
+ CONTRIBUTORS.md 
+
+ CONTRIBUTORS.md 
+
+ LICENSE 
+
+ LICENSE 
+
+ MIGRATION.md 
+
+ MIGRATION.md 
+
+ NOTICE 
+
+ NOTICE 
+
+ README.md 
+
+ README.md 
+
+ pyproject.toml 
+
+ pyproject.toml 
+
+ requirements.txt 
+
+ requirements.txt 
+
+ uv.lock 
+
+ uv.lock 
+
+ View all files 
+
+Repository files navigation
+
+ README 
+
+ Code of conduct 
+
+ Contributing 
+
+ Apache-2.0 license 
+
+ Security 
+
+ More items 
+
+ Amazon Bedrock AgentCore Samples
+
+ Deploy and operate AI agents securely at scale - using any framework and model
+
+ Documentation 
+ ◆ Python SDK 
+ ◆ AgentCore CLI 
+ ◆ Discord 
+
+Welcome to the Amazon Bedrock AgentCore Samples repository!
+
+Amazon Bedrock AgentCore is both framework-agnostic and model-agnostic, giving you the flexibility to deploy and operate advanced AI agents securely and at scale. Whether you’re building with Strands Agents , CrewAI , LangGraph , LlamaIndex , or any other framework—and running them on any Large Language Model (LLM)—Amazon Bedrock AgentCore provides the infrastructure to support them. By eliminating the undifferentiated heavy lifting of building and managing specialized agent infrastructure, Amazon Bedrock AgentCore lets you bring your preferred framework and model, and deploy without rewriting code.
+
+This collection provides examples and tutorials to help you understand, implement, and integrate Amazon Bedrock AgentCore capabilities into your applications.
+
+ Migrating from the Starter Toolkit? This repository is transitioning from the Bedrock AgentCore Starter Toolkit to the new AgentCore CLI . Samples that still depend on the Starter Toolkit are in legacy/ and will be updated over the coming weeks. See MIGRATION.md for the full old-path to new-path mapping.
+
+🎥 Video
+
+Build your first production-ready AI agent with Amazon Bedrock AgentCore. We’ll take you beyond prototyping and show you how to productionize your first agentic AI application using Amazon Bedrock AgentCore.
+
+📁 Repository Structure
+
+🚀 getting-started/ 
+
+ Your First Agent in Minutes 
+
+Get up and running with the AgentCore CLI — the fastest way to create, develop, and deploy agents on Amazon Bedrock AgentCore.
+
+ python/ — Python agent samples (Code Interpreter, Gateway, Memory, Identity, and more)
+
+ typescript/ — TypeScript agent samples
+
+🧩 features/ 
+
+ AgentCore Capabilities Deep Dives 
+
+Focused examples for individual AgentCore capabilities:
+
+ Runtime — Secure, serverless runtime for deploying agents and tools at scale
+
+ Gateway — Convert APIs, Lambda functions, and services into MCP-compatible tools
+
+ Identity — Agent identity and access management across AWS and third-party apps
+
+ Memory — Managed memory infrastructure for personalized agent experiences
+
+ Tools — Built-in Code Interpreter, Browser Tool, Web Search Tool
+
+ Observability — Trace, debug, and monitor agent performance with OpenTelemetry
+
+ Evaluation — Built-in and custom evaluators for on-demand and online evaluation
+
+ Policy — Fine-grained access control with Cedar policies
+
+💡 end-to-end/ 
+
+ Complete Applications 
+
+Production-ready use cases that combine multiple AgentCore capabilities to solve real business problems. Each includes deployment instructions, architecture diagrams, and testing guides.
+
+🔌 integrations/ 
+
+ Connect AgentCore to Your Stack 
+
+ identity-providers/ — Okta, Entra, Cognito, and other IdP integrations
+
+ observability/ — Grafana, Datadog, Dynatrace, and other monitoring platforms
+
+ data-platforms/ — Data lake, warehouse, and analytics integrations
+
+ ux-examples/ — Streamlit, AG-UI, and other frontend patterns
+
+🏗️ infrastructure-as-code/ 
+
+ Deployment Automation 
+
+Production-ready templates for provisioning AgentCore resources with CloudFormation, AWS CDK, or Terraform.
+
+🚀 blueprints/ 
+
+ Full-Stack Reference Applications 
+
+Complete, deployment-ready agentic applications with integrated services, authentication, and business logic you can customize for your use case.
+
+Quick Start with the AgentCore CLI
+
+The AgentCore CLI is the recommended way to create, develop, and deploy agents on Amazon Bedrock AgentCore. It replaces the previous Starter Toolkit with a streamlined project-based workflow.
+
+Step 1: Prerequisites
+
+An AWS account with credentials configured ( aws configure )
+
+ Node.js 20.x or later
+
+ uv (for Python agents) or Node.js (for TypeScript agents)
+
+Model Access: Anthropic Claude 4.0 enabled in Amazon Bedrock console 
+
+AWS Permissions:
+
+ BedrockAgentCoreFullAccess managed policy
+
+ AmazonBedrockFullAccess managed policy
+
+Step 2: Install the CLI and Create a Project
+
+ # Install the AgentCore CLI 
+npm install -g @aws/agentcore
+
+ # Create a new project (interactive wizard) 
+agentcore create
+ cd my-agent 
+
+The create wizard scaffolds a ready-to-run project with your choice of framework (Strands Agents, LangGraph, Google ADK, OpenAI, and more) and language (Python or TypeScript).
+
+Step 3: Develop Locally
+
+ # Start the local development server 
+agentcore dev 
+
+Your agent is now running locally. The CLI watches for file changes and provides a local invocation endpoint for testing.
+
+Step 4: Deploy to AWS
+
+ # Deploy to Amazon Bedrock AgentCore 
+agentcore deploy
+
+ # Test your deployed agent 
+agentcore invoke 
+
+Add More Capabilities
+
+ agentcore add memory # Add managed memory 
+agentcore add identity # Add identity provider 
+agentcore add evaluator # Add LLM-as-a-Judge evaluation 
+agentcore add online-eval # Enable continuous evaluation 
+agentcore deploy # Sync changes to AWS 
+
+Congratulations! Your agent is now running on Amazon Bedrock AgentCore runtime.
+
+For the full CLI reference, see the AgentCore CLI documentation .
+
+Running a Notebook
+
+Some samples in this repository are provided as Jupyter notebooks:
+
+Create and activate a virtual environment
+
+ python -m venv .venv
+ source .venv/bin/activate 
+
+Install dependencies
+
+ pip install -r requirements.txt 
+
+Export/Activate required AWS Credentials for the notebook to run
+
+Register your virtual environment as a kernel for Jupyter notebook to use
+
+ python -m ipykernel install --user --name=notebook-venv --display-name= " Python (notebook-venv) " 
+
+You can list your kernels using:
+
+ jupyter kernelspec list 
+
+Run the notebook and ensure the correct kernel is selected
+
+ jupyter notebook path/to/your/notebook.ipynb 
+
+ Important: After opening the notebook in Jupyter, make sure to select the correct kernel by going to Kernel → Change kernel → select "Python (notebook-venv)" to ensure your virtual environment packages are available.
+
+🔗 Related Links
+
+ AgentCore CLI 
+
+ Amazon Bedrock AgentCore Documentation 
+
+ Getting started with Amazon Bedrock AgentCore - Workshop 
+
+ Diving Deep into Bedrock AgentCore - Workshop 
+
+ Amazon Bedrock AgentCore pricing 
+
+ Amazon Bedrock AgentCore FAQs 
+
+🤝 Contributing
+
+We welcome contributions! Please see our Contributing Guidelines for details on:
+
+Adding new samples
+
+Improving existing examples
+
+Reporting issues
+
+Suggesting enhancements
+
+📄 License
+
+This project is licensed under the Apache License 2.0 - see the LICENSE file for details.
+
+Contributors
+
+ About 
+
+Amazon Bedrock Agentcore accelerates AI agents into production with the scale, reliability, and security, critical to real-world deployment.
+
+ aws.amazon.com/bedrock/agentcore/ 
+
+ Topics 
+
+ agent agentic-ai agents authentication bedrock core gateway identity-management memory-management production-code runtime 
+
+ Resources 
+
+ Readme 
+
+ Apache-2.0 license 
+
+ Code of conduct 
+
+ Code of conduct 
+
+ Contributing 
+
+ Contributing 
+
+ Security policy 
+
+ Security policy 
+
+ Activity 
+
+ Custom properties 
+
+ Stars 
+
+ 3.5k stars 
+
+ Watchers 
+
+ 26 watching 
+
+ Forks 
+
+ 1.4k forks 
+
+ Report repository 
+
+ Releases 
+
+ Packages 
+
+ Used by 
+
+ Contributors 
+
+ Languages 
+
+ Generated from amazon-archives/__template_Apache-2.0 
+
+Footer
+
+ © 2026 GitHub, Inc.
+
+Footer navigation
+
+ Terms 
+
+ Privacy 
+
+ Security 
+
+ Status 
+
+ Community 
+
+ Docs 
+
+ Contact 
+
+ Manage cookies
+
+ Do not share my personal information
+
+ You can’t perform that action at this time.

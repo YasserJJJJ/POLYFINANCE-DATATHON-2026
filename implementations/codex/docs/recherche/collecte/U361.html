@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Web Search Tool - Amazon Bedrock AgentCore</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="gateway-target-connector-web-search-tool" /><meta name="default_state" content="gateway-target-connector-web-search-tool" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html" /><link rel="alternate" type="text/markdown" href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.md" title="Markdown version" /><meta name="description" content="AI agents are transforming how organizations interact with information, but they face a fundamental limitation: their knowledge is frozen at training time. When a user asks about today’s stock prices or a software release that shipped an hour ago, an agent relying solely on its training data cannot provide accurate answers." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon Bedrock AgentCore" /><meta name="guide" content="Developer Guide" /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html" hreflang="id-id" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html" hreflang="id" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html" hreflang="de-de" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html" hreflang="de" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html" hreflang="en-us" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html" hreflang="en" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html" hreflang="es-es" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html" hreflang="es" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html" hreflang="fr-fr" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html" hreflang="fr" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html" hreflang="it-it" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html" hreflang="it" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html" hreflang="ja-jp" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html" hreflang="ja" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html" hreflang="ko-kr" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html" hreflang="ko" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html" hreflang="pt-br" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html" hreflang="pt" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_cn/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html" hreflang="zh-cn" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_tw/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html" hreflang="zh-tw" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html" hreflang="x-default" /><meta name="feedback-item" content="bedrock-agentcore" /><meta name="this_doc_product" content="Amazon Bedrock AgentCore" /><meta name="this_doc_guide" content="Developer Guide" /><head xmlns="http://www.w3.org/1999/xhtml"> <script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"/></head>
+<script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'bedrock-agentcore'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="Web Search Tool" /><meta name="uiVersion" content="2024.10" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><p><a href="gateway-target-connector-web-search-tool.md">View a markdown version of this page</a></p><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Web Search Tool - Amazon Bedrock AgentCore</title><meta name="pdf" content="/pdfs/bedrock-agentcore/latest/devguide/bedrock-agentcore-dg.pdf#gateway-target-connector-web-search-tool" /><meta name="rss" content="bedrock-agentcore-dg.rss" /><meta name="forums" content="https://repost.aws/search/content?globalSearch=Amazon Bedrock AgentCore" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=bedrock-agentcore&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon Bedrock AgentCore",
+        "item" : "https://docs.aws.amazon.com/bedrock-agentcore/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Amazon Bedrock AgentCore Gateway: A secure AI gateway for agents, tools, and models",
+        "item" : "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Supported targets for Amazon Bedrock AgentCore gateways",
+        "item" : "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-supported-targets.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 6,
+        "name" : "MCP targets",
+        "item" : "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-targets-mcp.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 7,
+        "name" : "Built-in connectors as targets",
+        "item" : "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-target-connectors.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 8,
+        "name" : "Web Search Tool",
+        "item" : "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-target-connectors.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/bedrock-agentcore/latest/devguide/bedrock-agentcore-dg.pdf#gateway-target-connector-web-search-tool" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/bedrock-agentcore/index.html">Amazon Bedrock AgentCore</a><a href="what-is-bedrock-agentcore.html">Developer Guide</a></div><div id="page-toc-src"><a href="#gateway-target-connector-web-search-tool-key-capabilities">Key capabilities</a><a href="#gateway-target-connector-web-search-tool-web-index">Purpose-built web index</a><a href="#gateway-target-connector-web-search-tool-privacy">Private by design</a><a href="#gateway-target-connector-web-search-tool-how-it-works">How it works</a><a href="#gateway-target-connector-web-search-tool-use-cases">Use cases</a><a href="#gateway-target-connector-web-search-tool-setup">Set up Web Search Tool</a><a href="#gateway-target-connector-web-search-tool-harness">Use with a harness</a><a href="#gateway-target-connector-web-search-tool-claude">Use Web Search Tool with Claude</a><a href="#gateway-target-connector-web-search-tool-domain-filtering">Configure domain filtering</a><a href="#gateway-target-connector-web-search-tool-service-role">Configure the Gateway Service Role</a><a href="#gateway-target-connector-web-search-tool-input-schema">Input schema</a><a href="#gateway-target-connector-web-search-tool-response-format">Response format</a><a href="#gateway-target-connector-web-search-tool-availability">Availability</a><a href="#gateway-target-connector-web-search-tool-acceptable-use">Acceptable use</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="gateway-target-connector-web-search-tool">Web Search Tool</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>AI agents are transforming how organizations interact with information, but they face a fundamental limitation: their knowledge is frozen at training time. When a user asks about today’s stock prices or a software release that shipped an hour ago, an agent relying solely on its training data cannot provide accurate answers.</p><p>Building custom web search integrations to solve this is costly — procuring third-party search APIs, managing keys and quotas and rate limits, parsing inconsistent result formats across providers, building snippet extraction logic so models get relevant passages instead of raw HTML, reasoning about where customer queries travel and how data might be retained, and maintaining freshness and coverage over time. Each of these is a project in itself.</p><p>Web Search Tool on Amazon Bedrock AgentCore eliminates that complexity. It is a fully managed, MCP-compliant web search capability that lets your agents retrieve information from the web without any infrastructure overhead. It is available as a managed connector that you connect to your AgentCore Gateway. Agents discover it with a standard <code class="code">tools/list</code> call and invoke it like any other Model Context Protocol tool. There are no search APIs to provision, no outbound credentials to manage, and no result-parsing glue to maintain.</p><p>If your agent needs a finished answer with citations instead of ranked results, use <a href="./gateway-target-connector-web-answer-tool.html">Web Answer</a>.</p><p>To search the web directly from your code without a gateway, use <a href="./web-search-api.html">AgentCore Web Search</a>. Its <code class="code">InvokeWebSearch</code> API takes the search text in the <code class="code">searchQuery</code> field. The MCP tool that this connector exposes takes it in the <code class="code">query</code> field.</p><p>The following sections walk through the key capabilities, the architecture of the purpose-built web index, privacy guarantees, use cases, and how to set up Web Search Tool.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><p><a href="#gateway-target-connector-web-search-tool-key-capabilities">Key capabilities</a></p></li><li><p><a href="#gateway-target-connector-web-search-tool-web-index">Purpose-built web index</a></p></li><li><p><a href="#gateway-target-connector-web-search-tool-privacy">Private by design</a></p></li><li><p><a href="#gateway-target-connector-web-search-tool-how-it-works">How it works</a></p></li><li><p><a href="#gateway-target-connector-web-search-tool-use-cases">Use cases</a></p></li><li><p><a href="#gateway-target-connector-web-search-tool-setup">Set up Web Search Tool</a></p></li><li><p><a href="#gateway-target-connector-web-search-tool-harness">Use with a harness</a></p></li><li><p><a href="#gateway-target-connector-web-search-tool-claude">Use Web Search Tool with Claude</a></p></li><li><p><a href="#gateway-target-connector-web-search-tool-domain-filtering">Configure domain filtering</a></p></li><li><p><a href="#gateway-target-connector-web-search-tool-service-role">Configure the Gateway Service Role</a></p></li><li><p><a href="#gateway-target-connector-web-search-tool-input-schema">Input schema</a></p></li><li><p><a href="#gateway-target-connector-web-search-tool-response-format">Response format</a></p></li><li><p><a href="#gateway-target-connector-web-search-tool-availability">Availability</a></p></li><li><p><a href="#gateway-target-connector-web-search-tool-acceptable-use">Acceptable use</a></p></li></ul></div>
+      <h2 id="gateway-target-connector-web-search-tool-key-capabilities">Key capabilities</h2>
+      <div class="itemizedlist">
+          
+          
+          
+          
+          
+          
+          
+      <ul class="itemizedlist"><li class="listitem">
+            <p>
+               <strong>Up-to-date information access</strong> — Retrieve current web results with titles, URLs, snippets, and publication dates to ground agent responses in up-to-date information.</p>
+         </li><li class="listitem">
+            <p>
+               <strong>Zero infrastructure management</strong> — No third-party search APIs to provision or scaling to configure. The Gateway exposes web search as a standard MCP tool automatically.</p>
+         </li><li class="listitem">
+            <p>
+               <strong>Framework agnostic</strong> — Works with Strands Agents, LangChain, LangGraph, CrewAI, or any MCP-compatible client through the standard Model Context Protocol.</p>
+         </li><li class="listitem">
+            <p>
+               <strong>Domain and date filtering</strong> — Restrict searches with a target-level domain exclude list. In connector version <code class="code">1.2.0</code> and later, targets also support a domain include list, and agents can pass per-request domain include and exclude lists and published-date bounds.</p>
+         </li><li class="listitem">
+            <p>
+               <strong>Purpose-built web index</strong> — Backed by an Amazon-operated web index spanning tens of billions of documents.</p>
+         </li><li class="listitem">
+            <p>
+               <strong>Knowledge graph for high-confidence facts</strong> — Grounds entities and their relationships to provide factual answers rather than leaving the model to infer them from extracted page text.</p>
+         </li><li class="listitem">
+            <p>
+               <strong>Semantic snippet extraction</strong> — Pulls semantically relevant passages from each web page, optimized for a model’s context window, rather than returning raw HTML or full pages.</p>
+         </li></ul></div>
+    
+      <h2 id="gateway-target-connector-web-search-tool-web-index">Purpose-built web index</h2>
+      <p>Many solutions that add web search to an agent are wrappers over a third-party search engine. Web Search Tool on Amazon Bedrock AgentCore is different — it is backed by a web index that Amazon builds and operates directly.</p>
+      <div class="variablelist">
+          
+          
+          
+          
+      <dl>
+            <dt><span class="term">
+               <strong>Broad coverage</strong>
+            </span></dt>
+            <dd>
+               <p>The index spans tens of billions of documents. That scale matters for coverage — long-tail questions about niche libraries or obscure product specifications can be more effectively answered when the index is broad rather than limited to the most popular pages.</p>
+            </dd>
+          
+            <dt><span class="term">
+               <strong>Continuously updated</strong>
+            </span></dt>
+            <dd>
+               <p>Amazon refreshes the index on an ongoing basis, reflecting new and changed content within minutes. For agents answering questions about price movements, or just-published announcements, that recency window is the difference between a grounded answer and a confidently wrong one. When your agent searches for "what happened today," the results reflect what actually happened today.</p>
+            </dd>
+          
+            <dt><span class="term">
+               <strong>Knowledge graph for high-confidence facts</strong>
+            </span></dt>
+            <dd>
+               <p>Web Search Tool includes a built-in knowledge graph that grounds entities and their relationships. For factual questions — such as who holds a role or when something was founded — the knowledge graph provides high-confidence answers rather than leaving the model to infer them from extracted page text. This reduces the kind of subtle factual drift that can occur when an agent stitches together an answer from snippets alone.</p>
+            </dd>
+          
+            <dt><span class="term">
+               <strong>Semantic snippet extraction optimized for model context</strong>
+            </span></dt>
+            <dd>
+               <p>Rather than handing the model a raw HTML dump or a full page, the tool performs semantically relevant snippet extraction. It pulls the passages from each web page that actually bear on the query and returns them in a form optimized for a model’s context window. The result is denser, more relevant context per token — the model sees the parts that matter and spends fewer tokens on boilerplate and navigation chrome, which helps improve the precision of cited answers.</p>
+            </dd>
+         </dl></div>
+    
+      <h2 id="gateway-target-connector-web-search-tool-privacy">Private by design</h2>
+      <p>For many enterprises, the question that stalls a web search rollout isn’t "does it work" — it’s "where do my users' queries go, and what happens to them?" Web Search Tool is built so those answers are straightforward.</p>
+      <div class="variablelist">
+          
+      <dl>
+            <dt><span class="term">
+               <strong>Queries never leave AWS
+               </strong>
+            </span></dt>
+            <dd>
+               <p>When your agent issues a search, the query is served entirely within AWS infrastructure. Customer queries are not sent to a third-party search engine or routed outside AWS. The Gateway authenticates to the AWS-owned connector and routes the request internally, so the data path stays inside AWS end to end. For teams with data egress concerns, this removes an entire category of review.</p>
+            </dd>
+         </dl></div>
+    
+      <h2 id="gateway-target-connector-web-search-tool-how-it-works">How it works</h2>
+      <p>The Web Search Tool is a built-in <strong>connector</strong>. The Gateway handles schema management, parameter governance, endpoint resolution, and service authentication.</p>
+      <div class="orderedlist">
+          
+          
+          
+          
+          
+      <ol style="list-style-type:arabic ! important;"><li>
+            <p>
+               <strong>Gateway setup</strong> — Create a Gateway and add a Web Search Tool target using <code class="code">connectorId: "web-search"</code>. The Gateway snapshots the tool schema and provisions the integration.</p>
+         </li><li>
+            <p>
+               <strong>Tool discovery</strong> — Your agent calls <code class="code">tools/list</code> on the Gateway endpoint and discovers the <code class="code">WebSearch</code> tool with its input schema.</p>
+         </li><li>
+            <p>
+               <strong>Search invocation</strong> — Your agent calls <code class="code">tools/call</code> with a natural language query (up to 200 characters) and, in connector version <code class="code">1.2.0</code> and later, optional request-level filters for domains and published dates. The Gateway authenticates to the backend and routes the request internally within AWS.</p>
+         </li><li>
+            <p>
+               <strong>Structured results</strong> — The tool returns results with semantically relevant text snippets, URLs, titles, and publication dates in both text and structured JSON formats.</p>
+         </li><li>
+            <p>
+               <strong>Grounded response</strong> — Your agent uses the results to compose a response with cited sources.</p>
+         </li></ol></div>
+    
+      <h2 id="gateway-target-connector-web-search-tool-use-cases">Use cases</h2>
+      <div class="itemizedlist">
+          
+          
+          
+          
+      <ul class="itemizedlist"><li class="listitem">
+            <p>
+               <strong>Up-to-date research</strong> — Answer questions about current events, stock prices, or recent announcements by searching the web and synthesizing results with source citations.</p>
+         </li><li class="listitem">
+            <p>
+               <strong>Fact-checking</strong> — Verify claims in documents by searching for primary sources and confirming or correcting figures using knowledge graph-backed factual answers.</p>
+         </li><li class="listitem">
+            <p>
+               <strong>Competitive intelligence</strong> — Monitor competitor announcements, product launches, or pricing changes from public web sources.</p>
+         </li><li class="listitem">
+            <p>
+               <strong>Stale knowledge elimination</strong> — Give agents access to information published after their training cutoff, such as new software releases, policy changes, or breaking developments.</p>
+         </li></ul></div>
+    
+      <h2 id="gateway-target-connector-web-search-tool-setup">Set up Web Search Tool</h2>
+      <p>For instructions on how to create a Gateway Target with the Web Search Tool connector configuration, including setup examples using the Python SDK and CLI, see <a href="./gateway-add-target-api-target-config.html#gateway-add-target-api-connector-web-search-setup">Set up Web Search Tool</a> in the target configuration guide.</p>
+    
+      <h2 id="gateway-target-connector-web-search-tool-harness">Use with a harness</h2>
+      <p>To give an <a href="./harness.html">AgentCore harness</a> web search capability, attach the gateway that you created in Set up Web Search Tool to the harness as an <code class="code">agentcore_gateway</code> tool. The harness execution role requires the <code class="code">bedrock-agentcore:InvokeGateway</code> permission on the gateway ARN. For the end-to-end walkthrough, see <a href="./harness-tools.html">Tools</a> in the harness documentation.</p>
+    
+      <h2 id="gateway-target-connector-web-search-tool-claude">Use Web Search Tool with Claude</h2>
+      <p>Add Web Search Tool to Claude when you want Claude to answer with current, cited web results through a gateway in your own AWS account. Claude connects to the gateway as a custom connector.</p>
+      <p>Claude calls the gateway over Model Context Protocol (MCP) with an Open Authorization (OAuth) access token. For this reason, the gateway uses JSON Web Token (JWT) inbound authorization instead of AWS Identity and Access Management (IAM).</p>
+      <p>Before you begin, make sure that you have the following:</p>
+      <div class="itemizedlist">
+          
+          
+          
+          
+      <ul class="itemizedlist"><li class="listitem">
+            <p>An AWS account in an AWS Region that offers Web Search Tool.</p>
+         </li><li class="listitem">
+            <p>Permissions to create Amazon Cognito user pools and AgentCore gateways.</p>
+         </li><li class="listitem">
+            <p>The <a href="https://github.com/aws/agentcore-cli" rel="noopener noreferrer" target="_blank"><span>AgentCore command line interface (CLI)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> installed.</p>
+         </li><li class="listitem">
+            <p>A Claude plan that supports custom connectors.</p>
+         </li></ul></div>
+      <p>To create the user pool and app client, complete the following steps:</p>
+      <div class="orderedlist">
+          
+          
+          
+          
+          
+          
+      <ol style="list-style-type:arabic ! important;"><li>
+            <p>Open the Amazon Cognito console at https://console.aws.amazon.com/cognito/.</p>
+         </li><li>
+            <p>Create a user pool with a domain.</p>
+         </li><li>
+            <p>In the user pool, create an app client with a client secret.</p>
+         </li><li>
+            <p>For the app client, select the authorization code grant.</p>
+         </li><li>
+            <p>Add the <code class="code">openid</code>, <code class="code">email</code>, and <code class="code">profile</code> scopes.</p>
+         </li><li>
+            <p>Add the callback URL <code class="code">https://claude.ai/api/mcp/auth_callback</code>.</p>
+         </li></ol></div>
+      <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Instead of Amazon Cognito, you can use any OpenID Connect identity provider that supports the authorization code grant.</p></div></div>
+      <p>To create the gateway and the Web Search Tool target, complete the following steps:</p>
+      <div class="orderedlist">
+          
+          
+          
+          
+      <ol style="list-style-type:arabic ! important;"><li>
+            <p>Create an AgentCore CLI project without an agent. Run the following AgentCore CLI commands:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (bash)--><code class="bash ">agentcore create --name WebSearchClaude --project-name WebSearchClaude --no-agent
+cd WebSearchClaude</code></pre>
+         </li><li>
+            <p>Add a gateway that uses your app client for JWT inbound authorization. In the following command, replace <code class="code">&lt;region&gt;</code> with your Region code, <code class="code">&lt;user-pool-id&gt;</code> with your user pool ID, and <code class="code">&lt;app-client-id&gt;</code> with your app client ID. Then run the following AgentCore CLI command:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (bash)--><code class="bash ">agentcore add gateway --name web-search-claude --protocol-type MCP --authorizer-type CUSTOM_JWT \
+  --discovery-url https://cognito-idp.&lt;region&gt;.amazonaws.com/&lt;user-pool-id&gt;/.well-known/openid-configuration \
+  --allowed-clients &lt;app-client-id&gt; --no-semantic-search</code></pre>
+            <p>The <code class="code">--no-semantic-search</code> option keeps Web Search Tool as the only tool on the gateway.</p>
+         </li><li>
+            <p>Add the Web Search Tool target. Run the following AgentCore CLI command:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (bash)--><code class="bash ">agentcore add gateway-target --name amazon-web-search --gateway web-search-claude --type connector --connector web-search</code></pre>
+            <p>To add a target-level domain exclude list, add the <code class="code">--exclude-domains</code> option to the <code class="code">add gateway-target</code> command.</p>
+         </li><li>
+            <p>Deploy the project. Run the following AgentCore CLI command:</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (bash)--><code class="bash ">agentcore deploy -y</code></pre>
+            <p>The deploy output includes the gateway URL.</p>
+         </li></ol></div>
+      <p>To add the connector in Claude, complete the following steps:</p>
+      <div class="orderedlist">
+          
+          
+          
+          
+          
+      <ol style="list-style-type:arabic ! important;"><li>
+            <p>In Claude, add a custom connector.</p>
+         </li><li>
+            <p>For the server URL, enter the gateway URL from the deploy output.</p>
+         </li><li>
+            <p>Select the option to use your own OAuth client.</p>
+         </li><li>
+            <p>Enter the app client ID and secret.</p>
+         </li><li>
+            <p>Sign in with a user from your user pool.</p>
+         </li></ol></div>
+      <p>Claude lists the tool as <strong>Web Search</strong> and marks it read-only.</p>
+      <p>Connector version <code class="code">1.3.0</code> adds the tool annotations that Claude uses. Targets that you create without a version use <code class="code">1.3.0</code>, the default. To use an existing target with Claude, update the target to <code class="code">1.3.0</code>. For more information about connector versions, see <a href="./gateway-target-connector-versions.html">Connector versions</a>.</p>
+      <p>The citation requirements in <a href="#gateway-target-connector-web-search-tool-acceptable-use">Acceptable use</a> apply to answers that Claude shows to your users.</p>
+    
+      <h2 id="gateway-target-connector-web-search-tool-domain-filtering">Configure domain filtering</h2>
+      <p>Web Search Tool supports 2 layers of filtering that compose on every request:</p>
+      <div class="itemizedlist">
+          
+          
+      <ul class="itemizedlist"><li class="listitem">
+            <p>
+               <strong>Target-level domain exclude list and include list.</strong> When setting up the target, the administrator configures lists of domains that the target excludes from or restricts every search to. Both lists are hidden from the calling agent and applied to every request that flows through the target.</p>
+         </li><li class="listitem">
+            <p>
+               <strong>Request-level filters (connector version <code class="code">1.2.0</code> and later).</strong> The calling agent can pass an optional <code class="code">filters</code> object with each <code class="code">tools/call</code> request:</p>
+            <div class="itemizedlist">
+                
+                
+            <ul class="itemizedlist"><li class="listitem">
+                  <p>
+                     <code class="code">domainFilter</code> — <code class="code">include</code> and <code class="code">exclude</code> lists, up to 100 domains per list. Web Search Tool returns results only from domains on the <code class="code">include</code> list and drops any result whose domain appears on the <code class="code">exclude</code> list.</p>
+               </li><li class="listitem">
+                  <p>
+                     <code class="code">publishedDateFilter</code> — <code class="code">from</code> and <code class="code">to</code> bounds, inclusive, ISO-8601 UTC. Web Search Tool returns only results with a published date that falls on or between the <code class="code">from</code> and <code class="code">to</code> dates.</p>
+               </li></ul></div>
+         </li></ul></div>
+      <p>Request-level filters compose with the target-level exclude list and include list:</p>
+      <div class="itemizedlist">
+          
+          
+      <ul class="itemizedlist"><li class="listitem">
+            <p>A domain is dropped from results if it appears on either the target-level exclude list or the request-level exclude list.</p>
+         </li><li class="listitem">
+            <p>A domain is returned only if it appears on every include list that is set. If only the target-level include list or only the request-level include list is set, that list is honored. If both are set, only domains present in both are returned. If the two share no domains, no results are returned.</p>
+         </li></ul></div>
+      <p>Request-level filters cannot override the target-level exclude list or expand results beyond the target-level include list.</p>
+      <p>For configuration examples and details, see <a href="./gateway-add-target-api-target-config.html#gateway-add-target-api-connector-web-search-domain-filtering">Configure domain filtering</a> in the target configuration guide.</p>
+    
+      <h2 id="gateway-target-connector-web-search-tool-service-role">Configure the Gateway Service Role</h2>
+      <p>The Gateway needs a service role that allows the AgentCore service to perform actions on your behalf. For the required IAM permissions and policy configuration, see <a href="./gateway-add-target-api-target-config.html#gateway-add-target-api-connector-web-search-service-role">Configure the Gateway Service Role</a> in the target configuration guide.</p>
+    
+      <h2 id="gateway-target-connector-web-search-tool-input-schema">Input schema</h2>
+      <p>The Web Search Tool accepts the following input schema when invoked through <code class="code">tools/call</code>. The <code class="code">filters</code> field is available only when the target is pinned to connector version <code class="code">1.2.0</code> or later. On earlier versions, the schema exposes only <code class="code">query</code> and <code class="code">maxResults</code>.</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (json)--><code class="json "><span>{</span>
+  "inputSchema": <span>{</span>
+    "type": "object",
+    "properties": <span>{</span>
+      "query": <span>{</span>
+        "description": "The search query string",
+        "type": "string"
+      },
+      "maxResults": <span>{</span>
+        "description": "Maximum number of results to return. Valid range: 1-25. Defaults to 10.",
+        "type": "integer"
+      },
+      "filters": <span>{</span>
+        "description": "Optional request-level filters (connector version 1.2.0+). Applied on top of the target-level exclude list and include list.",
+        "type": "object",
+        "properties": <span>{</span>
+          "domainFilter": <span>{</span>
+            "description": "Per-call domain filter. Include and exclude lists each hold up to 100 domains. Root domain matches subdomains.",
+            "type": "object",
+            "properties": <span>{</span>
+              "include": <span>{</span>
+                "description": "Restrict results to these domains.",
+                "type": "array",
+                "items": <span>{</span>"type": "string"}
+              },
+              "exclude": <span>{</span>
+                "description": "Drop results from these domains.",
+                "type": "array",
+                "items": <span>{</span>"type": "string"}
+              }
+            }
+          },
+          "publishedDateFilter": <span>{</span>
+            "description": "Per-call published-date filter. Bounds inclusive, ISO-8601 UTC. Applies to web results only.",
+            "type": "object",
+            "properties": <span>{</span>
+              "from": <span>{</span>
+                "description": "Earliest publication date (ISO-8601 UTC).",
+                "type": "string"
+              },
+              "to": <span>{</span>
+                "description": "Latest publication date (ISO-8601 UTC).",
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "required": ["query"]
+  }
+}</code></pre>
+      <div class="table-container"><div class="table-contents"><table id="d0e1"><thead>
+               <tr>
+                  <th align="left" style="text-align: left;vertical-align: top;">Field</th>
+                  <th align="left" style="text-align: left;vertical-align: top;">Type</th>
+                  <th align="left" style="text-align: left;vertical-align: top;">Required</th>
+                  <th align="left" style="text-align: left;vertical-align: top;">Description</th>
+               </tr>
+            </thead>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>
+                        <code class="code">query</code>
+                     </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>string</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Yes</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>The search query string. Must be 200 characters or fewer.</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>
+                        <code class="code">maxResults</code>
+                     </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>integer</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>No</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Maximum number of results to return. Valid range: 1-25. Defaults to 10.</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>
+                        <code class="code">filters</code>
+                     </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>object</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>No</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Optional request-level filters. Available in connector version <code class="code">1.2.0</code> and later.</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>
+                        <code class="code">filters.domainFilter.include</code>
+                     </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>array of strings</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>No</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Domains to include. Up to 100 entries.</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>
+                        <code class="code">filters.domainFilter.exclude</code>
+                     </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>array of strings</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>No</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Domains to exclude. Up to 100 entries.</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>
+                        <code class="code">filters.publishedDateFilter.from</code>
+                     </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>string</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>No</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Earliest publication date, ISO-8601 UTC.</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>
+                        <code class="code">filters.publishedDateFilter.to</code>
+                     </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>string</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>No</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Latest publication date, ISO-8601 UTC.</p>
+                  </td>
+               </tr>
+            </table></div></div>
+    
+      <h2 id="gateway-target-connector-web-search-tool-response-format">Response format</h2>
+      <p>The Web Search Tool returns results in the following MCP-compliant format:</p>
+      <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (json)--><code class="json "><span>{</span>
+  "isError": false,
+  "content": [
+    <span>{</span>
+      "type": "text",
+      "text": "<span>{</span>\"id\":\"824f89d0\",\"results\":[<span>{</span>\"text\":\"Python 3.13 was released on October 7, 2024, featuring improvements to the interactive interpreter, experimental free-threaded mode, and a preliminary JIT compiler...\",\"publishedDate\":\"2024-10-07\",\"url\":\"https://example.com/python/releases/3.13\",\"title\":\"Python 3.13 Release Highlights\"}]}"
+    }
+  ]
+}</code></pre>
+      <div class="table-container"><div class="table-contents"><table id="d0e2"><thead>
+               <tr>
+                  <th align="left" style="text-align: left;vertical-align: top;">Field</th>
+                  <th align="left" style="text-align: left;vertical-align: top;">Type</th>
+                  <th align="left" style="text-align: left;vertical-align: top;">Required</th>
+                  <th align="left" style="text-align: left;vertical-align: top;">Description</th>
+               </tr>
+            </thead>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>
+                        <code class="code">text</code>
+                     </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>string</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Yes</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Text content or snippet of the search result</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>
+                        <code class="code">url</code>
+                     </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>string</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>No</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>URL of the source webpage</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>
+                        <code class="code">title</code>
+                     </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>string</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>No</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Title of the source webpage</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>
+                        <code class="code">publishedDate</code>
+                     </p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>string</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>No</p>
+                  </td>
+                  <td align="left" style="text-align: left;vertical-align: top;" tabindex="-1">
+                     <p>Publication date of the result</p>
+                  </td>
+               </tr>
+            </table></div></div>
+    
+      <h2 id="gateway-target-connector-web-search-tool-availability">Availability</h2>
+      <p>The Web Search Tool connector is available in the following AWS Regions:</p>
+      <div class="itemizedlist">
+          
+          
+          
+          
+          
+          
+          
+      <ul class="itemizedlist"><li class="listitem">
+            <p>US East (N. Virginia) <code class="code">us-east-1</code>
+            </p>
+         </li><li class="listitem">
+            <p>US East (Ohio) <code class="code">us-east-2</code>
+            </p>
+         </li><li class="listitem">
+            <p>US West (Oregon) <code class="code">us-west-2</code>
+            </p>
+         </li><li class="listitem">
+            <p>Europe (Ireland) <code class="code">eu-west-1</code>
+            </p>
+         </li><li class="listitem">
+            <p>Asia Pacific (Sydney) <code class="code">ap-southeast-2</code>
+            </p>
+         </li><li class="listitem">
+            <p>Asia Pacific (Tokyo) <code class="code">ap-northeast-1</code>
+            </p>
+         </li><li class="listitem">
+            <p>
+               AWS GovCloud (US-West) <code class="code">us-gov-west-1</code>
+            </p>
+         </li></ul></div>
+      <p>Because Amazon operates the full search stack, improvements to freshness, coverage, relevance, and snippet quality flow to your agents automatically through the same managed connector. No version upgrades or migrations are needed on your side.</p>
+    
+      <h2 id="gateway-target-connector-web-search-tool-acceptable-use">Acceptable use</h2>
+      <p>If you use Web Search Tool, you are responsible for your use, and any use by your end users, of content retrieved from Web Search Tool ("Search Results"). You must retain and display the source citations and links provided with each Search Result in any output you surface to your end users that uses the Search Result. You may not use Web Search Tool to (a) extract, store, or reproduce content from Search Results in bulk, or (b) build or populate a competing index or database.</p>
+   <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./gateway-target-connector-managed-kb.html">Managed Knowledge Bases</div><div id="next" class="next-link" accesskey="n" href="./gateway-target-connector-web-answer-tool.html">Web Answer</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=bedrock-agentcore&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=bedrock-agentcore&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock-agentcore/latest/devguide/gateway-target-connector-web-search-tool.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

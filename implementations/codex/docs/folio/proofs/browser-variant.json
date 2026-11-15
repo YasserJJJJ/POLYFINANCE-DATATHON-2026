@@ -1,0 +1,181 @@
+{
+  "mode": "variant",
+  "started_at": "2026-11-15T20:47:22.173Z",
+  "observations": [
+    {
+      "name": "historical_variant_preserves_parent",
+      "parent": "49ed5ae5903f41c297909b644ff7599a",
+      "child": "4a654c3cd06646c5a7765ff58820633d",
+      "source_revision": 5,
+      "comparison": 0.05,
+      "aws_request_ids": [
+        "5dd61b05-37e2-4aa3-a980-db114a5927de",
+        "b3653d2c-f217-4129-8d6f-d91feadf878e",
+        "323ee4a0-dad1-4c15-aedc-c7476e8a31c8",
+        "f4741c2a-b99d-45bb-99bb-06ddf54f578f"
+      ],
+      "stats": {
+        "bindings": {
+          "baseline": "/options/0/metrics",
+          "target_variant": "/options/1/metrics"
+        },
+        "baseline": {
+          "cagr_pct": 12.233,
+          "drawdown_peak_date": "2022-01-04",
+          "drawdown_trough_date": "2022-12-28",
+          "ending_value_cad": 44515.75,
+          "historical_expected_shortfall_95_pct": 2.905314,
+          "initial_value_cad": 25000,
+          "max_drawdown_pct": -26.871589,
+          "observed_intervals_per_year": 245.428558,
+          "total_return_pct": 78.063006,
+          "volatility_pct": 20.032058,
+          "worst_interval_pct": -5.83461
+        },
+        "target_variant": {
+          "cagr_pct": 13.775704,
+          "drawdown_peak_date": "2021-12-29",
+          "drawdown_trough_date": "2022-06-16",
+          "ending_value_cad": 47660.11,
+          "historical_expected_shortfall_95_pct": 2.191063,
+          "initial_value_cad": 25000,
+          "max_drawdown_pct": -18.678518,
+          "observed_intervals_per_year": 245.428558,
+          "total_return_pct": 90.64045,
+          "volatility_pct": 14.96334,
+          "worst_interval_pct": -5.597095
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/dossiers/examples",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/49ed5ae5903f41c297909b644ff7599a?revision=5",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/49ed5ae5903f41c297909b644ff7599a/revise",
+      "method": "POST"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/dossiers/examples",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/4a654c3cd06646c5a7765ff58820633d",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/49ed5ae5903f41c297909b644ff7599a?revision=5",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/4a654c3cd06646c5a7765ff58820633d",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/4a654c3cd06646c5a7765ff58820633d",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/4a654c3cd06646c5a7765ff58820633d",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/4a654c3cd06646c5a7765ff58820633d",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/4a654c3cd06646c5a7765ff58820633d",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/4a654c3cd06646c5a7765ff58820633d",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/4a654c3cd06646c5a7765ff58820633d",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/4a654c3cd06646c5a7765ff58820633d",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/4a654c3cd06646c5a7765ff58820633d",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/4a654c3cd06646c5a7765ff58820633d",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/4a654c3cd06646c5a7765ff58820633d",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/4a654c3cd06646c5a7765ff58820633d",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/4a654c3cd06646c5a7765ff58820633d",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/4a654c3cd06646c5a7765ff58820633d",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/4a654c3cd06646c5a7765ff58820633d",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/4a654c3cd06646c5a7765ff58820633d",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/4a654c3cd06646c5a7765ff58820633d",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/dossiers/examples",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/4a654c3cd06646c5a7765ff58820633d",
+      "method": "GET"
+    },
+    {
+      "url": "http://127.0.0.1:8768/api/folio/dossiers/49ed5ae5903f41c297909b644ff7599a?revision=5",
+      "method": "GET"
+    }
+  ],
+  "health": {
+    "status": "ok",
+    "version": "0.7.0",
+    "hosting": "local",
+    "application": "alphaforge",
+    "workspace": "/Users/vpro/Documents/ChatGPT/CALIBRE/Datathon_AlphaForge",
+    "inference": "AWS Bedrock",
+    "region": "us-east-1"
+  },
+  "status": "passed",
+  "finished_at": "2026-11-15T20:48:11.289Z"
+}

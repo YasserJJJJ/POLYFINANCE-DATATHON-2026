@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta content="Learn about the AWS CLI 2.40.3 transcribe commands." name="description" />
+
+  
+    <title>transcribe &#8212; AWS CLI 2.40.3 Command Reference</title>
+  <link rel="stylesheet" type="text/css" href="../../_static/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/override.css" />
+  <script src="/SdkStatic/sdk-priv.js" async="true"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/guzzle.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="create-call-analytics-category" href="create-call-analytics-category.html" />
+    <link rel="prev" title="write-records" href="../timestream-write/write-records.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-responsive.min.css" />
+  
+   
+
+<link rel="alternate" type="text/markdown" href="index.md" title="Markdown version" />
+  </head><body>
+  <div class="navbar navbar-fixed-top ">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="../../index.html">AWS CLI Command Reference</a>
+        <ul class="nav">
+<li><a class="nav-link" href="../../index.html">Home</a></li>
+<li><a class="nav-link" href="https://docs.aws.amazon.com/cli/latest/userguide/">User Guide</a></li>
+<li><a class="nav-link" href="https://forums.aws.amazon.com/forum.jspa?forumID=150">Forum</a></li>
+<li><a class="nav-link" href="https://github.com/aws/aws-cli">GitHub</a></li>
+        </ul>
+        <div class="pull-right" id="github-stars">
+          <iframe src="https://ghbtns.com/github-btn.html?user=aws&repo=aws-cli&type=watch&count=true&size=small"
+                  allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20px"  sandbox="allow-scripts"
+                  title="GitHub button showing the number of project stars."></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--REGION_DISCLAIMER_DO_NOT_REMOVE-->
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="create-call-analytics-category.html" title="create-call-analytics-category"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../timestream-write/write-records.html" title="write-records"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">AWS CLI 2.40.3 Command Reference</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">aws</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">transcribe</a></li> 
+      </ul>
+    </div>
+    <div class="container">
+        
+    <div class="top-links">
+      <ul class="breadcrumb pull-right">
+        <li>
+          <a href="../timestream-write/write-records.html" title="previous chapter (use the left arrow)">&larr; write-records</a>
+          <span class="divider">/</span>
+          
+        </li>
+          <li><a href="create-call-analytics-category.html" title="next chapter (use the right arrow)">create-call-analytics-category &rarr;</a></li>
+      </ul>
+    </div>
+  
+        <div class="document clearer">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo left-bar-other">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/logo.png" alt="Amazon Web Services logo" height="63" />
+  </a>
+</p>
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">transcribe</a><ul>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#available-commands">Available Commands</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+<div id="searchbox" style="display: none">
+    <h3>Quick search</h3>
+    <form class="form-search margin-top-1em" action="../../search.html" method="get">
+        <label for="searchbox">Search box</label>
+        <input id="searchbox" type="search" name="q" style="width: 105px" class="input-small search-query" autocomplete="off" />
+        <button type="submit" class="btn btn-small">Search</button>
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script src="../../_static/searchbox.js"></script><div class="left-bar-other">
+  <h3>Feedback</h3>
+  <p class="feedback">Did you find this page useful? Do you have a suggestion to improve the documentation? <a href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=AWS%20Command%20Line%20Interface&hidden_guide_name=Reference&topic_url=https%3A%2F%2Fdocs.aws.amazon.com%2Fcli%2Flatest%2Freference/transcribe/index.html">Give us feedback</a>.
+    <br />
+    If you would like to suggest an improvement or fix for the AWS CLI, check out our <a href="https://github.com/aws/aws-cli/blob/v2/CONTRIBUTING.rst">contributing guide</a> on GitHub.</p>
+</div><div class="left-bar-other">
+  <h3>User Guide</h3>
+  <p>First time using the AWS CLI? See the
+  <a href="https://docs.aws.amazon.com/cli/latest/userguide/">User Guide</a> for
+  help getting started.</p>
+</div>
+        </div>
+      </div>
+            <div class="body">
+              
+  <p>[ <a class="reference internal" href="../index.html#cli-aws"><span class="std std-ref">aws</span></a> ]</p>
+<div class="section" id="transcribe">
+<span id="cli-aws-transcribe"></span><h1>transcribe<a class="headerlink" href="#transcribe" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<p>Amazon Transcribe offers three main types of batch transcription: <strong>Standard</strong> , <strong>Medical</strong> , and <strong>Call Analytics</strong> .</p>
+<ul class="simple">
+<li><strong>Standard transcriptions</strong> are the most common option. Refer to for details.</li>
+<li><strong>Medical transcriptions</strong> are tailored to medical professionals and incorporate medical terms. A common use case for this service is transcribing doctor-patient dialogue into after-visit notes. Refer to for details.</li>
+<li><strong>Call Analytics transcriptions</strong> are designed for use with call center audio on two different channels; if you’re looking for insight into customer service calls, use this option. Refer to for details.</li>
+</ul>
+</div>
+<div class="section" id="available-commands">
+<h2>Available Commands<a class="headerlink" href="#available-commands" title="Permalink to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="create-call-analytics-category.html">create-call-analytics-category</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-language-model.html">create-language-model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-medical-vocabulary.html">create-medical-vocabulary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-vocabulary.html">create-vocabulary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-vocabulary-filter.html">create-vocabulary-filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-call-analytics-category.html">delete-call-analytics-category</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-call-analytics-job.html">delete-call-analytics-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-language-model.html">delete-language-model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-medical-scribe-job.html">delete-medical-scribe-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-medical-transcription-job.html">delete-medical-transcription-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-medical-vocabulary.html">delete-medical-vocabulary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-transcription-job.html">delete-transcription-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-vocabulary.html">delete-vocabulary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-vocabulary-filter.html">delete-vocabulary-filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="describe-language-model.html">describe-language-model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-call-analytics-category.html">get-call-analytics-category</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-call-analytics-job.html">get-call-analytics-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-medical-scribe-job.html">get-medical-scribe-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-medical-transcription-job.html">get-medical-transcription-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-medical-vocabulary.html">get-medical-vocabulary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-transcription-job.html">get-transcription-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-vocabulary.html">get-vocabulary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-vocabulary-filter.html">get-vocabulary-filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-call-analytics-categories.html">list-call-analytics-categories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-call-analytics-jobs.html">list-call-analytics-jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-language-models.html">list-language-models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-medical-scribe-jobs.html">list-medical-scribe-jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-medical-transcription-jobs.html">list-medical-transcription-jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-medical-vocabularies.html">list-medical-vocabularies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-tags-for-resource.html">list-tags-for-resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-transcription-jobs.html">list-transcription-jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-vocabularies.html">list-vocabularies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-vocabulary-filters.html">list-vocabulary-filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start-call-analytics-job.html">start-call-analytics-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start-medical-scribe-job.html">start-medical-scribe-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start-medical-transcription-job.html">start-medical-transcription-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start-transcription-job.html">start-transcription-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tag-resource.html">tag-resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="untag-resource.html">untag-resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-call-analytics-category.html">update-call-analytics-category</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-language-model.html">update-language-model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-medical-vocabulary.html">update-medical-vocabulary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-vocabulary.html">update-vocabulary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-vocabulary-filter.html">update-vocabulary-filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wait/index.html">wait</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+            </div>
+          <div class="clearfix"></div>
+        </div>
+        
+    <div class="footer-links">
+      <ul class="breadcrumb pull-right">
+        <li>
+          <a href="../timestream-write/write-records.html" title="previous chapter (use the left arrow)">&larr; write-records</a>
+          <span class="divider">/</span>
+          
+        </li>
+          <li><a href="create-call-analytics-category.html" title="next chapter (use the right arrow)">create-call-analytics-category &rarr;</a></li>
+      </ul>
+    </div>
+  
+
+    </div>
+  <script type="text/javascript" src="https://media.amazonwebservices.com/js/sitecatalyst/s_code.min.js"></script>
+  <script type="text/javascript" src="../../_static/analytics.js"></script>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="create-call-analytics-category.html" title="create-call-analytics-category"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../timestream-write/write-records.html" title="write-records"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">AWS CLI 2.40.3 Command Reference</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >aws</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">transcribe</a></li> 
+      </ul>
+    </div>
+  <div class="footer container">
+    &copy; Copyright 2026, Amazon Web Services. Created using <a href="https://www.sphinx-doc.org/">Sphinx</a>.
+  </div>
+
+
+
+  
+    
+  
+  </body>
+</html>

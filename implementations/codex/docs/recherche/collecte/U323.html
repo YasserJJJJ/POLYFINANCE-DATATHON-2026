@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Evaluate the performance of Amazon Bedrock resources - Amazon Bedrock</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="evaluation" /><meta name="default_state" content="evaluation" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.html" /><link rel="alternate" type="text/markdown" href="https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.md" title="Markdown version" /><meta name="description" content="Learn how to evaluate the performance and effectiveness of Amazon Bedrock resources, such as models and knowledge bases." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon Bedrock" /><meta name="guide" content="User Guide" /><meta name="abstract" content="User Guide for the Amazon Bedrock service." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.html" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/bedrock/latest/userguide/evaluation.html" hreflang="id-id" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/bedrock/latest/userguide/evaluation.html" hreflang="id" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/bedrock/latest/userguide/evaluation.html" hreflang="de-de" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/bedrock/latest/userguide/evaluation.html" hreflang="de" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.html" hreflang="en-us" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.html" hreflang="en" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/bedrock/latest/userguide/evaluation.html" hreflang="es-es" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/bedrock/latest/userguide/evaluation.html" hreflang="es" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/evaluation.html" hreflang="fr-fr" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/evaluation.html" hreflang="fr" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/bedrock/latest/userguide/evaluation.html" hreflang="it-it" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/bedrock/latest/userguide/evaluation.html" hreflang="it" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/evaluation.html" hreflang="ja-jp" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/evaluation.html" hreflang="ja" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/bedrock/latest/userguide/evaluation.html" hreflang="ko-kr" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/bedrock/latest/userguide/evaluation.html" hreflang="ko" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/bedrock/latest/userguide/evaluation.html" hreflang="pt-br" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/bedrock/latest/userguide/evaluation.html" hreflang="pt" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_cn/bedrock/latest/userguide/evaluation.html" hreflang="zh-cn" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_tw/bedrock/latest/userguide/evaluation.html" hreflang="zh-tw" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.html" hreflang="x-default" /><meta name="feedback-folder" content="2d8c2a09-1dac-41bf-9893-c0333d272b2c" /><meta name="feedback-item" content="Bedrock" /><meta name="this_doc_product" content="Amazon Bedrock" /><meta name="this_doc_guide" content="User Guide" /><head xmlns="http://www.w3.org/1999/xhtml"> <script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"/></head>
+<script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'bedrock'}"></script><meta id="panorama-serviceSubSection" value="User Guide" /><meta id="panorama-serviceConsolePage" value="Evaluate the performance of Amazon Bedrock resources" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><p><a href="evaluation.md">View a markdown version of this page</a></p><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Evaluate the performance of Amazon Bedrock resources - Amazon Bedrock</title><meta name="pdf" content="/pdfs/bedrock/latest/userguide/bedrock-ug.pdf#evaluation" /><meta name="rss" content="bedrock-ug.rss" /><meta name="forums" content="https://repost.aws/tags/TAQeKlaPaNRQ2tWB6P7KrMag" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=2d8c2a09-1dac-41bf-9893-c0333d272b2c&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/evaluation.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/evaluation.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/evaluation.html" /><meta name="keywords" content="Amazon Bedrock,bedrock,Additional capabilities,Bedrock features,model evaluation,human based model evaluation,automated model evaluations,knowledge base evaluation" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon Bedrock",
+        "item" : "https://docs.aws.amazon.com/bedrock/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "User Guide",
+        "item" : "https://docs.aws.amazon.com/bedrock/latest/userguide"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Additional capabilities",
+        "item" : "https://docs.aws.amazon.com/bedrock/latest/userguide/additional-capabilities.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Evaluate the performance of Amazon Bedrock resources",
+        "item" : "https://docs.aws.amazon.com/bedrock/latest/userguide/additional-capabilities.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/bedrock/latest/userguide/bedrock-ug.pdf#evaluation" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/bedrock/index.html">Amazon Bedrock</a><a href="what-is-bedrock.html">User Guide</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="evaluation">Evaluate the performance of Amazon Bedrock resources</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Use Amazon Bedrock evaluations to evaluate the performance and effectiveness of Amazon Bedrock models and
+        knowledge bases, as well as models and Retrieval Augmented Generation (RAG) sources outside of Amazon Bedrock. 
+        Amazon Bedrock can compute performance metrics such as the semantic robustness of a
+        model and the correctness of a knowledge base in retrieving information and generating
+        responses. For model evaluations, you can also use a team of human workers to rate and
+        provide their input for the evaluation.</p><p>Automatic evaluations, including evaluations that use Large Language Models (LLMs),
+        produce computed scores and metrics that help you assess the effectiveness of a model and
+        knowledge base. Human-based evaluations use a team of people who provide their ratings and
+        preferences in relation to certain metrics.</p><div class="variablelist">
+         
+         
+         
+         
+    <dl>
+            <dt><span class="term">Programmatic model evaluation jobs</span></dt>
+            <dd>
+                <p>Programmatic model evaluation jobs allow you to quickly evaluate a model's
+                    ability to perform a task. You can either provide your own custom prompt dataset
+                    that you've tailored to a specific use case, or you can use an available
+                    built-in dataset. </p>
+            </dd>
+         
+            <dt><span class="term">Model evaluation jobs that use human workers</span></dt>
+            <dd>
+                <p>Model evaluation jobs that use human workers allow you to bring human input to
+                    the model evaluation process. They can be employees of your company or a group
+                    of subject-matter experts from your industry.</p>
+            </dd>
+         
+            <dt><span class="term">Model evaluation jobs that use a judge model</span></dt>
+            <dd>
+                <p>Model evaluation jobs that use a judge model allow you to quickly evaluate a
+                    model's responses through using a second LLM. The second LLM scores the response
+                    and provides an explanation for each response.</p>
+            </dd>
+         
+            <dt><span class="term">RAG evaluations that use Large Language Models (LLMs)</span></dt>
+            <dd>
+                <p>LLM-based evaluations compute performance metrics for the knowledge base. The
+                    metrics reveal if a RAG source or Amazon Bedrock Knowledge Base is able to retrieve highly
+                    relevant information and generate useful, appropriate responses. You provide a
+                    dataset that contains the prompts or user queries for evaluating how a knowledge
+                    base retrieves information and generates responses for those given queries. The
+                    dataset must also include ‘ground truth’ or the expected retrieved texts and
+                    responses for the queries so that the evaluation can check if your knowledge
+                    base is aligned with what’s expected.</p>
+            </dd>
+        </dl></div><p>Model
+        evaluation jobs support using the following types of Amazon Bedrock models:</p><div class="itemizedlist">
+         
+         
+         
+         
+         
+         
+    <ul class="itemizedlist"><li class="listitem">
+            <p>Foundation models</p>
+        </li><li class="listitem"><p>Amazon Bedrock Marketplace models</p></li><li class="listitem">
+            <p>Customized foundation models</p>
+        </li><li class="listitem">
+            <p>Imported foundation models</p>
+        </li><li class="listitem">
+            <p>Prompt routers</p>
+        </li><li class="listitem">
+            <p>Models that you have purchased Provisioned Throughput</p>
+        </li></ul></div><div class="highlights"><h6>Topics</h6><ul><li><p><a href="./evaluation-support.html">Supported Regions and models for model evaluation</a></p></li><li><p><a href="./evaluation-automatic.html">Creating an automatic model evaluation job in Amazon Bedrock</a></p></li><li><p><a href="./evaluation-human.html">Creating a model evaluation job that use human workers in Amazon Bedrock</a></p></li><li><p><a href="./evaluation-judge.html">Evaluate model performance using another LLM as a judge</a></p></li><li><p><a href="./evaluation-kb.html">Evaluate the performance of RAG sources using Amazon Bedrock evaluations</a></p></li><li><p><a href="./model-evaluation-security-cors.html">Required Cross Origin Resource Sharing (CORS) permissions on S3 buckets</a></p></li><li><p><a href="./model-evaluation-report.html">Review model evaluation job reports and metrics in Amazon Bedrock</a></p></li><li><p><a href="./evaluation-data-management.html">Data management and encryption in Amazon Bedrock evaluation job</a></p></li><li><p><a href="./cloudtrail-events-in-model-evaluations.html">CloudTrail management events in model evaluation jobs</a></p></li></ul></div><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./kb-delete.html">Delete a knowledge base</div><div id="next" class="next-link" accesskey="n" href="./evaluation-support.html">Supported Regions and
+                models</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=2d8c2a09-1dac-41bf-9893-c0333d272b2c&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/evaluation.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=2d8c2a09-1dac-41bf-9893-c0333d272b2c&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/evaluation.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

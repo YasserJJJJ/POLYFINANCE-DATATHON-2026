@@ -1,0 +1,230 @@
+{
+  "scope": "Prompt6_design_research",
+  "date": "2026-11-15",
+  "redistribution": "Local research captures; no right to redistribute inferred",
+  "sources": [
+    {
+      "id": "R1",
+      "title": "Progressive Disclosure",
+      "authors": "Jakob Nielsen",
+      "version": "2006-12-03",
+      "evidence_kind": "practitioner_guidance",
+      "reading_level": "article_body_full",
+      "used_method_or_principle": "Primary/secondary features; progressive versus staged disclosure",
+      "influenced_project_element": "Conclusion and decisive limit visible; contextual detail",
+      "assumptions_limits": "Not an AlphaForge usability trial; decisive limitations are not advanced details",
+      "contradictions_or_qualifications": [],
+      "captures": [
+        {
+          "id": "progressive",
+          "url": "https://www.nngroup.com/articles/progressive-disclosure/",
+          "final_url": "https://www.nngroup.com/articles/progressive-disclosure/",
+          "status": 200,
+          "captured_at": "2026-11-15T19:47:10.571874+00:00",
+          "sha256": "3542cd144bd3fd1581645dee599c6c397f0cea1f21d8732ab5b871925ff4ef1a",
+          "characters": 12671,
+          "local_metadata": "progressive.json"
+        }
+      ]
+    },
+    {
+      "id": "R2",
+      "title": "Guidelines for Human-AI Interaction",
+      "authors": "Amershi et al. / Microsoft HAX",
+      "version": "CHI 2019; HAX pages captured 2026-11-15",
+      "evidence_kind": "professional_framework_with_empirical_validation",
+      "reading_level": "paper_abstract; poster_full; guideline_page_full",
+      "used_method_or_principle": "Capabilities, correction, explanation, consequences, global controls",
+      "influenced_project_element": "Editable facts; undo; explicit presentation preference",
+      "assumptions_limits": "49 practitioners and 20 products evaluate relevance, not investor decision quality; no full-paper reading",
+      "contradictions_or_qualifications": [
+        "Learning from behavior is deliberately limited by explicit user preference in this project"
+      ],
+      "captures": [
+        {
+          "id": "hax-primary",
+          "url": "https://www.microsoft.com/en-us/research/publication/guidelines-for-human-ai-interaction/",
+          "final_url": "https://www.microsoft.com/en-us/research/publication/guidelines-for-human-ai-interaction/",
+          "status": 200,
+          "captured_at": "2026-11-15T19:47:37.851942+00:00",
+          "sha256": "979a218b9111594af584e2c2a245afd021997bbc3ab4ed5ea1cfeb29fcc98452",
+          "characters": 6425,
+          "local_metadata": "hax-primary.json"
+        },
+        {
+          "id": "hax-poster",
+          "url": "https://www.microsoft.com/en-us/research/uploads/prod/2019/03/AI_Guidelines_Poster_PrintQuality.pdf",
+          "final_url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2019/03/AI_Guidelines_Poster_PrintQuality.pdf",
+          "status": 200,
+          "captured_at": "2026-11-15T19:47:37.950191+00:00",
+          "sha256": "a26f53215eee017d6b44b4c92c3a17e5a20937bfd1f788faccab99d11ea56734",
+          "characters": 2870,
+          "local_metadata": "hax-poster.json"
+        },
+        {
+          "id": "hax-correction",
+          "url": "https://www.microsoft.com/en-us/haxtoolkit/guideline/support-efficient-correction/",
+          "final_url": "https://www.microsoft.com/en-us/haxtoolkit/guideline/support-efficient-correction/",
+          "status": 200,
+          "captured_at": "2026-11-15T19:47:37.385725+00:00",
+          "sha256": "eb1c3172e3885e856a5c975a28dd7a6c9803b49f1d6539df7a132d5233ed0ee2",
+          "characters": 4913,
+          "local_metadata": "hax-correction.json"
+        }
+      ]
+    },
+    {
+      "id": "R3",
+      "title": "Does the Whole Exceed its Parts?",
+      "authors": "Bansal et al.",
+      "version": "arXiv:2006.14779v3 2021-01-12; CHI2021",
+      "evidence_kind": "empirical_result",
+      "reading_level": "abstract; targeted_methods_results_discussion",
+      "used_method_or_principle": "Explanations do not necessarily improve complementary performance; agreement can increase when AI is wrong",
+      "influenced_project_element": "Alternative and limitations remain visible; separate fidelity from truth",
+      "assumptions_limits": "Sentiment/LSAT domains, not financial investment",
+      "contradictions_or_qualifications": [
+        "Qualifies simplistic assumption that more explanation is always better"
+      ],
+      "captures": [
+        {
+          "id": "bansal",
+          "url": "https://arxiv.org/html/2006.14779",
+          "final_url": "https://arxiv.org/html/2006.14779",
+          "status": 200,
+          "captured_at": "2026-11-15T19:47:09.759336+00:00",
+          "sha256": "05a9f40cd4acdbb9e656734f5093d4e93c7d40e375dc79558674325ead6c1120",
+          "characters": 101398,
+          "local_metadata": "bansal.json"
+        }
+      ]
+    },
+    {
+      "id": "R4",
+      "title": "The effects of communicating uncertainty on public trust in facts and numbers",
+      "authors": "van der Bles et al.",
+      "version": "PNAS117(14) 7672–7683; 2020; DOI10.1073/pnas.1913678117",
+      "evidence_kind": "empirical_result",
+      "reading_level": "abstract; internal_meta_analysis; BBC_experiment; discussion (PDF extraction)",
+      "used_method_or_principle": "Numerical uncertainty has small average effect on trust and communicates uncertainty",
+      "influenced_project_element": "Use intervals only when computed and interpretable; label scenarios",
+      "assumptions_limits": "Trust study not financial decisions; Robert has no probability distribution",
+      "contradictions_or_qualifications": [
+        "Does not justify turning deterministic stress scenarios into confidence intervals"
+      ],
+      "captures": [
+        {
+          "id": "uncertainty-primary",
+          "url": "https://pure.rug.nl/ws/files/131063442/7672.full.pdf",
+          "final_url": "https://pure.rug.nl/ws/files/131063442/7672.full.pdf",
+          "status": 200,
+          "captured_at": "2026-11-15T19:47:39.008972+00:00",
+          "sha256": "4d954585a9f36e2cbc9ba73204ce2f804ca40718d7aedc4e5627de3fccb31055",
+          "characters": 89732,
+          "local_metadata": "uncertainty-primary.json"
+        }
+      ]
+    },
+    {
+      "id": "R5",
+      "title": "Web Content Accessibility Guidelines 2.2",
+      "authors": "W3C",
+      "version": "Recommendation2024-12-12",
+      "evidence_kind": "normative_standard",
+      "reading_level": "targeted_normative_criteria",
+      "used_method_or_principle": "Keyboard, reflow, contrast, focus, error identification, status messages",
+      "influenced_project_element": "Semantic controls; focus return; table equivalent; reduced motion",
+      "assumptions_limits": "Targeted tests do not establish complete WCAG conformance",
+      "contradictions_or_qualifications": [],
+      "captures": [
+        {
+          "id": "wcag",
+          "url": "https://www.w3.org/TR/WCAG22/",
+          "final_url": "https://www.w3.org/TR/WCAG22/",
+          "status": 200,
+          "captured_at": "2026-11-15T19:47:09.854269+00:00",
+          "sha256": "6e3c5fe397257cae509a2fb4752b73062cf8cbeb92c2cec618989b17e4cf7057",
+          "characters": 151578,
+          "local_metadata": "wcag.json"
+        }
+      ]
+    },
+    {
+      "id": "R6",
+      "title": "Life expectancy Grapher",
+      "authors": "Our World in Data",
+      "version": "Captured2026-11-15; data_last_updated2025-10-22",
+      "evidence_kind": "observed_product",
+      "reading_level": "page_targeted; browser_screenshot; Table_and_Download_interactions",
+      "used_method_or_principle": "Definition, unit, range, direct labels, source, processing and export",
+      "influenced_project_element": "Same data across chart/table; contextual provenance; revision export",
+      "assumptions_limits": "Observed Table default differed from Line selection; no causal usability evidence; no code/data reused",
+      "contradictions_or_qualifications": [
+        "Selection persistence was not observed and must be explicitly tested in AlphaForge"
+      ],
+      "captures": [
+        {
+          "id": "owid",
+          "url": "https://ourworldindata.org/grapher/life-expectancy",
+          "final_url": "https://ourworldindata.org/grapher/life-expectancy",
+          "status": 200,
+          "captured_at": "2026-11-15T19:47:10.067499+00:00",
+          "sha256": "b9785d6921671b1b9b3800588352525557c9d5950d5b8d69a8d5b8054cde58e4",
+          "characters": 15119,
+          "local_metadata": "owid.json"
+        }
+      ]
+    },
+    {
+      "id": "R7",
+      "title": "Tip mark",
+      "authors": "Observable Plot",
+      "version": "Documentation0.6.19; captured2026-11-15",
+      "evidence_kind": "technical_documentation",
+      "reading_level": "rendered_page_full; chart_screenshot",
+      "used_method_or_principle": "Exact value channels, anchored explanations, avoid overlapping tips",
+      "influenced_project_element": "Stable proof inspector activated by buttons; exact unit labels",
+      "assumptions_limits": "Hover alone not keyboard/touch access; library not required; no usability outcome measured",
+      "contradictions_or_qualifications": [],
+      "captures": [
+        {
+          "url": "https://observablehq.github.io/plot/marks/tip",
+          "title": "Tip mark | Plot",
+          "captured_at": "2026-11-15T19:48:29.765Z",
+          "bodyCharacters": 11802,
+          "text_sha256": "9c1453704fc43e1696c1e98703bdeb33bd7732cc7f3ac1539fedab23080c53dd",
+          "local_metadata": "observable-tip-browser.json"
+        }
+      ]
+    },
+    {
+      "id": "R8",
+      "title": "Comparing commits",
+      "authors": "GitHub Docs",
+      "version": "Currentpage_captured2026-11-15",
+      "evidence_kind": "technical_documentation",
+      "reading_level": "page_full",
+      "used_method_or_principle": "Explicit base and target versions",
+      "influenced_project_element": "Before/after labels; retained results; distinguish reading from restoring",
+      "assumptions_limits": "Text diff cannot determine financial dependency invalidation",
+      "contradictions_or_qualifications": [],
+      "captures": [
+        {
+          "id": "github",
+          "url": "https://docs.github.com/en/pull-requests/committing-changes-to-your-project/viewing-and-comparing-commits/comparing-commits",
+          "final_url": "https://docs.github.com/en/pull-requests/how-tos/commit-changes/comparing-commits",
+          "status": 200,
+          "captured_at": "2026-11-15T19:47:10.169842+00:00",
+          "sha256": "22d30f7a899a687d73ffb32b859724f80f662b167b3a86d2f4e4d5db72568317",
+          "characters": 2843,
+          "local_metadata": "github.json"
+        }
+      ]
+    }
+  ],
+  "failed_accesses": [
+    "PNAS primary DOI page 403; publisher PDF obtained from university repository",
+    "Observable incorrect interactions/tip URL404; correct marks/tip reached through browser redirect; HTTP429",
+    "Observable raw tentative path404; no code used"
+  ]
+}

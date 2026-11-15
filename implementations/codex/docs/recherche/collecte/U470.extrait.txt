@@ -1,0 +1,704 @@
+Kiro: Ship quality software 
+ 
+ Skip to main content 
+
+ Ship quality software 
+ S h i p q u a l i t y s o f t w a r e Ship quality software 
+
+Set your intent and provide context. Kiro agents plan, build, review, and verify real engineering work on your local machine, or in the cloud.
+
+ Download Kiro Crew 
+
+ Downloads 
+
+ Install CLI 
+
+ curl -fsSL https://cli.kiro.dev/install | bash 
+
+ What’s New 
+
+ Grok 4.7 Android app Kiro bots: delegate recurring work 
+
+ Loading image... 
+ Crew 
+ Loading image... 
+ Web 
+ Loading image... 
+ Mobile 
+ Loading image... 
+ IDE 
+ Loading image... 
+ CLI 
+
+ Tap to view full image 
+
+ Try Kiro Crew in action
+
+ Loading image... 
+
+ Local Remote 
+ ⌘K — Search for anything… 
+ 2 
+
+ Sessions 
+ New 
+
+ default  ·  analytics 10:40 AM Monthly event quota per site Waiting for your approval 
+
+ default  ·  analytics 09:12 AM Fix stale cache after site update (#4701) PR #4741 open · CI running 
+
+ design  ·  brand-patterns 08:36 AM Launch poster series Sheet balanced: 3 light, 3 dark 
+
+ ops  ·  analytics Yesterday 01:00 AM Nightly issue triage Report saved to reports/triage.md 
+
+ Older Sessions 
+
+ Monthly event quota per site 
+
+Add a monthly event quota per site, and drop events once a site goes over it. Split it into research, build and review. Don't merge until I approve.
+
+ 3 steps 
+
+ Spawned 1 sub-agent research · plan the quota check 
+
+ Read ingest path · usage counters · site settings 
+
+ Created runs/event-quota/research.md 
+
+ The research plan is ready in runs/event-quota/research.md . 
+ Where to check: at ingest, before an event is stored, so a site over its quota costs nothing to process.
+
+ What to count: stored events per site per calendar month in UTC, from the counter the usage page already reads.
+
+ Where to set it: a new quota field in site settings. Empty means no limit, so existing sites are unchanged.
+ One question before the build starts: should events sent through the import API count toward the quota, or only live tracking?
+
+auto · 2.07 credits · 1m 42s
+
+Live tracking only. Imports are backfills and shouldn't count. Go ahead with the build and review.
+
+ 6 steps 
+
+ Spawned 1 sub-agent build · on feat/event-quota 
+
+ Edited ingest · drop and count events over the quota 
+
+ Edited site settings · monthly quota field 
+
+ Ran tests · unit 5 passed · integration 2 passed 
+
+ Spawned 1 sub-agent review · diff against main 
+
+ Created runs/event-quota/review.md 
+
+ Ready to merge after your approval. The reviewer reran both suites: unit 5 of 5, integration 2 of 2. 
+ Quota: set per site and counted per calendar month in UTC. Imports don't count, as you asked.
+
+ Over the quota: new events are dropped and counted, so the site owner can see what was lost.
+
+ Top finding (medium): domains are compared case-sensitively, so a quota saved for a domain with capitals never applies.
+ Waiting for your approval before merging into main .
+
+auto · 2.07 credits · 1m 42s
+
+ Approve the merge Fix the domain case first Hold for now 
+
+ default analytics 
+
+ auto 
+
+Crew
+
+Persistent agents that pick up work and keep going while you’re away.
+
+ Download Crew 
+
+Orchestrate agent swarms that run for hours
+
+Kiro Crew watches your backlog, codebase, or CI and acts when work appears.
+
+ Breaks work into smaller tasks 
+
+ Proactive bots do specialized work 
+
+ Brings the results back for review 
+
+ Records what it did 
+ 
+ Meet Kiro Crew 
+
+Hand off work and come back to progress
+
+ Cloud sessions move long-running tasks to the cloud with parallel agents that can run for hours, so work continues when you close your laptop.
+
+ Deterministic workflows 
+
+ Isolated steps, no model shortcutting 
+
+ Quality enforced at every step 
+ 
+ Explore Kiro Web 
+
+Works how you do
+
+Run Kiro wherever work starts, so a failing build turns into a fix.
+
+ Headless in CI 
+
+ From Slack 
+
+ On a schedule 
+
+ On remote machines 
+ 
+ Run Kiro in CI/CD 
+
+Quality enforced at every step
+
+ Workflows split long tasks into checked steps, so agents can’t skip a test that failed.
+
+ How workflows work 
+
+Don’t repeat yourself
+
+Agents get the context behind the code, including past decisions, project standards, and previous work.
+
+ Persistent memory across sessions 
+
+ Shared team knowledge 
+
+ Corrections saved as reusable guidance 
+ 
+ How memory works 
+
+Verified against your intent
+
+Specs capture what you meant before code is written and verify results after.
+
+ Property-based tests across hundreds of cases 
+
+ Requirements analysis that catches gaps before design 
+
+ Bugfix Specs that fix the root cause without regressions 
+ 
+ How specs work 
+
+Building blocks for automated software delivery
+
+Kiro gives you the primitives to turn the software lifecycle into a loop you direct as autonomously as you’re comfortable with: persistent agents pick up signals and tasks, build and verify in sandboxes, flag what needs review, and learn from each session.
+
+ Frontier engineering Frontier teams 
+
+ Cloud session Local session in Crew Optional step 
+
+ Kiro Crew One sandboxed run 
+
+ 01 Signals 
+
+ Slack Threads, DMs, and mentions 
+
+ Microsoft Teams Channels and chats 
+
+ GitHub Issues and PR comments 
+
+ GitLab Issues and MR comments 
+
+ Meetings via MCP Call notes and transcripts 
+
+ 100s of other apps Powers and MCP servers 
+
+ 02 Triggers 
+
+ Channel watch Heartbeat, hourly Local session in Crew 
+
+ Scheduled scan Automation, every 6 hours Cloud session 
+
+ Explicit requests Mention, DM, or webhook Local session in Crew 
+
+ CI triage Headless CLI on failure Cloud session 
+
+ 03 Triage 
+
+ Triage Dedupe, size, and route 
+
+Small: build it now
+
+Big: spec it for a human
+
+ 04 Build 
+
+From Triage: Small
+
+ Sandbox Fresh clone, isolated 
+
+Reproduce
+
+Smallest fix
+
+Tests and lint
+
+ Local or cloud 
+
+ Evidence Proof the fix works 
+
+ Before 
+
+ After 
+
+48 tests passed
+
+Lint clean
+
+ Page load 412 ms → 188 ms
+
+ 05 Review 
+
+From Build: Open PR
+
+ Pull request GitHub or GitLab 
+ Push fixes 
+
+ Verification Property tests and steering 
+
+ Workflows Adversarial review agents 
+
+ Human review Owner or requester 
+
+ 06 Production 
+
+From Review: Merge
+
+ Merge and deploy Your pipeline, your gates 
+
+ Observability signals Errors, metrics, and alerts via MCP 
+
+ Track the big ones 
+
+From Triage: Track the big ones
+ Issue tracker Specs and follow-ups for a human 
+
+ Production signals start the next run 
+
+ 01 Signals 
+ 
+ Slack Threads, DMs, and mentions 
+
+ Microsoft Teams Channels and chats 
+
+ GitHub Issues and PR comments 
+
+ GitLab Issues and MR comments 
+
+ Meetings via MCP Call notes and transcripts 
+
+ 100s of other apps Powers and MCP servers 
+
+ 02 Triggers 
+ 
+ Channel watch Heartbeat, hourly Local session in Crew 
+
+ Scheduled scan Automation, every 6 hours Cloud session 
+
+ Explicit requests Mention, DM, or webhook Local session in Crew 
+
+ CI triage Headless CLI on failure Cloud session 
+
+ Kiro Crew One sandboxed run 
+
+ 03 Triage 
+ 
+ Triage Dedupe, size, and route 
+
+Small: build it now
+
+Big: spec it for a human
+
+ Small 
+
+ 04 Build 
+
+From Triage: Small
+ 
+ Sandbox Fresh clone, isolated 
+
+Reproduce
+
+Smallest fix
+
+Tests and lint
+
+ Local or cloud 
+
+ Evidence Proof the fix works 
+
+ Before 
+
+ After 
+
+48 tests passed
+
+Lint clean
+
+ Page load 412 ms → 188 ms
+
+ Track the big ones 
+
+From Triage: Track the big ones
+ Issue tracker Specs and follow-ups for a human 
+ Open PR 
+
+ 05 Review 
+
+From Build: Open PR
+ 
+ Pull request GitHub or GitLab 
+ Push fixes 
+
+ Verification Property tests and steering 
+
+ Workflows Adversarial review agents 
+
+ Human review Owner or requester 
+
+ Merge 
+
+ 06 Production 
+
+From Review: Merge
+ 
+ Merge and deploy Your pipeline, your gates 
+
+ Observability signals Errors, metrics, and alerts via MCP 
+
+ ↺ Production signals start the next run 
+
+Built for how frontier teams ship
+
+ Frontier teams Case studies 
+
+The frontier models that matter
+
+Use Claude, GPT, and open-weight models like DeepSeek and Qwen, or let Auto route each task to the right model.
+
+ Learn about models 
+
+Built on open standards
+
+Bring the Kiro agent to your tools with ACP , and use AGENTS.md, Skills , MCP , and Open VSX extensions .
+
+Enterprise-ready
+
+Built and run by AWS, with SSO , governance , compliance , IP indemnity (with model exclusions ), and predictable pricing .
+
+ Kiro for enterprise 
+
+Trusted by engineers and enterprises worldwide
+ Read customer case studies 
+
+“ As a two hundred person team, we're tackling more complex features now with greater confidence, which is crucial when you're handling tens of billions of memories for more than 100M customers. ”
+
+Don MacAskill
+
+CEO & Founder , SmugMug
+
+“ As a startup co-founder and CTO, time is the most important resource. Kiro justifies the use of my time for developing our business critical assets in-house. ”
+ 
+ RO 
+
+Rolf Koski
+
+CTO & Co-Founder
+
+“ Kiro has helped my teams achieve a 35% uplift in productivity and a 17% improvement in value versus failure demand, accelerating roadmap delivery. Kiro is rapidly evolving our SDLC and fundamentally changing what we deem viable, allowing us to be far more aspirational with the projects our teams drive. ”
+
+Kieron Wallace
+
+Head of Engineering Wealth UK , Iress
+
+“ I’ve been blown away by Kiro’s capabilities. The agentic experience is really transformative. From the multimodal inputs that understand context to the complete lifecycle control within the IDE, it feels like I’m working with a senior developer. ”
+ 
+ VI 
+
+Vivek Velso
+
+Cloud Engineering Lead
+
+“ Most tools are great at generating code, but Kiro gives structure to the chaos before you write a single line. ”
+ 
+ FA 
+
+Farah Abdirahman
+
+Cloud & AI Engineer
+
+“ In a very short time, our team transitioned from resistance to excitement, with developers enthusiastically sharing their achievements made possible by Kiro. ”
+
+Brian Lichtle
+
+CTO ITS , Rackspace
+
+“ In roughly two days, I built a secure file sharing application from scratch. By simply sharing my requirements with Kiro, I was able to create a fully secure application that incorporates encryption and various security coding practices—no additional prompts needed. ”
+ 
+ IH 
+
+Ihor Sasovets
+
+Lead Security Engineer
+
+“ Kiro is a strong ally for startups. It naturally turns overlooked docs and specs into robust assets, making growth smoother and future scaling more effective. ”
+ 
+ KE 
+
+Kento Ikeda
+
+Founder & Engineer
+
+“ Kiro has been phenomenal in helping us adopt an “AI-driven development lifecycle” mindset. The ability to prototype and build simplified proofs-of-concept in a matter of hours is a game-changer. ”
+
+Sahil Gupta
+
+Director , Appian
+
+“ I use Kiro for everything - drafting new Terraform modules, tweaking container setups, even writing down random AI ideas at 2 am. But more than anything, it supports how I learn. I’m endlessly curious, and Kiro helps me stay in that learning loop—tinkering, breaking things, fixing them, and then allowing me to share what I learn back with the community. ”
+ 
+ AD 
+
+Adit Modi
+
+Solution Architect
+
+“ Kiro's AI-powered spec workflow turned rough ideas into polished, production-ready specifications in minutes, and is helping redefine what's possible with a lean team. A production-ready AWS serverless guardrail service featuring authentication, real-time dashboards, and complete infrastructure—a project traditionally requiring 3-4 months with multiple developers—was completed in 2 weeks by a single architect. ”
+
+Fabian Fischer
+
+IT Enterprise Architect , Siemens
+
+“ I often forget to add unit tests, or update documentation when pushing changes, but with Kiro I can create a hook and it will automatically run those tasks in the background for me, never having to think twice. ”
+ 
+ DA 
+
+Darya Petrashka
+
+Senior Data Scientist
+
+“ As an open source developer, I typically don’t build games, but last night I was able to create one using Kiro. I didn’t have to think too hard about implementation since Kiro handled the logic and enabled me to write code quickly and accurately. ”
+ 
+ MI 
+
+Michael Walmsley
+
+Serverless Application Architect
+
+“ Kiro lowers the barrier to entry, whether that be, you don’t even know how to code, you’re new to coding, or you’re like me and you’re just learning a new tech stack. If something doesn’t make sense to you, or you feel like you are asking a silly question, ask Kiro anyway! ”
+ 
+ DA 
+
+Danielle Heberling
+
+Founding Infrastructure Engineer
+
+“ Kiro comes equipped with all the best practices that I would put in my specs, and builds me the application I want, faster. ”
+ 
+ BL 
+
+Blake Romano
+
+Senior Software Engineer
+
+“ Thanks to Kiro’s spec-driven development, I was able to go from concept to working prototype in a single weekend. ”
+ 
+ DA 
+
+Dakota Lewallen
+
+Software Engineer
+
+“ In just four lines into a spec, Kiro was able to write user stories like a product manager and capture so many details that I didn’t even need to mention, saving me several days of work. ”
+ 
+ SA 
+
+Sathiesh Veera
+
+Principal Software Engineer
+
+“ Kiro isn’t just speeding up my work – it’s making me write better code, think more systematically about architecture, and deliver higher quality results while automated workflows happen seamlessly in the background. ”
+ 
+ AN 
+
+Anuj Tyagi
+
+Developer
+
+“ Kiro is just more than code. Aside from just listening to prompts and doing things, it can actually work on tasks based on predefined triggers, making the development experience more efficient. ”
+ 
+ SR 
+
+Sreekesh Iyer
+
+Software Engineer
+
+ Show more 
+
+Get started fast with quick guides
+
+Run Kiro in the cloud
+
+Learn what a cloud session is, when to use one, what keeps it safe, and how to keep your configuration consistent between local and cloud.
+
+ { Blog } 
+
+Match the model to the work
+
+ { Guide } 
+
+Your first project
+
+Pick the app that’s right for you
+
+ Loading image... 
+
+Crew
+
+ Download Kiro Crew 
+
+ Loading image... 
+
+Web
+
+ Sign up / in 
+
+ Loading image... 
+
+Mobile
+
+ View options 
+
+ Loading image... 
+
+IDE
+
+ Download IDE 
+
+ Loading image... 
+
+CLI
+
+ curl -fsSL https://cli.kiro.dev/install | bash 
+
+Common questions
+
+ What is Kiro? 
+
+What is Kiro?
+
+Kiro is an agentic AI engineering system available via an [IDE](/ide/), [CLI](/cli/), [web interface](/web/), [mobile app](/mobile/), and [Kiro Crew](/crew/) that helps developers and teams do their best work. From quick fixes to complex tasks, Kiro works alongside you to turn prompts into executable specs, validate code correctness to find bugs unit tests miss, and build across large codebases with parallel agents that learn from every session—so what you build is exactly what you want and ready to share with your team. Kiro agents help you solve challenging problems, automate tasks, and keep working in the cloud when you step away.
+
+ What programming languages does Kiro support? 
+
+What programming languages does Kiro support?
+
+Kiro supports a variety of programming languages that developers use in their day to day work. This list includes, but is not limited to Python, Java, JavaScript, TypeScript, C#, Go, Rust, PHP, Ruby, Kotlin, C, C++, shell scripting, SQL, Scala, JSON, YAML, and HCL.
+
+ What is an AI agent? 
+
+What is an AI agent?
+
+An agent is an AI system that can plan and execute multi-step tasks with some degree of autonomy. Unlike simple chatbots that respond to individual prompts, agents can break down complex tasks, make decisions about how to proceed, and take actions to accomplish goals.
+
+ Browse all FAQs 
+
+Build something real in minutes
+
+Get started for free
+
+ Download Kiro Crew Downloads 
+
+ Install CLI 
+
+ curl -fsSL https://cli.kiro.dev/install | bash 
+
+ Loading image... 
+
+Product
+ 
+ About Kiro 
+
+ Agents 
+
+ IDE 
+
+ CLI 
+
+ Web 
+
+ Mobile 
+
+ Crew 
+
+ Pricing 
+
+ Downloads 
+
+For
+ 
+ Enterprise 
+
+ Startups 
+
+ Students 
+
+Community
+ 
+ Overview 
+
+ Ambassadors 
+
+ Case studies 
+
+ Discord 
+
+ Events 
+
+ Registry 
+
+ Shop 
+
+ Showcase 
+
+ Stories 
+
+Resources
+ 
+ Docs 
+
+ Blog 
+
+ Changelog 
+
+ FAQs 
+
+ Videos 
+
+ Support 
+
+Social
+
+ English 
+
+ Site Terms License Responsible AI Policy Legal Privacy Policy Cookie Preferences English 
+
+ Agents 
+
+ Apps 
+
+ Enterprise 
+
+ Pricing 
+
+ Docs 
+
+ Community 
+
+ Resources 
+
+ SIGN IN DOWNLOADS

@@ -1,0 +1,103 @@
+---
+title: AlphaForge — architecture locale implémentée
+config:
+  theme: base
+  themeVariables:
+    fontFamily: "Arial, Helvetica, sans-serif"
+    fontSize: "17px"
+    primaryColor: "#e9f0f7"
+    primaryTextColor: "#152b44"
+    primaryBorderColor: "#7390ad"
+    lineColor: "#506a83"
+    clusterBkg: "#f4f7fb"
+    clusterBorder: "#b7c7d7"
+  flowchart:
+    curve: basis
+    nodeSpacing: 36
+    rankSpacing: 62
+    htmlLabels: false
+---
+flowchart TB
+  subgraph LOCAL["SUR LE MAC · interface, calculs, dossier et orchestration"]
+    direction TB
+    HUMAN["Utilisateur<br/>question, faits déclarés, correction"]
+    UI["Interface locale + API FastAPI<br/>dossiers · résultats · preuves · export JSON<br/>correction avec base_revision → nouveau run"]
+    GRAPH["LangGraph · quatre callbacks de rôles<br/>transitions, attente, erreur et reprise"]
+    HUMAN --> UI --> GRAPH
+
+    subgraph ROLES["QUATRE AGENTS DISTINCTS · route principale lorsque les entrées permettent de poursuivre"]
+      direction LR
+      A0["Agent0 · qualifier<br/>formaliser le problème<br/>conserver provenance et inconnues"]
+      A1["Agent1 · rechercher et revoir<br/>séparer pièces consultées et retenues<br/>qualifier conflits bloquants et limites"]
+      A2["Agent2 · analyser<br/>outils admis + contrôles requis<br/>aucun calcul dépendant d’une preuve bloquante"]
+      A3["Agent3 · restituer<br/>ordonner les claims disponibles<br/>conserver conditions et questions"]
+      A0 ==> A1 ==> A2 ==> A3
+      A1 -. "approfondir une fois" .-> A1
+      A1 -. "clarifier / budget épuisé" .-> A0
+      A3 -. "résultat incomplet" .-> A0
+      A1 -. "retrait supérieur au capital : seul diagnostic borné" .-> A2
+    end
+    GRAPH --> ROLES
+
+    WAIT["Attente explicite d’une correction humaine<br/>retour Agent0 ; aucun accord inventé"]
+    ROLES -. "retour Agent0 après réouverture" .-> WAIT
+
+    subgraph OPERATIONS["OPÉRATIONS EXÉCUTÉES ET JOURNALISÉES"]
+      direction LR
+      RESEARCH["Agent1 · recherche documentaire<br/>corpus Prompt 2, inventaire des données<br/>recherche AWS puis captures HTTP publiques<br/>passages, dates, SHA-256 et reçus"]
+      FINANCE["Agent2 · NumPy / SciPy-HiGHS<br/>① stress CAD et réallocation minimale<br/>② comparaison historique en CAD, politique explicite<br/>certificat budgétaire séparé sans LP ni données de marché"]
+    end
+    ROLES -->|"appels des rôles indiqués"| OPERATIONS
+    DATA["Données locales et scénarios déclarés<br/>conventions CAD, unités et provenance"]
+    DATA --> OPERATIONS
+
+    KERNEL["Noyau transactionnel · Store<br/>ChangeSets typés + read_set observé<br/>droits de rôle, versions, conflits et invalidations<br/>commit métier + retour sauvegardé de tâche"]
+    OPERATIONS -->|"résultats et tentatives ; les rôles proposent des ChangeSets"| KERNEL
+
+    subgraph PERSISTENCE["PERSISTANCE LOCALE · objets distincts"]
+      direction LR
+      DOSSIER["SQLite du dossier + artefacts immuables<br/>demandes sources distinctes des corrections<br/>sources du code conservées pour les nouveaux runs<br/>archives conservées ; seule la version utilisable est courante"]
+      CHECKPOINT["SQLite des checkpoints LangGraph<br/>position et état d’exécution<br/>ne remplace pas les révisions métier"]
+      REUSE["Réutilisation vérifiée<br/>pièces dont les dépendances restent valides<br/>diagnostic initial : capital, positions, chocs, devise<br/>indépendant du retrait ; confronté au calcul principal"]
+    end
+    KERNEL --> DOSSIER
+    GRAPH <--> CHECKPOINT
+    DOSSIER --> REUSE
+
+    %% Renvois A/B/C repris dans architecture.svg pour éviter de longues
+    %% flèches traversant la mise en page de la vue de synthèse.
+    DOSSIER -. "A · contexte : versions utilisables et pièces lues ; read_set tracé" .-> ROLES
+    DOSSIER -->|"B · projection : vue courante, pièces, historique et export"| UI
+    UI -. "C · correction humaine + base_revision" .-> KERNEL
+    KERNEL -. "C · nouvelle révision, invalidation des dépendants, nouveau run via LangGraph" .-> A0
+    WAIT -. "correction demandée" .-> HUMAN
+  end
+
+  subgraph AWS["AWS ÉQUIPE · services appelés depuis le Mac"]
+    direction LR
+    BEDROCK["Bedrock Runtime · Converse<br/>profil alphaforge · entrée us-east-1<br/>global.openai.gpt-6-astra<br/>request_id, usage et erreurs conservés"]
+    SEARCH["AgentCore InvokeWebSearch<br/>recherche documentaire bornée<br/>pas de WebAnswer"]
+  end
+  ROLES -->|"quatre rôles via le même adaptateur"| BEDROCK
+  OPERATIONS -->|"Agent1 seulement"| SEARCH
+
+  subgraph SCOPE["PORTÉE ET STATUT · 15 NOVEMBRE 2026"]
+    direction LR
+    WORKS["FONCTIONNE<br/>moteur local, quatre rôles et route AWS<br/>reprise, révisions, calculs et traces"]
+    PARTIAL["PARTIEL<br/>revue critique ciblée ; corpus et requêtes bornés<br/>deux familles d’outils financiers<br/>aucune validité financière externe revendiquée"]
+    FUTURE["PRÉVU / NON DÉPLOYÉ<br/>outils supplémentaires après qualification<br/>stockage et exécution cloud futurs<br/>aucune infrastructure cloud créée ici"]
+  end
+  PERSISTENCE ~~~ SCOPE
+
+  classDef agent fill:#163b59,color:#ffffff,stroke:#163b59,stroke-width:2px
+  classDef operation fill:#e8f3ee,color:#153e32,stroke:#5c9c85
+  classDef store fill:#e9edf9,color:#233861,stroke:#8195bd
+  classDef aws fill:#fff0d9,color:#613d09,stroke:#cfa154
+  classDef caution fill:#fff5e6,color:#694715,stroke:#d6ae6e
+  classDef future fill:#f3f4f6,color:#596575,stroke:#a5afbb,stroke-dasharray:5 4
+  class A0,A1,A2,A3 agent
+  class RESEARCH,FINANCE,DATA,WORKS operation
+  class KERNEL,DOSSIER,CHECKPOINT,REUSE store
+  class BEDROCK,SEARCH aws
+  class WAIT,PARTIAL caution
+  class FUTURE future

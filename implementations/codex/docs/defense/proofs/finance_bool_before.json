@@ -1,0 +1,75 @@
+{
+  "scope": "Pydantic validation only; no inference",
+  "models_sha256": "c22f65f595bb95574911d04fb9e03504eac01ac73c3ea04a6c285ce87e915d36",
+  "cases": [
+    {
+      "field": "capital_cad",
+      "submitted": true,
+      "accepted": true,
+      "coerced": 1.0,
+      "guard_after_parse": true
+    },
+    {
+      "field": "withdrawal_cad",
+      "submitted": true,
+      "accepted": true,
+      "coerced": 1.0,
+      "guard_after_parse": false
+    },
+    {
+      "field": "withdrawal_months",
+      "submitted": true,
+      "accepted": true,
+      "coerced": 1.0,
+      "guard_after_parse": false
+    },
+    {
+      "field": "horizon_years",
+      "submitted": true,
+      "accepted": true,
+      "coerced": 1.0,
+      "guard_after_parse": false
+    },
+    {
+      "field": "scenario_loss_limit_cad",
+      "submitted": false,
+      "accepted": true,
+      "coerced": 0.0,
+      "guard_after_parse": false
+    },
+    {
+      "field": "max_asset_weights",
+      "submitted": {
+        "TSLA": false
+      },
+      "accepted": true,
+      "coerced": {
+        "TSLA": 0.0
+      },
+      "guard_after_parse": false
+    },
+    {
+      "field": "holdings",
+      "submitted": [
+        {
+          "ticker": "TSLA",
+          "weight": true
+        }
+      ],
+      "accepted": true,
+      "coerced": [
+        {
+          "ticker": "TSLA",
+          "weight": 1.0
+        }
+      ],
+      "guard_after_parse": false
+    },
+    {
+      "field": "scenarios.0.returns.TSLA",
+      "submitted": false,
+      "accepted": true,
+      "coerced": 0.0
+    }
+  ]
+}

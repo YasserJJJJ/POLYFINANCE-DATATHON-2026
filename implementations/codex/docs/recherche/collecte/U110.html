@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Request access to models - Amazon Bedrock</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="model-access" /><meta name="default_state" content="model-access" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html" /><link rel="alternate" type="text/markdown" href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.md" title="Markdown version" /><meta name="description" content="Learn how to add, manage, and remove model access to Amazon Bedrock base and custom models." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon Bedrock" /><meta name="guide" content="User Guide" /><meta name="abstract" content="User Guide for the Amazon Bedrock service." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/bedrock/latest/userguide/model-access.html" hreflang="id-id" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/bedrock/latest/userguide/model-access.html" hreflang="id" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/bedrock/latest/userguide/model-access.html" hreflang="de-de" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/bedrock/latest/userguide/model-access.html" hreflang="de" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html" hreflang="en-us" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html" hreflang="en" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/bedrock/latest/userguide/model-access.html" hreflang="es-es" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/bedrock/latest/userguide/model-access.html" hreflang="es" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/model-access.html" hreflang="fr-fr" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/model-access.html" hreflang="fr" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/bedrock/latest/userguide/model-access.html" hreflang="it-it" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/bedrock/latest/userguide/model-access.html" hreflang="it" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/model-access.html" hreflang="ja-jp" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/model-access.html" hreflang="ja" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/bedrock/latest/userguide/model-access.html" hreflang="ko-kr" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/bedrock/latest/userguide/model-access.html" hreflang="ko" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/bedrock/latest/userguide/model-access.html" hreflang="pt-br" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/bedrock/latest/userguide/model-access.html" hreflang="pt" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_cn/bedrock/latest/userguide/model-access.html" hreflang="zh-cn" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_tw/bedrock/latest/userguide/model-access.html" hreflang="zh-tw" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html" hreflang="x-default" /><meta name="feedback-folder" content="2d8c2a09-1dac-41bf-9893-c0333d272b2c" /><meta name="feedback-item" content="Bedrock" /><meta name="this_doc_product" content="Amazon Bedrock" /><meta name="this_doc_guide" content="User Guide" /><head xmlns="http://www.w3.org/1999/xhtml"> <script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"/></head>
+<script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'bedrock'}"></script><meta id="panorama-serviceSubSection" value="User Guide" /><meta id="panorama-serviceConsolePage" value="Request access to models" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><p><a href="model-access.md">View a markdown version of this page</a></p><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Request access to models - Amazon Bedrock</title><meta name="pdf" content="/pdfs/bedrock/latest/userguide/bedrock-ug.pdf#model-access" /><meta name="rss" content="bedrock-ug.rss" /><meta name="forums" content="https://repost.aws/tags/TAQeKlaPaNRQ2tWB6P7KrMag" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=2d8c2a09-1dac-41bf-9893-c0333d272b2c&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/model-access.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/model-access.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/model-access.html" /><meta name="keywords" content="Amazon Bedrock,bedrock,foundation models,model access,model subscription,Amazon Bedrock models" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon Bedrock",
+        "item" : "https://docs.aws.amazon.com/bedrock/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "User Guide",
+        "item" : "https://docs.aws.amazon.com/bedrock/latest/userguide"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Model availability &amp; compatibility",
+        "item" : "https://docs.aws.amazon.com/bedrock/latest/userguide/models.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Request access to models",
+        "item" : "https://docs.aws.amazon.com/bedrock/latest/userguide/models.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/bedrock/latest/userguide/bedrock-ug.pdf#model-access" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/bedrock/index.html">Amazon Bedrock</a><a href="what-is-bedrock.html">User Guide</a></div><div id="page-toc-src"><a href="#model-access-console">Using the console</a><a href="#model-access-permissions">Grant permissions to request access to foundation models with a product
+                ID</a><a href="#model-access-modify">Manage model access using SDK and CLI</a><a href="#model-access-govcloud">Access Amazon Bedrock foundation models in AWS GovCloud (US)</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="model-access">Request access to models</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Access to many Amazon Bedrock foundation models is enabled by default with the correct AWS
+        Marketplace permissions. To get started, simply select a model from the model catalog in the
+        Amazon Bedrock console and open it in the playground or invoke the model using the <a href="https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_InvokeModel.html">InvokeModel</a> or
+        <a href="https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html">Converse</a> API operations. For information about the different models supported in Amazon Bedrock, see
+            <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/foundation-models-reference.html">Amazon Bedrock foundation model
+            information</a>. For information about model pricing, see <a href="https://aws.amazon.com/bedrock/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon Bedrock Pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><p>Default model access applies in all commercial AWS Regions where the model is
+        supported. For programmatic access to third-party models, see <a href="#model-access-modify">Manage model access using SDK and CLI</a>. </p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Additional account-level access</h6></div><div class="awsdocs-note-text"><p>Some models require additional account-level access. Completing model activation
+            requirements, such as AWS Marketplace subscription and provider prerequisites, doesn't grant this
+            additional access. Access is determined separately for each AWS account, so accounts
+            in the same AWS Organization can have different access. If you complete the activation
+            requirements and verify that the model is supported in the AWS Region but still
+            receive an <code class="code">AccessDeniedException</code>, contact <a href="https://aws.amazon.com/contact-us/sales-support/" rel="noopener noreferrer" target="_blank"><span>AWS Sales</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> for additional access
+            options.</p></div></div><div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Understanding automatic model access</h6></div><div class="awsdocs-note-text"><p>When you invoke a third-party model for the first time in your account, Amazon Bedrock 
+            automatically initiates the subscription process in the background. During this setup period 
+            (up to 15 minutes), your API calls may succeed temporarily while the subscription is being 
+            finalized. If any prerequisites are missing, the subscription attempt fails and 
+            subsequent API calls will return <code class="code">AccessDeniedException</code>. After granting the 
+            necessary permissions, it may take up to 2 minutes for the subscription to complete. 
+            During this time, API calls may continue to return <code class="code">AccessDeniedException</code>. 
+            Once the subscription is complete, subsequent invocations can proceed if your account
+            has access to the model. To avoid subscription failures, verify all prerequisites before
+            invoking models in production.</p><p><b>Prerequisites for successful model access:</b></p><div class="orderedlist">
+             
+             
+             
+        <ol><li>
+                <p><b>AWS Marketplace permissions</b>: Your IAM role must 
+                    have <code class="code">aws-marketplace:Subscribe</code>, <code class="code">aws-marketplace:Unsubscribe</code>, 
+                    and <code class="code">aws-marketplace:ViewSubscriptions</code> permissions. See <a href="#model-access-permissions">Grant IAM permissions to request access to Amazon Bedrock foundation models with a product ID</a> for details.</p>
+            </li><li>
+                <p><b>Anthropic models</b>: For Anthropic models earlier than
+                    Claude Opus 4.7, you must complete the First Time Use (FTU) form before invoking the model. This requirement does not apply to Anthropic models accessed through the <code class="code">bedrock-mantle</code> endpoint. For more information, see <a href="#model-access-sdk-step2">Step 2: [Anthropic models only] Put use case for first-time user</a>.</p>
+            </li><li>
+                <p><b>Valid payment method</b>: Your AWS account must have 
+                    a valid payment method configured for AWS Marketplace purchases.</p>
+            </li></ol></div><p><b>Where the first invocation has to come from:</b> The
+            invocation that initiates the subscription is authorized like any other
+                <code class="code">bedrock:InvokeModel</code> request, against the policies that apply to the
+            principal making it. If those policies restrict <code class="code">bedrock:InvokeModel</code> with
+            condition keys, the invocation has to be made by a principal, and from a request
+            context, that satisfies them. Otherwise it fails with
+                <code class="code">AccessDeniedException</code> and the subscription isn't initiated. For
+            example, if the permission is scoped with an <code class="code">IpAddress</code> condition on
+                <code class="code">aws:SourceIp</code>, make the first invocation from a host whose address the
+            condition permits.</p><p>The address that a host reports for itself isn't always the address that AWS records
+            as <code class="code">aws:SourceIp</code>, and it can differ between requests from the same host. To
+            find the value that your condition has to permit, read the <code class="code">sourceIPAddress</code>
+            field of the CloudTrail event for the invocation, as described in <a href="./logging-using-cloudtrail.html">Monitor Amazon Bedrock API calls using CloudTrail</a>. Also note that <code class="code">aws:SourceIp</code> isn't
+            present in the request context when the request is made through a VPC endpoint, and that
+            network context is redacted when an AWS service calls Amazon Bedrock on your behalf. In
+            both cases an <code class="code">IpAddress</code> condition on that key can't be satisfied. For more
+            information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html">AWS global
+                condition context keys</a> in the <em>IAM User
+                Guide</em>.</p></div></div><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Anthropic requires first-time customers to submit use case details before invoking a
+            model earlier than Claude Opus 4.7, once per account or once at the organization's management account. This requirement does not apply to Anthropic models accessed through the <code class="code">bedrock-mantle</code> endpoint. You can submit
+            use case details by selecting an Anthropic model from the model catalog in the Amazon Bedrock
+            console or calling the <code class="code">PutUseCaseForModelAccess</code> API command.
+            In
+            most cases, access to the model is granted as soon as use case details are successfully
+            submitted. Submission doesn't always complete immediately, however. The model agreement
+            can enter a pending state, during which invoking the model continues to return
+            <code class="code">AccessDeniedException</code> even though your submission succeeded. AWS sends you
+            an email when the agreement finishes being set up. To check the state of your submission
+            rather than waiting, call <code class="code">GetFoundationModelAvailability</code> and read the
+            <code class="code">agreementAvailability</code> status, as described in <a href="#model-access-sdk-step4">Step 4: Get foundation model availability</a>.
+            The form submission at the root account will be inherited by other accounts in the same
+            AWS Organization.</p><p>The use case form requires a description of your intended use and a website URL. If you are an individual developer or student without a company website, you can provide a personal portfolio, GitHub profile, or project URL that describes your use case.</p></div></div><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>For 3P models, by invoking/using the model for the first time you are agreeing to the
+            applicable End User License Agreement. For more information, see <a href="https://aws.amazon.com/service-terms/" rel="noopener noreferrer" target="_blank"><span>AWS Service Terms</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and <a href="https://aws.amazon.com/legal/bedrock/third-party-models/" rel="noopener noreferrer" target="_blank"><span>Serverless
+                Third-Party Model License Agreements</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><p>Organizations that need to review and agree to EULA before allowing model usage
+            should:</p><div class="orderedlist">
+             
+             
+             
+        <ol><li>
+                <p>Initially block model access using Service Control Policies (SCP) or IAM
+                    policies</p>
+            </li><li>
+                <p>Review the EULA terms</p>
+            </li><li>
+                <p>Enable model access through SCP/IAM policies only if you agree to the EULA
+                    terms</p>
+            </li></ol></div></div></div><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><p><a href="#model-access-console">Request access to models using the console</a></p></li><li><p><a href="#model-access-permissions">Grant IAM permissions to request access to Amazon Bedrock foundation models with a product ID</a></p></li><li><p><a href="#model-access-modify">Manage model access using SDK and CLI</a></p></li><li><p><a href="#model-access-govcloud">Access Amazon Bedrock foundation models in AWS GovCloud (US)</a></p></li></ul></div>
+        <h2 id="model-access-console">Request access to models using the console</h2>
+
+        <p>If you are signed in to the AWS Management Console, you can complete the model
+            access requirements without using the AWS CLI or an SDK. Open the <a href="https://console.aws.amazon.com/bedrock/home" rel="noopener noreferrer" target="_blank"><span>Amazon Bedrock console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and use the following paths.</p>
+
+        <div class="itemizedlist">
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><b>Most models</b> – Choose <b>Model
+                        catalog</b> in the navigation pane, choose a model, and then open it
+                    in the playground. Amazon Bedrock starts the subscription for you on the first
+                    invocation, so there is no access request to submit. Your identity still needs
+                    the AWS Marketplace permissions described in <a href="#model-access-permissions">Grant IAM permissions to request access to Amazon Bedrock foundation models with a product ID</a>.</p>
+            </li><li class="listitem">
+                <p><b>Anthropic models</b> – For models earlier
+                    than Claude Opus 4.7, submit your first-time use case details before you invoke
+                    the model. Choose an Anthropic
+                    model from <b>Model catalog</b> and open it in the playground, or
+                    go to the <a href="https://console.aws.amazon.com/bedrock/home#/providers/anthropic" rel="noopener noreferrer" target="_blank"><span>Anthropic providers page</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>, and then complete the form. If the
+                    management account for your organization has already submitted these details,
+                    you can use Anthropic models right away.</p>
+            </li><li class="listitem">
+                <p><b>AWS Marketplace permissions</b> – Attach the policy
+                    described in <a href="#model-access-permissions">Grant IAM permissions to request access to Amazon Bedrock foundation models with a product ID</a> in the <a href="https://console.aws.amazon.com/iam" rel="noopener noreferrer" target="_blank"><span>IAM console</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+            </li></ul></div>
+
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The <b>Model access</b> page under <b>Bedrock
+                    configurations</b> applies to AWS GovCloud (US). In commercial
+                AWS Regions, access to most models is enabled on first use and there is no access
+                request to submit on that page. For the GovCloud procedure, see <a href="#model-access-govcloud">Access Amazon Bedrock foundation models in AWS GovCloud (US)</a>.</p></div></div>
+     
+        <h2 id="model-access-permissions">Grant IAM permissions to request access to Amazon Bedrock foundation models with a product ID</h2>
+        <p>You can manage model access permissions by creating custom IAM policies. To modify
+            access to Amazon Bedrock foundation models, you first need to attach an identity-based IAM
+            policy with the following <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsmarketplace.html#awsmarketplace-actions-as-permissions">AWS Marketplace actions</a> to the IAM role that allows access to Amazon Bedrock.</p>
+        <p>When you first invoke an Amazon Bedrock serverless model served from AWS Marketplace in an
+            account, Bedrock attempts to automatically enable the model for your account. For this
+            auto-enablement to work, AWS Marketplace permissions are required.</p>
+        <p>If you can’t assume AWS Marketplace permission, someone with AWS Marketplace permissions must enable the
+            model for the account as a one-time step (either manually or through auto-enablement). After the model is enabled, you can invoke the model without needing AWS Marketplace
+            permissions. Users don't need AWS Marketplace subscription permissions to invoke models after
+            they've been enabled. These permissions are only required the first time a model is
+            being used in an account.</p>
+        <p>Access to Amazon Bedrock serverless foundation models with a product ID is controlled by the
+            following IAM actions:</p>
+        <div class="table-container"><div class="table-contents"><table id="d0e1"><thead>
+                    <tr>
+                        <th>IAM action</th>
+                        <th>Description</th>
+                        <th>Applies to which models</th>
+                    </tr>
+                </thead>
+                    
+                    <tr>
+                        <td tabindex="-1">aws-marketplace:Subscribe</td>
+                        <td tabindex="-1">
+                            <p>Allows an IAM entity to subscribe to AWS Marketplace products, including
+                                Amazon Bedrock foundation models.</p>
+                        </td>
+                        <td tabindex="-1">Only Amazon Bedrock serverless models that have a product ID in AWS Marketplace.</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">aws-marketplace:Unsubscribe</td>
+                        <td tabindex="-1">Allows an IAM identity to unsubscribe from AWS Marketplace products,
+                            including Amazon Bedrock foundation models.</td>
+                        <td tabindex="-1">Only Amazon Bedrock serverless models that have a product ID in AWS Marketplace.</td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">aws-marketplace:ViewSubscriptions</td>
+                        <td tabindex="-1">Allows an IAM identity to return a list of AWS Marketplace products,
+                            including Amazon Bedrock foundation models.</td>
+                        <td tabindex="-1">Only Amazon Bedrock serverless models that have a product ID in AWS Marketplace.</td>
+                    </tr>
+                </table></div></div>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>For the <code class="code">aws-marketplace:Subscribe</code> action only, you can use the <code class="code">aws-marketplace:ProductId</code> <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsmarketplace.html#awsmarketplace-policy-keys">condition key</a> to restrict subscription to specific models.</p></div></div>
+         
+            <h6>For an IAM identity to request access to models with a product ID</h6>
+            <p>The identity must have a policy attached that allows
+                    <code class="code">aws-marketplace:Subscribe</code>.</p>
+         
+        
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>If an identity has already subscribed to a model in one AWS Region, the model
+                becomes available for the identity to request access in all AWS Regions in which
+                the model is available, even if <code class="code">aws-marketplace:Subscribe</code> is denied for
+                other Regions.</p></div></div>
+        
+        <p>For information on creating the policy, see <a href="./getting-started.html">Quickstart</a>.</p>
+        <p>For the <code class="code">aws-marketplace:Subscribe</code> action only, you can use the <code class="code">aws-marketplace:ProductId</code> <a href="https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsmarketplace.html#awsmarketplace-policy-keys">condition key</a> to restrict subscription to specific models.</p>
+        <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Models from the following providers aren't sold through AWS Marketplace and don't have product keys, so you can't scope the <code class="code">aws-marketplace</code> actions to them:</p><div class="itemizedlist">
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>Amazon</p>
+                </li><li class="listitem">
+                    <p>DeepSeek</p> 
+                </li><li class="listitem">
+                    <p>Google</p>
+                </li><li class="listitem">
+                    <p>Meta</p> 
+                </li><li class="listitem">
+                    <p>MiniMax</p>
+                </li><li class="listitem">
+                    <p>Mistral AI</p> 
+                </li><li class="listitem">
+                    <p>Moonshot AI</p>
+                </li><li class="listitem">
+                    <p>NVIDIA</p>
+                </li><li class="listitem">
+                    <p>Qwen</p> 
+                </li><li class="listitem">
+                    <p>xAI</p>
+                </li><li class="listitem">
+                    <p>Z.AI</p>
+                </li></ul></div><p>Some providers sell only part of their model catalog through AWS Marketplace. The following models don't have product keys even though other models from the same provider do:</p><div class="itemizedlist">
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>OpenAI open-weight models: gpt-oss-120b, gpt-oss-20b, gpt-oss-safeguard-120b, and gpt-oss-safeguard-20b. These models are available to all Amazon Bedrock users and don't require a AWS Marketplace subscription.</p>
+                </li><li class="listitem">
+                    <p>Writer Palmyra Vision 7B.</p>
+                </li></ul></div><p>This list covers providers whose models have no product key at all. It isn't a complete list of models without a documented product ID. To check a specific model, see the <b>Marketplace product ID</b> field on its model card in <a href="./model-cards.html">models at a glance</a>. If a model's card doesn't show that field, scope your policy by model ID instead.</p><p>You can, however, prevent the usage of these models by denying Amazon Bedrock actions and specifying these model IDs in the <code class="code">Resource</code> field. For an example, see <a href="#model-access-prevent-usage">Prevent an identity from using a model after access has already been granted</a>.</p></div></div>
+        
+        <p>Select a section to see IAM policy examples for a specific use case:</p>
+        <div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><p><a href="#model-access-prevent-subscription">Prevent an identity from requesting access to a model with a product ID</a></p></li><li><p><a href="#model-access-prevent-usage">Prevent an identity from using a model after access has already been granted</a></p></li></ul></div>
+        
+        
+        
+         
+            <h3 id="model-access-prevent-subscription">Prevent an identity from requesting access to a model with a product ID</h3>
+            <p>To prevent an IAM entity from requesting access to a specific model that has a
+                product ID, attach an IAM policy to the user that denies the
+                    <code class="code">aws-marketplace:Subscribe</code> action and scope the
+                    <code class="code">Condition</code> field to the product ID of the model.</p>
+            <p>For example, you can attach the following policy to an identity to prevent it from
+                subscribing to the Anthropic Claude 3.5 Sonnet model:</p>
+            <awsdocs-tabs><dl style="display: none">
+    <dt>JSON</dt><dd tab-id="json">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term"></span></b></dt>
+        <dd>
+            
+                
+                <pre class="programlisting" data-example-id="e13263fdeb2f20a1bd40799ae65d2eb75276980ebf68d8c2f403024054a2c134"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (json)--><code class="json "><code class="userinput"><span>{</span>
+    "Version":"2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Effect": "Deny",
+            "Action": [
+                "aws-marketplace:Subscribe"
+            ],
+            "Resource": "*",
+            "Condition": <span>{</span>
+                "ForAnyValue:StringEquals": <span>{</span>
+                    "aws-marketplace:ProductId": [
+                        "prod-m5ilt4siql27k"
+                    ]
+                }
+            }
+        }
+    ]
+}</code>
+</code></pre>
+            
+        </dd>
+    </dl></div>
+        </dd>
+</dl></awsdocs-tabs>
+            
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Denying <code class="code">aws-marketplace:Subscribe</code> alone will <b>not</b> block the first model invocation, because Amazon Bedrock <b>auto-initiates</b> the subscription in the background.</p><p>To <b>block model access from the start</b>, apply <b>Deny policies on <code class="code">bedrock:InvokeModel</code></b> at the <b>Organization (SCP) or Account (IAM) level</b>.</p></div></div>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>With this policy, the IAM entity will have access to any newly added models
+                    by default.</p><p>If the identity has already subscribed to the model in at least one Region,
+                    this policy doesn't prevent access in other Regions. Instead, you can prevent
+                    its usage by seeing the example in <a href="#model-access-prevent-usage">Prevent an identity from using a model after access has already been granted</a>.</p></div></div>
+         
+        
+         
+            <h3 id="model-access-prevent-usage">Prevent an identity from using a model after access has already been granted</h3>
+            <p>If an IAM identity has already been granted access to a model, you can prevent
+                usage of the model by denying all Amazon Bedrock actions and scoping the <code class="code">Resource</code>
+                field to the ARN of the foundation model.</p>
+            <p>For example, you can attach the following policy to an identity to prevent it from
+                using the Anthropic Claude 3.5 Sonnet model in all AWS Regions:</p>
+            <awsdocs-tabs><dl style="display: none">
+    <dt>JSON</dt><dd tab-id="json">
+            <div class="variablelist">
+     
+<dl>
+        <dt><b><span class="term"></span></b></dt>
+        <dd>
+            
+                
+                <pre class="programlisting" data-example-id="0c698ff212c4403794e43d4e4df8ea9430a63704fb72477be47dcdb39d5069c0"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (json)--><code class="json "><code class="userinput"><span>{</span>
+    "Version":"2012-10-17",
+    "Statement": [
+        <span>{</span>
+            "Effect": "Deny",
+            "Action": [
+                "bedrock:*"
+            ],
+            "Resource": [
+                "arn:aws:bedrock:*::foundation-model/anthropic.claude-3-5-sonnet-20240620-v1:0"
+            ]
+        }
+    ]
+}</code>
+</code></pre>
+            
+        </dd>
+    </dl></div>
+        </dd>
+</dl></awsdocs-tabs>
+            
+         
+        
+     
+        <h2 id="model-access-modify">Manage model access using SDK and CLI</h2>
+        <p>Model access can be managed using SDK in addition to invoking the model. Below steps can be used to create/delete model access as well as check if access already exists or not. Note this is applicable only for third-party models.</p>
+        
+        <div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>By invoking or using a third-party model, you are implicitly agreeing to the applicable End User License Agreement (EULA). For more information, see <a href="https://aws.amazon.com/legal/bedrock/third-party-models/" rel="noopener noreferrer" target="_blank"><span>Serverless Third-Party Model License Agreements</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></div></div>
+        
+        <p>Follow these steps to manage model access programmatically:</p>
+        <div class="itemizedlist">
+             
+             
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p><a href="#model-access-sdk-prerequisites">Prerequisites</a></p>
+            </li><li class="listitem">
+                <p><a href="#model-access-sdk-step1">Step 1: List foundation model agreement offers</a></p>
+            </li><li class="listitem">
+                <p><a href="#model-access-sdk-step2">Step 2: [Anthropic models only] Put use case for first-time user</a></p>
+            </li><li class="listitem">
+                <p><a href="#model-access-sdk-step3">Step 3: Create foundation model agreement</a></p>
+            </li><li class="listitem">
+                <p><a href="#model-access-sdk-step4">Step 4: Get foundation model availability</a></p>
+            </li><li class="listitem">
+                <p><a href="#model-access-sdk-step5">[Optional] Step 5: Delete foundation model agreement</a></p>
+            </li></ul></div>
+        
+         
+            <h3 id="model-access-sdk-prerequisites">Prerequisites</h3>
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>Attach the <a href="https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonBedrockFullAccess.html">AmazonBedrockFullAccess</a> policy to the IAM user/role used for the SDK/CLI.</p>
+                </li><li class="listitem">
+                    <p>Bedrock SDK Setup: <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/sdk-general-information-section.html">Set up the AWS SDK for Amazon Bedrock</a></p>
+                    <p>Note: Below instructions use python3 for the examples</p>
+                </li><li class="listitem">
+                    <p>If you are using the AWS CLI, these commands require AWS CLI version 2.27.42 or later.
+                        Run <code class="code">aws --version</code> to check your version and
+                        <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">update if needed</a>.</p>
+                </li><li class="listitem">
+                    <p>Note the modelId of the model for which the access needs to be managed.</p>
+                </li></ul></div>
+         
+        
+         
+            <h3 id="model-access-sdk-step1">Step 1: List foundation model agreement offers</h3>
+            <p>Use this API to get the agreement offers for a particular model. This will provide the offerToken used to create model access in next steps.</p>
+            
+            <p><span class="topcon">Documentation</span></p><div class="itemizedlist">
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p>API: <a href="https://docs.aws.amazon.com/bedrock/latest/APIReference/API_ListFoundationModelAgreementOffers.html">ListFoundationModelAgreementOffers</a></p>
+                        </li><li class="listitem">
+                            <p>CLI Documentation: <a href="https://docs.aws.amazon.com/cli/latest/reference/bedrock/list-foundation-model-agreement-offers.html">list-foundation-model-agreement-offers</a></p>
+                        </li></ul></div>
+            
+            <awsdocs-tabs><dl style="display: none">
+                <dt>AWS CLI</dt><dd tab-id="aws-cli">
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (none)--><code class="nohighlight">aws bedrock list-foundation-model-agreement-offers --model-id &lt;ModelId&gt;</code></pre>
+                    </dd>
+                
+                <dt>Python</dt><dd tab-id="python">
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (python)--><code class="python "># Placeholder for modelId
+model_id = "&lt;enter model id here&gt;" 
+# Placeholder for offerId
+offer_id = "&lt;enter offer id here&gt;"
+try:
+    # offerType= "ALL" means both public and private offers, if offerType isn't defined, the default would be "PUBLIC"
+    model_agreement_offers_response = bedrock_client.list_foundation_model_agreement_offers(modelId=model_id,offerType="ALL")
+    print(model_agreement_offers_response)
+except ClientError as e:
+    print(f"Failed to list foundation model offers for modelId: <span>{</span>model_id} due to the following error: <span>{</span>e}")</code></pre>
+                    </dd>
+            </dl></awsdocs-tabs>
+         
+        
+         
+            <h3 id="model-access-sdk-step2">Step 2: [Anthropic models only] Put use case for first-time user</h3>
+            <p>Used to put the first-time user use-case form required for some Anthropic models. This is a prerequisite for gaining access to those models in the account. This API is only required one time per account or per AWS organization across all commercial regions, with the exception of opt-in regions where this form needs to be filled again. This requirement does not apply to Anthropic models accessed through the <code class="code">bedrock-mantle</code> endpoint.</p>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Starting with Claude Opus 4.7, Anthropic models don't require the FTU form. It's
+                    still required for earlier models, including Claude Sonnet 4.6, Claude Opus 4.6,
+                    Claude Haiku 4.5, and the Claude 3.x models.</p></div></div>
+
+            <p><span class="topcon">Documentation</span></p><div class="itemizedlist">
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p>API: <a href="https://docs.aws.amazon.com/bedrock/latest/APIReference/API_PutUseCaseForModelAccess.html">PutUseCaseForModelAccess</a></p>
+                        </li><li class="listitem">
+                            <p>CLI Documentation: <a href="https://docs.aws.amazon.com/cli/latest/reference/bedrock/put-use-case-for-model-access.html">put-use-case-for-model-access</a></p>
+                        </li></ul></div>
+            
+            <awsdocs-tabs><dl style="display: none">
+                <dt>AWS CLI</dt><dd tab-id="aws-cli">
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (none)--><code class="nohighlight">aws bedrock put-use-case-for-model-access \
+  --form-data &lt;Base64EncodedFormData&gt;</code></pre>
+                    </dd>
+                
+                <dt>Python</dt><dd tab-id="python">
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (python)--><code class="python "># Placeholder for form data, replace the names
+COMPANY_NAME = "&lt;enter company name here&gt;"
+COMPANY_WEBSITE = "&lt;enter company website here&gt;"
+INTENDED_USERS = "1" #for external users
+INDUSTRY_OPTION = "&lt;enter industry option here&gt;"
+OTHER_INDUSTRY_OPTION = "&lt;enter other industry option here&gt;"
+USE_CASES = "&lt;enter use cases here&gt;"
+form_data = <span>{</span>
+    "companyName": COMPANY_NAME,
+    "companyWebsite": COMPANY_WEBSITE,
+    "intendedUsers": INTENDED_USERS,
+    "industryOption": INDUSTRY_OPTION,
+    "otherIndustryOption": OTHER_INDUSTRY_OPTION,
+    "useCases": USE_CASES
+}
+form_data_json = json.dumps(form_data)
+model_access_response = bedrock_client.put_use_case_for_model_access(formData=form_data_json)</code></pre>
+                    </dd>
+            </dl></awsdocs-tabs>
+            
+            <p>For CLI, the form data is base64 encoded json of the form below.</p>
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (json)--><code class="json "><span>{</span>
+    "companyName": COMPANY_NAME,
+    "companyWebsite": COMPANY_WEBSITE,
+    "intendedUsers": INTENDED_USERS,
+    "industryOption": INDUSTRY_OPTION,
+    "otherIndustryOption": OTHER_INDUSTRY_OPTION,
+    "useCases": USE_CASES
+}</code></pre>
+            
+            
+            <div class="itemizedlist">
+                 
+                 
+                 
+                 
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>COMPANY_NAME: String with maximum length of 128</p>
+                </li><li class="listitem">
+                    <p>COMPANY_WEBSITE: String with a maximum length of 128</p>
+                </li><li class="listitem">
+                    <p>INTENDED USERS: Either 0, 1 or 2. 0: Internal, 1: External, 2: Internal_and_External</p>
+                </li><li class="listitem">
+                    <p>INDUSTRY_OPTION: String with maximum length of 128</p>
+                </li><li class="listitem">
+                    <p>OTHER_INDUSTRY_OPTION: String with maximum length of 128</p>
+                </li><li class="listitem">
+                    <p>USE_CASES: String with maximum length of 8192</p>
+                </li></ul></div>
+         
+        
+         
+            <h3 id="model-access-sdk-step3">Step 3: Create foundation model agreement</h3>
+            <p>Used to create agreement (access) for the foundation model. Use the offer token and modelId from above.</p>
+            
+            <p><span class="topcon">Documentation</span></p><div class="itemizedlist">
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p>API: <a href="https://docs.aws.amazon.com/bedrock/latest/APIReference/API_CreateFoundationModelAgreement.html">CreateFoundationModelAgreement</a></p>
+                        </li><li class="listitem">
+                            <p>CLI Documentation: <a href="https://docs.aws.amazon.com/cli/latest/reference/bedrock/create-foundation-model-agreement.html">create-foundation-model-agreement</a></p>
+                        </li></ul></div>
+            
+            <awsdocs-tabs><dl style="display: none">
+                <dt>AWS CLI</dt><dd tab-id="aws-cli">
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (none)--><code class="nohighlight">aws bedrock create-foundation-model-agreement \
+  --model-id &lt;ModelId&gt; \
+  --offer-token &lt;OfferToken&gt;</code></pre>
+                    </dd>
+                
+                <dt>Python</dt><dd tab-id="python">
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (python)--><code class="python ">offer_token= ''
+
+for agreement_offer in model_agreement_offers_response['offers']:
+    if  agreement_offer['offerId'] == offer_id:
+            
+            offer_token = agreement_offer['offerToken']
+            print(f"offer token found. Offer token is <span>{</span>offer_token}")
+            break
+
+
+if(not offer_token):
+    print(f"Offer token for  modelId: <span>{</span>model_id} is not found")
+    
+foundation_model_agreement_reponse = bedrock_client.create_foundation_model_agreement(offerToken= offer_token , modelId= model_id)</code></pre>
+                    </dd>
+            </dl></awsdocs-tabs>
+         
+        
+         
+            <h3 id="model-access-sdk-step4">Step 4: Get foundation model availability</h3>
+            <p>Used to check if the foundation model currently has access or not. Use the modelId from above.</p>
+            
+            <p><span class="topcon">Documentation</span></p><div class="itemizedlist">
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p>API: <a href="https://docs.aws.amazon.com/bedrock/latest/APIReference/API_GetFoundationModelAvailability.html">GetFoundationModelAvailability</a></p>
+                        </li><li class="listitem">
+                            <p>CLI Documentation: <a href="https://docs.aws.amazon.com/cli/latest/reference/bedrock/get-foundation-model-availability.html">get-foundation-model-availability</a></p>
+                        </li></ul></div>
+            
+            <awsdocs-tabs><dl style="display: none">
+                <dt>AWS CLI</dt><dd tab-id="aws-cli">
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (none)--><code class="nohighlight">aws bedrock get-foundation-model-availability \
+  --model-id &lt;ModelId&gt;</code></pre>
+                    </dd>
+                
+                <dt>Python</dt><dd tab-id="python">
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (python)--><code class="python ">model_availability_response = bedrock_client.get_foundation_model_availability(modelId=model_id)</code></pre>
+                    </dd>
+            </dl></awsdocs-tabs>
+            
+             
+                <h6>Expected response</h6>
+                <p><code class="code">agreementAvailability</code> returns a <code class="code">status</code> of
+                    <code class="code">AVAILABLE</code> if access exists, <code class="code">PENDING</code> if the agreement is
+                    still being set up, <code class="code">NOT_AVAILABLE</code> if access doesn't exist, or
+                    <code class="code">ERROR</code> if the agreement couldn't be completed. When the status is
+                    <code class="code">ERROR</code>, the <code class="code">errorMessage</code> field describes the problem. A
+                    status of <code class="code">PENDING</code> can occur after you submit Anthropic use case
+                    details; invoking the model returns <code class="code">AccessDeniedException</code> until the
+                    status becomes <code class="code">AVAILABLE</code>.</p>
+             
+            
+            <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (json)--><code class="json "><span>{</span>
+  "modelId": "anthropic.claude-sonnet-4-20250514-v1:0",
+  "agreementAvailability": <span>{</span>
+    "status": "AVAILABLE"
+  },
+  "authorizationStatus": "AUTHORIZED",
+  "entitlementAvailability": "AVAILABLE",
+  "regionAvailability": "AVAILABLE"
+}</code></pre>
+         
+        
+         
+            <h3 id="model-access-sdk-step5">[Optional] Step 5: Delete foundation model agreement</h3>
+            <p>Used to delete foundation model agreement (access). Use the modelId from above.</p>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Deleting model access is not enough for blocking access in the future since invoking the model will create the access again. To make sure access is not created again, apply restrictive deny IAM policies for the model.</p></div></div>
+            
+            <p><span class="topcon">Documentation</span></p><div class="itemizedlist">
+                         
+                         
+                    <ul class="itemizedlist"><li class="listitem">
+                            <p>API: <a href="https://docs.aws.amazon.com/bedrock/latest/APIReference/API_DeleteFoundationModelAgreement.html">DeleteFoundationModelAgreement</a></p>
+                        </li><li class="listitem">
+                            <p>CLI Documentation: <a href="https://docs.aws.amazon.com/cli/latest/reference/bedrock/delete-foundation-model-agreement.html">delete-foundation-model-agreement</a></p>
+                        </li></ul></div>
+            
+            <awsdocs-tabs><dl style="display: none">
+                <dt>AWS CLI</dt><dd tab-id="aws-cli">
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (none)--><code class="nohighlight">aws bedrock delete-foundation-model-agreement \
+  --model-id &lt;ModelId&gt;</code></pre>
+                    </dd>
+                
+                <dt>Python</dt><dd tab-id="python">
+                        <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (python)--><code class="python ">delete_foundation_model_agreement_reponse = bedrock_client.delete_foundation_model_agreement(modelId= model_id)</code></pre>
+                    </dd>
+            </dl></awsdocs-tabs>
+         
+     
+        <h2 id="model-access-govcloud">Access Amazon Bedrock foundation models in AWS GovCloud (US)</h2>
+        <p>AWS GovCloud (US) accounts are linked on a one-to-one basis with standard AWS commercial accounts. This linked commercial account is used for billing, service access, support purposes, and access to Amazon Bedrock Model Marketplace. For more information about the relationship between GovCloud and commercial accounts, see <a href="https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/getting-started-standard-account-linking.html">Standard account linking in AWS GovCloud (US)</a>.</p>
+        
+        <p>For third-party models, model access needs to be enabled in both the linked AWS commercial account in addition the AWS GovCloud account. For models provided by Amazon Bedrock, model access only needs to be enabled in the GovCloud account. This is a manual process.</p>
+        
+         
+            <h3 id="model-access-govcloud-commercial">Enabling model access for AWS GovCloud in linked AWS commercial account (only for third-party models)</h3>
+            <p>Model access can be enabled in an AWS commercial account using 2 ways:</p>
+            <div class="orderedlist">
+                 
+                 
+            <ol><li>
+                    <p>Invoke the required model for AWS commercial account in <code class="code">us-east-1</code> or <code class="code">us-west-2</code> region.</p>
+                </li><li>
+                    <p>Programmatically enable access to the model using SDK/CLI for AWS commercial account in <code class="code">us-east-1</code> or <code class="code">us-west-2</code> region. This can be done by following the steps described in the previous sections.</p>
+                </li></ol></div>
+            <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>After you enable access in the linked AWS commercial account, it can take a few minutes for the model entitlement to propagate to the associated AWS GovCloud (US) account.</p></div></div>
+         
+        
+         
+            <h3 id="model-access-govcloud-account">Enabling model access for AWS GovCloud account</h3>
+            <p>In AWS GovCloud (US), you use the <b>Model access</b> page in the Amazon Bedrock console in the <code class="code">us-gov-west-1</code> region to enable foundation models as described below:</p>
+            
+            <div class="procedure"><ol><li>
+                    <p>Make sure you have <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html#model-access-permissions">permissions to request model access</a> to request access, or modify access, to Amazon Bedrock foundation models. It is recommended to attach the <a href="https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AmazonBedrockFullAccess.html">AmazonBedrockFullAccess</a> policy to the user/role being used.</p>
+                </li><li>
+                    <p>Sign into the Amazon Bedrock console in the <code class="code">us-gov-west-1</code> region at <a href="https://console.aws.amazon.com/bedrock/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/bedrock/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+                </li><li>
+                    <p>In the left navigation pane, under <b>Bedrock configurations</b>, choose <b>Model access</b>.</p>
+                </li><li>
+                    <p>On the <b>Model access</b> page, choose <b>Modify model access</b>.</p>
+                </li><li>
+                    <p>Select the models that you want the account to have access to and unselect the models that you don't want the account to have access to. You have the following options:</p>
+                    <div class="orderedlist">
+                         
+                         
+                         
+                         
+                    <ol><li>
+                            <p>Be sure to review the <b>End User License Agreement (EULA)</b> for terms and conditions of using a model before requesting access to it.</p>
+                        </li><li>
+                            <p>Select the check box next to an individual model to check or uncheck it.</p>
+                        </li><li>
+                            <p>Select the top check box to check or uncheck all models.</p>
+                        </li><li>
+                            <p>Select how the models are grouped and then check or uncheck all the models in a group by selecting the check box next to the group. For example, you can choose to <b>Group by provider</b> and then select the check box next to <b>Cohere</b> to check or uncheck all Cohere models.</p>
+                        </li></ol></div>
+                </li><li>
+                    <p>Choose <b>Next</b>.</p>
+                </li><li>
+                    <p>If you add access to Anthropic models, you must describe your use case details. Choose <b>Submit use case details</b>, fill out the form, and then select <b>Submit form</b>. Notification of access is granted or denied based on your answers when completing the form for the provider.</p>
+                </li><li>
+                    <p>Review the access changes you're making, and then read the <b>Terms</b>.</p>
+                </li><li>
+                    <p>If you agree with the terms, choose <b>Submit</b>. The changes can take several minutes to be reflected in the console.</p>
+                </li><li>
+                    <p>If your request is successful, the <b>Access status</b> changes to <b>Access granted</b> or <b>Available to request</b>.</p>
+                </li></ol></div>
+         
+    <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./model-lifecycle-legacy.html">Model lifecycle (Legacy)</div><div id="next" class="next-link" accesskey="n" href="./model-access-product-ids.html">Subscribe from Marketplace</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=2d8c2a09-1dac-41bf-9893-c0333d272b2c&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/model-access.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=2d8c2a09-1dac-41bf-9893-c0333d272b2c&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/model-access.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

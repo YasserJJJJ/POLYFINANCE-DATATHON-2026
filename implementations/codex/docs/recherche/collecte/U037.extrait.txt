@@ -1,0 +1,724 @@
+In            Proceedings of the Seventeenth National Conference on Artificial Intelligence (AAAI-00),
+     pages 363-369, Austin, Texas, August 2000
+
+
+
+
+                        Making Rational Decisions using Adaptive Utility Elicitation
+
+                Urszula Chajewska                                   Daphne Koller                           Ronald Parr
+            Computer Science Department                      Computer Science Department            Computer Science Department
+                 Stanford University                              Stanford University                    Stanford University
+              Stanford, CA 94305-9010                          Stanford, CA 94305-9010                Stanford, CA 94305-9010
+              urszula@cs.stanford.edu                           koller@cs.stanford.edu                  parr@cs.stanford.edu
+
+
+
+                                  Abstract                                   is well documented (Fromberg & Kane 1989). People find
+                                                                             it hard to answer utility elicitation questions; they need to
+       Rational decision making requires full knowledge of the util-
+       ity function of the person affected by the decisions. How-            be trained beforehand and a significant percentage of them
+       ever, in many cases, the task of acquiring such knowledge             still give inconsistent answers. Finally, for many interesting,
+       is not feasible due to the size of the outcome space and the          real-life decision problems, the outcome space is very large.
+       complexity of the utility elicitation process. Given that the         There is a limit to the number of questions we can ask a per-
+       amount of utility information we can acquire is limited, we           son before fatigue will start playing a role. A decision tool
+       need to make decisions with partial utility information and           requiring an interview several hours long is not likely to be
+       should carefully select which utility elicitation questions we        widely used.
+       ask. In this paper, we propose a new approach for this prob-             In order to apply decision-theoretic tools to such situa-
+       lem that utilizes a prior probability distribution over the per-
+       son’s utility function, perhaps learned from a population of
+                                                                             tions, we have to address two new issues. First, we need
+       similar people. The relevance of a utility elicitation question       to find a way to make optimal or nearly-optimal decisions
+       for the current decision problem can then be measured us-             based on incomplete utility information. Second, in order to
+       ing its value of information. We propose an algorithm that            use the time and attention that our users are willing to give
+       interleaves the analysis of the decision problem and utility          us well, we should also carefully choose the questions we
+       elicitation to allow these two tasks to inform each other. At         ask to elicit utilities. In this paper we argue that the decision
+       every step, it asks the utility elicitation question giving us the    analysis and utility elicitation should not be considered to
+       highest value of information and computes the best strategy           be two separate tasks, but rather two parts of one process.
+       based on the information acquired so far, stopping when the           Each of these parts can influence and inform the other and
+       expected utility loss resulting from our recommendation falls         together they make the decision making process more accu-
+       below a pre-specified threshold. We show how the various
+       steps of this algorithm can be implemented efficiently.
+                                                                             rate and more efficient.
+                                                                                Our approach to utility elicitation and decision making
+                                                                             departs from traditional approaches in one very important
+                              Introduction                                   way: we treat utility as a random variable that is drawn
+     Rational decision making requires full knowledge of the util-           from a known distribution. This assumption is often quite
+     ity function of the person affected by the decisions. Accord-           reasonable: many medical informatics centers collect large
+     ing to traditional decision-theoretic principles, we should             databases of utility functions for various decision problems
+     choose the sequence of decisions, or the strategy, which                for the purpose of cost-benefit analyses of new treatments.
+     maximizes the expected utility (von Neumann & Morgen-                   We can use such databases of utility functions to estimate
+     stern 1947). In order to compute the expected utility of a              the distribution of utility functions in the population (Cha-
+     strategy, we need to know both the probabilities of all pos-            jewska & Koller 2000) and then use this estimate as a prior
+     sible events in the decision problem and the utilities of all           when we elicit utilities from the new users we advise.
+     world states, or outcomes. The task of acquiring the prob-                 This idea is key to our approach. First, it tells us how
+     abilistic information is well understood. We know how to                to choose a strategy relative to a partially specified utility
+     elicit such knowledge from experts or learn it from data.               function: we simply act optimally relative to our uncertain
+        Eliciting utility information is inherently harder. First, ev-       information about this random variable. Second, it provides
+     ery person we advise may have a different utility function.             a clear metric for evaluating different possible utility elicita-
+     Therefore, we need to elicit utility information not once, but          tion questions: the extent to which a question helps reach the
+     many times, once for each user. Second, the task of util-               optimal decision is simply its value of information (Howard
+     ity elicitation is cognitively difficult and error prone. There         1966). This insight provides us with the basis for our algo-
+     are many elicitation techniques and the fact that they pro-             rithm. At every step, our algorithm computes the optimal
+     duce very different results when applied to the same person             strategy based on the current information. It then asks the
+     Copyright c 2000, American Association for Artificial Intelli-          elicitation question with the highest value of information,
+     gence (www.aaai.org). All rights reserved.                              and the user’s answer is incorporated into the model. This
+              Decisions
+                                                                              about    ; the agent can make different choices about        
+                                                                                                                                             in
+                                                                              different nodes in the tree, thereby allowing his decision to
+                  TEST      IAB         PREGNANCY
+                                           LOSS
+                                                                    UTILITY
+                                                                   FUNCTION                                    
+                                                                              depend on the values of Y . The tree continues in this way,
+                                                                              until at the very end, nature decides on the remaining (un-
+   MOTHER’S
+     AGE
+                            SAB
+                                          FUTURE
+                                        PREGNANCY
+                                                         OUTCOME    UTILITY   observed) variables Y     
+                                                                                                          , and the final utility is determined
+                            TEST
+                                                                              accordingly. The optimal strategy in the tree can be com-
+                 DOWN’S
+                           RESULT
+                                        KNOWLEDGE
+                                                                              puted by the standard expectimax algorithm, which traverses
+                                                                              the tree bottom up, with the agent doing a Max operation at
+                                                                              each decision node, and nature doing an expectation oper-
+                                                                              ation at each chance node. While more sophisticated algo-
+                                                                              rithms for influence diagram inference exist (Jensen, Jensen,
+Figure 1: The decision model for prenatal diagnosis (cour-                    & Dittmer 1994), they are essentially equivalent in their be-
+tesy of Joseph Norman, Stanford Medical Informatics).                         havior to this simple decision-tree algorithm when applied to
+                                                                              standard influence diagrams (those in Howard normal form).
+process continues until the expected utility loss — the ex-                                                   Utilities
+pectation, taken over the possible utility functions for the
+user, of the difference between the utility of using the cur-                 We begin with a review of some basic concepts in utility
+rent recommendation and the utility of using the strategy op-                 theory. Our presentation is based on concepts discussed in
+timal for that user — falls below a pre-specified threshold.                  detail in (Keeney & Raiffa 1976).
+We provide a clean and efficient algorithm for implementing
+this scheme, despite the fact that it must deal with distribu-                Utility representation
+tions over continuous utility variables.                                         be the
+                                                                              Let                       . set of possible outcomes in our domain,
+                                                                                                            A utility function maps outcomes to real
+                          Decision models                                     numbers. The naive representation of a utility function is
+A sequential decision problem consists of several decisions,                  a vector of real numbers, ascribing a utility to each possible
+taken in sequence, typically with some information revealed                   outcome. Many real-life domains, however, involve fairly
+between one decision and the next. Such a decision prob-                      complex outcomes. In such cases, the space of outcomes is
+lem is often represented as an influence diagram (Howard &                    defined as the set of possible assignments of values to a set of
+Matheson 1984). In our experiments, we will use a simpli-                     relevant variables. The utility is a function of all of these val-
+fied version of a decision model developed at Stanford Medi-                  ues. This structure is fairly typical in complex decision prob-
+cal Informatics for the task of prenatal testing. The influence                                                        
+                                                                              lems. Thus, we define each outcome as an assignment to a
+                                                                                                               
+diagram is shown in Figure 1. Prenatal testing is intended to                                  !#"%$&   
+                                                                              set of attribute variables X
+                                                                                  has a domain
+                                                                                                                               . Each variable
+                                                                                                             of two or more elements. For ex-
+diagnose the presence of a chromosomal abnormality such
+as Down’s syndrome in the early weeks of pregnancy. The                       ample, in our domain, the outcomes include ‘first trimester
+probability of such abnormality increases with maternal age.                  test (CVS), normal result, birth of a healthy baby’, ‘sec-
+The two tests currently available to diagnose it, chorionic                   ond trimester test (amniocentesis), procedure-related mis-
+villus sampling (CVS) and amniocentesis (AMNIO), carry                        carriage, inability to conceive later’, and ‘no test, birth of
+a significant risk of miscarriage above the baseline rate. The                a baby with Down’s syndrome’. In general, the utility can
+risk is higher for CVS, but it is more accurate and can be                    depend on five attributes: T: type of testing; D: fetus status;
+performed earlier in the pregnancy. In addition, both mis-                    L: possible loss of pregnancy; K: knowledge of the fetus’s
+carriage (SAB) and elective termination of the pregnancy                      status; F: future successful pregnancy. The space of pos-
+(IAB) may reduce the chances of future pregnancy. The in-                     ' (&)*(&'(+'(,) .-/10
+                                                                              sible outcomes depending on these attributes is very large:
+                                                                                                           . Some of these can be eliminated
+fluence diagram contains two decision nodes — which test
+to perform (CVS, AMNIO, or none), and whether to perform                      as impossible, extremely unlikely, or absent in medical prac-
+an elective termination. The edges going into the decision                    tice, but even then more than 70 remain.
+nodes represent information that is available to the decision                    In some cases, subsets of attribute variables exhibit some
+maker before making the decision; for example, the test re-                   sort of independence, leading to structured utility represen-
+                                                                              tations. In particular, we might be able to represent the util-
+sult (if any) is known before the decision about the elective
+                                                                              ity  2435 &76879, :;
+                                                                                                      as a sum of subutility functions, e.g.,
+termination.
+   An influence diagram can be solved by converting it                        2 43#=<>2 ?657:;=<>2 ?9,7687
+                                                                                                                  . In these cases, the utility
+into a decision tree, where at some nodes, the “choice” is                    function can be specified using a smaller number of param-
+made by nature and at others by the decision maker (Pearl                     eters (27 in this example).
+1988). We order the decisions           
+                                              , and partition the
+                                                                              Utility elicitation
+chance nodes into mutually exclusive and exhaustive sets
+Y    
+          Y Y                       
+                    , where Y are the variables that are re-                  The fact that the utility function can be different for every
+                                                    
+vealed to the decision maker prior to . The initial choice                    patient involved, and the large number of parameters in-
+is made by nature about the random variables in Y , with                     volved in specifying it, has often led clinical practitioners to
+                 
+distribution Y . The next choice is made by the agent                         use a single “universal” utility function for all patients. This
+approach has led, for example, to the uniform recommenda-                 samples to be generated from the PDF, thereby allowing mo-
+tion of prenatal testing for all women above the age of 35.               ments of the distributions and expectations over it to be es-
+This type of universal recommendation is rarely suitable for              timated numerically. However, our algorithm can be made
+all women. In particular, our analysis of the model revealed              more efficient in cases where the PDF allows some compu-
+the considerable influence of the utility function (especially            tations to be done in closed form, in particular PDFs that
+the patient’s attitude towards the risk of having a Down’s                are jointly Gaussians or a mixture of Gaussians (cut off to
+child and toward a miscarriage) on the optimal choice of ac-                                / -
+                                                                          fit in the   hypercube). A Gaussian can represent depen-
+tions. An alternative approach is to elicit an individual utility         dencies between a person’s utilities for different outcomes.
+function from each patient.                                               A mixture of Gaussians can represent distinct clusters in
+   The standard gamble approach to utility elicitation (von               the population, whose utility functions are very different; in
+Neumann & Morgenstern 1947) estimates the strength of a                   general, any PDF can be approximated arbitrarily well with
+person’s preference for an outcome by the risks he or she                 a mixture of Gaussians (Bishop 1995). Furthermore, there
+ 
+is willing
+            to take
+                     to obtain it. Consider three outcomes              are efficient algorithms for estimating these PDFs from data.
+ 
+   , , and       and a user with the preference ordering               In cases where the utility function can be assumed to have
+                                        
+                . If he or she is offered a choice between for            some structure, as described above, it is better to represent
+sure and a 
+bility  and
+                 
+             gamble in which will be received with proba-
+                    with probability             -       
+                                           , then, according to
+                                                                          and learn the distribution over utilities via a PDF over the
+                                                                          (much smaller set of) parameters of the subutility functions
+the theory, there exists a value
+                                  of for which the user will be        (Chajewska & Koller 2000). As the utility variables are lin-
+
+        2    <  -            2  
+indifferent. The outcome  can then be assigned the utility               ear in these parameters, a mixture of Gaussians over the
+value                           .                                      subutility parameters induces a mixture of Gaussians over
+                                                             
+   The utility elicitation process starts by defining two uni-
+versal best and worst outcomes, ( and ), which are then
+                                                                           .
+
+used as anchors, with values 1 and 0, to determine the rela-                                                The algorithm
+tive utilities of all the other outcomes in the decision prob-
+lem. A typical question in a medical domain is formulated in              Our approach is based on an integrated algorithm for deci-
+this way: “Imagine that you have a certain health condition               sion making and utility elicitation. The answers to our utility
+which limits your activities in a specific way [the detailed              elicitation questions inform the decision making procedure,
+description follows]. Imagine that there is a new experimen-              the results of which help us select the most informative next
+tal drug which only needs to be taken once. If taken, it will             utility elicitation question to ask.
+cure the condition  percent of the time, and   percent        -           When the system encounters a new patient, the only in-
+                                                                          formation available about her utility function is the prior
+of the time it will cause a painless death. Would you take
+the pill?” The question is repeated for a sequence of values                        +
+                                                                          PDF   . The algorithm then cycles through the following
+of  until the user’s preference changes. Several different               steps.
+ways of choosing the sequence can be used, including bi-                      It computes the optimal strategy  relative to the current
+nary search, ping-pong (alternating between high and low                   PDF   .  
+values) and, most commonly, titration (reducing the value                     If this optimal strategy meets the stopping criterion, it
+of  by a small amount). Recent research established that                   stops and outputs  .
+the final values are sensitive to the sequence choice (Lenert
+                                                                              Otherwise, it selects a utility elicitation question to ask
+et al. 1998). Obviously, the user’s answers are the most re-                 the user, and asks it.
+liable far from the actual indifference point and most error-
+prone immediately around it. The need to use a sequence of                                          = +
+                                                                              It conditions   on the response.
+questions for every outcome greatly increases the length of
+an interview and thus reduces the number of outcomes we                   Decisions under utility uncertainty
+can ask our user to consider.                                             The first question we must address is how we make opti-
+                                                                          mal decisions given uncertainty over the user’s utility func-
+Uncertainty over utilities                                                tion  . Fortunately, the answer to this question is easy (and
+The discussion above, as well as practical experience, shows              well-known). Consider a given strategy  and a PDF   .     = +
+                                                                             !"$# expected utility of 
+                                                                                                             
+that it is virtually impossible to elicit a person’s exact utility        The                           (' for a fixed utility function is:
+                                                                                 =                                    
+                                                                                                                                         
+function. In this paper, we propose to circumvent this goal                              &%            *)+ The expected utility un-
+                                                                                                                                         .'
+entirely. Rather than aiming at a completely specified utility                  
+                                                                          der           can easily be shown to be
+                                                                                                                      !"#
+                                                                                                                                 
+                                                                                                                            , -% 
+function for a given patient, we maintain a probability dis-                                                                            = +
+                                                                           */102 )   . Hence, we can find the best strategy given  
+tribution representing our beliefs about that patient’s utility                                                     
+                                                                          by running standard influence diagram inference using, as
+                                                                                                                                2
+2 
+function. In other words, we view the different quantities
+    as a set of continuous-valued random variables (in
+                                                                          the utility value for outcome , the mean of 3 under  .
+                                                                                                                                    2
+                                                                                 In general, we can compute the mean of 3 under  by
+                     / -
+                               2  2        
+the interval   ), with a joint probability density function            Monte Carlo sampling. However, under the assumption
+        
+(PDF)        (                 ), representing our be-          that  is a mixture of Gaussians, we can compute it much
+liefs about the patient’s utilities.                                      more efficiently by combining the closed form integral of
+   This type of PDF can be represented in many ways; our                           
+                                                                           )54627 8 )       
+                                                                                              with the integral tables readily available for
+approach applies to any representation that allows random                              
+                                                                            4627 9 ) . (We omit details.)
+Utility elicitation questions                                                                                       ple metric for evaluating possible questions — the value
+                                    
+A distribution   can be updated with additional informa-                                                          of information measures the expected improvement in our
+                                                                                                                    2 -
+tion about the user’s utility function, elicited from the user.                                                     decision quality derived from the answer to a question “is
+                                                                                                                      
+                                                                                    
+                                                                                                                            ?” We define the posterior expected utility after ask-
+We consider questions that follow the standard gamble pat-
+                                                                                                                    ./1024365789:/10<; => 2@?1ACB*8EDF2HG IKJL7M8ON</10P; Q> 2@?1RCBS8EDF2HGTIKUL78
+                                                                                                                    ing this question as:
+                                          
+tern: “Given the choice between outcome for          sure and a                                     
+                        - 
+lottery which gives      with probability and          with prob-
+ability 5 , which will you choose?” We translate the re-
+sponse to this question to a constraint of the form                                                     2         This is an average of the expected utilities arising from
+or         2 
+            , depending on the response. We call the value                                                          the two possible answers to the question, weighted by how
+
+                                                                                             
+of a split point. Consider a cycle of this process. Initially,                                                      likely these two answers are. The value of information is
+we have a PDF  over the user’s utilities. Let be the mean                                                          this expression minus the current expected utility. Our goal
+                                              
+of  under  , and  the strategy that is optimal relative to                                                                                              2
+                                                                                                                    is to find the outcome  , and the splitting point for that
+                                                                                                                   outcome, that achieves the highest value of information. We
+                                                                              2 
+  . Now, consider a question regarding an outcome and a
+split point . If the user responds that          , we condition                                                    note that this metric only evaluates the myopic value of in-
+our PDF  , resulting in a new PDF                                                                                 formation for the question. The full value of information,
+                                                                                                            
+                                            ; this will give us a
+                , and as a result, a new optimal strategy 
+                                                                2                                         
+new mean                                                        .                                                   which takes into consideration all possible future combina-
+Similarly, if she responds that        , we obtain a PDF 
+                                                                                        
+                                                                                                                    tions of questions and answers, is, as usual, intractable.
+with              
+           and associated optimal strategy          . As further                                                      We will start our analysis for the case in which the utilities
+questions are asked and more information is obtained, our                                                           of different outcomes are probabilistically independent, i.e.,
+probability distribution  is updated, and the choice of opti-                                                                                          2
+                                                                                                                    the different variables  are marginally independent in  .
+mal strategy changes to better fit the user’s true preferences.                                                     We then relax this assumption in a later section.
+   Note that our questioning pattern differs from standard
+gamble in a significant way: we do not ask about the same                                                           Discretizing the problem
+outcome for different values of  , until the indifference point
+                                                                                                                    The first problem we encounter is that the utility variables
+is reached. Rather, we choose questions so as to reduce the
+                                                                                                                    range over a continuous space, so that there are infinitely
+total number of questions we need to ask the user. A given
+                                                                                                                    many potential split points for each outcome. Fortunately, it
+question will often be for a different outcome than the pre-
+                                                                                                                    turns out that we can restrict attention only to a finite number
+vious one.
+                                                                                                                    of them.
+   We discuss the process of selecting the best question be-                                                           Let  be some strategy, and consider
+                                                                                                                                                               !"#
+                                                                                                                                                                                                   
+                                                                                                                                                                       2 ,V
+                                                                                                                                                                          as a func-
+low.                                                                                                                tion of a single utility variable  :
+Stopping criterion                                                                                                        /10 ; 24W I V 8X9 Y 24W I V 8ZW I V NP[  DF243^ _ 8`Ya24WbIc^ W I V 8ZWdI*ecWbI (1)
+                                                                                                                                                                 I(] \ I V
+                                                    +
+After a sequence of utility elicitation questions, we will have
+a posterior distribution   over the user’s utility function,
+                                                                                                                                         9 Y 24W I V 8ZW I V NP[  DF243^ _ 8`Ya24WbI8ZWbIfecWbI
+and an associated candidate optimal policy  . We would
+                                                                                                                                                                  I(] \ I V
+                                                                
+like to estimate the regret associated with stopping the utility
+elicitation and recommending  . Assume that the user’s true                                                                               9 Y 24W I V 8ZW I V N [ DF243^ _ 8Egihkj G I*l 5
+             
+utility function is , and that the associated optimal strategy
+is  . Then the user’s loss is the difference between her
+                                                                                                                                                                   I(] \ I V
+                                                           
+expected utility, under , of  , and her expected utility un-
+der the recommended strategy  . The expected loss is the                                                            where the second equality is due to our independence as-
+
+                               
+expectation of the loss under   :                    =                                                         sumption about utility variables.
+
+                  
+                    !" #
+                           
+                                !" #
+                                         1
+                                                =     =                                                 Hence, the expected utility of a given strategy  is a lin-
+                                                                                                                                              2
+                                                                                                                    ear function of  . The value for the optimal strategy for
+                                                                                                                                                                              2
+                                                                                                                    this problem is, for each value of  , the maximum over all
+    While computing this integral exactly is impractical — we
+ would need to compute the regions in which every strategy
+                                                                                                                    strategies  . Thus, it is a piecewise-linear, convex function
+                                                                                                                          2
+                                                                                                                    of  . We say that a strategy is viable for if it is opti-
+                                                                                                                                                                                                    
+ is optimal — we can approximate it quite easily using Monte                                                                                                    2
+                                                                                                                    mal for some value of  . We say that a particular value
+
+    
+ Carlo methods. We simply sample utility functions from                                                                 is an intersection point if there are two viable strategies
+ , use the influence diagram to compute the optimal strategy                                                         
+                                                                                                                    !"$and   that
+        
+  , and compute the loss for .
+                                                                                                                          #
+                                                                                                                               Z   H 
+                                                                                                                                   ! "5achieve
+                                                                                                                                       #       the same expected utility at , i.e.,
+
+    We can bound the number of samples needed using the
+                                                                                                                            
+                                                                                                                                    '       .
+                                                                                                                    Proposition 1: The split point with the highest value of in-
+                                                  !                                                             "
+ upper bound on the worst case loss , the desired threshold
+
+                                                                    #$&*)%(',' +
+ for expected utility loss and the confidence parameter by                                                          formation will occur at one of the intersection points.
+                                                                                                                                                                                                             m
+ using Chebyshev’s inequality:             .                                                                        Proof: Consider a potential split point , and let  be the
+                                                                                                                    optimal strategy for the distribution        and  be the opti-  T                 n  
+                                                                                                                                                                                            c
+                                                                                                                                                                     m  5               n 
+                               Choosing the next question                                                           mal strategy for the distribution
+                                                                                                                                              !"          .   Let
+                                                                                                                                                              !"      be the strategy
+                                                                                                                                                                  
+                                                                                                                                                                                          6 
+One of the important advantages of explicitly modeling our                                                          intersection point where                           . Let’s further
+uncertainty over the user’s utility is that we obtain a sim-                                                        assume, without loss of generality, that             . We want to
+            ! "
+                     !"  *               S6
+          
+show that                          . It is easy to verify, for                                       all, there is an enormous number of strategies: exponential
+any    and any strategy  , that                                                                in the size of the decision tree. Any computation which re-
+    !"5#
+                 4
+             8   
+                                                                                                     quires us to consider all of them is much too expensive in all
+
+                              4 <                                   
+                                                                                                     but the most trivial of decision problems. Fortunately, the
+          
+          !"5#
+                  8    ! "5#    8                                                   number of viable strategies is exponentially smaller than the
+                                                                                                     total number of strategies. Indeed, we show that it is linear in
+               /0P;  2@? ACB 8EDF2HG I JL7M8 N /0 ;  2@? RbB 8EDF2HG I UL78
+We have that                                                                                         the size of the decision tree corresponding to our influence
+                                                                                                     diagram. Given that we need to traverse the decision tree
+                   9 /0 ;  2@?1ACB  8EDF2HG IKJL7f8                                            every time we use the decision model for finding an optimal
+                              N /0 ;  2@? B  B 8EDF2HG I j 7  57 l 8                   strategy, this cost is very reasonable.
+
+                               N /0 ;  2@? RCB 8EDF2HG I UL78                                    
+                                                                                                     Proposition 2: The number of strategies that are viable for
+
+                      /0 ;  2@?1ACB  8EDF2HG IKJL7  8
+                                                                                                       is at most the number of nodes in the decision tree corre-
+                                                                                                     sponding to the influence diagram.
+                                N /0 ;  2@? B  B 8EDF2HG I  j 7(57 l 8
+                                 N /0 ;  2@? RCB 8EDF2HG I UL78
+                                                                                                     Proof: We prove this result by induction on the depth of the
+                                                                                                     tree. For the base case, a tree of depth 0 consists of a single
+                    9 /0 ;  2@?1ACB  8EDF2HG IKJL7f8                                           leaf, where we have only a single strategy. In this case, the
+
+                                  N /0 ;  2@? RCB  8EDF2HG I UL7  8
+                                                                                                     number of nodes is 1, and the number of viable strategies
+
+                                                                                                     < -
+                                                                                                     is also 1. For the inductive case, consider a tree of depth
+                                                                                                                   " be the number of children of the root, and let
+                                                                                                     # be .theLetnumber
+  where the inequality is due to the fact that  n  dominates                         . Now,          
+ m  for every )   c , and therefore also for !
+                                                                                                                          of nodes in the subtree corresponding to
+                                                                                                     the $ th child. By the inductive hypothesis,# the number of vi-
+                                                                                                                                                    
+consider the two strategies              and   and           
+                                                             respectively. that are optimal         able strategies for the $ th child is at most . There are now
+
+not necessarily  m  and  n  , because the mean of 
+for the distributions                                                                     , say,
+                                                                                      These    are   two cases. Either the root is a max node or an expectation
+                                                                                                                                                              !"
+                                                                                                                                                                 2 
+                                                                                                                                                                    
+might not fall in the part of the region  where m   is optimal.
+                                                                                                     node. In the first case, the expected utility function
+                                                                                                     is the maximum of the functions of the children. In the sec-
+However, it is easy to show that T                           and   can only                    ond case, it is a weighted average of the functions of the
+improve the posterior expected utility. The result follows.                                          children, where the weights are the probabilities annotating
+                                                                                                     the edges going out of the root. In both cases, it is easy to
+
+                                                                          
+    We only need to consider those strategy intersection                                             verify that the function at the root is a piece-wise linear func-
+points where the viable strategies           and 
+      
+                                                        intersect                                    tion, with a number of segments which is at most the total
+at ; otherwise, as the proof shows, the strategy intersec-                                           number of segments in the combined functions. (Intuitively,
+tion point of these two strategies would have higher value                                           the reason is that the combined function can change from
+
+                       #
+of information. How many points like this are there? Sup-                                            one linear function to another only at a point where one of
+pose we have         optimal strategies. Let’s imagine moving                                        the constituent functions changes from one linear function
+the potential split point from left to right over the range of                                       to another.)
+2  . We can mark an interval boundary whenever the opti-
+mal strategy for the area to the left or the optimal strategy
+for the area to the right of our split point changes. Note that                                      Correlated outcomes
+
+                             T
+once a strategy on the left side changes, it cannot change
+                                        2
+                                                                                                     Until now in this section, we have assumed that the different
+back: the mean           of  increases monotonically as we                                                          2                        +
+                                                                                                     utility variables  are independent in   . Unfortunately,
+widen the region on the left, and the expected utility for any                                       this assumption is too strong in many cases. Indeed, it is
+strategy is a linear function of this mean. Hence, the linear                                        quite likely that a woman’s utility for one outcome involv-
+functions for any pair of strategies can cross at most once.                                         ing a Down’s baby will be correlated with her utility for an-
+Similarly, once a strategy on the right side changes, it can-                                        other outcome involving the same event. In this section, we
+                                                      )#
+not change back. As each strategy is optimal on each side                                            consider the more general case of an arbitrary distribution  .
+) # &-
+at most once, we have at most
+     
+                                          intervals, and at most
+         candidate split points. Each of these is only feasible,
+                                                                                                        We begin by assuming that our prior         +
+                                                                                                                                                         is a multi-
+                                                                                                     variate Gaussian with an arbitrary covariance matrix, con-
+of course, if it is also a strategy intersection point of the two                                                                 / -
+                                                                                                     strained to lie within the   hypercube. Clearly, our
+)#                                                     #
+corresponding strategies. Thus, we need to consider only
+          -
+          split points, rather than       . We can execute this
+                                                                                                     utility function distribution cannot be truly Gaussian since
+                                                                                                     utility functions are constrained to lie within the normalized
+process efficiently using a simple binary search procedure,                                          range. Nevertheless, a Gaussian can be a reasonable approx-
+which utilizes the fact that we can find intersection points                                         imation since the probability mass that lies outside of the
+analytically. We omit details for lack of space.                                                     normalized utility range will generally be negligibly small.
+                                                                                                        We use a convenient property of multivariate Gaussians
+The number of optimal strategies
+                                                                                                                                                2 V
+                                                                                                     to apply the algorithm of the previous section with almost
+                                                                                                     no modifications: Given any variable  , the conditional
+                                                                                                                                                                 2 V
+The result above suggests that the number of VOI computa-
+tions required is linear in the number of viable strategies. At                                      means of the remaining variables are linear functions of 3 .
+first glance, this result might not be very reassuring. After                                        In other words, in Eq. (1), although we no longer have that
+        '
+                V    
+ )  )  . )+ , we do have that  )+ )  *)+ 1)+
+                                                         '
+                                                              =             V   5                             0.035
+
+
+      V
+    )+ for some linear function  . Thus, when we are enu-
+                                                                                                                                                           Age 45 - Predicted Utility Loss
+
+                                                      
+   merating the viable strategies for outcome , as described
+                                                                                                                   0.03
+                                                                                                                                                             Age 45 - Actual Utility Loss
+                                                                                                                                                             Age 20 - Actual Utility Loss
+
+
+
+   in the section “Choosing the next question”, we replace the
+                               2
+                                                                                                                   0.025
+
+   means of the other  variables with       !" their
+                                                                   2 V
+                                                  #     (linear) condi-
+                                                                                                    Utility Loss
+                                                        is still a lin-
+                                                                                                                    0.02
+
+
+                        2 V
+   tional means. The resulting function
+   ear function of  , so that the rest of the analysis remains                                                    0.015
+   unchanged.
+      Unfortunately, this analysis is insufficient for our pur-                                                     0.01
+
+   poses. Most obviously, it does not apply to the case of a
+                                                                                                                   0.005
+   mixture of Gaussians, where the mean of one variable is
+   no longer a linear function of the other. There is a more                                                          0
+                                                                                                                           0     2     4    6        8         10      12      14       16   18
+   subtle problem, however: even if our prior distribution is                                                                               Utility Elicitation Questions
+
+
+                                   2 ,V V 
+   a multivariate Gaussian, once we condition our distribution
+   on some information               , the resulting posterior is no                       Figure 2: Expected and actual utility loss as a function of
+   longer a multivariate Gaussian, but rather a “strip” of one. It                          the number of qustions asked.
+   can be verified that the conditional mean for this distribution
+   is not a linear function.
+      We address both these difficulties using a simple approxi-
+   mation. Let  be our current distribution, conditioned on all                            tests separately for every possible value of mother’s age.
+   of the relevant information. Rather than computing value of                              Due to the small size of the database, we assumed that the
+   information relative to  , we approximate  using a distri-
+            
+                                                                                            utility function does not change with age and used all func-
+   bution  which is a multivariate Gaussian. We note that our                              tions in the database to run tests for all ages.
+   stopping criterion is always computed relative to the correct                               We present the results for an uncorrelated Gaussian; our
+   conditional distribution  .                                                             current database is too small to allow reliable learning of
+      In the case where  is a multivariate Gaussian, we can use
+   a simple trick to maintain our distribution  as additional                             more complex densities. Figure 2 shows the evolution of
+                                                                                            predicted and actual utility loss as more questions are asked.
+                                
+   information is obtained. The key idea is that any multivari-                             We see that the predicted utility loss starts out quite large,
+   ate Gaussian                          can be decomposed as a
+                                                                                           as the distribution is very broad. It gradually converges to
+         
+   univariate Gaussian
+                    '      over       and  a linear Gaussian (LG)                           the correct utility loss, and both gradually converge to zero.
+                          which defines a multivariate Gaussian
+   over        with mean               
+                                            which is a vector linear
+                                                                                            The predicted utility loss is usually an overestimate to the
+   function of                                    
+                      and a fixed covariance matrix (Shachter &
+                                                                                            actual utility loss, implying that our algorithm is “safe” in
+                                                                                            not stopping prematurely. The overall results are summa-
+   Kenley 1989). If we condition             on some evidence, and
+
+                 =      
+                                                                                            rized below; the ranges indicate behavior for different ages:
+   approximate the result on' a Gaussian, the parameterization                                                                      Number of questions asked
+                                                                                               9 
+   of the LG                          does not change. Hence, the                                                                avg        best worst              std. dev.
+                                        
+   best approximation to the joint PDF as a multivariate Gaus-
+                                                                                                9 
+                                                                                                                                2.3–3.9        2        16           13–14.7
+   sian, given evidence on
+   best approximation to 
+                                     
+                                   , can be found by finding the
+                                  = 
+                                      as a univariate Gaussian and
+                                                                                                                                5.9–9.0        3        16           12.1–30
+                                                                                                                                  Utility loss after last question
+
+                                                        
+   leaving the LG unchanged. We can  then regenerate a new
+                                                                                 =          9
+                                                                                                
+                                                                                                                                  avg        best worst              std. dev.
+   approximate multivariate Gaussian  by multiplying 
+                                                            2 V                                 9
+                                                                                                 
+                                                                                                                                .01–.04        0       0.28          0.24–0.3
+                                           
+   and the LG. In this case, the variable  on which we have
+   evidence plays the role of       .
+                                                                                                                               .001–.015       0      0.087
+                                                                                                                                 Distance from indifference point
+                                                                                                                                                                    0.05–0.14
+
+      We can extend this approach to the case of a mixture of                                                                      Q1         Q2        Q3      avg (20 questions)
+   Gaussians. We use the same idea of approximating the dis-                                                                      0.41       0.21      0.13            0.21
+   tribution as a multivariate Gaussian, and then using our al-                                As we can see, the number of questions asked is surpris-
+   gorithm above for finding the optimal split point relative to                            ingly small given the fact that we have 108 outcomes in the
+                      2 ,V
+   the approximation. We then use the information about the
+        (the utility  ) to define a posterior distribution. The
+                                                                                            model. It increases slightly as we lower the threshold, but
+                                                                                            stays well within the bounds of what is possible in clini-
+                          
+   only difference is that, in this case, we must also use our in-                          cal practice. By comparison, the approach of (Chajewska
+                                                                                                                                                                      
+                                                                                                                                                                                    / / '
+   formation about        to update the mixture weights. This can                           et al. 1998) achieves an average of  questions for the
+   be done using a standard application of Bayes rule.                                      same domain and an average utility loss of             ; with a
+
+                                                                                                                                             !  / /
+                                                                                            much smaller number of questions, we achieve a utility loss
+
+                                                                                                !  / / )
+                         Experimental results                                               which is comparable for               and substantially lower
+Our database consisted of 51 utility functions elicited from                                for             . Furthermore, their approach provides no
+pregnant women considering prenatal diagnosis, collected                                    guarantees about the utility loss of the final recommenda-
+for an earlier study (Kuppermann et al. 1997). We used five-                                tion. Finally, note that the split points our algorithm chooses
+fold cross-validation for experiments, estimating the distri-                               are usually quite far from the indifference point, making the
+bution using four sets and testing on the fifth. We ran these                               questions cognitively easy.
+                      Related work                                 Acknowledgments We would like to thank Miriam Kup-
+                                                                   permann for allowing us to use her data and Joseph Nor-
+With recent advances in the power and scope of decision-           man his model for the prenatal diagnosis domain. We are
+theoretic systems, utility elicitation has become a lively and     also grateful to Uri Lerner for his help in building the infer-
+expanding area of research. A few projects are particularly        ence code for Gaussians and to Brian Milch for his influence
+relevant to this work. Jameson, et al. (1995) and Linden,          diagram code. This research was supported by ARO un-
+et al. (1997) investigated the problem of eliciting partial        der the MURI program “Integrated Approach to Intelligent
+utility models and reasoning with such models in case of           Systems”, grant number DAAH04-96-1-0341, by ONR con-
+certainty for domains such as shopping and making airline          tract N66001-97-C-8554 under DARPA’s HPKB program,
+reservations on the Web. Poh and Horvitz (1993) discussed          and through the generosity of the Powell Foundation and the
+the value of the refinement of utility information. Finally,       Sloan Foundation.
+Jimison et al. (1992) suggested explicitly representing un-
+certainty about key utility parameters in the context of ex-                                 References
+plaining medical decision models to the users.
+                                                                    Bishop, C. M. 1995. Neural Networks for Pattern Recognition.
+                                                                    New York, NY: Oxford University Press.
+             Conclusion and extensions                              Chajewska, U., and Koller, D. 2000. Utilities as random variables:
+                                                                    Density estimation and structure discovery. In Proc. UAI–00. To
+We have presented a new approach for making decisions               appear.
+based on limited utility information, and for targeting our         Chajewska, U., Getoor, L., Norman, J., and Shahar, Y. 1998.
+utility elicitation process so as to lead to a good decision        Utility elicitation as a classification problem. In Proc. UAI–98,
+using a small number of questions. Our approach is based            79–88.
+on maintaining a probability distribution over possible util-       Fromberg, D. G., and Kane, R. L. 1989. Methodology for mea-
+ity values of the user, and using value of information for          suring health-state preferences—II: Scaling methods. Journal of
+deciding which utility elicitation question will best help us       Clinical Epidemiology 42(5):459–471.
+in making rational decisions. We have presented algorithms          Howard, R. A., and Matheson, J. E. 1984. Influence diagrams. In
+for doing these computations efficiently.                           The Principles and Applications of Decision Analysis. Strategic
+   We have presented results that suggest that our approach         Decisions Group.
+can make utility elicitation substantially easier for users of      Howard, R. A. 1966. Information value theory. IEEE Transac-
+the decision model. Our results suggest that, in most cases,        tions on Systems Science and Cybernetics SSC-2:22–26.
+our chosen split point will not be in the immediate vicin-          Jameson, A., Schäfer, R., Simons, J., and Weis, T. 1995. Adap-
+ity of the user’s indifference point, thus making the task          tive provision of evaluation-oriented information: Tasks and tech-
+                                                                    niques. In Proc. IJCAI–95, 1886–1893.
+much easier cognitively. Furthermore, we have seen that our
+method substantially reduces the overall number of ques-            Jensen, F., Jensen, F. V., and Dittmer, S. L. 1994. From influence
+                                                                    diagrams to junction trees. In Proc. UAI–94.
+tions we have to ask before a good decision can be made;
+often, the number is as small as 2–3, with a very small util-       Jimison, H. B., Fagan, L. M., Shachter, R. D., and Shortliffe, E. H.
+                                                                    1992. Patient-specific explanation in models of chronic disease.
+ity loss. Indeed, one might expect that the overall decision
+                                                                    AI in Medicine 4:191–205.
+quality will be better, because our method allows us to avoid
+                                                                    Keeney, R. L., and Raiffa, H. 1976. Decisions with Multiple
+errors resulting from the fatigue caused by the utility elicita-    Objectives: Preferences and Value Tradeoffs. John Wiley & Sons,
+tion process.                                                       Inc.
+   There are many ways in which our work can be extended.           Kuppermann, M., Shiboski, S., Feeny, D., Elkin, E. P., and Wash-
+For example, some questions are cognitively more difficult          ington, A. E. 1997. Can preference scores for discrete states
+than others: questions near the indifference point are hard,        be used to derive preference scores for an entire path of events?
+a second consecutive question about the same outcome is             Medical Decision Making 17(1):42–55.
+cheaper than a question about an outcome discussed a few            Lenert, L. A., Cher, D. J., Goldstein, M. K., Bergen, M. R., and
+questions back, etc. It is easy to incorporate the cognitive        Garber, A. 1998. The effect of search procedures on utility elici-
+cost of questions into the value of information computation.        tations. Medical Decision Making 18(1):76–83.
+   A more general research direction is to exploit other as-        Linden, G., Hanks, S., and Lesh, N. 1997. Interactive assessment
+pects of our approach to representing uncertainty over util-        of user preference models: The automated travel assistant. In
+ity functions. One possible application is to represent the         Proc. User Modeling ’97.
+dependence of this distribution on environmental variables.         Pearl, J. 1988. Probabilistic Reasoning in Intelligent Systems.
+For example, it has been noted by the practitioners in the          San Francisco, CA: Morgan Kaufmann.
+field that a woman who personally knows a Down’s syn-               Poh, K. L., and Horvitz, E. 1993. Reasoning about the value
+drome child is more likely to rate an outcome involving such        of decision-model refinement: methods and application. In Proc.
+a child as less desirable. A less obvious and more philosoph-       UAI–93, 174–182.
+ically controversial application is to represent the probability    Shachter, R., and Kenley, C. 1989. Gaussian influence diagrams.
+                                                                    Management Science 35:527–550.
+that a user’s preferences will change over time. We believe
+that the tools provided by probabilistic models — value of          von Neumann, J., and Morgenstern, O. 1947. Theory of Games
+                                                                    and Economic Behavior. Princeton, N.J.: Princeton University
+information, statistical learning, and more — will turn out
+                                                                    Press, 2nd edition.
+to be extremely useful in this new type of modeling.
+

@@ -1,0 +1,4771 @@
+{
+  "mode": "actual_http_and_aws",
+  "expected_outputs_supplied": false,
+  "cases": {
+    "amira-initial": {
+      "id": "f281a9067e4544138fa178fa4ee0b850",
+      "revision": 5,
+      "status": "complete",
+      "analysis_status": "conditional",
+      "claims": [
+        {
+          "id": "historical_return_baseline",
+          "kind": "historical_observation",
+          "result_refs": [
+            {
+              "pointer": "/options/0/metrics/total_return_pct/value",
+              "unit": "percent"
+            },
+            {
+              "pointer": "/method/metadata/start",
+              "unit": "date"
+            },
+            {
+              "pointer": "/method/metadata/end",
+              "unit": "date"
+            }
+          ],
+          "scope": "Descriptif, avant frais de transaction/change/impôts ; aucune prévision.",
+          "text": "Allocation initiale : rendement total rétrospectif de 78.06 %, du 2021-11-12 au 2026-11-12."
+        },
+        {
+          "id": "historical_return_target_variant",
+          "kind": "historical_observation",
+          "result_refs": [
+            {
+              "pointer": "/options/1/metrics/total_return_pct/value",
+              "unit": "percent"
+            },
+            {
+              "pointer": "/method/metadata/start",
+              "unit": "date"
+            },
+            {
+              "pointer": "/method/metadata/end",
+              "unit": "date"
+            }
+          ],
+          "scope": "Descriptif, avant frais de transaction/change/impôts ; aucune prévision.",
+          "text": "Exposition initiale TSLA à 10.0% : rendement total rétrospectif de 87.50 %, du 2021-11-12 au 2026-11-12."
+        }
+      ],
+      "capital_cad": 25000.0,
+      "withdrawal_cad": null,
+      "view_available": true,
+      "comparison": null,
+      "aws_receipts": [
+        {
+          "role": "agent0",
+          "request_id": "362472a5-7b79-40ec-9f7c-fecb1cd82509",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 2369,
+            "input_tokens": 2,
+            "output_tokens": 204,
+            "total_tokens": 2575
+          }
+        },
+        {
+          "role": "agent1",
+          "request_id": "30bb704f-05a8-4ed6-a34a-7e404c4f7311",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 26795,
+            "input_tokens": 2,
+            "output_tokens": 1606,
+            "total_tokens": 28403
+          }
+        },
+        {
+          "role": "agent2",
+          "request_id": "1f491dc9-a954-4a26-9836-a33756785813",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 3322,
+            "input_tokens": 2,
+            "output_tokens": 546,
+            "total_tokens": 3870
+          }
+        },
+        {
+          "role": "agent3",
+          "request_id": "dd1329eb-e95b-4105-9a08-d8555f8d6827",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 4389,
+            "input_tokens": 2,
+            "output_tokens": 189,
+            "total_tokens": 4580
+          }
+        }
+      ]
+    },
+    "incomplete-initial": {
+      "id": "e6405c6c61f64c5b89c11262ce9b9669",
+      "revision": 4,
+      "status": "waiting",
+      "analysis_status": null,
+      "claims": [],
+      "capital_cad": null,
+      "withdrawal_cad": null,
+      "view_available": false,
+      "comparison": null,
+      "aws_receipts": [
+        {
+          "role": "agent0",
+          "request_id": "f17c46de-9398-4221-869e-d277661c927c",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 1754,
+            "input_tokens": 2,
+            "output_tokens": 1112,
+            "total_tokens": 2868
+          }
+        },
+        {
+          "role": "agent1",
+          "request_id": "19bffc90-ee06-4193-91f7-2d569eb8bb66",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 12860,
+            "input_tokens": 2,
+            "output_tokens": 1521,
+            "total_tokens": 14383
+          }
+        },
+        {
+          "role": "agent0",
+          "request_id": "08595daf-c4cf-456e-b7d2-8b658f3f15c4",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 3463,
+            "input_tokens": 2,
+            "output_tokens": 734,
+            "total_tokens": 4199
+          }
+        }
+      ]
+    },
+    "extracted-initial": {
+      "id": "4089e4b0d70f40b6b20d832fa261e1dc",
+      "revision": 5,
+      "status": "complete",
+      "analysis_status": "conditional",
+      "claims": [
+        {
+          "id": "minimum_reallocation",
+          "kind": "conditional_optimality",
+          "result_refs": [
+            {
+              "pointer": "/options/1/metrics/turnover_cad/value",
+              "unit": "CAD"
+            }
+          ],
+          "scope": "Branche abstraite, contraintes déclarées et tolérances numériques.",
+          "text": "Dans ce modèle, le minimum de capital réalloué est de 30,000.00 CAD."
+        },
+        {
+          "id": "reserve_scope",
+          "kind": "limitation",
+          "result_refs": [],
+          "scope": "Aucun résultat hors du modèle.",
+          "text": "La réserve est abstraite ; aucune garantie d'un instrument réel n'est établie."
+        },
+        {
+          "id": "multiple_optima",
+          "kind": "numerical_witness",
+          "result_refs": [
+            {
+              "pointer": "/optimal_face/non_unique_witness_found",
+              "unit": "boolean"
+            }
+          ],
+          "scope": "Extrêmes sur la face optimale à tolérance ; aucun optimum de risque recherché.",
+          "text": "Plusieurs allocations atteignent le minimum à la tolérance déclarée ; aucun critère de départage n'a été inventé."
+        }
+      ],
+      "capital_cad": 100000.0,
+      "withdrawal_cad": 30000.0,
+      "view_available": true,
+      "comparison": null,
+      "aws_receipts": [
+        {
+          "role": "agent0",
+          "request_id": "64c7332c-78f2-4306-aedb-88eef8be4395",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 2489,
+            "input_tokens": 2,
+            "output_tokens": 209,
+            "total_tokens": 2700
+          }
+        },
+        {
+          "role": "agent1",
+          "request_id": "73911571-cc30-4914-9596-d5a037284c5d",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 12809,
+            "input_tokens": 2,
+            "output_tokens": 1388,
+            "total_tokens": 14199
+          }
+        },
+        {
+          "role": "agent2",
+          "request_id": "eeaa2449-4731-41b7-8066-d44890cf339f",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 2962,
+            "input_tokens": 2,
+            "output_tokens": 542,
+            "total_tokens": 3506
+          }
+        },
+        {
+          "role": "agent3",
+          "request_id": "92a94b61-7ef2-4a70-bd00-66ab40030e2a",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 3226,
+            "input_tokens": 2,
+            "output_tokens": 382,
+            "total_tokens": 3610
+          }
+        }
+      ]
+    },
+    "withdrawal_revision": {
+      "id": "4089e4b0d70f40b6b20d832fa261e1dc",
+      "revision": 10,
+      "status": "complete",
+      "analysis_status": "conditional",
+      "claims": [
+        {
+          "id": "minimum_reallocation",
+          "kind": "conditional_optimality",
+          "result_refs": [
+            {
+              "pointer": "/options/1/metrics/turnover_cad/value",
+              "unit": "CAD"
+            }
+          ],
+          "scope": "Branche abstraite, contraintes déclarées et tolérances numériques.",
+          "text": "Dans ce modèle, le minimum de capital réalloué est de 40,000.00 CAD."
+        },
+        {
+          "id": "reserve_scope",
+          "kind": "limitation",
+          "result_refs": [],
+          "scope": "Aucun résultat hors du modèle.",
+          "text": "La réserve est abstraite ; aucune garantie d'un instrument réel n'est établie."
+        },
+        {
+          "id": "multiple_optima",
+          "kind": "numerical_witness",
+          "result_refs": [
+            {
+              "pointer": "/optimal_face/non_unique_witness_found",
+              "unit": "boolean"
+            }
+          ],
+          "scope": "Extrêmes sur la face optimale à tolérance ; aucun optimum de risque recherché.",
+          "text": "Plusieurs allocations atteignent le minimum à la tolérance déclarée ; aucun critère de départage n'a été inventé."
+        }
+      ],
+      "capital_cad": 100000.0,
+      "withdrawal_cad": 40000.0,
+      "view_available": true,
+      "comparison": {
+        "before": {
+          "chain": {
+            "baseline_stress_ref": "baseline_stress@1",
+            "conclusion_claim_ids": [
+              "minimum_reallocation",
+              "reserve_scope",
+              "multiple_optima"
+            ],
+            "data": {
+              "code": [
+                {
+                  "path": "alphaforge_app/decision/finance.py",
+                  "sha256": "b0b6f715335c44e87b19e302139f939eb3918ae0d90b357a40e9707c7d3738d0"
+                },
+                {
+                  "path": "alphaforge_app/analytics.py",
+                  "sha256": "fbe8fbdb57080c2652169aea66c5d35fcb54e31087847d05ce72f5e3cbf92b4f"
+                },
+                {
+                  "path": "alphaforge_app/datasets.py",
+                  "sha256": "ef920c0c6dc9bbe23f1e23c0c76047b45329497d4b5a8126b3314759cc523655"
+                }
+              ],
+              "data": [
+                {
+                  "kind": "declared_and_hypothetical_parameters",
+                  "market_data_used": false,
+                  "sha256": "f342aff3542f82a8a6866585dc3bc908d8e387ee05c983b4f6b15ea081297a44"
+                }
+              ],
+              "executed_at": "2026-11-15T19:09:11.001460+00:00",
+              "input_sha256": "51547444544929a6182691bccb3d57de01f5dfb36f60082dfd5d6100f9c42cc7",
+              "model_inference_calls": 0,
+              "packages": {
+                "numpy": "2.5.4",
+                "scipy": "1.18.1"
+              }
+            },
+            "evidence_ref": "research@1",
+            "evidence_refs": [
+              "research@1"
+            ],
+            "implementation": "alphaforge_app.decision.finance.analyze",
+            "method": {
+              "assumptions": [
+                "Aucun frais, impôt ni inflation modélisé.",
+                "Réserve abstraite à rendement nul disponible à l'échéance ; aucun instrument réel assimilé.",
+                "Plafonds d'exposition à t0 ; pas sur les poids après retrait ou variation des cours.",
+                "Chocs de valeur en CAD à l'échéance du retrait, sans probabilités."
+              ],
+              "domain": "Réallocation initiale, positions fractionnaires, réserve abstraite, chocs CAD terminaux.",
+              "equations": {
+                "objective": "min 0.5 * sum(abs(w-w0))",
+                "remaining_wealth": "capital_cad - scenario_loss_cad - withdrawal_cad",
+                "scenario_loss": "-capital_cad * sum(w_i * r_si)"
+              },
+              "id": "reserve-turnover-lp-v1",
+              "inputs": {
+                "asset_order": [
+                  "RESERVE_ABSTRAITE",
+                  "TSLA",
+                  "XBB.TO",
+                  "XIU.TO",
+                  "ZST.TO"
+                ],
+                "capital_cad": 100000.0,
+                "caps": {
+                  "TSLA": 0.1
+                },
+                "return_unit": "fraction",
+                "scenario_loss_limit_cad": 15000.0,
+                "scenarios": [
+                  {
+                    "currency_convention": "synthetic_CAD_value_returns",
+                    "horizon_months": 12.0,
+                    "id": "actions",
+                    "kind": "hypothetical",
+                    "label": "Choc actions hypothétique",
+                    "probability": null,
+                    "returns": {
+                      "RESERVE_ABSTRAITE": 0.0,
+                      "TSLA": -0.5,
+                      "XBB.TO": -0.05,
+                      "XIU.TO": -0.2,
+                      "ZST.TO": 0.0
+                    }
+                  },
+                  {
+                    "currency_convention": "synthetic_CAD_value_returns",
+                    "horizon_months": 12.0,
+                    "id": "obligations",
+                    "kind": "hypothetical",
+                    "label": "Choc obligations hypothétique",
+                    "probability": null,
+                    "returns": {
+                      "RESERVE_ABSTRAITE": 0.0,
+                      "TSLA": -0.25,
+                      "XBB.TO": -0.15,
+                      "XIU.TO": -0.1,
+                      "ZST.TO": -0.02
+                    }
+                  }
+                ],
+                "weight_unit": "fraction",
+                "weights": {
+                  "RESERVE_ABSTRAITE": 0.0,
+                  "TSLA": 0.25,
+                  "XBB.TO": 0.35,
+                  "XIU.TO": 0.2,
+                  "ZST.TO": 0.2
+                },
+                "withdrawal_cad": 30000.0,
+                "withdrawal_fraction": 0.3,
+                "withdrawal_months": 12.0
+              },
+              "sources": [
+                {
+                  "scope": "Formulation LP, dualité.",
+                  "url": "https://web.stanford.edu/~boyd/cvxbook/"
+                }
+              ],
+              "version": 1
+            },
+            "problem_ref": "problem@1",
+            "question": "Financer un retrait en déplaçant le moins de capital."
+          },
+          "checks": [
+            {
+              "dual_sign_error": 0.0,
+              "id": "constraints",
+              "method": "Résidus primal, stationnarité et dualité",
+              "numerical_checks_pass": true,
+              "primal_dual_objective_gap": 0.0,
+              "primal_max_residual_fraction": 0.0,
+              "scope": "Ce LP uniquement ; aucune validation d'instrument.",
+              "stationarity_max_residual": 0.0,
+              "status": "sufficient",
+              "tolerance": 1e-08
+            },
+            {
+              "attained": true,
+              "gap_fraction": 0.0,
+              "id": "independent_lower_bound",
+              "lower_bound_fraction": 0.3,
+              "method": "Demi-L1 = somme des augmentations = somme des diminutions",
+              "scope": "T ≥ max(achat nécessaire de réserve, ventes imposées par plafonds).",
+              "status": "sufficient"
+            },
+            {
+              "id": "multiple_optima",
+              "method": "Min/max de chaque poids à rotation ≤ minimum + tolérance",
+              "non_unique_witness_found": true,
+              "scope": "Extrêmes sur la face optimale à tolérance ; aucun optimum de risque recherché.",
+              "status": "sufficient"
+            },
+            {
+              "artifact_ref": "baseline_stress@1",
+              "id": "baseline_branch_consistency",
+              "method": "Comparaison des pertes initiales avec le diagnostic indépendant du retrait.",
+              "reused": false,
+              "scope": "Égalité des pertes sous les chocs ; pas admissibilité du portefeuille au retrait.",
+              "status": "sufficient"
+            }
+          ],
+          "claims": [
+            {
+              "id": "minimum_reallocation",
+              "kind": "conditional_optimality",
+              "result_refs": [
+                {
+                  "pointer": "/options/1/metrics/turnover_cad/value",
+                  "unit": "CAD"
+                }
+              ],
+              "scope": "Branche abstraite, contraintes déclarées et tolérances numériques.",
+              "text": "Dans ce modèle, le minimum de capital réalloué est de 30,000.00 CAD."
+            },
+            {
+              "id": "reserve_scope",
+              "kind": "limitation",
+              "result_refs": [],
+              "scope": "Aucun résultat hors du modèle.",
+              "text": "La réserve est abstraite ; aucune garantie d'un instrument réel n'est établie."
+            },
+            {
+              "id": "multiple_optima",
+              "kind": "numerical_witness",
+              "result_refs": [
+                {
+                  "pointer": "/optimal_face/non_unique_witness_found",
+                  "unit": "boolean"
+                }
+              ],
+              "scope": "Extrêmes sur la face optimale à tolérance ; aucun optimum de risque recherché.",
+              "text": "Plusieurs allocations atteignent le minimum à la tolérance déclarée ; aucun critère de départage n'a été inventé."
+            }
+          ],
+          "inputs": {
+            "assumptions": [
+              {
+                "id": "example_scope",
+                "origin": "assumed",
+                "text": "Exercice fictif ; réserve abstraite, coûts/fiscalité nuls, chocs CAD synthétiques sans probabilité ; aucun placement réel garanti."
+              }
+            ],
+            "capital_cad": 100000.0,
+            "clarifications": [],
+            "comparison": null,
+            "currency": "CAD",
+            "decision_type": "reserve_allocation",
+            "historical_policy": null,
+            "holdings": [
+              {
+                "ticker": "XBB.TO",
+                "weight": 0.35
+              },
+              {
+                "ticker": "ZST.TO",
+                "weight": 0.2
+              },
+              {
+                "ticker": "XIU.TO",
+                "weight": 0.2
+              },
+              {
+                "ticker": "TSLA",
+                "weight": 0.25
+              }
+            ],
+            "horizon_years": 4.0,
+            "knowledge_date": "2026-11-15",
+            "max_asset_weights": {
+              "TSLA": 0.1
+            },
+            "objective": "minimize_reallocated_capital",
+            "question": "Financer un retrait en déplaçant le moins de capital.",
+            "reserve_policy": "abstract_nominal",
+            "scenario_loss_limit_cad": 15000.0,
+            "scenarios": [
+              {
+                "horizon_months": 12.0,
+                "id": "actions",
+                "kind": "hypothetical",
+                "label": "Choc actions hypothétique",
+                "returns": {
+                  "RESERVE_ABSTRAITE": 0.0,
+                  "TSLA": -0.5,
+                  "XBB.TO": -0.05,
+                  "XIU.TO": -0.2,
+                  "ZST.TO": 0.0
+                }
+              },
+              {
+                "horizon_months": 12.0,
+                "id": "obligations",
+                "kind": "hypothetical",
+                "label": "Choc obligations hypothétique",
+                "returns": {
+                  "RESERVE_ABSTRAITE": 0.0,
+                  "TSLA": -0.25,
+                  "XBB.TO": -0.15,
+                  "XIU.TO": -0.1,
+                  "ZST.TO": -0.02
+                }
+              }
+            ],
+            "unknowns": [
+              "Instrument réel de réserve et conditions non qualifiés."
+            ],
+            "withdrawal_cad": 30000.0,
+            "withdrawal_months": 12.0
+          },
+          "limitations": [
+            "Aucun frais, impôt ni inflation modélisé.",
+            "Réserve abstraite à rendement nul disponible à l'échéance ; aucun instrument réel assimilé.",
+            "Plafonds d'exposition à t0 ; pas sur les poids après retrait ou variation des cours.",
+            "Chocs de valeur en CAD à l'échéance du retrait, sans probabilités.",
+            "Le minimum de capital réalloué ne minimise ni frais réels ni risque ni rendement.",
+            "Ces chocs ne mesurent pas un drawdown de trajectoire et ne bornent pas la perte future.",
+            "L'horizon du solde ne reçoit aucune prévision ; aucun calcul à quatre ans n'est inféré.",
+            "L'univers admissible est celui des positions déclarées, y compris les poids zéro, plus la réserve abstraite."
+          ],
+          "method": {
+            "assumptions": [
+              "Aucun frais, impôt ni inflation modélisé.",
+              "Réserve abstraite à rendement nul disponible à l'échéance ; aucun instrument réel assimilé.",
+              "Plafonds d'exposition à t0 ; pas sur les poids après retrait ou variation des cours.",
+              "Chocs de valeur en CAD à l'échéance du retrait, sans probabilités."
+            ],
+            "domain": "Réallocation initiale, positions fractionnaires, réserve abstraite, chocs CAD terminaux.",
+            "equations": {
+              "objective": "min 0.5 * sum(abs(w-w0))",
+              "remaining_wealth": "capital_cad - scenario_loss_cad - withdrawal_cad",
+              "scenario_loss": "-capital_cad * sum(w_i * r_si)"
+            },
+            "id": "reserve-turnover-lp-v1",
+            "inputs": {
+              "asset_order": [
+                "RESERVE_ABSTRAITE",
+                "TSLA",
+                "XBB.TO",
+                "XIU.TO",
+                "ZST.TO"
+              ],
+              "capital_cad": 100000.0,
+              "caps": {
+                "TSLA": 0.1
+              },
+              "return_unit": "fraction",
+              "scenario_loss_limit_cad": 15000.0,
+              "scenarios": [
+                {
+                  "currency_convention": "synthetic_CAD_value_returns",
+                  "horizon_months": 12.0,
+                  "id": "actions",
+                  "kind": "hypothetical",
+                  "label": "Choc actions hypothétique",
+                  "probability": null,
+                  "returns": {
+                    "RESERVE_ABSTRAITE": 0.0,
+                    "TSLA": -0.5,
+                    "XBB.TO": -0.05,
+                    "XIU.TO": -0.2,
+                    "ZST.TO": 0.0
+                  }
+                },
+                {
+                  "currency_convention": "synthetic_CAD_value_returns",
+                  "horizon_months": 12.0,
+                  "id": "obligations",
+                  "kind": "hypothetical",
+                  "label": "Choc obligations hypothétique",
+                  "probability": null,
+                  "returns": {
+                    "RESERVE_ABSTRAITE": 0.0,
+                    "TSLA": -0.25,
+                    "XBB.TO": -0.15,
+                    "XIU.TO": -0.1,
+                    "ZST.TO": -0.02
+                  }
+                }
+              ],
+              "weight_unit": "fraction",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.0,
+                "TSLA": 0.25,
+                "XBB.TO": 0.35,
+                "XIU.TO": 0.2,
+                "ZST.TO": 0.2
+              },
+              "withdrawal_cad": 30000.0,
+              "withdrawal_fraction": 0.3,
+              "withdrawal_months": 12.0
+            },
+            "sources": [
+              {
+                "scope": "Formulation LP, dualité.",
+                "url": "https://web.stanford.edu/~boyd/cvxbook/"
+              }
+            ],
+            "version": 1
+          },
+          "missing": [],
+          "optimal_face": {
+            "distinct_weight_threshold": 1e-06,
+            "failures": [],
+            "non_unique_witness_found": true,
+            "scope": "Extrêmes sur la face optimale à tolérance ; aucun optimum de risque recherché.",
+            "secondary_preference_selected": false,
+            "turnover_band_fraction": 1e-09,
+            "weight_ranges": {
+              "RESERVE_ABSTRAITE": {
+                "maximum": 0.300000001,
+                "minimum": 0.3,
+                "unit": "fraction"
+              },
+              "TSLA": {
+                "maximum": 0.1,
+                "minimum": 0.0,
+                "unit": "fraction"
+              },
+              "XBB.TO": {
+                "maximum": 0.35000000099999995,
+                "minimum": 0.19999999799999993,
+                "unit": "fraction"
+              },
+              "XIU.TO": {
+                "maximum": 0.20000000099999998,
+                "minimum": 0.04999999799999996,
+                "unit": "fraction"
+              },
+              "ZST.TO": {
+                "maximum": 0.200000001,
+                "minimum": 0.04999999799999996,
+                "unit": "fraction"
+              }
+            }
+          },
+          "options": [
+            {
+              "admissible": false,
+              "constraint_checks": [
+                {
+                  "constraint": "budget",
+                  "limit": 1.0,
+                  "observed": 1.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:RESERVE_ABSTRAITE",
+                  "limit": 0.0,
+                  "observed": 0.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:TSLA",
+                  "limit": 0.0,
+                  "observed": 0.25,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "asset_cap:TSLA",
+                  "limit": 0.1,
+                  "observed": 0.25,
+                  "residual": 0.15,
+                  "satisfied": false,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:XBB.TO",
+                  "limit": 0.0,
+                  "observed": 0.35,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:XIU.TO",
+                  "limit": 0.0,
+                  "observed": 0.2,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:ZST.TO",
+                  "limit": 0.0,
+                  "observed": 0.2,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "reserve",
+                  "limit": 30000.0,
+                  "observed": 0.0,
+                  "residual": 30000.0,
+                  "satisfied": false,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                },
+                {
+                  "constraint": "scenario_loss:actions",
+                  "limit": 15000.0,
+                  "observed": 18250.0,
+                  "residual": 3250.0,
+                  "satisfied": false,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                },
+                {
+                  "constraint": "scenario_loss:obligations",
+                  "limit": 15000.0,
+                  "observed": 13900.000000000002,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                }
+              ],
+              "diagnostics": {},
+              "id": "baseline",
+              "label": "Allocation initiale",
+              "metrics": {
+                "reserve_cad": {
+                  "unit": "CAD",
+                  "value": 0.0
+                },
+                "turnover_cad": {
+                  "unit": "CAD",
+                  "value": 0.0
+                },
+                "turnover_pct": {
+                  "unit": "percent",
+                  "value": 0.0
+                }
+              },
+              "scenario_results": [
+                {
+                  "horizon_months": 12.0,
+                  "id": "actions",
+                  "kind": "hypothetical",
+                  "label": "Choc actions hypothétique",
+                  "loss_cad": 18250.0,
+                  "probability": null,
+                  "unit": "CAD",
+                  "wealth_after_withdrawal_cad": null,
+                  "wealth_before_withdrawal_cad": 81750.0
+                },
+                {
+                  "horizon_months": 12.0,
+                  "id": "obligations",
+                  "kind": "hypothetical",
+                  "label": "Choc obligations hypothétique",
+                  "loss_cad": 13900.000000000002,
+                  "probability": null,
+                  "unit": "CAD",
+                  "wealth_after_withdrawal_cad": null,
+                  "wealth_before_withdrawal_cad": 86100.0
+                }
+              ],
+              "violations": [
+                {
+                  "constraint": "asset_cap:TSLA",
+                  "limit": 0.1,
+                  "observed": 0.25,
+                  "residual": 0.15,
+                  "satisfied": false,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "reserve",
+                  "limit": 30000.0,
+                  "observed": 0.0,
+                  "residual": 30000.0,
+                  "satisfied": false,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                },
+                {
+                  "constraint": "scenario_loss:actions",
+                  "limit": 15000.0,
+                  "observed": 18250.0,
+                  "residual": 3250.0,
+                  "satisfied": false,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                }
+              ],
+              "weight_unit": "fraction_of_initial_capital",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.0,
+                "TSLA": 0.25,
+                "XBB.TO": 0.35,
+                "XIU.TO": 0.2,
+                "ZST.TO": 0.2
+              }
+            },
+            {
+              "admissible": true,
+              "constraint_checks": [
+                {
+                  "constraint": "budget",
+                  "limit": 1.0,
+                  "observed": 1.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:RESERVE_ABSTRAITE",
+                  "limit": 0.0,
+                  "observed": 0.3,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:TSLA",
+                  "limit": 0.0,
+                  "observed": 0.1,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "asset_cap:TSLA",
+                  "limit": 0.1,
+                  "observed": 0.1,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:XBB.TO",
+                  "limit": 0.0,
+                  "observed": 0.19999999999999996,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:XIU.TO",
+                  "limit": 0.0,
+                  "observed": 0.2,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:ZST.TO",
+                  "limit": 0.0,
+                  "observed": 0.2,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "reserve",
+                  "limit": 30000.0,
+                  "observed": 30000.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                },
+                {
+                  "constraint": "scenario_loss:actions",
+                  "limit": 15000.0,
+                  "observed": 10000.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                },
+                {
+                  "constraint": "scenario_loss:obligations",
+                  "limit": 15000.0,
+                  "observed": 7900.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                }
+              ],
+              "diagnostics": {
+                "dual_sign_error": 0.0,
+                "numerical_checks_pass": true,
+                "primal_dual_objective_gap": 0.0,
+                "primal_max_residual_fraction": 0.0,
+                "stationarity_max_residual": 0.0,
+                "tolerance": 1e-08
+              },
+              "id": "minimum_turnover",
+              "label": "Minimum de capital réalloué",
+              "metrics": {
+                "reserve_cad": {
+                  "unit": "CAD",
+                  "value": 30000.0
+                },
+                "turnover_cad": {
+                  "unit": "CAD",
+                  "value": 30000.0
+                },
+                "turnover_pct": {
+                  "unit": "percent",
+                  "value": 30.0
+                }
+              },
+              "scenario_results": [
+                {
+                  "horizon_months": 12.0,
+                  "id": "actions",
+                  "kind": "hypothetical",
+                  "label": "Choc actions hypothétique",
+                  "loss_cad": 10000.0,
+                  "probability": null,
+                  "unit": "CAD",
+                  "wealth_after_withdrawal_cad": 60000.0,
+                  "wealth_before_withdrawal_cad": 90000.0
+                },
+                {
+                  "horizon_months": 12.0,
+                  "id": "obligations",
+                  "kind": "hypothetical",
+                  "label": "Choc obligations hypothétique",
+                  "loss_cad": 7900.0,
+                  "probability": null,
+                  "unit": "CAD",
+                  "wealth_after_withdrawal_cad": 62100.0,
+                  "wealth_before_withdrawal_cad": 92100.0
+                }
+              ],
+              "violations": [],
+              "weight_unit": "fraction_of_initial_capital",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.3,
+                "TSLA": 0.1,
+                "XBB.TO": 0.19999999999999996,
+                "XIU.TO": 0.2,
+                "ZST.TO": 0.2
+              }
+            },
+            {
+              "admissible": true,
+              "constraint_checks": [
+                {
+                  "constraint": "budget",
+                  "limit": 1.0,
+                  "observed": 1.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:RESERVE_ABSTRAITE",
+                  "limit": 0.0,
+                  "observed": 0.3,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:TSLA",
+                  "limit": 0.0,
+                  "observed": 0.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "asset_cap:TSLA",
+                  "limit": 0.1,
+                  "observed": 0.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:XBB.TO",
+                  "limit": 0.0,
+                  "observed": 0.35,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:XIU.TO",
+                  "limit": 0.0,
+                  "observed": 0.14999999999999997,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:ZST.TO",
+                  "limit": 0.0,
+                  "observed": 0.2,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "reserve",
+                  "limit": 30000.0,
+                  "observed": 30000.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                },
+                {
+                  "constraint": "scenario_loss:actions",
+                  "limit": 15000.0,
+                  "observed": 4749.999999999999,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                },
+                {
+                  "constraint": "scenario_loss:obligations",
+                  "limit": 15000.0,
+                  "observed": 7149.999999999999,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                }
+              ],
+              "diagnostics": {
+                "optimal_face_gap_fraction": 5.551115123125783e-17
+              },
+              "id": "alternative_minimum",
+              "label": "Autre allocation au minimum, à tolérance",
+              "metrics": {
+                "reserve_cad": {
+                  "unit": "CAD",
+                  "value": 30000.0
+                },
+                "turnover_cad": {
+                  "unit": "CAD",
+                  "value": 30000.000000000004
+                },
+                "turnover_pct": {
+                  "unit": "percent",
+                  "value": 30.000000000000004
+                }
+              },
+              "scenario_results": [
+                {
+                  "horizon_months": 12.0,
+                  "id": "actions",
+                  "kind": "hypothetical",
+                  "label": "Choc actions hypothétique",
+                  "loss_cad": 4749.999999999999,
+                  "probability": null,
+                  "unit": "CAD",
+                  "wealth_after_withdrawal_cad": 65250.0,
+                  "wealth_before_withdrawal_cad": 95250.0
+                },
+                {
+                  "horizon_months": 12.0,
+                  "id": "obligations",
+                  "kind": "hypothetical",
+                  "label": "Choc obligations hypothétique",
+                  "loss_cad": 7149.999999999999,
+                  "probability": null,
+                  "unit": "CAD",
+                  "wealth_after_withdrawal_cad": 62850.0,
+                  "wealth_before_withdrawal_cad": 92850.0
+                }
+              ],
+              "violations": [],
+              "weight_unit": "fraction_of_initial_capital",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.3,
+                "TSLA": 0.0,
+                "XBB.TO": 0.35,
+                "XIU.TO": 0.14999999999999997,
+                "ZST.TO": 0.2
+              }
+            }
+          ],
+          "provenance": {
+            "code": [
+              {
+                "path": "alphaforge_app/decision/finance.py",
+                "sha256": "b0b6f715335c44e87b19e302139f939eb3918ae0d90b357a40e9707c7d3738d0"
+              },
+              {
+                "path": "alphaforge_app/analytics.py",
+                "sha256": "fbe8fbdb57080c2652169aea66c5d35fcb54e31087847d05ce72f5e3cbf92b4f"
+              },
+              {
+                "path": "alphaforge_app/datasets.py",
+                "sha256": "ef920c0c6dc9bbe23f1e23c0c76047b45329497d4b5a8126b3314759cc523655"
+              }
+            ],
+            "data": [
+              {
+                "kind": "declared_and_hypothetical_parameters",
+                "market_data_used": false,
+                "sha256": "f342aff3542f82a8a6866585dc3bc908d8e387ee05c983b4f6b15ea081297a44"
+              }
+            ],
+            "executed_at": "2026-11-15T19:09:11.001460+00:00",
+            "input_sha256": "51547444544929a6182691bccb3d57de01f5dfb36f60082dfd5d6100f9c42cc7",
+            "model_inference_calls": 0,
+            "packages": {
+              "numpy": "2.5.4",
+              "scipy": "1.18.1"
+            }
+          },
+          "sensitivity": [
+            {
+              "baseline_unchanged": true,
+              "changes": {
+                "withdrawal_cad": 20000.0
+              },
+              "diagnostics": {
+                "dual_sign_error": 0.0,
+                "numerical_checks_pass": true,
+                "primal_dual_objective_gap": 0.0,
+                "primal_max_residual_fraction": 0.0,
+                "stationarity_max_residual": 0.0,
+                "tolerance": 1e-08
+              },
+              "kind": "hypothetical_parameter_probe",
+              "label": "retrait −10 % du capital",
+              "minimum_reallocated_capital_cad": 20000.0,
+              "scope": "Sondage explicite ±10 % du capital sur le retrait ou ±5 points sur le plafond ; pas préférence ni prévision.",
+              "status": "conditional",
+              "unit": "CAD",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.2,
+                "TSLA": 0.1,
+                "XBB.TO": 0.29999999999999993,
+                "XIU.TO": 0.2,
+                "ZST.TO": 0.2
+              }
+            },
+            {
+              "baseline_unchanged": true,
+              "changes": {
+                "withdrawal_cad": 40000.0
+              },
+              "diagnostics": {
+                "dual_sign_error": 0.0,
+                "numerical_checks_pass": true,
+                "primal_dual_objective_gap": 0.0,
+                "primal_max_residual_fraction": 0.0,
+                "stationarity_max_residual": 0.0,
+                "tolerance": 1e-08
+              },
+              "kind": "hypothetical_parameter_probe",
+              "label": "retrait +10 % du capital",
+              "minimum_reallocated_capital_cad": 40000.0,
+              "scope": "Sondage explicite ±10 % du capital sur le retrait ou ±5 points sur le plafond ; pas préférence ni prévision.",
+              "status": "conditional",
+              "unit": "CAD",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.4,
+                "TSLA": 0.1,
+                "XBB.TO": 0.09999999999999998,
+                "XIU.TO": 0.2,
+                "ZST.TO": 0.2
+              }
+            },
+            {
+              "baseline_unchanged": true,
+              "changes": {
+                "max_asset_weights": {
+                  "TSLA": 0.05
+                }
+              },
+              "diagnostics": {
+                "dual_sign_error": 0.0,
+                "numerical_checks_pass": true,
+                "primal_dual_objective_gap": 0.0,
+                "primal_max_residual_fraction": 0.0,
+                "stationarity_max_residual": 0.0,
+                "tolerance": 1e-08
+              },
+              "kind": "hypothetical_parameter_probe",
+              "label": "plafond TSLA -5 points",
+              "minimum_reallocated_capital_cad": 30000.0,
+              "scope": "Sondage explicite ±10 % du capital sur le retrait ou ±5 points sur le plafond ; pas préférence ni prévision.",
+              "status": "conditional",
+              "unit": "CAD",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.3,
+                "TSLA": 0.05,
+                "XBB.TO": 0.25,
+                "XIU.TO": 0.2,
+                "ZST.TO": 0.2
+              }
+            },
+            {
+              "baseline_unchanged": true,
+              "changes": {
+                "max_asset_weights": {
+                  "TSLA": 0.15000000000000002
+                }
+              },
+              "diagnostics": {
+                "dual_sign_error": 0.0,
+                "numerical_checks_pass": true,
+                "primal_dual_objective_gap": 5.551115123125783e-17,
+                "primal_max_residual_fraction": 0.0,
+                "stationarity_max_residual": 0.0,
+                "tolerance": 1e-08
+              },
+              "kind": "hypothetical_parameter_probe",
+              "label": "plafond TSLA +5 points",
+              "minimum_reallocated_capital_cad": 29999.999999999993,
+              "scope": "Sondage explicite ±10 % du capital sur le retrait ou ±5 points sur le plafond ; pas préférence ni prévision.",
+              "status": "conditional",
+              "unit": "CAD",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.3,
+                "TSLA": 0.15000000000000002,
+                "XBB.TO": 0.15000000000000002,
+                "XIU.TO": 0.2,
+                "ZST.TO": 0.2
+              }
+            }
+          ],
+          "status": "conditional",
+          "verification_assessment": {
+            "failed_check_ids": [],
+            "status": "sufficient"
+          }
+        },
+        "changed_fields": [
+          "fact.withdrawal_cad"
+        ],
+        "invalidated": [
+          "analysis@1",
+          "analysis_review@1",
+          "fact.withdrawal_cad@1",
+          "problem@1",
+          "qualification@1",
+          "questions.agent0@1",
+          "questions.agent1@1",
+          "questions.agent2@1",
+          "questions.agent3@1",
+          "request@1",
+          "research_review@1",
+          "view@1"
+        ],
+        "reused": [
+          "baseline_stress@1",
+          "fact.assumptions@1",
+          "fact.capital_cad@1",
+          "fact.clarifications@1",
+          "fact.comparison@1",
+          "fact.currency@1",
+          "fact.decision_type@1",
+          "fact.holdings@1",
+          "fact.horizon_years@1",
+          "fact.knowledge_date@1",
+          "fact.max_asset_weights@1",
+          "fact.objective@1",
+          "fact.question@1",
+          "fact.reserve_policy@1",
+          "fact.scenario_loss_limit_cad@1",
+          "fact.scenarios@1",
+          "fact.unknowns@1",
+          "fact.withdrawal_months@1",
+          "request_source.c83e19494dc6446991fc214e994d8326@1",
+          "research@1"
+        ],
+        "after": {
+          "chain": {
+            "baseline_stress_ref": "baseline_stress@1",
+            "conclusion_claim_ids": [
+              "minimum_reallocation",
+              "reserve_scope",
+              "multiple_optima"
+            ],
+            "data": {
+              "code": [
+                {
+                  "path": "alphaforge_app/decision/finance.py",
+                  "sha256": "b0b6f715335c44e87b19e302139f939eb3918ae0d90b357a40e9707c7d3738d0"
+                },
+                {
+                  "path": "alphaforge_app/analytics.py",
+                  "sha256": "fbe8fbdb57080c2652169aea66c5d35fcb54e31087847d05ce72f5e3cbf92b4f"
+                },
+                {
+                  "path": "alphaforge_app/datasets.py",
+                  "sha256": "ef920c0c6dc9bbe23f1e23c0c76047b45329497d4b5a8126b3314759cc523655"
+                }
+              ],
+              "data": [
+                {
+                  "kind": "declared_and_hypothetical_parameters",
+                  "market_data_used": false,
+                  "sha256": "f0708bba55f0a1db83cbdd8b15c56229668c079bbf0d3423e202ba6a6ace7ec5"
+                }
+              ],
+              "executed_at": "2026-11-15T19:10:23.571337+00:00",
+              "input_sha256": "312a5307e5dd441927630c54188883760ad61afcd14daf6c1531cb5d6b22a89b",
+              "model_inference_calls": 0,
+              "packages": {
+                "numpy": "2.5.4",
+                "scipy": "1.18.1"
+              }
+            },
+            "evidence_ref": "research@1",
+            "evidence_refs": [
+              "research@1"
+            ],
+            "implementation": "alphaforge_app.decision.finance.analyze",
+            "method": {
+              "assumptions": [
+                "Aucun frais, impôt ni inflation modélisé.",
+                "Réserve abstraite à rendement nul disponible à l'échéance ; aucun instrument réel assimilé.",
+                "Plafonds d'exposition à t0 ; pas sur les poids après retrait ou variation des cours.",
+                "Chocs de valeur en CAD à l'échéance du retrait, sans probabilités."
+              ],
+              "domain": "Réallocation initiale, positions fractionnaires, réserve abstraite, chocs CAD terminaux.",
+              "equations": {
+                "objective": "min 0.5 * sum(abs(w-w0))",
+                "remaining_wealth": "capital_cad - scenario_loss_cad - withdrawal_cad",
+                "scenario_loss": "-capital_cad * sum(w_i * r_si)"
+              },
+              "id": "reserve-turnover-lp-v1",
+              "inputs": {
+                "asset_order": [
+                  "RESERVE_ABSTRAITE",
+                  "TSLA",
+                  "XBB.TO",
+                  "XIU.TO",
+                  "ZST.TO"
+                ],
+                "capital_cad": 100000.0,
+                "caps": {
+                  "TSLA": 0.1
+                },
+                "return_unit": "fraction",
+                "scenario_loss_limit_cad": 15000.0,
+                "scenarios": [
+                  {
+                    "currency_convention": "synthetic_CAD_value_returns",
+                    "horizon_months": 12.0,
+                    "id": "actions",
+                    "kind": "hypothetical",
+                    "label": "Choc actions hypothétique",
+                    "probability": null,
+                    "returns": {
+                      "RESERVE_ABSTRAITE": 0.0,
+                      "TSLA": -0.5,
+                      "XBB.TO": -0.05,
+                      "XIU.TO": -0.2,
+                      "ZST.TO": 0.0
+                    }
+                  },
+                  {
+                    "currency_convention": "synthetic_CAD_value_returns",
+                    "horizon_months": 12.0,
+                    "id": "obligations",
+                    "kind": "hypothetical",
+                    "label": "Choc obligations hypothétique",
+                    "probability": null,
+                    "returns": {
+                      "RESERVE_ABSTRAITE": 0.0,
+                      "TSLA": -0.25,
+                      "XBB.TO": -0.15,
+                      "XIU.TO": -0.1,
+                      "ZST.TO": -0.02
+                    }
+                  }
+                ],
+                "weight_unit": "fraction",
+                "weights": {
+                  "RESERVE_ABSTRAITE": 0.0,
+                  "TSLA": 0.25,
+                  "XBB.TO": 0.35,
+                  "XIU.TO": 0.2,
+                  "ZST.TO": 0.2
+                },
+                "withdrawal_cad": 40000.0,
+                "withdrawal_fraction": 0.4,
+                "withdrawal_months": 12.0
+              },
+              "sources": [
+                {
+                  "scope": "Formulation LP, dualité.",
+                  "url": "https://web.stanford.edu/~boyd/cvxbook/"
+                }
+              ],
+              "version": 1
+            },
+            "problem_ref": "problem@2",
+            "question": "Financer un retrait en déplaçant le moins de capital."
+          },
+          "checks": [
+            {
+              "dual_sign_error": 0.0,
+              "id": "constraints",
+              "method": "Résidus primal, stationnarité et dualité",
+              "numerical_checks_pass": true,
+              "primal_dual_objective_gap": 0.0,
+              "primal_max_residual_fraction": 0.0,
+              "scope": "Ce LP uniquement ; aucune validation d'instrument.",
+              "stationarity_max_residual": 0.0,
+              "status": "sufficient",
+              "tolerance": 1e-08
+            },
+            {
+              "attained": true,
+              "gap_fraction": 0.0,
+              "id": "independent_lower_bound",
+              "lower_bound_fraction": 0.4,
+              "method": "Demi-L1 = somme des augmentations = somme des diminutions",
+              "scope": "T ≥ max(achat nécessaire de réserve, ventes imposées par plafonds).",
+              "status": "sufficient"
+            },
+            {
+              "id": "multiple_optima",
+              "method": "Min/max de chaque poids à rotation ≤ minimum + tolérance",
+              "non_unique_witness_found": true,
+              "scope": "Extrêmes sur la face optimale à tolérance ; aucun optimum de risque recherché.",
+              "status": "sufficient"
+            },
+            {
+              "artifact_ref": "baseline_stress@1",
+              "id": "baseline_branch_consistency",
+              "method": "Comparaison des pertes initiales avec le diagnostic indépendant du retrait.",
+              "reused": true,
+              "scope": "Égalité des pertes sous les chocs ; pas admissibilité du portefeuille au retrait.",
+              "status": "sufficient"
+            }
+          ],
+          "claims": [
+            {
+              "id": "minimum_reallocation",
+              "kind": "conditional_optimality",
+              "result_refs": [
+                {
+                  "pointer": "/options/1/metrics/turnover_cad/value",
+                  "unit": "CAD"
+                }
+              ],
+              "scope": "Branche abstraite, contraintes déclarées et tolérances numériques.",
+              "text": "Dans ce modèle, le minimum de capital réalloué est de 40,000.00 CAD."
+            },
+            {
+              "id": "reserve_scope",
+              "kind": "limitation",
+              "result_refs": [],
+              "scope": "Aucun résultat hors du modèle.",
+              "text": "La réserve est abstraite ; aucune garantie d'un instrument réel n'est établie."
+            },
+            {
+              "id": "multiple_optima",
+              "kind": "numerical_witness",
+              "result_refs": [
+                {
+                  "pointer": "/optimal_face/non_unique_witness_found",
+                  "unit": "boolean"
+                }
+              ],
+              "scope": "Extrêmes sur la face optimale à tolérance ; aucun optimum de risque recherché.",
+              "text": "Plusieurs allocations atteignent le minimum à la tolérance déclarée ; aucun critère de départage n'a été inventé."
+            }
+          ],
+          "inputs": {
+            "assumptions": [
+              {
+                "id": "example_scope",
+                "origin": "assumed",
+                "text": "Exercice fictif ; réserve abstraite, coûts/fiscalité nuls, chocs CAD synthétiques sans probabilité ; aucun placement réel garanti."
+              }
+            ],
+            "capital_cad": 100000.0,
+            "clarifications": [],
+            "comparison": null,
+            "currency": "CAD",
+            "decision_type": "reserve_allocation",
+            "historical_policy": null,
+            "holdings": [
+              {
+                "ticker": "XBB.TO",
+                "weight": 0.35
+              },
+              {
+                "ticker": "ZST.TO",
+                "weight": 0.2
+              },
+              {
+                "ticker": "XIU.TO",
+                "weight": 0.2
+              },
+              {
+                "ticker": "TSLA",
+                "weight": 0.25
+              }
+            ],
+            "horizon_years": 4.0,
+            "knowledge_date": "2026-11-15",
+            "max_asset_weights": {
+              "TSLA": 0.1
+            },
+            "objective": "minimize_reallocated_capital",
+            "question": "Financer un retrait en déplaçant le moins de capital.",
+            "reserve_policy": "abstract_nominal",
+            "scenario_loss_limit_cad": 15000.0,
+            "scenarios": [
+              {
+                "horizon_months": 12.0,
+                "id": "actions",
+                "kind": "hypothetical",
+                "label": "Choc actions hypothétique",
+                "returns": {
+                  "RESERVE_ABSTRAITE": 0.0,
+                  "TSLA": -0.5,
+                  "XBB.TO": -0.05,
+                  "XIU.TO": -0.2,
+                  "ZST.TO": 0.0
+                }
+              },
+              {
+                "horizon_months": 12.0,
+                "id": "obligations",
+                "kind": "hypothetical",
+                "label": "Choc obligations hypothétique",
+                "returns": {
+                  "RESERVE_ABSTRAITE": 0.0,
+                  "TSLA": -0.25,
+                  "XBB.TO": -0.15,
+                  "XIU.TO": -0.1,
+                  "ZST.TO": -0.02
+                }
+              }
+            ],
+            "unknowns": [
+              "Instrument réel de réserve et conditions non qualifiés."
+            ],
+            "withdrawal_cad": 40000.0,
+            "withdrawal_months": 12.0
+          },
+          "limitations": [
+            "Aucun frais, impôt ni inflation modélisé.",
+            "Réserve abstraite à rendement nul disponible à l'échéance ; aucun instrument réel assimilé.",
+            "Plafonds d'exposition à t0 ; pas sur les poids après retrait ou variation des cours.",
+            "Chocs de valeur en CAD à l'échéance du retrait, sans probabilités.",
+            "Le minimum de capital réalloué ne minimise ni frais réels ni risque ni rendement.",
+            "Ces chocs ne mesurent pas un drawdown de trajectoire et ne bornent pas la perte future.",
+            "L'horizon du solde ne reçoit aucune prévision ; aucun calcul à quatre ans n'est inféré.",
+            "L'univers admissible est celui des positions déclarées, y compris les poids zéro, plus la réserve abstraite."
+          ],
+          "method": {
+            "assumptions": [
+              "Aucun frais, impôt ni inflation modélisé.",
+              "Réserve abstraite à rendement nul disponible à l'échéance ; aucun instrument réel assimilé.",
+              "Plafonds d'exposition à t0 ; pas sur les poids après retrait ou variation des cours.",
+              "Chocs de valeur en CAD à l'échéance du retrait, sans probabilités."
+            ],
+            "domain": "Réallocation initiale, positions fractionnaires, réserve abstraite, chocs CAD terminaux.",
+            "equations": {
+              "objective": "min 0.5 * sum(abs(w-w0))",
+              "remaining_wealth": "capital_cad - scenario_loss_cad - withdrawal_cad",
+              "scenario_loss": "-capital_cad * sum(w_i * r_si)"
+            },
+            "id": "reserve-turnover-lp-v1",
+            "inputs": {
+              "asset_order": [
+                "RESERVE_ABSTRAITE",
+                "TSLA",
+                "XBB.TO",
+                "XIU.TO",
+                "ZST.TO"
+              ],
+              "capital_cad": 100000.0,
+              "caps": {
+                "TSLA": 0.1
+              },
+              "return_unit": "fraction",
+              "scenario_loss_limit_cad": 15000.0,
+              "scenarios": [
+                {
+                  "currency_convention": "synthetic_CAD_value_returns",
+                  "horizon_months": 12.0,
+                  "id": "actions",
+                  "kind": "hypothetical",
+                  "label": "Choc actions hypothétique",
+                  "probability": null,
+                  "returns": {
+                    "RESERVE_ABSTRAITE": 0.0,
+                    "TSLA": -0.5,
+                    "XBB.TO": -0.05,
+                    "XIU.TO": -0.2,
+                    "ZST.TO": 0.0
+                  }
+                },
+                {
+                  "currency_convention": "synthetic_CAD_value_returns",
+                  "horizon_months": 12.0,
+                  "id": "obligations",
+                  "kind": "hypothetical",
+                  "label": "Choc obligations hypothétique",
+                  "probability": null,
+                  "returns": {
+                    "RESERVE_ABSTRAITE": 0.0,
+                    "TSLA": -0.25,
+                    "XBB.TO": -0.15,
+                    "XIU.TO": -0.1,
+                    "ZST.TO": -0.02
+                  }
+                }
+              ],
+              "weight_unit": "fraction",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.0,
+                "TSLA": 0.25,
+                "XBB.TO": 0.35,
+                "XIU.TO": 0.2,
+                "ZST.TO": 0.2
+              },
+              "withdrawal_cad": 40000.0,
+              "withdrawal_fraction": 0.4,
+              "withdrawal_months": 12.0
+            },
+            "sources": [
+              {
+                "scope": "Formulation LP, dualité.",
+                "url": "https://web.stanford.edu/~boyd/cvxbook/"
+              }
+            ],
+            "version": 1
+          },
+          "missing": [],
+          "optimal_face": {
+            "distinct_weight_threshold": 1e-06,
+            "failures": [],
+            "non_unique_witness_found": true,
+            "scope": "Extrêmes sur la face optimale à tolérance ; aucun optimum de risque recherché.",
+            "secondary_preference_selected": false,
+            "turnover_band_fraction": 1e-09,
+            "weight_ranges": {
+              "RESERVE_ABSTRAITE": {
+                "maximum": 0.40000000100000005,
+                "minimum": 0.4,
+                "unit": "fraction"
+              },
+              "TSLA": {
+                "maximum": 0.1,
+                "minimum": 0.0,
+                "unit": "fraction"
+              },
+              "XBB.TO": {
+                "maximum": 0.350000001,
+                "minimum": 0.09999999799999992,
+                "unit": "fraction"
+              },
+              "XIU.TO": {
+                "maximum": 0.20000000100000004,
+                "minimum": 0.0,
+                "unit": "fraction"
+              },
+              "ZST.TO": {
+                "maximum": 0.20000000100000004,
+                "minimum": 0.0,
+                "unit": "fraction"
+              }
+            }
+          },
+          "options": [
+            {
+              "admissible": false,
+              "constraint_checks": [
+                {
+                  "constraint": "budget",
+                  "limit": 1.0,
+                  "observed": 1.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:RESERVE_ABSTRAITE",
+                  "limit": 0.0,
+                  "observed": 0.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:TSLA",
+                  "limit": 0.0,
+                  "observed": 0.25,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "asset_cap:TSLA",
+                  "limit": 0.1,
+                  "observed": 0.25,
+                  "residual": 0.15,
+                  "satisfied": false,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:XBB.TO",
+                  "limit": 0.0,
+                  "observed": 0.35,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:XIU.TO",
+                  "limit": 0.0,
+                  "observed": 0.2,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:ZST.TO",
+                  "limit": 0.0,
+                  "observed": 0.2,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "reserve",
+                  "limit": 40000.0,
+                  "observed": 0.0,
+                  "residual": 40000.0,
+                  "satisfied": false,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                },
+                {
+                  "constraint": "scenario_loss:actions",
+                  "limit": 15000.0,
+                  "observed": 18250.0,
+                  "residual": 3250.0,
+                  "satisfied": false,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                },
+                {
+                  "constraint": "scenario_loss:obligations",
+                  "limit": 15000.0,
+                  "observed": 13900.000000000002,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                }
+              ],
+              "diagnostics": {},
+              "id": "baseline",
+              "label": "Allocation initiale",
+              "metrics": {
+                "reserve_cad": {
+                  "unit": "CAD",
+                  "value": 0.0
+                },
+                "turnover_cad": {
+                  "unit": "CAD",
+                  "value": 0.0
+                },
+                "turnover_pct": {
+                  "unit": "percent",
+                  "value": 0.0
+                }
+              },
+              "scenario_results": [
+                {
+                  "horizon_months": 12.0,
+                  "id": "actions",
+                  "kind": "hypothetical",
+                  "label": "Choc actions hypothétique",
+                  "loss_cad": 18250.0,
+                  "probability": null,
+                  "unit": "CAD",
+                  "wealth_after_withdrawal_cad": null,
+                  "wealth_before_withdrawal_cad": 81750.0
+                },
+                {
+                  "horizon_months": 12.0,
+                  "id": "obligations",
+                  "kind": "hypothetical",
+                  "label": "Choc obligations hypothétique",
+                  "loss_cad": 13900.000000000002,
+                  "probability": null,
+                  "unit": "CAD",
+                  "wealth_after_withdrawal_cad": null,
+                  "wealth_before_withdrawal_cad": 86100.0
+                }
+              ],
+              "violations": [
+                {
+                  "constraint": "asset_cap:TSLA",
+                  "limit": 0.1,
+                  "observed": 0.25,
+                  "residual": 0.15,
+                  "satisfied": false,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "reserve",
+                  "limit": 40000.0,
+                  "observed": 0.0,
+                  "residual": 40000.0,
+                  "satisfied": false,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                },
+                {
+                  "constraint": "scenario_loss:actions",
+                  "limit": 15000.0,
+                  "observed": 18250.0,
+                  "residual": 3250.0,
+                  "satisfied": false,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                }
+              ],
+              "weight_unit": "fraction_of_initial_capital",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.0,
+                "TSLA": 0.25,
+                "XBB.TO": 0.35,
+                "XIU.TO": 0.2,
+                "ZST.TO": 0.2
+              }
+            },
+            {
+              "admissible": true,
+              "constraint_checks": [
+                {
+                  "constraint": "budget",
+                  "limit": 1.0,
+                  "observed": 1.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:RESERVE_ABSTRAITE",
+                  "limit": 0.0,
+                  "observed": 0.4,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:TSLA",
+                  "limit": 0.0,
+                  "observed": 0.1,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "asset_cap:TSLA",
+                  "limit": 0.1,
+                  "observed": 0.1,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:XBB.TO",
+                  "limit": 0.0,
+                  "observed": 0.09999999999999998,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:XIU.TO",
+                  "limit": 0.0,
+                  "observed": 0.2,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:ZST.TO",
+                  "limit": 0.0,
+                  "observed": 0.2,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "reserve",
+                  "limit": 40000.0,
+                  "observed": 40000.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                },
+                {
+                  "constraint": "scenario_loss:actions",
+                  "limit": 15000.0,
+                  "observed": 9500.000000000002,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                },
+                {
+                  "constraint": "scenario_loss:obligations",
+                  "limit": 15000.0,
+                  "observed": 6400.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                }
+              ],
+              "diagnostics": {
+                "dual_sign_error": 0.0,
+                "numerical_checks_pass": true,
+                "primal_dual_objective_gap": 0.0,
+                "primal_max_residual_fraction": 0.0,
+                "stationarity_max_residual": 0.0,
+                "tolerance": 1e-08
+              },
+              "id": "minimum_turnover",
+              "label": "Minimum de capital réalloué",
+              "metrics": {
+                "reserve_cad": {
+                  "unit": "CAD",
+                  "value": 40000.0
+                },
+                "turnover_cad": {
+                  "unit": "CAD",
+                  "value": 40000.0
+                },
+                "turnover_pct": {
+                  "unit": "percent",
+                  "value": 40.0
+                }
+              },
+              "scenario_results": [
+                {
+                  "horizon_months": 12.0,
+                  "id": "actions",
+                  "kind": "hypothetical",
+                  "label": "Choc actions hypothétique",
+                  "loss_cad": 9500.000000000002,
+                  "probability": null,
+                  "unit": "CAD",
+                  "wealth_after_withdrawal_cad": 50500.0,
+                  "wealth_before_withdrawal_cad": 90500.0
+                },
+                {
+                  "horizon_months": 12.0,
+                  "id": "obligations",
+                  "kind": "hypothetical",
+                  "label": "Choc obligations hypothétique",
+                  "loss_cad": 6400.0,
+                  "probability": null,
+                  "unit": "CAD",
+                  "wealth_after_withdrawal_cad": 53600.0,
+                  "wealth_before_withdrawal_cad": 93600.0
+                }
+              ],
+              "violations": [],
+              "weight_unit": "fraction_of_initial_capital",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.4,
+                "TSLA": 0.1,
+                "XBB.TO": 0.09999999999999998,
+                "XIU.TO": 0.2,
+                "ZST.TO": 0.2
+              }
+            },
+            {
+              "admissible": true,
+              "constraint_checks": [
+                {
+                  "constraint": "budget",
+                  "limit": 1.0,
+                  "observed": 1.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:RESERVE_ABSTRAITE",
+                  "limit": 0.0,
+                  "observed": 0.4,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:TSLA",
+                  "limit": 0.0,
+                  "observed": 0.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "asset_cap:TSLA",
+                  "limit": 0.1,
+                  "observed": 0.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:XBB.TO",
+                  "limit": 0.0,
+                  "observed": 0.35,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:XIU.TO",
+                  "limit": 0.0,
+                  "observed": 0.04999999999999999,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:ZST.TO",
+                  "limit": 0.0,
+                  "observed": 0.2,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "reserve",
+                  "limit": 40000.0,
+                  "observed": 40000.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                },
+                {
+                  "constraint": "scenario_loss:actions",
+                  "limit": 15000.0,
+                  "observed": 2749.9999999999995,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                },
+                {
+                  "constraint": "scenario_loss:obligations",
+                  "limit": 15000.0,
+                  "observed": 6150.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                }
+              ],
+              "diagnostics": {
+                "optimal_face_gap_fraction": 0.0
+              },
+              "id": "alternative_minimum",
+              "label": "Autre allocation au minimum, à tolérance",
+              "metrics": {
+                "reserve_cad": {
+                  "unit": "CAD",
+                  "value": 40000.0
+                },
+                "turnover_cad": {
+                  "unit": "CAD",
+                  "value": 40000.0
+                },
+                "turnover_pct": {
+                  "unit": "percent",
+                  "value": 40.0
+                }
+              },
+              "scenario_results": [
+                {
+                  "horizon_months": 12.0,
+                  "id": "actions",
+                  "kind": "hypothetical",
+                  "label": "Choc actions hypothétique",
+                  "loss_cad": 2749.9999999999995,
+                  "probability": null,
+                  "unit": "CAD",
+                  "wealth_after_withdrawal_cad": 57250.0,
+                  "wealth_before_withdrawal_cad": 97250.0
+                },
+                {
+                  "horizon_months": 12.0,
+                  "id": "obligations",
+                  "kind": "hypothetical",
+                  "label": "Choc obligations hypothétique",
+                  "loss_cad": 6150.0,
+                  "probability": null,
+                  "unit": "CAD",
+                  "wealth_after_withdrawal_cad": 53850.0,
+                  "wealth_before_withdrawal_cad": 93850.0
+                }
+              ],
+              "violations": [],
+              "weight_unit": "fraction_of_initial_capital",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.4,
+                "TSLA": 0.0,
+                "XBB.TO": 0.35,
+                "XIU.TO": 0.04999999999999999,
+                "ZST.TO": 0.2
+              }
+            }
+          ],
+          "provenance": {
+            "code": [
+              {
+                "path": "alphaforge_app/decision/finance.py",
+                "sha256": "b0b6f715335c44e87b19e302139f939eb3918ae0d90b357a40e9707c7d3738d0"
+              },
+              {
+                "path": "alphaforge_app/analytics.py",
+                "sha256": "fbe8fbdb57080c2652169aea66c5d35fcb54e31087847d05ce72f5e3cbf92b4f"
+              },
+              {
+                "path": "alphaforge_app/datasets.py",
+                "sha256": "ef920c0c6dc9bbe23f1e23c0c76047b45329497d4b5a8126b3314759cc523655"
+              }
+            ],
+            "data": [
+              {
+                "kind": "declared_and_hypothetical_parameters",
+                "market_data_used": false,
+                "sha256": "f0708bba55f0a1db83cbdd8b15c56229668c079bbf0d3423e202ba6a6ace7ec5"
+              }
+            ],
+            "executed_at": "2026-11-15T19:10:23.571337+00:00",
+            "input_sha256": "312a5307e5dd441927630c54188883760ad61afcd14daf6c1531cb5d6b22a89b",
+            "model_inference_calls": 0,
+            "packages": {
+              "numpy": "2.5.4",
+              "scipy": "1.18.1"
+            }
+          },
+          "sensitivity": [
+            {
+              "baseline_unchanged": true,
+              "changes": {
+                "withdrawal_cad": 30000.0
+              },
+              "diagnostics": {
+                "dual_sign_error": 0.0,
+                "numerical_checks_pass": true,
+                "primal_dual_objective_gap": 0.0,
+                "primal_max_residual_fraction": 0.0,
+                "stationarity_max_residual": 0.0,
+                "tolerance": 1e-08
+              },
+              "kind": "hypothetical_parameter_probe",
+              "label": "retrait −10 % du capital",
+              "minimum_reallocated_capital_cad": 30000.0,
+              "scope": "Sondage explicite ±10 % du capital sur le retrait ou ±5 points sur le plafond ; pas préférence ni prévision.",
+              "status": "conditional",
+              "unit": "CAD",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.3,
+                "TSLA": 0.1,
+                "XBB.TO": 0.19999999999999996,
+                "XIU.TO": 0.2,
+                "ZST.TO": 0.2
+              }
+            },
+            {
+              "baseline_unchanged": true,
+              "changes": {
+                "withdrawal_cad": 50000.0
+              },
+              "diagnostics": {
+                "dual_sign_error": 0.0,
+                "numerical_checks_pass": true,
+                "primal_dual_objective_gap": 0.0,
+                "primal_max_residual_fraction": 0.0,
+                "stationarity_max_residual": 0.0,
+                "tolerance": 1e-08
+              },
+              "kind": "hypothetical_parameter_probe",
+              "label": "retrait +10 % du capital",
+              "minimum_reallocated_capital_cad": 50000.0,
+              "scope": "Sondage explicite ±10 % du capital sur le retrait ou ±5 points sur le plafond ; pas préférence ni prévision.",
+              "status": "conditional",
+              "unit": "CAD",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.5,
+                "TSLA": 0.1,
+                "XBB.TO": -0.0,
+                "XIU.TO": 0.2,
+                "ZST.TO": 0.2
+              }
+            },
+            {
+              "baseline_unchanged": true,
+              "changes": {
+                "max_asset_weights": {
+                  "TSLA": 0.05
+                }
+              },
+              "diagnostics": {
+                "dual_sign_error": 0.0,
+                "numerical_checks_pass": true,
+                "primal_dual_objective_gap": 0.0,
+                "primal_max_residual_fraction": 0.0,
+                "stationarity_max_residual": 0.0,
+                "tolerance": 1e-08
+              },
+              "kind": "hypothetical_parameter_probe",
+              "label": "plafond TSLA -5 points",
+              "minimum_reallocated_capital_cad": 40000.0,
+              "scope": "Sondage explicite ±10 % du capital sur le retrait ou ±5 points sur le plafond ; pas préférence ni prévision.",
+              "status": "conditional",
+              "unit": "CAD",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.4,
+                "TSLA": 0.05,
+                "XBB.TO": 0.15000000000000002,
+                "XIU.TO": 0.2,
+                "ZST.TO": 0.2
+              }
+            },
+            {
+              "baseline_unchanged": true,
+              "changes": {
+                "max_asset_weights": {
+                  "TSLA": 0.15000000000000002
+                }
+              },
+              "diagnostics": {
+                "dual_sign_error": 0.0,
+                "numerical_checks_pass": true,
+                "primal_dual_objective_gap": 0.0,
+                "primal_max_residual_fraction": 0.0,
+                "stationarity_max_residual": 0.0,
+                "tolerance": 1e-08
+              },
+              "kind": "hypothetical_parameter_probe",
+              "label": "plafond TSLA +5 points",
+              "minimum_reallocated_capital_cad": 40000.0,
+              "scope": "Sondage explicite ±10 % du capital sur le retrait ou ±5 points sur le plafond ; pas préférence ni prévision.",
+              "status": "conditional",
+              "unit": "CAD",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.4,
+                "TSLA": 0.15000000000000002,
+                "XBB.TO": 0.04999999999999993,
+                "XIU.TO": 0.2,
+                "ZST.TO": 0.2
+              }
+            }
+          ],
+          "status": "conditional",
+          "verification_assessment": {
+            "failed_check_ids": [],
+            "status": "sufficient"
+          }
+        },
+        "provisional": false
+      },
+      "aws_receipts": [
+        {
+          "role": "agent0",
+          "request_id": "64c7332c-78f2-4306-aedb-88eef8be4395",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 2489,
+            "input_tokens": 2,
+            "output_tokens": 209,
+            "total_tokens": 2700
+          }
+        },
+        {
+          "role": "agent1",
+          "request_id": "73911571-cc30-4914-9596-d5a037284c5d",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 12809,
+            "input_tokens": 2,
+            "output_tokens": 1388,
+            "total_tokens": 14199
+          }
+        },
+        {
+          "role": "agent2",
+          "request_id": "eeaa2449-4731-41b7-8066-d44890cf339f",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 2962,
+            "input_tokens": 2,
+            "output_tokens": 542,
+            "total_tokens": 3506
+          }
+        },
+        {
+          "role": "agent3",
+          "request_id": "92a94b61-7ef2-4a70-bd00-66ab40030e2a",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 3226,
+            "input_tokens": 2,
+            "output_tokens": 382,
+            "total_tokens": 3610
+          }
+        },
+        {
+          "role": "agent0",
+          "request_id": "c8043b6a-3f98-47c8-84ef-c5baf58e483d",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 2104,
+            "input_tokens": 2,
+            "output_tokens": 122,
+            "total_tokens": 2228
+          }
+        },
+        {
+          "role": "agent1",
+          "request_id": "1e612da1-c822-4278-9351-37c001e48721",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 12809,
+            "cache_write_input_tokens": 0,
+            "input_tokens": 2,
+            "output_tokens": 1372,
+            "total_tokens": 14183
+          }
+        },
+        {
+          "role": "agent2",
+          "request_id": "21f090c1-914e-4967-805d-1de6f5c3ded2",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 3007,
+            "input_tokens": 2,
+            "output_tokens": 496,
+            "total_tokens": 3505
+          }
+        },
+        {
+          "role": "agent3",
+          "request_id": "cc4a1da9-e619-45cb-bb41-0c219a616554",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 3271,
+            "input_tokens": 2,
+            "output_tokens": 272,
+            "total_tokens": 3545
+          }
+        }
+      ]
+    },
+    "impossible-after": {
+      "id": "1f7d3a73d5924a09ba73925655dce389",
+      "revision": 5,
+      "status": "complete",
+      "analysis_status": "infeasible",
+      "claims": [
+        {
+          "id": "reserve_budget_infeasible",
+          "kind": "infeasibility_certificate",
+          "result_refs": [
+            {
+              "pointer": "/checks/0/withdrawal_cad",
+              "unit": "CAD"
+            },
+            {
+              "pointer": "/checks/0/capital_cad",
+              "unit": "CAD"
+            },
+            {
+              "pointer": "/checks/0/shortfall_cad",
+              "unit": "CAD"
+            }
+          ],
+          "scope": "Sous-ensemble nécessaire des contraintes du modèle déclaré ; aucun IIS global.",
+          "text": "Le retrait demandé de 120,000.00 CAD dépasse le capital de 100,000.00 CAD de 20,000.00 CAD. Le financement par la réserve abstraite est impossible dans ce modèle, sans apport extérieur."
+        }
+      ],
+      "capital_cad": 100000.0,
+      "withdrawal_cad": 120000.0,
+      "view_available": true,
+      "comparison": null,
+      "aws_receipts": [
+        {
+          "role": "agent0",
+          "request_id": "ff7c24be-acdd-4651-aad7-d4b9e04966e5",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 2501,
+            "input_tokens": 2,
+            "output_tokens": 330,
+            "total_tokens": 2833
+          }
+        },
+        {
+          "role": "agent1",
+          "request_id": "b496ac96-d7c7-41cb-b3d9-aaf022b43643",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 13432,
+            "input_tokens": 2,
+            "output_tokens": 1290,
+            "total_tokens": 14724
+          }
+        },
+        {
+          "role": "agent2",
+          "request_id": "26f4086f-7cd8-4822-beab-a63c1a166eb7",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 3753,
+            "input_tokens": 2,
+            "output_tokens": 390,
+            "total_tokens": 4145
+          }
+        },
+        {
+          "role": "agent3",
+          "request_id": "648f2970-77a2-491b-9258-8812598754da",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 3299,
+            "input_tokens": 2,
+            "output_tokens": 126,
+            "total_tokens": 3427
+          }
+        }
+      ]
+    },
+    "profile_revision": {
+      "id": "4089e4b0d70f40b6b20d832fa261e1dc",
+      "revision": 15,
+      "status": "complete",
+      "analysis_status": "conditional",
+      "claims": [
+        {
+          "id": "minimum_reallocation",
+          "kind": "conditional_optimality",
+          "result_refs": [
+            {
+              "pointer": "/options/1/metrics/turnover_cad/value",
+              "unit": "CAD"
+            }
+          ],
+          "scope": "Branche abstraite, contraintes déclarées et tolérances numériques.",
+          "text": "Dans ce modèle, le minimum de capital réalloué est de 74,400.00 CAD."
+        },
+        {
+          "id": "reserve_scope",
+          "kind": "limitation",
+          "result_refs": [],
+          "scope": "Aucun résultat hors du modèle.",
+          "text": "La réserve est abstraite ; aucune garantie d'un instrument réel n'est établie."
+        }
+      ],
+      "capital_cad": 100000.0,
+      "withdrawal_cad": 40000.0,
+      "view_available": true,
+      "comparison": {
+        "before": {
+          "chain": {
+            "baseline_stress_ref": "baseline_stress@1",
+            "conclusion_claim_ids": [
+              "minimum_reallocation",
+              "reserve_scope",
+              "multiple_optima"
+            ],
+            "data": {
+              "code": [
+                {
+                  "path": "alphaforge_app/decision/finance.py",
+                  "sha256": "b0b6f715335c44e87b19e302139f939eb3918ae0d90b357a40e9707c7d3738d0"
+                },
+                {
+                  "path": "alphaforge_app/analytics.py",
+                  "sha256": "fbe8fbdb57080c2652169aea66c5d35fcb54e31087847d05ce72f5e3cbf92b4f"
+                },
+                {
+                  "path": "alphaforge_app/datasets.py",
+                  "sha256": "ef920c0c6dc9bbe23f1e23c0c76047b45329497d4b5a8126b3314759cc523655"
+                }
+              ],
+              "data": [
+                {
+                  "kind": "declared_and_hypothetical_parameters",
+                  "market_data_used": false,
+                  "sha256": "f0708bba55f0a1db83cbdd8b15c56229668c079bbf0d3423e202ba6a6ace7ec5"
+                }
+              ],
+              "executed_at": "2026-11-15T19:10:23.571337+00:00",
+              "input_sha256": "312a5307e5dd441927630c54188883760ad61afcd14daf6c1531cb5d6b22a89b",
+              "model_inference_calls": 0,
+              "packages": {
+                "numpy": "2.5.4",
+                "scipy": "1.18.1"
+              }
+            },
+            "evidence_ref": "research@1",
+            "evidence_refs": [
+              "research@1"
+            ],
+            "implementation": "alphaforge_app.decision.finance.analyze",
+            "method": {
+              "assumptions": [
+                "Aucun frais, impôt ni inflation modélisé.",
+                "Réserve abstraite à rendement nul disponible à l'échéance ; aucun instrument réel assimilé.",
+                "Plafonds d'exposition à t0 ; pas sur les poids après retrait ou variation des cours.",
+                "Chocs de valeur en CAD à l'échéance du retrait, sans probabilités."
+              ],
+              "domain": "Réallocation initiale, positions fractionnaires, réserve abstraite, chocs CAD terminaux.",
+              "equations": {
+                "objective": "min 0.5 * sum(abs(w-w0))",
+                "remaining_wealth": "capital_cad - scenario_loss_cad - withdrawal_cad",
+                "scenario_loss": "-capital_cad * sum(w_i * r_si)"
+              },
+              "id": "reserve-turnover-lp-v1",
+              "inputs": {
+                "asset_order": [
+                  "RESERVE_ABSTRAITE",
+                  "TSLA",
+                  "XBB.TO",
+                  "XIU.TO",
+                  "ZST.TO"
+                ],
+                "capital_cad": 100000.0,
+                "caps": {
+                  "TSLA": 0.1
+                },
+                "return_unit": "fraction",
+                "scenario_loss_limit_cad": 15000.0,
+                "scenarios": [
+                  {
+                    "currency_convention": "synthetic_CAD_value_returns",
+                    "horizon_months": 12.0,
+                    "id": "actions",
+                    "kind": "hypothetical",
+                    "label": "Choc actions hypothétique",
+                    "probability": null,
+                    "returns": {
+                      "RESERVE_ABSTRAITE": 0.0,
+                      "TSLA": -0.5,
+                      "XBB.TO": -0.05,
+                      "XIU.TO": -0.2,
+                      "ZST.TO": 0.0
+                    }
+                  },
+                  {
+                    "currency_convention": "synthetic_CAD_value_returns",
+                    "horizon_months": 12.0,
+                    "id": "obligations",
+                    "kind": "hypothetical",
+                    "label": "Choc obligations hypothétique",
+                    "probability": null,
+                    "returns": {
+                      "RESERVE_ABSTRAITE": 0.0,
+                      "TSLA": -0.25,
+                      "XBB.TO": -0.15,
+                      "XIU.TO": -0.1,
+                      "ZST.TO": -0.02
+                    }
+                  }
+                ],
+                "weight_unit": "fraction",
+                "weights": {
+                  "RESERVE_ABSTRAITE": 0.0,
+                  "TSLA": 0.25,
+                  "XBB.TO": 0.35,
+                  "XIU.TO": 0.2,
+                  "ZST.TO": 0.2
+                },
+                "withdrawal_cad": 40000.0,
+                "withdrawal_fraction": 0.4,
+                "withdrawal_months": 12.0
+              },
+              "sources": [
+                {
+                  "scope": "Formulation LP, dualité.",
+                  "url": "https://web.stanford.edu/~boyd/cvxbook/"
+                }
+              ],
+              "version": 1
+            },
+            "problem_ref": "problem@2",
+            "question": "Financer un retrait en déplaçant le moins de capital."
+          },
+          "checks": [
+            {
+              "dual_sign_error": 0.0,
+              "id": "constraints",
+              "method": "Résidus primal, stationnarité et dualité",
+              "numerical_checks_pass": true,
+              "primal_dual_objective_gap": 0.0,
+              "primal_max_residual_fraction": 0.0,
+              "scope": "Ce LP uniquement ; aucune validation d'instrument.",
+              "stationarity_max_residual": 0.0,
+              "status": "sufficient",
+              "tolerance": 1e-08
+            },
+            {
+              "attained": true,
+              "gap_fraction": 0.0,
+              "id": "independent_lower_bound",
+              "lower_bound_fraction": 0.4,
+              "method": "Demi-L1 = somme des augmentations = somme des diminutions",
+              "scope": "T ≥ max(achat nécessaire de réserve, ventes imposées par plafonds).",
+              "status": "sufficient"
+            },
+            {
+              "id": "multiple_optima",
+              "method": "Min/max de chaque poids à rotation ≤ minimum + tolérance",
+              "non_unique_witness_found": true,
+              "scope": "Extrêmes sur la face optimale à tolérance ; aucun optimum de risque recherché.",
+              "status": "sufficient"
+            },
+            {
+              "artifact_ref": "baseline_stress@1",
+              "id": "baseline_branch_consistency",
+              "method": "Comparaison des pertes initiales avec le diagnostic indépendant du retrait.",
+              "reused": true,
+              "scope": "Égalité des pertes sous les chocs ; pas admissibilité du portefeuille au retrait.",
+              "status": "sufficient"
+            }
+          ],
+          "claims": [
+            {
+              "id": "minimum_reallocation",
+              "kind": "conditional_optimality",
+              "result_refs": [
+                {
+                  "pointer": "/options/1/metrics/turnover_cad/value",
+                  "unit": "CAD"
+                }
+              ],
+              "scope": "Branche abstraite, contraintes déclarées et tolérances numériques.",
+              "text": "Dans ce modèle, le minimum de capital réalloué est de 40,000.00 CAD."
+            },
+            {
+              "id": "reserve_scope",
+              "kind": "limitation",
+              "result_refs": [],
+              "scope": "Aucun résultat hors du modèle.",
+              "text": "La réserve est abstraite ; aucune garantie d'un instrument réel n'est établie."
+            },
+            {
+              "id": "multiple_optima",
+              "kind": "numerical_witness",
+              "result_refs": [
+                {
+                  "pointer": "/optimal_face/non_unique_witness_found",
+                  "unit": "boolean"
+                }
+              ],
+              "scope": "Extrêmes sur la face optimale à tolérance ; aucun optimum de risque recherché.",
+              "text": "Plusieurs allocations atteignent le minimum à la tolérance déclarée ; aucun critère de départage n'a été inventé."
+            }
+          ],
+          "inputs": {
+            "assumptions": [
+              {
+                "id": "example_scope",
+                "origin": "assumed",
+                "text": "Exercice fictif ; réserve abstraite, coûts/fiscalité nuls, chocs CAD synthétiques sans probabilité ; aucun placement réel garanti."
+              }
+            ],
+            "capital_cad": 100000.0,
+            "clarifications": [],
+            "comparison": null,
+            "currency": "CAD",
+            "decision_type": "reserve_allocation",
+            "historical_policy": null,
+            "holdings": [
+              {
+                "ticker": "XBB.TO",
+                "weight": 0.35
+              },
+              {
+                "ticker": "ZST.TO",
+                "weight": 0.2
+              },
+              {
+                "ticker": "XIU.TO",
+                "weight": 0.2
+              },
+              {
+                "ticker": "TSLA",
+                "weight": 0.25
+              }
+            ],
+            "horizon_years": 4.0,
+            "knowledge_date": "2026-11-15",
+            "max_asset_weights": {
+              "TSLA": 0.1
+            },
+            "objective": "minimize_reallocated_capital",
+            "question": "Financer un retrait en déplaçant le moins de capital.",
+            "reserve_policy": "abstract_nominal",
+            "scenario_loss_limit_cad": 15000.0,
+            "scenarios": [
+              {
+                "horizon_months": 12.0,
+                "id": "actions",
+                "kind": "hypothetical",
+                "label": "Choc actions hypothétique",
+                "returns": {
+                  "RESERVE_ABSTRAITE": 0.0,
+                  "TSLA": -0.5,
+                  "XBB.TO": -0.05,
+                  "XIU.TO": -0.2,
+                  "ZST.TO": 0.0
+                }
+              },
+              {
+                "horizon_months": 12.0,
+                "id": "obligations",
+                "kind": "hypothetical",
+                "label": "Choc obligations hypothétique",
+                "returns": {
+                  "RESERVE_ABSTRAITE": 0.0,
+                  "TSLA": -0.25,
+                  "XBB.TO": -0.15,
+                  "XIU.TO": -0.1,
+                  "ZST.TO": -0.02
+                }
+              }
+            ],
+            "unknowns": [
+              "Instrument réel de réserve et conditions non qualifiés."
+            ],
+            "withdrawal_cad": 40000.0,
+            "withdrawal_months": 12.0
+          },
+          "limitations": [
+            "Aucun frais, impôt ni inflation modélisé.",
+            "Réserve abstraite à rendement nul disponible à l'échéance ; aucun instrument réel assimilé.",
+            "Plafonds d'exposition à t0 ; pas sur les poids après retrait ou variation des cours.",
+            "Chocs de valeur en CAD à l'échéance du retrait, sans probabilités.",
+            "Le minimum de capital réalloué ne minimise ni frais réels ni risque ni rendement.",
+            "Ces chocs ne mesurent pas un drawdown de trajectoire et ne bornent pas la perte future.",
+            "L'horizon du solde ne reçoit aucune prévision ; aucun calcul à quatre ans n'est inféré.",
+            "L'univers admissible est celui des positions déclarées, y compris les poids zéro, plus la réserve abstraite."
+          ],
+          "method": {
+            "assumptions": [
+              "Aucun frais, impôt ni inflation modélisé.",
+              "Réserve abstraite à rendement nul disponible à l'échéance ; aucun instrument réel assimilé.",
+              "Plafonds d'exposition à t0 ; pas sur les poids après retrait ou variation des cours.",
+              "Chocs de valeur en CAD à l'échéance du retrait, sans probabilités."
+            ],
+            "domain": "Réallocation initiale, positions fractionnaires, réserve abstraite, chocs CAD terminaux.",
+            "equations": {
+              "objective": "min 0.5 * sum(abs(w-w0))",
+              "remaining_wealth": "capital_cad - scenario_loss_cad - withdrawal_cad",
+              "scenario_loss": "-capital_cad * sum(w_i * r_si)"
+            },
+            "id": "reserve-turnover-lp-v1",
+            "inputs": {
+              "asset_order": [
+                "RESERVE_ABSTRAITE",
+                "TSLA",
+                "XBB.TO",
+                "XIU.TO",
+                "ZST.TO"
+              ],
+              "capital_cad": 100000.0,
+              "caps": {
+                "TSLA": 0.1
+              },
+              "return_unit": "fraction",
+              "scenario_loss_limit_cad": 15000.0,
+              "scenarios": [
+                {
+                  "currency_convention": "synthetic_CAD_value_returns",
+                  "horizon_months": 12.0,
+                  "id": "actions",
+                  "kind": "hypothetical",
+                  "label": "Choc actions hypothétique",
+                  "probability": null,
+                  "returns": {
+                    "RESERVE_ABSTRAITE": 0.0,
+                    "TSLA": -0.5,
+                    "XBB.TO": -0.05,
+                    "XIU.TO": -0.2,
+                    "ZST.TO": 0.0
+                  }
+                },
+                {
+                  "currency_convention": "synthetic_CAD_value_returns",
+                  "horizon_months": 12.0,
+                  "id": "obligations",
+                  "kind": "hypothetical",
+                  "label": "Choc obligations hypothétique",
+                  "probability": null,
+                  "returns": {
+                    "RESERVE_ABSTRAITE": 0.0,
+                    "TSLA": -0.25,
+                    "XBB.TO": -0.15,
+                    "XIU.TO": -0.1,
+                    "ZST.TO": -0.02
+                  }
+                }
+              ],
+              "weight_unit": "fraction",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.0,
+                "TSLA": 0.25,
+                "XBB.TO": 0.35,
+                "XIU.TO": 0.2,
+                "ZST.TO": 0.2
+              },
+              "withdrawal_cad": 40000.0,
+              "withdrawal_fraction": 0.4,
+              "withdrawal_months": 12.0
+            },
+            "sources": [
+              {
+                "scope": "Formulation LP, dualité.",
+                "url": "https://web.stanford.edu/~boyd/cvxbook/"
+              }
+            ],
+            "version": 1
+          },
+          "missing": [],
+          "optimal_face": {
+            "distinct_weight_threshold": 1e-06,
+            "failures": [],
+            "non_unique_witness_found": true,
+            "scope": "Extrêmes sur la face optimale à tolérance ; aucun optimum de risque recherché.",
+            "secondary_preference_selected": false,
+            "turnover_band_fraction": 1e-09,
+            "weight_ranges": {
+              "RESERVE_ABSTRAITE": {
+                "maximum": 0.40000000100000005,
+                "minimum": 0.4,
+                "unit": "fraction"
+              },
+              "TSLA": {
+                "maximum": 0.1,
+                "minimum": 0.0,
+                "unit": "fraction"
+              },
+              "XBB.TO": {
+                "maximum": 0.350000001,
+                "minimum": 0.09999999799999992,
+                "unit": "fraction"
+              },
+              "XIU.TO": {
+                "maximum": 0.20000000100000004,
+                "minimum": 0.0,
+                "unit": "fraction"
+              },
+              "ZST.TO": {
+                "maximum": 0.20000000100000004,
+                "minimum": 0.0,
+                "unit": "fraction"
+              }
+            }
+          },
+          "options": [
+            {
+              "admissible": false,
+              "constraint_checks": [
+                {
+                  "constraint": "budget",
+                  "limit": 1.0,
+                  "observed": 1.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:RESERVE_ABSTRAITE",
+                  "limit": 0.0,
+                  "observed": 0.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:TSLA",
+                  "limit": 0.0,
+                  "observed": 0.25,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "asset_cap:TSLA",
+                  "limit": 0.1,
+                  "observed": 0.25,
+                  "residual": 0.15,
+                  "satisfied": false,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:XBB.TO",
+                  "limit": 0.0,
+                  "observed": 0.35,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:XIU.TO",
+                  "limit": 0.0,
+                  "observed": 0.2,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:ZST.TO",
+                  "limit": 0.0,
+                  "observed": 0.2,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "reserve",
+                  "limit": 40000.0,
+                  "observed": 0.0,
+                  "residual": 40000.0,
+                  "satisfied": false,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                },
+                {
+                  "constraint": "scenario_loss:actions",
+                  "limit": 15000.0,
+                  "observed": 18250.0,
+                  "residual": 3250.0,
+                  "satisfied": false,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                },
+                {
+                  "constraint": "scenario_loss:obligations",
+                  "limit": 15000.0,
+                  "observed": 13900.000000000002,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                }
+              ],
+              "diagnostics": {},
+              "id": "baseline",
+              "label": "Allocation initiale",
+              "metrics": {
+                "reserve_cad": {
+                  "unit": "CAD",
+                  "value": 0.0
+                },
+                "turnover_cad": {
+                  "unit": "CAD",
+                  "value": 0.0
+                },
+                "turnover_pct": {
+                  "unit": "percent",
+                  "value": 0.0
+                }
+              },
+              "scenario_results": [
+                {
+                  "horizon_months": 12.0,
+                  "id": "actions",
+                  "kind": "hypothetical",
+                  "label": "Choc actions hypothétique",
+                  "loss_cad": 18250.0,
+                  "probability": null,
+                  "unit": "CAD",
+                  "wealth_after_withdrawal_cad": null,
+                  "wealth_before_withdrawal_cad": 81750.0
+                },
+                {
+                  "horizon_months": 12.0,
+                  "id": "obligations",
+                  "kind": "hypothetical",
+                  "label": "Choc obligations hypothétique",
+                  "loss_cad": 13900.000000000002,
+                  "probability": null,
+                  "unit": "CAD",
+                  "wealth_after_withdrawal_cad": null,
+                  "wealth_before_withdrawal_cad": 86100.0
+                }
+              ],
+              "violations": [
+                {
+                  "constraint": "asset_cap:TSLA",
+                  "limit": 0.1,
+                  "observed": 0.25,
+                  "residual": 0.15,
+                  "satisfied": false,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "reserve",
+                  "limit": 40000.0,
+                  "observed": 0.0,
+                  "residual": 40000.0,
+                  "satisfied": false,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                },
+                {
+                  "constraint": "scenario_loss:actions",
+                  "limit": 15000.0,
+                  "observed": 18250.0,
+                  "residual": 3250.0,
+                  "satisfied": false,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                }
+              ],
+              "weight_unit": "fraction_of_initial_capital",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.0,
+                "TSLA": 0.25,
+                "XBB.TO": 0.35,
+                "XIU.TO": 0.2,
+                "ZST.TO": 0.2
+              }
+            },
+            {
+              "admissible": true,
+              "constraint_checks": [
+                {
+                  "constraint": "budget",
+                  "limit": 1.0,
+                  "observed": 1.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:RESERVE_ABSTRAITE",
+                  "limit": 0.0,
+                  "observed": 0.4,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:TSLA",
+                  "limit": 0.0,
+                  "observed": 0.1,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "asset_cap:TSLA",
+                  "limit": 0.1,
+                  "observed": 0.1,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:XBB.TO",
+                  "limit": 0.0,
+                  "observed": 0.09999999999999998,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:XIU.TO",
+                  "limit": 0.0,
+                  "observed": 0.2,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:ZST.TO",
+                  "limit": 0.0,
+                  "observed": 0.2,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "reserve",
+                  "limit": 40000.0,
+                  "observed": 40000.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                },
+                {
+                  "constraint": "scenario_loss:actions",
+                  "limit": 15000.0,
+                  "observed": 9500.000000000002,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                },
+                {
+                  "constraint": "scenario_loss:obligations",
+                  "limit": 15000.0,
+                  "observed": 6400.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                }
+              ],
+              "diagnostics": {
+                "dual_sign_error": 0.0,
+                "numerical_checks_pass": true,
+                "primal_dual_objective_gap": 0.0,
+                "primal_max_residual_fraction": 0.0,
+                "stationarity_max_residual": 0.0,
+                "tolerance": 1e-08
+              },
+              "id": "minimum_turnover",
+              "label": "Minimum de capital réalloué",
+              "metrics": {
+                "reserve_cad": {
+                  "unit": "CAD",
+                  "value": 40000.0
+                },
+                "turnover_cad": {
+                  "unit": "CAD",
+                  "value": 40000.0
+                },
+                "turnover_pct": {
+                  "unit": "percent",
+                  "value": 40.0
+                }
+              },
+              "scenario_results": [
+                {
+                  "horizon_months": 12.0,
+                  "id": "actions",
+                  "kind": "hypothetical",
+                  "label": "Choc actions hypothétique",
+                  "loss_cad": 9500.000000000002,
+                  "probability": null,
+                  "unit": "CAD",
+                  "wealth_after_withdrawal_cad": 50500.0,
+                  "wealth_before_withdrawal_cad": 90500.0
+                },
+                {
+                  "horizon_months": 12.0,
+                  "id": "obligations",
+                  "kind": "hypothetical",
+                  "label": "Choc obligations hypothétique",
+                  "loss_cad": 6400.0,
+                  "probability": null,
+                  "unit": "CAD",
+                  "wealth_after_withdrawal_cad": 53600.0,
+                  "wealth_before_withdrawal_cad": 93600.0
+                }
+              ],
+              "violations": [],
+              "weight_unit": "fraction_of_initial_capital",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.4,
+                "TSLA": 0.1,
+                "XBB.TO": 0.09999999999999998,
+                "XIU.TO": 0.2,
+                "ZST.TO": 0.2
+              }
+            },
+            {
+              "admissible": true,
+              "constraint_checks": [
+                {
+                  "constraint": "budget",
+                  "limit": 1.0,
+                  "observed": 1.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:RESERVE_ABSTRAITE",
+                  "limit": 0.0,
+                  "observed": 0.4,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:TSLA",
+                  "limit": 0.0,
+                  "observed": 0.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "asset_cap:TSLA",
+                  "limit": 0.1,
+                  "observed": 0.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:XBB.TO",
+                  "limit": 0.0,
+                  "observed": 0.35,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:XIU.TO",
+                  "limit": 0.0,
+                  "observed": 0.04999999999999999,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:ZST.TO",
+                  "limit": 0.0,
+                  "observed": 0.2,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "reserve",
+                  "limit": 40000.0,
+                  "observed": 40000.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                },
+                {
+                  "constraint": "scenario_loss:actions",
+                  "limit": 15000.0,
+                  "observed": 2749.9999999999995,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                },
+                {
+                  "constraint": "scenario_loss:obligations",
+                  "limit": 15000.0,
+                  "observed": 6150.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                }
+              ],
+              "diagnostics": {
+                "optimal_face_gap_fraction": 0.0
+              },
+              "id": "alternative_minimum",
+              "label": "Autre allocation au minimum, à tolérance",
+              "metrics": {
+                "reserve_cad": {
+                  "unit": "CAD",
+                  "value": 40000.0
+                },
+                "turnover_cad": {
+                  "unit": "CAD",
+                  "value": 40000.0
+                },
+                "turnover_pct": {
+                  "unit": "percent",
+                  "value": 40.0
+                }
+              },
+              "scenario_results": [
+                {
+                  "horizon_months": 12.0,
+                  "id": "actions",
+                  "kind": "hypothetical",
+                  "label": "Choc actions hypothétique",
+                  "loss_cad": 2749.9999999999995,
+                  "probability": null,
+                  "unit": "CAD",
+                  "wealth_after_withdrawal_cad": 57250.0,
+                  "wealth_before_withdrawal_cad": 97250.0
+                },
+                {
+                  "horizon_months": 12.0,
+                  "id": "obligations",
+                  "kind": "hypothetical",
+                  "label": "Choc obligations hypothétique",
+                  "loss_cad": 6150.0,
+                  "probability": null,
+                  "unit": "CAD",
+                  "wealth_after_withdrawal_cad": 53850.0,
+                  "wealth_before_withdrawal_cad": 93850.0
+                }
+              ],
+              "violations": [],
+              "weight_unit": "fraction_of_initial_capital",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.4,
+                "TSLA": 0.0,
+                "XBB.TO": 0.35,
+                "XIU.TO": 0.04999999999999999,
+                "ZST.TO": 0.2
+              }
+            }
+          ],
+          "provenance": {
+            "code": [
+              {
+                "path": "alphaforge_app/decision/finance.py",
+                "sha256": "b0b6f715335c44e87b19e302139f939eb3918ae0d90b357a40e9707c7d3738d0"
+              },
+              {
+                "path": "alphaforge_app/analytics.py",
+                "sha256": "fbe8fbdb57080c2652169aea66c5d35fcb54e31087847d05ce72f5e3cbf92b4f"
+              },
+              {
+                "path": "alphaforge_app/datasets.py",
+                "sha256": "ef920c0c6dc9bbe23f1e23c0c76047b45329497d4b5a8126b3314759cc523655"
+              }
+            ],
+            "data": [
+              {
+                "kind": "declared_and_hypothetical_parameters",
+                "market_data_used": false,
+                "sha256": "f0708bba55f0a1db83cbdd8b15c56229668c079bbf0d3423e202ba6a6ace7ec5"
+              }
+            ],
+            "executed_at": "2026-11-15T19:10:23.571337+00:00",
+            "input_sha256": "312a5307e5dd441927630c54188883760ad61afcd14daf6c1531cb5d6b22a89b",
+            "model_inference_calls": 0,
+            "packages": {
+              "numpy": "2.5.4",
+              "scipy": "1.18.1"
+            }
+          },
+          "sensitivity": [
+            {
+              "baseline_unchanged": true,
+              "changes": {
+                "withdrawal_cad": 30000.0
+              },
+              "diagnostics": {
+                "dual_sign_error": 0.0,
+                "numerical_checks_pass": true,
+                "primal_dual_objective_gap": 0.0,
+                "primal_max_residual_fraction": 0.0,
+                "stationarity_max_residual": 0.0,
+                "tolerance": 1e-08
+              },
+              "kind": "hypothetical_parameter_probe",
+              "label": "retrait −10 % du capital",
+              "minimum_reallocated_capital_cad": 30000.0,
+              "scope": "Sondage explicite ±10 % du capital sur le retrait ou ±5 points sur le plafond ; pas préférence ni prévision.",
+              "status": "conditional",
+              "unit": "CAD",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.3,
+                "TSLA": 0.1,
+                "XBB.TO": 0.19999999999999996,
+                "XIU.TO": 0.2,
+                "ZST.TO": 0.2
+              }
+            },
+            {
+              "baseline_unchanged": true,
+              "changes": {
+                "withdrawal_cad": 50000.0
+              },
+              "diagnostics": {
+                "dual_sign_error": 0.0,
+                "numerical_checks_pass": true,
+                "primal_dual_objective_gap": 0.0,
+                "primal_max_residual_fraction": 0.0,
+                "stationarity_max_residual": 0.0,
+                "tolerance": 1e-08
+              },
+              "kind": "hypothetical_parameter_probe",
+              "label": "retrait +10 % du capital",
+              "minimum_reallocated_capital_cad": 50000.0,
+              "scope": "Sondage explicite ±10 % du capital sur le retrait ou ±5 points sur le plafond ; pas préférence ni prévision.",
+              "status": "conditional",
+              "unit": "CAD",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.5,
+                "TSLA": 0.1,
+                "XBB.TO": -0.0,
+                "XIU.TO": 0.2,
+                "ZST.TO": 0.2
+              }
+            },
+            {
+              "baseline_unchanged": true,
+              "changes": {
+                "max_asset_weights": {
+                  "TSLA": 0.05
+                }
+              },
+              "diagnostics": {
+                "dual_sign_error": 0.0,
+                "numerical_checks_pass": true,
+                "primal_dual_objective_gap": 0.0,
+                "primal_max_residual_fraction": 0.0,
+                "stationarity_max_residual": 0.0,
+                "tolerance": 1e-08
+              },
+              "kind": "hypothetical_parameter_probe",
+              "label": "plafond TSLA -5 points",
+              "minimum_reallocated_capital_cad": 40000.0,
+              "scope": "Sondage explicite ±10 % du capital sur le retrait ou ±5 points sur le plafond ; pas préférence ni prévision.",
+              "status": "conditional",
+              "unit": "CAD",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.4,
+                "TSLA": 0.05,
+                "XBB.TO": 0.15000000000000002,
+                "XIU.TO": 0.2,
+                "ZST.TO": 0.2
+              }
+            },
+            {
+              "baseline_unchanged": true,
+              "changes": {
+                "max_asset_weights": {
+                  "TSLA": 0.15000000000000002
+                }
+              },
+              "diagnostics": {
+                "dual_sign_error": 0.0,
+                "numerical_checks_pass": true,
+                "primal_dual_objective_gap": 0.0,
+                "primal_max_residual_fraction": 0.0,
+                "stationarity_max_residual": 0.0,
+                "tolerance": 1e-08
+              },
+              "kind": "hypothetical_parameter_probe",
+              "label": "plafond TSLA +5 points",
+              "minimum_reallocated_capital_cad": 40000.0,
+              "scope": "Sondage explicite ±10 % du capital sur le retrait ou ±5 points sur le plafond ; pas préférence ni prévision.",
+              "status": "conditional",
+              "unit": "CAD",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.4,
+                "TSLA": 0.15000000000000002,
+                "XBB.TO": 0.04999999999999993,
+                "XIU.TO": 0.2,
+                "ZST.TO": 0.2
+              }
+            }
+          ],
+          "status": "conditional",
+          "verification_assessment": {
+            "failed_check_ids": [],
+            "status": "sufficient"
+          }
+        },
+        "changed_fields": [
+          "fact.scenario_loss_limit_cad"
+        ],
+        "invalidated": [
+          "analysis@2",
+          "analysis_review@2",
+          "fact.scenario_loss_limit_cad@1",
+          "problem@2",
+          "qualification@2",
+          "questions.agent0@2",
+          "questions.agent1@2",
+          "questions.agent2@2",
+          "questions.agent3@2",
+          "request@2",
+          "research_review@2",
+          "view@2"
+        ],
+        "reused": [
+          "baseline_stress@1",
+          "fact.assumptions@1",
+          "fact.capital_cad@1",
+          "fact.clarifications@1",
+          "fact.comparison@1",
+          "fact.currency@1",
+          "fact.decision_type@1",
+          "fact.holdings@1",
+          "fact.horizon_years@1",
+          "fact.knowledge_date@1",
+          "fact.max_asset_weights@1",
+          "fact.objective@1",
+          "fact.question@1",
+          "fact.reserve_policy@1",
+          "fact.scenarios@1",
+          "fact.unknowns@1",
+          "fact.withdrawal_cad@2",
+          "fact.withdrawal_months@1",
+          "request_source.c83e19494dc6446991fc214e994d8326@1",
+          "request_source.f73fe180d6c04c38a13e49b024dacb30@1",
+          "research@1"
+        ],
+        "after": {
+          "chain": {
+            "baseline_stress_ref": "baseline_stress@1",
+            "conclusion_claim_ids": [
+              "minimum_reallocation",
+              "reserve_scope"
+            ],
+            "data": {
+              "code": [
+                {
+                  "path": "alphaforge_app/decision/finance.py",
+                  "sha256": "b0b6f715335c44e87b19e302139f939eb3918ae0d90b357a40e9707c7d3738d0"
+                },
+                {
+                  "path": "alphaforge_app/analytics.py",
+                  "sha256": "fbe8fbdb57080c2652169aea66c5d35fcb54e31087847d05ce72f5e3cbf92b4f"
+                },
+                {
+                  "path": "alphaforge_app/datasets.py",
+                  "sha256": "ef920c0c6dc9bbe23f1e23c0c76047b45329497d4b5a8126b3314759cc523655"
+                }
+              ],
+              "data": [
+                {
+                  "kind": "declared_and_hypothetical_parameters",
+                  "market_data_used": false,
+                  "sha256": "b0d102e5d335ca765d83db4943ff00b2de997959910f70f4696239a788cda349"
+                }
+              ],
+              "executed_at": "2026-11-15T19:10:57.943168+00:00",
+              "input_sha256": "a82a85ae7fa3deaf75434d069210b97ca3f4f864bb54799ccd7d3d365010f55f",
+              "model_inference_calls": 0,
+              "packages": {
+                "numpy": "2.5.4",
+                "scipy": "1.18.1"
+              }
+            },
+            "evidence_ref": "research@1",
+            "evidence_refs": [
+              "research@1"
+            ],
+            "implementation": "alphaforge_app.decision.finance.analyze",
+            "method": {
+              "assumptions": [
+                "Aucun frais, impôt ni inflation modélisé.",
+                "Réserve abstraite à rendement nul disponible à l'échéance ; aucun instrument réel assimilé.",
+                "Plafonds d'exposition à t0 ; pas sur les poids après retrait ou variation des cours.",
+                "Chocs de valeur en CAD à l'échéance du retrait, sans probabilités."
+              ],
+              "domain": "Réallocation initiale, positions fractionnaires, réserve abstraite, chocs CAD terminaux.",
+              "equations": {
+                "objective": "min 0.5 * sum(abs(w-w0))",
+                "remaining_wealth": "capital_cad - scenario_loss_cad - withdrawal_cad",
+                "scenario_loss": "-capital_cad * sum(w_i * r_si)"
+              },
+              "id": "reserve-turnover-lp-v1",
+              "inputs": {
+                "asset_order": [
+                  "RESERVE_ABSTRAITE",
+                  "TSLA",
+                  "XBB.TO",
+                  "XIU.TO",
+                  "ZST.TO"
+                ],
+                "capital_cad": 100000.0,
+                "caps": {
+                  "TSLA": 0.1
+                },
+                "return_unit": "fraction",
+                "scenario_loss_limit_cad": 1000.0,
+                "scenarios": [
+                  {
+                    "currency_convention": "synthetic_CAD_value_returns",
+                    "horizon_months": 12.0,
+                    "id": "actions",
+                    "kind": "hypothetical",
+                    "label": "Choc actions hypothétique",
+                    "probability": null,
+                    "returns": {
+                      "RESERVE_ABSTRAITE": 0.0,
+                      "TSLA": -0.5,
+                      "XBB.TO": -0.05,
+                      "XIU.TO": -0.2,
+                      "ZST.TO": 0.0
+                    }
+                  },
+                  {
+                    "currency_convention": "synthetic_CAD_value_returns",
+                    "horizon_months": 12.0,
+                    "id": "obligations",
+                    "kind": "hypothetical",
+                    "label": "Choc obligations hypothétique",
+                    "probability": null,
+                    "returns": {
+                      "RESERVE_ABSTRAITE": 0.0,
+                      "TSLA": -0.25,
+                      "XBB.TO": -0.15,
+                      "XIU.TO": -0.1,
+                      "ZST.TO": -0.02
+                    }
+                  }
+                ],
+                "weight_unit": "fraction",
+                "weights": {
+                  "RESERVE_ABSTRAITE": 0.0,
+                  "TSLA": 0.25,
+                  "XBB.TO": 0.35,
+                  "XIU.TO": 0.2,
+                  "ZST.TO": 0.2
+                },
+                "withdrawal_cad": 40000.0,
+                "withdrawal_fraction": 0.4,
+                "withdrawal_months": 12.0
+              },
+              "sources": [
+                {
+                  "scope": "Formulation LP, dualité.",
+                  "url": "https://web.stanford.edu/~boyd/cvxbook/"
+                }
+              ],
+              "version": 1
+            },
+            "problem_ref": "problem@3",
+            "question": "Financer un retrait en déplaçant le moins de capital."
+          },
+          "checks": [
+            {
+              "dual_sign_error": 0.0,
+              "id": "constraints",
+              "method": "Résidus primal, stationnarité et dualité",
+              "numerical_checks_pass": true,
+              "primal_dual_objective_gap": 0.0,
+              "primal_max_residual_fraction": 1.734723475976807e-18,
+              "scope": "Ce LP uniquement ; aucune validation d'instrument.",
+              "stationarity_max_residual": 5.551115123125783e-17,
+              "status": "sufficient",
+              "tolerance": 1e-08
+            },
+            {
+              "attained": false,
+              "gap_fraction": 0.3440000000000001,
+              "id": "independent_lower_bound",
+              "lower_bound_fraction": 0.4,
+              "method": "Demi-L1 = somme des augmentations = somme des diminutions",
+              "scope": "T ≥ max(achat nécessaire de réserve, ventes imposées par plafonds).",
+              "status": "partial"
+            },
+            {
+              "id": "multiple_optima",
+              "method": "Min/max de chaque poids à rotation ≤ minimum + tolérance",
+              "non_unique_witness_found": false,
+              "scope": "Extrêmes sur la face optimale à tolérance ; aucun optimum de risque recherché.",
+              "status": "sufficient"
+            },
+            {
+              "artifact_ref": "baseline_stress@1",
+              "id": "baseline_branch_consistency",
+              "method": "Comparaison des pertes initiales avec le diagnostic indépendant du retrait.",
+              "reused": true,
+              "scope": "Égalité des pertes sous les chocs ; pas admissibilité du portefeuille au retrait.",
+              "status": "sufficient"
+            }
+          ],
+          "claims": [
+            {
+              "id": "minimum_reallocation",
+              "kind": "conditional_optimality",
+              "result_refs": [
+                {
+                  "pointer": "/options/1/metrics/turnover_cad/value",
+                  "unit": "CAD"
+                }
+              ],
+              "scope": "Branche abstraite, contraintes déclarées et tolérances numériques.",
+              "text": "Dans ce modèle, le minimum de capital réalloué est de 74,400.00 CAD."
+            },
+            {
+              "id": "reserve_scope",
+              "kind": "limitation",
+              "result_refs": [],
+              "scope": "Aucun résultat hors du modèle.",
+              "text": "La réserve est abstraite ; aucune garantie d'un instrument réel n'est établie."
+            }
+          ],
+          "inputs": {
+            "assumptions": [
+              {
+                "id": "example_scope",
+                "origin": "assumed",
+                "text": "Exercice fictif ; réserve abstraite, coûts/fiscalité nuls, chocs CAD synthétiques sans probabilité ; aucun placement réel garanti."
+              }
+            ],
+            "capital_cad": 100000.0,
+            "clarifications": [],
+            "comparison": null,
+            "currency": "CAD",
+            "decision_type": "reserve_allocation",
+            "historical_policy": null,
+            "holdings": [
+              {
+                "ticker": "XBB.TO",
+                "weight": 0.35
+              },
+              {
+                "ticker": "ZST.TO",
+                "weight": 0.2
+              },
+              {
+                "ticker": "XIU.TO",
+                "weight": 0.2
+              },
+              {
+                "ticker": "TSLA",
+                "weight": 0.25
+              }
+            ],
+            "horizon_years": 4.0,
+            "knowledge_date": "2026-11-15",
+            "max_asset_weights": {
+              "TSLA": 0.1
+            },
+            "objective": "minimize_reallocated_capital",
+            "question": "Financer un retrait en déplaçant le moins de capital.",
+            "reserve_policy": "abstract_nominal",
+            "scenario_loss_limit_cad": 1000.0,
+            "scenarios": [
+              {
+                "horizon_months": 12.0,
+                "id": "actions",
+                "kind": "hypothetical",
+                "label": "Choc actions hypothétique",
+                "returns": {
+                  "RESERVE_ABSTRAITE": 0.0,
+                  "TSLA": -0.5,
+                  "XBB.TO": -0.05,
+                  "XIU.TO": -0.2,
+                  "ZST.TO": 0.0
+                }
+              },
+              {
+                "horizon_months": 12.0,
+                "id": "obligations",
+                "kind": "hypothetical",
+                "label": "Choc obligations hypothétique",
+                "returns": {
+                  "RESERVE_ABSTRAITE": 0.0,
+                  "TSLA": -0.25,
+                  "XBB.TO": -0.15,
+                  "XIU.TO": -0.1,
+                  "ZST.TO": -0.02
+                }
+              }
+            ],
+            "unknowns": [
+              "Instrument réel de réserve et conditions non qualifiés."
+            ],
+            "withdrawal_cad": 40000.0,
+            "withdrawal_months": 12.0
+          },
+          "limitations": [
+            "Aucun frais, impôt ni inflation modélisé.",
+            "Réserve abstraite à rendement nul disponible à l'échéance ; aucun instrument réel assimilé.",
+            "Plafonds d'exposition à t0 ; pas sur les poids après retrait ou variation des cours.",
+            "Chocs de valeur en CAD à l'échéance du retrait, sans probabilités.",
+            "Le minimum de capital réalloué ne minimise ni frais réels ni risque ni rendement.",
+            "Ces chocs ne mesurent pas un drawdown de trajectoire et ne bornent pas la perte future.",
+            "L'horizon du solde ne reçoit aucune prévision ; aucun calcul à quatre ans n'est inféré.",
+            "L'univers admissible est celui des positions déclarées, y compris les poids zéro, plus la réserve abstraite."
+          ],
+          "method": {
+            "assumptions": [
+              "Aucun frais, impôt ni inflation modélisé.",
+              "Réserve abstraite à rendement nul disponible à l'échéance ; aucun instrument réel assimilé.",
+              "Plafonds d'exposition à t0 ; pas sur les poids après retrait ou variation des cours.",
+              "Chocs de valeur en CAD à l'échéance du retrait, sans probabilités."
+            ],
+            "domain": "Réallocation initiale, positions fractionnaires, réserve abstraite, chocs CAD terminaux.",
+            "equations": {
+              "objective": "min 0.5 * sum(abs(w-w0))",
+              "remaining_wealth": "capital_cad - scenario_loss_cad - withdrawal_cad",
+              "scenario_loss": "-capital_cad * sum(w_i * r_si)"
+            },
+            "id": "reserve-turnover-lp-v1",
+            "inputs": {
+              "asset_order": [
+                "RESERVE_ABSTRAITE",
+                "TSLA",
+                "XBB.TO",
+                "XIU.TO",
+                "ZST.TO"
+              ],
+              "capital_cad": 100000.0,
+              "caps": {
+                "TSLA": 0.1
+              },
+              "return_unit": "fraction",
+              "scenario_loss_limit_cad": 1000.0,
+              "scenarios": [
+                {
+                  "currency_convention": "synthetic_CAD_value_returns",
+                  "horizon_months": 12.0,
+                  "id": "actions",
+                  "kind": "hypothetical",
+                  "label": "Choc actions hypothétique",
+                  "probability": null,
+                  "returns": {
+                    "RESERVE_ABSTRAITE": 0.0,
+                    "TSLA": -0.5,
+                    "XBB.TO": -0.05,
+                    "XIU.TO": -0.2,
+                    "ZST.TO": 0.0
+                  }
+                },
+                {
+                  "currency_convention": "synthetic_CAD_value_returns",
+                  "horizon_months": 12.0,
+                  "id": "obligations",
+                  "kind": "hypothetical",
+                  "label": "Choc obligations hypothétique",
+                  "probability": null,
+                  "returns": {
+                    "RESERVE_ABSTRAITE": 0.0,
+                    "TSLA": -0.25,
+                    "XBB.TO": -0.15,
+                    "XIU.TO": -0.1,
+                    "ZST.TO": -0.02
+                  }
+                }
+              ],
+              "weight_unit": "fraction",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.0,
+                "TSLA": 0.25,
+                "XBB.TO": 0.35,
+                "XIU.TO": 0.2,
+                "ZST.TO": 0.2
+              },
+              "withdrawal_cad": 40000.0,
+              "withdrawal_fraction": 0.4,
+              "withdrawal_months": 12.0
+            },
+            "sources": [
+              {
+                "scope": "Formulation LP, dualité.",
+                "url": "https://web.stanford.edu/~boyd/cvxbook/"
+              }
+            ],
+            "version": 1
+          },
+          "missing": [],
+          "optimal_face": {
+            "distinct_weight_threshold": 1e-06,
+            "failures": [],
+            "non_unique_witness_found": false,
+            "scope": "Extrêmes sur la face optimale à tolérance ; aucun optimum de risque recherché.",
+            "secondary_preference_selected": false,
+            "turnover_band_fraction": 1e-09,
+            "weight_ranges": {
+              "RESERVE_ABSTRAITE": {
+                "maximum": 0.7440000010000002,
+                "minimum": 0.743999992666666,
+                "unit": "fraction"
+              },
+              "TSLA": {
+                "maximum": 6.666667245025516e-10,
+                "minimum": 0.0,
+                "unit": "fraction"
+              },
+              "XBB.TO": {
+                "maximum": 0.00800000200000018,
+                "minimum": 0.00799999866666655,
+                "unit": "fraction"
+              },
+              "XIU.TO": {
+                "maximum": 0.04800000033333336,
+                "minimum": 0.04799999699999973,
+                "unit": "fraction"
+              },
+              "ZST.TO": {
+                "maximum": 0.20000000833333403,
+                "minimum": 0.19999999886363623,
+                "unit": "fraction"
+              }
+            }
+          },
+          "options": [
+            {
+              "admissible": false,
+              "constraint_checks": [
+                {
+                  "constraint": "budget",
+                  "limit": 1.0,
+                  "observed": 1.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:RESERVE_ABSTRAITE",
+                  "limit": 0.0,
+                  "observed": 0.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:TSLA",
+                  "limit": 0.0,
+                  "observed": 0.25,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "asset_cap:TSLA",
+                  "limit": 0.1,
+                  "observed": 0.25,
+                  "residual": 0.15,
+                  "satisfied": false,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:XBB.TO",
+                  "limit": 0.0,
+                  "observed": 0.35,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:XIU.TO",
+                  "limit": 0.0,
+                  "observed": 0.2,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:ZST.TO",
+                  "limit": 0.0,
+                  "observed": 0.2,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "reserve",
+                  "limit": 40000.0,
+                  "observed": 0.0,
+                  "residual": 40000.0,
+                  "satisfied": false,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                },
+                {
+                  "constraint": "scenario_loss:actions",
+                  "limit": 1000.0,
+                  "observed": 18250.0,
+                  "residual": 17250.0,
+                  "satisfied": false,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                },
+                {
+                  "constraint": "scenario_loss:obligations",
+                  "limit": 1000.0,
+                  "observed": 13900.000000000002,
+                  "residual": 12900.000000000002,
+                  "satisfied": false,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                }
+              ],
+              "diagnostics": {},
+              "id": "baseline",
+              "label": "Allocation initiale",
+              "metrics": {
+                "reserve_cad": {
+                  "unit": "CAD",
+                  "value": 0.0
+                },
+                "turnover_cad": {
+                  "unit": "CAD",
+                  "value": 0.0
+                },
+                "turnover_pct": {
+                  "unit": "percent",
+                  "value": 0.0
+                }
+              },
+              "scenario_results": [
+                {
+                  "horizon_months": 12.0,
+                  "id": "actions",
+                  "kind": "hypothetical",
+                  "label": "Choc actions hypothétique",
+                  "loss_cad": 18250.0,
+                  "probability": null,
+                  "unit": "CAD",
+                  "wealth_after_withdrawal_cad": null,
+                  "wealth_before_withdrawal_cad": 81750.0
+                },
+                {
+                  "horizon_months": 12.0,
+                  "id": "obligations",
+                  "kind": "hypothetical",
+                  "label": "Choc obligations hypothétique",
+                  "loss_cad": 13900.000000000002,
+                  "probability": null,
+                  "unit": "CAD",
+                  "wealth_after_withdrawal_cad": null,
+                  "wealth_before_withdrawal_cad": 86100.0
+                }
+              ],
+              "violations": [
+                {
+                  "constraint": "asset_cap:TSLA",
+                  "limit": 0.1,
+                  "observed": 0.25,
+                  "residual": 0.15,
+                  "satisfied": false,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "reserve",
+                  "limit": 40000.0,
+                  "observed": 0.0,
+                  "residual": 40000.0,
+                  "satisfied": false,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                },
+                {
+                  "constraint": "scenario_loss:actions",
+                  "limit": 1000.0,
+                  "observed": 18250.0,
+                  "residual": 17250.0,
+                  "satisfied": false,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                },
+                {
+                  "constraint": "scenario_loss:obligations",
+                  "limit": 1000.0,
+                  "observed": 13900.000000000002,
+                  "residual": 12900.000000000002,
+                  "satisfied": false,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                }
+              ],
+              "weight_unit": "fraction_of_initial_capital",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.0,
+                "TSLA": 0.25,
+                "XBB.TO": 0.35,
+                "XIU.TO": 0.2,
+                "ZST.TO": 0.2
+              }
+            },
+            {
+              "admissible": true,
+              "constraint_checks": [
+                {
+                  "constraint": "budget",
+                  "limit": 1.0,
+                  "observed": 1.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:RESERVE_ABSTRAITE",
+                  "limit": 0.0,
+                  "observed": 0.744,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:TSLA",
+                  "limit": 0.0,
+                  "observed": 0.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "asset_cap:TSLA",
+                  "limit": 0.1,
+                  "observed": 0.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:XBB.TO",
+                  "limit": 0.0,
+                  "observed": 0.008,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:XIU.TO",
+                  "limit": 0.0,
+                  "observed": 0.048,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "nonnegative:ZST.TO",
+                  "limit": 0.0,
+                  "observed": 0.2,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 1e-08,
+                  "unit": "fraction"
+                },
+                {
+                  "constraint": "reserve",
+                  "limit": 40000.0,
+                  "observed": 74400.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                },
+                {
+                  "constraint": "scenario_loss:actions",
+                  "limit": 1000.0,
+                  "observed": 1000.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                },
+                {
+                  "constraint": "scenario_loss:obligations",
+                  "limit": 1000.0,
+                  "observed": 1000.0,
+                  "residual": 0.0,
+                  "satisfied": true,
+                  "tolerance": 0.001,
+                  "unit": "CAD"
+                }
+              ],
+              "diagnostics": {
+                "dual_sign_error": 0.0,
+                "numerical_checks_pass": true,
+                "primal_dual_objective_gap": 0.0,
+                "primal_max_residual_fraction": 1.734723475976807e-18,
+                "stationarity_max_residual": 5.551115123125783e-17,
+                "tolerance": 1e-08
+              },
+              "id": "minimum_turnover",
+              "label": "Minimum de capital réalloué",
+              "metrics": {
+                "reserve_cad": {
+                  "unit": "CAD",
+                  "value": 74400.0
+                },
+                "turnover_cad": {
+                  "unit": "CAD",
+                  "value": 74400.0
+                },
+                "turnover_pct": {
+                  "unit": "percent",
+                  "value": 74.4
+                }
+              },
+              "scenario_results": [
+                {
+                  "horizon_months": 12.0,
+                  "id": "actions",
+                  "kind": "hypothetical",
+                  "label": "Choc actions hypothétique",
+                  "loss_cad": 1000.0,
+                  "probability": null,
+                  "unit": "CAD",
+                  "wealth_after_withdrawal_cad": 59000.0,
+                  "wealth_before_withdrawal_cad": 99000.0
+                },
+                {
+                  "horizon_months": 12.0,
+                  "id": "obligations",
+                  "kind": "hypothetical",
+                  "label": "Choc obligations hypothétique",
+                  "loss_cad": 1000.0,
+                  "probability": null,
+                  "unit": "CAD",
+                  "wealth_after_withdrawal_cad": 59000.0,
+                  "wealth_before_withdrawal_cad": 99000.0
+                }
+              ],
+              "violations": [],
+              "weight_unit": "fraction_of_initial_capital",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.744,
+                "TSLA": 0.0,
+                "XBB.TO": 0.008,
+                "XIU.TO": 0.048,
+                "ZST.TO": 0.2
+              }
+            }
+          ],
+          "provenance": {
+            "code": [
+              {
+                "path": "alphaforge_app/decision/finance.py",
+                "sha256": "b0b6f715335c44e87b19e302139f939eb3918ae0d90b357a40e9707c7d3738d0"
+              },
+              {
+                "path": "alphaforge_app/analytics.py",
+                "sha256": "fbe8fbdb57080c2652169aea66c5d35fcb54e31087847d05ce72f5e3cbf92b4f"
+              },
+              {
+                "path": "alphaforge_app/datasets.py",
+                "sha256": "ef920c0c6dc9bbe23f1e23c0c76047b45329497d4b5a8126b3314759cc523655"
+              }
+            ],
+            "data": [
+              {
+                "kind": "declared_and_hypothetical_parameters",
+                "market_data_used": false,
+                "sha256": "b0d102e5d335ca765d83db4943ff00b2de997959910f70f4696239a788cda349"
+              }
+            ],
+            "executed_at": "2026-11-15T19:10:57.943168+00:00",
+            "input_sha256": "a82a85ae7fa3deaf75434d069210b97ca3f4f864bb54799ccd7d3d365010f55f",
+            "model_inference_calls": 0,
+            "packages": {
+              "numpy": "2.5.4",
+              "scipy": "1.18.1"
+            }
+          },
+          "sensitivity": [
+            {
+              "baseline_unchanged": true,
+              "changes": {
+                "withdrawal_cad": 30000.0
+              },
+              "diagnostics": {
+                "dual_sign_error": 0.0,
+                "numerical_checks_pass": true,
+                "primal_dual_objective_gap": 0.0,
+                "primal_max_residual_fraction": 1.734723475976807e-18,
+                "stationarity_max_residual": 5.551115123125783e-17,
+                "tolerance": 1e-08
+              },
+              "kind": "hypothetical_parameter_probe",
+              "label": "retrait −10 % du capital",
+              "minimum_reallocated_capital_cad": 74400.0,
+              "scope": "Sondage explicite ±10 % du capital sur le retrait ou ±5 points sur le plafond ; pas préférence ni prévision.",
+              "status": "conditional",
+              "unit": "CAD",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.744,
+                "TSLA": 0.0,
+                "XBB.TO": 0.008,
+                "XIU.TO": 0.048,
+                "ZST.TO": 0.2
+              }
+            },
+            {
+              "baseline_unchanged": true,
+              "changes": {
+                "withdrawal_cad": 50000.0
+              },
+              "diagnostics": {
+                "dual_sign_error": 0.0,
+                "numerical_checks_pass": true,
+                "primal_dual_objective_gap": 0.0,
+                "primal_max_residual_fraction": 1.734723475976807e-18,
+                "stationarity_max_residual": 5.551115123125783e-17,
+                "tolerance": 1e-08
+              },
+              "kind": "hypothetical_parameter_probe",
+              "label": "retrait +10 % du capital",
+              "minimum_reallocated_capital_cad": 74400.0,
+              "scope": "Sondage explicite ±10 % du capital sur le retrait ou ±5 points sur le plafond ; pas préférence ni prévision.",
+              "status": "conditional",
+              "unit": "CAD",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.744,
+                "TSLA": 0.0,
+                "XBB.TO": 0.008,
+                "XIU.TO": 0.048,
+                "ZST.TO": 0.2
+              }
+            },
+            {
+              "baseline_unchanged": true,
+              "changes": {
+                "max_asset_weights": {
+                  "TSLA": 0.05
+                }
+              },
+              "diagnostics": {
+                "dual_sign_error": 0.0,
+                "numerical_checks_pass": true,
+                "primal_dual_objective_gap": 0.0,
+                "primal_max_residual_fraction": 1.734723475976807e-18,
+                "stationarity_max_residual": 5.551115123125783e-17,
+                "tolerance": 1e-08
+              },
+              "kind": "hypothetical_parameter_probe",
+              "label": "plafond TSLA -5 points",
+              "minimum_reallocated_capital_cad": 74400.0,
+              "scope": "Sondage explicite ±10 % du capital sur le retrait ou ±5 points sur le plafond ; pas préférence ni prévision.",
+              "status": "conditional",
+              "unit": "CAD",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.744,
+                "TSLA": 0.0,
+                "XBB.TO": 0.008,
+                "XIU.TO": 0.048,
+                "ZST.TO": 0.2
+              }
+            },
+            {
+              "baseline_unchanged": true,
+              "changes": {
+                "max_asset_weights": {
+                  "TSLA": 0.15000000000000002
+                }
+              },
+              "diagnostics": {
+                "dual_sign_error": 0.0,
+                "numerical_checks_pass": true,
+                "primal_dual_objective_gap": 0.0,
+                "primal_max_residual_fraction": 1.734723475976807e-18,
+                "stationarity_max_residual": 5.551115123125783e-17,
+                "tolerance": 1e-08
+              },
+              "kind": "hypothetical_parameter_probe",
+              "label": "plafond TSLA +5 points",
+              "minimum_reallocated_capital_cad": 74400.0,
+              "scope": "Sondage explicite ±10 % du capital sur le retrait ou ±5 points sur le plafond ; pas préférence ni prévision.",
+              "status": "conditional",
+              "unit": "CAD",
+              "weights": {
+                "RESERVE_ABSTRAITE": 0.744,
+                "TSLA": 0.0,
+                "XBB.TO": 0.008,
+                "XIU.TO": 0.048,
+                "ZST.TO": 0.2
+              }
+            }
+          ],
+          "status": "conditional",
+          "verification_assessment": {
+            "failed_check_ids": [],
+            "status": "partial"
+          }
+        },
+        "provisional": false
+      },
+      "aws_receipts": [
+        {
+          "role": "agent0",
+          "request_id": "64c7332c-78f2-4306-aedb-88eef8be4395",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 2489,
+            "input_tokens": 2,
+            "output_tokens": 209,
+            "total_tokens": 2700
+          }
+        },
+        {
+          "role": "agent1",
+          "request_id": "73911571-cc30-4914-9596-d5a037284c5d",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 12809,
+            "input_tokens": 2,
+            "output_tokens": 1388,
+            "total_tokens": 14199
+          }
+        },
+        {
+          "role": "agent2",
+          "request_id": "eeaa2449-4731-41b7-8066-d44890cf339f",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 2962,
+            "input_tokens": 2,
+            "output_tokens": 542,
+            "total_tokens": 3506
+          }
+        },
+        {
+          "role": "agent3",
+          "request_id": "92a94b61-7ef2-4a70-bd00-66ab40030e2a",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 3226,
+            "input_tokens": 2,
+            "output_tokens": 382,
+            "total_tokens": 3610
+          }
+        },
+        {
+          "role": "agent0",
+          "request_id": "c8043b6a-3f98-47c8-84ef-c5baf58e483d",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 2104,
+            "input_tokens": 2,
+            "output_tokens": 122,
+            "total_tokens": 2228
+          }
+        },
+        {
+          "role": "agent1",
+          "request_id": "1e612da1-c822-4278-9351-37c001e48721",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 12809,
+            "cache_write_input_tokens": 0,
+            "input_tokens": 2,
+            "output_tokens": 1372,
+            "total_tokens": 14183
+          }
+        },
+        {
+          "role": "agent2",
+          "request_id": "21f090c1-914e-4967-805d-1de6f5c3ded2",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 3007,
+            "input_tokens": 2,
+            "output_tokens": 496,
+            "total_tokens": 3505
+          }
+        },
+        {
+          "role": "agent3",
+          "request_id": "cc4a1da9-e619-45cb-bb41-0c219a616554",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 3271,
+            "input_tokens": 2,
+            "output_tokens": 272,
+            "total_tokens": 3545
+          }
+        },
+        {
+          "role": "agent0",
+          "request_id": "704a50c1-42f0-4586-8e16-d7e982d73af7",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 2134,
+            "input_tokens": 2,
+            "output_tokens": 166,
+            "total_tokens": 2302
+          }
+        },
+        {
+          "role": "agent1",
+          "request_id": "7de3eb01-09cd-4edf-b4ec-3ca7bf99a141",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 12809,
+            "input_tokens": 2,
+            "output_tokens": 1385,
+            "total_tokens": 14196
+          }
+        },
+        {
+          "role": "agent2",
+          "request_id": "70d878dd-a935-4873-b4ac-0ba8cef0ad57",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 3025,
+            "input_tokens": 2,
+            "output_tokens": 531,
+            "total_tokens": 3558
+          }
+        },
+        {
+          "role": "agent3",
+          "request_id": "41e9247b-bbb4-49b8-80a4-498b532587d6",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 3226,
+            "input_tokens": 2,
+            "output_tokens": 296,
+            "total_tokens": 3524
+          }
+        }
+      ]
+    },
+    "impossible-initial": {
+      "id": "5ea414c5e4aa487f95045ae3f3d2010d",
+      "revision": 5,
+      "status": "waiting",
+      "analysis_status": null,
+      "claims": [],
+      "capital_cad": 100000.0,
+      "withdrawal_cad": 120000.0,
+      "view_available": false,
+      "comparison": null,
+      "aws_receipts": [
+        {
+          "role": "agent0",
+          "request_id": "625c7f48-ff6e-41d2-a086-2af585b42065",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 2506,
+            "input_tokens": 2,
+            "output_tokens": 394,
+            "total_tokens": 2902
+          }
+        },
+        {
+          "role": "agent1",
+          "request_id": "d70e102a-24e7-4645-8e74-250d1c9175cf",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 12901,
+            "input_tokens": 2,
+            "output_tokens": 1409,
+            "total_tokens": 14312
+          }
+        },
+        {
+          "role": "agent1",
+          "request_id": "a2a9bd12-1ab8-4be3-9d88-99e0a287f99a",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 20538,
+            "input_tokens": 2,
+            "output_tokens": 1582,
+            "total_tokens": 22122
+          }
+        },
+        {
+          "role": "agent0",
+          "request_id": "0063232b-717b-49c3-9234-a30e8d75eb9a",
+          "status": "complete",
+          "provider": "amazon-bedrock-runtime",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 3998,
+            "input_tokens": 2,
+            "output_tokens": 503,
+            "total_tokens": 4503
+          }
+        }
+      ]
+    }
+  },
+  "note": "Comptages par export cumulatifs ; dédupliquer les request_id pour compter les appels."
+}

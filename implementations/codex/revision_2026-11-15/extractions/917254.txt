@@ -1,0 +1,224 @@
+
+
+## PAGE 1
+
+Event dashboard
+L'IA générative sur AWS
+Choisir un modèle
+Choisir un modèle
+Amazon Bedrock propose plus d'une centaine de modèles. Vous en utiliserez quelques-uns. Cette page indique lesquels, et explique la syntaxe qui pose problème à
+presque tout le monde. Tous les modèles disponibles dans Amazon Bedrock sont permis pendant le Datathon.
+Certains modèles acceptent leur identiﬁant simple. D'autres le refusent et exigent un proﬁl d'inférence interrégional : le même modèle, appelé avec un préﬁxe qui
+permet à AWS de répartir votre requête entre plusieurs régions.
+(aucun)
+Dans la région seulement
+Seulement la région appelée
+us.
+Zone États-Unis
+Régions des États-Unis et du Canada
+global.
+Mondial
+Toute région commerciale AWS
+Trois conséquences pratiques :
+1. Préférez global. quand il existe. Plus de capacité totale signiﬁe moins d'erreurs ThrottlingException quand toute une salle développe en même temps. Pour
+certains modèles, le prix par token est aussi plus bas.
+2. Les modèles récents exigent souvent le proﬁl. Par exemple, anthropic.claude-sonnet-5 sans préﬁxe est refusé ; global.anthropic.claude-sonnet-5
+fonctionne.
+3. Si vous voyez Invocation of model ID ... with on-demand throughput isn't supported, vous avez oublié le préﬁxe. Cette erreur ne signiﬁe rien d'autre.
+Listez les proﬁls accessibles depuis votre compte :
+Disponibilité vériﬁée dans us-east-1 le 4 novembre 2026. Commencez en haut du tableau et descendez seulement si vous avez une raison.
+Défaut pour les tests. Texte, images, vidéo et PDF en entrée.
+global.amazon.nova-2-lite-v1:0
+Peu coûteux. Contexte de 1 M de tokens. Pas de sorties
+structurées. Commencez ici.
+Rapide, volume élevé, extraction JSON
+global.anthropic.claude-haiku-4-5-
+20251001-v1:0
+Prend en charge les sorties structurées. Accepte temperature.
+Polyvalent, recommandé pour la plupart des projets :
+explications, longs documents, agents
+global.anthropic.claude-sonnet-5
+Renvoie un bloc de raisonnement avant le texte.
+Le plus capable, tâches d'agent longues
+global.anthropic.claude-opus-5-5
+Le plus coûteux.
+OpenAI
+global.openai.gpt-6-sol ou
+global.openai.gpt-6.1-sol
+L'identiﬁant sans préﬁxe est refusé.
+Open-weight
+openai.gpt-oss-120b-1:0
+Pas de proﬁl global. : utilisez l'identiﬁant simple. Renvoie un
+bloc de raisonnement avant le texte.
+Embeddings de texte pour la recherche et le RAG
+global.cohere.embed-v4:0 ou
+amazon.titan-embed-text-v2:0
+Cohere v4 traite aussi les images.
+Embeddings multimodaux : texte, images, vidéo, audio
+amazon.nova-2-multimodal-
+embeddings-v1:0
+Sans préﬁxe.
+Reranking des résultats de recherche
+cohere.rerank-v3-5:0
+Une façon peu coûteuse d'améliorer un moteur de recherche
+faible.
+Compréhension de vidéo
+global.twelvelabs.pegasus-1-5-v1:0
+Poser des questions sur une vidéo.
+Aussi disponibles si vous voulez expérimenter : global.anthropic.claude-sonnet-4-6, global.anthropic.claude-opus-5, global.anthropic.claude-
+haiku-4-5-20251001-v1:0, global.xai.grok-4.7, global.moonshotai.kimi-k3, global.zai.glm-5.3, ainsi que Meta Llama 4, DeepSeek V3.2, Qwen 3 et
+Mistral Large 3.
+Les modèles atteignent leur ﬁn de vie selon un calendrier publié. Les anciens tutoriels citent souvent des modèles qui ne sont plus disponibles.
+Claude Sonnet 4, Claude 3 Haiku, Claude 3.5 / 3.7 Sonnet
+N'apparaissent plus dans la liste des modèles de us-east-1
+Amazon Nova Canvas, Amazon Nova Reel, Amazon Nova Sonic (v1)
+N'apparaissent plus dans la liste. Nova 2 Sonic est le modèle vocal actuel.
+Claude Sonnet 4.5, Claude Opus 4.1, TwelveLabs Pegasus 1.2, AI21 Jamba, Writer Palmyra
+Statut LEGACY
+Vériﬁez un modèle avant de construire votre projet dessus :
+ACTIVE convient. LEGACY signiﬁe qu'il faut choisir un autre modèle.
+Bedrock facture par token. Les tokens d'entrée et de sortie ont des prix distincts, et la sortie coûte plus cher. Vous ne payez rien quand vous n'appelez pas de modèle.
+Les prix changent : consultez la page de tariﬁcation d'Amazon Bedrock 
+. Retenez surtout le rapport : entre le modèle le moins coûteux et le plus capable du
+tableau ci-dessus, l'écart par token dépasse un ordre de grandeur. Un prototype qui coûte quelques cents sur Nova 2 Lite peut coûter cher sur Opus sans
+amélioration visible.
+Trois habitudes réduisent le coût et la latence :
+Limitez maxTokens. Si vous avez besoin de 50 mots, n'autorisez pas 4 000 tokens.
+N'envoyez pas de données inutiles. Envoyer 10 ans de prix quotidiens alors que la question porte sur le dernier trimestre vous coûte cher à chaque appel. Calculez
+les indicateurs dans votre code et envoyez le résultat.
+Mesurez avant de multiplier les appels. Chaque réponse Converse indique le nombre de tokens utilisés. Faites un appel d'essai avant d'en lancer mille.
+Le modèle le moins coûteux suffit souvent, mais pas toujours. Deux observations faites lors de nos tests :
+Pour expliquer un bêta de 1,8, Nova 2 Lite a écrit que l'action était « 80 % plus volatile que le S&P 500 », ce qui est inexact. Claude Haiku 4.5 a fait la même erreur.
+Claude Sonnet 5 l'a correctement décrit comme une ampliﬁcation d'environ 1,8 fois des mouvements du S&P 500.
+Sur une même nouvelle ﬁnancière ﬁctive (bénéﬁce en hausse, provisions pour pertes en hausse), Claude Sonnet 5 a classé le sentiment comme « neutre », et
+Claude Haiku 4.5 et Opus 5.5 comme « positif ».
+Préparez cinq à dix exemples représentatifs de votre cas d'usage, comparez deux ou trois modèles dessus, et gardez le moins coûteux qui donne des réponses
+correctes. Pour une classiﬁcation, déﬁnissez chaque classe dans le prompt.
+Un point de départ, pas une règle.
+Calculer un rendement, une volatilité, un drawdown, une corrélation
+Aucun modèle : pandas ou NumPy. Le modèle explique le résultat.
+Résumer un rapport annuel ou un 10-K
+Nova 2 Lite pour un premier jet (long contexte), Claude Sonnet 5 si la qualité ne suffit pas
+Classer le sentiment de nombreuses nouvelles, avec sortie JSON
+Claude Haiku 4.5 avec les sorties structurées
+Extraire des chiffres d'un rapport ﬁnancier PDF
+Nova 2 Lite ou Claude Haiku 4.5 sur un PDF, ou Data Automation pour un grand volume
+Expliquer un risque ou un scénario en langage clair selon un persona
+Claude Sonnet 5 : la qualité de rédaction et la justesse sont meilleures
+Un agent qui planiﬁe plusieurs étapes et appelle des outils (prix, calculs)
+Claude Sonnet 5, puis Opus 5.5 seulement s'il échoue de façon visible
+Recherche sémantique dans des documents
+Un modèle d'embeddings, pas un modèle de chat
+Analyser une webdiffusion de résultats
+TwelveLabs Pegasus 1.5, ou Nova 2 Lite pour de courts extraits
+La documentation prend du retard sur la réalité, et cette page vieillira. Deux commandes donnent l'état réel du compte dans lequel vous travaillez :
+Choisir un modèle
+Le préfixe des profils d'inférence
+Préﬁxe
+Signiﬁcation
+Où la requête peut être traitée
+aws bedrock list-inference-profiles \
+  --type-equals SYSTEM_DEFINED --region us-east-1 \
+  --query 'inferenceProfileSummaries[].inferenceProfileId' \
+  --output text | tr '\t' '\n' | sort
+1
+2
+3
+4
+Modèles recommandés
+Non disponibles dans les comptes du Datathon (tests du 5 novembre 2026) : Claude Sonnet 5.5, Claude Haiku 5.5, Claude Fable 5 et Fable 5.1. Ils apparaissent dans la liste des
+proﬁls d'inférence, mais l'appel échoue. Les autres modèles Claude testés fonctionnent, dont Opus 5.5, Opus 5, Sonnet 5, Sonnet 4.6 et Haiku 4.5.
+Usage
+Identiﬁant du modèle
+Remarques
+Claude Sonnet 5, Opus 5 et Opus 5.5 refusent les paramètres temperature et topP (erreur temperature is deprecated for this model). Avec eux, passez seulement
+maxTokens dans inferenceConfig. Ils raisonnent aussi avant de répondre : avec un maxTokens trop petit, la réponse est vide et stopReason vaut max_tokens. Prévoyez au
+moins 1 000 tokens. Claude Haiku 4.5, Claude Sonnet 4.6 et Nova 2 Lite acceptent temperature.
+Les identiﬁants qui se terminent par un suffixe de taille, comme :256k ou :24k, sont des variantes de longueur de contexte destinées au débit provisionné. Ignorez-les et utilisez
+l'identiﬁant simple.
+Modèles à éviter
+À éviter
+Pourquoi
+aws bedrock get-foundation-model \
+  --region us-east-1 \
+  --model-identifier anthropic.claude-sonnet-5 \
+  --query 'modelDetails.modelLifecycle.status' --output text
+1
+2
+3
+4
+Coût
+# Le nombre de tokens est renvoyé dans chaque réponse Converse
+aws bedrock-runtime converse \
+  --region us-east-1 \
+  --model-id global.amazon.nova-2-lite-v1:0 \
+  --messages '[{"role":"user","content":[{"text":"bonjour"}]}]' \
+  --query 'usage'
+1
+2
+3
+4
+5
+6
+Qualité : testez sur vos propres exemples
+Quel modèle pour quelle tâche
+Tâche
+Point de départ suggéré
+Vérifier dans votre propre compte
+# Tous les modèles actifs
+aws bedrock list-foundation-models --region us-east-1 \
+  --query 'modelSummaries[?modelLifecycle.status==`ACTIVE`].modelId' \
+  --output text | tr '\t' '\n' | sort
+# Tous les profils d'inférence
+aws bedrock list-inference-profiles --type-equals SYSTEM_DEFINED --region us-east-1 \
+  --query 'inferenceProfileSummaries[].inferenceProfileId' \
+  --output text | tr '\t' '\n' | sort
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Exécutez ces deux commandes le samedi 14 novembre, dès l'ouverture de votre compte AWS, et collez le résultat dans le canal de votre équipe. Cela prend dix secondes et règle
+d'avance toute question sur les modèles disponibles.
+Previous
+Next
+Introduction à AWS
+Amazon Bedrock
+Kiro
+Outils de développement
+Amazon Quick
+AWS Lambda
+Amazon S3
+AWS IAM
+AWS Glue
+Amazon Athena
+Accès AWS CLI et SDK
+L'IA générative sur AWS
+Votre premier appel de modèle
+Choisir un modèle
+Garde-fous
+Bases de connaissances et RAG
+Data Automation
+Construire des agents
+Démarrages rapides
+Données ﬁnancières publiques
+Nettoyage et exportation
+Ressources
+AWS account access
+Open AWS console
+(us-east-1)
+Get AWS CLI credentials
+Share feedback
+Workshop catalog in AWS Builder
+Center
+Exit event
+AWS Workshop Studio
+adamlarhlimi2006
+© 2008 - 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+Privacy policy
+Terms of use
+Cookie preferences

@@ -1,0 +1,193 @@
+
+
+## PAGE 1
+
+Event dashboard
+Démarrages rapides
+Assistants de code IA
+Kiro
+Kiro
+Kiro est un agent IA pour le développement logiciel. Sa particularité est le développement piloté par les spéciﬁcations (spec-driven development) : vous décrivez ce
+que vous voulez et, avant d'écrire du code, Kiro produit des exigences, une conception et une liste de tâches. Il réalise ensuite les tâches une par une.
+Cette façon de travailler convient bien à un datathon. Les exigences et la conception générées donnent aussi une première version de votre documentation
+technique.
+L'utilisation de Kiro se mesure en crédits, et le niveau gratuit est volontairement petit.
+Gratuit
+50
+Permanent. Modèles à poids ouverts et Claude Sonnet 4.5, avec des limites
+Pro
+1 000
+20 $ US / mois
+Pro+
+2 000
+40 $ US / mois
+Pro Max
+5 000
+100 $ US / mois
+Power
+10 000
+200 $ US / mois
+Les crédits viennent d'une seule réserve et sont consommés par fractions, selon la complexité de la demande et le modèle utilisé. Une courte question peut coûter
+moins d'un crédit ; une tâche générée complexe peut en coûter plus d'un. « 50 crédits » ne veut donc pas dire 50 actions : c'est un petit budget qu'un après-midi sans
+attention épuise.
+Consultez les tarifs à jour sur kiro.dev/pricing 
+.
+Trois options, de la plus simple à la plus libre.
+Option 1 : Kiro dans le navigateur (recommandé). Chaque équipe dispose d'un IDE Kiro déjà installé et déjà connecté à un abonnement Kiro Pro de l'événement. Il n'y a
+rien à installer, aucun compte Kiro à créer et aucune connexion à faire. Voir la section « Ouvrir l'IDE Kiro de l'équipe » plus bas.
+Option 2 : votre compte Kiro personnel. Installez Kiro sur votre ordinateur et connectez-vous avec Google, GitHub ou AWS Builder ID. Le niveau gratuit donne 50
+crédits : utilisez-les là où ils comptent, par exemple pour la spéciﬁcation (exigences, conception, liste de tâches).
+Option 3 : Claude Code ou Codex. Les deux fonctionnent sur Amazon Bedrock avec les identiﬁants AWS de votre équipe. L'inférence est facturée au token dans le
+compte de l'événement, sans plafond de crédits. Voir Claude Code sur Bedrock et Codex sur Bedrock.
+1. Sur la page de l'événement dans Workshop Studio, descendez jusqu'au panneau Event Outputs, en bas de la page.
+2. Choisissez l'URL de la sortie URL. L'IDE Kiro s'ouvre dans un nouvel onglet, déjà connecté.
+3. Pour ouvrir un terminal, ouvrez le menu de l'application (les trois points verticaux dans la barre de navigation), puis choisissez Terminal > New Terminal.
+L'IDE s'exécute sur une machine du compte AWS de votre équipe, avec les mêmes permissions que vous dans la console. Dans son terminal, l'AWS CLI, Kiro CLI, Git,
+Node.js et uv sont déjà installés, et les commandes aws fonctionnent sans conﬁguration.
+L'IDE est partagé par l'équipe : vous travaillez dans le même dossier (/workshop) et avec la même réserve de crédits Kiro. Coordonnez-vous pour ne pas modiﬁer les
+mêmes ﬁchiers en même temps, et poussez souvent dans Git.
+Kiro propose plusieurs façons de travailler, et la plus complète est la plus lente. Choisissez en connaissance de cause.
+Vibe
+Conversation. Vous discutez, il modiﬁe et exécute le code. Rien n'est écrit dans
+.kiro/specs/
+Vous voulez quelque chose qui fonctionne dans l'heure
+Quick
+Spec
+Produit tous les documents (exigences, conception, liste de tâches) sans étape
+d'approbation entre les phases
+Vous voulez la structure sans l'attente. Le meilleur choix par défaut
+pour un datathon
+Spec
+Les mêmes documents, avec une étape d'approbation à chaque phase pour relire et
+corriger
+Le projet est grand, ou plusieurs personnes doivent s'entendre avant
+d'écrire du code
+Un déroulement adapté au week-end :
+1. Un Quick Spec au début. Décrivez l'objectif : « Un investisseur ﬁctif choisit son proﬁl (Prudent, Équilibré ou Audacieux) et pose une question sur deux FNB. L'outil
+compare leur risque en dollars canadiens à partir de données publiques, cite ses sources et sépare les faits des hypothèses. » Lisez les exigences et la conception
+produites. Corriger un malentendu à ce stade coûte une phrase ; le corriger après l'implémentation coûte une heure.
+2. Laissez-le avancer dans la liste de tâches. En mode Spec, cliquez sur Start task plutôt que d'écrire dans la conversation : diriger le travail de spéciﬁcation par la
+conversation consomme des crédits supplémentaires.
+3. Passez en mode vibe pour itérer. Une fois que quelque chose fonctionne, la conversation est plus rapide et moins coûteuse que de régénérer les spéciﬁcations.
+4. Gardez les documents. Les exigences et la conception sont une bonne base pour votre documentation technique et votre one-pager. Ne les supprimez pas.
+La relecture de l'étape 1 est l'endroit où vous exercez votre jugement, et c'est votre jugement que le jury évalue.
+Donnez à Kiro un accès direct à la documentation AWS par MCP : il cesse d'inventer des signatures d'API. Créez .kiro/settings/mcp.json dans votre projet :
+Kiro lit les ﬁchiers markdown de .kiro/steering/ à chaque demande. Mettez-y les constantes de votre projet pour ne plus les répéter. Créez
+.kiro/steering/project.md :
+La dernière ligne compte plus qu'il n'y paraît. Dire à l'assistant ce que « terminé » veut dire l'empêche de construire une infrastructure dont vous ne vous servirez
+pas.
+kiro.dev 
+Documentation de Kiro 
+Quick Spec 
+Tarifs et crédits 
+Kiro
+Crédits
+Niveau
+Crédits par mois
+Notes
+Comment l'utiliser pendant le Datathon
+Ouvrir l'IDE Kiro de l'équipe
+L'URL contient le mot de passe de l'IDE. Toute personne qui a le lien peut ouvrir l'IDE de votre équipe et agir dans votre compte AWS. Partagez-la seulement avec vos coéquipiers,
+jamais dans un canal public, une capture d'écran ou un dépôt GitHub.
+L'IDE et tous ses ﬁchiers disparaissent avec le compte, le lundi 16 novembre à 13 h 59. Poussez votre code dans GitHub au fur et à mesure. Voir Nettoyage et exportation.
+Si l'IDE ne s'ouvre pas ou si Kiro affiche une erreur de connexion, demandez à un architecte de solutions AWS présent au Datathon. En attendant, utilisez l'option 2 ou 3.
+Trois modes de travail, et lequel choisir en un week-end
+Mode
+Ce qui se passe
+Quand l'utiliser
+Le mode Spec complet est excellent, mais trop lent pour un week-end. Les étapes d'approbation font sa valeur et aussi son coût en temps. Utilisez Quick Spec pour obtenir les
+exigences et la conception sans vous arrêter à chaque étape, puis passez en mode vibe pour les corrections.
+Le connecter à la documentation AWS
+{
+  "mcpServers": {
+    "aws-docs": {
+      "command": "uvx",
+      "args": ["awslabs.aws-documentation-mcp-server@latest"]
+    },
+    "strands-agents": {
+      "command": "uvx",
+      "args": ["strands-agents-mcp-server"]
+    }
+  }
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+uvx est fourni avec uv. Installez-le avec curl -LsSf https://astral.sh/uv/install.sh | sh si vous ne l'avez pas.
+Fichiers de pilotage : décrire votre projet une fois
+# Conventions du projet
+ Conventions du projet
+ Conventions du projet
+ Conventions du projet
+- La région AWS est toujours us-east-1.
+- Utiliser Amazon Bedrock via boto3 et l'API Converse. Jamais InvokeModel.
+- Modèle par défaut : global.amazon.nova-2-lite-v1:0
+- Passer à global.anthropic.claude-sonnet-5 seulement pour les étapes qui demandent
+  plus de raisonnement.
+- Dans une réponse Converse, ne jamais lire content[0]["text"] : concaténer les blocs
+  qui contiennent "text".
+- Données publiques seulement (yfinance, Banque du Canada, FRED, SEC EDGAR). Chaque
+  chiffre affiché cite sa source et sa date.
+- Les profils d'investisseurs sont fictifs et vivent dans profiles.py.
+- Simulation uniquement : aucune transaction réelle, aucun conseil financier personnalisé.
+- Prototype de datathon : une démo qui fonctionne passe avant les couches d'abstraction.
+- La démo se lance sur un ordinateur portable avec
+  `streamlit run app.py --server.address localhost`.
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+En savoir plus
+Previous
+Next
+Bases de connaissances et RAG
+Data Automation
+Construire des agents
+Fonctionnement des agents
+Strands Agents
+Amazon Bedrock AgentCore
+MCP
+Démarrages rapides
+Bucket S3
+Assistants de code IA
+Kiro
+Claude Code sur Bedrock
+Codex sur Bedrock
+Données ﬁnancières publiques
+Nettoyage et exportation
+Ressources
+AWS account access
+Open AWS console
+(us-east-1)
+Get AWS CLI credentials
+Share feedback
+Workshop catalog in AWS Builder
+Center
+Exit event
+AWS Workshop Studio
+adamlarhlimi2006
+© 2008 - 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+Privacy policy
+Terms of use
+Cookie preferences

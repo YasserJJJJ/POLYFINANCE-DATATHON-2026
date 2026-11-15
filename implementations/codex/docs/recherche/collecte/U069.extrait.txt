@@ -1,0 +1,415 @@
+GitHub - google-research/camel-prompt-injection: Code for the paper "Defeating Prompt Injections by Design" · GitHub 
+
+ Skip to content 
+
+Navigation Menu
+
+ Sign in 
+
+ Products 
+
+ Platform 
+ GitHub Repository hosting, code review, and collaboration 
+
+ Copilot AI coding agent for tasks, projects, and automated work 
+
+ Build & Ship 
+ Actions CI/CD and automation 
+
+ Code Quality Quality analysis, fixes, and enforcement 
+
+ Codespaces Cloud development environments 
+
+ Secure 
+ Code Security Vulnerability detection and remediation 
+
+ Secret Protection Secret scanning and leak prevention 
+
+ All Features 
+
+ Developers 
+
+ Learn 
+ Documentation 
+
+ Training 
+
+ Certifications 
+
+ Build 
+ Build with Copilot 
+
+ Customize Copilot 
+
+ Integrations 
+
+ Explore 
+ Trending repos 
+
+ GitHub Sponsors 
+
+ Developer articles 
+
+ Changelog 
+ Changelog Your source for the latest features, improvements, and fixes across GitHub products, all in one place. 
+
+ Businesses 
+
+ By Stage 
+ Enterprises 
+
+ Team 
+
+ Startups 
+
+ Nonprofits 
+
+ By Industry 
+ Healthcare 
+
+ Financial services 
+
+ Manufacturing 
+
+ Government 
+
+ See all industries 
+
+ Evaluate GitHub 
+ Why GitHub 
+
+ Customer Stories 
+
+ Business insights 
+
+ Trust Center 
+
+ Add-ons 
+ GitHub Advanced Security Enterprise-grade code security 
+
+ Copilot for business Enterprise-grade AI features 
+
+ Premium Support Enterprise-grade 24/7 support 
+
+ Resources 
+
+ Learn & Connect 
+ Documentation 
+
+ Resource center 
+
+ Blog 
+
+ Events & webinars 
+
+ Community Forum 
+
+ Customer Stories 
+
+ Integrations 
+
+ Support 
+ Customer support 
+
+ Training 
+
+ GitHub Status 
+
+ Company 
+ About 
+
+ Partners 
+
+ Changelog 
+
+ GitHub Universe 
+ GitHub Universe The event for developers, by developers — talks, workshops, and what’s next for GitHub. 
+
+ Pricing 
+
+ Search / 
+
+ Sign in 
+ Sign up 
+Appearance settings
+
+ You signed in with another tab or window. Reload to refresh your session. 
+ You signed out in another tab or window. Reload to refresh your session. 
+ You switched accounts on another tab or window. Reload to refresh your session. 
+
+ Dismiss alert 
+
+{{ message }}
+
+ google-research 
+
+ camel-prompt-injection 
+
+Repository navigation
+
+ Code 
+
+ Issues 1  ( 1 ) 
+
+ Pull requests 3  ( 3 ) 
+
+ Actions 
+
+ Security and quality 
+
+ Insights 
+
+ More items 
+
+ camel-prompt-injection 
+ Public 
+
+ Notifications You must be signed in to change notification settings 
+
+ Fork 64  ( 64 ) 
+
+ Star 421  ( 421 ) You must be signed in to star a repository 
+
+ About 
+
+Code for the paper "Defeating Prompt Injections by Design"
+
+ arxiv.org/abs/2503.18813 
+
+ Resources 
+
+ Readme 
+
+ Apache-2.0 license 
+
+ Contributing 
+
+ Contributing 
+
+ Activity 
+
+ Custom properties 
+
+ Stars 
+
+ 421 stars 
+
+ Watchers 
+
+ 7 watching 
+
+ Forks 
+
+ 64 forks 
+
+ Report repository 
+
+ main 
+
+ Branches Tags 
+
+ Go to file 
+
+ Code 
+ Open more actions menu 
+
+Latest commit
+
+History
+ 3 Commits 
+
+ 3 Commits 
+
+Folders and files
+
+ Name Name 
+ Last commit message 
+ 
+ Last commit date 
+
+ src/ camel 
+
+ src/ camel 
+
+ tests 
+
+ tests 
+
+ .env.example 
+
+ .env.example 
+
+ .gitignore 
+
+ .gitignore 
+
+ .python-version 
+
+ .python-version 
+
+ CONTRIBUTING.md 
+
+ CONTRIBUTING.md 
+
+ LICENSE 
+
+ LICENSE 
+
+ README.md 
+
+ README.md 
+
+ analysis.ipynb 
+
+ analysis.ipynb 
+
+ count_tokens.py 
+
+ count_tokens.py 
+
+ main.py 
+
+ main.py 
+
+ print_conversation.py 
+
+ print_conversation.py 
+
+ pyproject.toml 
+
+ pyproject.toml 
+
+ run_code.py 
+
+ run_code.py 
+
+ uv.lock 
+
+ uv.lock 
+
+ View all files 
+
+Repository files navigation
+
+ README 
+
+ Contributing 
+
+ Apache-2.0 license 
+
+ More items 
+
+ CaMeL : Defeating Prompt Injections by Design 
+
+Edoardo Debenedetti 1,3 , Ilia Shumailov 2 , Tianqi Fan 1 , Jamie Hayes 2 , Nicholas Carlini 2 , Daniel Fabian 1 , Christoph Kern 1 , Chongyang Shi 2 , Florian Tramèr 3 
+
+ 1 Google, 2 Google DeepMind, and 3 ETH Zurich
+
+ Warning
+
+This is a research artifact released to reproduce the results in our paper. The interpreter implementation likely contains bugs (e.g., it might throw uncaught exceptions and crash) and the implementation might not be fully secure.
+
+This is not a Google product, and we are not planning to provide support for and/or maintain this codebase.
+
+Pre-requisites
+
+Install uv via the official instructions .
+
+Rename .env.example to .env and populate it with your API keys.
+
+ uv will install all dependencies as soon as you run uv run ... .
+
+Running running the defense against AgentDojo
+
+ uv run --env-file .env main.py MODEL_NAME [--use-original] [--ad_defense] [--reasoning-effort] [--thinking_budget_tokens] [--run-attack] [--replay-with-policies] [--eval_mode] 
+
+More details on the various CLI arguments can be found by running uv run main.py --help 
+
+FAQ
+
+How do I try a new/different model?
+
+You can add it to the models.py file, in the _supported_model_names variable. The keys are the model names with the given provider (check the provider's API) and the values is what the model says when asked "what model are you?". Keep in mind that OpenAI reasoning models are stored in the _oai_thinking_models variable instead.
+
+If I have questions on the codebase how can I reach out?
+
+Please open an issue in this repository. Please note that we are not planning to fix bugs as this codebase is just meant as a research artifact.
+
+Running tests and linters
+
+ uv run ruff check --fix
+uv run format
+uv run pyright
+uv run pytest 
+
+This is not an officially supported Google product. This project is not
+eligible for the Google Open Source Software Vulnerability Rewards
+Program .
+
+ About 
+
+Code for the paper "Defeating Prompt Injections by Design"
+
+ arxiv.org/abs/2503.18813 
+
+ Resources 
+
+ Readme 
+
+ Apache-2.0 license 
+
+ Contributing 
+
+ Contributing 
+
+ Activity 
+
+ Custom properties 
+
+ Stars 
+
+ 421 stars 
+
+ Watchers 
+
+ 7 watching 
+
+ Forks 
+
+ 64 forks 
+
+ Report repository 
+
+ Releases 
+
+ Used by 
+
+ Contributors 
+
+ Languages 
+
+Footer
+
+ © 2026 GitHub, Inc.
+
+Footer navigation
+
+ Terms 
+
+ Privacy 
+
+ Security 
+
+ Status 
+
+ Community 
+
+ Docs 
+
+ Contact 
+
+ Manage cookies
+
+ Do not share my personal information
+
+ You can’t perform that action at this time.

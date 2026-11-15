@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>AWS X-Ray SDK for Python - AWS X-Ray</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="xray-sdk-python" /><meta name="default_state" content="xray-sdk-python" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-python.html" /><link rel="alternate" type="text/markdown" href="https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-python.md" title="Markdown version" /><meta name="description" content="Use the X-Ray SDK for Python to instrument Python applications." /><meta name="deployment_region" content="IAD" /><meta name="product" content="AWS X-Ray" /><meta name="guide" content="Developer Guide" /><meta name="abstract" content="Use AWS X-Ray to monitor the components and services that make up your cloud applications. AWS X-Ray provides a detailed trace map and latency information for each connection that your application makes to AWS services and external web APIs." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-python.html" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/xray/latest/devguide/xray-sdk-python.html" hreflang="id-id" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/xray/latest/devguide/xray-sdk-python.html" hreflang="id" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/xray/latest/devguide/xray-sdk-python.html" hreflang="de-de" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/xray/latest/devguide/xray-sdk-python.html" hreflang="de" /><link rel="alternate" href="https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-python.html" hreflang="en-us" /><link rel="alternate" href="https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-python.html" hreflang="en" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/xray/latest/devguide/xray-sdk-python.html" hreflang="es-es" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/xray/latest/devguide/xray-sdk-python.html" hreflang="es" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/xray/latest/devguide/xray-sdk-python.html" hreflang="fr-fr" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/xray/latest/devguide/xray-sdk-python.html" hreflang="fr" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/xray/latest/devguide/xray-sdk-python.html" hreflang="it-it" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/xray/latest/devguide/xray-sdk-python.html" hreflang="it" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/xray/latest/devguide/xray-sdk-python.html" hreflang="ja-jp" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/xray/latest/devguide/xray-sdk-python.html" hreflang="ja" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/xray/latest/devguide/xray-sdk-python.html" hreflang="ko-kr" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/xray/latest/devguide/xray-sdk-python.html" hreflang="ko" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/xray/latest/devguide/xray-sdk-python.html" hreflang="pt-br" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/xray/latest/devguide/xray-sdk-python.html" hreflang="pt" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_cn/xray/latest/devguide/xray-sdk-python.html" hreflang="zh-cn" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_tw/xray/latest/devguide/xray-sdk-python.html" hreflang="zh-tw" /><link rel="alternate" href="https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-python.html" hreflang="x-default" /><meta name="feedback-item" content="X-Ray" /><meta name="this_doc_product" content="AWS X-Ray" /><meta name="this_doc_guide" content="Developer Guide" /><head xmlns="http://www.w3.org/1999/xhtml"> <script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"/></head>
+<script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'xray'}"></script><meta id="panorama-serviceSubSection" value="Developer Guide" /><meta id="panorama-serviceConsolePage" value="AWS X-Ray SDK for Python" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><p><a href="xray-sdk-python.md">View a markdown version of this page</a></p><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>AWS X-Ray SDK for Python - AWS X-Ray</title><meta name="pdf" content="/pdfs/xray/latest/devguide/xray-guide.pdf#xray-sdk-python" /><meta name="rss" content="feed.rss" /><meta name="forums" content="https://repost.aws/tags/TAaNeQQJlSSrSNkt1gr_Ti3g" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=X-Ray&amp;topic_url=https://docs.aws.amazon.com/en_us/xray/latest/devguide/xray-sdk-python.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/xray/latest/devguide/xray-sdk-python.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/xray/latest/devguide/xray-sdk-python.html" /><meta name="keywords" content="AWS X-Ray,X-Ray,debugging,telemetry,instrumentation,sdk" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "AWS X-Ray",
+        "item" : "https://docs.aws.amazon.com/xray/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "Developer Guide",
+        "item" : "https://docs.aws.amazon.com/xray/latest/devguide"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Working with Python",
+        "item" : "https://docs.aws.amazon.com/xray/latest/devguide/xray-python.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "AWS X-Ray SDK for Python",
+        "item" : "https://docs.aws.amazon.com/xray/latest/devguide/xray-python.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/xray/latest/devguide/xray-guide.pdf#xray-sdk-python" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/xray/index.html">AWS X-Ray</a><a href="aws-xray.html">Developer Guide</a></div><div id="page-toc-src"><a href="#xray-sdk-python-requirements">Requirements</a><a href="#xray-sdk-python-dependencies">Dependency management</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="xray-sdk-python">AWS X-Ray SDK for Python</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>X-Ray SDK/Daemon Maintenance Notice – On February 25th, 2026, the AWS X-Ray SDKs/Daemon will enter maintenance mode, where AWS will limit X-Ray SDK and Daemon releases to address security issues only. For more information on the support timeline, see
+      <a href="./xray-sdk-daemon-timeline.html">X-Ray SDK and Daemon Support timeline</a>. We recommend to migrate to OpenTelemetry. For more information on migrating to OpenTelemetry, see <a href="https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-migration.html">Migrating from X-Ray instrumentation to OpenTelemetry instrumentation
+      </a>.</p></div></div><p>The X-Ray SDK for Python is a library for Python web applications that provides classes and
+    methods for generating and sending trace data to the X-Ray daemon. Trace data includes
+    information about incoming HTTP requests served by the application, and calls that the
+    application makes to downstream services using the AWS SDK, HTTP clients, or an SQL database
+    connector. You can also create segments manually and add debug information in annotations and
+    metadata.</p><p>You can download the SDK with <code class="code">pip</code>.</p><pre class="programlisting"><div class="code-btn-container"></div><!--DEBUG: cli ()--><code class="nohighlight">$ <code class="userinput">pip install aws-xray-sdk</code></code></pre><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>The X-Ray SDK for Python is an open source project. You can follow the project and submit
+      issues and pull requests on GitHub: <a href="https://github.com/aws/aws-xray-sdk-python" rel="noopener noreferrer" target="_blank"><span>github.com/aws/aws-xray-sdk-python</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></p></div></div><p>If you use Django or Flask, start by <a href="./xray-sdk-python-middleware.html">adding the
+      SDK middleware to your application</a> to trace incoming requests. The middleware creates a
+      <a href="./xray-concepts.html#xray-concepts-segments">segment</a> for each traced request, and completes
+    the segment when the response is sent. While the segment is open, you can use the SDK client's
+    methods to add information to the segment and create subsegments to trace downstream calls. The
+    SDK also automatically records exceptions that your application throws while the segment is
+    open. For other applications, you can <a href="./xray-sdk-python-middleware.html#xray-sdk-python-middleware-manual">create
+      segments manually</a>.</p><p>For Lambda functions called by an instrumented application or service, Lambda
+  reads the <a href="./xray-concepts.html#xray-concepts-tracingheader">tracing header</a> and traces sampled
+  requests automatically. For other functions, you can <a href="./xray-services-lambda.html">configure Lambda</a> to sample and trace incoming requests. In either case, Lambda creates
+  the segment and provides it to the X-Ray SDK.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>On Lambda, the X-Ray SDK is optional. If you don't use it in your function,
+  your service map will still include a node for the Lambda service, and one for each Lambda function.
+  By adding the SDK, you can instrument your function code to add subsegments to the function
+  segment recorded by Lambda. See <a href="./xray-services-lambda.html">AWS Lambda and AWS X-Ray</a>
+  for more information.</p></div></div><p>See <a href="./scorekeep-lambda.html#scorekeep-lambda-worker">Worker</a> for a example Python function instrumented in
+    Lambda.</p><p>Next, use the X-Ray SDK for Python to instrument downstream calls by <a href="./xray-sdk-python-patching.html">patching your application's libraries</a>. The SDK
+    supports the following libraries.</p><div class="itemizedlist">
+  <h6>Supported Libraries</h6>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+<ul class="itemizedlist"><li class="listitem">
+    <p><code class="code"><a href="https://pypi.python.org/pypi/botocore" rel="noopener noreferrer" target="_blank"><span>botocore</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code>,
+      <code class="code"><a href="https://pypi.python.org/pypi/boto3" rel="noopener noreferrer" target="_blank"><span>boto3</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code> –
+      Instrument AWS SDK for Python (Boto) clients.</p>
+  </li><li class="listitem">
+    <p><code class="code"><a href="https://pypi.python.org/pypi/pynamodb/" rel="noopener noreferrer" target="_blank"><span>pynamodb</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code> –
+      Instrument PynamoDB's version of the Amazon DynamoDB client.</p>
+  </li><li class="listitem">
+    <p><code class="code"><a href="https://pypi.python.org/pypi/aiobotocore" rel="noopener noreferrer" target="_blank"><span>aiobotocore</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code>,
+      <code class="code"><a href="https://pypi.python.org/pypi/aioboto3" rel="noopener noreferrer" target="_blank"><span>aioboto3</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code> –
+      Instrument <a href="https://docs.python.org/3/library/asyncio.html" rel="noopener noreferrer" target="_blank"><span>asyncio</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>-integrated versions of SDK for Python (Boto3) clients.</p>
+  </li><li class="listitem">
+    <p><code class="code"><a href="https://pypi.python.org/pypi/requests" rel="noopener noreferrer" target="_blank"><span>requests</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code>,
+      <code class="code"><a href="https://pypi.python.org/pypi/aiohttp" rel="noopener noreferrer" target="_blank"><span>aiohttp</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code> –
+      Instrument high-level HTTP clients.</p>
+  </li><li class="listitem">
+    <p><code class="code"><a href="https://docs.python.org/2/library/httplib.html" rel="noopener noreferrer" target="_blank"><span>httplib</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code>,
+      <a href="https://docs.python.org/3/library/http.client.html" rel="noopener noreferrer" target="_blank"><span><code class="code">http.client</code></span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> – Instrument low-level HTTP clients and the higher
+      level libraries that use them.</p>
+  </li><li class="listitem">
+    <p><code class="code"><a href="https://docs.python.org/3/library/sqlite3.html" rel="noopener noreferrer" target="_blank"><span>sqlite3</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code>
+      – Instrument SQLite clients.</p>
+  </li><li class="listitem">
+    <p><code class="code"><a href="https://pypi.python.org/pypi/mysql-connector-python" rel="noopener noreferrer" target="_blank"><span>mysql-connector-python</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code> – Instrument MySQL clients.</p>
+  </li><li class="listitem">
+    <p><code class="code"><a href="https://pypi.org/project/pg8000/" rel="noopener noreferrer" target="_blank"><span>pg8000</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code> – Instrument Pure-Python PostgreSQL interface.</p>
+  </li><li class="listitem">
+    <p><code class="code"><a href="https://pypi.org/project/psycopg2/" rel="noopener noreferrer" target="_blank"><span>psycopg2</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code> – Instrument PostgreSQL database adapter.</p>
+  </li><li class="listitem">
+    <p><code class="code"><a href="https://pypi.org/project/pymongo/" rel="noopener noreferrer" target="_blank"><span>pymongo</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code> – Instrument MongoDB clients.</p>
+  </li><li class="listitem">
+    <p><code class="code"><a href="https://pypi.org/project/PyMySQL/" rel="noopener noreferrer" target="_blank"><span>pymysql</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></code> – Instrument PyMySQL based clients for MySQL and MariaDB.</p>
+  </li></ul></div><p>Whenever your application makes calls to AWS, an SQL database, or other HTTP services, the
+    SDK records information about the call in a subsegment. AWS services and the resources that
+    you access within the services appear as downstream nodes on the trace map to help you
+    identify errors and throttling issues on individual connections.</p><p>After you start using the SDK, customize its behavior by <a href="./xray-sdk-python-configuration.html">configuring the recorder and middleware</a>. You can add plugins to record data about the compute resources
+    running your application, customize sampling behavior by defining sampling rules, and set the log level to see more
+    or less information from the SDK in your application logs.</p><p>Record additional information about requests and the work that your application does in
+      <a href="./xray-sdk-python-segment.html">annotations and metadata</a>. Annotations are
+    simple key-value pairs that are indexed for use with <a href="./xray-console-filters.html">filter
+      expressions</a>, so that you can search for traces that contain specific data. Metadata
+    entries are less restrictive and can record entire objects and arrays — anything that can
+    be serialized into JSON.</p><div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Annotations and Metadata</h6></div><div class="awsdocs-note-text"><p>Annotations and metadata are arbitrary text that you add to segments with the X-Ray SDK.
+    Annotations are indexed for use with filter expressions. Metadata are not indexed, but can be
+    viewed in the raw segment with the X-Ray console or API. Anyone that you grant read access to
+    X-Ray can view this data.</p></div></div><p>When you have a lot of instrumented clients in your code, a single request segment can
+    contain a large number of subsegments, one for each call made with an instrumented client. You
+    can organize and group subsegments by wrapping client calls in <a href="./xray-sdk-python-subsegments.html">custom subsegments</a>. You can create a custom
+    subsegment for an entire function or any section of code. You can then you can record metadata
+    and annotations on the subsegment instead of writing everything on the parent segment.</p><p>For reference documentation for the SDK's classes and methods, see the <a href="https://docs.aws.amazon.com/xray-sdk-for-python/latest/reference">AWS X-Ray SDK for Python API
+      Reference</a>.</p>
+    <h2 id="xray-sdk-python-requirements">Requirements</h2>
+    
+    <p>The X-Ray SDK for Python supports the following language and library versions.</p>
+    <div class="itemizedlist">
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>Python</b> – 2.7, 3.4, and newer</p>
+      </li><li class="listitem">
+        <p><b>Django</b> – 1.10 and newer</p>
+      </li><li class="listitem">
+        <p><b>Flask</b> – 0.10 and newer</p>
+      </li><li class="listitem">
+        <p><b>aiohttp</b> – 2.3.0 and newer</p>
+      </li><li class="listitem">
+        <p><b>AWS SDK for Python (Boto)</b> – 1.4.0 and newer</p>
+      </li><li class="listitem">
+        <p><b>botocore</b> – 1.5.0 and newer</p>
+      </li><li class="listitem"><p><b>enum</b> – 0.4.7 and newer, for Python versions 3.4.0 and older</p></li><li class="listitem"><p><b>jsonpickle</b> – 1.0.0 and newer</p></li><li class="listitem"><p><b>setuptools</b> – 40.6.3 and newer</p></li><li class="listitem"><p><b>wrapt</b> – 1.11.0 and newer</p></li></ul></div>
+   
+    <h2 id="xray-sdk-python-dependencies">Dependency management</h2>
+    
+    <p>The X-Ray SDK for Python is available from <code class="code">pip</code>.</p>
+    <div class="itemizedlist">
+       
+    <ul class="itemizedlist"><li class="listitem">
+        <p><b>Package</b> – <code class="code">aws-xray-sdk</code></p>
+      </li></ul></div>
+    
+    <p>Add the SDK as a dependency in your <code>requirements.txt</code> file.</p>
+    <div class="example"><h6>Example requirements.txt</h6><div class="example-contents"><pre class="programlisting"><div class="code-btn-container"></div><!--DEBUG: cli ()--><code class="nohighlight"><code class="userinput">aws-xray-sdk==2.4.2</code>
+boto3==1.4.4
+botocore==1.5.55
+Django==1.11.3</code></pre></div></div>
+    <p>If you use Elastic Beanstalk to deploy your application, Elastic Beanstalk installs all of the packages in
+        <code>requirements.txt</code> automatically.</p>
+  <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./xray-python-opentel-sdk.html">AWS Distro for OpenTelemetry Python</div><div id="next" class="next-link" accesskey="n" href="./xray-sdk-python-configuration.html">Configuration</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=X-Ray&amp;topic_url=https://docs.aws.amazon.com/en_us/xray/latest/devguide/xray-sdk-python.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=X-Ray&amp;topic_url=https://docs.aws.amazon.com/en_us/xray/latest/devguide/xray-sdk-python.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

@@ -1,0 +1,107 @@
+
+
+## PAGE 1
+
+Event dashboard
+Introduction à AWS
+Amazon Bedrock
+Amazon Bedrock
+Amazon Bedrock est un service entièrement géré qui donne accès, par une seule API, à des modèles de fondation performants de grandes entreprises d'IA : Amazon,
+Anthropic, OpenAI, Meta, Mistral AI, DeepSeek, Qwen, Stability AI, Writer et d'autres. Il fournit aussi les fonctionnalités nécessaires pour construire des applications
+d'IA générative en tenant compte de la sécurité, de la conﬁdentialité et de l'IA responsable.
+Bedrock est sans serveur : il n'y a aucune infrastructure à gérer. Vous pouvez essayer et comparer des modèles, les ancrer dans vos propres données avec la
+génération augmentée par récupération (RAG), appliquer des garde-fous et construire des agents qui agissent sur vos systèmes.
+La conséquence pratique pour vous : passer d'un modèle à un autre ne demande de changer qu'une ligne. Commencez avec un modèle peu coûteux, et ne passez à
+un modèle plus puissant que lorsque vous pouvez montrer une erreur précise du modèle moins cher.
+Pour le déﬁ AlphaForge AI : Bedrock vous permet de résumer un rapport annuel ou un 10-K, d'extraire les chiffres clés d'un communiqué de résultats, d'évaluer le ton
+d'une nouvelle ﬁnancière, d'expliquer un risque en langage simple selon le persona Prudent, Équilibré ou Audacieux, et de construire un agent qui interroge des prix
+ou des données macroéconomiques avant de répondre. Tous les modèles disponibles dans Bedrock sont permis pendant le Datathon.
+Dans AWS CloudShell ou sur votre poste, cette commande appelle Amazon Nova 2 Lite, un modèle peu coûteux et un bon choix par défaut pour les tests :
+Pour la plupart des projets, global.anthropic.claude-sonnet-5 est un bon choix polyvalent. La page Choisir un modèle compare les options.
+Les liens plus bas mènent à la documentation officielle. Pour du code fonctionnel, consultez plutôt ces pages :
+Votre premier appel de modèle : CLI et Python, avec les erreurs expliquées
+Choisir un modèle : quels identiﬁants de modèle utiliser, et le préﬁxe des proﬁls d'inférence
+Garde-fous : ﬁltrage de contenu et restriction de sujets
+Bases de connaissances et RAG : ancrer un modèle dans vos documents
+Data Automation : transformer documents, images, audio et vidéo en JSON
+Construire des agents : Strands et AgentCore
+Directives d'ingénierie des prompts 
+Exécuter l'inférence de modèle 
+Aperçu des modèles 
+Cycle de vie des modèles : à vériﬁer avant de construire 
+Amazon Bedrock Knowledge Bases 
+Amazon Bedrock Guardrails 
+Amazon Bedrock AgentCore 
+Exemples de code 
+Tariﬁcation d'Amazon Bedrock 
+Pour en savoir plus, consultez le Guide de l'utilisateur Amazon Bedrock 
+.
+Amazon Bedrock
+Introduction à Amazon Bedrock
+AWS Developers
+Integrating Generative AI Models with Amazon Bedrock
+Integrating Generative AI Models with Amazon Bedrock
+Integrating Generative AI Models with Amazon Bedrock
+Integrating Generative AI Models with Amazon Bedrock
+Regarder sur
+Tester en une commande
+aws bedrock-runtime converse \
+  --model-id global.amazon.nova-2-lite-v1:0 \
+  --messages '[{"role":"user","content":[{"text":"En une phrase, qu’est-ce qu’un FNB obligataire ?"}]}]' \
+  --region us-east-1 \
+  --query 'output.message.content[?text].text' --output text
+1
+2
+3
+4
+5
+Pour commencer dans cet atelier
+L'accès aux modèles est automatique. Les modèles de fondation sans serveur sont activés par défaut dans votre compte. Il n'y a plus de page « Model access » à visiter ni de
+demande à soumettre. Les tutoriels de 2024 et 2025 qui disent le contraire sont dépassés.
+Autres opérations
+Réponses aux questions fréquentes
+AWS Developers
+Amazon Bedrock: Your Top Questions Answered
+Amazon Bedrock: Your Top Questions Answered
+Amazon Bedrock: Your Top Questions Answered
+Amazon Bedrock: Your Top Questions Answered
+Regarder sur
+Previous
+Next
+Polyfinances 2026
+Datathon PolyFinances 2026
+Commencer
+Utilisation responsable
+SageMaker Uniﬁed Studio et
+notebook d'introduction
+Introduction à AWS
+Amazon Bedrock
+Kiro
+Outils de développement
+Amazon Quick
+AWS Lambda
+Amazon S3
+AWS IAM
+AWS Glue
+Amazon Athena
+Accès AWS CLI et SDK
+L'IA générative sur AWS
+Construire des agents
+Démarrages rapides
+Données ﬁnancières publiques
+Nettoyage et exportation
+Ressources
+AWS account access
+Open AWS console
+(us-east-1)
+Get AWS CLI credentials
+Share feedback
+Workshop catalog in AWS Builder
+Center
+Exit event
+AWS Workshop Studio
+adamlarhlimi2006
+© 2008 - 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+Privacy policy
+Terms of use
+Cookie preferences

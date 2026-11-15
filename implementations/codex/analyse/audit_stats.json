@@ -1,0 +1,986 @@
+{
+  "assets_universe.csv": {
+    "rows": 31,
+    "columns": [
+      "asset_id",
+      "ticker",
+      "name",
+      "asset_class",
+      "market",
+      "currency",
+      "sector"
+    ],
+    "sha256": "f78de8ecb36d914a3448db63498cc9a04a34d805bccb79c481dda1650755467d",
+    "missing_by_column": {
+      "asset_id": 0,
+      "ticker": 0,
+      "name": 0,
+      "asset_class": 0,
+      "market": 0,
+      "currency": 0,
+      "sector": 0
+    },
+    "exact_duplicate_rows": 0
+  },
+  "corporate_actions.csv": {
+    "rows": 658,
+    "columns": [
+      "ex_date",
+      "ticker",
+      "action",
+      "value",
+      "unit"
+    ],
+    "sha256": "37d99f1472f9f1c7360432835353488bdf72bb055295ec66155211a30d8312b1",
+    "missing_by_column": {
+      "ex_date": 0,
+      "ticker": 0,
+      "action": 0,
+      "value": 0,
+      "unit": 0
+    },
+    "exact_duplicate_rows": 0
+  },
+  "fx_usdcad_daily.csv": {
+    "rows": 1245,
+    "columns": [
+      "date",
+      "usdcad",
+      "cadusd"
+    ],
+    "sha256": "f04e218ac5b0145fd552b3d0dcfbf73e5e17bb9a6fb4562460dbec95cb8972b3",
+    "missing_by_column": {
+      "date": 0,
+      "usdcad": 0,
+      "cadusd": 0
+    },
+    "exact_duplicate_rows": 0
+  },
+  "macro_rates.csv": {
+    "rows": 8281,
+    "columns": [
+      "date",
+      "series_id",
+      "value",
+      "unit",
+      "frequency",
+      "label",
+      "source"
+    ],
+    "sha256": "2c04b0ca5590396fee1f0de13c0b2a95731125a61c79166d553d106f0375c73e",
+    "missing_by_column": {
+      "date": 0,
+      "series_id": 0,
+      "value": 0,
+      "unit": 0,
+      "frequency": 0,
+      "label": 0,
+      "source": 0
+    },
+    "exact_duplicate_rows": 0
+  },
+  "prices_daily.csv": {
+    "rows": 40049,
+    "columns": [
+      "date",
+      "ticker",
+      "open",
+      "high",
+      "low",
+      "close",
+      "adj_close",
+      "volume",
+      "currency"
+    ],
+    "sha256": "ff2a3f2d0a7d72ea835e8d616d041e0510f018340cef3d3e55b918830e8a569d",
+    "missing_by_column": {
+      "date": 0,
+      "ticker": 0,
+      "open": 0,
+      "high": 0,
+      "low": 0,
+      "close": 0,
+      "adj_close": 0,
+      "volume": 0,
+      "currency": 0
+    },
+    "exact_duplicate_rows": 0
+  },
+  "sources_metadata.csv": {
+    "rows": 6,
+    "columns": [
+      "file",
+      "content",
+      "source",
+      "source_url",
+      "retrieved_on",
+      "coverage",
+      "frequency",
+      "processing",
+      "limitations",
+      "terms_of_use"
+    ],
+    "sha256": "7ff17052c8235888c4984430830610ae0d81c0df71585afaacb87ba5fe531bdf",
+    "missing_by_column": {
+      "file": 0,
+      "content": 0,
+      "source": 0,
+      "source_url": 0,
+      "retrieved_on": 0,
+      "coverage": 0,
+      "frequency": 0,
+      "processing": 0,
+      "limitations": 0,
+      "terms_of_use": 0
+    },
+    "exact_duplicate_rows": 0
+  },
+  "universe_breakdown": {
+    "asset_class": {
+      "equity": 20,
+      "etf_equity": 4,
+      "etf_bond": 4,
+      "etf_commodity": 1,
+      "crypto": 2
+    },
+    "market": {
+      "TSX": 13,
+      "NASDAQ": 8,
+      "NYSE": 4,
+      "NYSE Arca": 3,
+      "Cboe BZX": 1,
+      "Crypto (24/7)": 2
+    },
+    "currency": {
+      "CAD": 13,
+      "USD": 18
+    },
+    "sector": {
+      "Financials": 4,
+      "Energy": 3,
+      "Industrials": 1,
+      "Utilities": 1,
+      "Consumer Staples": 2,
+      "Information Technology": 5,
+      "Communication Services": 1,
+      "Consumer Discretionary": 2,
+      "Health Care": 1,
+      "Broad market (Canada)": 1,
+      "Broad market (U.S.)": 1,
+      "Broad market (U.S. growth/tech-heavy)": 1,
+      "Broad market (U.S., ESG-screened)": 1,
+      "Bonds (Canada aggregate)": 1,
+      "Bonds (Canada ultra short-term)": 1,
+      "Bonds (U.S. aggregate)": 1,
+      "Bonds (U.S. long Treasury)": 1,
+      "Gold": 1,
+      "Crypto asset": 2
+    }
+  },
+  "price_ticker_stats": {
+    "AAPL": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 4,
+      "min_daily_return": [
+        "2025-04-03",
+        -0.09245601882968002
+      ],
+      "max_daily_return": [
+        "2025-04-09",
+        0.15328860302067016
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "AGG": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 4,
+      "min_daily_return": [
+        "2022-06-13",
+        -0.01639326461209456
+      ],
+      "max_daily_return": [
+        "2022-11-10",
+        0.021470129311423225
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "AMZN": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 4,
+      "min_daily_return": [
+        "2022-04-29",
+        -0.14049437864321146
+      ],
+      "max_daily_return": [
+        "2026-07-31",
+        0.15320588959660308
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "ATD.TO": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 5,
+      "min_daily_return": [
+        "2022-05-18",
+        -0.05595832397842304
+      ],
+      "max_daily_return": [
+        "2026-06-23",
+        0.11682468073045849
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "BTC-USD": {
+      "rows": 1827,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 1,
+      "min_daily_return": [
+        "2022-06-13",
+        -0.15974726028719954
+      ],
+      "max_daily_return": [
+        "2022-02-28",
+        0.1454118392962398
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "CNQ.TO": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 5,
+      "min_daily_return": [
+        "2026-11-04",
+        -0.07696417130900135
+      ],
+      "max_daily_return": [
+        "2025-04-09",
+        0.09511832083618232
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "CNR.TO": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 5,
+      "min_daily_return": [
+        "2026-04-29",
+        -0.06005336699767405
+      ],
+      "max_daily_return": [
+        "2025-05-02",
+        0.05741047814846301
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "CSU.TO": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 5,
+      "min_daily_return": [
+        "2026-03-11",
+        -0.08122413758253588
+      ],
+      "max_daily_return": [
+        "2025-04-09",
+        0.08884428228824648
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "ENB.TO": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 5,
+      "min_daily_return": [
+        "2023-09-06",
+        -0.059177677606997325
+      ],
+      "max_daily_return": [
+        "2026-02-13",
+        0.03794945591541854
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "ESGV": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 4,
+      "min_daily_return": [
+        "2025-04-04",
+        -0.05625850732506299
+      ],
+      "max_daily_return": [
+        "2025-04-09",
+        0.09870016801814896
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "ETH-USD": {
+      "rows": 1827,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 1,
+      "min_daily_return": [
+        "2022-11-09",
+        -0.17456449697349818
+      ],
+      "max_daily_return": [
+        "2025-05-08",
+        0.2179876909253342
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "FTS.TO": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 5,
+      "min_daily_return": [
+        "2023-08-03",
+        -0.04077207796843274
+      ],
+      "max_daily_return": [
+        "2022-10-13",
+        0.039183428175967316
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "GLD": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 4,
+      "min_daily_return": [
+        "2026-01-30",
+        -0.10274245335038257
+      ],
+      "max_daily_return": [
+        "2026-02-03",
+        0.06358720689734731
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "GOOGL": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 4,
+      "min_daily_return": [
+        "2026-10-29",
+        -0.12641203516211486
+      ],
+      "max_daily_return": [
+        "2024-04-26",
+        0.10224377443570232
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "JNJ": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 4,
+      "min_daily_return": [
+        "2025-04-01",
+        -0.07591643057817532
+      ],
+      "max_daily_return": [
+        "2025-07-16",
+        0.06193210316955611
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "JPM": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 4,
+      "min_daily_return": [
+        "2025-04-04",
+        -0.07483832179590821
+      ],
+      "max_daily_return": [
+        "2024-11-06",
+        0.11544528158827494
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "MFC.TO": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 5,
+      "min_daily_return": [
+        "2022-05-12",
+        -0.10225876825548963
+      ],
+      "max_daily_return": [
+        "2024-02-15",
+        0.08738174049319758
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "MSFT": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 4,
+      "min_daily_return": [
+        "2026-01-29",
+        -0.09993145772980783
+      ],
+      "max_daily_return": [
+        "2026-07-30",
+        0.15506739152980553
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "NVDA": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 4,
+      "min_daily_return": [
+        "2025-01-27",
+        -0.1696816657100988
+      ],
+      "max_daily_return": [
+        "2023-05-25",
+        0.24369652965437916
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "PG": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 4,
+      "min_daily_return": [
+        "2022-05-18",
+        -0.06232229286625912
+      ],
+      "max_daily_return": [
+        "2026-10-22",
+        0.0557892626019465
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "QQQ": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 4,
+      "min_daily_return": [
+        "2026-11-05",
+        -0.06488911514030005
+      ],
+      "max_daily_return": [
+        "2025-04-09",
+        0.12003084971789457
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "RY.TO": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 5,
+      "min_daily_return": [
+        "2022-07-14",
+        -0.05627224450460799
+      ],
+      "max_daily_return": [
+        "2024-05-30",
+        0.05185867555652668
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "SHOP.TO": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 5,
+      "min_daily_return": [
+        "2025-04-03",
+        -0.19628240653333917
+      ],
+      "max_daily_return": [
+        "2023-05-04",
+        0.2315623034347709
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "SPY": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 4,
+      "min_daily_return": [
+        "2025-04-04",
+        -0.058543043705813536
+      ],
+      "max_daily_return": [
+        "2025-04-09",
+        0.10501940051446801
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "TD.TO": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 5,
+      "min_daily_return": [
+        "2024-12-05",
+        -0.07080102103266817
+      ],
+      "max_daily_return": [
+        "2021-12-02",
+        0.04914143455808051
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "TLT": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 4,
+      "min_daily_return": [
+        "2022-03-02",
+        -0.03418230343324058
+      ],
+      "max_daily_return": [
+        "2022-11-10",
+        0.03847378694248338
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "TSLA": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 4,
+      "min_daily_return": [
+        "2025-03-10",
+        -0.15426206645065343
+      ],
+      "max_daily_return": [
+        "2025-04-09",
+        0.226899895308303
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "XBB.TO": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 5,
+      "min_daily_return": [
+        "2023-10-03",
+        -0.014868324838277602
+      ],
+      "max_daily_return": [
+        "2022-11-10",
+        0.022412940467121167
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "XIU.TO": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 5,
+      "min_daily_return": [
+        "2025-04-04",
+        -0.04485268918762475
+      ],
+      "max_daily_return": [
+        "2025-04-09",
+        0.051588462175485406
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "XOM": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 4,
+      "min_daily_return": [
+        "2022-05-09",
+        -0.0788526324288239
+      ],
+      "max_daily_return": [
+        "2022-02-01",
+        0.06411275412362949
+      ],
+      "zero_volume_dates": [],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    },
+    "ZST.TO": {
+      "rows": 1255,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "max_gap_days": 5,
+      "min_daily_return": [
+        "2022-06-30",
+        -0.002254855666866673
+      ],
+      "max_daily_return": [
+        "2022-07-04",
+        0.0026704516265352307
+      ],
+      "zero_volume_dates": [
+        "2022-07-06"
+      ],
+      "negative_volume_count": 0,
+      "nonpositive_price_rows": 0,
+      "bad_ohlc_rows": []
+    }
+  },
+  "duplicate_price_keys": 0,
+  "foreign_keys_outside_universe": [],
+  "macro_series_stats": {
+    "BD.CDN.10YR.DQ.YLD": {
+      "rows": 1245,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "min": 1.32,
+      "max": 4.26,
+      "frequency": [
+        "business daily"
+      ],
+      "unit": [
+        "percent"
+      ]
+    },
+    "BD.CDN.2YR.DQ.YLD": {
+      "rows": 1245,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "min": 0.9,
+      "max": 4.97,
+      "frequency": [
+        "business daily"
+      ],
+      "unit": [
+        "percent"
+      ]
+    },
+    "CPIAUCSL": {
+      "rows": 59,
+      "first": "2021-11-01",
+      "last": "2026-10-01",
+      "min": 278.919,
+      "max": 337.476,
+      "frequency": [
+        "monthly"
+      ],
+      "unit": [
+        "index"
+      ]
+    },
+    "DFF": {
+      "rows": 1826,
+      "first": "2021-11-12",
+      "last": "2026-11-11",
+      "min": 0.07,
+      "max": 5.33,
+      "frequency": [
+        "daily"
+      ],
+      "unit": [
+        "percent"
+      ]
+    },
+    "DGS10": {
+      "rows": 1248,
+      "first": "2021-11-12",
+      "last": "2026-11-10",
+      "min": 1.35,
+      "max": 5.31,
+      "frequency": [
+        "business daily"
+      ],
+      "unit": [
+        "percent"
+      ]
+    },
+    "DGS2": {
+      "rows": 1248,
+      "first": "2021-11-12",
+      "last": "2026-11-10",
+      "min": 0.5,
+      "max": 5.19,
+      "frequency": [
+        "business daily"
+      ],
+      "unit": [
+        "percent"
+      ]
+    },
+    "STATIC_TOTALCPICHANGE": {
+      "rows": 58,
+      "first": "2021-12-01",
+      "last": "2026-09-01",
+      "min": 1.6,
+      "max": 8.1,
+      "frequency": [
+        "monthly"
+      ],
+      "unit": [
+        "percent"
+      ]
+    },
+    "UNRATE": {
+      "rows": 59,
+      "first": "2021-11-01",
+      "last": "2026-10-01",
+      "min": 3.4,
+      "max": 4.5,
+      "frequency": [
+        "monthly"
+      ],
+      "unit": [
+        "percent"
+      ]
+    },
+    "V39079": {
+      "rows": 1293,
+      "first": "2021-11-12",
+      "last": "2026-11-12",
+      "min": 0.25,
+      "max": 5.0,
+      "frequency": [
+        "daily (changes on announcement dates)"
+      ],
+      "unit": [
+        "percent"
+      ]
+    }
+  },
+  "duplicate_macro_keys": 0,
+  "actions_breakdown": {
+    "dividend": 651,
+    "split": 7
+  },
+  "splits": [
+    {
+      "ex_date": "2022-06-06",
+      "ticker": "AMZN",
+      "action": "split",
+      "value": "20.0",
+      "unit": "split ratio (new:old)"
+    },
+    {
+      "ex_date": "2022-08-22",
+      "ticker": "CNQ.TO",
+      "action": "split",
+      "value": "1.021",
+      "unit": "split ratio (new:old)"
+    },
+    {
+      "ex_date": "2024-06-11",
+      "ticker": "CNQ.TO",
+      "action": "split",
+      "value": "2.0",
+      "unit": "split ratio (new:old)"
+    },
+    {
+      "ex_date": "2022-07-18",
+      "ticker": "GOOGL",
+      "action": "split",
+      "value": "20.0",
+      "unit": "split ratio (new:old)"
+    },
+    {
+      "ex_date": "2024-06-10",
+      "ticker": "NVDA",
+      "action": "split",
+      "value": "10.0",
+      "unit": "split ratio (new:old)"
+    },
+    {
+      "ex_date": "2022-06-29",
+      "ticker": "SHOP.TO",
+      "action": "split",
+      "value": "10.0",
+      "unit": "split ratio (new:old)"
+    },
+    {
+      "ex_date": "2022-08-25",
+      "ticker": "TSLA",
+      "action": "split",
+      "value": "3.0",
+      "unit": "split ratio (new:old)"
+    }
+  ],
+  "duplicate_action_keys": 0,
+  "fx": {
+    "first": "2021-11-12",
+    "last": "2026-11-12",
+    "min": 1.2451,
+    "max": 1.4603,
+    "reciprocal_max_abs_error": 4.987221613461656e-07
+  },
+  "calendars": {
+    "ca_dates": 1255,
+    "us_dates": 1255,
+    "intersection": 1228,
+    "ca_not_us": 27,
+    "us_not_ca": 27,
+    "ca_not_fx": 10,
+    "us_not_fx": 37,
+    "crypto_not_fx": 582,
+    "ca_unique_calendars": 1,
+    "us_noncrypto_unique_calendars": 1
+  },
+  "input_files": {
+    "README.md": {
+      "bytes": 10675,
+      "sha256": "c713abb2a5b80a6677d61d24068a4614ce8f357f0bfa5ef950986a75c704e203"
+    },
+    "assets_universe.csv": {
+      "bytes": 2089,
+      "sha256": "f78de8ecb36d914a3448db63498cc9a04a34d805bccb79c481dda1650755467d"
+    },
+    "build_dataset.py": {
+      "bytes": 10947,
+      "sha256": "1c6bd7ce45e32a672d115a5ff3cbf5b29e9eb201423e47df09c81355558067dd"
+    },
+    "corporate_actions.csv": {
+      "bytes": 29728,
+      "sha256": "37d99f1472f9f1c7360432835353488bdf72bb055295ec66155211a30d8312b1"
+    },
+    "data_quality_warnings.txt": {
+      "bytes": 68,
+      "sha256": "87fdb2abea76029c6ad32c57548c6a04e8018be0c1aadc9b7438561eef5789b6"
+    },
+    "fx_usdcad_daily.csv": {
+      "bytes": 33344,
+      "sha256": "f04e218ac5b0145fd552b3d0dcfbf73e5e17bb9a6fb4562460dbec95cb8972b3"
+    },
+    "macro_rates.csv": {
+      "bytes": 1074518,
+      "sha256": "2c04b0ca5590396fee1f0de13c0b2a95731125a61c79166d553d106f0375c73e"
+    },
+    "prices_daily.csv": {
+      "bytes": 3224985,
+      "sha256": "ff2a3f2d0a7d72ea835e8d616d041e0510f018340cef3d3e55b918830e8a569d"
+    },
+    "sources_metadata.csv": {
+      "bytes": 2846,
+      "sha256": "7ff17052c8235888c4984430830610ae0d81c0df71585afaacb87ba5fe531bdf"
+    }
+  },
+  "monthly_missing_within_coverage": {
+    "CPIAUCSL": [
+      "2025-10-01"
+    ],
+    "UNRATE": [
+      "2025-10-01"
+    ],
+    "STATIC_TOTALCPICHANGE": []
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "checked_at": "2026-11-15T13:56:28.748474+00:00",
+  "profile": "alphaforge",
+  "region": "us-east-1",
+  "operation": "bedrock-agentcore.InvokeWebSearch",
+  "parameters": {
+    "webSearchId": "web-search.v1",
+    "searchQuery": "CRITIC large language models self-correct tool interactive critiquing",
+    "maxResults": 3,
+    "filters": {
+      "domainFilter": {
+        "include": [
+          "arxiv.org"
+        ]
+      }
+    }
+  },
+  "mode": "ranked_search_results_no_WebAnswer",
+  "cost": "No measured charge returned by API; unit price not yet established.",
+  "status": "success",
+  "request_id": "7cc9d3e7-139f-40e9-ba5f-48ab8b81f26e",
+  "http_status": 200,
+  "results": [
+    {
+      "title": "Large Language Models Can Self-Correct with Tool-Interactive Critiquing",
+      "url": "https://arxiv.org/abs/2305.11738",
+      "text": "> Abstract:Recent developments in large language models (LLMs) have been impressive. However, these models sometimes show inconsistencies and problematic behavior, such as hallucinating facts, generating flawed code, or creating offensive and toxic content. Unlike these models, humans typically utilize external tools to cross-check and refine their initial content, like using a search engine for fact-checking, or a code interpreter for debugging. Inspired by this observation, we introduce a framework called CRITIC that allows LLMs, which are essentially \"black boxes\" to validate and progressively amend their own outputs in a manner similar to human interaction with tools. More specifically, starting with an initial output, CRITIC interacts with appropriate tools to evaluate certain aspects of the text, and then revises the output based on the feedback obtained during this validation process. Comprehensive evaluations involving free-form question answering, mathematical program synthesis, and toxicity reduction demonstrate that CRITIC consistently enhances the performance of LLMs. Meanwhile, our research highlights the crucial importance of external feedback in promoting the ongoing self-improvement of LLMs. ",
+      "publishedAt": "2024-02-21 00:00:00+00:00"
+    },
+    {
+      "title": "Large Language Models Can Self-Correct with Tool-Interactive Critiquing",
+      "url": "https://arxiv.org/html/2305.11738",
+      "text": "Abstract Recent developments in large language models (LLMs) have been impressive. However, these models sometimes show inconsistencies and problematic behavior, such as hallucinating facts, generating flawed code, or creating offensive and toxic content. Unlike these models, humans typically utilize external tools to cross-check and refine their initial content, like using a search engine for fact-checking, or a code interpreter for debugging. Inspired by this observation, we introduce a framework called CRITIC that allows LLMs, which are essentially “black boxes” to validate and progressively amend their own outputs in a manner similar to human interaction with tools. More specifically, starting with an initial output, CRITIC interacts with appropriate tools to evaluate certain aspects of the text, and then revises the output based on the feedback obtained during this validation process. Comprehensive evaluations involving free-form question answering, mathematical program synthesis, and toxicity reduction demonstrate that CRITIC consistently enhances the performance of LLMs. Meanwhile, our research highlights the crucial importance of external feedback in promoting the ongoing self-improvement of LLMs11 1 Code released at https://github.com/microsoft/ProphetNet/tree/master/CRITIC.. \n\nTraditional approaches to mitigate these limitations typically employ additional training, involving behavior cloning, reinforcement learning, and self-training (Saunders et al., 2022; Stiennon et al., 2020; Jeon et al., 2020; Bai et al., 2022b). However, these methods are constrained by the requirement of large-scale human annotation or data construction, which is often resource-intensive and challenging to obtain. To address these challenges, we present Self-Correcting with Tool-Interactive Critiquing (CRITIC), a unified framework that empowers black-box LLMs to verify and rectify their own output through human-like interaction with external tools. Drawing inspiration from human cognition (Greenfield, 1991; Vaesen, 2012) and critical thinking (Marcus, 1988; Ennis, 1991), CRITIC offers a versatile framework that supports precise, interpretable verification and correction of generated text. ",
+      "publishedAt": "2017-05-05 00:00:00+00:00"
+    },
+    {
+      "title": "SCORE : Abstract",
+      "url": "https://arxiv.org/html/2404.17140",
+      "text": "| subject_name | SCORE |\n| subject_type | intangible |\n| section_title | Abstract |\n| Answer | Self-correction has emerged as a promising solution to boost the reasoning performance of large language models (LLMs), where LLMs refine their solutions using self-generated critiques that pinpoint the errors.\nThis work explores whether small ( ≤ 13 \\leq 13 B) language models (LMs) have the ability of self-correction on reasoning tasks with minimal inputs from stronger LMs. We propose a novel pipeline that prompts smaller LMs to collect self-correction data that supports the training of self-refinement abilities.\nFirst, we leverage correct solutions to guide the model in critiquing their incorrect responses.\nSecond, the generated critiques, after filtering, are used for supervised fine-tuning of the self-correcting reasoner through solution refinement.\nOur experimental results show improved self-correction abilities of two models on five datasets spanning math and commonsense reasoning, with notable performance gains when paired with a strong GPT-4-based verifier, though limitations are identified when using a weak self-verifier for determining when to correct. |\n| url | https://arxiv.org/html/2404.17140 |\n| page_title | Small Language Models Need Strong Verifiers to Self-Correct Reasoning |\n| document_type | research_paper |\n| Last Seen | 2026-10-06 |",
+      "publishedAt": "2022-12-09 00:00:00+00:00"
+    }
+  ],
+  "duration_ms": 651
+}

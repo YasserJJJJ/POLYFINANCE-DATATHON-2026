@@ -1,0 +1,268 @@
+Concepts d’ingénierie de requête - Amazon Bedrock 
+
+ View a markdown version of this page 
+
+ Concepts d’ingénierie de requête - Amazon Bedrock 
+
+ Documentation Amazon Bedrock Guide de l’utilisateur 
+
+ Qu’est-ce qu’une invite ? 
+
+Les traductions sont fournies par des outils de traduction automatique. En cas de conflit entre le contenu d'une traduction et celui de la version originale en anglais, la version anglaise prévaudra.
+ 
+Concepts d’ingénierie de requête
+
+ L’ ingénierie de requête désigne la pratique qui consiste à optimiser l’entrée de texte dans un grand modèle de langage (LLM) afin d’obtenir les réponses souhaitées. Les invites aident un LLM à effectuer une grande variété de tâches, notamment la classification, la réponse aux questions, la génération de code, l’écriture créative, etc. La qualité des invites que vous fournissez à un LLM peut avoir un impact sur la qualité des réponses du modèle. Cette section fournit les informations nécessaires pour faire vos premiers pas avec l’ingénierie de requête. Elles couvrent également les outils qui vous aideront à trouver le format d’invite le plus adapté à votre cas d’utilisation lors de l’utilisation d’un LLM dans Amazon Bedrock. 
+
+Note
+
+Tous les exemples de ce document sont obtenus par le biais d'appels d'API. La réponse peut varier en raison de la nature stochastique du processus de génération du LLM. Sauf indication contraire, les invites sont écrites par des employés AWS.
+
+Note
+
+Pour réduire les hallucinations, vous pouvez affiner votre invite à l’aide de techniques d’optimisation d’invite, utiliser des techniques telles que la génération à enrichissement contextuel (RAG) pour permettre au modèle d’accéder à des données plus pertinentes, ou utiliser un modèle différent susceptible de produire de meilleurs résultats.
+
+Amazon Bedrock inclut des modèles de différents fournisseurs. Vous trouverez ci-dessous une liste des directives d’ingénierie de requête pour ces modèles.
+
+ Guide sur les invites Amazon Nova Micro, Lite et Pro : bonnes pratiques en matière d’invites pour les modèles de compréhension Amazon Nova 
+
+ Guide sur les invites Amazon Nova Canvas : génération d’images avec Amazon Nova 
+
+ Guide sur les invites Amazon Nova Reel : génération de vidéos avec Amazon Nova 
+
+ AnthropicClaudeguide rapide du modèle : https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview 
+
+ Cohereguide rapide : https://txt.cohere.com/how-to-train-your-pet-llm-prompt-engineering 
+
+ AI21 LabsGuide rapide du modèle Jurassic : https://docs.ai21.com/docs/prompt-engineering 
+
+ MetaLlama 2guide rapide : https://ai.meta.com/llama/get-started/ #prompting 
+
+ Stability AIguide rapide : https://platform.stability.ai/docs/getting-started 
+
+ Mistral AIguide rapide : https://docs.mistral.ai/guides/prompting_capabilities/ 
+
+ Avertissement : les exemples présentés dans ce document utilisent les modèles de texte actuellement disponibles dans Amazon Bedrock. Ce document contient également des consignes générales sur les invites. Pour consulter les guides spécifiques aux modèles, reportez-vous à leur documentation respective sur Amazon Bedrock. Ce document sert de point de départ. Bien que les exemples de réponses suivants soient générés à l’aide de modèles spécifiques sur Amazon Bedrock, vous pouvez également utiliser d’autres modèles dans Amazon Bedrock pour obtenir des résultats. Les résultats peuvent différer d’un modèle à l’autre, car chaque modèle possède ses propres caractéristiques de performance. La sortie que vous générez à l’aide des services d’IA correspond à votre contenu. En raison de la nature même du machine learning, la sortie peut ne pas être unique d’un client à l’autre. De même, les services peuvent générer des résultats identiques ou similaires d’un client à l’autre. 
+
+Qu’est-ce qu’une invite ?
+
+Les invites sont un ensemble spécifique d’entrées fournies par vous, l’utilisateur. Elles guident les LLM sur Amazon Bedrock afin de générer une réponse ou une sortie appropriée pour une tâche ou une instruction donnée.
+
+ User Prompt: 
+ Who invented the airplane? 
+
+Lorsqu’il est interrogé par cette invite, Titan génère une sortie :
+
+ Output: 
+ The Wright brothers, Orville and Wilbur Wright are widely credited 
+with inventing and manufacturing the world's first successful airplane. 
+
+(Source de l'invite : AWS modèle utilisé : Amazon Titan Text)
+
+Éléments qui constituent une invite
+
+Une seule invite inclut plusieurs éléments, tels que la tâche ou l’instruction que vous souhaitez que les LLM exécutent, le contexte de la tâche (par exemple, une description du domaine concerné), des exemples de démonstration et le texte d’entrée que vous souhaitez que les LLM sur Amazon Bedrock utilisent dans leur réponse. En fonction de votre cas d’utilisation, de la disponibilité des données et de la tâche, votre invite doit combiner un ou plusieurs de ces éléments.
+
+Prenons cet exemple d’invite demandant à Titan de résumer un avis :
+
+ User Prompt: 
+ The following is text from a restaurant review:
+
+“I finally got to check out Alessandro’s Brilliant Pizza and it is now 
+one of my favorite restaurants in Seattle. The dining room has a beautiful view 
+over the Puget Sound but it was surprisingly not crowded. I ordered 
+the fried castelvetrano olives, a spicy Neapolitan-style pizza 
+and a gnocchi dish. The olives were absolutely decadent, and the pizza came 
+with a smoked mozzarella, which was delicious. The gnocchi was fresh and wonderful. 
+The waitstaff were attentive, and overall the experience was lovely. 
+I hope to return soon." 
+
+Summarize the above restaurant review in one sentence. 
+
+(Source du message : AWS)
+
+Sur la base de cette invite, Titan répond par un résumé succinct d’une ligne de l’avis formulé sur le restaurant. L’avis mentionne les faits essentiels et transmet les principaux points, comme vous le souhaitez.
+
+ Output: 
+ Alessandro's Brilliant Pizza is a fantastic restaurant in Seattle 
+with a beautiful view over Puget Sound, decadent and delicious food, 
+and excellent service. 
+
+(Modèle utilisé : Amazon Titan Text)
+
+L’instruction Summarize the above restaurant review in one
+ sentence et le texte de l’avis I finally got to check out
+ ... étaient tous deux nécessaires pour ce type de sortie. Sans l’un ou l’autre, le modèle ne disposerait pas de suffisamment d’informations pour produire un résumé sensé. L’ instruction indique au LLM ce qu’il doit faire, et le texte est l’ entrée sur laquelle le LLM agit. Le contexte ( The following is text
+ from a restaurant review ) fournit des informations supplémentaires et des mots-clés qui guident le modèle pour utiliser l’entrée lors de la formulation de sa sortie. 
+
+Dans l’exemple ci-dessous, le texte Context: Climate change threatens people
+ with increased flooding ... est l’ entrée que le LLM peut utiliser pour mener à bien la tâche consistant à répondre à la question Question: What
+ organization calls climate change the greatest threat to global health in the
+ 21st century?” . 
+
+ User prompt: 
+ Context: Climate change threatens people with increased flooding, 
+extreme heat, increased food and water scarcity, more disease, and economic loss. 
+Human migration and conflict can also be a result. The World Health Organization (WHO) 
+calls climate change the greatest threat to global health in the 21st century. 
+Adapting to climate change through efforts like flood control measures 
+or drought-resistant crops partially reduces climate change risks, 
+although some limits to adaptation have already been reached. 
+Poorer communities are responsible for a small share of global emissions, 
+yet have the least ability to adapt and are most vulnerable to climate change. 
+The expense, time required, and limits of adaptation mean its success hinge 
+on limiting global warming.
+
+Question: What organization calls climate change the greatest threat 
+to global health in the 21st century? 
+
+(Source de l’invite : https://en.wikipedia.org/wiki/Climate_change)
+
+AI21 Labs Jurassic répond avec le nom correct de l’organisation en fonction du contexte fourni dans l’invite.
+
+ Output: 
+ The World Health Organization (WHO) calls climate change 
+the greatest threat to global health in the 21st century. 
+
+(Modèle utilisé : AI21 Labs Jurassic-2 Ultra v1)
+
+Few-shot Invitation ou incitation zéro
+
+Il est parfois utile de fournir quelques exemples pour aider les LLM à mieux calibrer leur sortie afin de mieux répondre à vos attentes. C’est ce que l’on appelle également l’ invite avec peu d’exemples ou l’ apprentissage contextuel , où l’ exemple correspond à un exemple d’entrée associé à la sortie souhaitée. À titre d’illustration, voici d’abord un exemple d’invite de classification du sentiment sans exemple. Autrement dit, aucun exemple de paire entrée/sortie n’est fourni dans le texte de l’invite :
+
+ User prompt: 
+ Tell me the sentiment of the following headline and categorize it 
+as either positive, negative or neutral: 
+New airline between Seattle and San Francisco offers a great opportunity 
+for both passengers and investors. 
+
+(Source du message : AWS)
+
+ Output: 
+ Positive 
+
+(Modèle utilisé : Amazon Titan Text)
+
+Voici la version d’une invite de classification du sentiment avec peu d’exemples :
+
+ User prompt: 
+ Tell me the sentiment of the following headline and categorize it 
+as either positive, negative or neutral. Here are some examples:
+
+Research firm fends off allegations of impropriety over new technology.
+Answer: Negative
+
+Offshore windfarms continue to thrive as vocal minority in opposition dwindles.
+Answer: Positive
+
+Manufacturing plant is the latest target in investigation by state officials.
+Answer: 
+
+(Source du message : AWS)
+
+ Output: 
+ Negative 
+
+(Modèle utilisé : Amazon Titan Text)
+
+L’exemple suivant utilise des modèles Anthropic Claude. Lorsque vous optez pour des modèles Anthropic Claude, il est recommandé d’utiliser des balises <example></example> pour inclure des exemples de démonstration. Nous vous recommandons également d’utiliser différents délimiteurs tels que H: et A: dans les exemples afin d’éviter toute confusion avec les délimiteurs Human: et Assistant: pour l’ensemble de l’invite. Notez que pour le dernier exemple d’invite avec peu d’exemples, le A: final est abandonné au profit de Assistant: , ce qui invite Anthropic Claude à générer la réponse à la place.
+
+ User prompt: 
+
+ Human: Please classify the given email as "Personal" or "Commercial" related emails.
+Here are some examples.
+
+<example>
+H: Hi Tom, it's been long time since we met last time. We plan to have a party at my house this weekend. Will you be able to come over?
+A: Personal
+</example>
+
+<example>
+H: Hi Tom, we have a special offer for you. For a limited time, our customers can save up to 35% of their total expense when you make reservations within two days. Book now and save money!
+A: Commercial
+</example>
+
+H: Hi Tom, Have you heard that we have launched all-new set of products. Order now, you will save $100 for the new products. Please check our website.
+
+Assistant: 
+
+ Output: 
+ Commercial 
+
+(Source de l'invite : AWS, modèle utilisé : AnthropicClaude)
+
+Modèle d’invite
+
+Un modèle d’invite indique la mise en forme de l’invite avec un contenu échangeable. Les modèles d’invite sont des « recettes » d’utilisation des LLM pour différents cas d’utilisation tels que la classification, le résumé, la réponse aux questions, etc. Un modèle d’invite peut inclure des instructions, quelques exemples, ainsi qu’un contexte et des questions spécifiques adaptés à un cas d’utilisation donné. L’exemple suivant est un modèle que vous pouvez utiliser pour effectuer une classification du sentiment avec peu d’exemples à l’aide des modèles de texte Amazon Bedrock :
+
+ Prompt template: 
+ """Tell me the sentiment of the following 
+ { { Text Type, e.g., “restaurant review”}} and categorize it 
+as either { { Sentiment A}} or { { Sentiment B}}. 
+Here are some examples:
+
+Text: { { Example Input 1}} 
+Answer: { { Sentiment A}}
+
+Text: { { Example Input 2}}
+Answer: { { Sentiment B}}
+
+Text: { { Input}}
+Answer:""" 
+
+Les utilisateurs peuvent copier et coller ce modèle, en saisissant leur propre texte et quelques exemples pour compléter les invites lors de l’utilisation de LLM dans Amazon Bedrock. D’autres modèles sont fournis dans cette section.
+
+Note
+
+Les doubles accolades { { and }} indiquent les endroits où les informations spécifiques aux données doivent être insérées dans le modèle. Elles ne doivent pas être ajoutées dans le texte d’invite.
+
+Maintien du rappel des demandes d’inférence d’Amazon Bedrock
+
+Si vous accédez aux modèles Amazon Bedrock à l’aide d’appels d’API, sachez que les modèles ne se souviennent pas des invites et des demandes précédentes, sauf si l’interaction précédente se trouve dans l’invite actuelle. L’inclusion des invites précédentes dans une demande vous permet d’avoir des interactions de type conversationnel ou de faire des demandes de suivi.
+
+Si vous accédez aux modèles Anthropic Claude à l’aide d’appels d’API au lieu du terrain de jeu de texte Amazon Bedrock, vous devez encapsuler les invites dans un style conversationnel pour obtenir la réponse souhaitée (pour les familles de modèles Titan Text et AI21 Labs Jurassic, cela n’est pas nécessaire). L’exemple suivant illustre une invite de type conversationnel :
+
+ User prompt: 
+
+ Human: Describe where sea otters live in two sentences.
+
+Assistant: 
+
+ Output: 
+ Here is a two sentence description of where sea otters live:
+
+Sea otters live in the northern Pacific Ocean along the coasts of 
+Russia, Alaska, Canada, and the continental United States. 
+They prefer coastal habitats like rocky shores, kelp forests, 
+and estuaries where they have access to shallow, nearshore waters. 
+
+(Source de l'invite : AWS, modèle utilisé : AnthropicClaude)
+
+Remarquez comment le contenu principal de l’invite est encapsulé : \n\nHuman:
+ { { Main Content}}\n\nAssistant: . Pour les Anthropic Claude modèles, les invites envoyées via l'API doivent contenir\n\nHuman : et. 
+ \n\nAssistant: 
+
+Pour utiliser le mode conversationnel sur Titan, vous pouvez utiliser le format de User: { { }}
+ \n Bot: lorsque vous rédigez une invite pour le modèle. 
+
+ JavaScript est désactivé ou n'est pas disponible dans votre navigateur. 
+
+Pour que vous puissiez utiliser la documentation AWS, Javascript doit être activé. Vous trouverez des instructions sur les pages d'aide de votre navigateur.
+
+ Conventions de rédaction 
+
+Invocation d’un agent
+
+Qu’est-ce que l’ingénierie de requête ?
+
+Cette page vous a-t-elle été utile ? - Oui
+
+Merci de nous avoir fait part de votre satisfaction.
+
+Si vous avez quelques minutes à nous consacrer, merci de nous indiquer ce qui vous a plu afin que nous puissions nous améliorer davantage.
+
+Cette page vous a-t-elle été utile ? - Non
+
+Merci de nous avoir avertis que cette page avait besoin d'être retravaillée. Nous sommes désolés de ne pas avoir répondu à vos attentes.
+
+Si vous avez quelques minutes à nous consacrer, merci de nous indiquer comment nous pourrions améliorer cette documentation.

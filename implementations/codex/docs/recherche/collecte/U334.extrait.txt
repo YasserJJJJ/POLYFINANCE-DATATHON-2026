@@ -1,0 +1,798 @@
+Automate Investment Research Using Strands Agents on Bedrock AgentCore | AWS for Industries 
+
+ Skip to Main Content 
+
+ Filter: All 
+
+ English 
+
+ Contact us 
+
+ AWS Marketplace 
+
+ Support 
+
+ My account 
+
+ re:Invent 
+
+ Discover AWS 
+
+ Products 
+
+ Solutions 
+
+ Pricing 
+
+ Resources 
+
+ Search
+
+ Filter: All 
+
+ Sign in to console
+
+ Create account 
+
+ Explore topics 
+
+ re:Invent 2026 
+
+ The sessions are set and your seat is waiting. Register now 
+
+ Build & Deploy AI Agents 
+
+ 88% of agent pilots stall. Learn what the rest do differently 
+
+ Get started 
+
+ Sign up free, connect your coding agent, and start building 
+
+ Data for agentic AI 
+
+ The 7 essential data capabilities to scale agentic AI 
+
+ Analyst Report 
+
+ AWS named a Leader in the 2026 Gartner Magic Quadrant for SCPS 
+
+ AI for Small Businesses 
+
+ Solutions designed for your business. Delivered by AWS Partners 
+
+ News & announcements 
+
+ AWS blog 
+
+ About AWS 
+
+AWS is the world's most comprehensive cloud, enabling organizations to accelerate innovation, reduce costs, and scale more efficiently
+
+ Why AWS 
+
+ Getting Started 
+
+ Security 
+
+ Compliance 
+
+ Trust Center 
+
+ Sustainability 
+
+ Our Impact 
+
+ Global Infrastructure 
+
+ Careers 
+
+ Featured Products 
+
+ Analytics 
+
+ Application Integration 
+
+ Artificial Intelligence 
+
+ Business Applications 
+
+ Compute 
+
+ Customer Experience 
+
+ Databases 
+
+ Developer Tools 
+
+ End User Computing 
+
+ Game Tech 
+
+ Management Tools 
+
+ Media Services 
+
+ Migration & Modernization 
+
+ Multicloud & Hybrid 
+
+ Networking & Content Delivery 
+
+ Operations 
+
+ Security & Identity 
+
+ Storage 
+
+ Supply Chain 
+
+ Browse all products 
+
+ Transformation Hubs 
+
+Migrate to modernize → Modernize to unlock data → unlock data to run AI
+
+ Migrate & Modernize 
+ 
+ Clear technical debt, modernize infrastructure, and move to the cloud 
+
+ Data & Analytics 
+ 
+ Future proof your data foundation for agentic AI 
+
+ Artificial Intelligence 
+ 
+ Get production-ready AI that automates, builds, creates, decides, and engages at scale 
+
+ Featured Products 
+
+Get started with one of these featured services or browse all
+ Browse all products 
+
+ AWS Quick 
+ 
+ The AI assistant built only for work 
+
+ Transform 
+ 
+ Eliminate tech debt with agentic AI to modernize legacy systems and code 
+
+ Aurora 
+ 
+ Serverless relational database service for PostgreSQL, MySQL, and DSQL 
+
+ Amazon Bedrock 
+ 
+ The trusted platform to run inference and build agents at scale 
+
+ Amazon Connect Customer 
+ 
+ AI-native solution for delivering exceptional experiences across customer interactions 
+
+ EC2 
+ 
+ Secure and resizable compute capacity for virtually any workload 
+
+ What’s new 
+ 
+ Explore new capabilities and the latest technologies 
+
+ Customer success stories 
+ 
+ Learn how customers around the world accelerate their cloud 
+
+ Featured 
+
+ By industry 
+
+ By organization type 
+
+ Solutions Library 
+
+ Solutions for any organization 
+
+From startups to enterprises, find AWS solutions scaled to your needs. Access tailored resources, pricing models, and support levels.
+
+ Analytics Solutions 
+ 
+ Discover curated Solutions that address varied analytics use cases 
+
+ AI Solutions 
+ 
+ Discover curated Solutions that address varied artificial intelligence use cases 
+
+ Migration & Modernization Solutions 
+ 
+ Discover curated Solutions that address varied migration and modernization use cases 
+
+ What's new 
+ 
+ Explore new capabilities and the latest technologies 
+
+ Customer success stories 
+ 
+ Learn how customers around the world accelerate their cloud 
+
+ Pricing overview & tools 
+
+ AWS Pricing 
+ 
+ Learn about pricing and plans in one place 
+
+ AWS Pricing Calculator 
+ 
+ Estimate the cost for your architecture solution 
+
+ AWS Free Tier 
+ 
+ Get free, hands-on experience with AWS products and services 
+
+ AWS Offers 
+ 
+ Explore different offer programs to gain hands-on experience 
+
+ AWS Savings Plans 
+ 
+ Flexible pricing model offering lower prices 
+
+ Single-product pricing 
+
+ Amazon S3 
+
+ Amazon Bedrock 
+
+ Amazon RDS 
+
+ Amazon EC2 
+
+ Amazon SageMaker 
+
+ Browse all product pricing 
+
+ Learn 
+
+ Documentation 
+ 
+ Get detailed technical guides and references for all AWS services and tools 
+
+ Training & Certification 
+ 
+ Build and validate your AWS cloud skills and technical expertise 
+
+ Cloud term glossary 
+ 
+ Learn more about key cloud computing concepts 
+
+ Whitepapers 
+ 
+ Expand your knowledge of the cloud with expert guides and diagrams 
+
+ Cloud fundamentals 
+ 
+ Step-by-step instructions for common AWS tasks 
+
+ Tutorials 
+ 
+ Get started with step-by-step instructions 
+
+ Connect & Support 
+
+ Builder Center 
+ 
+ Learn, build, and connect with builders in the AWS community 
+
+ Events and webinars 
+ 
+ Connect, collaborate, and learn from AWS experts in the cloud computing community 
+
+ Partner Network 
+ 
+ Collaborate with AWS partners to grow your business 
+
+ Marketplace 
+ 
+ Find, test, buy, and deploy third-party software 
+
+ Support 
+ 
+ Access proactive guidance, issue resolution, and helpful tools 
+
+ Professional services 
+ 
+ Accelerate business transformation with expert guidance and packaged solutions 
+
+AWS Blogs
+
+ Home 
+
+ Blogs 
+
+ Editions 
+
+ AWS for Industries 
+
+Automate Investment Research Using Strands Agents on Bedrock AgentCore
+
+ by Ronny Rodriguez, Abhay Gwaliorkar, Arun Batra, Kiran Lakkireddy, and Mastan Shaik on 29 APR 2026 in Amazon Bedrock AgentCore , Financial Services , Industries Permalink Share 
+
+Transform weeks of manual financial analysis into minutes of intelligent, automated research using AI agent orchestration
+
+Investment research teams in financial services face an increasingly complex challenge: the exponential growth of market data has far outpaced traditional analysis capabilities. Research analysts spend 60-80% of their time on manual data gathering and basic calculations, leaving limited bandwidth for strategic insights and decision-making. Meanwhile, market volatility demands faster, more accurate analysis to capitalize on opportunities and mitigate risks.
+
+This post shows you how to build an AI-powered investment research platform using the Strands agents -multi-agent framework deployed on Amazon Bedrock AgentCore . This solution transforms traditional research workflows by orchestrating six specialized AI agents that collaborate intelligently to process 10 years of historical market data, integrate real-time news and technical analysis, and generate professional-grade research reports.
+
+The Business challenges
+
+Traditional investment research workflows suffer from several critical limitations that compound in today’s fast-paced financial markets:
+
+ Manual data bottlenecks: Analysts spend hours researching from financial databases, news sources, and regulatory filings before analysis can even begin. This creates resource allocation bottlenecks that delay the entire research process.
+
+ Limited processing capacity: Human analysis inherently misses subtle patterns or correlations across vast amounts of historical data. The cognitive capacity for processing large datasets is limited, leading to incomplete insights.
+
+ Inconsistent methodologies: Different analysts use varying approaches and experience levels, leading to inconsistent conclusions. This makes it difficult for investment committees to make confident decisions based on disparate analysis quality.
+
+ Time-intensive workflows: By the time comprehensive research is complete, market conditions may have shifted, reducing the relevance and actionability of the findings. Extended analysis cycles create a lag between market developments and research completion.
+
+These challenges are particularly acute for mid-market investment firms that need institutional-quality research capabilities but lack the resources of larger organizations.
+
+Solution overview
+
+Our solution addresses these challenges through an intelligent, scalable architecture that orchestrates multiple specialized AI agents using the Strands multi-agent framework deployed on Amazon Bedrock AgentCore. The platform combines the analytical power of Amazon Bedrock’s foundation models with AWS’s robust data processing and storage capabilities.
+
+Architecture Overview
+
+The following diagram illustrates the comprehensive AWS-based architecture:
+
+The diagram shows the AI-Powered Investment Research Platform Architecture:
+
+ User Journey:  Financial professionals access a React frontend that authenticates through Amazon Cognito and routes requests via API Gateway to the core AI processing engine.
+
+ AI Processing Core:  Amazon Bedrock AgentCore hosts the multi-agent AI system that orchestrates specialized agents to analyze financial data, generate insights, and create professional research reports.
+
+ Data Sources:  The system combines historical market data (10 years stored in Amazon Simple Storage Service (S3) with real-time market information from external APIs to provide comprehensive, up-to-date financial analysis.
+
+Specialized agents
+
+The solution implements six specialized Strands agents, each optimized for specific aspects of financial research:
+
+ Strategic Planner Agent: Analyzes incoming research requests and creates detailed execution plans, coordinating the work of all other agents
+
+ Financial Analyst Agent: Embodies 10+ years of investment research experience with deep expertise across multiple asset classes
+
+ Coding Interpreter: Generates high-quality Python code for complex financial calculations, data processing, and AWS service integration
+
+ Chart Generation Agent: Creates publication-quality financial visualizations that communicate complex concepts clearly
+
+ Market Data Agent: Processes comprehensive historical datasets with expertise in quantitative analysis using modern tools like Polars
+
+ Quality Assurance Agent: Rigorously evaluates all outputs to ensure accuracy, completeness, and professional standards
+
+Architecture benefits
+
+The Strands multi-agent patterns Graph and Swarm provide several key advantages:
+
+ Intelligent collaboration: Agents can request specific assistance from other agents based on their analysis needs, mirroring how human research teams collaborate on complex projects.
+
+ Sophisticated orchestration: Built-in timeout management, repetitive handoff detection, and quality gates ensure reliable operation even with complex, long-running analysis tasks.
+
+ Scalable processing: The system can handle multiple concurrent research requests while maintaining consistent quality and performance.
+
+ Enterprise security: All processing occurs within the secure AWS environment with comprehensive audit trails and compliance documentation.
+
+Implementation walkthrough
+
+Let’s walk through the key implementation steps to build this solution.
+
+Step 1: Implement market data tools and code execution
+
+This step creates the specialized tools that agents use to access real-time market data and execute complex calculations. These tools extend the agents’ capabilities beyond text generation to include data access and computation.
+
+ What this step accomplishes: 
+
+Provides agents with access to real-time market information
+
+Enables secure Python code execution within AWS
+
+Creates the foundation for data-driven financial analysis
+
+ How this step enables the solution: 
+
+ These tools transform the agents from text-only AI into powerful research assistants that can access live market data and perform complex calculations. The news tool provides real-time market context, while the code execution tool enables sophisticated data analysis and visualization generation.
+
+ Github code reference - https://github.com/aws-samples/sample-genai-market-data-analysis/blob/main/aws_tools/all_tools.py 
+
+Step 2: Initialize foundation models and create specialized agents
+
+This step establishes the AI foundation by configuring different Bedrock models for specific tasks and creating specialized agents with distinct capabilities.
+
+ What this step accomplishes: 
+
+Sets up multiple foundation models optimized for different work
+
+Creates specialized agents that act like expert team members
+
+Defines the tools and capabilities that each agent can access
+
+ How this enables the solution: 
+
+ Each agent specializes in a specific domain (analysis, coding, visualization), allowing the system to handle complex research tasks that require multiple types of expertise. It matches the different foundation models to tasks they excel at:Claude for reasoning, GPT for coding, Nova for quality control.
+
+ Github code reference -https://github.com/aws-samples/sample-genai-market-data-analysis/blob/main/aws_agents/all_agents.py 
+
+Step 3: Configure intelligent agent orchestration
+
+This step sets up the Swarm orchestration system that enables agents to collaborate intelligently while preventing common multi-agent problems like infinite loops or unproductive handoffs.
+
+ What this step accomplishes: 
+
+Creates a collaborative environment where agents can work together
+
+Implements safeguards to ensure reliable operation
+
+Establishes a workflow that mirrors human research team collaboration
+
+ How this step enables the solution: 
+
+ The Swarm orchestration allows agents to collaborate like a human research team – the financial analyst can request specific calculations from the coding agent, who can then ask the chart agent to visualize results, while the critic agent ensures quality throughout. The safeguards prevent the system from getting stuck while allowing sufficient time for complex analysis.
+
+ Github code reference - https://github.com/aws-samples/sample-genai-market-data-analysis/blob/main/main.py 
+
+Step 4: Deploy to Bedrock AgentCore runtime
+
+This step deploys the multi-agent system to Amazon Bedrock AgentCore, which provides the secure, scalable runtime environment and handles integration with AWS services.
+
+ What this step accomplishes: 
+
+Creates a production-ready deployment environment
+
+Enables secure access from front-end applications
+
+Provides the main entry point for research requests
+
+ How this step enables the solution: 
+
+ Bedrock AgentCore provides enterprise-grade hosting for the multi-agent system with built-in security, scalability, and AWS service integration. The entry point function serves as the bridge between user requests and the AI research team, ensuring each request includes proper context and returns professional research output.
+
+ Github code reference - https://github.com/aws-samples/sample-genai-market-data-analysis/blob/main/main.py 
+
+Step 5: Configure high-performance data processing
+
+This step shows how agents process large-scale historical market data using the S3 data lake and Polars for high-performance analytics. This capability enables analysis across decades of market data in seconds.
+
+ What this step accomplishes: 
+
+Enables processing of massive historical datasets (10+ years of market data)
+
+Provides high-performance analytics using the Polars library
+
+Demonstrates integration between agents and an AWS S3 data lake
+
+ How this step enables the solution: 
+
+ This high-performance data processing capability allows the Market Data Agent to analyze massive datasets quickly. Instead of spending days manually processing data, agents can analyze 10 years of market history in seconds, enabling sophisticated analyses like portfolio optimization, risk assessment, and correlation studies that would be impractical with manual methods.
+
+Github code reference:
+
+ https://github.com/aws-samples/sample-genai-market-data-analysis/blob/main/aws_tools/all_tools.py#L26 
+
+ https://github.com/aws-samples/sample-genai-market-data-analysis/blob/main/aws_prompts/prompt.py#L135 
+
+Step 6: Build professional front-end integration
+
+This last step creates the user-facing application that financial professionals use to interact with the AI research team. The React/Next.js frontend provides a professional interface while securely connecting to the Bedrock AgentCore backend.
+
+ What this step accomplishes: 
+
+Creates a professional financial services user interface
+
+Enables secure communication with the AI agents
+
+Provides real-time streaming responses for long-running analyses
+
+ How this enables the solution: 
+
+ The frontend integration completes the end-to-end solution by providing financial professionals with an intuitive interface to access the AI research team. Users can ask complex research questions in natural language and receive comprehensive analysis with charts, data, and insights – all delivered through a professional, secure web application that meets financial services standards.
+
+ GitHub Code Reference 
+
+Results and benefits
+
+This example shows the AI-powered investment research platform’s ability to automatically generate comprehensive comparative analysis between VTI and SGOV ETFs, including performance metrics, risk analysis, and professional visualizations. The system processed 18 days of market data from S3, calculated key financial metrics (Sharpe ratio, volatility, correlation), and produced publication-quality charts – all within minutes rather than the days typically required for manual analysis.
+
+Organizations implementing this AI-powered research platform have achieved significant measurable improvements:
+
+ Business impact 
+
+ Portfolio Risk Analysis: Complete correlation analysis across 10 years of data, identify market downturn patterns, and generate hedging recommendations in 15 minutes versus 2-3 days manually.
+
+ Cost optimization 
+
+Customers will see potential cost savings through improved operational efficiency and consolidated research tools and data sources
+
+Getting started
+
+To implement this solution in your organization, follow these steps:
+
+ Prerequisites 
+
+AWS account with Amazon Bedrock model access (Claude 3.7 Sonnet or newer versions, openai.gpt-oss-120b-1:0, Nova Premier, Llama 4 Maverick)
+
+S3 data lake with historical market data in Parquet format
+
+Python 3.10 or later
+
+IAM roles configured for Bedrock Agent execution, S3 access, and Cognito authentication
+
+API credentials for a financial news service –
+
+ API_KEY = "your_api_key_here"
+
+API_BASE_URL = "https://api.newsservice.com" # Replace with actual news API base URL
+
+response = requests.get( f'{API_BASE_URL}/news/{stock_symbol}',
+
+headers={'X-API-KEY': API_KEY} 
+
+ Deployment steps 
+
+ 1. Clone the repository 
+
+ git clone https://github.com/aws-samples/sample-genai-market-data-analysis 
+
+ 2. Set up Strands agents and AgentCore backend 
+
+Navigate to the main project folder and set up the Python environment:
+
+ # Create and activate virtual environment
+python3 -m venv venv
+source venv/bin/activate
+# Install required dependencies
+pip install -r requirements.txt
+
+Create environment configuration file:
+
+ # Create .env file with your S3 bucket configuration
+cat > .env << EOF
+S3_CHART_BUCKET=s3://your-chart-storage-bucket
+MARKET_API_KEY=your-market-data-api-key
+AWS_REGION=us-east-1
+EOF
+
+ 3. Set up the React/Next.js frontend 
+
+Navigate to the frontend directory:
+
+ cd frontend
+npm install
+
+Configure frontend environment variables:
+
+ # Create .env.local file for frontend configuration
+
+cat > .env.local << EOF
+
+NEXT_PUBLIC_BEDROCK_AGENT_ID=your-agent-id
+
+NEXT_PUBLIC_BEDROCK_AGENT_ALIAS_ID=your-agent-alias-id
+
+NEXT_PUBLIC_IDENTITY_POOL_ID=your-cognito-identity-pool-id
+
+EOF 
+
+ 4. Run the application locally 
+
+Start the Bedrock AgentCore backend:
+
+ # From the main project directory
+source venv/bin/activate
+python main.py
+
+Start the frontend development server:
+
+ # From the frontend directory
+
+npm run dev 
+
+Open http://localhost:3000 in your browser to access the application.
+
+ 5. Production deployment 
+
+Build the frontend for production:
+
+ cd frontend
+
+npm run build
+
+npm start 
+
+Deploy to AWS – use document for reference
+
+Configure AWS credentials and deploy AgentCore using AWS CDK or CloudFormation 
+
+ https://aws.amazon.com/blogs/machine-learning/build-ai-agents-with-amazon-bedrock-agentcore-using-aws-cloudformation/ 
+
+ https://github.com/awslabs/agentcore-samples/blob/main/04-infrastructure-as-code/cdk/README.md 
+
+Deploy frontend to AWS Amplify or S3 + CloudFront 
+
+ https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/deploy-a-react-based-single-page-application-to-amazon-s3-and-cloudfront.html 
+
+Set up Amazon Cognito for authentication 
+
+ https://builder.aws.com/content/2f11EvjRicbA6w1mJOoXKQsR33J/getting-started-with-aws-cognito-for-authentication 
+
+Configure S3 buckets for data lake and chart storage 
+
+ https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html 
+
+Additional Resources
+
+Explore Strands Framework: Visit the Strands documentation to understand the multi-agent framework capabilities and advanced orchestration features.
+
+Learn Amazon Bedrock AgentCore: Review the Bedrock AgentCore documentation for deployment patterns and runtime configuration.
+
+Study Multi-Agent Examples: Explore Strands examples repository for multi-agent collaboration patterns and best practices.
+
+Review Bedrock Integration: Check the AWS Bedrock AgentCore samples for deployment and integration examples.
+
+Conclusion
+
+The AI-powered investment research platform shows how Strands agents deployed on Amazon Bedrock AgentCore can transform financial analysis workflows. By orchestrating specialized AI agents through intelligent collaboration systems, organizations achieve dramatic improvements in research productivity while maintaining the accuracy and compliance standards required in financial services.
+
+The multi-agent architecture enables sophisticated task decomposition that mirrors human research teams, while AWS integration provides enterprise-scale security and compliance. Organizations can now deliver comprehensive analysis in minutes rather than days, changing how investment decisions are made.
+
+This solution represents a significant step forward in applying artificial intelligence to solve complex financial analysis challenges, enabling organizations to deliver better investment outcomes through more comprehensive, accurate, and timely research capabilities.
+
+Ronny Rodriguez
+
+Ronny Rodriguez is a Senior Technical Program Manager for the Financial Service Industry, passionate about containers and serverless technology. He is a former Lead Cloud Engineer at large financial corporation and helped other companies to migrate and succeed in the public cloud.
+
+Abhay Gwaliorkar
+
+Abhay is a Senior Solutions Architect at Amazon Web Services (AWS), partnering with organizations to architect and deliver transformative cloud solutions. Abhay's core focus lies in the Financial Services sector, guiding enterprises through complex cloud migrations and application modernization initiatives.
+
+Arun Batra
+
+Arun Batra is a Senior Solutions Architect at AWS, with expertise in financial institutions to architect and deliver innovative cloud transformation’s solutions. With a deep focus on enterprise cloud migrations, Arun helps organizations navigate complex modernizations journeys, helping customers accelerate their digital transformation.
+
+Kiran Lakkireddy
+
+Kiran Lakkireddy is a Sr. SA Manager at AWS specializing in Enterprise Architecture and AI Strategy & Governance. He has deep expertise in Financial Services, Benefits Management, and HR Services, leading teams that guide enterprise customers through complex business and technology transformations. Kiran regularly advises customer security leaders on responsible AI strategies, helping organizations safely adopt Generative and Agentic AI while maintaining the highest standards of security, compliance, and governance.
+
+Mastan Shaik
+
+Mastan Shaik is a Senior Solutions Architect at AWS, specializing in enterprise cloud migrations and distributed systems architecture. He provides strategic guidance to Fortune 500 clients across financial services, with expertise in Analytics, GenAI implementation, and cloud-native solutions. Mastan focuses on helping organizations optimize their cloud infrastructure while maintaining security and compliance standards. He regularly advises C-level executives on cloud transformation strategies, GenAI adoption frameworks, and leads technical workshops on AWS best practices.
+
+Resources
+
+ AWS for Industry 
+
+ AWS Events 
+
+ AWS Training & Certification 
+
+ AWS Whitepapers 
+
+ AWS Compliance Reports 
+
+Follow
+
+  Twitter 
+
+  Facebook 
+
+  LinkedIn 
+
+  Twitch 
+
+  Email Updates 
+
+ Create an AWS account 
+
+Learn
+
+ What Is AWS? 
+
+ What Is Cloud Computing? 
+
+ What Is Agentic AI? 
+
+ Cloud Computing Concepts Hub 
+
+ AWS Cloud Security 
+
+ What's New 
+
+ Blogs 
+
+ Press Releases 
+
+ Careers 
+
+Resources
+
+ Getting Started 
+
+ Training 
+
+ AWS Trust Center 
+
+ AWS Solutions Library 
+
+ Architecture Center 
+
+ Product and Technical FAQs 
+
+ Analyst Reports 
+
+ AWS Partners 
+
+Developers
+
+ Builder Center 
+
+ SDKs & Tools 
+
+ .NET on AWS 
+
+ Python on AWS 
+
+ Java on AWS 
+
+ PHP on AWS 
+
+ JavaScript on AWS 
+
+Help
+
+ Contact Us 
+
+ File a Support Ticket 
+
+ AWS re:Post 
+
+ Knowledge Center 
+
+ AWS Support Overview 
+
+ AWS Accessibility 
+
+ Legal 
+
+ Event Code of Conduct 
+
+ Event Terms & Conditions 
+
+ English 
+
+ Back to top 
+
+ Amazon is an equal opportunity employer and does not discriminate on the basis of protected veteran status, disability or other legally protected status. Veterans, military spouses, and people with disabilities are encouraged to apply. 
+
+ x
+
+ facebook
+
+ linkedin
+
+ instagram
+
+ twitch
+
+ youtube
+
+ podcasts
+
+ email
+
+ Privacy 
+
+ Site terms 
+
+ Your Privacy Choices 
+
+ California Consumer Privacy Act (CCPA) Opt-Out Icon
+
+ Cookie Preferences 
+
+ © 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.

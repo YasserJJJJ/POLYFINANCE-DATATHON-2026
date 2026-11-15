@@ -1,0 +1,139 @@
+
+
+## PAGE 1
+
+Event dashboard
+Démarrages rapides
+Bucket S3
+Bucket S3
+Amazon S3 stocke vos données et vos ﬁchiers : séries de prix, rapports annuels pour une base de connaissances, résultats intermédiaires, exportation de votre
+travail.
+Toutes les commandes de cette page s'exécutent dans AWS CloudShell 
+, déjà authentiﬁé dans le compte de votre équipe.
+Les noms de bucket sont uniques dans tout AWS. Ces commandes ajoutent votre numéro d'équipe et l'identiﬁant de votre compte pour éviter les conﬂits :
+Remplacez NN par votre numéro d'équipe. Notez le nom affiché : la variable BUCKET disparaît quand vous fermez CloudShell. Pour la redéﬁnir dans une nouvelle
+session, relancez seulement la première ligne.
+Les quatre paramètres doivent être à true.
+La dernière commande sert à exporter votre travail avant la fermeture des comptes, le lundi 16 novembre à 13 h 59. Voir Nettoyage et exportation.
+S3 n'a pas de vrais dossiers : les préﬁxes y ressemblent seulement. Une convention reste utile :
+raw/ contient les données telles que téléchargées et ne change pas.
+processed/ contient les données dérivées (rendements, indicateurs).
+documents/ alimente une base de connaissances ou l'extraction de documents : rapports annuels, 10-K, communiqués de résultats.
+Un préﬁxe par table (raw/prices_daily/, raw/fx_rates/) permet à Athena de traiter chaque préﬁxe comme une table. Athena écrit ses résultats de requête
+où vous le lui indiquez : un préﬁxe séparé athena-results/ les garde à part.
+La console S3 
+ fait la même chose avec Create bucket. Laissez Block all public access coché et les autres paramètres par défaut. Avant de commencer, vériﬁez que
+la région affichée en haut à droite est N. Virginia (us-east-1).
+Trouver des données ﬁnancières publiques
+Interroger vos données avec Athena : du SQL directement sur ces ﬁchiers
+Construire une base de connaissances : poser des questions sur vos rapports annuels
+Extraire des chiffres de documents avec Bedrock Data Automation
+Créer un bucket S3
+Le créer
+export BUCKET=datathon-equipe-NN-$(aws sts get-caller-identity --query Account --output text)
+aws s3 mb s3://$BUCKET --region us-east-1
+echo $BUCKET
+1
+2
+3
+Le blocage de l'accès public (Block Public Access) est activé par défaut et doit le rester. Voir Utilisation responsable. Pour le vériﬁer :
+aws s3api get-public-access-block --bucket $BUCKET
+1
+Déposer et récupérer des fichiers
+# Un fichier
+aws s3 cp ./prices_daily.csv s3://$BUCKET/raw/prices_daily/
+# Un dossier complet
+aws s3 sync ./documents/ s3://$BUCKET/documents/
+# Voir le contenu
+aws s3 ls s3://$BUCKET/ --recursive --human-readable
+# Récupérer
+aws s3 cp s3://$BUCKET/raw/prices_daily/prices_daily.csv ./
+aws s3 sync s3://$BUCKET/ ./sauvegarde/
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+Une organisation des dossiers qui aide
+aws s3 cp ./prices_daily.csv          s3://$BUCKET/raw/prices_daily/
+aws s3 cp ./fx_rates.csv              s3://$BUCKET/raw/fx_rates/
+aws s3 cp ./returns_monthly.parquet   s3://$BUCKET/processed/returns_monthly/
+aws s3 cp ./rapport-annuel-2025.pdf   s3://$BUCKET/documents/
+1
+2
+3
+4
+Depuis Python
+import boto3
+s3 = boto3.client("s3", region_name="us-east-1")
+BUCKET = "datathon-equipe-NN-123456789012"  # le nom affiché par echo $BUCKET
+s3.upload_file("prices_daily.csv", BUCKET, "raw/prices_daily/prices_daily.csv")
+response = s3.list_objects_v2(Bucket=BUCKET, Prefix="raw/")
+for obj in response.get("Contents", []):
+    print(obj["Key"], obj["Size"])
+s3.download_file(BUCKET, "raw/prices_daily/prices_daily.csv", "copie-locale.csv")
+# Lire un fichier directement en mémoire, sans l'écrire sur le disque
+body = s3.get_object(Bucket=BUCKET, Key="raw/prices_daily/prices_daily.csv")["Body"].read()
+print(body.decode("utf-8")[:200])
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+Si vous préférez la console
+Et ensuite
+Previous
+Next
+Accès AWS CLI et SDK
+L'IA générative sur AWS
+Votre premier appel de modèle
+Choisir un modèle
+Garde-fous
+Bases de connaissances et RAG
+Data Automation
+Construire des agents
+Fonctionnement des agents
+Strands Agents
+Amazon Bedrock AgentCore
+MCP
+Démarrages rapides
+Bucket S3
+Assistants de code IA
+Kiro
+Claude Code sur Bedrock
+Codex sur Bedrock
+Données ﬁnancières publiques
+Nettoyage et exportation
+Ressources
+AWS account access
+Open AWS console
+(us-east-1)
+Get AWS CLI credentials
+Share feedback
+Workshop catalog in AWS Builder
+Center
+Exit event
+AWS Workshop Studio
+adamlarhlimi2006
+© 2008 - 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+Privacy policy
+Terms of use
+Cookie preferences

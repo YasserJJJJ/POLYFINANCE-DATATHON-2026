@@ -1,0 +1,538 @@
+How Morningstar built a financial advisor AI assistant powered by Amazon Bedrock AgentCore | AWS for Industries 
+
+ Skip to Main Content 
+
+ Filter: All 
+
+ English 
+
+ Contact us 
+
+ AWS Marketplace 
+
+ Support 
+
+ My account 
+
+ re:Invent 
+
+ Discover AWS 
+
+ Products 
+
+ Solutions 
+
+ Pricing 
+
+ Resources 
+
+ Search
+
+ Filter: All 
+
+ Sign in to console
+
+ Create account 
+
+ Explore topics 
+
+ re:Invent 2026 
+
+ The sessions are set and your seat is waiting. Register now 
+
+ Build & Deploy AI Agents 
+
+ 88% of agent pilots stall. Learn what the rest do differently 
+
+ Get started 
+
+ Sign up free, connect your coding agent, and start building 
+
+ Data for agentic AI 
+
+ The 7 essential data capabilities to scale agentic AI 
+
+ Analyst Report 
+
+ AWS named a Leader in the 2026 Gartner Magic Quadrant for SCPS 
+
+ AI for Small Businesses 
+
+ Solutions designed for your business. Delivered by AWS Partners 
+
+ News & announcements 
+
+ AWS blog 
+
+ About AWS 
+
+AWS is the world's most comprehensive cloud, enabling organizations to accelerate innovation, reduce costs, and scale more efficiently
+
+ Why AWS 
+
+ Getting Started 
+
+ Security 
+
+ Compliance 
+
+ Trust Center 
+
+ Sustainability 
+
+ Our Impact 
+
+ Global Infrastructure 
+
+ Careers 
+
+ Featured Products 
+
+ Analytics 
+
+ Application Integration 
+
+ Artificial Intelligence 
+
+ Business Applications 
+
+ Compute 
+
+ Customer Experience 
+
+ Databases 
+
+ Developer Tools 
+
+ End User Computing 
+
+ Game Tech 
+
+ Management Tools 
+
+ Media Services 
+
+ Migration & Modernization 
+
+ Multicloud & Hybrid 
+
+ Networking & Content Delivery 
+
+ Operations 
+
+ Security & Identity 
+
+ Storage 
+
+ Supply Chain 
+
+ Browse all products 
+
+ Transformation Hubs 
+
+Migrate to modernize → Modernize to unlock data → unlock data to run AI
+
+ Migrate & Modernize 
+ 
+ Clear technical debt, modernize infrastructure, and move to the cloud 
+
+ Data & Analytics 
+ 
+ Future proof your data foundation for agentic AI 
+
+ Artificial Intelligence 
+ 
+ Get production-ready AI that automates, builds, creates, decides, and engages at scale 
+
+ Featured Products 
+
+Get started with one of these featured services or browse all
+ Browse all products 
+
+ AWS Quick 
+ 
+ The AI assistant built only for work 
+
+ Transform 
+ 
+ Eliminate tech debt with agentic AI to modernize legacy systems and code 
+
+ Aurora 
+ 
+ Serverless relational database service for PostgreSQL, MySQL, and DSQL 
+
+ Amazon Bedrock 
+ 
+ The trusted platform to run inference and build agents at scale 
+
+ Amazon Connect Customer 
+ 
+ AI-native solution for delivering exceptional experiences across customer interactions 
+
+ EC2 
+ 
+ Secure and resizable compute capacity for virtually any workload 
+
+ What’s new 
+ 
+ Explore new capabilities and the latest technologies 
+
+ Customer success stories 
+ 
+ Learn how customers around the world accelerate their cloud 
+
+ Featured 
+
+ By industry 
+
+ By organization type 
+
+ Solutions Library 
+
+ Solutions for any organization 
+
+From startups to enterprises, find AWS solutions scaled to your needs. Access tailored resources, pricing models, and support levels.
+
+ Analytics Solutions 
+ 
+ Discover curated Solutions that address varied analytics use cases 
+
+ AI Solutions 
+ 
+ Discover curated Solutions that address varied artificial intelligence use cases 
+
+ Migration & Modernization Solutions 
+ 
+ Discover curated Solutions that address varied migration and modernization use cases 
+
+ What's new 
+ 
+ Explore new capabilities and the latest technologies 
+
+ Customer success stories 
+ 
+ Learn how customers around the world accelerate their cloud 
+
+ Pricing overview & tools 
+
+ AWS Pricing 
+ 
+ Learn about pricing and plans in one place 
+
+ AWS Pricing Calculator 
+ 
+ Estimate the cost for your architecture solution 
+
+ AWS Free Tier 
+ 
+ Get free, hands-on experience with AWS products and services 
+
+ AWS Offers 
+ 
+ Explore different offer programs to gain hands-on experience 
+
+ AWS Savings Plans 
+ 
+ Flexible pricing model offering lower prices 
+
+ Single-product pricing 
+
+ Amazon S3 
+
+ Amazon Bedrock 
+
+ Amazon RDS 
+
+ Amazon EC2 
+
+ Amazon SageMaker 
+
+ Browse all product pricing 
+
+ Learn 
+
+ Documentation 
+ 
+ Get detailed technical guides and references for all AWS services and tools 
+
+ Training & Certification 
+ 
+ Build and validate your AWS cloud skills and technical expertise 
+
+ Cloud term glossary 
+ 
+ Learn more about key cloud computing concepts 
+
+ Whitepapers 
+ 
+ Expand your knowledge of the cloud with expert guides and diagrams 
+
+ Cloud fundamentals 
+ 
+ Step-by-step instructions for common AWS tasks 
+
+ Tutorials 
+ 
+ Get started with step-by-step instructions 
+
+ Connect & Support 
+
+ Builder Center 
+ 
+ Learn, build, and connect with builders in the AWS community 
+
+ Events and webinars 
+ 
+ Connect, collaborate, and learn from AWS experts in the cloud computing community 
+
+ Partner Network 
+ 
+ Collaborate with AWS partners to grow your business 
+
+ Marketplace 
+ 
+ Find, test, buy, and deploy third-party software 
+
+ Support 
+ 
+ Access proactive guidance, issue resolution, and helpful tools 
+
+ Professional services 
+ 
+ Accelerate business transformation with expert guidance and packaged solutions 
+
+AWS Blogs
+
+ Home 
+
+ Blogs 
+
+ Editions 
+
+ AWS for Industries 
+
+How Morningstar built a financial advisor AI assistant powered by Amazon Bedrock AgentCore
+
+ by Kishore Nair, Mani Yamaraja, CFA, Michael Krumpe, and Vivian Lai on 28 SEP 2026 in Amazon Bedrock AgentCore , Amazon Bedrock Guardrails , AWS Quick Sight , Financial Services , Industries Permalink Share 
+
+Financial advisors spend hours each morning assembling client context that includes portfolio reviews, risk assessments, research updates and compliance checks before a single client conversation begins. Multiply that across a full book of business, and the prep work crowds out the advisory work itself. In this post, we show how Morningstar built an AI assistant into its Direct Advisory Suite (DAS) that handles this multi-step preparation through a conversational interface, powered by Amazon Bedrock AgentCore . You’ll learn how Morningstar designed the agentic orchestration, enforced guardrails, enabled comprehensive audit trails for a regulated environment, and deployed a production system that keeps the advisor in control while automating the research-to-action workflow.
+
+About Direct Advisory Suite at Morningstar
+
+Working with AWS, Morningstar is bringing that agentic experience into its Direct Advisory Suite, a financial advisor platform for investment research, portfolio construction, client reporting, and proposal generation. The assistant helps advisors move from request to analysis, then to a next best action through a conversational interface grounded in Morningstar’s data, research, and workflow tools. The assistant also personalizes every response to the advisor’s client book of investments and preferences. The goal was to shift from chat to a system that plans multi-step work, invokes entitled backend services, maintains context across turns, and keeps the advisor in control with explainable outputs and full audit trails.
+
+To meet production environment demands, Morningstar chose to build this agentic capability on Amazon Bedrock AgentCore , providing Morningstar with AgentCore Runtime, a managed, session-aware runtime inside a microVM with session isolation, VPC networking, custom JSON Web Token (JWT) authorization, durable memory, and telemetry built in. Having an isolated microVM for the agent gives dedicated resources to the agent, not in a shared space with other competing agents. AgentCore Runtime then handles load for requests and scales out the microVMs and scales back as needed. Per agent VPC networking gives Morningstar the ability to define the scope in which the agent can access resources within the private cloud environment such as its ability to talk to datasources with a VPC endpoint, or even isolate the agent from outside networks. This allows the engineering team to focus on building agent logic that is valuable to advisors, rather than managing the infrastructure. Morningstar leverages Amazon Bedrock Guardrails to evaluate both advisor input and the agent output to determine the appropriate interventions by the system.
+
+Under the hood: agentic orchestration
+
+In an agentic orchestration pattern, the agent interprets a request, breaks it down into a sequence of steps, and then iteratively executes those steps, adjusting as needed, until the desired outcome is achieved.
+
+Morningstar designed the assistant around an agentic orchestration pattern to:
+
+ Plan the work while retaining context: Interpret an advisor’s request and decompose it into steps, such as retrieving client context, analyzing holdings, and checking relevant research updates, to meet the advisor’s needs.
+
+ Use approved tools and provide an audit trail: Invoke specific backend services (Morningstar research data, proprietary portfolio analytics, and report generation meeting FINRA requirements) through governed and entitled tool interfaces. Capture details of tool calls, steps, latency, errors, and output quality signals allowing the team to monitor and improve the system.
+
+ Keep a Human-in-the-loop: The advisor is in control by presenting recommendations, rationale, and source context for review rather than treating the agent as an autonomous financial decision-maker.
+
+What the AI assistant helps advisors do
+
+When an advisor logs into Direct Advisory Suite, much of the work is already done. The assistant has imported client accounts and portfolios from custodians and other partners, ensuring that the book of business is current. It has also pulled the latest holdings, prices, ratings, and research; and then, reconciled positions and recalculated risk scores. The agentic assistant has also matched every rating change and news item against each client’s holdings and quantified the impact across portfolios and AUM. Assembling this manually would take an advisor and their assistant several hours every morning. Now, with the AI assistant, the advisor starts not by asking questions but by acting on the prepared analysis.
+
+Consider some examples. When Morningstar downgrades a fund in the advisor’s portfolio, the assistant has already matched that rating change against every portfolio overnight, showing exactly which clients and how much AUM are affected. The advisor can then generate talking points, compare alternatives, and build a switch proposal across all affected portfolios. If a client’s risk score drifts out of alignment, the assistant ranks clients by severity and shows the direction and magnitude of drift, enabling the advisor to more easily create a rebalancing proposal. For market news tied to actual holdings, the assistant quantifies dollar impact across clients who hold the affected names, assisting the advisor with drafting client-ready commentary or adjusting exposure. Before a client meeting, the assistant assembles portfolio context, notable changes, and relevant research into a meeting-ready brief. The assistant even handles support issues: a background agent captures the context and routes tickets to the right engineering team without interrupting the advisor’s workflow.
+
+ Figure 1: An example of the internal Advisor portal that gives the advisor a view of financial market changes and news that are tied to their client’s portfolio. The top half of the screen displays relevant ratings changes to funds in the client’s portfolios and drift in client risk score. The bottom half provides relevant news and research articles for the advisor’s practice. 
+
+To summarize, the AI assistant acts as a guided workflow layer and is not a replacement for the advisor. In addition to this frontend agentic workflow layer, there are two patterns of backend agents that operate: proactive agents that run alerts and book-impact analysis on a schedule, and a background agent that routes support issues to engineering off-canvas.
+
+Architecture and AgentCore components in production
+
+The architecture centers on a governed agent runtime connected to Morningstar’s advisor workflows through approved tools and data services. Advisors submit requests through the Advisor UI or external Model Context Protocol (MCP) clients. This request passes through input guardrails, reaches the agent runtime where planning and tool invocation occur, and returns through output guardrails before response is delivered.
+
+ Figure 2: DAS AI assistant architecture. The image describes the high-level flow of the DAS AI Assistant from input to output, left side of screen shows two different ways the agent can be called via an MCP tool for internal access, or through the Advisor UI invocation. The center of image shows connection arrows from invocation to Bedrock Guardrails for the input instructions before getting to the agent. From there, the Agent Runtime runs utilizing LangGraph, utilizing AgentCore Memory and AgentCore Identity running within the AgentCore Runtime. 
+
+ Agent Runtime for secure agent execution: Direct Advisory Suite is a multi-tenant platform servicing many firms, and the platform must isolate every agent session (an advisor can only see their own client data, tool responses, or conversation history). AgentCore runtime, a capability of Amazon Bedrock AgentCore hosts the Direct Advisory Suite AI assistant container and provides the managed boundary for authenticated, streaming, session-aware execution. Its microVM session isolation occurs at the infrastructure layer as each advisor session runs in its own boundary with VPC networking. Each invocation enters through an asynchronous runtime handler that reads session context and requests metadata, then streams generated response back to the Advisor UI. The runtime connects to Morningstar’s tools and integrations such as DAS product tools that are part of the existing application, research and data services over MCP, planning APIs, and report delivery services.
+
+ Gateway and MCP for tool access (in roadmap): One of the key capabilities of the AI assistant is to access other Morningstar tools and services safely. Morningstar exposes its tools and services over MCP and binds them directly into the LangGraph agent frameworks. The AI assistant in turn can be exposed as an MCP server as well. Any MCP-compatible client, like AWS Quick , OpenAI’s ChatGPT, Anthropic’s Claude, or Microsoft Copilot can reach it. Direct Advisory Suite remains a rich advisor experience; MCP makes those same capabilities reachable from other surfaces without rebuilding the controls. As Morningstar adds more research, analytics, and workflow tools to the agent’s capabilities, AgentCore Gateway provides the needed governed API fronting to allow consistent authentication, audit, and rate limiting.
+
+ Bedrock Guardrails for policy enforcement: Bedrock Guardrails supports independent input and output evaluation outside of model invocations. Rather than attaching a guardrail solely to a model invocation, Morningstar’s runtime calls the Amazon Bedrock ApplyGuardrail API so that input and output screening are applied as independent, explicit steps in the agentic workflow. The input guardrail runs before the agentic process is invoked. If the guardrail intervenes with a block, the runtime returns the safe guardrail response and skips the model invocation. If the guardrail masks content, the runtime replaces the text with the safe version and continues. The output guardrail runs after the assistant responds and can mask unsafe model output with the safe response returned by Bedrock Guardrails.
+
+The guardrail policies need to block prompt attacks, sensitive information exposure, unauthorized advice patterns, and out-of-scope behavior without generating false positives that prevent advisors from completing valid research and portfolio tasks. The guardrail rules are not treated as a one-time configuration. During testing phase, the product engineering team adjusted the guardrail policies over multiple iterations to find the right operating level for Morningstar’s financial advisor workflows. During test iterations, legitimate questions about a security or client scenario got blocked by guardrails that were too broad and had to be adjusted. This implementation of Bedrock Guardrails supports a tuning loop in several concrete ways. Guardrails run against a draft version while the team adjusts rules, with separate guardrail IDs by environment. The runtime distinguishes a block from a mask using the guardrail response, measures latency for guard_input and guard_output spans, and records structured inspection events that include action, triggered policy categories, coverage, usage, invocation metrics, guardrail Id, guardrail version, and whether the check ran on the input or output. Bedrock Guardrails do not store raw message text; the inspected text is cryptographically represented using SHA-256 hash.
+
+ Identity for delegated access: Advisor workflows are data-permission sensitive. The system rejects requests with invalid or expired tokens before agent logic executes. AgentCore Identity’s custom JWT authorizer validates each request against Morningstar’s OpenID Connect (OIDC) discovery endpoint at the runtime boundary. Requests that fail issuer or audience validation do not reach the agent.
+
+ Memory for context-aware workflows: Advisor interactions often span several sessions: prepare for a meeting, inspect a concern, compare alternatives, then draft a proposal. Each agent session holds its working state temporarily in memory, but when a conversation needs to span multiple sessions (for example, preparing for a meeting over several days), that context must be stored durably and retrieved later. AgentCore memory, a capability of Amazon Bedrock AgentCore provides a dedicated, session-keyed store that backs LangGraph’s checkpointing feature for durable, cross-session state without leaking context between tenants.
+
+ Observability for agent operations: Agentic workflows bring the complexities of tracing across multi-step plans involving several tool calls, sub-agent delegations, and model invocations to understand why an agent made a particular decision or where an error originates. AgentCore addresses this observability challenge of running agents in production through Amazon Bedrock AgentCore Observability . The system uses AgentCore runtime and Observability for platform health and built-in invocation metrics, such as, invocation counts, latency, error rates, and session activity, with flexibility to extend into additional services Morningstar uses. For agent-level debugging, Morningstar uses LangSmith as the primary trace layer as the assistant is built on the LangChain and LangGraph frameworks. LangSmith captures the calls between the supervisor, sub-agents, and tools, along with the model invocations, as a nested trace that mirrors the agent workflow graph while also providing the workflow-level view needed to understand why an invocation succeeded, failed, chose a particular tool, or took too long.
+
+Grounding the AI assistant in Morningstar’s research
+
+The agentic assistant’s answers are grounded in Morningstar’s data, research, analytics, and workflow systems, which also run on AWS. Grounding the assistant in Morningstar’s data ensures its answers are accurate, sourced from real financial analytics rather than generic model knowledge, and are fully auditable with a clear reasoning path. Specifically, that grounding changes the product experience in two ways.
+
+The agent can determine the most relevant sources for the knowledge it needs to accomplish a given task. It can use structured financial data instead of relying on a model’s general knowledge: a question about a portfolio can trigger portfolio analytics, and another about an investment can retrieve Morningstar’s research.
+
+The advisor can review the reasoning path. The assistant presents context from the input request, explains which data it uses, and distinguishes between analysis, draft response, and recommended next steps. This is especially important in financial services, where users look for confidence not only in the final answer but also in how the system produced the answer, with referenceable data points at each step.
+
+The AI assistant inherits the advisor relationships, compliance posture and audit controls that Morningstar has built for a regulated distribution channel as part of Direct Advisory Suite. This differentiates it from a general-purpose AI assistant by turning Morningstar’s proprietary assets into a reasoning engine the advisor can actually use in practice.
+
+Conclusion
+
+The early success of Direct Advisory Suite’s AI assistant positions Morningstar to deepen how advisors engage with their clients, turning research and portfolio insights into personalized, timely deliverables that strengthen relationships and drive growth. By expanding the agentic capabilities built on AgentCore into additional workflows, Morningstar aims to give advisors even richer context, deeper research integration, and more connected outputs that translate directly into client value. As these capabilities mature, the vision for Direct Advisory Suite, and the Direct Platform broadly, is to evolve from a set of modules users navigate into an intelligent workspace where insight flows seamlessly, driving better client engagement and actions.
+
+Morningstar also found during implementation that production agents need more than just model access, they need an operational layer for hosting, scaling, and observing agents that the Direct Advisory Suite team found essential to ship reliably to its advisor base. AgentCore and Amazon Bedrock Guardrails provide those building blocks; the Direct Advisory Suite AI assistant shows them applied to a real financial services workflow.
+
+Advisors using the AI assistant in production are already seeing the impact on their daily workflows. Here is a quote from one of the advisors using this AI assistant:
+
+ “The AI Assistant amazes me because it will do things so quickly. It saves me so many clicks. And it still gives me access to all the same information that I was manually looking for. It saves me a lot of time and frustration, especially when I’m in the office with a client. Being with a client and being able to quickly type in exactly what I need and just have it pull up? It’s amazing.” — Ximena Silva-Avila, Advisor, Perennial Financial Services 
+
+Learn more about Amazon Bedrock AgentCore and  Morningstar Direct Advisory Suite . To further explore how AgentCore can accelerate your own agentic AI workloads in financial services, contact your AWS account team or visit the AWS Financial Services page.
+
+Kishore Nair
+
+Kishore Nair is Head of Technology for Advisor Software at Morningstar, Inc. He leads the engineering team responsible for Direct Advisory Suite and Morningstar's AI strategy for advisor-facing experiences.
+
+Mani Yamaraja, CFA
+
+Mani Yamaraja is a Sr. Customer Solutions Manager with expertise in financial services and capital markets. He leads initiatives to drive real value through accomplishable goals and metrics that demonstrate AWS’ unique capabilities.
+
+Michael Krumpe
+
+Michael Krumpe is a Sr. Solutions Architect at AWS focusing on capital markets. With a strong background in enterprise architecture across all disciplines, he helps organizations evolve from legacy workflows and application structures to a modern AI-driven approach.
+
+Vivian Lai
+
+Vivian is a Capital Markets Specialist at AWS. Prior to AWS, she spent 20+ years on the buy-side, including at Bridgewater Associates, Amaranth Advisors, and Pequot Capital, in front-office technology roles. Vivian was also a co-founder at Cerulean Analytics, which was acquired by Trepp in 2017, and the COO at Adroit Trading Technologies. She received a Bachelors in Computer Science and a Bachelors in Management from Rensselaer Polytechnic Institute.
+
+Resources
+
+ AWS for Industry 
+
+ AWS Events 
+
+ AWS Training & Certification 
+
+ AWS Whitepapers 
+
+ AWS Compliance Reports 
+
+Follow
+
+  Twitter 
+
+  Facebook 
+
+  LinkedIn 
+
+  Twitch 
+
+  Email Updates 
+
+ Create an AWS account 
+
+Learn
+
+ What Is AWS? 
+
+ What Is Cloud Computing? 
+
+ What Is Agentic AI? 
+
+ Cloud Computing Concepts Hub 
+
+ AWS Cloud Security 
+
+ What's New 
+
+ Blogs 
+
+ Press Releases 
+
+ Careers 
+
+Resources
+
+ Getting Started 
+
+ Training 
+
+ AWS Trust Center 
+
+ AWS Solutions Library 
+
+ Architecture Center 
+
+ Product and Technical FAQs 
+
+ Analyst Reports 
+
+ AWS Partners 
+
+Developers
+
+ Builder Center 
+
+ SDKs & Tools 
+
+ .NET on AWS 
+
+ Python on AWS 
+
+ Java on AWS 
+
+ PHP on AWS 
+
+ JavaScript on AWS 
+
+Help
+
+ Contact Us 
+
+ File a Support Ticket 
+
+ AWS re:Post 
+
+ Knowledge Center 
+
+ AWS Support Overview 
+
+ AWS Accessibility 
+
+ Legal 
+
+ Event Code of Conduct 
+
+ Event Terms & Conditions 
+
+ English 
+
+ Back to top 
+
+ Amazon is an equal opportunity employer and does not discriminate on the basis of protected veteran status, disability or other legally protected status. Veterans, military spouses, and people with disabilities are encouraged to apply. 
+
+ x
+
+ facebook
+
+ linkedin
+
+ instagram
+
+ twitch
+
+ youtube
+
+ podcasts
+
+ email
+
+ Privacy 
+
+ Site terms 
+
+ Your Privacy Choices 
+
+ California Consumer Privacy Act (CCPA) Opt-Out Icon
+
+ Cookie Preferences 
+
+ © 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.

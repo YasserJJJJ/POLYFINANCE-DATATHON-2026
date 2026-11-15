@@ -1,0 +1,471 @@
+               Principles of Mixed-Initiative User Interfaces
+                                                     Eric Horvitz
+                                                  Microsoft Research
+                                               Redmond, WA 98025 USA
+                                                   +1 425 936 2127
+                                                horvitz@microsoft.com
+
+ABSTRACT                                                        wish to avoid limiting designs for human–computer
+Recent debate has centered on the relative promise of           interaction to direct manipulation when significant power
+focusing user-interface research on developing new              and efficiencies can be gained with automated reasoning.
+metaphors and tools that enhance users’ abilities to directly   There is great opportunity for designing innovative user
+manipulate objects versus directing effort toward               interfaces, and new human–computer interaction modalities
+developing interface agents that provide automation. In this    by considering, from the ground up, designs that take
+paper, we review principles that show promise for allowing      advantage of the power of direct manipulation and
+engineers to enhance human—computer interaction through         potentially valuable automated reasoning [2].
+an elegant coupling of automated services with direct           PRINCIPLES FOR MIXED-INITIATIVE UI
+manipulation. Key ideas will be highlighted in terms of the     Key problems with the use of agents in interfaces include
+LookOut system for scheduling and meeting management.           poor guessing about the goals and needs of users,
+Keywords                                                        inadequate consideration of the costs and benefits of
+Intelligent agents, direct manipulation, user modeling,         automated action, poor timing of action, and inadequate
+probability, decision theory, UI design                         attention to opportunities that allow a user to guide the
+                                                                invocation of automated services and to refine potentially
+INTRODUCTION
+                                                                suboptimal results of automated analyses. In particular,
+There has been debate among researchers about where great
+                                                                little effort has been expended on designing for a mixed-
+opportunities lay for innovating in the realm of human—
+                                                                initiative approach to solving a user’s problems—where we
+computer interaction [10]. One group of researchers has
+                                                                assume that intelligent services and users may often
+expressed enthusiasm for the development and application
+                                                                collaborate efficiently to achieve the user’s goals.
+of new kinds of automated services, often referred to as
+interface “agents.” The efforts of this group center on         Critical factors for the effective integration of automated
+building machinery for sensing a user’s activity and taking     services with direct manipulation interfaces include:
+automated actions [4,5,6,8,9]. Other researchers have           (1) Developing significant value-added automation. It is
+suggested that effort focused on automation might be better         important to provide automated services that provide
+expended on exploring new kinds of metaphors and                    genuine value over solutions attainable with direct
+conventions that enhance a user’s ability to directly               manipulation.
+manipulate interfaces to access information and invoke
+                                                                (2) Considering uncertainty about a user’s goals.
+services [1,13]. Innovations on both fronts have been fast
+                                                                    Computers are often uncertain about the goals and
+paced. However, there has been a tendency for a divergence
+                                                                    current the focus of attention of a user. In many cases,
+of interests and methodologies versus focused attempts to
+                                                                    systems can benefit by employing machinery for
+leverage innovations in both arenas.
+                                                                    inferring and exploiting the uncertainty about a user’s
+We have pursued principles that provide a foundation for            intentions and focus.
+integrating research in direct manipulation with work on
+                                                                (3) Considering the status of a user’s attention in the
+interface agents. Our goal is to avoid focusing solely on one
+                                                                    timing of services. The nature and timing of automated
+tack or the other, but to seek valuable synergies between the
+                                                                    services and alerts can be a critical factor in the costs
+two areas of investigation. Surely, we should avoid
+                                                                    and benefits of actions. Agents should employ models
+building complex reasoning machinery to patch
+                                                                    of the attention of users and consider the costs and
+fundamentally poor designs and metaphors. Likewise, we
+                                                                    benefits of deferring action to a time when action will
+                                                                    be less distracting.
+                                                                (4) Inferring ideal action in light of costs, benefits, and
+                                                                    uncertainties. Automated actions taken under
+                                                                    uncertainty in a user’s goals and attention are
+                                                                    associated with context-dependent costs and benefits.
+    The value of automated services can be enhanced by         focus and attempts to assist users with reviewing their
+    guiding their invocation with a consideration of the       calendar and with composing appointments.
+    expected value of taking actions.
+                                                               Value-Added Service: Calendaring and Scheduling
+(5) Employing dialog to resolve key uncertainties. If a        When invoked, LookOut parses the text in the body and
+    system is uncertain about a user’s intentions, it should   subject of an email message in focus and attempts to
+    be able to engage in an efficient dialog with the user,    identify a date and time of associated with an event implied
+    considering the costs of potentially bothering a user      by the sender. The system then invokes Outlook’s
+    needlessly.                                                calendaring subsystem, brings up the user’s online
+(6) Allowing      efficient   direct     invocation     and    appointment book, and attempts to fill in relevant fields of
+    termination. A system operating under uncertainty          an appointment record. The system displays its guesses to
+    will sometimes make poor decisions about invoking—         the user and allows the user to edit its guesses and to save
+    or not invoking—an automated service. The value of         the final result.
+    agents providing automated services can be enhanced        LookOut’s scheduling analysis centers on a goal-specific
+    by providing efficient means by which users can            parsing of the text contained in the email message that has
+    directly invoke or terminate the automated services.       focus. The system notes when a new message is being read,
+(7) Minimizing the cost of poor guesses about action           or when a message comes into focus that has not yet been
+    and timing. Designs for services and alerts should be      analyzed. The system first establishes the date a message
+    undertaken with an eye to minimizing the cost of poor      was sent as an anchor date and attempts to normalize its
+    guesses, including appropriate timing out and natural      view based on the composition date. For example, if a
+    gestures for rejecting attempts at service.                message was written yesterday and contains text referring to
+                                                               scheduling a meeting for "tomorrow," the system will
+(8) Scoping precision of service to match uncertainty,         understand that the message is referring to "today."
+    variation in goals. We can enhance the value of
+    automation by giving agents the ability to gracefully      If LookOut cannot identify an implied date and time, the
+    degrade the precision of service to match current          system degrades its goal to identifying a span of time that is
+    uncertainty. A preference for “doing less” but doing it    most relevant given the text of the message (i.e., a specific
+    correctly under uncertainty can provide user’s with a      day, week, or month), and then displays a scoped view of
+    valuable advance towards a solution and minimize the       the calendar to the user. The user can directly manipulate
+    need for costly undoing or backtracking.                   the proposed view and, if appropriate, go on to schedule
+                                                               appointments manually.
+(9) Providing mechanisms for efficient agent−user
+    collaboration to refine results. We should design          LookOut has knowledge about typical patterns of
+    agents with the assumption that users may often wish to    expression in email about meetings and times. Beyond
+    complete or refine an analysis provided by an agent.       understanding the variety of ways that people refer to dates
+                                                               and times, the system understands the temporal implications
+(10) Employing socially appropriate behaviors for              of suggestions about information in email messages about
+    agent−user interaction. An agent should be endowed         holding meetings at various times in the future (e.g.,
+    with tasteful default behaviors and courtesies that        “sometime tomorrow,” “later in the week,” “next week,”
+    match social expectations for a benevolent assistant.      “within a couple of weeks,” “in May,” etc.), at prototypical
+(11) Maintaining working memory of recent                      times during the day (e.g., “morning,” “afternoon,” and
+    interactions. Systems should maintain a memory of          “evening”), as well as during typical recurrent events (e.g.,
+    recent interactions with users and provide mechanisms      “at breakfast,” “grab lunch,” and “meet for dinner,” etc.).
+    that allow users to make efficient and natural             LookOut analysis reduces the number of interactions and
+    references to objects and services included in “shared”    complexity of navigation required of the user. Without
+    short-term experiences.                                    LookOut, users must navigate to the appropriate graphical
+(12) Continuing to learn by observing. Automated               button or menu item to open their calendar, search for the
+    services should be endowed with the ability to continue    appropriate day, input the appropriate times and fill in the
+    to become better at working with users by continuing to    subject of the meeting. LookOut performs this operation
+    learn about a user’s goals and needs.                      automatically or via a single interaction, depending on the
+                                                               modality selected.        Even when LookOut guesses
+A TESTBED FOR MIXED-INITIATIVE UI
+                                                               incorrectly, the user is placed in an approximately correct
+The LookOut project has focused on investigating issues
+                                                               position in the calendar and can refine an approximate
+with overlaying automated scheduling services on
+                                                               guess about the implied appointment.
+Microsoft Outlook, a largely direct-manipulation based
+messaging and scheduling system. LookOut automation            Decision Making Under Uncertainty
+identifies new messages that are opened and brought to         Users can directly invoke LookOut by clicking on an icon
+                                                               that is always present on the system tray of the Microsoft
+Windows shell. However, the system also works to
+automatically identify a user’s goals by considering the
+content of messages being reviewed. LookOut processes the
+header, subject, and body of the message and, based on this
+information, assigns a probability that a user would like to
+view the calendar or schedule an appointment, by
+employing a probabilistic classification system that is
+trained by watching the user working with email. The
+system makes decisions about appropriate actions as a
+function of an inferred probability that the user has a goal
+of performing scheduling and calendaring operations. In
+particular, the inferred probability that service is desired is
+used by LookOut to make a decision about whether to apply
+a second phase of analysis that provides the user with
+automated calendaring and scheduling.
+Depending on the inferred probability—and on an
+assessment of the expected costs and benefits of action—
+the system decides to either (1) do nothing but simply wait       Figure 1. Manual invocation of LookOut. By hovering a
+for continued direct manipulation of Outlook or manual            cursor over the LookOut icon, a user can examine
+invocation of LookOut, (2) to engage the user in a dialog         LookOut’s guess. By clicking on the LookOut icon on the
+about his or her intentions with regards to providing a           system tray, the user invokes the appointment service.
+service, or (3) to go ahead and attempts to provide its           system and automated speech recognition system developed
+service by invoking its second phase of analysis.                 by Microsoft Research to engage users in a natural dialog
+Multiple Interaction Modalities                                   about their intentions. If LookOut is confident enough in its
+LookOut can be configured to be operated in a solely              assessment of a user’s goals, a character appears and
+manual modality or can be placed in one of several                mentions that it has readied a calendar view to show the
+automated-assistance modalities. In manual operation, the         user or has created a tentative appointment before
+system will only take action if a user clicks on the small        displaying the results. At lower levels of confidence,
+LookOut icon appearing in the system. When invoked,               LookOut inquires about a user’s interest in either seeing the
+LookOut analyzes the email message that has system focus.         calendar or scheduling an appointment, depending on the
+Users can tell the system to display an alerting symbol (red      system’s analysis of the message being viewed. After asking
+check mark) on the system-tray icon when LookOut would            the user, the system listens for an answer without requiring
+have taken action if it had been in an automated-assistance       additional keys or buttons to be pressed.
+modality. By hovering the cursor over the icon on the             Figure 2 displays a sequence of screens demonstrating
+system tray, a summary of the intended action appears.            LookOut’s operation within the social-agent modality.
+Figure 1 displays the direct invocation of LookOut. As            After a message is analyzed behind the scenes, the system
+shown in the figure, a menu with dynamically populated            decides it is worthwhile to engage the user in a dialog about
+options pops up, letting the user schedule or organize a          creating an appointment. An animated assistant appears
+meeting, or schedule from text on the system clipboard.           and engages the user with speech (a text balloon option is
+When placed in a basic automated-assistance mode,                 turned on in this case to relay the content of the speech with
+LookOut works by launching and populating fields in               text). The user can indicate via speech that an appointment
+Outlook windows. In this mode, the system also employs            is desired with one of several natural acknowledgments,
+traditional dialog boxes to request additional information        including “yes,” “yeah,” “sure,” “do it.” Given a go ahead,
+from users when appropriate. LookOut can also operate in a        LookOut creates an appointment and reviews it with the
+social-agent modality projecting an explicit social presence      user with text-to-speech, before evaporating, leaving the
+in the form of animated characters, drawn from the MS             result behind for refinement and saving. If the user had
+Agent social user-interface package. When in this mode, the       expressed disinterest in going ahead with the appointment
+system issues queries to users and announces the results of       by simply closing the message or by responding with a
+analyses with an anthropomorphic presence.                        variety of natural phrases including “no,” “not now,” “nah,”
+When LookOut is in the social-agent modality, it operates         and “go away,” the agent would have immediately nodded
+in a handsfree manner, establishing an audio channel for          to confirm an understanding and disappear.
+interacting with LookOut, further reducing mouse and              LookOut dynamically scopes the calendar view to its best
+keyboard interaction with the Outlook system. In the              guess, given uncertainty or indications about an appropriate
+handsfree mode, the system employs a text-to-speech (TTS)         view from the message text. For the case captured in
+                                                                  Figure 3, LookOut cannot confidently identify a specific
+time and day. Rather than making a poor guess, LookOut             INFERRING BELIEFS ABOUT A USER’S GOALS
+brings up an appropriate week view on the user’s calendar.         If we wish to assist users with potentially complex services,
+                                                                   it can be valuable to consider how such automation can be
+Handling Invocation Failures
+                                                                   provided effectively in light of the uncertainties agents may
+As LookOut is expressly continuing to reason under
+                                                                   have about users goals. Thus, developing machinery that
+uncertainty about the value of taking action, or engaging the
+                                                                   endows a system with the ability to explicitly assign
+user in a dialog as messages are opened and closed, the
+                                                                   likelihoods to different feasible user intentions can be
+system can make guesses that simply turn out to be wrong.
+                                                                   critical in mixed-initiative systems. Such machinery can
+If the LookOut system fails to automatically infer that users
+                                                                   extend from sets of rules linked to tables of probabilistic
+wish to see their calendar or schedule an appointment, the
+                                                                   information to more complex, real-time inference.
+system can be directly invoked by clicking on the LookOut
+icon on the system tray. If LookOut guesses that it is             In related work in user modeling, probabilistic models of a
+worthwhile to engage the user in a dialog about scheduling         user’s goals have been employed to continue to perform
+but the user is busy or disinterested in interacting with the      real-time inference about the probability of alternate
+service, the system will pose a question, wait patiently for a     feasible goals as a function of observables including the
+response, and then make a respectful, apologetic gesture           current program context, a user’s sequence of actions and
+and evaporate. The amount of time the system waits before          choice of words used in a query [4,6]. Some of this work
+timing out is a function of the inferred probability that a        has leveraged recent successes in building and reasoning
+user desires the service. Also, the system increases its dwell     with Bayesian network models [7,11].
+on the desktop if it detects signs that the user is thinking,      LookOut leverages work in automated text classification for
+including “hmmm…”, “uh…,” etc. The design of                       making decisions about actions.             Alternate text
+LookOut’s behaviors for handling delays with responses             classification methodologies were explored, including a
+and for reacting to signs that service is being declined was       naïve Bayesian text classifier and text classification based
+guided by the goal of giving LookOut the sensibility of an         on the Support Vector Machine (SVM) analysis [3]. The
+intuitive, courteous butler, who might make potentially            current version of LookOut assigns probabilities of user
+valuable suggestions from time to time, but who is careful         intention by employing an SVM text classification based on
+to note when the user is simply too busy to even respond—          an efficient linear SVM approximation method developed
+and to get out of the user’s way with minimal disturbance.         by Platt [12]. The method was coupled with a methodology
+
+
+
+
+Figure 2. LookOut sequence showing its operation in its explicit social-agent modality. A new message (top left) is analyzed
+and a decision is made to engage the user in a dialog (left). After receiving confirmation via speech input, the system creates
+an appointment and presents its guess to the user for refinement (right).
+                                                                taking into consideration the          costs,    benefits,    and
+                                                                uncertainties in the user’s goals.
+                                                                Actions, Intentions, and Outcomes
+                                                                Let us assume an agent has access to inference about the
+                                                                likelihood of a user’s goals given observed evidence,
+                                                                written p(G|E). In LookOut, the probability that a user
+                                                                wishes to schedule is computed from evidence in patterns of
+                                                                text contained in a message that has been recently opened
+                                                                or brought to focus.
+                                                                For decisions about action versus inaction, we must
+                                                                consider four deterministic outcomes: Either the user
+Figure 3. Automated scoping of calendar. If LookOut             indeed has the goal being considered or does not have the
+cannot establish a specific day and time, it attempts to        goal and, for each of these states of user intention, the
+select a most appropriate span of time to display to the user   system either can take an action or not take the action. We
+for review or refinement through direct manipulation.           map a measure of the value associated with each outcome
+                                                                to a utility on a zero to one scale, and define utilities as
+for including custom-tailored, task-specific sets of text       follows:
+features. Rather than employing text classification in the
+classical manner for tasks such as labeling or categorizing     •   u(A,G): the utility of taking action A when goal G is
+documents, we harness the methods for learning and                  true
+reasoning about the likelihood of user goals or tasks within    •   u(A,¬G): the utility of taking action A when goal G is
+a context. For the assumed context of a user reviewing              not true
+email, we wish to assign a likelihood that an email message
+that has just received the focus of attention is in the goal    •   u(¬A,G): the utility of not taking action A when goal G
+category of “User will wish to schedule or review a                 is true
+calendar for this email” versus the goal category of “User      •   u(¬A,¬G): the utility of not taking action A when goal
+will not wish to schedule or review a calendar for this             G is not true
+email” based on the content of the messages.                    These outcomes are summarized in Table 1.
+A linear SVM text classifier is built by training the system    The expected utility of taking autonomous action to assist
+on a set of messages that are calendar relevant and calendar    the user with an action given observed evidence, eu(A|E), is
+irrelevant. At runtime, for each email message being            computed by combining the utilities of the outcomes for the
+reviewed, the linear SVM approximation procedure outputs        case where the user desires service and does not desire a
+the likelihood that the user will wish to bring up a calendar   service, weighted by the probability of each outcome, as
+or schedule an appointment. The current version of              follows:
+LookOut was trained initially on approximately 1000
+messages, divided into 500 messages in the relevant and                 eu(A|E)=p(G|E)u(A,G) + p(¬G|E) u(A,¬G)                (1)
+500 irrelevant messages.                                        We can rewrite this equation in terms of p(G|E), by noting
+                                                                that p(G|E)=1-p(¬G|E). Thus, the expected utility of
+FROM BELIEFS TO ACTIONS
+                                                                providing autonomous service is,
+Given uncertainties about a user’s goals, what automated
+actions should be taken? We shall consider the case of a               eu(A|E)=p(G|E)u(A,G) + [1-p(G|E)] u(A,¬G)              (2)
+decision about whether or not to invoke the services
+performed by an intelligent agent. From the perspective of                                                           u(A,G)
+decision theory, decisions about action versus inaction             u(¬A,¬G)     No
+                                                                                      Ac                  tion
+should be directed by expected utility. Autonomous actions                               tion           Ac
+should be taken only when an agent believes that they will
+have greater expected value than inaction for the user,
+
+                                                                                                P*
+                Desired Goal Not Desired                             u(A,¬G)
+                                                                                                                      u(¬A,G)
+       Action       u(A,G )       u(A,¬G)                                  0.0                                     1.0
+                                                                                                     p(G|E)
+   No Action       u(¬A,G)        u(¬A,¬G)
+                                                                Figure 4. Graphical analysis of the expected utility of action
+Table 1. Four outcomes considered in decisions about            versus inaction, yielding a threshold probability for action.
+whether to engage an intelligent agent to provide service.
+The expected utility of not taking autonomous action to
+assist the user, u(¬A|E), is                                                       No
+                                                                                                                    u(A,G)
+                                                                     u(¬A,¬G)                                on
+     eu(¬A|E)=p(G|E)u(¬A,G) + [1-p(G|E)]u(¬A,¬G)           (3)
+                                                                                        Ac
+                                                                                           tion         Acti
+
+We can visualize the implications of these equations by
+plotting the expected utility as a function of probability.
+Figure 4 displays a graph where the horizontal represents
+the probability the user has a goal, ranging from zero to                                         P*’
+                                                                      u’(A,¬G)
+one. The vertical axis indicates the expected value of the                                                          u(¬A,G)
+system’s response. The two outcomes displayed on the right
+                                                                             0.0                                  1.0
+vertical axis have an expected utility associated with                                                   p(G|E)
+p(G|E)=1.0—the user indeed having the goal under
+consideration. The outcomes listed on the left vertical axis      Figure 5. The result of increasing the value of taking
+indicate the value of the outcomes when p(G|E)=0. The             erroneous action. Context-dependent shifts in any of the
+expected value of acting for intermediary probabilities of        utilities can change the probability threshold for action.
+p(G|E), as dictated by Equation 2, is a line joining the two
+deterministic outcomes associated with taking action. The         a context-dependent outcome, the utility, u(¬A,G),
+expected value of not acting as dictated by Equation 3 is a       representing the situation where a system does not take
+similar line joining the two outcomes associated with             action when a user indeed has the goal, may decrease as a
+inaction.                                                         user becomes more rushed. Diminishing the value of this
+                                                                  action reduces the threshold probability for action.
+Expected Utility and Thresholds for Agent Action
+The lines representing expected utility cross at a specific       Figure 5 displays geometrically how p* can change with
+inferred probability of the user having a goal. At this           context. In this case, increasing the utility (decreasing the
+threshold probability, referred to as p*, the expected value      cost) of outcome u(A,¬G) of acting when service is not
+of action and inaction are equal. The best decision to make       desired leads to a lowering of the threshold probability that
+at any value of p(G|E) is the action associated with the          must be crossed before action occurs.
+greatest expected utility at that likelihood of the user having   Dialog as an Option for Action
+the goal. By inspecting the graph, it is easy to see that it is   Beyond reasoning about whether to act or not to assist a
+best for the system to take action if the probability of a goal   user with an autonomous service, we can also consider the
+is greater than p* and to refrain from acting if the              action of asking users about their goals. We can integrate
+probability is less than p*.                                      action for dialog into the expected utility framework by
+The threshold probability can be computed for any four            considering the expected value of asking the user a
+utilities by setting Equations 2 and 3 equal to one another       question. We now consider the utility of two additional
+and solving for p(G|E). Given four utilities associated with      outcomes: the case where an agent initiates dialog about a
+the four outcomes of interest, a system needs only to check       goal and the user actually desires the goal under
+whether the probability of the goal is greater or less than       consideration, u(D,G), and the case where the user does not
+such a threshold probability to decide on whether it is in the    have the goal, u(D,¬G). We compute the expected utility of
+best interest of the user to invoke a service.                    performing dialog under uncertainty with an equation
+                                                                  analogous to Equation 3.
+The threshold probability, p*, can be influenced by context-
+dependent changes of the utilities associated with one or         Figure 5 displays a graph with the addition of a line
+more of the outcomes. For example, the utility, u(A,¬G),          representing the expected utility of engaging in a dialog. As
+associated with the situation where a system takes action         highlighted in the graph, the utility of engaging in a dialog
+when a goal is not desired, can be significantly influenced       with a user when the user does not have the goal in question
+by the status of a user’s attention. The utility of unwanted      is typically greater than the utility of performing an action
+action can diminish significantly with increases in the depth     when the goal is not desired. However, the utility of asking
+of a user’s focus on another task. Such a reduction in the        a user before performing a desired action is typically
+value of action leads to a higher probability threshold. In       smaller than the utility of simply performing a desired
+contrast, the utility, u(A,¬G), associated with the situation     action when the user indeed has the goal. In such
+where a system takes action when a goal is not desired,           circumstances, if we follow the rule of selecting the option
+might be greater when more screen real estate is made             with the greatest expected utility, we see that action can be
+available. Increased screen real estate can diminish the          guided by two new threshold probabilities: the threshold
+perceived cost of the needless operation of a scheduling          between inaction and dialog, p*¬A,D, and the threshold
+service that might bring up an appointment that obscures          between dialog and action, p*D,A. These two thresholds
+items at a user’s focus of attention. As another example of       provide an instant index into whether to act, to engage the
+                                                                      size and the preferred time for deferring offers of service
+          1.0                                               u(A,G)    can be approximated by a sigmoid function as represented
+    u(¬A,¬G)      No
+                     Ac                            tion               by the sample data from a user displayed in Figure 7.
+                        tion                     Ac         u(D,G)
+                                 Dialog                               Continuing studies on timing within the LookOut project
+                                                                      are aimed at examining other factors that can explain dwell
+      u(D,¬G)                                                         time including ambiguity and complexity of dates and times
+                                                                      mentioned in the message.
+      u(A,¬G)                  P*¬A,D                                 In the general case, we can construct a model of attention
+                                                 P*D,A      u(¬A,G)
+                                                                      from such timing studies and make the utility of outcomes
+            0.0                                           1.0         time-dependent functions of message length. Alternatively,
+                                        p(G|E)                        we can use timing information separately to defer service
+                                                                      until a user is likely ready to receive it.
+Figure 6. Adding a second action option consisting of
+dialog with users about their goals. In this case, the                The current version of LookOut employs a predetermined
+graphical analysis higlights the origin of two threshold              default automated-service timing model based on user
+probabilities for guiding the action of autonomous services.          studies. However, the system can also be instructed to build
+                                                                      a custom-tailored timing model by watching a user
+user in a dialog about action, or to do nothing, depending            interacting with email. The system records the size of each
+on the assessed likelihood of the user having a goal.                 message being reviewed and the amount of time spent on
+Systems for guiding autonomous service do not necessarily             each message before scheduling operations are invoked and
+need to perform explicit computations of expected value.              stores cases when it is used in a user-directed manner.
+Thresholds can be directly assessed by designers or users.            When the system enters a learning mode, the system
+Such directly assessed thresholds for action imply a deeper           performs a regression analysis on the data and fits a
+implicitly assumed expected-utility model.                            piecewise linear model to the data. Alternatively, users can
+The LookOut system employs default utilities for guiding              tell the system to delay for a fixed amount of time before
+dialog and action. However, the system also allows users to           the service is invoked.
+specify the utilities for outcomes. Given a set of assessed           MACHINERY FOR LIFE-LONG LEARNING
+utilities, the system computes and uses modified threshold            LookOut contains a pretrained probabilistic user model and
+probabilities. LookOut also allows users to simply specify            timing model. However, the system is designed to continue
+two key threshold probabilities for controlling dialog and            to learn from users. Methods for embedding the capability
+action. At run time, LookOut considers whether the inferred           for life-long learning is a key challenge in Artificial
+probability that users desires service is above threshold for         Intelligence research [14]. LookOut continues to store
+dialog or action, versus being consistent with inaction.              messages as calendar relevant and irrelevant, by watching
+USER ATTENTION AND THE TIMING OF SERVICE
+                                                                      the user working with email. If a calendar or scheduling
+Automated activity occurring before a user is ready or open           facility is invoked within a predetermined time horizon, the
+for the service can be distracting. On the other hand, delays         system saves the message as schedule-relevant. The system
+in the provision of service can diminish the value of                 also continues to record the time users dwell on schedule-
+automation. We have found that the value of services and              relevant messages before invoking a calendaring operation.
+alerts can be enhanced through building and applying                  User can specify a policy for continual learning. Users can
+models of attention that consider the temporal pattern of a           dictate a training schedule that guides the learning
+user’s focus of attention.                                            component of the system periodically to incrementally
+Given the potential value of approaching users with dialog            refine the probabilistic user model and time-based attention
+or actions when users are most ready for a service, we                model. The ongoing model continues to hone the models
+performed studies to identify the most appropriate timing of          used for guessing about the relevance of the automated
+messaging services as a function of the nature of the                 scheduling services as well as to become a better estimator
+message being reviewed by the user. We added                          of the best time to invoke the services.
+instrumentation to LookOut to monitor the length of time              SUMMARY AND CONCLUSIONS
+between the review of messages and the manual invocation              We reviewed key challenges and opportunities for building
+of messaging services and collected data from several users           mixed-initiative user interfaces—interfaces that enable
+with a goal of building a default temporal-centric model of           users and intelligent agents to collaborate efficiently. We
+attention. We identified a nonlinear relationship between             first presented a set of principles for designing mixed-
+the size of the message being reviewed and the amount of              initiative user interfaces that address systematic problems
+time users prefer to dwell on the content of the messages             with the use of agents that may often have to guess about a
+before accepting automated calendaring and scheduling                 user’s needs. Then, we focused on methods for managing
+operations. We found that the relationship between message            the uncertainties that agents may have about users’ goals
+                                 10
+                                                                                                4.   Heckerman, D., and Horvitz, E. Inferring Informational
+
+
+
+
+     Dwell before action (sec)
+                                 8                                                                   Goals from Free-Text Queries: A Bayesian Approach,
+                                                                                                     Fourteenth Conference on Uncertainty in Artificial
+                                 6
+                                                                                                     Intelligence (Madison WI, July 1998), Morgan
+                                 4                                                                   Kaufmann Publishers, 230-237.
+                                 2                                                                           http://research.microsoft.com/~horvitz/aw.htm
+                                 0                                                              5.   Horvitz, E., and Barry, M. Display of Information for
+                                      0         500        1000      1500         2000   2500
+                                                                                                     Time-Critical Decision Making. Proceedings of the
+                                                      Length of message (bytes)                      Eleventh Conference on Uncertainty in Artificial
+                                                                                                     Intelligence (Montreal, August 1995). Morgan
+Figure 7. Sigmoid fit on sample of data from a user                                                  Kaufmann Publishers, 296-305.
+displaying the relationship between dwell time on schedule-                                                 http: //research.microsoft.com/~horvitz/vista.htm
+relevant messages and the quantity of text in the message
+                                                                                                6.   Horvitz, E., Breese, J., Heckerman, D., Hovel, D.,
+being reviewed.
+                                                                                                     Rommelse, D. The Lumiere Project: Bayesian User
+the uncertainties that agents may have about users’ goals                                            Modeling for Inferring the Goals and Needs of
+and focus of attention. We discussed the consideration of                                            Software Users, Fourteenth Conference on Uncertainty
+uncertainty, as well as the expected costs and benefits of                                           in Artificial Intelligence (Madison WI, July 1998).
+taking autonomous action in different situations. We                                                 Morgan Kaufmann Publishers, 256-265.
+highlighted methods and design principles with examples
+                                                                                                           http: //research.microsoft.com/~horvitz/lumiere.htm
+drawn from the LookOut system. Research on LookOut has
+elucidated difficult challenges and promising opportunities                                     7.   Horvitz, E.J., Breese, J., and Henrion, M. Decision
+for improving human–computer interaction through the                                                 theory in Expert Systems and Artificial Intelligence.
+elegant combination of reasoning machinery and direct                                                International Journal of Approximate Reasoning,
+manipulation. We believe continuing efforts to address                                               Special Issue on Uncertainty in Artificial Intelligence,
+problems with the design of mixed-initiative user interfaces                                         2:247-30.
+will likely yield fundamental enhancements in                                                               http: //research.microsoft.com/~horvitz/dt.htm
+human−computer interaction.
+                                                                                                8.   Lieberman, H., Letizia: An Agent That Assists Web
+ACKNOWLEDGMENTS                                                                                      Browsing, International Joint Conference on Artificial
+Andy Jacobs has served as the primary software engineer                                              Intelligence (Montreal, August 1995). IJCAI.
+on the LookOut prototype. John Platt developed the linear                                       9.   Maes, P. Agents that Reduce Work and Information
+SVM text-classification methodology used in the current                                              Overload. Commun. ACM 37,7, 31-40
+version of LookOut. Mehran Sahami assisted with the early
+studies of the use of Bayesian text classification for                                          10. Maes, P., and Schneiderman, B., Direct Manipulation
+identifying schedule-relevant messages. Jack Breese, Mary                                           vs. Interface Agents: A Debate. Interactions, Vol. IV
+Czerwinski, Susan Dumais, Bill Gates, Ken Hinckley, Dan                                             Number 6, ACM Press, 1997.
+Ling, and Rick Rashid provided valuable feedback on this                                        11. Pearl, J. Probabilistic Reasoning in Intelligent Systems:
+research.                                                                                           Networks of Plausible Inference, Morgan Kaufmann
+REFERENCES                                                                                          Publishers: San Francisco, 1991.
+1.   Ahlberg, C., and Schneiderman, B. Visual information                                       12. Platt, J. Fast training of SVMs using sequential
+     seeking: Tight coupling of dynamic query filters with                                          minimal optimization. To appear in: B. Scholkopf, C.
+     starfield displays. Proceedings of CHI ’94 Human                                               Burges, and A. Smola (Eds.) Advances in Kernel
+     Factors in Computing Systems (April 1994) ACM,                                                 Methods – Support Vector Learning, MIT Press, 1999.
+     313-317.                                                                                   13. Schneiderman, B. Designing the User Interface:
+2.   Birnbaum, L., Horvitz, E., Kurlander, D., Lieberman,                                           Strategies for Effective Human-Computer Interaction,
+     H., Marks, J. Roth, S. Compelling Intelligent User                                             ACM Press. 1992.
+     Interfaces: How Much AI? In Proceedings of the 1997                                        14. Selman, B. Brooks, R.A., Dean, T., Horvitz, E., M.
+     ACM International Conference on Intelligent                                                    Mitchell, T., Nilsson, N.J. Challenge Problems for
+     Interfaces (Orlando, FL, January 1996).                                                        Artificial Intelligence, In: Proceedings of AAAI-96,
+                                          http://www.merl.com/reports/TR96-28/index.html            Thirteenth National Conference on Artificial
+3.   Dumais, S. T., Platt, J., Heckerman, D., and Sahami,                                           Intelligence (Portland, OR, August 1996). AAAI Press,
+     M., Inductive learning algorithms and representations                                          1340-1345.
+     for text categorization. Proceedings of CIKM98.
+     (Bethesda MD, November 1998). ACM Press, 148-155
+

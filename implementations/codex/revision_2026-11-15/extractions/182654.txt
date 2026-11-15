@@ -1,0 +1,257 @@
+
+
+## PAGE 1
+
+Event dashboard
+L'IA générative sur AWS
+Bases de connaissances et RAG
+Bases de connaissances et RAG
+Un modèle de fondation ne connaît pas vos documents. Il n'a pas lu le dernier rapport annuel que vous avez téléchargé, et ce qu'il sait d'une entreprise peut être
+incomplet ou daté. La génération augmentée par récupération (Retrieval Augmented Generation, RAG) règle ce problème : avant de répondre, vous récupérez les
+passages pertinents de vos propres documents et vous les donnez au modèle avec la question.
+Pour ce déﬁ, le RAG sert à ancrer les réponses dans des sources publiques et traçables : rapports annuels, formulaires 10-K, documents déposés sur SEDAR+,
+publications de la Banque du Canada. Un assistant qui répond à « Quels sont les principaux risques de crédit mentionnés par la banque ? » en citant la page du
+rapport utilise ce schéma.
+1. Vos documents sont découpés en fragments (chunks).
+2. Chaque fragment est converti en vecteur (un embedding) qui représente son sens.
+3. Les vecteurs sont placés dans un index consultable.
+4. Au moment de la question, la question est aussi convertie en vecteur, et les fragments les plus proches sont récupérés.
+5. Ces fragments sont ajoutés au prompt : « Répondez en utilisant uniquement le contexte suivant… »
+Amazon Bedrock Knowledge Bases fait les étapes 1 à 4 pour vous. Vous lui indiquez un bucket S3, et il gère le découpage, les embeddings, l'indexation et la
+récupération.
+Créer une base de connaissances en CLI demande --name, --role-arn et une structure --knowledge-base-configuration, plus un stockage vectoriel conﬁguré
+séparément et un rôle IAM. Cela fait beaucoup d'éléments à régler sous pression.
+Utilisez la console pour la création. Allez dans Amazon Bedrock → Knowledge Bases 
+ et créez-en une. L'assistant de création :
+crée le rôle IAM pour vous,
+vous laisse choisir un bucket S3 comme source de données,
+propose de créer et de gérer le stockage vectoriel pour vous : acceptez cette option,
+vous laisse choisir le modèle d'embeddings.
+Ensuite, utilisez la CLI pour tout le reste. La console une fois pour la conﬁguration, la CLI pour les étapes que vous répétez : c'est le bon compromis pendant un
+datathon.
+Préparez vos documents avant de lancer l'assistant :
+Pour trouver des documents publics, consultez la page Données ﬁnancières publiques. Respectez la licence et les conditions d'utilisation de chaque source.
+Pour le modèle d'embeddings, amazon.titan-embed-text-v2:0 est un bon défaut pour du texte. Si vos documents contiennent des graphiques ou des tableaux en
+image, Cohere Embed v4 (global.cohere.embed-v4:0) traite aussi les images. Pour une recherche qui couvre aussi la vidéo et l'audio (par exemple des
+webdiffusions de résultats), amazon.nova-2-multimodal-embeddings-v1:0 est disponible dans us-east-1.
+Le déﬁ exige qu'une simulation n'utilise pas d'information qui n'était pas encore publiée à la date simulée. Ajoutez la date de publication à chaque document, puis
+ﬁltrez au moment de la recherche.
+Pour une source S3, placez à côté de chaque document un ﬁchier qui porte le même nom suivi de .metadata.json :
+Par exemple, rapport-annuel-2024-ry.pdf.metadata.json à côté de rapport-annuel-2024-ry.pdf. Écrivez la date au format numérique AAAAMMJJ pour
+pouvoir la comparer. La valeur ci-dessus est un exemple : relevez la date réelle de dépôt sur SEDAR+ ou EDGAR. Attention, un rapport annuel 2024 est souvent publié
+après la ﬁn de 2024. Le ﬁltre de recherche est montré plus bas.
+La base de connaissances ne détecte pas seule les nouveaux ﬁchiers. Chaque fois que vous ajoutez des documents, lancez une tâche d'ingestion :
+retrieve renvoie les passages bruts, sans modèle. Utilisez-le pour vériﬁer la qualité de la récupération avant d'accuser le modèle :
+Si les passages renvoyés ne contiennent pas la réponse, aucun modèle ne pourra la donner. Corrigez d'abord la récupération.
+Avec le ﬁltre de date, pour une simulation au 31 décembre 2024 :
+Un seul appel qui récupère les passages, construit le prompt et répond avec des citations :
+En Python, avec les citations extraites. Ce sont elles qui rendent votre démonstration crédible :
+Si les réponses sont faibles, procédez dans cet ordre :
+Vériﬁez ce qui a été récupéré. Exécutez retrieve seul. Le problème se trouve presque toujours là.
+Revoyez la taille des fragments. Des fragments trop petits perdent le contexte ; trop grands, la phrase pertinente est diluée. Si vos documents sont structurés
+(rapports avec sections, notes aux états ﬁnanciers), un découpage qui suit cette structure donne de meilleurs résultats qu'une taille ﬁxe.
+Récupérez plus, puis reclassez. Récupérez 20 passages et reclassez-les avec cohere.rerank-v3-5:0 pour garder les 5 meilleurs. C'est peu coûteux et cela améliore
+nettement les résultats.
+Ajoutez l'ancrage contextuel. Un garde-fou avec ancrage contextuel rejette les réponses que les passages récupérés ne soutiennent pas : une hallucination
+silencieuse devient un refus visible.
+Corrigez vos documents sources. Un PDF numérisé sans couche texte ne donne rien d'utile. Traitez-le d'abord avec Data Automation.
+Calculez les chiffres ailleurs. Le RAG sert à trouver du texte, pas à calculer. Pour un ratio ou une série de prix, utilisez des données structurées et pandas, puis
+donnez le résultat au modèle.
+Lecteur de rapports annuels : l'utilisateur pose une question sur les risques, la stratégie ou les résultats d'une entreprise, et chaque réponse cite le passage du
+rapport ou du 10-K.
+Comparateur de FNB : les prospectus et aperçus de deux FNB (par exemple XIU.TO et XBB.TO) sont indexés, et l'assistant compare frais, composition et risques en
+citant ses sources.
+Contexte macroéconomique : les publications de la Banque du Canada sont indexées, ﬁltrées par date, pour expliquer le contexte de taux d'une simulation sans
+utiliser d'information future.
+Explication par persona : les passages récupérés sont reformulés selon le persona (Prudent, Équilibré, Audacieux), en séparant faits sourcés, hypothèses et
+scénarios.
+Le stockage vectoriel est la partie qui coûte de l'argent même quand vous ne l'utilisez pas. Supprimez-le quand vous avez terminé :
+Supprimez ensuite le stockage vectoriel lui-même si la console l'a créé pour vous. Selon l'option choisie dans l'assistant, vériﬁez qu'il ne reste pas de collection dans
+Amazon OpenSearch Serverless 
+ ou de bucket vectoriel dans Amazon S3.
+Les comptes AWS sont fermés et toutes les données détruites le lundi 16 novembre à 13 h 59. Voir Nettoyage et exportation.
+Bases de connaissances et RAG
+Fonctionnement
+Le RAG n'est pas du ﬁne-tuning. Le ﬁne-tuning modiﬁe les poids du modèle : c'est lent, coûteux, et presque jamais le bon choix dans un datathon de deux jours. Le RAG change ce
+que le modèle voit au moment de la question. Utilisez le RAG.
+Le chemin le plus rapide
+ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+BUCKET="datathon-docs-${ACCOUNT_ID}"
+# Un bucket pour vos documents sources
+aws s3 mb "s3://${BUCKET}" --region us-east-1
+# Envoyez les documents que l'assistant doit connaître
+aws s3 cp ./rapport-annuel-2024-ry.pdf "s3://${BUCKET}/"
+aws s3 cp ./10-k-2024-aapl.pdf         "s3://${BUCKET}/"
+aws s3 sync ./banque-du-canada/        "s3://${BUCKET}/macro/"
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+Ajouter des métadonnées pour la cohérence temporelle
+{
+  "metadataAttributes": {
+    "emetteur": "RY",
+    "type_document": "rapport_annuel",
+    "date_publication": 20241204
+  }
+}
+1
+2
+3
+4
+5
+6
+7
+Synchroniser après chaque envoi
+aws bedrock-agent start-ingestion-job \
+  --region us-east-1 \
+  --knowledge-base-id VOTRE_KB_ID \
+  --data-source-id VOTRE_DATA_SOURCE_ID
+# Suivre la fin de l'ingestion
+aws bedrock-agent list-ingestion-jobs \
+  --region us-east-1 \
+  --knowledge-base-id VOTRE_KB_ID \
+  --data-source-id VOTRE_DATA_SOURCE_ID \
+  --query 'ingestionJobSummaries[0].[status,startedAt]' --output table
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+Oublier la synchronisation est la première raison pour laquelle une base de connaissances « ne fonctionne pas ». Si la récupération ne renvoie rien, vériﬁez que l'ingestion est
+terminée avant de chercher ailleurs.
+Récupérer (retrieve)
+aws bedrock-agent-runtime retrieve \
+  --region us-east-1 \
+  --knowledge-base-id VOTRE_KB_ID \
+  --retrieval-query '{"text":"Quelles sont les principales sources de risque de crédit mentionnées dans le rapport annuel ?"}' \
+  --query 'retrievalResults[].[score,content.text]' --output text
+1
+2
+3
+4
+5
+aws bedrock-agent-runtime retrieve \
+  --region us-east-1 \
+  --knowledge-base-id VOTRE_KB_ID \
+  --retrieval-query '{"text":"Quelles sont les principales sources de risque de crédit ?"}' \
+  --retrieval-configuration '{"vectorSearchConfiguration":{"numberOfResults":5,"filter":{"lessThanOrEquals":{"key":"date_publication","value"
+  --query 'retrievalResults[].[score,location.s3Location.uri]' --output text
+1
+2
+3
+4
+5
+6
+Récupérer et générer (retrieve and generate)
+aws bedrock-agent-runtime retrieve-and-generate \
+  --region us-east-1 \
+  --input '{"text":"Quelles sont les principales sources de risque de crédit mentionnées dans le rapport annuel ?"}' \
+  --retrieve-and-generate-configuration '{
+    "type": "KNOWLEDGE_BASE",
+    "knowledgeBaseConfiguration": {
+      "knowledgeBaseId": "VOTRE_KB_ID",
+      "modelArn": "global.amazon.nova-2-lite-v1:0"
+    }
+  }'
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+import boto3
+client = boto3.client("bedrock-agent-runtime", region_name="us-east-1")
+response = client.retrieve_and_generate(
+    input={"text": "Quelles sont les principales sources de risque de crédit mentionnées dans le rapport annuel ?"},
+    retrieveAndGenerateConfiguration={
+        "type": "KNOWLEDGE_BASE",
+        "knowledgeBaseConfiguration": {
+            "knowledgeBaseId": "VOTRE_KB_ID",
+            "modelArn": "global.amazon.nova-2-lite-v1:0",
+        },
+    },
+)
+print(response["output"]["text"])
+print("\nSources :")
+for citation in response.get("citations", []):
+    for ref in citation.get("retrievedReferences", []):
+        location = ref.get("location", {})
+        print(" -", location.get("s3Location", {}).get("uri", location))
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+Montrez les citations dans votre démonstration. « La banque cite l'immobilier commercial comme source de risque (source : rapport-annuel-2024-ry.pdf) » vaut beaucoup plus
+qu'une phrase sans source. Le déﬁ exige la traçabilité des sources, et le jury valorise une démarche crédible.
+Améliorer la récupération
+Idées pour le défi
+Nettoyage
+aws bedrock-agent delete-knowledge-base --region us-east-1 --knowledge-base-id VOTRE_KB_ID
+1
+Previous
+Next
+AWS Lambda
+Amazon S3
+AWS IAM
+AWS Glue
+Amazon Athena
+Accès AWS CLI et SDK
+L'IA générative sur AWS
+Votre premier appel de modèle
+Choisir un modèle
+Garde-fous
+Bases de connaissances et RAG
+Data Automation
+Construire des agents
+Démarrages rapides
+Données ﬁnancières publiques
+Nettoyage et exportation
+Ressources
+AWS account access
+Open AWS console
+(us-east-1)
+Get AWS CLI credentials
+Share feedback
+Workshop catalog in AWS Builder
+Center
+Exit event
+AWS Workshop Studio
+adamlarhlimi2006
+© 2008 - 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+Privacy policy
+Terms of use
+Cookie preferences

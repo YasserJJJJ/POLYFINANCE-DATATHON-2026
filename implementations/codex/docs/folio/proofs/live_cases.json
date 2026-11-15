@@ -1,0 +1,589 @@
+{
+  "created_at": "2026-11-15T20:34:35.296784+00:00",
+  "api": "http://127.0.0.1:8768",
+  "use_ai": true,
+  "preflight": "aws_preflight.json",
+  "cases": {
+    "robert": {
+      "id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+      "active_run_id": "874af537a0be4dd680e180fc75475071",
+      "http_status": 202,
+      "created_at": "2026-11-15T20:34:35.342210+00:00",
+      "request": "robert-request.json",
+      "latest_status": "complete",
+      "latest_revision": 5,
+      "snapshot": "robert-latest.json",
+      "polled_at": "2026-11-15T20:35:45.047321+00:00",
+      "aws_calls": [
+        {
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "region": "us-east-1",
+          "account_id": "471112821226",
+          "request_id": "192e0236-ac92-482f-8880-61f2369ee5a4",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 2494,
+            "input_tokens": 2,
+            "output_tokens": 263,
+            "total_tokens": 2759
+          },
+          "latency_ms": 4774,
+          "role": "agent0",
+          "attempt_id": "fb019880e3f54b07b952b81ce7db61e9",
+          "status": "complete"
+        },
+        {
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "region": "us-east-1",
+          "account_id": "471112821226",
+          "request_id": "50cd842a-a90d-4212-a4c6-fa16a97cfc0e",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 13331,
+            "input_tokens": 2,
+            "output_tokens": 1379,
+            "total_tokens": 14712
+          },
+          "latency_ms": 16862,
+          "role": "agent1",
+          "attempt_id": "37e66f6d420449c8bd3ce76999aeb6ed",
+          "status": "complete"
+        },
+        {
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "region": "us-east-1",
+          "account_id": "471112821226",
+          "request_id": "9851f508-e933-4b55-8e6d-7db4891a7d73",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 3587,
+            "input_tokens": 2,
+            "output_tokens": 456,
+            "total_tokens": 4045
+          },
+          "latency_ms": 5856,
+          "role": "agent2",
+          "attempt_id": "97450e04851242fbb594835e9520aa9c",
+          "status": "complete"
+        },
+        {
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "region": "us-east-1",
+          "account_id": "471112821226",
+          "request_id": "ebbc85e0-aa87-4623-a0d7-b323f19f6aee",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 3300,
+            "input_tokens": 2,
+            "output_tokens": 274,
+            "total_tokens": 3576
+          },
+          "latency_ms": 5341,
+          "role": "agent3",
+          "attempt_id": "8e60afccf3864df6ab3baee407aa8b38",
+          "status": "complete"
+        }
+      ],
+      "analysis_method": "reserve-turnover-lp-v1",
+      "agent_transformations": [
+        {
+          "role": "agent0",
+          "status": "complete",
+          "outputs": [
+            "problem@1",
+            "qualification@1",
+            "questions.agent0@1"
+          ]
+        },
+        {
+          "role": "agent1",
+          "status": "complete",
+          "outputs": [
+            "research@1",
+            "research_review@1",
+            "questions.agent1@1"
+          ]
+        },
+        {
+          "role": "agent2",
+          "status": "complete",
+          "outputs": [
+            "baseline_stress@1",
+            "analysis@1",
+            "analysis_review@1",
+            "questions.agent2@1"
+          ]
+        },
+        {
+          "role": "agent3",
+          "status": "complete",
+          "outputs": [
+            "view@1",
+            "questions.agent3@1"
+          ]
+        }
+      ],
+      "verified_at": "2026-11-15T20:37:26.152274+00:00",
+      "result": {
+        "min_reallocation_cad": 30000.0,
+        "multiple_optima": true
+      }
+    },
+    "amira": {
+      "id": "49ed5ae5903f41c297909b644ff7599a",
+      "active_run_id": "db3ede3b567b4dc28863371a8cb37944",
+      "http_status": 202,
+      "created_at": "2026-11-15T20:34:35.371076+00:00",
+      "request": "amira-request.json",
+      "latest_status": "complete",
+      "latest_revision": 5,
+      "snapshot": "amira-latest.json",
+      "polled_at": "2026-11-15T20:35:45.189859+00:00",
+      "aws_calls": [
+        {
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "region": "us-east-1",
+          "account_id": "471112821226",
+          "request_id": "f5b804a6-6687-4941-b1f6-8108c42ef361",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 2365,
+            "input_tokens": 2,
+            "output_tokens": 190,
+            "total_tokens": 2557
+          },
+          "latency_ms": 3360,
+          "role": "agent0",
+          "attempt_id": "793023bd1d4d4557ac058392a8fdd79a",
+          "status": "complete"
+        },
+        {
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "region": "us-east-1",
+          "account_id": "471112821226",
+          "request_id": "2a5f3311-900f-4b98-88d9-1db72755d953",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 27316,
+            "input_tokens": 2,
+            "output_tokens": 1522,
+            "total_tokens": 28840
+          },
+          "latency_ms": 17673,
+          "role": "agent1",
+          "attempt_id": "590aecf449e24a649c4560800721bf17",
+          "status": "complete"
+        },
+        {
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "region": "us-east-1",
+          "account_id": "471112821226",
+          "request_id": "40526321-1683-4ac0-a6fa-031da6e508aa",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 3824,
+            "input_tokens": 2,
+            "output_tokens": 530,
+            "total_tokens": 4356
+          },
+          "latency_ms": 7191,
+          "role": "agent2",
+          "attempt_id": "5e4b92cc75414bf09fc212158805566a",
+          "status": "complete"
+        },
+        {
+          "provider": "amazon-bedrock-runtime",
+          "model": "global.openai.gpt-6-astra",
+          "region": "us-east-1",
+          "account_id": "471112821226",
+          "request_id": "6dc7c271-905f-492c-b0a8-eb35cef06fc9",
+          "usage": {
+            "cache_read_input_tokens": 0,
+            "cache_write_input_tokens": 4339,
+            "input_tokens": 2,
+            "output_tokens": 274,
+            "total_tokens": 4615
+          },
+          "latency_ms": 4565,
+          "role": "agent3",
+          "attempt_id": "b0e3939929ea4c6bbb0301ebb133c47c",
+          "status": "complete"
+        }
+      ],
+      "analysis_method": "retrospective-comparison-v2",
+      "agent_transformations": [
+        {
+          "role": "agent0",
+          "status": "complete",
+          "outputs": [
+            "problem@1",
+            "qualification@1",
+            "questions.agent0@1"
+          ]
+        },
+        {
+          "role": "agent1",
+          "status": "complete",
+          "outputs": [
+            "research@1",
+            "data_inspection@1",
+            "research_review@1",
+            "questions.agent1@1"
+          ]
+        },
+        {
+          "role": "agent2",
+          "status": "complete",
+          "outputs": [
+            "analysis@1",
+            "analysis_review@1",
+            "questions.agent2@1"
+          ]
+        },
+        {
+          "role": "agent3",
+          "status": "complete",
+          "outputs": [
+            "view@1",
+            "questions.agent3@1"
+          ]
+        }
+      ],
+      "verified_at": "2026-11-15T20:37:26.152274+00:00",
+      "result": {
+        "window": [
+          "2021-11-12",
+          "2026-11-12"
+        ],
+        "options": [
+          {
+            "option": "baseline",
+            "raw_csv_ending_cad": 44515.75141219115,
+            "recorded_rounded_cad": 44515.75,
+            "difference_cad": 0.0014121911517577246
+          },
+          {
+            "option": "target_variant",
+            "raw_csv_ending_cad": 46874.02232082809,
+            "recorded_rounded_cad": 46874.02,
+            "difference_cad": 0.0023208280908875167
+          }
+        ]
+      }
+    }
+  },
+  "status": "verified_complete",
+  "verification_report": "audit_live_cases.json",
+  "initial_studies_scope": "Les entrées cases.* décrivent les études initiales r5, conservées intactes dans les captures.",
+  "revision_history": [
+    {
+      "revision": 10,
+      "withdrawal_cad": 40000,
+      "loss_limit_cad": 15000,
+      "minimum_cad": 40000.0,
+      "audit_scenario_error": false,
+      "error_scope": null,
+      "run_id": "3bf236715a984759bb3f668a25fdc938",
+      "aws_request_ids": [
+        "44f511c1-884d-4d1c-bfaf-767a11650ffc",
+        "9922f911-3929-402e-af02-684ec259f6f3",
+        "d8a03c6b-4dcb-4a17-880b-87d6572602c8",
+        "40b36715-52a1-47ff-864d-e19c5f5e9893"
+      ],
+      "independent_arithmetic": [
+        {
+          "id": "baseline",
+          "turnover_cad": 0.0,
+          "losses_cad": {
+            "actions": 18250.0,
+            "obligations": 13900.000000000002
+          },
+          "admissible": false
+        },
+        {
+          "id": "minimum_turnover",
+          "turnover_cad": 40000.0,
+          "losses_cad": {
+            "actions": 9500.000000000002,
+            "obligations": 6400.0
+          },
+          "admissible": true
+        },
+        {
+          "id": "alternative_minimum",
+          "turnover_cad": 40000.0,
+          "losses_cad": {
+            "actions": 2749.9999999999995,
+            "obligations": 6150.0
+          },
+          "admissible": true
+        }
+      ],
+      "changes": {
+        "changed_fields": [
+          "fact.withdrawal_cad"
+        ],
+        "invalidated": [
+          "analysis@1",
+          "analysis_review@1",
+          "fact.withdrawal_cad@1",
+          "problem@1",
+          "qualification@1",
+          "questions.agent0@1",
+          "questions.agent1@1",
+          "questions.agent2@1",
+          "questions.agent3@1",
+          "request@1",
+          "research_review@1",
+          "view@1"
+        ],
+        "reused": [
+          "baseline_stress@1",
+          "fact.assumptions@1",
+          "fact.capital_cad@1",
+          "fact.clarifications@1",
+          "fact.comparison@1",
+          "fact.currency@1",
+          "fact.decision_type@1",
+          "fact.holdings@1",
+          "fact.horizon_years@1",
+          "fact.knowledge_date@1",
+          "fact.max_asset_weights@1",
+          "fact.objective@1",
+          "fact.question@1",
+          "fact.reserve_policy@1",
+          "fact.scenario_loss_limit_cad@1",
+          "fact.scenarios@1",
+          "fact.unknowns@1",
+          "fact.withdrawal_months@1",
+          "request_source.874af537a0be4dd680e180fc75475071@1",
+          "research@1"
+        ]
+      }
+    },
+    {
+      "revision": 15,
+      "withdrawal_cad": 1000,
+      "loss_limit_cad": 15000,
+      "minimum_cad": 14999.999999999996,
+      "audit_scenario_error": true,
+      "error_scope": "Le relecteur a modifié le retrait au lieu de la perte admise ; corrigé en r20.",
+      "run_id": "2dd45683d76b4d2199afdc4101a0750d",
+      "aws_request_ids": [
+        "7c79e389-628d-448e-92ec-7ec595cc8be4",
+        "b430fdad-40c5-48f0-bcd8-be70782b03d6",
+        "931f9520-6aa0-4025-a5e6-1068009fd23f",
+        "5b08ac8a-0ae9-49bd-9133-5c2b1c2ff13a"
+      ],
+      "independent_arithmetic": [
+        {
+          "id": "baseline",
+          "turnover_cad": 0.0,
+          "losses_cad": {
+            "actions": 18250.0,
+            "obligations": 13900.000000000002
+          },
+          "admissible": false
+        },
+        {
+          "id": "minimum_turnover",
+          "turnover_cad": 14999.999999999996,
+          "losses_cad": {
+            "actions": 11450.0,
+            "obligations": 12249.999999999998
+          },
+          "admissible": true
+        },
+        {
+          "id": "alternative_minimum",
+          "turnover_cad": 15000.000099999994,
+          "losses_cad": {
+            "actions": 10749.999950000003,
+            "obligations": 10429.999977000001
+          },
+          "admissible": true
+        }
+      ],
+      "changes": {
+        "changed_fields": [
+          "fact.withdrawal_cad"
+        ],
+        "invalidated": [
+          "analysis@2",
+          "analysis_review@2",
+          "fact.withdrawal_cad@2",
+          "problem@2",
+          "qualification@2",
+          "questions.agent0@2",
+          "questions.agent1@2",
+          "questions.agent2@2",
+          "questions.agent3@2",
+          "request@2",
+          "research_review@2",
+          "view@2"
+        ],
+        "reused": [
+          "baseline_stress@1",
+          "fact.assumptions@1",
+          "fact.capital_cad@1",
+          "fact.clarifications@1",
+          "fact.comparison@1",
+          "fact.currency@1",
+          "fact.decision_type@1",
+          "fact.holdings@1",
+          "fact.horizon_years@1",
+          "fact.knowledge_date@1",
+          "fact.max_asset_weights@1",
+          "fact.objective@1",
+          "fact.question@1",
+          "fact.reserve_policy@1",
+          "fact.scenario_loss_limit_cad@1",
+          "fact.scenarios@1",
+          "fact.unknowns@1",
+          "fact.withdrawal_months@1",
+          "request_source.3bf236715a984759bb3f668a25fdc938@1",
+          "request_source.874af537a0be4dd680e180fc75475071@1",
+          "research@1"
+        ]
+      }
+    },
+    {
+      "revision": 20,
+      "withdrawal_cad": 40000,
+      "loss_limit_cad": 1000,
+      "minimum_cad": 74400.0,
+      "audit_scenario_error": false,
+      "error_scope": null,
+      "run_id": "3565a73fd7c3465db66cce1d15183b72",
+      "aws_request_ids": [
+        "fb50869c-4811-4a38-87ab-9a09412dca01",
+        "00391eb1-d082-4012-9617-32e74cf97e19",
+        "17dd616a-87cc-4d42-a692-13232ae340cf",
+        "100b77a4-9084-424a-9d2a-f75b25516f50"
+      ],
+      "independent_arithmetic": [
+        {
+          "id": "baseline",
+          "turnover_cad": 0.0,
+          "losses_cad": {
+            "actions": 18250.0,
+            "obligations": 13900.000000000002
+          },
+          "admissible": false
+        },
+        {
+          "id": "minimum_turnover",
+          "turnover_cad": 74400.0,
+          "losses_cad": {
+            "actions": 1000.0,
+            "obligations": 1000.0
+          },
+          "admissible": true
+        }
+      ],
+      "changes": {
+        "changed_fields": [
+          "fact.scenario_loss_limit_cad",
+          "fact.withdrawal_cad"
+        ],
+        "invalidated": [
+          "analysis@3",
+          "analysis_review@3",
+          "fact.scenario_loss_limit_cad@1",
+          "fact.withdrawal_cad@3",
+          "problem@3",
+          "qualification@3",
+          "questions.agent0@3",
+          "questions.agent1@3",
+          "questions.agent2@3",
+          "questions.agent3@3",
+          "request@3",
+          "research_review@3",
+          "view@3"
+        ],
+        "reused": [
+          "baseline_stress@1",
+          "fact.assumptions@1",
+          "fact.capital_cad@1",
+          "fact.clarifications@1",
+          "fact.comparison@1",
+          "fact.currency@1",
+          "fact.decision_type@1",
+          "fact.holdings@1",
+          "fact.horizon_years@1",
+          "fact.knowledge_date@1",
+          "fact.max_asset_weights@1",
+          "fact.objective@1",
+          "fact.question@1",
+          "fact.reserve_policy@1",
+          "fact.scenarios@1",
+          "fact.unknowns@1",
+          "fact.withdrawal_months@1",
+          "request_source.2dd45683d76b4d2199afdc4101a0750d@1",
+          "request_source.3bf236715a984759bb3f668a25fdc938@1",
+          "request_source.874af537a0be4dd680e180fc75475071@1",
+          "research@1"
+        ]
+      }
+    }
+  ],
+  "current_robert": {
+    "id": "71c8fb4b9d5e45fe98a4b4942e07c41e",
+    "revision": 20,
+    "snapshot": "robert-r20-source.json",
+    "withdrawal_cad": 40000,
+    "scenario_loss_limit_cad": 1000,
+    "min_reallocation_cad": 74400
+  },
+  "revision_verification": "audit_revisions.json",
+  "variant_amira": {
+    "id": "4a654c3cd06646c5a7765ff58820633d",
+    "source_revision": 5,
+    "origin": {
+      "dossier_id": "49ed5ae5903f41c297909b644ff7599a",
+      "intent": "variant",
+      "revision": 5,
+      "source_revision": 5
+    },
+    "revision": 5,
+    "raw_snapshot": "amira-variant-source.json",
+    "artifact_hashes_verified": 33,
+    "aws_request_ids": [
+      "5dd61b05-37e2-4aa3-a980-db114a5927de",
+      "b3653d2c-f217-4129-8d6f-d91feadf878e",
+      "323ee4a0-dad1-4c15-aedc-c7476e8a31c8",
+      "f4741c2a-b99d-45bb-99bb-06ddf54f578f"
+    ],
+    "comparison_weight": 0.05,
+    "parent_unchanged": "Exact snapshot comparison in browser-variant.json",
+    "independent_arithmetic": [
+      {
+        "option": "baseline",
+        "independent_ending_cad": 44515.75141219115,
+        "recorded_ending_cad": 44515.75
+      },
+      {
+        "option": "target_variant",
+        "independent_ending_cad": 47660.11262370706,
+        "recorded_ending_cad": 47660.11
+      }
+    ],
+    "inherited_capital_provenance": {
+      "artifact_ref": "fact.capital_cad@1",
+      "dossier_id": "49ed5ae5903f41c297909b644ff7599a",
+      "origin": "declared",
+      "sha256": "6d10dcaf7b195fa42d4936d9f32dedd6531be133909e6380c30411ee61785046",
+      "source_ref": "request@1",
+      "source_revision": 5
+    },
+    "checked_at": "2026-11-15T20:50:57.197417+00:00"
+  },
+  "total_completed_review_inferences": 24
+}

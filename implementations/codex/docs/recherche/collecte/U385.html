@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Data protection in Amazon S3 - Amazon Simple Storage Service</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="data-protection" /><meta name="default_state" content="data-protection" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/data-protection.html" /><link rel="alternate" type="text/markdown" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/data-protection.md" title="Markdown version" /><meta name="description" content="Learn how to protect your data and perform failovers in Amazon S3 by using features such as S3 Replication, Multi-Region Access Points, S3 Object Lock, and S3 Versioning, and services such as AWS Backup." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon Simple Storage Service" /><meta name="guide" content="User Guide" /><meta name="abstract" content="Learn how to use Amazon Simple Storage Service (Amazon S3) to store and retrieve any amount of data from anywhere. This guide explains Amazon S3 concepts, such as buckets, objects, and related configurations, and includes code examples for common operations." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/data-protection.html" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/AmazonS3/latest/userguide/data-protection.html" hreflang="id-id" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/AmazonS3/latest/userguide/data-protection.html" hreflang="id" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/AmazonS3/latest/userguide/data-protection.html" hreflang="de-de" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/AmazonS3/latest/userguide/data-protection.html" hreflang="de" /><link rel="alternate" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/data-protection.html" hreflang="en-us" /><link rel="alternate" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/data-protection.html" hreflang="en" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/AmazonS3/latest/userguide/data-protection.html" hreflang="es-es" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/AmazonS3/latest/userguide/data-protection.html" hreflang="es" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/AmazonS3/latest/userguide/data-protection.html" hreflang="fr-fr" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/AmazonS3/latest/userguide/data-protection.html" hreflang="fr" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/AmazonS3/latest/userguide/data-protection.html" hreflang="it-it" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/AmazonS3/latest/userguide/data-protection.html" hreflang="it" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/data-protection.html" hreflang="ja-jp" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/data-protection.html" hreflang="ja" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/userguide/data-protection.html" hreflang="ko-kr" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/userguide/data-protection.html" hreflang="ko" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/data-protection.html" hreflang="pt-br" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/data-protection.html" hreflang="pt" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_cn/AmazonS3/latest/userguide/data-protection.html" hreflang="zh-cn" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_tw/AmazonS3/latest/userguide/data-protection.html" hreflang="zh-tw" /><link rel="alternate" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/data-protection.html" hreflang="x-default" /><meta name="feedback-item" content="S3" /><meta name="this_doc_product" content="Amazon Simple Storage Service" /><meta name="this_doc_guide" content="User Guide" /><head xmlns="http://www.w3.org/1999/xhtml"> <script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"/></head>
+<script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'s3'}"></script><meta id="panorama-serviceSubSection" value="User Guide" /><meta id="panorama-serviceConsolePage" value="Data protection in Amazon S3" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><p><a href="data-protection.md">View a markdown version of this page</a></p><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Data protection in Amazon S3 - Amazon Simple Storage Service</title><meta name="pdf" content="/pdfs/AmazonS3/latest/userguide/s3-userguide.pdf#data-protection" /><meta name="rss" content="s3-userguide-rss-updates.rss" /><meta name="forums" content="https://repost.aws/tags/TADSTjraA0Q4-a1dxk6eUYaw" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=S3&amp;topic_url=https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/data-protection.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/data-protection.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/data-protection.html" /><meta name="keywords" content="S3,Amazon S3,S3 User Guide,Amazon S3 User Guide,Amazon User Guide,s3 bucket,s3 object,cloud storage,data storage,prevent data loss in Amazon S3,Amazon S3 data redundancy,Amazon S3 backup for objects,replicate Amazon S3data,lock objects in Amazon S3,keep multiple versions of objects in Amazon S3,failover controls for Amazon S3,disaster recovery in Amazon S3,high availability in Amazon S3,resiliency in Amazon S3,business continuity in Amazon S3" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon Simple Storage Service (S3)",
+        "item" : "https://docs.aws.amazon.com/s3/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "User Guide",
+        "item" : "https://docs.aws.amazon.com/AmazonS3/latest/userguide"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Data protection in Amazon S3",
+        "item" : "https://docs.aws.amazon.com/AmazonS3/latest/userguide/data-protection.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/AmazonS3/latest/userguide/s3-userguide.pdf#data-protection" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/s3/index.html">Amazon Simple Storage Service (S3)</a><a href="Welcome.html">User Guide</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="data-protection">Data protection in Amazon S3</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>In addition to the resilience offered by the AWS global infrastructure, Amazon S3 offers a
+        number of features to help protect your data against accidental deletions or Regional
+        failures. </p><div class="variablelist">
+         
+         
+         
+         
+         
+    <dl>
+            <dt><b><span class="term">S3 Replication</span></b></dt>
+            <dd>
+                <p>You can use live replication to enable automatic, asynchronous copying of
+                    objects across Amazon S3 buckets. Buckets that are configured for object replication
+                    can be owned by the same AWS account or by different accounts. You can
+                    replicate objects to a single destination bucket or to multiple destination
+                    buckets. The destination buckets can be in different AWS Regions or within the
+                    same Region as the source bucket. To enable failover controls, you can configure
+                    replication to be two-way (bidirectional) so that your source and destination
+                    buckets can be kept in sync during a Regional failure. For more information, see
+                        <a href="./replication.html">Replicating objects within and across Regions</a>.</p>
+            </dd>
+        
+            <dt><b><span class="term">Multi-Region Access Points and failover controls</span></b></dt>
+            <dd>
+                <p>Amazon S3 Multi-Region Access Points provide a global endpoint that applications can use to fulfill
+                    requests from S3 buckets that are located in multiple AWS Regions. You can use
+                    Multi-Region Access Points to build multi-Region applications with the same architecture that's
+                    used in a single Region, and then run those applications anywhere in the world.
+                    Instead of sending requests over the congested public internet, Multi-Region Access Points provide
+                    built-in network resilience with acceleration of internet-based requests to
+                    Amazon S3. Application requests made to a Multi-Region Access Point global endpoint use <a href="https://docs.aws.amazon.com/global-accelerator/latest/dg/">AWS Global Accelerator</a> to automatically route over the AWS
+                    global network to the closest-proximity S3 bucket with an active routing status.
+                    For more information about Multi-Region Access Points, see <a href="./MultiRegionAccessPoints.html">Managing multi-Region traffic with Multi-Region Access Points</a>.</p>
+                <p>With Amazon S3 Multi-Region Access Point failover controls, you can maintain business continuity
+                    during Regional traffic disruptions, while also giving your applications a
+                    multi-Region architecture to fulfill compliance and redundancy needs. If your
+                    Regional traffic gets disrupted, you can use Multi-Region Access Point failover controls to select
+                    which AWS Regions behind an Amazon S3 Multi-Region Access Point will process data-access and storage
+                    requests. </p>
+                <p>To support failover, you can set up your Multi-Region Access Point in an active-passive
+                    configuration, with traffic flowing to the active Region during normal
+                    conditions, and a passive Region on standby for failover. If you have S3 
+                    Cross-Region Replication (CRR) enabled with two-way replication rules, you 
+                    can keep your buckets synchronized during a failover. For more information 
+                    about failover controls, see <a href="./MrapFailover.html">Amazon S3 Multi-Region Access Points failover controls</a>.</p>
+            </dd>
+        
+            <dt><b><span class="term">S3 Versioning</span></b></dt>
+            <dd>
+                <p>Versioning is a means of keeping multiple variants of an object in the same bucket. You can
+                use versioning to preserve, retrieve, and restore every version of every object
+                stored in your Amazon S3 bucket. With versioning, you can easily recover from both
+                unintended user actions and application failures. For more information, see
+                <a href="./Versioning.html">Retaining multiple versions of objects with S3 Versioning</a>.</p>
+            </dd>
+        
+            <dt><b><span class="term">S3 Object Lock</span></b></dt>
+            <dd>
+                <p>You can use S3 Object Lock to store objects using a <em>write once, read
+                many</em> (WORM) model. Using S3 Object Lock, you can prevent an
+                object from being deleted or overwritten for a fixed amount of time or
+                indefinitely. S3 Object Lock enables you to meet regulatory requirements that
+                require WORM storage or simply to add an additional layer of protection against
+                object changes and deletion. For more information, see <a href="./object-lock.html">Locking objects with Object Lock</a>.</p>
+            </dd>
+        
+            <dt><b><span class="term">AWS Backup</span></b></dt>
+            <dd>
+                <p>Amazon S3 is natively integrated with AWS Backup, a fully managed, policy-based service
+                    that you can use to centrally define backup policies to protect your data in
+                    Amazon S3. After you define your backup policies and assign Amazon S3 resources to the
+                    policies, AWS Backup automates the creation of Amazon S3 backups and securely stores the
+                    backups in an encrypted backup vault that you designate in your backup plan. For
+                    more information, see <a href="./backup-for-s3.html">Backing up your Amazon S3 data</a>.</p>
+            </dd>
+        </dl></div><p>For a tutorial on using some of these features together to protect your data, see <a href="https://aws.amazon.com/getting-started/hands-on/protect-data-on-amazon-s3/?ref=docs_gateway/amazons3/DataDurability.html" rel="noopener noreferrer" target="_blank"><span>Tutorial: Protecting data on Amazon S3 against accidental deletion or application bugs using
+            S3 Versioning, S3 Object Lock, and S3 Replication</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>In addition to using the preceding features to protect your data, we recommend reviewing
+            the recommendations in <a href="./security-best-practices.html">Security best practices for Amazon S3</a>. </p></div></div><div class="highlights"><h6>Topics</h6><ul><li><p><a href="./replication.html">Replicating objects within and across Regions</a></p></li><li><p><a href="./MultiRegionAccessPoints.html">Managing multi-Region traffic with Multi-Region Access Points</a></p></li><li><p><a href="./Versioning.html">Retaining multiple versions of objects with S3 Versioning</a></p></li><li><p><a href="./object-lock.html">Locking objects with Object Lock</a></p></li><li><p><a href="./backup-for-s3.html">Backing up your Amazon S3 data</a></p></li></ul></div><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./s3-data-inventory.html">Amazon S3 data inventory</div><div id="next" class="next-link" accesskey="n" href="./replication.html">Replicating objects within and across Regions</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=S3&amp;topic_url=https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/data-protection.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=S3&amp;topic_url=https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/data-protection.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

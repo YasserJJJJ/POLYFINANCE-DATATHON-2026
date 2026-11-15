@@ -1,0 +1,104 @@
+
+
+## PAGE 1
+
+Event dashboard
+Commencer
+Commencer
+Chaque équipe reçoit un compte AWS. Tous les membres de l'équipe travaillent dans le même compte : coordonnez-vous avant de créer des ressources.
+Utilisez AWS avec le lien Open AWS console, ou avec la CLI grâce aux identiﬁants affichés dans le menu de gauche.
+Une fois connecté, vériﬁez que vous êtes dans le bon compte. L'identiﬁant du compte AWS est affiché en haut à droite de la console. Vériﬁez avec vos coéquipiers
+que tout le monde voit le même identiﬁant.
+us-east-1 est la région recommandée pour le Datathon : elle offre le plus grand choix de modèles Amazon Bedrock et toutes les capacités d'Amazon Bedrock
+AgentCore. Mélanger les régions coûte cher en temps : un bucket dans une région et un appel de modèle dans une autre produisent des erreurs qui ressemblent à
+des problèmes de permissions.
+Ouvrez AWS CloudShell 
+ et exécutez ceci. Vous conﬁrmez votre identité, votre région et la réponse de Bedrock avant d'écrire la moindre ligne de code de projet.
+Si les deux dernières commandes affichent une réponse qui contient « prêt », votre environnement fonctionne. Sinon, apportez le message d'erreur à un mentor au
+lieu de deviner : la page Votre premier appel de modèle liste les erreurs courantes et leur signiﬁcation.
+1. Lisez les règles d'Utilisation responsable. Elles sont courtes et protègent votre compte.
+2. Si vous voulez travailler dans JupyterLab, conﬁgurez SageMaker Uniﬁed Studio et ouvrez le notebook d'introduction.
+3. Faites votre premier appel de modèle et voyez quel modèle choisir.
+4. Parcourez Construire des agents si votre idée consiste à agir plutôt qu'à répondre.
+5. Conﬁgurez un assistant de programmation IA : c'est ce qui vous fera gagner le plus de temps.
+6. Consultez Données ﬁnancières publiques pour trouver vos sources.
+7. Planiﬁez votre exportation dès maintenant, pas le dimanche à 23 h.
+Commencer
+Vous êtes déjà connectés
+Si vous lisez cette page, vous avez déjà rejoint l'événement avec le code de votre équipe et vous êtes connectés à Workshop Studio. Il n'y a rien à refaire. Passez directement à
+l'étape suivante : ouvrir la console AWS, juste en dessous.
+Ouvrir la console AWS
+Région
+Utilisez Virginie du Nord (us-east-1) pour tout. Choisissez-la une fois dans le sélecteur de région en haut à droite de la console, et vériﬁez-la chaque fois que vous ouvrez un
+nouvel onglet de la console.
+Les cinq premières minutes, vérifiées
+# Qui suis-je, et dans quel compte ?
+aws sts get-caller-identity
+# Est-ce que j'atteins Amazon Bedrock, et quels modèles sont actifs ?
+aws bedrock list-foundation-models --region us-east-1 \
+  --query 'modelSummaries[?modelLifecycle.status==`ACTIVE`].modelId' \
+  --output text | tr '\t' '\n' | sort | head -20
+# Est-ce qu'un modèle répond ?
+aws bedrock-runtime converse \
+  --region us-east-1 \
+  --model-id global.amazon.nova-2-lite-v1:0 \
+  --messages '[{"role":"user","content":[{"text":"Répondez exactement : prêt"}]}]' \
+  --query 'output.message.content[?text].text' --output text
+# Et un modèle Anthropic ? Le premier appel active ces modèles pour tout le compte.
+aws bedrock-runtime converse \
+  --region us-east-1 \
+  --model-id global.anthropic.claude-haiku-4-5-20251001-v1:0 \
+  --messages '[{"role":"user","content":[{"text":"Répondez exactement : prêt"}]}]' \
+  --query 'output.message.content[?text].text' --output text
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+Prochaines étapes
+Previous
+Next
+Polyfinances 2026
+Datathon PolyFinances 2026
+Commencer
+Utilisation responsable
+SageMaker Uniﬁed Studio et
+notebook d'introduction
+Introduction à AWS
+Accès AWS CLI et SDK
+L'IA générative sur AWS
+Construire des agents
+Démarrages rapides
+Données ﬁnancières publiques
+Nettoyage et exportation
+Ressources
+AWS account access
+Open AWS console
+(us-east-1)
+Get AWS CLI credentials
+Share feedback
+Workshop catalog in AWS Builder
+Center
+Exit event
+AWS Workshop Studio
+adamlarhlimi2006
+© 2008 - 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+Privacy policy
+Terms of use
+Cookie preferences

@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2200" height="1450" viewBox="0 0 2200 1450">
+<title>AlphaForge : architecture proposée à quatre agents</title>
+<desc>Quatre agents transforment un dossier partagé. Le noyau déterministe contrôle les versions et les écritures. Les retours ciblés rouvrent les questions de besoin, de preuve ou de calcul. Les interventions humaines restent distinctes. Conception à valider, non construite.</desc>
+<rect width="2200" height="1450" fill="#f5f7fb"/>
+<text x="60" y="40.0" fill="#172b45" font-size="43" font-family="Arial, sans-serif" font-weight="700" dominant-baseline="hanging">AlphaForge — quatre agents, un dossier de décision</text>
+<text x="60" y="99.0" fill="#475970" font-size="26" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Architecture proposée pour validation • Les agents proposent ; le noyau contrôle et versionne.</text>
+<polyline points="65,161 123,161" fill="none" stroke="#087b7c" stroke-width="4" stroke-linejoin="round" />
+<polygon points="123,161 111.0,154.4 111.0,167.6" fill="#087b7c"/>
+<text x="140" y="147.0" fill="#087b7c" font-size="23" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Parcours principal</text>
+<polyline points="490,161 548,161" fill="none" stroke="#245b9e" stroke-width="4" stroke-linejoin="round" />
+<polygon points="548,161 536.0,154.4 536.0,167.6" fill="#245b9e"/>
+<text x="565" y="147.0" fill="#245b9e" font-size="23" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Dossier / échanges</text>
+<polyline points="920,161 978,161" fill="none" stroke="#7750a5" stroke-width="4" stroke-linejoin="round" />
+<polygon points="978,161 966.0,154.4 966.0,167.6" fill="#7750a5"/>
+<text x="995" y="147.0" fill="#7750a5" font-size="23" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Retours et approfondissements</text>
+<polyline points="1515,161 1573,161" fill="none" stroke="#b7650b" stroke-width="4" stroke-linejoin="round" stroke-dasharray="10 8"/>
+<polygon points="1573,161 1561.0,154.4 1561.0,167.6" fill="#b7650b"/>
+<text x="1590" y="147.0" fill="#b7650b" font-size="23" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Interventions humaines</text>
+<polyline points="2140,690 2180,690 2180,203 190,203 190,230" fill="none" stroke="#b7650b" stroke-width="3" stroke-linejoin="round" stroke-dasharray="10 8"/>
+<polygon points="190,230 196.6,218.0 183.4,218.0" fill="#b7650b"/>
+<text x="1270" y="179.0" fill="#b7650b" font-size="20" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Questions et résultats à examiner</text>
+<rect x="60" y="230" width="280" height="215" rx="18" fill="#fff4e7" stroke="#b7650b" stroke-width="2"/>
+<text x="82" y="251.0" fill="#b7650b" font-size="23" font-family="Arial, sans-serif" font-weight="700" dominant-baseline="hanging">PERSONNE</text>
+<text x="82" y="297" fill="#172b45" font-size="23" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Exprime le besoin</text>
+<text x="82" y="330" fill="#172b45" font-size="23" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Précise si nécessaire</text>
+<text x="82" y="363" fill="#172b45" font-size="23" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Corrige ou explore</text>
+<text x="82" y="396" fill="#172b45" font-size="23" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Choisit explicitement</text>
+<polyline points="200,445 200,515 170,515 170,550" fill="none" stroke="#b7650b" stroke-width="3" stroke-linejoin="round" stroke-dasharray="10 8"/>
+<polygon points="170,550 176.6,538.0 163.4,538.0" fill="#b7650b"/>
+<rect x="400" y="230" width="1100" height="215" rx="18" fill="#eaf1fb" stroke="#245b9e" stroke-width="2"/>
+<text x="430" y="250.0" fill="#245b9e" font-size="29" font-family="Arial, sans-serif" font-weight="700" dominant-baseline="hanging">DOSSIER PARTAGÉ ET VERSIONNÉ</text>
+<text x="430" y="301" fill="#172b45" font-size="25" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Mandat et assertions • Questions • Preuves • Méthodes</text>
+<text x="430" y="337" fill="#172b45" font-size="25" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Calculs et contrôles • Conclusions • Vues • Événements</text>
+<text x="430" y="385.0" fill="#245b9e" font-size="23" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Révisions immuables • Dépendances • Historique • Variantes explicites</text>
+<rect x="1560" y="230" width="580" height="215" rx="18" fill="#edf0f5" stroke="#738093" stroke-width="2"/>
+<text x="1585" y="251.0" fill="#172b45" font-size="28" font-family="Arial, sans-serif" font-weight="700" dominant-baseline="hanging">NOYAU DÉTERMINISTE</text>
+<text x="1585" y="298" fill="#172b45" font-size="24" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Contrôle droits, références et versions</text>
+<text x="1585" y="332" fill="#172b45" font-size="24" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Commet et invalide les dépendances</text>
+<text x="1585" y="366" fill="#172b45" font-size="24" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Planifie, attend et reprend les tâches</text>
+<text x="1585" y="410.0" fill="#475970" font-size="21" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Logiciel de coordination, pas un 5e agent</text>
+<polyline points="1560,338 1500,338" fill="none" stroke="#245b9e" stroke-width="4" stroke-linejoin="round" />
+<polygon points="1500,338 1512.0,344.6 1512.0,331.4" fill="#245b9e"/>
+<text x="1505" y="292.0" fill="#245b9e" font-size="16" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">commit</text>
+<polyline points="950,445 950,493" fill="none" stroke="#245b9e" stroke-width="3" stroke-linejoin="round" />
+<polygon points="950,493 956.6,481.0 943.4,481.0" fill="#245b9e"/>
+<polyline points="290,500 2020,500 2020,445" fill="none" stroke="#245b9e" stroke-width="3" stroke-linejoin="round" />
+<polygon points="2020,445 2013.4,457.0 2026.6,457.0" fill="#245b9e"/>
+<text x="1030" y="463.0" fill="#245b9e" font-size="21" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Révision lue + propositions ChangeSet</text>
+<polyline points="290,500 290,550" fill="none" stroke="#245b9e" stroke-width="3" stroke-linejoin="round" />
+<polygon points="290,550 296.6,538.0 283.4,538.0" fill="#245b9e"/>
+<polygon points="290,500 283.4,512.0 296.6,512.0" fill="#245b9e"/>
+<rect x="60" y="550" width="460" height="400" rx="18" fill="#ffffff" stroke="#c8d3e2" stroke-width="2"/>
+<rect x="80" y="570" width="54" height="46" rx="10" fill="#087b7c" stroke="none" stroke-width="2"/>
+<text x="97" y="578.0" fill="#ffffff" font-size="28" font-family="Arial, sans-serif" font-weight="700" dominant-baseline="hanging">0</text>
+<text x="149" y="576.0" fill="#087b7c" font-size="27" font-family="Arial, sans-serif" font-weight="700" dominant-baseline="hanging">QUALIFIER</text>
+<text x="83" y="636.0" fill="#172b45" font-size="25" font-family="Arial, sans-serif" font-weight="700" dominant-baseline="hanging">Qualification et formalisation</text>
+<text x="83" y="682" fill="#172b45" font-size="21" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Comprend la décision et ses échéances.</text>
+<text x="83" y="712" fill="#172b45" font-size="21" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Distingue faits, préférences, contraintes.</text>
+<text x="83" y="742" fill="#172b45" font-size="21" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Choisit les clarifications utiles.</text>
+<text x="83" y="782.0" fill="#087b7c" font-size="23" font-family="Arial, sans-serif" font-weight="700" dominant-baseline="hanging">Mandat + questions + critères</text>
+<rect x="75" y="825" width="430" height="108" rx="10" fill="#f1f4f8" stroke="none" stroke-width="2"/>
+<text x="87" y="840" fill="#475970" font-size="19" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Déclarations et historique du dossier</text>
+<text x="87" y="867" fill="#475970" font-size="19" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Règles professionnelles • Schéma typé</text>
+<text x="87" y="894" fill="#475970" font-size="19" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Contrôles de contradiction</text>
+<polyline points="830,500 830,550" fill="none" stroke="#245b9e" stroke-width="3" stroke-linejoin="round" />
+<polygon points="830,550 836.6,538.0 823.4,538.0" fill="#245b9e"/>
+<polygon points="830,500 823.4,512.0 836.6,512.0" fill="#245b9e"/>
+<rect x="600" y="550" width="460" height="400" rx="18" fill="#ffffff" stroke="#c8d3e2" stroke-width="2"/>
+<rect x="620" y="570" width="54" height="46" rx="10" fill="#087b7c" stroke="none" stroke-width="2"/>
+<text x="637" y="578.0" fill="#ffffff" font-size="28" font-family="Arial, sans-serif" font-weight="700" dominant-baseline="hanging">1</text>
+<text x="689" y="576.0" fill="#087b7c" font-size="27" font-family="Arial, sans-serif" font-weight="700" dominant-baseline="hanging">RECHERCHER</text>
+<text x="623" y="636.0" fill="#172b45" font-size="25" font-family="Arial, sans-serif" font-weight="700" dominant-baseline="hanging">Recherche et revue critique</text>
+<text x="623" y="682" fill="#172b45" font-size="21" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Examine sources et méthodes.</text>
+<text x="623" y="712" fill="#172b45" font-size="21" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Cherche les limites et contre-arguments.</text>
+<text x="623" y="742" fill="#172b45" font-size="21" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Peut contester une hypothèse parent.</text>
+<text x="623" y="782.0" fill="#087b7c" font-size="23" font-family="Arial, sans-serif" font-weight="700" dominant-baseline="hanging">Preuves + méthodes + lacunes</text>
+<rect x="615" y="825" width="430" height="108" rx="10" fill="#f1f4f8" stroke="none" stroke-width="2"/>
+<text x="627" y="840" fill="#475970" font-size="19" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Corpus P2 • 00 / 00B / 01 • Notebook</text>
+<text x="627" y="867" fill="#475970" font-size="19" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Recherche AWS • Lecture HTTP/PDF</text>
+<text x="627" y="894" fill="#475970" font-size="19" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Dépôts GitHub • Sources primaires</text>
+<polyline points="1370,500 1370,550" fill="none" stroke="#245b9e" stroke-width="3" stroke-linejoin="round" />
+<polygon points="1370,550 1376.6,538.0 1363.4,538.0" fill="#245b9e"/>
+<polygon points="1370,500 1363.4,512.0 1376.6,512.0" fill="#245b9e"/>
+<rect x="1140" y="550" width="460" height="400" rx="18" fill="#ffffff" stroke="#c8d3e2" stroke-width="2"/>
+<rect x="1160" y="570" width="54" height="46" rx="10" fill="#087b7c" stroke="none" stroke-width="2"/>
+<text x="1177" y="578.0" fill="#ffffff" font-size="28" font-family="Arial, sans-serif" font-weight="700" dominant-baseline="hanging">2</text>
+<text x="1229" y="576.0" fill="#087b7c" font-size="27" font-family="Arial, sans-serif" font-weight="700" dominant-baseline="hanging">RÉSOUDRE</text>
+<text x="1163" y="636.0" fill="#172b45" font-size="25" font-family="Arial, sans-serif" font-weight="700" dominant-baseline="hanging">Analyse et résolution</text>
+<text x="1163" y="682" fill="#172b45" font-size="21" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Formule le problème financier.</text>
+<text x="1163" y="712" fill="#172b45" font-size="21" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Calcule avec des outils admis.</text>
+<text x="1163" y="742" fill="#172b45" font-size="21" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Vérifie, compare et borne la conclusion.</text>
+<text x="1163" y="782.0" fill="#087b7c" font-size="23" font-family="Arial, sans-serif" font-weight="700" dominant-baseline="hanging">Plans + calculs + contrôles</text>
+<rect x="1155" y="825" width="430" height="108" rx="10" fill="#f1f4f8" stroke="none" stroke-width="2"/>
+<text x="1167" y="840" fill="#475970" font-size="19" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Données qualifiées • Méthodes admises</text>
+<text x="1167" y="867" fill="#475970" font-size="19" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Python / solveurs • Tests de référence</text>
+<text x="1167" y="894" fill="#475970" font-size="19" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Scénarios • Sensibilité • Faisabilité</text>
+<polyline points="1910,500 1910,550" fill="none" stroke="#245b9e" stroke-width="3" stroke-linejoin="round" />
+<polygon points="1910,550 1916.6,538.0 1903.4,538.0" fill="#245b9e"/>
+<polygon points="1910,500 1903.4,512.0 1916.6,512.0" fill="#245b9e"/>
+<rect x="1680" y="550" width="460" height="400" rx="18" fill="#ffffff" stroke="#c8d3e2" stroke-width="2"/>
+<rect x="1700" y="570" width="54" height="46" rx="10" fill="#087b7c" stroke="none" stroke-width="2"/>
+<text x="1717" y="578.0" fill="#ffffff" font-size="28" font-family="Arial, sans-serif" font-weight="700" dominant-baseline="hanging">3</text>
+<text x="1769" y="576.0" fill="#087b7c" font-size="27" font-family="Arial, sans-serif" font-weight="700" dominant-baseline="hanging">RESTITUER</text>
+<text x="1703" y="636.0" fill="#172b45" font-size="25" font-family="Arial, sans-serif" font-weight="700" dominant-baseline="hanging">Restitution et interaction</text>
+<text x="1703" y="682" fill="#172b45" font-size="21" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Explique ce que les pièces soutiennent.</text>
+<text x="1703" y="712" fill="#172b45" font-size="21" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Montre alternatives, manques et limites.</text>
+<text x="1703" y="742" fill="#172b45" font-size="21" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Organise l’examen et les révisions.</text>
+<text x="1703" y="782.0" fill="#087b7c" font-size="23" font-family="Arial, sans-serif" font-weight="700" dominant-baseline="hanging">Assertions + explication + retours</text>
+<rect x="1695" y="825" width="430" height="108" rx="10" fill="#f1f4f8" stroke="none" stroke-width="2"/>
+<text x="1707" y="840" fill="#475970" font-size="19" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Registre de résultats • Passages cités</text>
+<text x="1707" y="867" fill="#475970" font-size="19" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Valeurs liées au calcul • 5 contrôles</text>
+<text x="1707" y="894" fill="#475970" font-size="19" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Historique des vues et changements</text>
+<polyline points="520,718 600,718" fill="none" stroke="#087b7c" stroke-width="5" stroke-linejoin="round" />
+<polygon points="600,718 588.0,711.4 588.0,724.6" fill="#087b7c"/>
+<polyline points="1060,718 1140,718" fill="none" stroke="#087b7c" stroke-width="5" stroke-linejoin="round" />
+<polygon points="1140,718 1128.0,711.4 1128.0,724.6" fill="#087b7c"/>
+<polyline points="1600,718 1680,718" fill="none" stroke="#087b7c" stroke-width="5" stroke-linejoin="round" />
+<polygon points="1680,718 1668.0,711.4 1668.0,724.6" fill="#087b7c"/>
+<rect x="60" y="1020" width="2080" height="157" rx="18" fill="#f1ebf8" stroke="#7750a5" stroke-width="2"/>
+<polyline points="290,950 290,1020" fill="none" stroke="#7750a5" stroke-width="3" stroke-linejoin="round" />
+<polygon points="290,1020 296.6,1008.0 283.4,1008.0" fill="#7750a5"/>
+<polygon points="290,950 283.4,962.0 296.6,962.0" fill="#7750a5"/>
+<polyline points="830,950 830,1020" fill="none" stroke="#7750a5" stroke-width="3" stroke-linejoin="round" />
+<polygon points="830,1020 836.6,1008.0 823.4,1008.0" fill="#7750a5"/>
+<polygon points="830,950 823.4,962.0 836.6,962.0" fill="#7750a5"/>
+<polyline points="1370,950 1370,1020" fill="none" stroke="#7750a5" stroke-width="3" stroke-linejoin="round" />
+<polygon points="1370,1020 1376.6,1008.0 1363.4,1008.0" fill="#7750a5"/>
+<polygon points="1370,950 1363.4,962.0 1376.6,962.0" fill="#7750a5"/>
+<polyline points="1910,950 1910,1020" fill="none" stroke="#7750a5" stroke-width="3" stroke-linejoin="round" />
+<polygon points="1910,1020 1916.6,1008.0 1903.4,1008.0" fill="#7750a5"/>
+<polygon points="1910,950 1903.4,962.0 1916.6,962.0" fill="#7750a5"/>
+<text x="88" y="1040.0" fill="#7750a5" font-size="27" font-family="Arial, sans-serif" font-weight="700" dominant-baseline="hanging">APPROFONDIR ET ROUVRIR LE BON PROPRIÉTAIRE</text>
+<text x="88" y="1085.0" fill="#7750a5" font-size="24" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Besoin / contrainte → Agent0       Preuve / méthode → Agent1       Formulation / calcul → Agent2       Explication → Agent3</text>
+<text x="88" y="1128.0" fill="#475970" font-size="22" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Une découverte peut invalider une hypothèse parent. Seules les dépendances touchées sont rouvertes ; les autres pièces restent réutilisables.</text>
+<rect x="60" y="1217" width="820" height="155" rx="18" fill="#ffffff" stroke="#c8d3e2" stroke-width="2"/>
+<text x="82" y="1236.0" fill="#245b9e" font-size="23" font-family="Arial, sans-serif" font-weight="700" dominant-baseline="hanging">INFÉRENCES : ROUTE AWS CONVENUE</text>
+<text x="82" y="1279" fill="#475970" font-size="21" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Tous les rôles et auxiliaires : Amazon Bedrock</text>
+<text x="82" y="1307" fill="#475970" font-size="21" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">alphaforge • us-east-1 • global.openai.gpt-6-astra</text>
+<text x="82" y="1335" fill="#475970" font-size="21" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Accès vérifié en P2 ; aucune résidence canadienne déduite.</text>
+<rect x="910" y="1217" width="670" height="155" rx="18" fill="#ffffff" stroke="#c8d3e2" stroke-width="2"/>
+<text x="932" y="1236.0" fill="#245b9e" font-size="23" font-family="Arial, sans-serif" font-weight="700" dominant-baseline="hanging">IMPLÉMENTATION PROPOSÉE</text>
+<text x="932" y="1279" fill="#475970" font-size="21" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Local : SQLite + artefacts immuables</text>
+<text x="932" y="1307" fill="#475970" font-size="21" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">LangGraph à qualifier ; Strands Graph alternative</text>
+<text x="932" y="1335" fill="#475970" font-size="21" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Le moteur reste distinct du dossier métier.</text>
+<rect x="1610" y="1217" width="530" height="155" rx="18" fill="#fff4e7" stroke="#b7650b" stroke-width="2"/>
+<text x="1632" y="1236.0" fill="#b7650b" font-size="21" font-family="Arial, sans-serif" font-weight="700" dominant-baseline="hanging">VALIDATION AVANT CONSTRUCTION</text>
+<text x="1632" y="1279" fill="#475970" font-size="21" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Questions ≠ tâches ≠ preuves</text>
+<text x="1632" y="1307" fill="#475970" font-size="21" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Parcours présenté = projection du dossier</text>
+<text x="1632" y="1335" fill="#475970" font-size="21" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Préparé ≠ affiché ≠ examiné ≠ accepté</text>
+<text x="60" y="1397.0" fill="#475970" font-size="20" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Parcours logique : les flèches vertes ne représentent pas des écritures directes entre agents.</text>
+<text x="60" y="1425.0" fill="#475970" font-size="18" font-family="Arial, sans-serif" font-weight="400" dominant-baseline="hanging">Conception documentaire • 15 novembre 2026 • Les contrats détaillent les entrées, droits, sorties et contrôles.</text>
+</svg>

@@ -1,0 +1,385 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta content="Learn about the AWS CLI 2.40.3 iam commands." name="description" />
+
+  
+    <title>iam &#8212; AWS CLI 2.40.3 Command Reference</title>
+  <link rel="stylesheet" type="text/css" href="../../_static/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/override.css" />
+  <script src="/SdkStatic/sdk-priv.js" async="true"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/guzzle.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="accept-delegation-request" href="accept-delegation-request.html" />
+    <link rel="prev" title="show" href="../history/show.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-responsive.min.css" />
+  
+   
+
+<link rel="alternate" type="text/markdown" href="index.md" title="Markdown version" />
+  </head><body>
+  <div class="navbar navbar-fixed-top ">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="../../index.html">AWS CLI Command Reference</a>
+        <ul class="nav">
+<li><a class="nav-link" href="../../index.html">Home</a></li>
+<li><a class="nav-link" href="https://docs.aws.amazon.com/cli/latest/userguide/">User Guide</a></li>
+<li><a class="nav-link" href="https://forums.aws.amazon.com/forum.jspa?forumID=150">Forum</a></li>
+<li><a class="nav-link" href="https://github.com/aws/aws-cli">GitHub</a></li>
+        </ul>
+        <div class="pull-right" id="github-stars">
+          <iframe src="https://ghbtns.com/github-btn.html?user=aws&repo=aws-cli&type=watch&count=true&size=small"
+                  allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20px"  sandbox="allow-scripts"
+                  title="GitHub button showing the number of project stars."></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--REGION_DISCLAIMER_DO_NOT_REMOVE-->
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="accept-delegation-request.html" title="accept-delegation-request"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../history/show.html" title="show"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">AWS CLI 2.40.3 Command Reference</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">aws</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">iam</a></li> 
+      </ul>
+    </div>
+    <div class="container">
+        
+    <div class="top-links">
+      <ul class="breadcrumb pull-right">
+        <li>
+          <a href="../history/show.html" title="previous chapter (use the left arrow)">&larr; show</a>
+          <span class="divider">/</span>
+          
+        </li>
+          <li><a href="accept-delegation-request.html" title="next chapter (use the right arrow)">accept-delegation-request &rarr;</a></li>
+      </ul>
+    </div>
+  
+        <div class="document clearer">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo left-bar-other">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/logo.png" alt="Amazon Web Services logo" height="63" />
+  </a>
+</p>
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">iam</a><ul>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#available-commands">Available Commands</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+<div id="searchbox" style="display: none">
+    <h3>Quick search</h3>
+    <form class="form-search margin-top-1em" action="../../search.html" method="get">
+        <label for="searchbox">Search box</label>
+        <input id="searchbox" type="search" name="q" style="width: 105px" class="input-small search-query" autocomplete="off" />
+        <button type="submit" class="btn btn-small">Search</button>
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script src="../../_static/searchbox.js"></script><div class="left-bar-other">
+  <h3>Feedback</h3>
+  <p class="feedback">Did you find this page useful? Do you have a suggestion to improve the documentation? <a href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=AWS%20Command%20Line%20Interface&hidden_guide_name=Reference&topic_url=https%3A%2F%2Fdocs.aws.amazon.com%2Fcli%2Flatest%2Freference/iam/index.html">Give us feedback</a>.
+    <br />
+    If you would like to suggest an improvement or fix for the AWS CLI, check out our <a href="https://github.com/aws/aws-cli/blob/v2/CONTRIBUTING.rst">contributing guide</a> on GitHub.</p>
+</div><div class="left-bar-other">
+  <h3>User Guide</h3>
+  <p>First time using the AWS CLI? See the
+  <a href="https://docs.aws.amazon.com/cli/latest/userguide/">User Guide</a> for
+  help getting started.</p>
+</div>
+        </div>
+      </div>
+            <div class="body">
+              
+  <p>[ <a class="reference internal" href="../index.html#cli-aws"><span class="std std-ref">aws</span></a> ]</p>
+<div class="section" id="iam">
+<span id="cli-aws-iam"></span><h1>iam<a class="headerlink" href="#iam" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<p>Identity and Access Management (IAM) is a web service for securely controlling access to Amazon Web Services services. With IAM, you can centrally manage users, security credentials such as access keys, and permissions that control which Amazon Web Services resources users and applications can access. For more information about IAM, see <a class="reference external" href="http://aws.amazon.com/iam/">Identity and Access Management (IAM)</a> and the <a class="reference external" href="https://docs.aws.amazon.com/IAM/latest/UserGuide/">Identity and Access Management User Guide</a> .</p>
+<blockquote>
+<div><strong>Programmatic access to IAM</strong></div></blockquote>
+<p>We recommend that you use the Amazon Web Services SDKs to make programmatic API calls to IAM. The Amazon Web Services SDKs consist of libraries and sample code for various programming languages and platforms (for example, Java, Ruby, .NET, iOS, and Android). The SDKs provide a convenient way to create programmatic access to IAM and Amazon Web Services. For example, the SDKs take care of tasks such as cryptographically signing requests, managing errors, and retrying requests automatically. For more information, see <a class="reference external" href="http://aws.amazon.com/tools/">Tools to build on Amazon Web Services</a> .</p>
+<p>Alternatively, you can also use the IAM Query API to make direct calls to the IAM service. For more information about calling the IAM Query API, see <a class="reference external" href="https://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_UsingQueryAPI.html">Making query requests</a> in the <em>Identity and Access Management User Guide</em> . IAM supports GET and POST requests for all actions. That is, the API does not require you to use GET for some actions and POST for others. However, GET requests are subject to the limitation size of a URL. Therefore, for operations that require larger sizes, use a POST request.</p>
+<blockquote>
+<div><strong>Signing requests</strong></div></blockquote>
+<p>Requests must be signed using an access key ID and a secret access key. We strongly recommend that you do not use your Amazon Web Services account access key ID and secret access key for everyday work with IAM. You can use the access key ID and secret access key for an IAM user or you can use the Security Token Service to generate temporary security credentials and use those to sign requests.</p>
+<p>To sign requests, we recommend that you use <a class="reference external" href="https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html">Signature Version 4</a> . If you have an existing application that uses Signature Version 2, you do not have to update it to use Signature Version 4. However, some operations now require Signature Version 4. The documentation for operations that require version 4 indicate this requirement.</p>
+<blockquote>
+<div><strong>Additional resources</strong></div></blockquote>
+<ul class="simple">
+<li><a class="reference external" href="https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html">Amazon Web Services security credentials</a> . This topic provides general information about the types of credentials used for accessing Amazon Web Services.</li>
+<li><a class="reference external" href="https://docs.aws.amazon.com/IAM/latest/UserGuide/IAMBestPractices.html">IAM best practices</a> . This topic presents a list of suggestions for using the IAM service to help secure your Amazon Web Services resources.</li>
+<li><a class="reference external" href="https://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html">Signing Amazon Web Services API requests</a> . This set of topics walk you through the process of signing a request using an access key ID and secret access key.</li>
+</ul>
+</div>
+<div class="section" id="available-commands">
+<h2>Available Commands<a class="headerlink" href="#available-commands" title="Permalink to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="accept-delegation-request.html">accept-delegation-request</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acquire-role.html">acquire-role</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add-client-id-to-open-id-connect-provider.html">add-client-id-to-open-id-connect-provider</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add-role-to-instance-profile.html">add-role-to-instance-profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add-user-to-group.html">add-user-to-group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="associate-delegation-request.html">associate-delegation-request</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attach-group-policy.html">attach-group-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attach-role-policy.html">attach-role-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attach-user-policy.html">attach-user-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="change-password.html">change-password</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-access-key.html">create-access-key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-account-alias.html">create-account-alias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-delegation-request.html">create-delegation-request</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-group.html">create-group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-instance-profile.html">create-instance-profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-login-profile.html">create-login-profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-open-id-connect-provider.html">create-open-id-connect-provider</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-policy.html">create-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-policy-version.html">create-policy-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-role.html">create-role</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-saml-provider.html">create-saml-provider</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-service-linked-role.html">create-service-linked-role</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-service-specific-credential.html">create-service-specific-credential</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-user.html">create-user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-virtual-mfa-device.html">create-virtual-mfa-device</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deactivate-mfa-device.html">deactivate-mfa-device</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-access-key.html">delete-access-key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-account-alias.html">delete-account-alias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-account-password-policy.html">delete-account-password-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-group.html">delete-group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-group-policy.html">delete-group-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-instance-profile.html">delete-instance-profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-login-profile.html">delete-login-profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-open-id-connect-provider.html">delete-open-id-connect-provider</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-policy.html">delete-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-policy-version.html">delete-policy-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-role.html">delete-role</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-role-permissions-boundary.html">delete-role-permissions-boundary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-role-policy.html">delete-role-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-saml-provider.html">delete-saml-provider</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-server-certificate.html">delete-server-certificate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-service-linked-role.html">delete-service-linked-role</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-service-specific-credential.html">delete-service-specific-credential</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-signing-certificate.html">delete-signing-certificate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-ssh-public-key.html">delete-ssh-public-key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-user.html">delete-user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-user-permissions-boundary.html">delete-user-permissions-boundary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-user-policy.html">delete-user-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-virtual-mfa-device.html">delete-virtual-mfa-device</a></li>
+<li class="toctree-l1"><a class="reference internal" href="detach-group-policy.html">detach-group-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="detach-role-policy.html">detach-role-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="detach-user-policy.html">detach-user-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="disable-organizations-root-credentials-management.html">disable-organizations-root-credentials-management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="disable-organizations-root-sessions.html">disable-organizations-root-sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="disable-outbound-web-identity-federation.html">disable-outbound-web-identity-federation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enable-mfa-device.html">enable-mfa-device</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enable-organizations-root-credentials-management.html">enable-organizations-root-credentials-management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enable-organizations-root-sessions.html">enable-organizations-root-sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="enable-outbound-web-identity-federation.html">enable-outbound-web-identity-federation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generate-credential-report.html">generate-credential-report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generate-organizations-access-report.html">generate-organizations-access-report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generate-service-last-accessed-details.html">generate-service-last-accessed-details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-access-key-last-used.html">get-access-key-last-used</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-account-authorization-details.html">get-account-authorization-details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-account-password-policy.html">get-account-password-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-account-properties.html">get-account-properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-account-summary.html">get-account-summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-context-keys-for-custom-policy.html">get-context-keys-for-custom-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-context-keys-for-principal-policy.html">get-context-keys-for-principal-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-credential-report.html">get-credential-report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-delegation-request.html">get-delegation-request</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-group.html">get-group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-group-policy.html">get-group-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-human-readable-summary.html">get-human-readable-summary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-instance-profile.html">get-instance-profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-login-profile.html">get-login-profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-mfa-device.html">get-mfa-device</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-open-id-connect-provider.html">get-open-id-connect-provider</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-organizations-access-report.html">get-organizations-access-report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-outbound-web-identity-federation-info.html">get-outbound-web-identity-federation-info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-policy.html">get-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-policy-version.html">get-policy-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-role.html">get-role</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-role-policy.html">get-role-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-role-template-version.html">get-role-template-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-saml-provider.html">get-saml-provider</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-server-certificate.html">get-server-certificate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-service-last-accessed-details.html">get-service-last-accessed-details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-service-last-accessed-details-with-entities.html">get-service-last-accessed-details-with-entities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-service-linked-role-deletion-status.html">get-service-linked-role-deletion-status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-ssh-public-key.html">get-ssh-public-key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-user.html">get-user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-user-policy.html">get-user-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-access-keys.html">list-access-keys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-account-aliases.html">list-account-aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-attached-group-policies.html">list-attached-group-policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-attached-role-policies.html">list-attached-role-policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-attached-user-policies.html">list-attached-user-policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-delegation-requests.html">list-delegation-requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-entities-for-policy.html">list-entities-for-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-group-policies.html">list-group-policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-groups.html">list-groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-groups-for-user.html">list-groups-for-user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-instance-profile-tags.html">list-instance-profile-tags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-instance-profiles.html">list-instance-profiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-instance-profiles-for-role.html">list-instance-profiles-for-role</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-mfa-device-tags.html">list-mfa-device-tags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-mfa-devices.html">list-mfa-devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-open-id-connect-provider-tags.html">list-open-id-connect-provider-tags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-open-id-connect-providers.html">list-open-id-connect-providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-organizations-features.html">list-organizations-features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-policies.html">list-policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-policies-granting-service-access.html">list-policies-granting-service-access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-policy-tags.html">list-policy-tags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-policy-versions.html">list-policy-versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-role-policies.html">list-role-policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-role-tags.html">list-role-tags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-roles.html">list-roles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-saml-provider-tags.html">list-saml-provider-tags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-saml-providers.html">list-saml-providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-server-certificate-tags.html">list-server-certificate-tags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-server-certificates.html">list-server-certificates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-service-specific-credentials.html">list-service-specific-credentials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-signing-certificates.html">list-signing-certificates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-ssh-public-keys.html">list-ssh-public-keys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-user-policies.html">list-user-policies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-user-tags.html">list-user-tags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-users.html">list-users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-virtual-mfa-devices.html">list-virtual-mfa-devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-account-properties.html">put-account-properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-group-policy.html">put-group-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-role-permissions-boundary.html">put-role-permissions-boundary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-role-policy.html">put-role-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-user-permissions-boundary.html">put-user-permissions-boundary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-user-policy.html">put-user-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reject-delegation-request.html">reject-delegation-request</a></li>
+<li class="toctree-l1"><a class="reference internal" href="remove-client-id-from-open-id-connect-provider.html">remove-client-id-from-open-id-connect-provider</a></li>
+<li class="toctree-l1"><a class="reference internal" href="remove-role-from-instance-profile.html">remove-role-from-instance-profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="remove-user-from-group.html">remove-user-from-group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reset-service-specific-credential.html">reset-service-specific-credential</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resync-mfa-device.html">resync-mfa-device</a></li>
+<li class="toctree-l1"><a class="reference internal" href="send-delegation-token.html">send-delegation-token</a></li>
+<li class="toctree-l1"><a class="reference internal" href="set-default-policy-version.html">set-default-policy-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="set-security-token-service-preferences.html">set-security-token-service-preferences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulate-custom-policy.html">simulate-custom-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulate-principal-policy.html">simulate-principal-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tag-instance-profile.html">tag-instance-profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tag-mfa-device.html">tag-mfa-device</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tag-open-id-connect-provider.html">tag-open-id-connect-provider</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tag-policy.html">tag-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tag-role.html">tag-role</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tag-saml-provider.html">tag-saml-provider</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tag-server-certificate.html">tag-server-certificate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tag-user.html">tag-user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="untag-instance-profile.html">untag-instance-profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="untag-mfa-device.html">untag-mfa-device</a></li>
+<li class="toctree-l1"><a class="reference internal" href="untag-open-id-connect-provider.html">untag-open-id-connect-provider</a></li>
+<li class="toctree-l1"><a class="reference internal" href="untag-policy.html">untag-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="untag-role.html">untag-role</a></li>
+<li class="toctree-l1"><a class="reference internal" href="untag-saml-provider.html">untag-saml-provider</a></li>
+<li class="toctree-l1"><a class="reference internal" href="untag-server-certificate.html">untag-server-certificate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="untag-user.html">untag-user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-access-key.html">update-access-key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-account-password-policy.html">update-account-password-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-assume-role-policy.html">update-assume-role-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-delegation-request.html">update-delegation-request</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-group.html">update-group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-login-profile.html">update-login-profile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-open-id-connect-provider-thumbprint.html">update-open-id-connect-provider-thumbprint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-role.html">update-role</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-role-description.html">update-role-description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-saml-provider.html">update-saml-provider</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-server-certificate.html">update-server-certificate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-service-specific-credential.html">update-service-specific-credential</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-signing-certificate.html">update-signing-certificate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-ssh-public-key.html">update-ssh-public-key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-user.html">update-user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upload-server-certificate.html">upload-server-certificate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upload-signing-certificate.html">upload-signing-certificate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upload-ssh-public-key.html">upload-ssh-public-key</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wait/index.html">wait</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wizard/index.html">wizard</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+            </div>
+          <div class="clearfix"></div>
+        </div>
+        
+    <div class="footer-links">
+      <ul class="breadcrumb pull-right">
+        <li>
+          <a href="../history/show.html" title="previous chapter (use the left arrow)">&larr; show</a>
+          <span class="divider">/</span>
+          
+        </li>
+          <li><a href="accept-delegation-request.html" title="next chapter (use the right arrow)">accept-delegation-request &rarr;</a></li>
+      </ul>
+    </div>
+  
+
+    </div>
+  <script type="text/javascript" src="https://media.amazonwebservices.com/js/sitecatalyst/s_code.min.js"></script>
+  <script type="text/javascript" src="../../_static/analytics.js"></script>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="accept-delegation-request.html" title="accept-delegation-request"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../history/show.html" title="show"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">AWS CLI 2.40.3 Command Reference</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >aws</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">iam</a></li> 
+      </ul>
+    </div>
+  <div class="footer container">
+    &copy; Copyright 2026, Amazon Web Services. Created using <a href="https://www.sphinx-doc.org/">Sphinx</a>.
+  </div>
+
+
+
+  
+    
+  
+  </body>
+</html>

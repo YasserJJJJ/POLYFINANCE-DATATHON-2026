@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Making inference requests - Amazon Bedrock</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="inference" /><meta name="default_state" content="inference" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/bedrock/latest/userguide/inference.html" /><link rel="alternate" type="text/markdown" href="https://docs.aws.amazon.com/bedrock/latest/userguide/inference.md" title="Markdown version" /><meta name="description" content="Learn how to make inference requests to foundation models in Amazon Bedrock to generate text, images, and embeddings." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon Bedrock" /><meta name="guide" content="User Guide" /><meta name="abstract" content="User Guide for the Amazon Bedrock service." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/bedrock/latest/userguide/inference.html" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/bedrock/latest/userguide/inference.html" hreflang="id-id" /><link rel="alternate" href="https://docs.aws.amazon.com/id_id/bedrock/latest/userguide/inference.html" hreflang="id" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/bedrock/latest/userguide/inference.html" hreflang="de-de" /><link rel="alternate" href="https://docs.aws.amazon.com/de_de/bedrock/latest/userguide/inference.html" hreflang="de" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock/latest/userguide/inference.html" hreflang="en-us" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock/latest/userguide/inference.html" hreflang="en" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/bedrock/latest/userguide/inference.html" hreflang="es-es" /><link rel="alternate" href="https://docs.aws.amazon.com/es_es/bedrock/latest/userguide/inference.html" hreflang="es" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/inference.html" hreflang="fr-fr" /><link rel="alternate" href="https://docs.aws.amazon.com/fr_fr/bedrock/latest/userguide/inference.html" hreflang="fr" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/bedrock/latest/userguide/inference.html" hreflang="it-it" /><link rel="alternate" href="https://docs.aws.amazon.com/it_it/bedrock/latest/userguide/inference.html" hreflang="it" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/inference.html" hreflang="ja-jp" /><link rel="alternate" href="https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/inference.html" hreflang="ja" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/bedrock/latest/userguide/inference.html" hreflang="ko-kr" /><link rel="alternate" href="https://docs.aws.amazon.com/ko_kr/bedrock/latest/userguide/inference.html" hreflang="ko" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/bedrock/latest/userguide/inference.html" hreflang="pt-br" /><link rel="alternate" href="https://docs.aws.amazon.com/pt_br/bedrock/latest/userguide/inference.html" hreflang="pt" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_cn/bedrock/latest/userguide/inference.html" hreflang="zh-cn" /><link rel="alternate" href="https://docs.aws.amazon.com/zh_tw/bedrock/latest/userguide/inference.html" hreflang="zh-tw" /><link rel="alternate" href="https://docs.aws.amazon.com/bedrock/latest/userguide/inference.html" hreflang="x-default" /><meta name="feedback-folder" content="2d8c2a09-1dac-41bf-9893-c0333d272b2c" /><meta name="feedback-item" content="Bedrock" /><meta name="this_doc_product" content="Amazon Bedrock" /><meta name="this_doc_guide" content="User Guide" /><head xmlns="http://www.w3.org/1999/xhtml"> <script defer="" src="/assets/r/awsdocs-doc-page.2.0.0.js"></script><link href="/assets/r/awsdocs-doc-page.2.0.0.css" rel="stylesheet"/></head>
+<script defer="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'bedrock'}"></script><meta id="panorama-serviceSubSection" value="User Guide" /><meta id="panorama-serviceConsolePage" value="Making inference requests" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><p><a href="inference.md">View a markdown version of this page</a></p><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>Making inference requests - Amazon Bedrock</title><meta name="pdf" content="/pdfs/bedrock/latest/userguide/bedrock-ug.pdf#inference" /><meta name="rss" content="bedrock-ug.rss" /><meta name="forums" content="https://repost.aws/tags/TAQeKlaPaNRQ2tWB6P7KrMag" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=2d8c2a09-1dac-41bf-9893-c0333d272b2c&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/inference.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/inference.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/inference.html" /><meta name="keywords" content="Amazon Bedrock,bedrock,model inference,foundation models,prompts,text generation,embeddings" /><script type="application/ld+json">
+{
+    "@context" : "https://schema.org",
+    "@type" : "BreadcrumbList",
+    "itemListElement" : [
+      {
+        "@type" : "ListItem",
+        "position" : 1,
+        "name" : "AWS",
+        "item" : "https://aws.amazon.com"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 2,
+        "name" : "Amazon Bedrock",
+        "item" : "https://docs.aws.amazon.com/bedrock/index.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 3,
+        "name" : "User Guide",
+        "item" : "https://docs.aws.amazon.com/bedrock/latest/userguide"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 4,
+        "name" : "Build",
+        "item" : "https://docs.aws.amazon.com/bedrock/latest/userguide/build.html"
+      },
+      {
+        "@type" : "ListItem",
+        "position" : 5,
+        "name" : "Making inference requests",
+        "item" : "https://docs.aws.amazon.com/bedrock/latest/userguide/build.html"
+      }
+    ]
+}
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/bedrock/latest/userguide/bedrock-ug.pdf#inference" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="/index.html">Documentation</a><a href="/bedrock/index.html">Amazon Bedrock</a><a href="what-is-bedrock.html">User Guide</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="inference">Making inference requests</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Inference is the process of generating an output from an input provided to a model. Before you can send an inference request to Amazon Bedrock, you need to allow your role to perform the model invocation API actions. This depends on the endpoint you are using. For new applications, we recommend the <code class="code">bedrock-runtime</code> endpoint.</p><p><b><code class="code">bedrock-runtime</code> endpoint (recommended)</b></p><p>If your role has the <a href="./security-iam-awsmanpol.html#security-iam-awsmanpol-AmazonBedrockFullAccess">AmazonBedrockFullAccess</a> AWS managed policy attached, you can skip this section. Otherwise, attach the following permissions to allow inference through the <code class="code">bedrock-runtime</code> endpoint (Converse, Invoke, Chat Completions, and Responses APIs):</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (json)--><code class="json "><span>{</span>
+    "Version": "2012-10-17", 
+    "Statement": [
+        <span>{</span>
+            "Sid": "ModelInvocationPermissions",
+            "Effect": "Allow",
+            "Action": [
+                "bedrock:InvokeModel",
+                "bedrock:InvokeModelWithResponseStream",
+                "bedrock:GetInvoke",
+                "bedrock:CancelInvoke",
+                "bedrock:DeleteInvoke",
+                "bedrock:GetInferenceProfile",
+                "bedrock:ListInferenceProfiles",
+                "bedrock:RenderPrompt",
+                "bedrock:GetCustomModel",
+                "bedrock:ListCustomModels",
+                "bedrock:GetImportedModel",
+                "bedrock:ListImportedModels",
+                "bedrock:GetProvisionedModelThroughput",
+                "bedrock:ListProvisionedModelThroughputs",
+                "bedrock:GetGuardrail",
+                "bedrock:ListGuardrails",
+                "bedrock:ApplyGuardrail"
+            ],
+            "Resource": "*"
+        }
+    ]
+}</code></pre><p><b><code class="code">bedrock-mantle</code> endpoint</b></p><p>If your role has the <code class="code">AmazonBedrockMantleInferenceAccess</code> AWS managed policy attached, you can skip this section. Otherwise, attach the following permissions to allow inference through the <code class="code">bedrock-mantle</code> endpoint (Responses API, Chat Completions, Messages API):</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (json)--><code class="json "><span>{</span>
+    "Version": "2012-10-17", 
+    "Statement": [
+        <span>{</span>
+            "Sid": "MantleInferencePermissions",
+            "Effect": "Allow",
+            "Action": [
+                "bedrock-mantle:CreateInference",
+                "bedrock-mantle:GetProject",
+                "bedrock-mantle:ListProjects",
+                "bedrock-mantle:ListTagsForResources"
+            ],
+            "Resource": "*"
+        }
+    ]
+}</code></pre><div class="awsdocs-note awsdocs-important"><div class="awsdocs-note-title"><awsui-icon name="status-warning" variant="error"></awsui-icon><h6>Important</h6></div><div class="awsdocs-note-text"><p>If you scope your policy to specific resources instead of using <code class="code">"Resource": "*"</code>, the <a href="./inference-responses-api.html#bedrock-mantle-responses">Responses API</a> on the <code class="code">bedrock-runtime</code> endpoint needs two resources rather than one. In addition to the inference target, creating a response requires <code class="code">bedrock:InvokeModel</code> on your account's default project, and retrieving, canceling, or deleting a stored response requires <code class="code">bedrock:GetInvoke</code>, <code class="code">bedrock:CancelInvoke</code>, or <code class="code">bedrock:DeleteInvoke</code> on that same project. The following policy grants the minimum:</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><!--DEBUG: cli (json)--><code class="json "><span>{</span>
+    "Version": "2012-10-17", 
+    "Statement": [
+        <span>{</span>
+            "Sid": "CreateResponses",
+            "Effect": "Allow",
+            "Action": [
+                "bedrock:InvokeModel",
+                "bedrock:InvokeModelWithResponseStream"
+            ],
+            "Resource": [
+                "arn:aws:bedrock:*::foundation-model/openai.*",
+                "arn:aws:bedrock:*:111122223333:inference-profile/*.openai.*",
+                "arn:aws:bedrock:*:111122223333:project/default"
+            ]
+        },
+        <span>{</span>
+            "Sid": "ManageStoredResponses",
+            "Effect": "Allow",
+            "Action": [
+                "bedrock:GetInvoke",
+                "bedrock:CancelInvoke",
+                "bedrock:DeleteInvoke"
+            ],
+            "Resource": "arn:aws:bedrock:*:111122223333:project/default"
+        }
+    ]
+}</code></pre><p>The Converse, Invoke, and Chat Completions APIs don't require a project resource. For more information about the default project, see <a href="./projects.html">Projects (OpenAI-compatible)</a>.</p></div></div><p>For a detailed breakdown of each permission, see <a href="./inference-prereq.html">Prerequisites for running model inference</a>.</p><div class="highlights"><h6>Topics</h6><ul><li><p><a href="./inference-api.html">Inference using Invoke API</a></p></li><li><p><a href="./conversation-inference.html">Inference using Converse API</a></p></li><li><p><a href="./inference-responses-api.html">Responses API</a></p></li><li><p><a href="./inference-chat-completions.html">Chat Completions API</a></p></li><li><p><a href="./inference-messages-api.html">Inference using Anthropic Messages API</a></p></li><li><p><a href="./inference-parameters.html">Influence response generation with inference parameters</a></p></li><li><p><a href="./structured-output.html">Get validated JSON results from models</a></p></li><li><p><a href="./inference-reasoning.html">Enhance model responses with model reasoning</a></p></li><li><p><a href="./latency-optimized-inference.html">Optimize model inference for latency</a></p></li><li><p><a href="./inference-supported.html">Supported Regions and models for running model inference</a></p></li></ul></div><awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./apis.html">APIs</div><div id="next" class="next-link" accesskey="n" href="./inference-api.html">Invoke API</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=2d8c2a09-1dac-41bf-9893-c0333d272b2c&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/inference.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?feedback_destination_id=2d8c2a09-1dac-41bf-9893-c0333d272b2c&amp;topic_url=https://docs.aws.amazon.com/en_us/bedrock/latest/userguide/inference.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

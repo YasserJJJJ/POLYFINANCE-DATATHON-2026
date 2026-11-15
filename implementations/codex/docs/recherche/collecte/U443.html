@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta content="Learn about the AWS CLI 2.40.3 bedrock-agent commands." name="description" />
+
+  
+    <title>bedrock-agent &#8212; AWS CLI 2.40.3 Command Reference</title>
+  <link rel="stylesheet" type="text/css" href="../../_static/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/override.css" />
+  <script src="/SdkStatic/sdk-priv.js" async="true"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/guzzle.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="associate-agent-collaborator" href="associate-agent-collaborator.html" />
+    <link rel="prev" title="update-provisioned-model-throughput" href="../bedrock/update-provisioned-model-throughput.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="../../_static/bootstrap-responsive.min.css" />
+  
+   
+
+<link rel="alternate" type="text/markdown" href="index.md" title="Markdown version" />
+  </head><body>
+  <div class="navbar navbar-fixed-top ">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="../../index.html">AWS CLI Command Reference</a>
+        <ul class="nav">
+<li><a class="nav-link" href="../../index.html">Home</a></li>
+<li><a class="nav-link" href="https://docs.aws.amazon.com/cli/latest/userguide/">User Guide</a></li>
+<li><a class="nav-link" href="https://forums.aws.amazon.com/forum.jspa?forumID=150">Forum</a></li>
+<li><a class="nav-link" href="https://github.com/aws/aws-cli">GitHub</a></li>
+        </ul>
+        <div class="pull-right" id="github-stars">
+          <iframe src="https://ghbtns.com/github-btn.html?user=aws&repo=aws-cli&type=watch&count=true&size=small"
+                  allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20px"  sandbox="allow-scripts"
+                  title="GitHub button showing the number of project stars."></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--REGION_DISCLAIMER_DO_NOT_REMOVE-->
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="associate-agent-collaborator.html" title="associate-agent-collaborator"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../bedrock/update-provisioned-model-throughput.html" title="update-provisioned-model-throughput"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">AWS CLI 2.40.3 Command Reference</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">aws</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">bedrock-agent</a></li> 
+      </ul>
+    </div>
+    <div class="container">
+        
+    <div class="top-links">
+      <ul class="breadcrumb pull-right">
+        <li>
+          <a href="../bedrock/update-provisioned-model-throughput.html" title="previous chapter (use the left arrow)">&larr; update-provisioned-model-throughput</a>
+          <span class="divider">/</span>
+          
+        </li>
+          <li><a href="associate-agent-collaborator.html" title="next chapter (use the right arrow)">associate-agent-collaborator &rarr;</a></li>
+      </ul>
+    </div>
+  
+        <div class="document clearer">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo left-bar-other">
+  <a href="../../index.html">
+    <img class="logo" src="../../_static/logo.png" alt="Amazon Web Services logo" height="63" />
+  </a>
+</p>
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">bedrock-agent</a><ul>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#available-commands">Available Commands</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+<div id="searchbox" style="display: none">
+    <h3>Quick search</h3>
+    <form class="form-search margin-top-1em" action="../../search.html" method="get">
+        <label for="searchbox">Search box</label>
+        <input id="searchbox" type="search" name="q" style="width: 105px" class="input-small search-query" autocomplete="off" />
+        <button type="submit" class="btn btn-small">Search</button>
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script src="../../_static/searchbox.js"></script><div class="left-bar-other">
+  <h3>Feedback</h3>
+  <p class="feedback">Did you find this page useful? Do you have a suggestion to improve the documentation? <a href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=AWS%20Command%20Line%20Interface&hidden_guide_name=Reference&topic_url=https%3A%2F%2Fdocs.aws.amazon.com%2Fcli%2Flatest%2Freference/bedrock-agent/index.html">Give us feedback</a>.
+    <br />
+    If you would like to suggest an improvement or fix for the AWS CLI, check out our <a href="https://github.com/aws/aws-cli/blob/v2/CONTRIBUTING.rst">contributing guide</a> on GitHub.</p>
+</div><div class="left-bar-other">
+  <h3>User Guide</h3>
+  <p>First time using the AWS CLI? See the
+  <a href="https://docs.aws.amazon.com/cli/latest/userguide/">User Guide</a> for
+  help getting started.</p>
+</div>
+        </div>
+      </div>
+            <div class="body">
+              
+  <p>[ <a class="reference internal" href="../index.html#cli-aws"><span class="std std-ref">aws</span></a> ]</p>
+<div class="section" id="bedrock-agent">
+<span id="cli-aws-bedrock-agent"></span><h1>bedrock-agent<a class="headerlink" href="#bedrock-agent" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<div class="admonition note">
+<h3 class='admonition-title'>Note</h3>Amazon Bedrock Agents (now Amazon Bedrock Agents Classic) is no longer open to new customers. For capabilities similar to Bedrock Agents Classic, explore Amazon Bedrock AgentCore. Existing customers can continue to use the service as normal. For more information, see <a class="reference external" href="https://docs.aws.amazon.com/bedrock/latest/userguide/agents-classic-maintenance-mode.html">Amazon Bedrock Agents Classic availability change</a> .</div>
+<p>Describes the API operations for creating and managing Amazon Bedrock agents.</p>
+</div>
+<div class="section" id="available-commands">
+<h2>Available Commands<a class="headerlink" href="#available-commands" title="Permalink to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="associate-agent-collaborator.html">associate-agent-collaborator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="associate-agent-knowledge-base.html">associate-agent-knowledge-base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-agent.html">create-agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-agent-action-group.html">create-agent-action-group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-agent-alias.html">create-agent-alias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-data-source.html">create-data-source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-flow.html">create-flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-flow-alias.html">create-flow-alias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-flow-version.html">create-flow-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-knowledge-base.html">create-knowledge-base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-prompt.html">create-prompt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-prompt-version.html">create-prompt-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-retrieval-instruction.html">create-retrieval-instruction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-retrieval-instruction-version.html">create-retrieval-instruction-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create-vpc-configuration.html">create-vpc-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-agent.html">delete-agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-agent-action-group.html">delete-agent-action-group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-agent-alias.html">delete-agent-alias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-agent-version.html">delete-agent-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-data-source.html">delete-data-source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-flow.html">delete-flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-flow-alias.html">delete-flow-alias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-flow-version.html">delete-flow-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-knowledge-base.html">delete-knowledge-base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-knowledge-base-documents.html">delete-knowledge-base-documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-prompt.html">delete-prompt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-resource-policy.html">delete-resource-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-retrieval-instruction.html">delete-retrieval-instruction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete-vpc-configuration.html">delete-vpc-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="disassociate-agent-collaborator.html">disassociate-agent-collaborator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="disassociate-agent-knowledge-base.html">disassociate-agent-knowledge-base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-agent.html">get-agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-agent-action-group.html">get-agent-action-group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-agent-alias.html">get-agent-alias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-agent-collaborator.html">get-agent-collaborator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-agent-knowledge-base.html">get-agent-knowledge-base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-agent-version.html">get-agent-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-data-source.html">get-data-source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-flow.html">get-flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-flow-alias.html">get-flow-alias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-flow-version.html">get-flow-version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-ingestion-job.html">get-ingestion-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-knowledge-base.html">get-knowledge-base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-knowledge-base-documents.html">get-knowledge-base-documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-prompt.html">get-prompt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-resource-policy.html">get-resource-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-retrieval-instruction.html">get-retrieval-instruction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="get-vpc-configuration.html">get-vpc-configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ingest-knowledge-base-documents.html">ingest-knowledge-base-documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-agent-action-groups.html">list-agent-action-groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-agent-aliases.html">list-agent-aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-agent-collaborators.html">list-agent-collaborators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-agent-knowledge-bases.html">list-agent-knowledge-bases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-agent-versions.html">list-agent-versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-agents.html">list-agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-data-sources.html">list-data-sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-flow-aliases.html">list-flow-aliases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-flow-versions.html">list-flow-versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-flows.html">list-flows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-ingestion-jobs.html">list-ingestion-jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-knowledge-base-documents.html">list-knowledge-base-documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-knowledge-bases.html">list-knowledge-bases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-prompts.html">list-prompts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-retrieval-instruction-versions.html">list-retrieval-instruction-versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-retrieval-instructions.html">list-retrieval-instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-tags-for-resource.html">list-tags-for-resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="list-vpc-configurations.html">list-vpc-configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prepare-agent.html">prepare-agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prepare-flow.html">prepare-flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="put-resource-policy.html">put-resource-policy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start-ingestion-job.html">start-ingestion-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stop-ingestion-job.html">stop-ingestion-job</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tag-resource.html">tag-resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="untag-resource.html">untag-resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-agent.html">update-agent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-agent-action-group.html">update-agent-action-group</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-agent-alias.html">update-agent-alias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-agent-collaborator.html">update-agent-collaborator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-agent-knowledge-base.html">update-agent-knowledge-base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-data-source.html">update-data-source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-flow.html">update-flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-flow-alias.html">update-flow-alias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-knowledge-base.html">update-knowledge-base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-prompt.html">update-prompt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update-retrieval-instruction.html">update-retrieval-instruction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validate-flow-definition.html">validate-flow-definition</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+            </div>
+          <div class="clearfix"></div>
+        </div>
+        
+    <div class="footer-links">
+      <ul class="breadcrumb pull-right">
+        <li>
+          <a href="../bedrock/update-provisioned-model-throughput.html" title="previous chapter (use the left arrow)">&larr; update-provisioned-model-throughput</a>
+          <span class="divider">/</span>
+          
+        </li>
+          <li><a href="associate-agent-collaborator.html" title="next chapter (use the right arrow)">associate-agent-collaborator &rarr;</a></li>
+      </ul>
+    </div>
+  
+
+    </div>
+  <script type="text/javascript" src="https://media.amazonwebservices.com/js/sitecatalyst/s_code.min.js"></script>
+  <script type="text/javascript" src="../../_static/analytics.js"></script>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="associate-agent-collaborator.html" title="associate-agent-collaborator"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../bedrock/update-provisioned-model-throughput.html" title="update-provisioned-model-throughput"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">AWS CLI 2.40.3 Command Reference</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >aws</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">bedrock-agent</a></li> 
+      </ul>
+    </div>
+  <div class="footer container">
+    &copy; Copyright 2026, Amazon Web Services. Created using <a href="https://www.sphinx-doc.org/">Sphinx</a>.
+  </div>
+
+
+
+  
+    
+  
+  </body>
+</html>

@@ -1,0 +1,145 @@
+{
+  "timestamp": "2026-11-15T19:20:13.922008+00:00",
+  "mode": "local_read_only_no_model_calls",
+  "tests": [
+    {
+      "scope": "integrated_before_final_routing_and_numeric_type_fixes",
+      "passed": 178,
+      "source": "pytest-output.txt"
+    },
+    {
+      "scope": "routing_evidence_chain_finance_inspection_integration_followup",
+      "passed": 63,
+      "source": "pytest-followup.txt"
+    },
+    {
+      "scope": "numeric_types_finance_service_followup",
+      "passed": 101,
+      "source": "finance_budget_pytest.txt"
+    }
+  ],
+  "test_count_note": "Suites se recouvrant ; ne pas additionner les comptes.",
+  "cases": {
+    "robert": {
+      "id": "4089e4b0d70f40b6b20d832fa261e1dc",
+      "revision": 15,
+      "status": "complete",
+      "artifacts_verified": 58,
+      "operation_inputs_verified": 17,
+      "source_bundles_verified": 3,
+      "analysis_status": "conditional",
+      "view_available": true
+    },
+    "amira": {
+      "id": "f281a9067e4544138fa178fa4ee0b850",
+      "revision": 5,
+      "status": "complete",
+      "artifacts_verified": 33,
+      "operation_inputs_verified": 7,
+      "source_bundles_verified": 1,
+      "analysis_status": "conditional",
+      "view_available": true
+    },
+    "incomplete": {
+      "id": "e6405c6c61f64c5b89c11262ce9b9669",
+      "revision": 4,
+      "status": "waiting",
+      "artifacts_verified": 15,
+      "operation_inputs_verified": 4,
+      "source_bundles_verified": 1,
+      "analysis_status": null,
+      "view_available": false
+    },
+    "impossible_before_routing_fix": {
+      "id": "5ea414c5e4aa487f95045ae3f3d2010d",
+      "revision": 5,
+      "status": "waiting",
+      "artifacts_verified": 32,
+      "operation_inputs_verified": 6,
+      "source_bundles_verified": 1,
+      "analysis_status": null,
+      "view_available": false
+    },
+    "impossible": {
+      "id": "1f7d3a73d5924a09ba73925655dce389",
+      "revision": 5,
+      "status": "complete",
+      "artifacts_verified": 31,
+      "operation_inputs_verified": 6,
+      "source_bundles_verified": 1,
+      "analysis_status": "infeasible",
+      "view_available": true
+    }
+  },
+  "model_calls_in_audit": 0,
+  "unique_aws_requests_in_demonstration_dossiers": 27,
+  "aws_request_ids": [
+    "0063232b-717b-49c3-9234-a30e8d75eb9a",
+    "08595daf-c4cf-456e-b7d2-8b658f3f15c4",
+    "19bffc90-ee06-4193-91f7-2d569eb8bb66",
+    "1e612da1-c822-4278-9351-37c001e48721",
+    "1f491dc9-a954-4a26-9836-a33756785813",
+    "21f090c1-914e-4967-805d-1de6f5c3ded2",
+    "26f4086f-7cd8-4822-beab-a63c1a166eb7",
+    "30bb704f-05a8-4ed6-a34a-7e404c4f7311",
+    "362472a5-7b79-40ec-9f7c-fecb1cd82509",
+    "41e9247b-bbb4-49b8-80a4-498b532587d6",
+    "625c7f48-ff6e-41d2-a086-2af585b42065",
+    "648f2970-77a2-491b-9258-8812598754da",
+    "64c7332c-78f2-4306-aedb-88eef8be4395",
+    "704a50c1-42f0-4586-8e16-d7e982d73af7",
+    "70d878dd-a935-4873-b4ac-0ba8cef0ad57",
+    "73911571-cc30-4914-9596-d5a037284c5d",
+    "7de3eb01-09cd-4edf-b4ec-3ca7bf99a141",
+    "92a94b61-7ef2-4a70-bd00-66ab40030e2a",
+    "a2a9bd12-1ab8-4be3-9d88-99e0a287f99a",
+    "b496ac96-d7c7-41cb-b3d9-aaf022b43643",
+    "c8043b6a-3f98-47c8-84ef-c5baf58e483d",
+    "cc4a1da9-e619-45cb-bb41-0c219a616554",
+    "d70e102a-24e7-4645-8e74-250d1c9175cf",
+    "dd1329eb-e95b-4105-9a08-d8555f8d6827",
+    "eeaa2449-4731-41b7-8066-d44890cf339f",
+    "f17c46de-9398-4221-869e-d277661c927c",
+    "ff7c24be-acdd-4651-aad7-d4b9e04966e5"
+  ],
+  "replays": {
+    "impossible": {
+      "equivalent": true,
+      "source_bundle_verified": true,
+      "model_calls": 0
+    },
+    "amira": {
+      "equivalent": true,
+      "source_bundle_verified": true,
+      "model_calls": 0
+    },
+    "robert_risque": {
+      "equivalent": true,
+      "source_bundle_verified": true,
+      "model_calls": 0
+    },
+    "robert40": {
+      "equivalent": true,
+      "source_bundle_verified": true,
+      "model_calls": 0
+    },
+    "robert30": {
+      "equivalent": true,
+      "source_bundle_verified": true,
+      "model_calls": 0
+    }
+  },
+  "ui_report": "ui_review.json",
+  "ui_reviewed_source_matches_current": true,
+  "delivery_links_checked": true,
+  "delivery_health": {
+    "status": "ok",
+    "version": "0.5.0",
+    "hosting": "local",
+    "application": "alphaforge",
+    "workspace": "/Users/vpro/Documents/ChatGPT/CALIBRE/Datathon_AlphaForge",
+    "inference": "AWS Bedrock",
+    "region": "us-east-1"
+  },
+  "architecture_rendered_and_visually_checked": true
+}

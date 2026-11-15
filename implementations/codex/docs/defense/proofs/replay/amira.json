@@ -1,0 +1,107 @@
+{
+  "dossier": "f281a9067e4544138fa178fa4ee0b850",
+  "model_calls": 0,
+  "scope": "Recalcul local avec le moteur courant ; aucune inférence rejouée.",
+  "status": "compared",
+  "analysis_ref": "analysis@1",
+  "original_method": "retrospective-comparison-v2",
+  "current_method": "retrospective-comparison-v2",
+  "comparisons": {
+    "status": true,
+    "options": true,
+    "claims": true
+  },
+  "equivalent": true,
+  "original_claims": [
+    {
+      "id": "historical_return_baseline",
+      "kind": "historical_observation",
+      "result_refs": [
+        {
+          "pointer": "/options/0/metrics/total_return_pct/value",
+          "unit": "percent"
+        },
+        {
+          "pointer": "/method/metadata/start",
+          "unit": "date"
+        },
+        {
+          "pointer": "/method/metadata/end",
+          "unit": "date"
+        }
+      ],
+      "scope": "Descriptif, avant frais de transaction/change/impôts ; aucune prévision.",
+      "text": "Allocation initiale : rendement total rétrospectif de 78.06 %, du 2021-11-12 au 2026-11-12."
+    },
+    {
+      "id": "historical_return_target_variant",
+      "kind": "historical_observation",
+      "result_refs": [
+        {
+          "pointer": "/options/1/metrics/total_return_pct/value",
+          "unit": "percent"
+        },
+        {
+          "pointer": "/method/metadata/start",
+          "unit": "date"
+        },
+        {
+          "pointer": "/method/metadata/end",
+          "unit": "date"
+        }
+      ],
+      "scope": "Descriptif, avant frais de transaction/change/impôts ; aucune prévision.",
+      "text": "Exposition initiale TSLA à 10.0% : rendement total rétrospectif de 87.50 %, du 2021-11-12 au 2026-11-12."
+    }
+  ],
+  "recomputed_claims": [
+    {
+      "id": "historical_return_baseline",
+      "kind": "historical_observation",
+      "text": "Allocation initiale : rendement total rétrospectif de 78.06 %, du 2021-11-12 au 2026-11-12.",
+      "result_refs": [
+        {
+          "pointer": "/options/0/metrics/total_return_pct/value",
+          "unit": "percent"
+        },
+        {
+          "pointer": "/method/metadata/start",
+          "unit": "date"
+        },
+        {
+          "pointer": "/method/metadata/end",
+          "unit": "date"
+        }
+      ],
+      "scope": "Descriptif, avant frais de transaction/change/impôts ; aucune prévision."
+    },
+    {
+      "id": "historical_return_target_variant",
+      "kind": "historical_observation",
+      "text": "Exposition initiale TSLA à 10.0% : rendement total rétrospectif de 87.50 %, du 2021-11-12 au 2026-11-12.",
+      "result_refs": [
+        {
+          "pointer": "/options/1/metrics/total_return_pct/value",
+          "unit": "percent"
+        },
+        {
+          "pointer": "/method/metadata/start",
+          "unit": "date"
+        },
+        {
+          "pointer": "/method/metadata/end",
+          "unit": "date"
+        }
+      ],
+      "scope": "Descriptif, avant frais de transaction/change/impôts ; aucune prévision."
+    }
+  ],
+  "tolerance": {
+    "relative": 1e-10,
+    "absolute": 1e-08
+  },
+  "source_run_id": "152d1a847a2e428999c466c51084ed61",
+  "source_bundle_verified": true,
+  "source_bundle_object": "25f23a1fc54bd2cbcd71a8de00aeb495264df06ecbe5620ef9fb1ce631cfda79",
+  "interpretation": "L'égalité numérique ne valide ni données fournisseur ni choix personnel. Une différence de méthode exige examen ; aucune migration implicite des entrées."
+}

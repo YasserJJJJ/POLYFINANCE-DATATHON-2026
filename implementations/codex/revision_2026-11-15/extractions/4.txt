@@ -1,0 +1,90 @@
+
+
+## PAGE 1
+
+Event dashboard
+Commencer
+Utilisation responsable
+Utilisation responsable
+Veuillez suivre ces règles quand vous travaillez dans votre environnement AWS. Ne pas les respecter peut entraîner la suspension du compte de votre équipe.
+1. NE CRÉEZ PAS de bucket S3 sans restriction d'accès. Gardez S3 Block Public Access 
+ activé, ce qui est le réglage par défaut.
+2. NE CRÉEZ PAS d'instance EC2 avec un groupe de sécurité ouvert à Internet 
+.
+3. NE CRÉEZ PAS d'instance RDS ni de cluster EMR avec l'accès public activé.
+4. NE METTEZ PAS d'identiﬁants AWS dans un dépôt Git. Si une clé d'accès se retrouve sur GitHub, considérez qu'elle est compromise en quelques minutes.
+5. LIMITEZ les ressources que vous lancez à ce dont votre projet a vraiment besoin, et arrêtez tout ce que vous n'utilisez pas.
+Utilisez des données publiques ou ﬁctives. Le déﬁ l'exige : aucun compte client réel, aucun renseignement bancaire conﬁdentiel, aucune donnée personnelle. Les
+proﬁls d'investisseurs et les portefeuilles peuvent être entièrement ﬁctifs.
+Respectez aussi les conditions d'utilisation de chaque source de données publique. Voir Données ﬁnancières publiques.
+Votre prototype n'exécute aucune transaction réelle et ne se présente pas comme un conseil ﬁnancier personnalisé. Ne connectez aucun outil ni aucun agent à un
+compte de courtage. Un garde-fou Amazon Bedrock peut vous aider à respecter cette règle.
+Tous les modèles disponibles dans Amazon Bedrock sont permis pendant le Datathon.
+Amazon Bedrock applique des quotas d'appels par compte. Vous n'avez pas à vous imposer un débit artiﬁciel, mais votre code doit bien se comporter quand il atteint
+une limite :
+Gérez ThrottlingException avec des tentatives et un délai croissant. Les SDK AWS le font pour vous si vous conﬁgurez un mode de tentatives : voir le
+comportement des tentatives 
+. Un agent peut facilement faire des dizaines d'appels de modèle pour répondre à une question.
+Préférez un proﬁl d'inférence global. quand il existe pour votre modèle. Il répartit les requêtes entre plus de régions, ce qui donne plus de capacité et moins
+d'erreurs de limitation quand toute la salle travaille en même temps. Voir Choisir un modèle.
+N'exécutez pas de boucle sans limite contre un modèle. Un agent coincé dans une boucle de tentatives pendant la nuit est le moyen le plus rapide d'épuiser le
+quota de toute votre équipe.
+Commencez avec un petit modèle. global.amazon.nova-2-lite-v1:0 est rapide et peu coûteux, et suffit pour prouver que votre idée fonctionne. Passez à un
+modèle plus grand seulement quand vous pouvez montrer une erreur du petit.
+L'accès aux modèles d'Amazon Bedrock est activé par défaut : il n'y a plus de page « Model access » à visiter ni de demande à soumettre pour les modèles serverless
+standards.
+Quelques points peuvent quand même vous bloquer :
+Le premier appel à un modèle Anthropic dans un compte neuf peut exiger un formulaire de première utilisation, une seule fois pour le compte, et l'abonnement
+peut prendre quelques minutes à s'activer. Si un premier appel à Claude échoue avec AccessDeniedException, attendez quelques minutes et réessayez, puis
+demandez à un mentor. Faites ce premier appel depuis CloudShell ou la console (voir Commencer), pas depuis SageMaker Uniﬁed Studio.
+Les modèles Amazon n'ont pas cette étape, une raison de plus de commencer avec Amazon Nova.
+Certains modèles sont restreints par les conditions de leur fournisseur, par région ou à certains clients. Si un modèle n'apparaît pas dans votre compte, il ne vous
+est pas disponible : choisissez-en un autre.
+La réponse qui fait foi pour votre compte vient toujours du compte lui-même :
+Utilisation responsable
+Règles de sécurité
+Aucune donnée réelle de client
+Simulation uniquement
+IA générative
+Si vous êtes limités sans arrêt, c'est en général un signal sur votre code, pas sur le quota. Parlez à un mentor AWS avant de supposer qu'il vous faut une augmentation de limite.
+Disponibilité des modèles
+# Quels modèles sont actifs dans votre région en ce moment ?
+aws bedrock list-foundation-models --region us-east-1 \
+  --query 'modelSummaries[?modelLifecycle.status==`ACTIVE`].modelId' \
+  --output text | tr '\t' '\n' | sort
+1
+2
+3
+4
+Certains modèles atteignent leur ﬁn de vie selon un calendrier publié. Ne construisez pas votre projet sur un modèle dont le modelLifecycle.status n'est pas ACTIVE. La page
+Choisir un modèle liste les choix sûrs actuels.
+Previous
+Next
+Polyfinances 2026
+Datathon PolyFinances 2026
+Commencer
+Utilisation responsable
+SageMaker Uniﬁed Studio et
+notebook d'introduction
+Introduction à AWS
+Accès AWS CLI et SDK
+L'IA générative sur AWS
+Construire des agents
+Démarrages rapides
+Données ﬁnancières publiques
+Nettoyage et exportation
+Ressources
+AWS account access
+Open AWS console
+(us-east-1)
+Get AWS CLI credentials
+Share feedback
+Workshop catalog in AWS Builder
+Center
+Exit event
+AWS Workshop Studio
+adamlarhlimi2006
+© 2008 - 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+Privacy policy
+Terms of use
+Cookie preferences
