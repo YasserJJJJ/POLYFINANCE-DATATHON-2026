@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { api, dollars } from '../api.js'
-import { PuceNiveau, PuceVerdict } from '../composants/Base.jsx'
+import { PuceNiveau, PuceVerdict, PucesFaits } from '../composants/Base.jsx'
+import TiroirFait from '../composants/TiroirFait.jsx'
 
 // Analyses déjà faites pendant la session : rouvrir la vue ne relance pas 3 analyses Bedrock (≈ 13 s chacune).
 const CACHE = new Map()
@@ -9,6 +10,7 @@ const CACHE = new Map()
 export default function Comparer({ personas }) {
   const [memeDemande, setMemeDemande] = useState(true)
   const [resultats, setResultats] = useState({})
+  const [faitOuvert, setFaitOuvert] = useState(null)   // { cle: persona, id: "F-n" } : chaque colonne a son dossier
   const ref = personas.robert.demande
 
   useEffect(() => {
@@ -57,6 +59,7 @@ export default function Comparer({ personas }) {
                       <li key={r.code} className={`regle n-${r.niveau}`}>
                         <div className="regle-tete"><strong>{r.libelle}</strong><PuceNiveau niveau={r.niveau} /></div>
                         <p>{r.explication}</p>
+                        <PucesFaits ids={r.faits} ouvrir={(id) => setFaitOuvert({ cle, id })} />
                       </li>
                     ))}
                   </ul>
@@ -71,6 +74,10 @@ export default function Comparer({ personas }) {
           )
         })}
       </div>
+      {faitOuvert && resultats[faitOuvert.cle]?.faits && (
+        <TiroirFait fait={resultats[faitOuvert.cle].faits.find((f) => f.id === faitOuvert.id)}
+          onFermer={() => setFaitOuvert(null)} />
+      )}
     </section>
   )
 }

@@ -118,3 +118,8 @@ def test_effet_de_mode_ne_veux_pas_rater_le_train():
     d = Dossier(profil={}, demande={"texte": "Je ne veux pas rater le train de l'IA."})
     profileur.executer(d)
     assert any("médiatisée" in t for t in d.profil["tensions"])
+
+
+def test_ne_rien_changer_dit_qu_il_n_est_pas_juge_par_le_gardien():
+    rien = next(o for o in _run("robert")["options"] if o["nom"] == "Ne rien changer")
+    assert rien["evaluee"] is False and "aucune règle" in rien["note"]

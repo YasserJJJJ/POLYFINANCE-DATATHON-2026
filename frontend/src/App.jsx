@@ -109,7 +109,7 @@ export default function App() {
           </div>
         )}
 
-        {vue === 'comparer' && personas && <Comparer personas={personas} ouvrirFait={setFaitOuvert} />}
+        {vue === 'comparer' && personas && <Comparer personas={personas} />}
 
         {vue === 'parcours' && (
           <>

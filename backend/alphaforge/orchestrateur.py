@@ -72,8 +72,11 @@ def analyser(profil: dict, demande: dict) -> dict:
         alt = _alternative(d)
         if alt:
             d.options.append(alt)
+    # Point de comparaison : rien n'est placé, aucune règle ne peut être dépassée. Le dire au lieu de laisser croire
+    # que le Gardien a jugé cette option.
     d.options.append({"nom": "Ne rien changer", "montant_cad": 0, "horizon_ans": d.profil.get("horizon_ans"),
-                      "etat": "coherent"})
+                      "etat": "coherent", "evaluee": False,
+                      "note": "Point de comparaison : rien n'est placé, donc aucune règle du Gardien ne s'applique."})
     if d.verdict["etat"] != "indetermine":
         d.bascule = gardien.grille_bascule(d.profil, d.demande, m)
     d.tracer("Gardien", "applique les règles et décide",

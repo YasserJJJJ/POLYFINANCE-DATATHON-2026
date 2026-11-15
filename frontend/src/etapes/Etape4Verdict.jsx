@@ -24,6 +24,7 @@ function Option({ o, principal }) {
         <div><dt>Montant</dt><dd>{dollars(o.montant_cad)}</dd></div>
         <div><dt>Horizon</dt><dd>{o.horizon_ans} an(s)</dd></div>
       </dl>
+      {o.note && <p className="muted petit">{o.note}</p>}
     </div>
   )
 }
