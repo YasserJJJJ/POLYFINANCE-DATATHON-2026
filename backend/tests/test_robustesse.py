@@ -120,6 +120,25 @@ def test_effet_de_mode_ne_veux_pas_rater_le_train():
     assert any("médiatisée" in t for t in d.profil["tensions"])
 
 
-def test_ne_rien_changer_dit_qu_il_n_est_pas_juge_par_le_gardien():
-    rien = next(o for o in _run("robert")["options"] if o["nom"] == "Ne rien changer")
-    assert rien["evaluee"] is False and "aucune règle" in rien["note"]
+def test_le_placement_large_est_juge_par_le_gardien_et_cite_sa_pire_chute():
+    d = _run("robert")
+    large = next(o for o in d["options"] if o["nom"] == "Placement large, même montant")
+    assert large["ticker"] == "XIU.TO" and large["montant_cad"] == d["demande"]["montant_cad"]
+    assert large["etat"] in RANG and large["faits"]
+    faits = {f["id"]: f for f in d["faits"]}
+    assert all(f in faits for f in large["faits"]) and "XIU.TO" in faits[large["faits"][0]]["libelle"]
+    assert "Ne rien changer" not in {o["nom"] for o in d["options"]}
+
+
+def test_pas_de_placement_large_quand_on_demande_deja_le_marche_large_ou_qu_une_alternative_existe():
+    assert all(o["nom"] != "Placement large, même montant"
+               for o in _run("robert", demande={"ticker": "XIU.TO", "texte": ""})["options"])
+    noms = [o["nom"] for o in _run("mateo")["options"]]
+    assert "Alternative compatible avec tes exclusions de secteur" in noms and "Placement large, même montant" not in noms
+
+
+def test_le_placement_large_n_est_pas_presente_comme_une_alternative_aux_exclusions():
+    textes = " ".join(ph["texte"] for ph in _run("robert")["texte"]["ce_qui_changerait"])
+    assert "exclusions" not in textes
+    textes = " ".join(ph["texte"] for ph in _run("mateo")["texte"]["ce_qui_changerait"])
+    assert "compatible avec tes exclusions" in textes

@@ -14,7 +14,7 @@ function Phrase({ p, ouvrir }) {
   )
 }
 
-function Option({ o, principal }) {
+function Option({ o, principal, ouvrir }) {
   return (
     <div className={`carte option ${principal ? 'principale' : ''}`}>
       <p className="option-nom">{o.nom}</p>
@@ -24,7 +24,9 @@ function Option({ o, principal }) {
         <div><dt>Montant</dt><dd>{dollars(o.montant_cad)}</dd></div>
         <div><dt>Horizon</dt><dd>{o.horizon_ans} an(s)</dd></div>
       </dl>
-      {o.note && <p className="muted petit">{o.note}</p>}
+      {(o.note || o.faits?.length > 0) && (
+        <p className="muted petit option-note">{o.note} <PucesFaits ids={o.faits} ouvrir={ouvrir} /></p>
+      )}
     </div>
   )
 }
@@ -74,7 +76,7 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
       )}
 
       <div className="trois-options">
-        {options.map((o, i) => <Option key={o.nom} o={o} principal={i === 1 && options.length === 3} />)}
+        {options.map((o, i) => <Option key={o.nom} o={o} principal={i === 1} ouvrir={ouvrirFait} />)}
       </div>
       {texte?.ce_qui_changerait?.length > 0 && (
         <ul className="phrases">{texte.ce_qui_changerait.map((p, i) => <Phrase key={i} p={p} ouvrir={ouvrirFait} />)}</ul>

@@ -16,6 +16,7 @@ from . import gardien
 from .agents import analyste, profileur, redacteur, sceptique
 from .donnees import info_actif
 from .dossier import Dossier
+from .format import fr
 from .sources import references_de
 
 
@@ -41,6 +42,22 @@ def _alternative(d: Dossier) -> dict | None:
                     "montant_cad": d.demande["montant_cad"], "horizon_ans": d.profil.get("horizon_ans"),
                     "etat": etat, "faits": [f.id]}
     return None
+
+
+def _placement_large(d: Dossier, m: dict) -> dict | None:
+    """Le même montant dans le marché canadien large, jugé par le Gardien : une règle simple ferait-elle aussi bien ?"""
+    ref = analyste.REFERENCE
+    info = info_actif(ref)
+    if d.demande["ticker"] == ref or any(e in str(info["sector"]).lower() for e in gardien.exclusions_normalisees(d.profil)):
+        return None
+    m_ref = analyste.mesures_actif(ref, d.profil.get("portefeuille_actuel"))
+    etat = gardien.verdict(gardien.appliquer_regles(d.profil, {**d.demande, "ticker": ref}, m_ref))["etat"]
+    fait = d.demande["ids_faits"].get("reference")
+    return {"nom": "Placement large, même montant", "ticker": ref, "libelle_actif": info["name"],
+            "montant_cad": d.demande["montant_cad"], "horizon_ans": d.profil.get("horizon_ans"), "etat": etat,
+            "faits": [fait] if fait else [],
+            "note": (f"Pour comparer, le marché canadien large : pire chute observée {fr(m_ref['pire_chute_pct'])} %, "
+                     f"contre {fr(m['pire_chute_pct'])} % pour {d.demande['ticker']}.")}
 
 
 def analyser(profil: dict, demande: dict, sur_etape: Callable[[dict], None] | None = None) -> dict:
@@ -83,15 +100,13 @@ def analyser(profil: dict, demande: dict, sur_etape: Callable[[dict], None] | No
                               "etat": aj["etat"],
                               "montant_cad": aj["changement"].get("montant_cad", d.demande["montant_cad"]),
                               "horizon_ans": aj["changement"].get("horizon_ans", d.profil.get("horizon_ans"))})
-    if exclusion:
-        alt = _alternative(d)
-        if alt:
-            d.options.append(alt)
-    # Point de comparaison : rien n'est placé, aucune règle ne peut être dépassée. Le dire au lieu de laisser croire
-    # que le Gardien a jugé cette option.
-    d.options.append({"nom": "Ne rien changer", "montant_cad": 0, "horizon_ans": d.profil.get("horizon_ans"),
-                      "etat": "coherent", "evaluee": False,
-                      "note": "Point de comparaison : rien n'est placé, donc aucune règle du Gardien ne s'applique."})
+    alt = _alternative(d) if exclusion else None
+    if alt:
+        d.options.append(alt)          # l'alternative est déjà un placement large compatible avec les exclusions
+    else:
+        large = _placement_large(d, m)
+        if large:
+            d.options.append(large)
     if d.verdict["etat"] != "indetermine":
         d.bascule = gardien.grille_bascule(d.profil, d.demande, m)
     d.tracer("Gardien", "applique les règles et décide",
