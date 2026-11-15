@@ -227,6 +227,8 @@ prend 10 à 20 s. Sans clés AWS, tout marche en mode hors ligne (indicateur en 
 - `main` : projet de base. `feature/interface-parcours` : tout le travail de Yahia (interface, agents Bedrock,
   garde-fous, nom AlphaForge AI). **Pull request à ouvrir** :
   https://github.com/YasserJJJJ/POLYFINANCE-DATATHON-2026/pull/new/feature/interface-parcours
+- Branche `Yasser` (créée depuis `feature/interface-parcours`, 15 nov.) : interface remise au style de la maquette
+  validée (fond blanc, logo en V violet, bandeau de verdict teinté) et banc de 12 cas du Gardien. Aucun contrat ni seuil modifié.
 - Règles (guide d'équipe) : `main` marche toujours ; une branche par sujet `feature/nom-court` ; Conventional
   Commits ; petites PR avec 1 approbation ; jamais de `.env`, de clé ni de données confidentielles.
 
@@ -238,7 +240,9 @@ prend 10 à 20 s. Sans clés AWS, tout marche en mode hors ligne (indicateur en 
    Gateway) ou AgentCore Runtime ; interface sur S3 + CloudFront ou Amplify ; données dans S3. Garder le repli hors ligne.
 2. **Bedrock Guardrails** : ancrage contextuel + sujet refusé « conseil d'achat », en plus du contrôle en code.
 3. **Fusionner la PR** dans `main` après relecture d'un coéquipier.
-4. **Banc de 12 cas** (Yasser) : monotonie (montant plus petit → verdict jamais pire), stabilité, test anti-générique.
+4. ~~**Banc de 12 cas** (Yasser)~~ **Fait sur la branche `Yasser`** : `backend/tests/test_banc_12_cas.py` (12 cas persona ×
+   demande avec verdict et règles attendus, monotonie montant et horizon, stabilité, test anti-générique, preuves citées,
+   aucun mot de conseil). Les résultats attendus suivent les seuils actuels de `profil.py` (hypothèses à valider).
 5. **Trancher** : seuils du Gardien, cas Robert, 3 questions et mise en situation définitives.
 6. **Données (Rayan)** : source ESG documentée pour les exclusions ; fréquence historique (bonus).
 7. **Livrables** : documentation technique (sections exigées, exemple de trace), one-pager, script vidéo ;
