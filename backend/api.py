@@ -8,7 +8,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from alphaforge import calculs, llm
+from alphaforge import calculs, llm, stockage
 from alphaforge.agents import profileur
 from alphaforge.donnees import serie_cad, univers
 from alphaforge.dossier import Dossier
@@ -69,6 +69,8 @@ def serie(ticker: str) -> dict:
 @app.post("/api/analyse")
 def analyse(req: Requete) -> dict:
     try:
-        return analyser(req.profil, req.demande)
+        dossier = analyser(req.profil, req.demande)
     except KeyError as e:
         raise HTTPException(status_code=422, detail=str(e)) from e
+    stockage.sauvegarder_dossier(dossier)  # archivage S3 sur AWS ; sans effet en local
+    return dossier

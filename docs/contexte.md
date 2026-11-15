@@ -217,7 +217,8 @@ prend 10 à 20 s. Sans clés AWS, tout marche en mode hors ligne (indicateur en 
   `CLAUDE_CODE_USE_BEDROCK=1`, `AWS_REGION=us-east-1`, `AWS_PROFILE=datathon`,
   `ANTHROPIC_MODEL=global.anthropic.claude-sonnet-5`. Une session ouverte dans ce dossier passe par Bedrock
   (`/status` pour vérifier).
-- **Pas encore déployé sur AWS** : pour l'instant seul Bedrock est utilisé. Voir les prochaines étapes.
+- **Déploiement** : script prêt sur la branche `Yasser` (`infra/deployer.py`, voir `infra/README.md`), testé sur un AWS
+  simulé, **pas encore lancé sur le vrai compte**. Il crée S3, un rôle IAM, une Lambda + Function URL et l'interface sur Amplify.
 
 ---
 
