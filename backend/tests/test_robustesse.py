@@ -66,8 +66,8 @@ def _regle(d, code):
 
 
 def test_diversification_ok_ne_dit_pas_se_comporte_differemment_et_cite_la_correlation():
-    # Mateo avec RY.TO détenu : corrélation ENB.TO~RY.TO entre 0,6 et 0,8 (avant : « Se comporte différemment »).
-    d = _run("mateo", {"portefeuille_actuel": ["XIU.TO", "RY.TO"]})
+    # Amira demande NVDA en détenant QQQ : corrélation de 0,75, sous 0,8 (avant : « Se comporte différemment »).
+    d = _run("amira", {"portefeuille_actuel": ["QQQ"]}, {"ticker": "NVDA"})
     r = _regle(d, "diversification")
     assert r["niveau"] == "ok"
     assert "différemment" not in r["explication"]
