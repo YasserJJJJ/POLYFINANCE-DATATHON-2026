@@ -173,6 +173,11 @@ def executer(d: Dossier) -> None:
 
     d.profil["evaluation"] = evaluer(d.profil)
     ev = d.profil["evaluation"]
+    montant, epargne = d.demande.get("montant_cad"), d.profil.get("epargne_totale_cad")
+    if isinstance(montant, (int, float)) and isinstance(epargne, (int, float)) and epargne > 0:
+        # Calculé une seule fois, en code, pour que l'étape 2 (JS) et le verdict (reformulation du
+        # Rédacteur) affichent toujours le même pourcentage — jamais un arrondi JS contre un arrondi Python.
+        ev["poids_pct"] = round(montant / epargne * 100)
 
     for champ, question in CHAMPS_ESSENTIELS.items():
         valeur = d.demande.get(champ) if champ == "montant_cad" else d.profil.get(champ)

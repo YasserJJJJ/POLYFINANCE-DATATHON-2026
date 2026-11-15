@@ -54,3 +54,21 @@ def test_decimales_a_la_francaise_dans_les_textes_affiches(nom):
     textes = [r["explication"] for r in d["regles"]] + [o["reponse"] for o in d["objections"]] + \
              [ph["texte"] for s in ("pourquoi", "limites") for ph in d["texte"][s]]
     assert not [t for t in textes if re.search(r"\d\.\d", t)], textes
+
+
+# --- poids_pct : une seule source de vérité pour le pourcentage de l'épargne ---
+def test_poids_pct_calcule_une_fois_et_coherent_avec_le_cas_13_vs_12_pourcent():
+    from alphaforge.agents import profileur
+    from alphaforge.dossier import Dossier
+    # Cas réel qui divergeait : 15 000 $ sur 120 000 $ = 12,5 % -> JS « 13 % » (toFixed), Python « 12 % » (round).
+    d = Dossier(profil={"epargne_totale_cad": 120000}, demande={"montant_cad": 15000, "texte": ""})
+    profileur.executer(d)
+    assert d.profil["evaluation"]["poids_pct"] == 12
+
+
+def test_poids_pct_absent_si_montant_ou_epargne_manquant():
+    from alphaforge.agents import profileur
+    from alphaforge.dossier import Dossier
+    d = Dossier(profil={"epargne_totale_cad": None}, demande={"montant_cad": 15000, "texte": ""})
+    profileur.executer(d)
+    assert "poids_pct" not in d.profil["evaluation"]
