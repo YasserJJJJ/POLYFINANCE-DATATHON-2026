@@ -24,6 +24,14 @@ INTERDITS = ["achetez", "achète", "achèterais", "vendez", "vends", "je recomma
 TYPES = {"FAIT", "HYPOTHESE", "SCENARIO"}
 SECTIONS = ("reformulation", "miroir", "pourquoi", "ce_qui_changerait")
 
+# Étiquette de l'explication de chaque règle du Gardien :
+# - SCENARIO : situation fictive (« si la pire chute se répétait », reste après un placement fictif) ;
+# - HYPOTHESE : dépend d'un seuil ou d'un barème choisi par l'équipe (concentration, volatilité > 25 %, 0,8…) ;
+# - FAIT : constat observé (secteur lu, temps de récupération mesuré).
+TYPE_REGLE = {"capacite": "SCENARIO", "preserver": "SCENARIO", "concentration": "HYPOTHESE",
+              "diversification": "HYPOTHESE", "coussin": "HYPOTHESE", "retrait": "HYPOTHESE",
+              "horizon": "FAIT", "exclusion": "FAIT", "donnees": "FAIT"}
+
 SYSTEME = """Tu es le Rédacteur d'un outil éducatif qui donne un second avis sur une décision d'investissement
 (simulation, jamais de conseil personnalisé). Le verdict est déjà décidé par des règles en code : tu ne le changes
 pas, tu l'expliques. Tu tutoies, tu écris en français clair, phrases courtes, sans jargon (ou jargon expliqué).
@@ -48,6 +56,15 @@ def _phrase(texte: str, type_: str, faits: list[str] | None = None) -> dict:
     return {"texte": texte, "type": type_, "faits": [f for f in (faits or []) if f]}
 
 
+def _limite_objection(o) -> dict:
+    """Une vérification du Sceptique qui a produit une mesure est un FAIT qui cite le fait recalculé ;
+    une limite de méthode (fenêtre courte, borne minimale) est une HYPOTHESE."""
+    ids = re.findall(r"F-\d+", o.reponse)
+    if o.reponse.startswith(("Recalcul fait", "Vérifié", "Comparaison faite")):
+        return _phrase(o.reponse, "FAIT", ids or [o.cible])
+    return _phrase(o.reponse, "HYPOTHESE", [o.cible])
+
+
 def _modele_de_phrases(d: Dossier) -> dict:
     """Version déterministe : sert de repli et de référence."""
     p, dem, ids = d.profil, d.demande, d.demande["ids_faits"]
@@ -61,9 +78,11 @@ def _modele_de_phrases(d: Dossier) -> dict:
     for citation in p.get("citations", [])[:1]:
         miroir.append(_phrase(f"Tu as dit : « {citation} ». Si ce placement revivait sa pire chute observée, "
                               f"il perdrait environ {dollars(abs(perte.valeur))}.", "SCENARIO", [ids["perte"], ids["chute"]]))
-    pourquoi = [_phrase(r.explication, "FAIT", r.faits) for r in d.regles if r.niveau in ("rouge", "orange")]
+    pourquoi = [_phrase(r.explication, TYPE_REGLE.get(r.code, "HYPOTHESE"), r.faits)
+                for r in d.regles if r.niveau in ("rouge", "orange", "gris")]
     if not pourquoi:
-        pourquoi = [_phrase(r.explication, "FAIT", r.faits) for r in d.regles if r.niveau == "ok"][:2]
+        pourquoi = [_phrase(r.explication, TYPE_REGLE.get(r.code, "HYPOTHESE"), r.faits)
+                    for r in d.regles if r.niveau == "ok"][:2]
     changerait = []
     aj = next((o for o in d.options if o.get("changement")), None)
     if aj:
@@ -72,11 +91,11 @@ def _modele_de_phrases(d: Dossier) -> dict:
             morceaux.append(f"ramener le montant à {dollars(ch['montant_cad'])}")
         if "horizon_ans" in ch:
             morceaux.append(f"allonger l'horizon à {ch['horizon_ans']} ans")
-        changerait.append(_phrase("Ce qui changerait l'avis : " + " et ".join(morceaux) + ".", "HYPOTHESE"))
+        changerait.append(_phrase("Ce qui changerait l'avis : " + " et ".join(morceaux) + ".", "SCENARIO"))
     alt = next((o for o in d.options if o.get("ticker") and o.get("ticker") != dem["ticker"]), None)
     if alt:
         changerait.append(_phrase(f"Une option compatible avec tes exclusions existe : {alt['ticker']} "
-                                  f"({alt.get('libelle_actif', '')}), même montant.", "HYPOTHESE"))
+                                  f"({alt.get('libelle_actif', '')}), même montant.", "SCENARIO", alt.get("faits")))
     return {"reformulation": reformulation, "miroir": miroir, "pourquoi": pourquoi, "ce_qui_changerait": changerait}
 
 
@@ -187,7 +206,7 @@ def executer(d: Dossier) -> None:
     limites = [
         _phrase("Les chiffres décrivent la période 2021-2026. Ils ne prédisent pas l'avenir.", "HYPOTHESE"),
         _phrase("Les montants et l'épargne de ce profil sont fictifs.", "SCENARIO"),
-    ] + [_phrase(o.reponse, "HYPOTHESE", [o.cible]) for o in d.objections]
+    ] + [_limite_objection(o) for o in d.objections]
 
     v = d.verdict
     d.texte = {
