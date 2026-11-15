@@ -19,6 +19,23 @@ LIBELLES_ETAT = {
 }
 
 
+# Mots français courants pour les secteurs de assets_universe.csv (l'interface envoie déjà les noms anglais).
+SYNONYMES_SECTEURS = {"énergie": "energy", "energie": "energy", "pétrole": "energy", "petrole": "energy",
+                      "gaz": "energy", "pipelines": "energy", "cryptoactifs": "crypto", "cryptos": "crypto",
+                      "technologies": "information technology", "technologie": "information technology",
+                      "finance": "financials", "santé": "health care", "services publics": "utilities"}
+
+
+def exclusions_normalisees(profil: dict) -> list[str]:
+    """Exclusions en minuscules, sans entrée vide (une chaîne vide excluait tous les secteurs)."""
+    sortie = []
+    for e in profil.get("exclusions") or []:
+        e = str(e).strip().lower()
+        if e:
+            sortie.append(SYNONYMES_SECTEURS.get(e, e))
+    return sortie
+
+
 def appliquer_regles(profil: dict, demande: dict, m: dict, f: dict | None = None) -> list[Regle]:
     """profil : champs du profil ; demande : ticker, montant_cad ; m : mesures
     calculées ; f : identifiants des faits (pour relier chaque règle à ses preuves)."""
@@ -71,7 +88,7 @@ def appliquer_regles(profil: dict, demande: dict, m: dict, f: dict | None = None
                             f"{dollars(preserver)} à préserver."))
 
     # 3. Exclusions (valeurs)
-    exclusions = [e.lower() for e in profil.get("exclusions", [])]
+    exclusions = exclusions_normalisees(profil)
     secteur = str(m.get("secteur", ""))
     if exclusions:
         touche = any(e in secteur.lower() for e in exclusions)

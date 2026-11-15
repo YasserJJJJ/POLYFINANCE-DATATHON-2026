@@ -78,3 +78,24 @@ def test_titre_deja_detenu_n_est_pas_presente_comme_placements_inconnus():
     d = _run("robert", {"portefeuille_actuel": ["TSLA"]})
     r = _regle(d, "diversification")
     assert "inconnus" not in r["explication"] and "TSLA" in r["explication"]
+
+
+# --- Entrées hors bornes ---
+def test_exclusion_vide_n_exclut_pas_tout_et_exclusion_en_francais_appliquee():
+    d = _run("mateo", {"exclusions": [""]}, {"ticker": "XIU.TO", "texte": ""})
+    assert not any(r["code"] == "exclusion" and r["niveau"] == "rouge" for r in d["regles"])   # avant : rouge
+    d = _run("mateo", {"exclusions": ["Énergie"]})       # avant : ignorée sans prévenir
+    assert _regle(d, "exclusion")["niveau"] == "rouge"
+
+
+def test_tolerance_bornee_entre_0_et_100():
+    from alphaforge.profil import evaluer
+    ev = evaluer({**PERSONAS["robert"]["profil"], "tolerance": None,
+                  "reponses_tolerance": {"q_amis": 500, "q_mot": 500, "q_chute": 500}})
+    assert ev["tolerance"] == 100 and ev["perte_max_tolerance_pct"] <= 40   # avant : 180 %
+
+
+def test_placement_detenu_inconnu_ignore_sans_bloquer_l_analyse():
+    d = _run("robert", {"portefeuille_actuel": ["XIU.TO", "FOO"]})     # avant : KeyError → HTTP 422
+    assert d["verdict"]["etat"] == "ajustement"
+    assert any("FOO" in t["detail"] for t in d["trace"] if t["agent"] == "Analyste")

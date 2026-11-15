@@ -32,12 +32,19 @@ QUESTIONS_TOLERANCE = [
 ]
 
 
+def _borne(v) -> float | None:
+    """Score ramené dans 0-100 (une réponse à 500 donnait une perte supportable de 180 %)."""
+    if v is None or isinstance(v, bool) or not isinstance(v, (int, float)):
+        return None
+    return max(0.0, min(100.0, float(v)))
+
+
 def score_tolerance(reponses: dict[str, int] | None, defaut: float | None = None) -> float | None:
     if reponses:
-        valeurs = [v for v in reponses.values() if v is not None]
+        valeurs = [b for b in (_borne(v) for v in reponses.values()) if b is not None]
         if valeurs:
             return round(sum(valeurs) / len(valeurs), 0)
-    return defaut
+    return _borne(defaut)
 
 
 def score_capacite(p: dict) -> tuple[float | None, list[str]]:

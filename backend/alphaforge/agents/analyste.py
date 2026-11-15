@@ -11,7 +11,7 @@ import time
 import pandas as pd
 
 from .. import calculs
-from ..donnees import FENETRE, SOURCE_FX, SOURCE_PRIX, controle_qualite, info_actif
+from ..donnees import FENETRE, SOURCE_FX, SOURCE_PRIX, controle_qualite, info_actif, univers
 from ..dossier import Dossier
 from ..format import dollars, fr
 
@@ -25,7 +25,8 @@ def mesures_actif(ticker: str, portefeuille: list[str] | None = None) -> dict:
     return {**pc, "volatilite_pct": calculs.volatilite_annualisee(ticker),
             "rendement_annualise_pct": calculs.rendement_annualise(ticker), "secteur": info["sector"],
             "asset_class": info["asset_class"], "devise": info["currency"],
-            "correlations": {t: calculs.correlation(ticker, t) for t in (portefeuille or []) if t != ticker},
+            "correlations": {t: calculs.correlation(ticker, t) for t in (portefeuille or [])
+                             if t != ticker and t in univers().index},
             "qualite": controle_qualite(ticker)}
 
 
@@ -86,10 +87,14 @@ def executer(d: Dossier) -> None:
                                   f"Calcul sur {ids['chute']}", f"{dollars(montant)} × {pc['pire_chute_pct']} %. "
                                   "Scénario fictif : la prochaine baisse peut être plus forte ou plus faible.").id
 
-    correls = {}
+    correls, inconnus = {}, []
     for t in d.profil.get("portefeuille_actuel", []) or []:
-        if t != ticker:
+        if t == ticker:
+            continue
+        try:
             correls[t] = calculs.correlation(ticker, t)
+        except KeyError:      # placement détenu absent du jeu de données : on l'ignore et on le dit
+            inconnus.append(t)
     if correls:
         ids["correlation"] = d.ajouter_fait(f"Corrélation de {ticker} avec tes placements", correls, "", "FAIT",
                                             SOURCE_PRIX, "Corrélation des rendements hebdomadaires (vendredi), en CAD.").id
@@ -105,5 +110,6 @@ def executer(d: Dossier) -> None:
     d.demande["ids_faits"] = ids
     d.tracer("Analyste", "appelle les outils de calcul",
              f"{len(d.faits)} faits produits (pire chute {pc['pire_chute_pct']} %, volatilité {vol} %/an). "
-             f"Sources : prix Yahoo Finance{', ' + SOURCE_FX if info['currency'] == 'USD' else ''}.",
+             f"Sources : prix Yahoo Finance{', ' + SOURCE_FX if info['currency'] == 'USD' else ''}."
+             + (f" Placement(s) détenu(s) sans données, ignoré(s) : {', '.join(inconnus)}." if inconnus else ""),
              list(ids.values()), debut)
