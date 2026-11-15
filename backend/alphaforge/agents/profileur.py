@@ -16,7 +16,7 @@ from ..donnees import univers
 from ..dossier import Dossier
 from ..profil import evaluer
 
-MOTS_EFFET_DE_MODE = ["tout le monde", "en parle", "médiatis", "à la mode", "buzz", "hype", "ne pas rater",
+MOTS_EFFET_DE_MODE = ["tout le monde", "en parle", "médiatis", "à la mode", "buzz", "hype", "ne pas rater", "rater le train", "pas rater", "manquer le train",
                       "exploser", "fusée"]
 CHAMPS_ESSENTIELS = {"horizon_ans": "Dans combien d'années penses-tu avoir besoin de cet argent ?",
                      "epargne_totale_cad": "Combien as-tu d'épargne au total, environ ?",

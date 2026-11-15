@@ -189,7 +189,8 @@ export default function Etape2Verifier({ profil, setProfil, demande, setDemande,
         <div className="pile">
           <div className="carte">
             <h2>Ton rapport au risque</h2>
-            <p className="muted petit">3 questions inspirées d'une échelle validée (Grable &amp; Lytton, 1999).</p>
+            <p className="muted petit">3 questions adaptées de l'échelle de tolérance de Grable &amp; Lytton (1999). Les points
+              attribués à chaque réponse sont un barème de l'équipe, pas celui de l'échelle d'origine.</p>
             {questions.map((q) => (
               <fieldset key={q.id} className="question">
                 <legend>{q.texte}</legend>
@@ -214,7 +215,10 @@ export default function Etape2Verifier({ profil, setProfil, demande, setDemande,
             <h2>Tes deux jauges</h2>
             <Jauge libelle="Ce que tu veux risquer (tolérance)" valeur={ev?.tolerance}
               retenue={ev?.limite === 'tolérance'}
-              detail={ev?.perte_max_tolerance_pct != null ? `Baisse acceptée : jusqu'à ${ev.perte_max_tolerance_pct} % de ton épargne` : 'Réponds aux 3 questions.'} />
+              detail={ev?.perte_max_tolerance_pct == null ? 'Réponds aux 3 questions.'
+                : Object.keys(profil.reponses_tolerance || {}).length === 0
+                  ? `Valeur fixée par le profil fictif (« ${profil.nom} »), pas une mesure : réponds aux 3 questions pour la mesurer. Baisse acceptée retenue : ${ev.perte_max_tolerance_pct} %.`
+                  : `Baisse acceptée : jusqu'à ${ev.perte_max_tolerance_pct} % de ton épargne (barème de l'équipe)`} />
             <Jauge libelle="Ce que ta situation permet (capacité)" valeur={ev?.capacite}
               retenue={ev?.limite === 'capacité'}
               detail={ev?.capacite_raisons?.join(' · ')} />

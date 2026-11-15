@@ -26,6 +26,14 @@ SYNONYMES_SECTEURS = {"énergie": "energy", "energie": "energy", "pétrole": "en
                       "finance": "financials", "santé": "health care", "services publics": "utilities"}
 
 
+# Libellés français des secteurs de assets_universe.csv (affichage seulement ; la comparaison reste en anglais).
+SECTEURS_FR = {"Energy": "Énergie", "Crypto asset": "Cryptoactifs", "Financials": "Finance",
+               "Information Technology": "Technologies", "Consumer Discretionary": "Consommation discrétionnaire",
+               "Health Care": "Santé", "Utilities": "Services publics", "Industrials": "Industrie",
+               "Consumer Staples": "Consommation de base", "Communication Services": "Communication",
+               "Materials": "Matériaux", "Real Estate": "Immobilier"}
+
+
 def exclusions_normalisees(profil: dict) -> list[str]:
     """Exclusions en minuscules, sans entrée vide (une chaîne vide excluait tous les secteurs)."""
     sortie = []
@@ -93,7 +101,8 @@ def appliquer_regles(profil: dict, demande: dict, m: dict, f: dict | None = None
     if exclusions:
         touche = any(e in secteur.lower() for e in exclusions)
         regles.append(Regle("exclusion", "Respect de tes exclusions", "rouge" if touche else "ok",
-                            f"Secteur de l'actif : {secteur}. " + ("Il fait partie de tes exclusions."
+                            f"Secteur de l'actif : {SECTEURS_FR.get(secteur, secteur)}"
+                            + (f" ({secteur}). " if secteur in SECTEURS_FR else ". ") + ("Il fait partie de tes exclusions."
                                                                    if touche else "Il n'est pas exclu."),
                             [f.get("secteur", "")]))
 

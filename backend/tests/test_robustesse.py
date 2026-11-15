@@ -99,3 +99,22 @@ def test_placement_detenu_inconnu_ignore_sans_bloquer_l_analyse():
     d = _run("robert", {"portefeuille_actuel": ["XIU.TO", "FOO"]})     # avant : KeyError → HTTP 422
     assert d["verdict"]["etat"] == "ajustement"
     assert any("FOO" in t["detail"] for t in d["trace"] if t["agent"] == "Analyste")
+
+
+# --- Textes fidèles : alternative, secteur, effet de mode ---
+def test_alternative_ne_pretend_pas_respecter_des_valeurs_esg_non_mesurees():
+    d = _run("mateo")
+    alt = next(o for o in d["options"] if o["nom"].startswith("Alternative"))
+    assert "valeurs" not in alt["nom"] and "secteur" in alt["nom"]
+
+
+def test_secteur_affiche_en_francais():
+    assert "Énergie (Energy)" in _regle(_run("mateo"), "exclusion")["explication"]
+
+
+def test_effet_de_mode_ne_veux_pas_rater_le_train():
+    from alphaforge.agents import profileur
+    from alphaforge.dossier import Dossier
+    d = Dossier(profil={}, demande={"texte": "Je ne veux pas rater le train de l'IA."})
+    profileur.executer(d)
+    assert any("médiatisée" in t for t in d.profil["tensions"])

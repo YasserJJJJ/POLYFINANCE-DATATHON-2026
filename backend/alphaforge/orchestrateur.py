@@ -33,7 +33,7 @@ def _alternative(d: Dossier) -> dict | None:
             f = d.ajouter_fait(f"Pire chute de {t} ({info['name']})", m["pire_chute_pct"], "%", "FAIT",
                                "Yahoo Finance via yfinance, jeu de départ AlphaForge",
                                "Même méthode que pour la demande, en CAD, 2021-11-12 → 2026-11-12.")
-            return {"nom": "Alternative compatible avec tes valeurs", "ticker": t, "libelle_actif": info["name"],
+            return {"nom": "Alternative compatible avec tes exclusions de secteur", "ticker": t, "libelle_actif": info["name"],
                     "montant_cad": d.demande["montant_cad"], "horizon_ans": d.profil.get("horizon_ans"),
                     "etat": etat, "faits": [f.id]}
     return None
