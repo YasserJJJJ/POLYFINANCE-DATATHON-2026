@@ -48,8 +48,9 @@ class Objection:
     cible: str
     texte: str
     recalcul: str
-    resolue: bool = False
+    resolue: bool = False                                  # la vérification a été exécutée par le code
     reponse: str = ""
+    issue: str = ""                                        # confirmee, ecartee ou limite
 
 
 @dataclass

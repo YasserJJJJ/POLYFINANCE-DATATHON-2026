@@ -17,6 +17,10 @@ from ..sources import references_de
 from ..garde_fous import mots_de_conseil, rapport_calcule, sans_accents
 
 MAX_OBJECTIONS = 3
+# Issue d'une vérification : « confirmee » = elle donne raison au Sceptique, « ecartee » = le fait tient tel quel,
+# « limite » = une limite de méthode, sans calcul qui puisse trancher.
+ECART_DEVISE_POINTS = 2   # écart CAD/USD à partir duquel le change compte vraiment (choix de rédaction)
+BAISSE_RAPIDE_PCT = 20    # pire baisse sur 12 mois à partir de laquelle une chute « rapide » est confirmée
 
 
 def _chute_en_devise_locale(ticker: str) -> float:
@@ -26,59 +30,63 @@ def _chute_en_devise_locale(ticker: str) -> float:
 
 
 # Chaque vérification : (applicable ?, fait visé, texte par défaut, exécution → réponse)
-def _devise(d: Dossier, m: dict, ids: dict) -> str:
+def _devise(d: Dossier, m: dict, ids: dict) -> tuple[str, str]:
     usd = _chute_en_devise_locale(d.demande["ticker"])
     f = d.ajouter_fait(f"Pire chute de {d.demande['ticker']} en USD (sans conversion)", usd, "%", "FAIT",
                        "Yahoo Finance", "Même calcul, sans conversion en CAD.",
                        references=references_de("devise_usd"))
+    ecart = round(m["pire_chute_pct"] - usd, 1)
     return (f"Recalcul fait ({f.id}) : {fr(usd)} % en USD contre {fr(m['pire_chute_pct'])} % en CAD "
-            f"(écart de {fr(round(m['pire_chute_pct'] - usd, 1))} point(s)). On garde la mesure en CAD.")
+            f"(écart de {fr(ecart)} point(s)). On garde la mesure en CAD.",
+            "confirmee" if abs(ecart) >= ECART_DEVISE_POINTS else "ecartee")
 
 
-def _recuperation(d: Dossier, m: dict, ids: dict) -> str:
+def _recuperation(d: Dossier, m: dict, ids: dict) -> tuple[str, str]:
     return (f"Le Gardien utilise {fr(m['annees_depuis_creux'])} an(s) comme minimum : la récupération réelle "
-            "sera au moins aussi longue.")
+            "sera au moins aussi longue.", "confirmee")
 
 
-def _fenetre(d: Dossier, m: dict, ids: dict) -> str:
-    return "Limite ajoutée au texte final : la pire chute est celle observée sur 5 ans, pas un maximum."
+def _fenetre(d: Dossier, m: dict, ids: dict) -> tuple[str, str]:
+    return "Limite ajoutée au texte final : la pire chute est celle observée sur 5 ans, pas un maximum.", "limite"
 
 
 ECART_NET_POINTS = 10  # écart à partir duquel on dit que la chute « tient surtout au placement » (choix de rédaction)
 
 
-def _reference(d: Dossier, m: dict, ids: dict) -> str:
+def _reference(d: Dossier, m: dict, ids: dict) -> tuple[str, str]:
     ref = d.fait(ids.get("reference", ""))
     if not ref:
-        return "Pas de référence disponible : comparaison impossible."
+        return "Pas de référence disponible : comparaison impossible.", "limite"
     ticker, chute = d.demande["ticker"], m["pire_chute_pct"]
     ecart = round(abs(chute) - abs(ref.valeur), 1)
     tete = (f"Comparaison faite avec le marché canadien large ({ref.id} : {fr(ref.valeur)} %) : la chute de "
             f"{ticker} ({fr(chute)} %) ")
     if ecart >= ECART_NET_POINTS:
-        return tete + "est nettement plus forte : elle tient surtout au placement lui-même."
+        return tete + "est nettement plus forte : elle tient surtout au placement lui-même.", "ecartee"
     if ecart > 0:
-        return tete + "est un peu plus forte : une bonne partie vient du marché dans son ensemble."
-    return tete + "n'est pas plus forte que celle du marché."
+        return tete + "est un peu plus forte : une bonne partie vient du marché dans son ensemble.", "confirmee"
+    return tete + "n'est pas plus forte que celle du marché.", "confirmee"
 
 
-def _une_annee(d: Dossier, m: dict, ids: dict) -> str:
+def _une_annee(d: Dossier, m: dict, ids: dict) -> tuple[str, str]:
     f = d.fait(ids["pire12"])
-    return (f"Vérifié ({f.id}) : sur 52 semaines glissantes (cours du vendredi), la pire baisse est de {fr(f.valeur)} %. "
-            "Une baisse forte peut donc survenir en moins d'un an.")
+    tete = f"Vérifié ({f.id}) : sur 52 semaines glissantes (cours du vendredi), la pire baisse est de {fr(f.valeur)} %. "
+    if f.valeur <= -BAISSE_RAPIDE_PCT:
+        return tete + "Une baisse forte peut donc survenir en moins d'un an.", "confirmee"
+    return tete + "Sur la période, aucune baisse aussi forte n'est survenue en moins d'un an.", "ecartee"
 
 
 SEUIL_GARDIEN = 0.8  # même seuil que la règle « Diversification réelle » de gardien.py
 
 
-def _concentration(d: Dossier, m: dict, ids: dict) -> str:
+def _concentration(d: Dossier, m: dict, ids: dict) -> tuple[str, str]:
     forts = {t: c for t, c in (m.get("correlations") or {}).items() if c >= 0.6}
     if not forts:
-        return "Vérifié : corrélations avec les placements actuels toutes sous 0,6."
+        return "Vérifié : corrélations avec les placements actuels toutes sous 0,6.", "ecartee"
     texte = "Vérifié : ce placement bouge en partie avec " + ", ".join(f"{t} ({fr(c)})" for t, c in forts.items()) + "."
     if all(c < SEUIL_GARDIEN for c in forts.values()):
         texte += " Le Gardien ne parle de fausse diversification qu'à partir de 0,8 (seuil de l'équipe)."
-    return texte
+    return texte, "confirmee"
 
 
 CATALOGUE = {
@@ -171,11 +179,13 @@ def executer(d: Dossier) -> None:
     for code, texte in choix:
         _ok, cible, _defaut, recalcul, executer_verif = CATALOGUE[code]
         obj = Objection(f"O-{len(d.objections) + 1}", ids.get(cible, ids["chute"]), texte, recalcul)
-        obj.reponse = executer_verif(d, m, ids)
-        obj.resolue = True
+        obj.reponse, obj.issue = executer_verif(d, m, ids)
+        obj.resolue = True   # la vérification a été exécutée ; son résultat est dans `issue`
         d.objections.append(obj)
 
+    bilan = {i: sum(o.issue == i for o in d.objections) for i in ("confirmee", "ecartee", "limite")}
     d.tracer("Sceptique", "objecte et force des vérifications",
              f"{len(d.objections)} objection(s) choisie(s) parmi {len(possibles)} vérifications autorisées "
-             f"({source}). Chacune a été exécutée par le code.",
+             f"({source}). Chacune a été exécutée par le code : {bilan['confirmee']} confirmée(s), "
+             f"{bilan['ecartee']} écartée(s), {bilan['limite']} limite(s) notée(s).",
              [o.cible for o in d.objections], debut)

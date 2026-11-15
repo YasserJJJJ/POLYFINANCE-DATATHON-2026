@@ -1,5 +1,5 @@
 import { dollars } from '../api.js'
-import { Etiquette, PuceNiveau, PuceVerdict, PucesFaits } from '../composants/Base.jsx'
+import { Etiquette, PuceIssue, PuceNiveau, PuceVerdict, PucesFaits } from '../composants/Base.jsx'
 import GraphiqueChute from '../composants/GraphiqueChute.jsx'
 import { ListeSources, SourcesCompactes, SourcesParType, sourcesDuDossier } from '../composants/Sources.jsx'
 
@@ -118,6 +118,7 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
               <div key={o.id} className="objection">
                 <p><span className="mono">{o.id}</span> {o.texte}</p>
                 <p className="recalcul">↳ {o.reponse}</p>
+                <PuceIssue issue={o.issue} />
               </div>
             ))}
           </div>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { PucesFaits } from '../composants/Base.jsx'
+import { PuceIssue, PucesFaits } from '../composants/Base.jsx'
 import { SourcesCompactes } from '../composants/Sources.jsx'
 
 export const AGENTS = {
@@ -60,6 +60,7 @@ export default function Etape3Trace({ dossier, onFini, ouvrirFait }) {
                 <div key={o.id} className="objection">
                   <p><span className="mono">{o.id} → {o.cible}</span> {o.texte}</p>
                   <p className="recalcul">↳ {o.reponse}</p>
+                  <PuceIssue issue={o.issue} />
                 </div>
               ))}
               <PucesFaits ids={[...new Set(t.faits)]} ouvrir={ouvrirFait} />

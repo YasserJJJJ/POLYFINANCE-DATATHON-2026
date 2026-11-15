@@ -30,6 +30,18 @@ export function PuceNiveau({ niveau }) {
   return <span className={`puce-niveau ${n.classe}`}>{n.libelle}</span>
 }
 
+// Issue d'une vérification du Sceptique : elle lui donne raison, elle l'écarte, ou elle note une limite de méthode.
+const ISSUES = {
+  confirmee: { libelle: 'Objection confirmée', classe: 'warn' },
+  ecartee: { libelle: 'Objection écartée', classe: 'ok' },
+  limite: { libelle: 'Limite notée', classe: 'grey' },
+}
+
+export function PuceIssue({ issue }) {
+  const i = ISSUES[issue]
+  return i ? <span className={`puce-niveau ${i.classe}`}>{i.libelle}</span> : null
+}
+
 const TYPES = { FAIT: 'Fait', HYPOTHESE: 'Hypothèse', SCENARIO: 'Scénario fictif' }
 
 export function Etiquette({ type }) {
