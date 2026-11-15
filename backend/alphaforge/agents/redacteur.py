@@ -67,14 +67,24 @@ def _limite_objection(o) -> dict:
     return _phrase(o.reponse, "HYPOTHESE", [o.cible])
 
 
+def _est_persona(d: Dossier) -> bool:
+    from ..personas import PERSONAS
+    return d.profil.get("nom") in {v["profil"]["nom"] for v in PERSONAS.values()}
+
+
 def _modele_de_phrases(d: Dossier) -> dict:
     """Version déterministe : sert de repli et de référence."""
     p, dem, ids = d.profil, d.demande, d.demande["ids_faits"]
-    nom = p.get("nom", "toi")
-    epargne = p.get("epargne_totale_cad") or 0
-    poids = dem["montant_cad"] / epargne * 100 if epargne else 0
-    reformulation = (f"{nom} envisage de placer {dollars(dem['montant_cad'])} dans {dem['ticker']}, soit {poids:.0f} % "
-                     f"de son épargne, avec un horizon de {p.get('horizon_ans')} an(s).")
+    nom = p.get("nom") or "Toi"
+    epargne = p.get("epargne_totale_cad")
+    toi = nom.lower() == "toi"
+    sujet, verbe, sa = ("Tu", "envisages", "ton") if toi else (nom, "envisage", "son")
+    morceaux = [f"{sujet} {verbe} de placer {dollars(dem['montant_cad'])} dans {dem['ticker']}"]
+    if isinstance(epargne, (int, float)) and epargne > 0 and isinstance(dem.get("montant_cad"), (int, float)):
+        morceaux.append(f"soit {dem['montant_cad'] / epargne * 100:.0f} % de {sa} épargne")
+    if p.get("horizon_ans") is not None:
+        morceaux.append(f"avec un horizon de {p.get('horizon_ans')} an(s)")
+    reformulation = ", ".join(morceaux) + "."
     miroir = []
     perte = d.fait(ids["perte"])
     # Une citation qui contient elle-même une formule de conseil (« achète maintenant ») n'est pas reprise.
@@ -314,7 +324,10 @@ def executer(d: Dossier) -> None:
 
     limites = [
         _phrase("Les chiffres décrivent la période 2021-2026. Ils ne prédisent pas l'avenir.", "HYPOTHESE"),
-        _phrase("Les montants et l'épargne de ce profil sont fictifs.", "SCENARIO"),
+        (_phrase("Les montants et l'épargne de ce profil sont fictifs (scénario de l'équipe).", "SCENARIO")
+         if _est_persona(d) else
+         _phrase("Les montants sont ceux que tu as saisis : ils ne sont pas vérifiés, l'analyse reste une simulation.",
+                 "HYPOTHESE")),
     ] + [_limite_objection(o) for o in d.objections]
 
     v = d.verdict

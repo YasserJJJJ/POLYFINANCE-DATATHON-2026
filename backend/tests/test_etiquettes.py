@@ -31,3 +31,17 @@ def test_recalcul_du_sceptique_est_un_fait_qui_cite_le_fait_recalcule():
     usd = next(f for f in d["faits"] if "en USD" in f["libelle"])
     lim = next(ph for ph in d["texte"]["limites"] if ph["texte"].startswith("Recalcul fait"))
     assert lim["type"] == "FAIT" and usd["id"] in lim["faits"]
+
+
+def test_reformulation_sans_epargne_ni_horizon_et_au_tutoiement():
+    profil = {"nom": "Toi", "horizon_ans": None, "epargne_totale_cad": None, "tolerance": 50}
+    d = analyser(profil, {"texte": "", "ticker": "TSLA", "montant_cad": 1000})
+    r = d["texte"]["reformulation"]
+    assert r.startswith("Tu envisages de placer") and "None" not in r and "0 %" not in r
+
+
+def test_montants_fictifs_seulement_pour_les_personas():
+    p = PERSONAS["robert"]
+    lim_persona = " ".join(ph["texte"] for ph in analyser(p["profil"], p["demande"])["texte"]["limites"])
+    lim_toi = " ".join(ph["texte"] for ph in analyser({**p["profil"], "nom": "Toi"}, p["demande"])["texte"]["limites"])
+    assert "fictifs" in lim_persona and "fictifs" not in lim_toi and "saisis" in lim_toi
