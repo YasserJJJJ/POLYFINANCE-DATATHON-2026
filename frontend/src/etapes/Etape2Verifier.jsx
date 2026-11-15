@@ -73,7 +73,10 @@ export default function Etape2Verifier({ profil, setProfil, demande, setDemande,
   const secteurs = useMemo(() => [...new Set(actifs.map((a) => a.sector))].filter((s) => SECTEURS_FR[s]), [actifs])
   const actif = actifs.find((a) => a.ticker === demande.ticker)
   const ev = compris?.profil?.evaluation
-  const poids = profil.epargne_totale_cad && demande.montant_cad ? (demande.montant_cad / profil.epargne_totale_cad) * 100 : null
+  // Le pourcentage vient du backend (même calcul qu'à l'étape du verdict) pour ne jamais diverger
+  // d'un arrondi JS à un arrondi Python ; secours si l'appel /api/comprendre n'a pas encore répondu.
+  const poids = ev?.poids_pct ??
+    (profil.epargne_totale_cad && demande.montant_cad ? Math.round(demande.montant_cad / profil.epargne_totale_cad * 100) : null)
   const basculeExclusion = (s) => maj('exclusions', profil.exclusions.includes(s) ? profil.exclusions.filter((x) => x !== s) : [...profil.exclusions, s])
   const ajouterDetenu = (t) => t && !profil.portefeuille_actuel.includes(t) && maj('portefeuille_actuel', [...profil.portefeuille_actuel, t])
 
@@ -84,7 +87,7 @@ export default function Etape2Verifier({ profil, setProfil, demande, setDemande,
         <p className="compris-phrase">
           {profil.nom === 'Toi' ? 'Tu envisages' : `${profil.nom} envisage`} de placer{' '}
           <strong>{dollars(demande.montant_cad)}</strong> dans <strong>{actif ? `${actif.name} (${actif.ticker})` : '…'}</strong>
-          {poids != null && <>, soit <strong>{poids.toFixed(0)} %</strong> de l'épargne</>}, avec un horizon de{' '}
+          {poids != null && <>, soit <strong>{poids} %</strong> de l'épargne</>}, avec un horizon de{' '}
           <strong>{profil.horizon_ans ?? '…'} an(s)</strong>.
         </p>
         {demande.texte && <p className="citation">« {demande.texte} »</p>}
