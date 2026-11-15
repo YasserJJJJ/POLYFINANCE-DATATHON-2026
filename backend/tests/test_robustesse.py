@@ -58,3 +58,23 @@ def test_version_ajustee_ameliore_toujours_l_etat(nom, profil):
     aj = _ajustee(d)
     if aj:
         assert RANG[aj["etat"]] < RANG[d["verdict"]["etat"]], (aj, d["verdict"])
+
+
+# --- Textes de diversification fidèles aux chiffres ---
+def _regle(d, code):
+    return next(r for r in d["regles"] if r["code"] == code)
+
+
+def test_diversification_ok_ne_dit_pas_se_comporte_differemment_et_cite_la_correlation():
+    # Mateo avec RY.TO détenu : corrélation ENB.TO~RY.TO entre 0,6 et 0,8 (avant : « Se comporte différemment »).
+    d = _run("mateo", {"portefeuille_actuel": ["XIU.TO", "RY.TO"]})
+    r = _regle(d, "diversification")
+    assert r["niveau"] == "ok"
+    assert "différemment" not in r["explication"]
+    assert "0,8" in r["explication"] and "équipe" in r["explication"]
+
+
+def test_titre_deja_detenu_n_est_pas_presente_comme_placements_inconnus():
+    d = _run("robert", {"portefeuille_actuel": ["TSLA"]})
+    r = _regle(d, "diversification")
+    assert "inconnus" not in r["explication"] and "TSLA" in r["explication"]

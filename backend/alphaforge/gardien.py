@@ -121,15 +121,21 @@ def appliquer_regles(profil: dict, demande: dict, m: dict, f: dict | None = None
 
     # 8. Fausse diversification (si on connaît les placements actuels)
     correl = m.get("correlations") or {}
+    deja = demande.get("ticker") and demande.get("ticker") in (profil.get("portefeuille_actuel") or [])
+    note_deja = f" Tu détiens déjà {demande['ticker']} : ce placement s'y ajoute." if deja else ""
     if correl:
         forts = {t: c for t, c in correl.items() if c >= 0.8}
+        t_max, c_max = max(correl.items(), key=lambda kv: kv[1])
         regles.append(Regle("diversification", "Diversification réelle", "orange" if forts else "ok",
-                            ("Très corrélé à ce que tu détiens déjà : " + ", ".join(f"{t} ({c})" for t, c in forts.items())
-                             + ". Ça ne diversifie pas.") if forts else "Se comporte différemment de tes placements actuels.",
+                            (("Très corrélé à ce que tu détiens déjà : " + ", ".join(f"{t} ({c})" for t, c in forts.items())
+                              + ". Ça ne diversifie pas.") if forts else
+                             (f"Corrélation la plus forte avec tes placements : {t_max} ({c_max}), sous le seuil de 0,8 "
+                              "retenu par l'équipe pour parler de fausse diversification.")) + note_deja,
                             [f.get("correlation", "")]))
     else:
         regles.append(Regle("diversification", "Diversification réelle", "non_evaluee",
-                            "Placements actuels inconnus : diversification non évaluée."))
+                            (f"Tu ne détiens que {demande['ticker']} : diversification non évaluée." if deja else
+                             "Placements actuels inconnus : diversification non évaluée.")))
     return regles
 
 
