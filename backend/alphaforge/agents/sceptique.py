@@ -12,6 +12,7 @@ import time
 from .. import calculs, llm
 from ..donnees import _prix
 from ..dossier import Dossier, Objection
+from ..format import fr
 from ..garde_fous import mots_de_conseil, sans_accents
 
 MAX_OBJECTIONS = 3
@@ -28,12 +29,12 @@ def _devise(d: Dossier, m: dict, ids: dict) -> str:
     usd = _chute_en_devise_locale(d.demande["ticker"])
     f = d.ajouter_fait(f"Pire chute de {d.demande['ticker']} en USD (sans conversion)", usd, "%", "FAIT",
                        "Yahoo Finance", "Même calcul, sans conversion en CAD.")
-    return (f"Recalcul fait ({f.id}) : {usd} % en USD contre {m['pire_chute_pct']} % en CAD "
-            f"(écart de {round(m['pire_chute_pct'] - usd, 1)} point(s)). On garde la mesure en CAD.")
+    return (f"Recalcul fait ({f.id}) : {fr(usd)} % en USD contre {fr(m['pire_chute_pct'])} % en CAD "
+            f"(écart de {fr(round(m['pire_chute_pct'] - usd, 1))} point(s)). On garde la mesure en CAD.")
 
 
 def _recuperation(d: Dossier, m: dict, ids: dict) -> str:
-    return (f"Le Gardien utilise {m['annees_depuis_creux']} an(s) comme minimum : la récupération réelle "
+    return (f"Le Gardien utilise {fr(m['annees_depuis_creux'])} an(s) comme minimum : la récupération réelle "
             "sera au moins aussi longue.")
 
 
@@ -50,8 +51,8 @@ def _reference(d: Dossier, m: dict, ids: dict) -> str:
         return "Pas de référence disponible : comparaison impossible."
     ticker, chute = d.demande["ticker"], m["pire_chute_pct"]
     ecart = round(abs(chute) - abs(ref.valeur), 1)
-    tete = (f"Comparaison faite avec le marché canadien large ({ref.id} : {ref.valeur} %) : la chute de "
-            f"{ticker} ({chute} %) ")
+    tete = (f"Comparaison faite avec le marché canadien large ({ref.id} : {fr(ref.valeur)} %) : la chute de "
+            f"{ticker} ({fr(chute)} %) ")
     if ecart >= ECART_NET_POINTS:
         return tete + "est nettement plus forte : elle tient surtout au placement lui-même."
     if ecart > 0:
@@ -61,7 +62,7 @@ def _reference(d: Dossier, m: dict, ids: dict) -> str:
 
 def _une_annee(d: Dossier, m: dict, ids: dict) -> str:
     f = d.fait(ids["pire12"])
-    return (f"Vérifié ({f.id}) : sur 52 semaines glissantes (cours du vendredi), la pire baisse est de {f.valeur} %. "
+    return (f"Vérifié ({f.id}) : sur 52 semaines glissantes (cours du vendredi), la pire baisse est de {fr(f.valeur)} %. "
             "Une baisse forte peut donc survenir en moins d'un an.")
 
 
@@ -72,7 +73,7 @@ def _concentration(d: Dossier, m: dict, ids: dict) -> str:
     forts = {t: c for t, c in (m.get("correlations") or {}).items() if c >= 0.6}
     if not forts:
         return "Vérifié : corrélations avec les placements actuels toutes sous 0,6."
-    texte = "Vérifié : ce placement bouge en partie avec " + ", ".join(f"{t} ({c})" for t, c in forts.items()) + "."
+    texte = "Vérifié : ce placement bouge en partie avec " + ", ".join(f"{t} ({fr(c)})" for t, c in forts.items()) + "."
     if all(c < SEUIL_GARDIEN for c in forts.values()):
         texte += " Le Gardien ne parle de fausse diversification qu'à partir de 0,8 (seuil de l'équipe)."
     return texte
@@ -114,7 +115,7 @@ def _choix_llm(d: Dossier, possibles: list[str]) -> list[tuple[str, str]]:
                 f"exclusions {p.get('exclusions')}, placements actuels {p.get('portefeuille_actuel')}.\n"
                 f"Demande : {d.demande.get('texte')} ({d.demande['ticker']}, {d.demande['montant_cad']} $).\n"
                 f"Faits : " + "; ".join(f"{f.id} {f.libelle} = {f.valeur} {f.unite}" for f in d.faits) + "\n"
-                f"Vérifications possibles :\n" + "\n".join(f"- {c} : {CATALOGUE[c][3]}" for c in possibles))
+                f"Vérifications possibles :\n" + "\n".join(f"- {fr(c)} : {CATALOGUE[c][3]}" for c in possibles))
     brut = llm.appeler_json(SYSTEME, contexte, llm.MODELE_PRINCIPAL, 700)
     choix = []
     for o in (brut.get("objections") or [])[:MAX_OBJECTIONS]:

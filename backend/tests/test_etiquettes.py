@@ -45,3 +45,12 @@ def test_montants_fictifs_seulement_pour_les_personas():
     lim_persona = " ".join(ph["texte"] for ph in analyser(p["profil"], p["demande"])["texte"]["limites"])
     lim_toi = " ".join(ph["texte"] for ph in analyser({**p["profil"], "nom": "Toi"}, p["demande"])["texte"]["limites"])
     assert "fictifs" in lim_persona and "fictifs" not in lim_toi and "saisis" in lim_toi
+
+
+@pytest.mark.parametrize("nom", list(PERSONAS))
+def test_decimales_a_la_francaise_dans_les_textes_affiches(nom):
+    p = PERSONAS[nom]
+    d = analyser(p["profil"], p["demande"])
+    textes = [r["explication"] for r in d["regles"]] + [o["reponse"] for o in d["objections"]] + \
+             [ph["texte"] for s in ("pourquoi", "limites") for ph in d["texte"][s]]
+    assert not [t for t in textes if re.search(r"\d\.\d", t)], textes

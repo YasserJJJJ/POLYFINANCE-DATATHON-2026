@@ -6,7 +6,7 @@ et les faits (F-n) qui la soutiennent. Les seuils viennent de profil.py.
 from __future__ import annotations
 
 from .dossier import Regle
-from .format import dollars
+from .format import dollars, fr
 from .profil import evaluer
 
 ORDRE = {"gris": 4, "rouge": 3, "orange": 2, "ok": 1, "non_evaluee": 0}
@@ -49,16 +49,16 @@ def appliquer_regles(profil: dict, demande: dict, m: dict, f: dict | None = None
 
     # 1. Capacité et tolérance de perte
     if impact > ev["perte_max_capacite_pct"]:
-        niveau, txt = "rouge", (f"Si ce placement revivait sa pire chute ({m['pire_chute_pct']} %), ton épargne "
-                                f"baisserait de {impact} %. Ta capacité de perte est estimée à "
-                                f"{ev['perte_max_capacite_pct']} %.")
+        niveau, txt = "rouge", (f"Si ce placement revivait sa pire chute ({fr(m['pire_chute_pct'])} %), ton épargne "
+                                f"baisserait de {fr(impact)} %. Ta capacité de perte est estimée à "
+                                f"{fr(ev['perte_max_capacite_pct'])} %.")
     elif impact > ev["perte_max_tolerance_pct"]:
-        niveau, txt = "orange", (f"La pire chute observée ferait baisser ton épargne de {impact} %. C'est dans ta "
-                                 f"capacité ({ev['perte_max_capacite_pct']} %), mais au-delà de ce que tu dis "
-                                 f"vouloir risquer ({ev['perte_max_tolerance_pct']} %).")
+        niveau, txt = "orange", (f"La pire chute observée ferait baisser ton épargne de {fr(impact)} %. C'est dans ta "
+                                 f"capacité ({fr(ev['perte_max_capacite_pct'])} %), mais au-delà de ce que tu dis "
+                                 f"vouloir risquer ({fr(ev['perte_max_tolerance_pct'])} %).")
     else:
-        niveau, txt = "ok", (f"La pire chute observée ferait baisser ton épargne de {impact} %, sous ta limite "
-                             f"de {ev['perte_max_retenue_pct']} %.")
+        niveau, txt = "ok", (f"La pire chute observée ferait baisser ton épargne de {fr(impact)} %, sous ta limite "
+                             f"de {fr(ev['perte_max_retenue_pct'])} %.")
     regles.append(Regle("capacite", "Perte supportable", niveau, txt, [f.get("chute", "")]))
 
     # 2. Somme à préserver
@@ -87,8 +87,8 @@ def appliquer_regles(profil: dict, demande: dict, m: dict, f: dict | None = None
         risque = m["volatilite_pct"] > 25 and (recup is None or retrait < recup)
         regles.append(Regle("retrait", "Retrait prévu", "rouge" if risque else "ok",
                             (f"Tu prévois de retirer de l'argent dans {retrait} an(s). Ce placement est volatil "
-                             f"({m['volatilite_pct']} %/an) et a mis "
-                             + (f"{recup} an(s)" if recup else "plus que la période observée")
+                             f"({fr(m['volatilite_pct'])} %/an) et a mis "
+                             + (f"{fr(recup)} an(s)" if recup else "plus que la période observée")
                              + " à se remettre de sa pire chute.") if risque else
                             "Le retrait prévu laisse le temps de traverser une baisse comparable.",
                             [f.get("volatilite", ""), f.get("recuperation", "")]))
@@ -97,10 +97,10 @@ def appliquer_regles(profil: dict, demande: dict, m: dict, f: dict | None = None
     horizon = profil["horizon_ans"]
     if m.get("recupere"):
         trop_court = horizon < m["recuperation_annees"]
-        detail = f"il a fallu {m['recuperation_annees']} an(s) pour revenir au sommet"
+        detail = f"il a fallu {fr(m['recuperation_annees'])} an(s) pour revenir au sommet"
     else:
         trop_court = horizon < m["annees_depuis_creux"]
-        detail = f"le sommet n'est toujours pas retrouvé {m['annees_depuis_creux']} an(s) après le creux"
+        detail = f"le sommet n'est toujours pas retrouvé {fr(m['annees_depuis_creux'])} an(s) après le creux"
     regles.append(Regle("horizon", "Horizon et temps de récupération", "orange" if trop_court else "ok",
                         f"Ton horizon est de {horizon} an(s) ; après la pire chute, {detail}.",
                         [f.get("recuperation", "")]))
@@ -127,9 +127,9 @@ def appliquer_regles(profil: dict, demande: dict, m: dict, f: dict | None = None
         forts = {t: c for t, c in correl.items() if c >= 0.8}
         t_max, c_max = max(correl.items(), key=lambda kv: kv[1])
         regles.append(Regle("diversification", "Diversification réelle", "orange" if forts else "ok",
-                            (("Très corrélé à ce que tu détiens déjà : " + ", ".join(f"{t} ({c})" for t, c in forts.items())
+                            (("Très corrélé à ce que tu détiens déjà : " + ", ".join(f"{t} ({fr(c)})" for t, c in forts.items())
                               + ". Ça ne diversifie pas.") if forts else
-                             (f"Corrélation la plus forte avec tes placements : {t_max} ({c_max}), sous le seuil de 0,8 "
+                             (f"Corrélation la plus forte avec tes placements : {t_max} ({fr(c_max)}), sous le seuil de 0,8 "
                               "retenu par l'équipe pour parler de fausse diversification.")) + note_deja,
                             [f.get("correlation", "")]))
     else:

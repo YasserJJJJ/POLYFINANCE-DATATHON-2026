@@ -15,7 +15,7 @@ def test_methodes_exactes_pour_un_actif_en_usd():
     assert "change USD/CAD inclus" in f["Volatilité annualisée de TSLA"]["methode"]
     assert "Pire période de 52 semaines (TSLA, cours du vendredi)" in f
     recup = f["Temps entre le creux et le retour au sommet (TSLA)"]
-    assert recup["valeur"] == 1.9 and "2.9 an(s)" in recup["methode"]   # 2022-01-03 → 2024-12-05
+    assert recup["valeur"] == 1.9 and "2,9 an(s)" in recup["methode"]   # 2022-01-03 → 2024-12-05
 
 
 def test_pas_de_mention_de_change_pour_un_actif_en_cad():

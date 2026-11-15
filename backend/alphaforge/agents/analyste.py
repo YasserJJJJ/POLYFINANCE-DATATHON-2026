@@ -13,7 +13,7 @@ import pandas as pd
 from .. import calculs
 from ..donnees import FENETRE, SOURCE_FX, SOURCE_PRIX, controle_qualite, info_actif
 from ..dossier import Dossier
-from ..format import dollars
+from ..format import dollars, fr
 
 REFERENCE = "XIU.TO"  # marché canadien large, pour donner un ordre de grandeur
 
@@ -59,7 +59,7 @@ def executer(d: Dossier) -> None:
                                              pc["recuperation_annees"], "an(s)", "FAIT", SOURCE_PRIX,
                                              f"Du creux ({pc['date_creux']}) au retour au sommet ({pc['date_retour']}). "
                                              f"Depuis le sommet ({pc['date_sommet']}), le prix est resté sous son "
-                                             f"sommet {sous_l_eau} an(s).").id
+                                             f"sommet {fr(sous_l_eau)} an(s).").id
     else:
         ids["recuperation"] = d.ajouter_fait(f"Sommet non retrouvé ({ticker})", pc["annees_depuis_creux"], "an(s)",
                                              "FAIT", SOURCE_PRIX,
@@ -78,7 +78,7 @@ def executer(d: Dossier) -> None:
                                    SOURCE_PRIX, f"Rendements sur 52 semaines glissantes, cours du vendredi, fin "
                                                 f"{p12['fin_periode']}. Mesure hebdomadaire : la pire baisse sur 12 mois "
                                                 "de cotations quotidiennes peut être plus forte. "
-                                                f"{p12['part_periodes_negatives_pct']} % des périodes de 12 mois sont négatives.").id
+                                                f"{fr(p12['part_periodes_negatives_pct'])} % des périodes de 12 mois sont négatives.").id
 
     montant = d.demande.get("montant_cad") or 0
     perte = calculs.perte_en_dollars(montant, pc["pire_chute_pct"])
