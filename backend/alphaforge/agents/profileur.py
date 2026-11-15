@@ -91,19 +91,55 @@ def _trouver_ticker(texte: str) -> str | None:
     return None
 
 
+MONTANT = re.compile(r"(\d[\d\s]*(?:[.,]\d+)?)\s*(k)?\s*(?:\$|dollars?\b|\bcad\b)|(\d+(?:[.,]\d+)?)\s*k\b", re.I)
+VERBE_PLACER = re.compile(r"\b(mettre|mets|placer|place|investir|investis|miser|mise|put|invest)\b[^.;]{0,40}$", re.I)
+CONTEXTE_EPARGNE = re.compile(r"^\s*(d'|de |en )?(épargne|economies|économies|côté|cote|saved|savings)", re.I)
+
+
+def _propre(texte: str) -> str:
+    return texte.replace(" ", " ").replace("\xa0", " ")
+
+
+def _montants(texte: str) -> list[tuple[float, int, int]]:
+    """Tous les montants (valeur, début, fin) : « 10 000 $ », « 5000 dollars », « 5 k$ », « 50k »."""
+    sortie = []
+    for m in MONTANT.finditer(texte):
+        brut, k = (m.group(1), m.group(2)) if m.group(1) else (m.group(3), "k")
+        try:
+            valeur = float(re.sub(r"\s", "", brut).replace(",", "."))
+        except ValueError:
+            continue
+        sortie.append((valeur * 1000 if k else valeur, m.start(), m.end()))
+    return sortie
+
+
 def _trouver_montant(texte: str) -> float | None:
-    m = re.search(r"(\d[\d\s]*)\s*(k|000)?\s*\$", texte.replace(" ", " "))
-    if not m:
-        return None
-    valeur = float(m.group(1).replace(" ", ""))
-    return valeur * 1000 if m.group(2) == "k" else valeur
+    """Le montant à placer : celui qui suit un verbe (« mettre », « placer »…), sinon le premier qui n'est pas
+    l'épargne (« 80 000 $ d'épargne », « de côté »)."""
+    t = _propre(texte)
+    candidats = _montants(t)
+    for valeur, debut, _fin in candidats:
+        if VERBE_PLACER.search(t[max(0, debut - 45):debut]):
+            return valeur
+    for valeur, _debut, fin in candidats:
+        if not CONTEXTE_EPARGNE.search(t[fin:fin + 20]):
+            return valeur
+    return None
+
+
+def _trouver_epargne(texte: str) -> float | None:
+    t = _propre(texte)
+    return next((v for v, _d, fin in _montants(t) if CONTEXTE_EPARGNE.search(t[fin:fin + 20])), None)
 
 
 def extraire(texte: str) -> tuple[dict, str]:
     """Renvoie (champs extraits, source). Essaie le modèle, sinon les mots-clés."""
     if texte.strip() and llm.actif():
         try:
-            return extraire_llm(texte.strip()), llm.nom(llm.MODELE_LEGER)
+            avant = extraire_llm.cache_info().hits
+            champs = extraire_llm(texte.strip())
+            en_cache = extraire_llm.cache_info().hits > avant
+            return champs, llm.nom(llm.MODELE_LEGER) + (", réponse déjà lue (cache)" if en_cache else "")
         except Exception:
             pass
     champs = {}
@@ -111,6 +147,8 @@ def extraire(texte: str) -> tuple[dict, str]:
         champs["ticker"] = t
     if (m := _trouver_montant(texte)) is not None:
         champs["montant_cad"] = m
+    if (e := _trouver_epargne(texte)) is not None:
+        champs["epargne_totale_cad"] = e
     return champs, "mots-clés (hors ligne)"
 
 
