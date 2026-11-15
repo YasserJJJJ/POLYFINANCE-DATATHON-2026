@@ -23,6 +23,9 @@ INTERDITS = ["achetez", "achète", "achèterais", "vendez", "vends", "je recomma
              "je vous recommande", "garanti", "sans risque", "tu devrais acheter"]
 TYPES = {"FAIT", "HYPOTHESE", "SCENARIO"}
 SECTIONS = ("reformulation", "miroir", "pourquoi", "ce_qui_changerait")
+# Sections rédigées par le modèle. « ce_qui_changerait » reste écrit par le code : seul le Gardien sait ce qui
+# change le verdict (un modèle a déjà inventé un levier inexistant et un seuil faux dans cette section).
+SECTIONS_MODELE = ("reformulation", "miroir", "pourquoi")
 
 # Étiquette de l'explication de chaque règle du Gardien :
 # - SCENARIO : situation fictive (« si la pire chute se répétait », reste après un placement fictif) ;
@@ -47,9 +50,9 @@ RÈGLES STRICTES :
 Format JSON :
 {"reformulation": "<une phrase qui reformule la demande>",
  "miroir": [{"texte": "...", "type": "SCENARIO", "faits": ["F-7"]}],
- "pourquoi": [{"texte": "...", "type": "FAIT", "faits": ["F-2"]}],
- "ce_qui_changerait": [{"texte": "...", "type": "HYPOTHESE", "faits": []}]}
-"pourquoi" : 2 à 4 phrases, en commençant par ce qui pèse le plus dans le verdict."""
+ "pourquoi": [{"texte": "...", "type": "FAIT", "faits": ["F-2"]}]}
+"pourquoi" : 2 à 4 phrases, en commençant par ce qui pèse le plus dans le verdict.
+Ne parle pas de ce qui changerait le verdict : cette partie est calculée par le code."""
 
 
 def _phrase(texte: str, type_: str, faits: list[str] | None = None) -> dict:
@@ -188,7 +191,7 @@ def executer(d: Dossier) -> None:
                 break
             defauts = verifier(propose, autorises, ids_valides)
             if not defauts:
-                texte = {k: propose.get(k, base[k]) for k in SECTIONS}
+                texte = {**base, **{k: propose.get(k, base[k]) for k in SECTIONS_MODELE}}
                 source = llm.nom(llm.MODELE_PRINCIPAL)
                 journal.append(f"essai {essai} : accepté par le contrôle d'ancrage")
                 break
