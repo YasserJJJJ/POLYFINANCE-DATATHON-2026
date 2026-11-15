@@ -100,3 +100,20 @@ def test_une_reponse_mal_formee_du_modele_ne_fait_pas_planter_l_analyse(monkeypa
     d = _robert()   # avant : TypeError non rattrapée
     assert d["texte"]["source"].startswith("modèles de phrases")
     assert any("refusé" in j for j in d["texte"]["controle"])
+
+
+# --- Étiquettes : le code corrige celles du modèle et le dit ---
+def test_le_code_corrige_les_etiquettes_du_modele_et_le_dit(monkeypatch):
+    # Phrases réellement écrites par Claude pour Robert pendant l'audit (bedrock_robert.json).
+    seuil = ("Le point qui pèse le plus : ce placement représenterait 20 % de ton épargne, alors que le seuil "
+             "retenu pour un actif aussi volatil est 5 % dans ton profil.")
+    scen = "Même avec ce poids élevé, la pire chute historique ferait baisser ton épargne de 14,2 %."
+
+    def fabriquer(ref):
+        return {**ref, "pourquoi": [{"texte": seuil, "type": "FAIT", "faits": ["F-4"]},
+                                    {"texte": scen, "type": "FAIT", "faits": ["F-2"]}]}
+    faux_modele(monkeypatch, fabriquer)
+    d = _robert()
+    types_ = {ph["texte"]: ph["type"] for ph in d["texte"]["pourquoi"]}
+    assert types_[seuil] == "HYPOTHESE" and types_[scen] == "SCENARIO"
+    assert any("étiquette(s) corrigée(s)" in j for j in d["texte"]["controle"])

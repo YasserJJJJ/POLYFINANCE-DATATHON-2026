@@ -18,7 +18,7 @@ import time
 from .. import llm
 from ..dossier import Dossier
 from ..format import dollars
-from ..garde_fous import mots_de_conseil
+from ..garde_fous import mots_de_conseil, sans_accents
 
 TYPES = {"FAIT", "HYPOTHESE", "SCENARIO"}
 SECTIONS = ("reformulation", "miroir", "pourquoi", "ce_qui_changerait")
@@ -175,6 +175,36 @@ def _nombres_autorises(d: Dossier, base: dict) -> set[float]:
     return autorises
 
 
+MARQUE_SCENARIO = re.compile(r"\bsi\b.{0,80}\b(?:se repetait|revivait|survenait|se reproduisait|retombait)\b"
+                             r"|\bferait (?:baisser|perdre|passer)\b|\bperdrait\b|\bbaisserait\b")
+MARQUE_HYPOTHESE = re.compile(r"\bseuils?\b|\blimites?\b|/100|capacite de perte|\bbaremes?\b")
+
+
+def etiquette_juste(texte: str, type_: str, faits: list[str]) -> str:
+    """Étiquette que le code impose : une situation fictive est un SCENARIO ; une phrase qui repose sur un
+    seuil ou un barème de l'équipe est une HYPOTHESE ; un FAIT sans aucun F-n n'est pas un fait vérifiable."""
+    bas = sans_accents(texte.lower())
+    if MARQUE_SCENARIO.search(bas):
+        return "SCENARIO"
+    if type_ == "FAIT" and (MARQUE_HYPOTHESE.search(bas) or not faits):
+        return "HYPOTHESE"
+    return type_
+
+
+def corriger_etiquettes(texte: dict) -> tuple[dict, list[str]]:
+    """Corrige en code les étiquettes du modèle (au lieu de refuser tout le texte) et dit ce qui a changé."""
+    corrections, sortie = [], dict(texte)
+    for section in ("miroir", "pourquoi", "ce_qui_changerait"):
+        phrases = []
+        for ph in texte.get(section) or []:
+            juste = etiquette_juste(ph["texte"], ph["type"], ph.get("faits") or [])
+            if juste != ph["type"]:
+                corrections.append(f"« {ph['texte'][:40]}… » : {ph['type']} → {juste}")
+            phrases.append({**ph, "type": juste})
+        sortie[section] = phrases
+    return sortie, corrections
+
+
 def verifier(texte_json: dict, autorises: set[float], ids_valides: set[str],
              ses_mots: list[str] | None = None) -> list[str]:
     """Renvoie la liste des défauts NOMMÉS (vide = texte accepté). Ne lève jamais d'exception :
@@ -248,9 +278,13 @@ def executer(d: Dossier) -> None:
                 journal.append(f"essai {essai} : réponse inutilisable ({type(e).__name__})")
                 break
             if not defauts:
-                texte = {**base, **{k: propose.get(k, base[k]) for k in SECTIONS_MODELE}}
+                texte, corrections = corriger_etiquettes(
+                    {**base, **{k: propose.get(k, base[k]) for k in SECTIONS_MODELE}})
                 source = llm.nom(llm.MODELE_PRINCIPAL)
                 journal.append(f"essai {essai} : accepté par le contrôle d'ancrage")
+                if corrections:
+                    journal.append(f"{len(corrections)} étiquette(s) corrigée(s) par le code : "
+                                   + " ; ".join(corrections[:3]))
                 break
             journal.append(f"essai {essai} : refusé — " + " ; ".join(defauts[:3]))
             # Boucle fermée : le défaut nommé devient la consigne du prochain essai.
