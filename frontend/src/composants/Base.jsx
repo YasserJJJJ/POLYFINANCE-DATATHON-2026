@@ -25,6 +25,25 @@ export function PuceVerdict({ etat, grand = false, libelle }) {
   )
 }
 
+const ICONES = {
+  coherent: 'm5 12 5 5 9-10',
+  ajustement: 'M12 8v5M12 17h.01',
+  incoherent: 'M18 6 6 18M6 6l12 12',
+  indetermine: 'M9 9a3 3 0 1 1 4.5 2.6c-1 .6-1.5 1.1-1.5 2.4M12 17h.01',
+}
+
+// Pastille ronde du bandeau de verdict : coche, point d'exclamation, croix ou point d'interrogation.
+export function IconeEtat({ etat }) {
+  return (
+    <span className="verdict-icone" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6"
+        strokeLinecap="round" strokeLinejoin="round">
+        <path d={ICONES[etat] || ICONES.indetermine} />
+      </svg>
+    </span>
+  )
+}
+
 export function PuceNiveau({ niveau }) {
   const n = NIVEAUX[niveau] || NIVEAUX.non_evaluee
   return <span className={`puce-niveau ${n.classe}`}>{n.libelle}</span>

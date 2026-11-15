@@ -1,5 +1,5 @@
 import { dollars } from '../api.js'
-import { Etiquette, PuceNiveau, PuceVerdict, PucesFaits } from '../composants/Base.jsx'
+import { Etiquette, IconeEtat, PuceNiveau, PuceVerdict, PucesFaits } from '../composants/Base.jsx'
 import GraphiqueChute from '../composants/GraphiqueChute.jsx'
 
 function Phrase({ p, ouvrir }) {
@@ -35,11 +35,14 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
   return (
     <section className="etape4">
       <div className={`verdict-tete carte etat-${verdict.etat}`}>
-        <p className="surtitre">Le second avis</p>
-        <PuceVerdict etat={verdict.etat} grand libelle={verdict.libelle} />
-        <p className="compte-regles"><strong>{verdict.respectees}</strong> règle(s) respectée(s) sur <strong>{verdict.evaluees}</strong></p>
-        {texte?.reformulation && <p className="reformulation">{texte.reformulation}</p>}
-        {texte?.tensions?.map((t) => <p key={t} className="tension">{t}</p>)}
+        <IconeEtat etat={verdict.etat} />
+        <div className="verdict-corps">
+          <p className="surtitre">Le second avis</p>
+          <PuceVerdict etat={verdict.etat} grand libelle={verdict.libelle} />
+          <p className="compte-regles"><strong>{verdict.respectees}</strong> règle(s) respectée(s) sur <strong>{verdict.evaluees}</strong></p>
+          {texte?.reformulation && <p className="reformulation">{texte.reformulation}</p>}
+          {texte?.tensions?.map((t) => <p key={t} className="tension">{t}</p>)}
+        </div>
       </div>
 
       {texte?.miroir?.length > 0 && (
