@@ -61,6 +61,8 @@ export default function Etape2Verifier({ profil, setProfil, demande, setDemande,
         texteApplique.current = demande.texte
         const champs = r.profil?.extraits?.champs || {}
         const pourProfil = Object.fromEntries(Object.entries(champs).filter(([k]) => k !== 'ticker' && k !== 'montant_cad'))
+        // L'envie et la peur lues dans la phrase restent dans le profil : le Rédacteur s'en sert au verdict.
+        for (const k of ['envie', 'peur']) if (r.profil?.[k]) pourProfil[k] = r.profil[k]
         if (Object.keys(pourProfil).length) setProfil((p) => ({ ...p, ...pourProfil }))
         if (champs.ticker || champs.montant_cad) {
           setDemande((d) => ({ ...d, ticker: d.ticker ?? champs.ticker ?? null, montant_cad: d.montant_cad ?? champs.montant_cad ?? null }))

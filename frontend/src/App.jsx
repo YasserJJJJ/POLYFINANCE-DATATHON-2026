@@ -54,7 +54,8 @@ export default function App() {
     setDossier(null)
     setEtape(2)
     try {
-      setDossier(await api.analyser(profil, demande))
+      // texte_lu : la personne a relu et corrigé l'étape 2 ; l'analyse ne re-remplit pas un champ qu'elle a vidé.
+      setDossier(await api.analyser(profil, { ...demande, texte_lu: true }))
     } catch (e) {
       // Sans dossier, l'écran d'analyse attendrait sans fin : on revient à l'étape 2, réponses conservées.
       setEtape(1)
