@@ -25,8 +25,8 @@ export default function FondAnime({ className }) {
     const ctx = cv?.getContext('2d')
     if (!cv || !ctx) return
     const style = getComputedStyle(document.documentElement)
-    const accent = rgb(style.getPropertyValue('--accent'), [47, 69, 200])
-    const encre = rgb(style.getPropertyValue('--encre'), [20, 26, 42])
+    const accent = rgb(style.getPropertyValue('--logo-b'), [106, 38, 238])
+    const encre = rgb(style.getPropertyValue('--foreground'), [24, 24, 27])
     const reduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     let w = 0, h = 0, raf = 0
 

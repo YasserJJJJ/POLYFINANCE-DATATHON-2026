@@ -1,6 +1,8 @@
 # Interface (voie Produit et interface)
 
-React + Vite, en français. Consomme l'API (`backend/api.py`, format : [docs/contrats.md](../docs/contrats.md)).
+React + Vite + Tailwind CSS, composants façon shadcn/ui (`src/components/ui/`), en français, au tutoiement.
+Consomme l'API (`backend/api.py`, format : [docs/contrats.md](../docs/contrats.md)) : les agents, le Gardien et
+tous les chiffres viennent du backend ; l'interface n'en calcule aucun.
 
 ## Lancer en local
 
@@ -14,13 +16,14 @@ npm run dev        # http://localhost:5173  (/api est redirigé vers le port 800
 
 ## Le parcours
 
-| Étape | Fichier | Ce qu'on voit |
+| Écran | Fichier | Ce qu'on voit |
 |---|---|---|
-| Accueil | `src/etapes/Accueil.jsx` | Promesse du produit sur un fond animé (`src/composants/FondAnime.jsx`, canvas décoratif, aucune donnée) |
-| 1 et 2 · Conversation | `src/etapes/Conversation.jsx` | Une phrase libre (ou un des 3 profils) lue par le Profileur (`/api/comprendre`). « Voici ce que j'ai compris », puis seulement les questions manquantes, une à la fois (placement, montant, épargne, horizon, 3 questions de tolérance avec la mise en situation, fonds d'urgence). Résumé corrigeable (« Modifier »), 2 jauges, mots de la personne gardés pour le miroir |
-| 3 · Analyse | `src/etapes/Etape3Trace.jsx` | La trace des agents qui défile, objections du Sceptique |
-| 4 · Verdict | `src/etapes/Etape4Verdict.jsx` | Verdict 4 états, miroir, 3 options, règles, graphique de la pire chute, registre des faits cliquables |
-| 5 · Curseurs | `src/etapes/Etape5Bascule.jsx` | Curseurs de bascule, carte complète montant × horizon, fiche pour le conseiller |
-| Comparer | `src/etapes/Comparer.jsx` | La même demande pour Amira, Mateo et Robert, côte à côte |
+| Accueil | `src/ecrans/Accueil.jsx` | La promesse sur un fond animé (`src/components/FondAnime.jsx`, canvas décoratif, aucune donnée) |
+| 1 et 2 · Conversation | `src/ecrans/Conversation.jsx` | Une phrase libre ou un des 3 profils, lue par le Profileur (`/api/comprendre`). « Voici ce que j'ai compris », puis seulement les questions manquantes, une à la fois, avec leur raison (placement, montant, épargne, horizon, 3 questions de tolérance avec la mise en situation, fonds d'urgence). Résumé corrigeable (« Modifier »), 2 jauges, mots de la personne gardés pour le miroir |
+| 3 · Analyse | `src/ecrans/Analyse.jsx` | La trace réelle des agents, objections du Sceptique, faits F-n et références |
+| 4 · Verdict | `src/ecrans/Verdict.jsx` | Verdict en 4 états, miroir, raisons, 3 options, règles du Gardien, pire chute, registre des faits, qualité des données, limites, sources |
+| 5 · Curseurs | `src/ecrans/Curseurs.jsx` | Curseurs de bascule, carte montant × horizon, fiche pour le conseiller |
+| Comparer | `src/ecrans/Comparer.jsx` | La même demande pour Amira, Mateo et Robert, côte à côte |
 
-Le nom affiché (`AlphaForge AI`, sous-titre `Second avis`) est défini par deux constantes dans `src/App.jsx`.
+Chaque F-n s'ouvre dans un tiroir (`src/components/TiroirFait.jsx`) : valeur, source, méthode, références.
+Le nom affiché (`AlphaForge AI`, sous-titre `Second avis`) est défini dans `src/components/Marque.jsx`.

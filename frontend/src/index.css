@@ -1,0 +1,86 @@
+@import "@fontsource/inter/latin-400.css";
+@import "@fontsource/inter/latin-500.css";
+@import "@fontsource/inter/latin-600.css";
+@import "@fontsource/inter/latin-700.css";
+@import "@fontsource/outfit/latin-700.css";
+@import "@fontsource/jetbrains-mono/latin-400.css";
+@import "tailwindcss";
+
+/* Notre interface : blanc, neutres zinc, composants façon shadcn/ui, couleur réservée au verdict. */
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --font-logo: "Outfit", "Inter", sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-primary: var(--brand);
+  --color-primary-foreground: var(--brand-foreground);
+  --color-mark: var(--mark);
+  --color-ok: var(--ok);
+  --color-ok-bg: var(--ok-bg);
+  --color-ok-bd: var(--ok-bd);
+  --color-warn: var(--warn);
+  --color-warn-bg: var(--warn-bg);
+  --color-warn-bd: var(--warn-bd);
+  --color-bad: var(--bad);
+  --color-bad-bg: var(--bad-bg);
+  --color-bad-bd: var(--bad-bd);
+  --color-grey: var(--grey);
+  --color-grey-bg: var(--grey-bg);
+  --color-grey-bd: var(--grey-bd);
+  --color-t-fait: var(--t-fait);
+  --color-t-hyp: var(--t-hyp);
+  --color-t-scen: var(--t-scen);
+  --color-accent: var(--accent);
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: var(--radius);
+}
+
+:root {
+  color-scheme: light;
+  --background: #ffffff;
+  --foreground: #18181b;
+  --card: #ffffff;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  --border: #e4e4e7;
+  --input: #d4d4d8;
+  --ring: #2563eb;
+  --brand: #18181b;
+  --brand-foreground: #fafafa;
+  --accent: #6a26ee;
+  --mark: #fef3c7;
+  --radius: 8px;
+  --logo-a: #9278f4;
+  --logo-b: #6a26ee;
+  --logo-w: #232329;
+  /* Verdict : contraste AA (≥ 4,5:1) du texte sur son fond de puce. */
+  --ok: #277c38; --ok-bg: #e6f4ea; --ok-bd: #bbf7d0;
+  --warn: #b45009; --warn-bg: #fdf0e4; --warn-bd: #fde68a;
+  --bad: #c2312f; --bad-bg: #fbe9e8; --bad-bd: #fecaca;
+  --grey: #656d7a; --grey-bg: #edeff2; --grey-bd: #d4d4d8;
+  /* Étiquettes FAIT / HYPOTHÈSE / SCÉNARIO (≥ 4,5:1 sur blanc). */
+  --t-fait: #1d4ed8; --t-hyp: #b45309; --t-scen: #0f766e;
+}
+
+html, body, #root { background: var(--background); }
+body {
+  margin: 0;
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: 6px; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
