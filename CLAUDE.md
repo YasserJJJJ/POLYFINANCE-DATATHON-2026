@@ -1,5 +1,8 @@
 # Contexte datathon — équipe AlphaForge
 
+**Avant toute chose, lire `docs/contexte.md`** : défi, personas, grille, échéances, décisions de l'équipe,
+état du code, configuration AWS / Bedrock, pièges connus et prochaines étapes. Ce fichier-ci ne garde que les règles.
+
 - Défi : AlphaForge AI (PolyFinances × Banque Nationale × AWS). Solution agentique auto-explicative.
 - Notre produit : un second avis qui confronte une décision d'investissement au profil de la personne.
   Verdict en 4 états, 3 options, curseurs de bascule, faits cliquables.

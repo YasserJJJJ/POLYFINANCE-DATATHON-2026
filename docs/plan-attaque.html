@@ -1,0 +1,621 @@
+<title>Plan d'attaque AlphaForge</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+/* Layout: one reading column (~920px) with full-width tables in scroll boxes; sections numbered because the page follows the team's decision process */
+:root{
+  --bg:#F4F6F9; --surface:#FFFFFF; --ink:#18202E; --muted:#596377; --line:#DCE1E9; --soft:#EEF1F6;
+  --accent:#2347B5; --accent-soft:#E6ECFB;
+  --yahia:#1C6FD1; --rayan:#0B8494; --yasser:#6E46D9; --adam:#B0245A;
+  --ok:#2B8A3E; --warn:#D9620B; --bad:#C2312F; --grey:#7A828F;
+  --f-display:"Space Grotesk",ui-sans-serif,system-ui,sans-serif;
+  --f-body:"Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1218; --surface:#161C25; --ink:#E5E9F0; --muted:#9CA5B5; --line:#2A3241; --soft:#1C2330;
+  --accent:#8EA8FF; --accent-soft:#1E2A4A;
+  --yahia:#6FAEFF; --rayan:#4FC7D6; --yasser:#A98DFF; --adam:#F27AA6;
+  --ok:#5BC46E; --warn:#FF9A4D; --bad:#FF6B67; --grey:#A3AAB5; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1218; --surface:#161C25; --ink:#E5E9F0; --muted:#9CA5B5; --line:#2A3241; --soft:#1C2330;
+  --accent:#8EA8FF; --accent-soft:#1E2A4A;
+  --yahia:#6FAEFF; --rayan:#4FC7D6; --yasser:#A98DFF; --adam:#F27AA6;
+  --ok:#5BC46E; --warn:#FF9A4D; --bad:#FF6B67; --grey:#A3AAB5; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15.5px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:960px;margin:0 auto}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.2;margin:0}
+h1{font-size:clamp(2rem,5vw,2.9rem);letter-spacing:-.02em}
+h2{font-size:1.6rem;letter-spacing:-.01em}
+h3{font-size:1.12rem}
+p{margin:0}
+a{color:var(--accent)}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.muted{color:var(--muted)}
+.mono{font-family:var(--f-mono);font-size:.85em}
+
+header.top{padding-block:48px 28px;display:grid;gap:14px;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.lede{font-size:1.1rem;max-width:68ch;color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+
+nav.toc{display:flex;flex-wrap:wrap;gap:6px 14px;padding-block:16px;border-bottom:1px solid var(--line);font-size:.88rem}
+nav.toc a{color:var(--muted);text-decoration:none}
+nav.toc a:hover{color:var(--accent)}
+
+section{padding-block:44px 8px;display:grid;gap:18px}
+.sec-head{display:grid;gap:6px}
+.sec-num{font-family:var(--f-mono);font-size:.8rem;color:var(--accent)}
+.sec-head p{color:var(--muted);max-width:70ch}
+
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:600;padding:2px 9px;border-radius:999px;border:1px solid var(--line);background:var(--surface);white-space:nowrap}
+.dot{width:8px;height:8px;border-radius:50%;flex:none}
+.c-yahia .dot{background:var(--yahia)} .c-rayan .dot{background:var(--rayan)} .c-yasser .dot{background:var(--yasser)} .c-adam .dot{background:var(--adam)}
+.c-yahia{color:var(--yahia)} .c-rayan{color:var(--rayan)} .c-yasser{color:var(--yasser)} .c-adam{color:var(--adam)}
+
+/* Visions */
+.visions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:760px){.visions{grid-template-columns:1fr}}
+.vision{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--vc);border-radius:10px;padding:18px;display:grid;gap:12px;align-content:start;min-width:0}
+.vision.v-yahia{--vc:var(--yahia)} .vision.v-rayan{--vc:var(--rayan)} .vision.v-yasser{--vc:var(--yasser)} .vision.v-adam{--vc:var(--adam)}
+.vision .who{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.vision .who h3{color:var(--vc)}
+.vision .tag{font-size:.78rem;color:var(--muted);font-style:italic}
+.vision .thesis{font-weight:500}
+.diagram{overflow-x:auto;background:var(--soft);border-radius:8px;padding:10px;min-width:0}
+.diagram pre.mermaid{margin:0;background:transparent;font-size:13px}
+.kv{display:grid;gap:6px;font-size:.9rem}
+.kv div{display:grid;grid-template-columns:96px 1fr;gap:8px}
+.kv b{font-weight:600;color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;padding-top:2px}
+
+/* Tables */
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:none}
+th{font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;background:var(--soft);white-space:nowrap}
+td.q{font-weight:600;white-space:nowrap}
+.matrix td{min-width:120px}
+.matrix td.q{min-width:150px}
+.badge{display:inline-block;font-size:.72rem;font-weight:700;padding:1px 8px;border-radius:999px;white-space:nowrap;margin-bottom:4px}
+.b-una{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
+.b-maj{background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent)}
+.b-div{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+
+/* Lists of cards */
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:760px){.grid2,.grid3{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:grid;gap:8px;align-content:start;min-width:0}
+.card .chips{display:flex;flex-wrap:wrap;gap:6px}
+.card .result{font-weight:600}
+.card p{font-size:.92rem}
+
+ul.clean{margin:0;padding-left:1.1em;display:grid;gap:6px}
+ul.clean li::marker{color:var(--accent)}
+
+.agree{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:760px){.agree{grid-template-columns:1fr}}
+.agree div{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;font-size:.92rem}
+.agree b{display:block;font-family:var(--f-display);font-size:.98rem;margin-bottom:2px}
+
+/* Final structure */
+.promise{background:var(--accent-soft);border-radius:12px;padding:22px;display:grid;gap:10px}
+.promise .big{font-family:var(--f-display);font-size:1.35rem;line-height:1.3;font-weight:600;text-wrap:balance}
+ol.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;counter-reset:s}
+@media (max-width:900px){ol.steps{grid-template-columns:1fr}}
+ol.steps li{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;display:grid;gap:6px;align-content:start;font-size:.88rem;min-width:0}
+ol.steps li::before{content:"Étape " counter(s);font-family:var(--f-mono);font-size:.72rem;color:var(--accent)}
+ol.steps li b{font-family:var(--f-display);font-size:1rem}
+.plus{display:inline-block;font-size:.7rem;font-weight:700;color:var(--accent);border:1px solid var(--accent);border-radius:4px;padding:0 5px;margin-right:4px;vertical-align:1px}
+
+.verdicts{display:flex;flex-wrap:wrap;gap:8px}
+.v{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:600;padding:3px 10px;border-radius:6px;border:1px solid var(--line);background:var(--surface)}
+.v i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.v-ok i{background:var(--ok)} .v-warn i{background:var(--warn)} .v-bad i{background:var(--bad)} .v-grey i{background:var(--grey)}
+.ftag{font-family:var(--f-mono);font-size:.72rem;padding:1px 6px;border-radius:4px;border:1px solid currentColor}
+.t-fait{color:var(--ok)} .t-hyp{color:var(--warn)} .t-scen{color:var(--yasser)}
+
+.example{border-left:3px solid var(--accent);padding:10px 14px;background:var(--surface);border-radius:0 8px 8px 0;font-size:.92rem;display:grid;gap:6px}
+
+.timeline{display:grid;gap:0;border-left:2px solid var(--line);margin-left:6px}
+.timeline div{position:relative;padding:0 0 14px 20px;font-size:.92rem}
+.timeline div::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--accent)}
+.timeline div.hard::before{background:var(--bad);border-color:var(--bad)}
+.timeline b{font-family:var(--f-display)}
+
+.checks{display:grid;gap:8px}
+.checks label{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:.92rem;cursor:pointer}
+.checks input{margin-top:4px;accent-color:var(--accent)}
+
+footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);font-size:.82rem;color:var(--muted);display:grid;gap:6px}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+
+<div class="wrap">
+
+<header class="top">
+  <div class="eyebrow">AlphaForge AI · Datathon BN × AWS × PolyFinances · 14–15 nov. 2026</div>
+  <h1>Plan d'attaque AlphaForge</h1>
+  <p class="lede">La synthèse des réponses de Yahia, Rayan, Yasser et Adam au questionnaire de cadrage : quatre visions, ce qui nous rassemble, ce qui nous booste, ce qu'on laisse tomber, puis la structure finale proposée.</p>
+  <div class="meta">
+    <span class="chip c-yahia"><span class="dot"></span>Yahia</span>
+    <span class="chip c-rayan"><span class="dot"></span>Rayan</span>
+    <span class="chip c-yasser"><span class="dot"></span>Yasser</span>
+    <span class="chip c-adam"><span class="dot"></span>Adam</span>
+    <span class="muted" style="font-size:.85rem">4 réponses sur 4 · 30 questions</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Sommaire">
+  <a href="#visions">1 · Les 4 visions</a>
+  <a href="#matrice">2 · Matrice</a>
+  <a href="#accords">3 · Accords</a>
+  <a href="#boost">4 · Ce qui nous booste</a>
+  <a href="#abandon">5 · On laisse tomber</a>
+  <a href="#tranche">6 · Désaccords tranchés</a>
+  <a href="#structure">7 · Structure finale</a>
+  <a href="#peurs">8 · Peurs → garde-fous</a>
+  <a href="#equipe">9 · Rôles et calendrier</a>
+  <a href="#decider">10 · À trancher ensemble</a>
+</nav>
+
+<!-- 1 -->
+<section id="visions">
+  <div class="sec-head">
+    <span class="sec-num">01</span>
+    <h2>Les 4 visions</h2>
+    <p>Chaque schéma suit le parcours tel que la personne l'a décrit. Les différences sont réelles mais complémentaires : deux veulent d'abord <em>clarifier</em>, un veut <em>convaincre</em>, un veut <em>trancher avec des preuves</em>.</p>
+  </div>
+
+  <div class="visions">
+    <article class="vision v-yahia">
+      <div class="who"><h3>Yahia</h3><span class="tag">Le traducteur d'intentions</span></div>
+      <p class="thesis">Aider une personne perdue à transformer une envie floue en demande claire et réaliste, à apporter à son conseiller.</p>
+      <div class="diagram"><pre class="mermaid">
+flowchart TB
+  U["Client perdu<br/>phrase libre + formulaire"] --> P["Profileur<br/>profil multidimensionnel"]
+  P --> B["Bibliothécaire<br/>sources réelles"]
+  B --> AG["Analyste + Gardien<br/>calculs et règles"]
+  AG <--> AD["Avocat du diable"]
+  AD --> C["Conseiller<br/>réponse finale"]
+  C --> F["Fiche projet + verdict + lexique<br/>avant le RDV conseiller"]
+  O{{"Chef d'orchestre"}} -.-> P
+  O -.-> AG
+  O -.-> C
+      </pre></div>
+      <div class="kv">
+        <div><b>Apporte</b><span>Le service « pré-rendez-vous » de la banque, les phrases « Je veux… J'ai… J'ai peur de… », le refus de mettre les gens dans une case.</span></div>
+        <div><b>Peur</b><span>Trop de complexité, pas assez de créativité.</span></div>
+        <div><b>Défend</b><span>Une personnalisation réelle, et être créatifs.</span></div>
+      </div>
+    </article>
+
+    <article class="vision v-rayan">
+      <div class="who"><h3>Rayan</h3><span class="tag">Le convaincant</span></div>
+      <p class="thesis">Une réponse rapide (moins de 2 min), pertinente, qui convainc la personne en partant de ce qu'elle pense déjà.</p>
+      <div class="diagram"><pre class="mermaid">
+flowchart TB
+  U["Investisseur<br/>Je veux / J'ai / J'ai peur de"] --> P["Profil<br/>mises en situation + expérience passée"]
+  P --> D["Données marché<br/>FNB + actions + vraies nouvelles"]
+  D --> A1["Agent pour"]
+  D --> A2["Agent contre"]
+  A1 <--> A2
+  A1 --> V["Verdict convaincant<br/>moins de 2 min"]
+  A2 --> V
+  V --> K["Compatibilité avec ce qu'il cherche"]
+      </pre></div>
+      <div class="kv">
+        <div><b>Apporte</b><span>La vitesse comme exigence, l'idée de convaincre avec les mots de la personne, l'ancrage dans l'expérience passée.</span></div>
+        <div><b>Peur</b><span>Ne pas répondre au besoin, ne pas convaincre.</span></div>
+        <div><b>Défend</b><span>Une réponse compatible à un grand pourcentage avec ce que la personne cherche.</span></div>
+      </div>
+    </article>
+
+    <article class="vision v-yasser">
+      <div class="who"><h3>Yasser</h3><span class="tag">Le second avis strict</span></div>
+      <p class="thesis">Confronter une décision au profil, chiffrer ce qui peut mal tourner, proposer le plus petit ajustement qui la rend acceptable.</p>
+      <div class="diagram"><pre class="mermaid">
+flowchart TB
+  F["Formulaire en 3 étapes<br/>profil · idée · vérification"] --> A["Analyste<br/>LLM + outils"]
+  A --> R[("Registre de preuves<br/>F-1, F-2, ...")]
+  S["Sceptique"] -- "objection, recalcul" --> A
+  R --> S
+  R --> G["Gardien en code<br/>décide"]
+  G --> W["Rédaction"]
+  W --> V["Verdict 4 états<br/>3 choix · point de bascule"]
+      </pre></div>
+      <div class="kv">
+        <div><b>Apporte</b><span>Le verdict gris « impossible de conclure », les 3 choix comparés, le registre de preuves, le réalisme sur les données et le temps.</span></div>
+        <div><b>Peur</b><span>Dimanche 16 h, pas de démo qui marche de bout en bout.</span></div>
+        <div><b>Défend</b><span>Un second avis qui sait dire non, avec des preuves. Le code décide, l'IA explique.</span></div>
+      </div>
+    </article>
+
+    <article class="vision v-adam">
+      <div class="who"><h3>Adam</h3><span class="tag">Le méthodique adaptatif</span></div>
+      <p class="thesis">Clarifier, puis comparer des options chiffrées, en ne demandant que ce qui change le résultat et en justifiant chaque conclusion.</p>
+      <div class="diagram"><pre class="mermaid">
+flowchart TB
+  E["Entrée souple<br/>phrase ou document"] --> Q["Compléter seulement<br/>l'info utile"]
+  Q --> R["Reformulation<br/>validée par la personne"]
+  R --> O{{"Coordination centrale"}}
+  O --- D[("Dossier partagé")]
+  O --> FN["Fonctions : profil, sources,<br/>calcul, vérification, explication"]
+  FN --> X["Relecture ciblée"]
+  X --> V["Conclusion + options<br/>+ ce qui la ferait changer + sources"]
+  V -. "revenir sur une étape" .-> Q
+      </pre></div>
+      <div class="kv">
+        <div><b>Apporte</b><span>Ne demander que l'information qui change le résultat, la règle « préférence manquante → question / problème de données → le système », la liberté de méthode.</span></div>
+        <div><b>Peur</b><span>Impressionnant mais générique ou indéfendable.</span></div>
+        <div><b>Défend</b><span>Chaque conclusion adaptée au contexte et soutenue par des éléments vérifiables.</span></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 2 -->
+<section id="matrice">
+  <div class="sec-head">
+    <span class="sec-num">02</span>
+    <h2>La matrice des réponses</h2>
+    <p>Les questions qui structurent le produit, réponse par réponse. La dernière colonne donne le niveau d'accord.</p>
+  </div>
+  <div class="tbl">
+    <table class="matrix">
+      <thead><tr><th>Question</th><th class="c-yahia">Yahia</th><th class="c-rayan">Rayan</th><th class="c-yasser">Yasser</th><th class="c-adam">Adam</th><th>Accord</th></tr></thead>
+      <tbody>
+        <tr><td class="q">1 · Problème</td><td>Clarifier puis confronter</td><td>Formuler ce qu'on veut</td><td>Confronter une décision</td><td>Clarifier puis confronter</td><td><span class="badge b-div">Divisé</span><br>2 votes pour « les deux »</td></tr>
+        <tr><td class="q">2 · Pour qui</td><td>Investisseur + rapport conseiller</td><td>Investisseur</td><td>Investisseur autonome</td><td>Investisseur (rapport plus tard)</td><td><span class="badge b-una">Unanime</span><br>L'investisseur, fiche conseiller en bonus</td></tr>
+        <tr><td class="q">3 · Livrable</td><td>Fiche projet, verdict, lexique</td><td>Verdict</td><td>Verdict 4 états, 3 choix, bascule</td><td>Comparaison chiffrée, reformulation</td><td><span class="badge b-maj">Majorité</span><br>Verdict + comparaison</td></tr>
+        <tr><td class="q">4 · Effet wow</td><td>3 personas, miroir</td><td>3 personas</td><td>3 personas, bascule, objection</td><td>3 personas, bascule</td><td><span class="badge b-una">Unanime</span><br>3 personas · bascule 2/4</td></tr>
+        <tr><td class="q">5 · Entrée</td><td>Hybride</td><td>Hybride</td><td>Formulaire guidé + phrase libre</td><td>Hybride souple</td><td><span class="badge b-una">Unanime</span><br>Phrase libre + champs structurés</td></tr>
+        <tr><td class="q">7 · Psychologie</td><td>Échelles type NASA-TLX</td><td>Mises en situation + passé</td><td>Pas de mesure (bonus mise en situation)</td><td>Questions vérifiées + mises en situation</td><td><span class="badge b-maj">Majorité</span><br>Mise en situation, pas de diagnostic</td></tr>
+        <tr><td class="q">9 · Délai</td><td>3–5 min</td><td>&lt; 2 min</td><td>&lt; 2 min</td><td>1er retour &lt; 2 min</td><td><span class="badge b-maj">Majorité</span><br>Premier retour rapide</td></tr>
+        <tr><td class="q">10 · « Ce que j'ai compris »</td><td>Oui</td><td>Oui</td><td>Oui, obligatoire</td><td>Oui</td><td><span class="badge b-una">Unanime</span></td></tr>
+        <tr><td class="q">11 · Contradiction</td><td>Montrer, puis question</td><td>Question</td><td>Montrer, la personne choisit</td><td>Question, puis montrer</td><td><span class="badge b-una">Unanime</span><br>Ni trancher seul, ni ignorer</td></tr>
+        <tr><td class="q">12 · Forme du profil</td><td>Curseurs</td><td>Curseurs</td><td>Curseurs</td><td>Curseurs</td><td><span class="badge b-una">Unanime</span></td></tr>
+        <tr><td class="q">13 · Tolérance / capacité</td><td>2 jauges</td><td>2 jauges</td><td>2 jauges + le plus bas</td><td>2 jauges</td><td><span class="badge b-una">Unanime</span></td></tr>
+        <tr><td class="q">14 · Qui calcule</td><td>LLM extrait, code calcule</td><td>Idem</td><td>Idem</td><td>Idem</td><td><span class="badge b-una">Unanime</span></td></tr>
+        <tr><td class="q">15 · Biais</td><td>Interne</td><td>Interne</td><td>Effet de mode, factuel</td><td>Signaler avec tact</td><td><span class="badge b-una">Unanime</span><br>Jamais de diagnostic</td></tr>
+        <tr><td class="q">16 · Agents</td><td>5 + avocat du diable</td><td>LLM + code</td><td>3 LLM + Gardien en code</td><td>6 fonctions, pas forcément 6 agents</td><td><span class="badge b-div">Divisé</span></td></tr>
+        <tr><td class="q">17 · Coordination</td><td>Chef d'orchestre</td><td>Chef d'orchestre / pair-à-pair</td><td>Ordre fixe en code</td><td>Centrale + dossier partagé</td><td><span class="badge b-maj">Majorité</span><br>Centrale + dossier</td></tr>
+        <tr><td class="q">18 · Débat</td><td>Pour / contre</td><td>Les deux</td><td>Sceptique force un recalcul</td><td>Relecture ciblée</td><td><span class="badge b-div">Divisé</span><br>Tous veulent une contradiction</td></tr>
+        <tr><td class="q">19 · Désaccord</td><td>Demander, sinon prudence</td><td>Demander</td><td>Gardien + « non vérifié »</td><td>Selon la cause</td><td><span class="badge b-maj">Combinable</span></td></tr>
+        <tr><td class="q">20 · Reposer une question</td><td>Oui</td><td>Oui</td><td>Avant l'analyse seulement</td><td>Oui si ça change le résultat</td><td><span class="badge b-maj">Majorité</span></td></tr>
+        <tr><td class="q">21 · Univers</td><td>FNB (+ actions)</td><td>+ actions</td><td>8–12 actifs du jeu fourni</td><td>+ actions possible</td><td><span class="badge b-maj">Majorité</span><br>FNB + quelques titres</td></tr>
+        <tr><td class="q">22 · Proba d'objectif</td><td>Oui</td><td>Oui</td><td>À éviter</td><td>Seulement si justifiée</td><td><span class="badge b-div">Divisé</span></td></tr>
+        <tr><td class="q">23 · Hype de Robert</td><td>Il décrit + vraies nouvelles</td><td>API de nouvelles</td><td>Il décrit + titres préparés</td><td>Il décrit, puis info</td><td><span class="badge b-maj">Majorité</span><br>Il la décrit lui-même</td></tr>
+        <tr><td class="q">24 · Ton</td><td>Neutre, sans conseil</td><td>?</td><td>Neutre, jamais « achetez »</td><td>Adaptatif, base pro</td><td><span class="badge b-una">Unanime</span><br>Neutre, niveau de détail adaptable</td></tr>
+        <tr><td class="q">26 · Langue</td><td>FR</td><td>FR + EN</td><td>FR</td><td>FR (EN si utile)</td><td><span class="badge b-maj">Majorité</span></td></tr>
+        <tr><td class="q">27 · Interface</td><td>React</td><td>React</td><td>Selon compétences</td><td>À comparer</td><td><span class="badge b-maj">Majorité</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 3 -->
+<section id="accords">
+  <div class="sec-head">
+    <span class="sec-num">03</span>
+    <h2>Ce sur quoi on est tous d'accord</h2>
+    <p>Ces points sont acquis. On ne les rediscute plus, on les construit.</p>
+  </div>
+  <div class="agree">
+    <div><b>On sert l'investisseur lui-même</b>Sur les profils fictifs du datathon. Le rapport pour un conseiller est un bonus.</div>
+    <div><b>La même demande donne 3 réponses</b>La preuve centrale de la démo : le profil change vraiment le résultat.</div>
+    <div><b>Phrase libre + champs structurés</b>La personne s'exprime avec ses mots ; on complète ce qui manque.</div>
+    <div><b>« Voici ce que j'ai compris de toi »</b>La personne vérifie et corrige avant toute analyse.</div>
+    <div><b>Des curseurs, pas des cases</b>Tolérance, capacité, horizon, liquidité, valeurs. Aucune catégorie fixe.</div>
+    <div><b>Deux jauges séparées</b>Ce qu'on veut risquer et ce qu'on peut se permettre de perdre.</div>
+    <div><b>Le LLM comprend, le code calcule</b>Aucun chiffre n'est produit par le modèle de langage.</div>
+    <div><b>Jamais de diagnostic psychologique</b>On peut signaler une tension, avec des mots factuels.</div>
+    <div><b>Une contradiction ne se tranche pas en silence</b>On la montre ou on pose une question.</div>
+    <div><b>Une forme de contradiction entre agents</b>Personne ne veut une chaîne qui approuve tout. Reste à fixer la forme.</div>
+    <div><b>Ton neutre, jamais « achetez »</b>Aide à la décision, pas conseil. Le niveau de détail peut s'adapter.</div>
+    <div><b>Les calculs de base</b>Pire perte, volatilité, corrélation, concentration : tout le monde les veut.</div>
+  </div>
+</section>
+
+<!-- 4 -->
+<section id="boost">
+  <div class="sec-head">
+    <span class="sec-num">04</span>
+    <h2>Ce qui nous booste si on le cumule</h2>
+    <p>Des idées venues de personnes différentes qui, combinées, donnent quelque chose qu'aucune équipe n'aura.</p>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <div class="chips"><span class="chip c-yasser"><span class="dot"></span>Point de bascule</span><span class="chip c-adam"><span class="dot"></span>Ce qui ferait changer</span><span class="chip c-yahia"><span class="dot"></span>Personnalisation</span></div>
+      <p class="result">Les curseurs de bascule en direct</p>
+      <p>La personne fait glisser son horizon, son montant ou le poids du placement, et le verdict change sous ses yeux. Le recalcul se fait en code, sans LLM, donc instantané et vérifiable. C'est notre moment signature.</p>
+    </div>
+    <div class="card">
+      <div class="chips"><span class="chip c-rayan"><span class="dot"></span>Convaincre par ses pensées</span><span class="chip c-yahia"><span class="dot"></span>Phrases Je veux / J'ai peur de</span><span class="chip c-adam"><span class="dot"></span>Pas de diagnostic</span></div>
+      <p class="result">Le miroir de cohérence</p>
+      <p>On cite les mots de la personne à côté des chiffres : « Tu as écrit "je ne supporte pas de perdre". Voici la pire chute historique de ce placement. » On ne juge pas sa psychologie, on lui montre l'écart entre ce qu'elle dit et ce que les données montrent.</p>
+    </div>
+    <div class="card">
+      <div class="chips"><span class="chip c-yahia"><span class="dot"></span>Pré-RDV conseiller</span><span class="chip c-adam"><span class="dot"></span>Rapport exportable</span><span class="chip"><span class="dot" style="background:var(--muted)"></span>Anthropic prospect-intake</span></div>
+      <p class="result">La fiche « pour ton conseiller »</p>
+      <p>À la fin, une page à apporter au rendez-vous : demande reformulée, contraintes, verdict, questions à poser, termes expliqués (le lexique de Yahia, en version légère). C'est un argument direct pour la Banque Nationale : les conseillers gagnent du temps.</p>
+    </div>
+    <div class="card">
+      <div class="chips"><span class="chip c-yasser"><span class="dot"></span>Sceptique</span><span class="chip c-yahia"><span class="dot"></span>Avocat du diable</span><span class="chip c-rayan"><span class="dot"></span>Pour / contre</span><span class="chip c-adam"><span class="dot"></span>Relecture ciblée</span></div>
+      <p class="result">L'objection qui change un chiffre</p>
+      <p>Le Sceptique ne donne pas d'opinion. Il cite un fait précis (F-4) et exige un recalcul, par exemple : « tu as ignoré la conversion en dollars canadiens ». On voit le chiffre bouger dans la trace. Le débat devient visible et vérifiable.</p>
+    </div>
+    <div class="card">
+      <div class="chips"><span class="chip c-yasser"><span class="dot"></span>Registre F-1…</span><span class="chip c-adam"><span class="dot"></span>Éléments vérifiables</span><span class="chip"><span class="dot" style="background:var(--muted)"></span>Anthropic « Inferred vs Read »</span></div>
+      <p class="result">Chaque chiffre est cliquable</p>
+      <p>Chaque nombre porte une étiquette (<span class="ftag t-fait">FAIT</span> lu dans une source, <span class="ftag t-hyp">HYPOTHÈSE</span> calculée sous hypothèse, <span class="ftag t-scen">SCÉNARIO</span> fictif) et renvoie à sa source et à son calcul.</p>
+    </div>
+    <div class="card">
+      <div class="chips"><span class="chip c-yasser"><span class="dot"></span>Verdict gris</span><span class="chip c-adam"><span class="dot"></span>Montrer l'incertitude</span><span class="chip c-yahia"><span class="dot"></span>Faisable / pas faisable</span></div>
+      <p class="result">Un outil qui ose dire « je ne sais pas »</p>
+      <p>Quatre verdicts, dont un gris quand une donnée essentielle manque. Pour les juges, c'est un signal fort d'honnêteté : l'outil ne fabrique pas de conclusion.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section id="abandon">
+  <div class="sec-head">
+    <span class="sec-num">05</span>
+    <h2>Ce qu'on laisse tomber</h2>
+    <p>Trop complexe pour 48 h, ou fragile en démo. Pour chaque idée, on garde l'intention sous une forme plus simple.</p>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Idée</th><th>Pourquoi on la laisse</th><th>Ce qu'on garde à la place</th></tr></thead>
+      <tbody>
+        <tr><td class="q">API de nouvelles en direct</td><td>Lent, licences, résultats imprévisibles en démo.</td><td>Un instantané de 2–3 « hypes » réelles, daté et sourcé, stocké dans S3.</td></tr>
+        <tr><td class="q">Machine à remonter le temps (2008, 2020)</td><td>Personne ne l'a choisie comme effet wow. Le jeu de données pourrait commencer vers 2021 (à vérifier).</td><td>Un seul graphique : la pire chute sur l'historique disponible.</td></tr>
+        <tr><td class="q">Probabilité d'atteindre l'objectif</td><td>Revient à prédire. Contesté par 2 personnes sur 4.</td><td>Bonus si le temps le permet : une fréquence historique (« sur les périodes de 5 ans disponibles, perte dans X % des cas »), étiquetée HYPOTHÈSE.</td></tr>
+        <tr><td class="q">NASA-TLX</td><td>Il mesure la charge mentale d'une tâche, pas l'attitude face au risque.</td><td>L'idée d'échelles multiples : une mise en situation graphique + 3 questions inspirées de Grable &amp; Lytton.</td></tr>
+        <tr><td class="q">Questionnaire complet de 13 questions</td><td>Trop long pour un premier retour en moins de 2 min.</td><td>3 questions choisies, avec la source citée.</td></tr>
+        <tr><td class="q">Chef d'orchestre IA et agents en pair-à-pair libre</td><td>Imprévisible, boucles, coût, difficile à expliquer.</td><td>Un orchestrateur en code, avec des renvois limités entre voisins.</td></tr>
+        <tr><td class="q">6 agents LLM séparés</td><td>Plus d'agents ne veut pas dire plus agentique, seulement plus de latence.</td><td>4 agents LLM + 2 modules en code (voir la structure).</td></tr>
+        <tr><td class="q">Chatbot libre et ouvert</td><td>Long, imprévisible, difficile à démontrer.</td><td>Une conversation guidée : phrase libre, puis champs pré-remplis.</td></tr>
+        <tr><td class="q">Les 3 seaux comme format de résultat</td><td>Personne ne l'a choisi.</td><td>Le champ « somme à préserver » (proposé par Yasser), qui en reprend l'idée.</td></tr>
+        <tr><td class="q">Bilingue</td><td>Double le travail sur les textes et les tests.</td><td>Français. Anglais seulement si tout le reste est fini.</td></tr>
+        <tr><td class="q">« % de compatibilité »</td><td>Un seul pourcentage donne une fausse précision.</td><td>« 5 règles respectées sur 7 », chaque règle étant cliquable.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 6 -->
+<section id="tranche">
+  <div class="sec-head">
+    <span class="sec-num">06</span>
+    <h2>Les désaccords tranchés</h2>
+    <p>Ma proposition pour chaque point de friction. Chaque décision reprend quelque chose de chaque camp.</p>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Sujet</th><th>Positions</th><th>Décision proposée</th><th>Pourquoi</th></tr></thead>
+      <tbody>
+        <tr><td class="q">Clarifier ou confronter</td><td>Clarifier (Yahia, Adam, Rayan) · Confronter (Yasser)</td><td><b>Les deux, dans cet ordre, avec une clarification courte.</b> La clarification produit une demande précise ; la confrontation la chiffre.</td><td>Sans clarification, on rate le cas d'une personne perdue. Sans confrontation, on rate la partie Données (20 %).</td></tr>
+        <tr><td class="q">Psychologie</td><td>Échelles (Yahia) · Situations (Rayan, Adam) · Aucune (Yasser)</td><td><b>Une mise en situation graphique + 3 questions sourcées</b>, qui alimentent seulement la jauge de tolérance.</td><td>Mesurable et sourcé, ce qui répond aux réserves de Yasser. Visuel et humain, ce qui répond à Yahia et Rayan.</td></tr>
+        <tr><td class="q">Nombre d'agents</td><td>5–6 (Yahia) · 3 LLM (Yasser) · fonctions (Adam)</td><td><b>4 agents LLM : Profileur, Analyste, Sceptique, Rédacteur. 2 modules en code : contrôle des données, Gardien.</b> Le Bibliothécaire devient un catalogue de sources que l'Analyste interroge.</td><td>Chaque agent a un rôle qu'on peut tester seul. On garde toutes les fonctions d'Adam.</td></tr>
+        <tr><td class="q">Coordination</td><td>Chef d'orchestre (3) · Ordre fixe en code (Yasser) · Pair-à-pair (Rayan)</td><td><b>Un chef d'orchestre en code (machine à états) + un dossier de décision partagé + des renvois limités entre voisins.</b></td><td>Centralisé et prévisible comme le veulent 3 personnes, sans IA qui décide de l'ordre comme le veut Yasser. Les renvois donnent l'échange entre pairs de Rayan.</td></tr>
+        <tr><td class="q">Forme du débat</td><td>Pour/contre · Relecture · Sceptique + recalcul</td><td><b>Contradiction outillée :</b> le Sceptique émet 1 à 3 objections, chacune liée à un fait F-n et à un recalcul. L'Analyste répond, le Gardien arbitre. 2 tours au maximum.</td><td>Plus original qu'un débat haussier/baissier, et on voit les chiffres bouger.</td></tr>
+        <tr><td class="q">Désaccord non résolu</td><td>Demander · Prudence · Gardien · Selon la cause</td><td><b>Règle d'Adam :</b> s'il manque une préférence, on pose la question à la personne ; si c'est un problème de données, le système recalcule ; si le doute reste, on affiche « non vérifié », et gris si la donnée est essentielle. La capacité de perte n'est jamais négociable.</td><td>Combine les 4 réponses sans contradiction.</td></tr>
+        <tr><td class="q">Délai</td><td>3–5 min (Yahia) · moins de 2 min (les 3 autres)</td><td><b>Reformulation en moins de 30 s, verdict en moins de 2 min,</b> avec la trace des agents qui défile pendant l'attente.</td><td>L'attente devient un spectacle qui montre le travail agentique.</td></tr>
+        <tr><td class="q">Univers d'actifs</td><td>FNB · + actions</td><td><b>Environ 12 instruments :</b> FNB larges, obligations, or, liquidités, Bitcoin, 1 FNB ESG, 2–3 titres médiatisés (Robert), 1 titre énergie (Mateo).</td><td>Chaque instrument sert un cas de démo. Choisis dans le jeu de données fourni.</td></tr>
+        <tr><td class="q">Interface</td><td>React (2) · Compétences · Comparer</td><td><b>React + Vite sur Amplify</b>, sauf si personne n'est à l'aise pour la déboguer. Dans ce cas, Streamlit. Décision en 5 min.</td><td>Les curseurs en direct et la trace animée se font mieux en React.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 7 -->
+<section id="structure">
+  <div class="sec-head">
+    <span class="sec-num">07</span>
+    <h2>La structure finale proposée</h2>
+    <p>Les idées des 4 réunies dans un seul produit. Les ajouts que je propose par rapport à vos réponses sont marqués <span class="plus">AJOUT</span>.</p>
+  </div>
+
+  <div class="promise">
+    <span class="eyebrow">Problème</span>
+    <p>Un investisseur autonome arrive avec une envie floue ou une décision déjà en tête. Les outils existants le classent dans une case et lui proposent un produit. Personne ne l'aide à formuler ce qu'il veut vraiment, ni à vérifier si ça tient face à sa situation.</p>
+    <span class="eyebrow" style="margin-top:6px">Promesse</span>
+    <p class="big">En 2 minutes, on reformule ta demande, on la confronte à ta situation avec des chiffres réels, et on te montre exactement ce qui la rendrait acceptable, sans jamais te dire quoi acheter.</p>
+  </div>
+
+  <h3>Le parcours</h3>
+  <ol class="steps">
+    <li><b>Dis-le avec tes mots</b><span>Une phrase libre, avec des suggestions cliquables : « Je veux… », « J'ai… », « Mais j'ai peur de… ». Ou un clic sur Amira, Mateo ou Robert.</span><span><span class="plus">AJOUT</span>Une reformulation affichée en moins de 30 s.</span></li>
+    <li><b>On vérifie ensemble</b><span>Les champs sont pré-remplis à partir de la phrase et se corrigent avec des curseurs : horizon, montant, somme à préserver, retrait prévu, revenu stable, fonds d'urgence, dettes, expérience, exclusions. Puis 1 mise en situation et 3 questions. Résultat : 2 jauges.</span><span>En cas de contradiction, une seule question.</span></li>
+    <li><b>Analyse en direct</b><span>La trace des agents défile : qui fait quoi, quel fait est produit, quelle objection est levée, quel recalcul en sort.</span><span><span class="plus">AJOUT</span>La fiche qualité des données s'affiche en premier.</span></li>
+    <li><b>Le verdict</b><span>Verdict en 4 états, 3 options comparées (ta demande / version ajustée / ne rien faire), le miroir de cohérence, la pire chute, et des faits cliquables.</span></li>
+    <li><b>Joue et emporte</b><span>Les curseurs de bascule changent le verdict en direct. Ensuite, la fiche « pour ton conseiller » à exporter.</span></li>
+  </ol>
+
+  <div class="verdicts" aria-label="Les 4 états du verdict">
+    <span class="v v-ok"><i></i>Cohérent</span>
+    <span class="v v-warn"><i></i>Cohérent avec ajustement</span>
+    <span class="v v-bad"><i></i>Incohérent avec ta situation</span>
+    <span class="v v-grey"><i></i>Impossible de conclure : il manque une information</span>
+  </div>
+
+  <h3>L'architecture</h3>
+  <div class="diagram" style="background:var(--surface);border:1px solid var(--line)"><pre class="mermaid">
+flowchart LR
+  subgraph UI["Interface React · AWS Amplify"]
+    E1["1 · Tes mots"] --> E2["2 · On vérifie"] --> E3["3 · Trace en direct"] --> E4["4 · Verdict"] --> E5["5 · Curseurs + fiche"]
+  end
+  subgraph CORE["Orchestrateur en code · Bedrock AgentCore Runtime"]
+    PR["Profileur<br/>LLM"] --> DQ["Contrôle données<br/>code"]
+    DQ --> AN["Analyste<br/>LLM + outils"]
+    AN --> SC["Sceptique<br/>LLM"]
+    SC -- "objection F-n" --> AN
+    AN --> GA["Gardien<br/>code"]
+    GA --> RE["Rédacteur<br/>LLM"]
+    RE --> GR["Contrôle d'ancrage<br/>Bedrock Guardrails"]
+  end
+  DOS[("Dossier de décision<br/>registre F-1 ... F-n")]
+  TOOLS["Outils de calcul<br/>Lambda Python"]
+  S3[("S3 · données nettoyées<br/>+ fiche qualité")]
+  E2 --> PR
+  PR -. "info manquante" .-> E2
+  AN --> TOOLS --> S3
+  GA -. "recalcul en grille" .-> E5
+  GR --> E4
+  PR --- DOS
+  AN --- DOS
+  SC --- DOS
+  GA --- DOS
+  RE --- DOS
+  </pre></div>
+  <p class="muted" style="font-size:.9rem">Principe : <b>les chiffres viennent du code, les mots viennent des agents.</b> Chaque agent lit le dossier de décision, écrit sa section et peut renvoyer le travail à son voisin, au plus 2 fois. Les curseurs de bascule réutilisent la grille déjà calculée par le Gardien, sans rappeler de LLM.</p>
+
+  <h3>Les agents et leurs contrats de passage</h3>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Agent</th><th>Nature</th><th>Reçoit</th><th>Produit</th><th>Peut renvoyer à</th><th>Vient de</th></tr></thead>
+      <tbody>
+        <tr><td class="q">Profileur</td><td>LLM léger</td><td>Phrase libre, réponses</td><td>Profil structuré (JSON) avec les mots exacts de la personne, champs manquants, contradictions. Les jauges sont calculées par le code.</td><td>L'utilisateur (1 question)</td><td>Yahia, Adam</td></tr>
+        <tr><td class="q">Contrôle données</td><td>Code</td><td>Séries de prix</td><td>7 contrôles : dates, ordres de grandeur, trous, fraîcheur, doublons, devise, cohérence. Résultat : la fiche qualité.</td><td>Gris si une donnée essentielle échoue</td><td>Anthropic holdings-sanity</td></tr>
+        <tr><td class="q">Analyste</td><td>LLM + outils</td><td>Profil + demande</td><td>Choisit les comparaisons, appelle les outils (pire perte, récupération, volatilité, corrélation, concentration, conversion en CAD, exclusions, choc fictif), écrit les faits F-1…F-n.</td><td>Profileur, s'il manque une info qui change le résultat</td><td>Tous</td></tr>
+        <tr><td class="q">Sceptique</td><td>LLM</td><td>Faits + profil</td><td>1 à 3 objections, chacune liée à un F-n et à un recalcul précis. Pas d'opinion libre.</td><td>Analyste (recalcul)</td><td>Yasser, Yahia, Rayan</td></tr>
+        <tr><td class="q">Gardien</td><td>Code</td><td>Faits révisés + profil</td><td>Verdict en 4 états, règles respectées ou non, plus petit ajustement, grille des points de bascule.</td><td>Personne : il décide</td><td>Yasser</td></tr>
+        <tr><td class="q">Rédacteur</td><td>LLM</td><td>Dossier complet</td><td>Texte expliqué : chaque phrase étiquetée FAIT / HYPOTHÈSE / SCÉNARIO avec son F-n, ton adapté au niveau, puis la fiche conseiller. Passe ensuite par le contrôle d'ancrage et la règle « jamais achetez ».</td><td>Lui-même, si le contrôle d'ancrage échoue</td><td>Yahia, Adam ; Anthropic compliance</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Les règles du Gardien</h3>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Règle</th><th>Déclencheur</th><th>Effet</th></tr></thead>
+      <tbody>
+        <tr><td class="q">Capacité dépassée</td><td>La pire perte historique du montant engagé dépasse ce que la personne peut perdre.</td><td><span class="v v-bad"><i></i>Rouge</span></td></tr>
+        <tr><td class="q">Somme à préserver touchée</td><td>Le placement entame la somme déclarée intouchable.</td><td><span class="v v-bad"><i></i>Rouge</span></td></tr>
+        <tr><td class="q">Exclusion violée</td><td>L'actif appartient à un secteur exclu (par exemple l'énergie fossile pour Mateo).</td><td><span class="v v-bad"><i></i>Rouge</span></td></tr>
+        <tr><td class="q">Retrait avant l'horizon</td><td>Un retrait est prévu avant la fin de l'horizon, sur un actif très volatil.</td><td><span class="v v-bad"><i></i>Rouge</span></td></tr>
+        <tr><td class="q">Horizon trop court</td><td>L'horizon est plus court que le temps de récupération historique après la pire chute.</td><td><span class="v v-warn"><i></i>Orange</span></td></tr>
+        <tr><td class="q">Concentration</td><td>Un actif volatil dépasse le seuil de poids fixé par la tolérance.</td><td><span class="v v-warn"><i></i>Orange</span></td></tr>
+        <tr><td class="q">Fausse diversification</td><td>Les actifs détenus sont fortement corrélés entre eux.</td><td><span class="v v-warn"><i></i>Orange</span></td></tr>
+        <tr><td class="q">Pas de coussin</td><td>Aucun fonds d'urgence déclaré.</td><td><span class="v v-warn"><i></i>Orange</span></td></tr>
+        <tr><td class="q">Donnée essentielle manquante</td><td>Horizon, montant ou capacité inconnus, ou données de marché qui échouent au contrôle.</td><td><span class="v v-grey"><i></i>Gris</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted" style="font-size:.9rem"><span class="plus">AJOUT</span>Le <b>plus petit ajustement</b> se calcule en parcourant une grille : poids de 25 % à 5 %, horizon de +1 à +5 ans. Le premier changement qui fait passer au vert ou à l'orange devient la « version ajustée ». La même grille sert aux curseurs de bascule.</p>
+
+  <h3>Exemple de sortie (Robert)</h3>
+  <div class="example">
+    <p><b>Ta demande, reformulée :</b> placer une part importante de ton épargne-retraite dans [titre médiatisé], sur un horizon de 4 ans, sans toucher [somme à préserver].</p>
+    <p><span class="v v-warn"><i></i>Cohérent avec ajustement</span> · 5 règles respectées sur 7</p>
+    <p><span class="ftag t-fait">FAIT · F-3</span> Pire chute historique de ce titre sur la période disponible : [calculée]. Temps de récupération : [calculé].</p>
+    <p><b>Miroir :</b> tu as écrit « je ne veux pas risquer ma retraite ». Avec ce poids, la pire chute observée représenterait [X $] de ton épargne.</p>
+    <p><b>Ce qui changerait l'avis :</b> ramener le poids à [Y %] ou repousser l'horizon à [Z ans].</p>
+    <p class="muted" style="font-size:.82rem">Les crochets seront remplis par les outils de calcul. Aucun chiffre n'est écrit à la main.</p>
+  </div>
+
+  <h3>AWS : 5 services, chacun avec un vrai rôle</h3>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Service</th><th>Rôle réel</th></tr></thead>
+      <tbody>
+        <tr><td class="q">Amazon Bedrock</td><td>Modèles Claude : un modèle léger pour le Profileur, un modèle plus capable pour l'Analyste, le Sceptique et le Rédacteur. <b>Guardrails</b> : contrôle d'ancrage du texte final et refus du conseil d'achat direct.</td></tr>
+        <tr><td class="q">Bedrock AgentCore Runtime</td><td>Héberge l'orchestrateur et les agents (Strands). Plan B : une simple Lambda Python.</td></tr>
+        <tr><td class="q">AWS Lambda</td><td>Outils de calcul et Gardien en Python : déterministes et testables.</td></tr>
+        <tr><td class="q">Amazon S3</td><td>Données nettoyées, fiche qualité des données, instantané des « hypes », dossiers de décision en JSON.</td></tr>
+        <tr><td class="q">AWS Amplify</td><td>Héberge l'interface React.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>La démo en 3 minutes</h3>
+  <div class="timeline">
+    <div><b>0:00</b> · Le problème en une phrase, puis Robert écrit sa demande avec ses mots.</div>
+    <div><b>0:30</b> · « Voici ce que j'ai compris » : il corrige son horizon avec un curseur.</div>
+    <div><b>0:50</b> · La trace défile. Le Sceptique objecte, un chiffre change en direct.</div>
+    <div><b>1:30</b> · Verdict orange, miroir de cohérence, version ajustée.</div>
+    <div><b>2:00</b> · Il fait glisser un curseur et le verdict passe au vert.</div>
+    <div><b>2:20</b> · Même demande pour Amira et Mateo : 3 verdicts différents côte à côte.</div>
+    <div><b>2:45</b> · La fiche pour le conseiller, puis la phrase de conclusion.</div>
+  </div>
+</section>
+
+<!-- 8 -->
+<section id="peurs">
+  <div class="sec-head">
+    <span class="sec-num">08</span>
+    <h2>Les 4 peurs deviennent 4 garde-fous</h2>
+    <p>Chacun a nommé un risque différent. Chacun devient une règle de travail.</p>
+  </div>
+  <div class="grid2">
+    <div class="card"><span class="chip c-yahia"><span class="dot"></span>Yahia · trop complexe, pas assez créatif</span><p class="result">Un seul moment signature, très soigné</p><p>Les curseurs de bascule et le miroir de cohérence. Tout le reste reste simple. Une idée nouvelle ne passe que si elle renforce ce moment.</p></div>
+    <div class="card"><span class="chip c-rayan"><span class="dot"></span>Rayan · ne pas convaincre</span><p class="result">« Pourquoi pour toi », toujours</p><p>Chaque verdict cite au moins une phrase de la personne et un chiffre qui la concerne directement, en dollars et pas seulement en pourcentage.</p></div>
+    <div class="card"><span class="chip c-yasser"><span class="dot"></span>Yasser · pas de démo de bout en bout</span><p class="result">Squelette de bout en bout samedi soir</p><p>Une persona → un calcul → le Gardien → un texte, déployé sur AWS avant d'ajouter quoi que ce soit. Gel des fonctionnalités dimanche 16 h.</p></div>
+    <div class="card"><span class="chip c-adam"><span class="dot"></span>Adam · générique ou indéfendable</span><p class="result">Le test anti-générique</p><p>Banc de 12 cas : si on change de persona et que le texte bouge à peine, le test échoue. Chaque phrase sans F-n est bloquée par le contrôle d'ancrage.</p></div>
+  </div>
+</section>
+
+<!-- 9 -->
+<section id="equipe">
+  <div class="sec-head">
+    <span class="sec-num">09</span>
+    <h2>Rôles et calendrier</h2>
+    <p>Rôles proposés d'après vos préférences et la règle de Yasser (« par compétence »). À confirmer en 5 minutes.</p>
+  </div>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Personne</th><th>Rôle proposé</th><th>Livre</th></tr></thead>
+      <tbody>
+        <tr><td class="q c-yahia">Yahia</td><td>Produit, parcours et interface. Pitch et vidéo.</td><td>Étapes 1, 2, 4 et 5 de l'interface, mise en situation, textes, fiche conseiller, script de démo, vidéo.</td></tr>
+        <tr><td class="q c-rayan">Rayan</td><td>Données et calculs</td><td>Jeu de données nettoyé, fiche qualité, outils de calcul, instantané des « hypes », grille de bascule.</td></tr>
+        <tr><td class="q c-adam">Adam</td><td>Agents, consignes et architecture</td><td>Orchestrateur, Profileur, Analyste, Sceptique, Rédacteur, dossier de décision, contrats de passage.</td></tr>
+        <tr><td class="q c-yasser">Yasser</td><td>Gardien, AWS et intégration (à confirmer : il n'a pas indiqué de préférence)</td><td>Règles du Gardien, déploiement AWS, Guardrails, banc de 12 tests, squelette de bout en bout.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="timeline">
+    <div><b>Samedi, maintenant</b> · On valide ce plan, les rôles et le nom. Rayan inspecte le jeu de données (dates, actifs disponibles).</div>
+    <div><b>Samedi, fin d'après-midi</b> · Contrats JSON figés : profil, fait F-n, verdict. Chacun peut avancer en parallèle.</div>
+    <div class="hard"><b>Samedi soir · porte 1</b> · Squelette de bout en bout déployé sur AWS avec une persona.</div>
+    <div class="hard"><b>Dimanche midi · porte 2</b> · Les 3 personas, le Sceptique et les curseurs de bascule fonctionnent.</div>
+    <div class="hard"><b>Dimanche 16 h · gel</b> · Plus de fonctionnalités. Tests, finition, répétition de la démo.</div>
+    <div class="hard"><b>Dimanche 23 h 59</b> · GitHub et application remis.</div>
+    <div><b>Dimanche nuit</b> · Enregistrer la vidéo pendant que l'application tourne encore. Les comptes AWS sont détruits lundi à 13 h 59.</div>
+    <div class="hard"><b>Lundi 14 h</b> · Vidéo, one-pager et documentation technique remis.</div>
+  </div>
+</section>
+
+<!-- 10 -->
+<section id="decider">
+  <div class="sec-head">
+    <span class="sec-num">10</span>
+    <h2>À trancher ensemble (10 minutes)</h2>
+    <p>Les seules décisions encore ouvertes. Cocher ici ne sert qu'à vous, rien n'est enregistré.</p>
+  </div>
+  <div class="checks">
+    <label for="d1"><input type="checkbox" id="d1"><span><b>Valider le parcours en 5 étapes et les 4 agents + 2 modules en code.</b></span></label>
+    <label for="d2"><input type="checkbox" id="d2"><span><b>Le nom du produit.</b> Pistes : Verdict (Yasser), Second Avis, Avant de cliquer.</span></label>
+    <label for="d3"><input type="checkbox" id="d3"><span><b>React ou Streamlit :</b> quelqu'un est-il à l'aise pour déboguer du React ?</span></label>
+    <label for="d4"><input type="checkbox" id="d4"><span><b>Les rôles</b>, en particulier la préférence de Yasser.</span></label>
+    <label for="d5"><input type="checkbox" id="d5"><span><b>Les dates couvertes par le jeu de données fourni.</b> Elles décident du graphique de pire chute et de la fréquence historique.</span></label>
+    <label for="d6"><input type="checkbox" id="d6"><span><b>Les 2–3 titres médiatisés pour Robert</b> et le titre énergie pour Mateo, choisis dans le jeu de données.</span></label>
+    <label for="d7"><input type="checkbox" id="d7"><span><b>Les seuils du Gardien :</b> poids maximal par niveau de tolérance, définition de la perte supportable.</span></label>
+    <label for="d8"><input type="checkbox" id="d8"><span><b>Les 3 questions de tolérance retenues</b> et le scénario de la mise en situation.</span></label>
+  </div>
+</section>
+
+<footer>
+  <span>Sources : réponses de l'équipe (reponses_equipe.md) · Anthropic, dépôt financial-services et Claude for Financial Advisors (Apache 2.0) · Grable &amp; Lytton (1999), Financial Services Review · ACVM, Réformes axées sur le client.</span>
+  <span>Simulation éducative. Aucun conseil financier personnalisé.</span>
+</footer>
+
+</div>
