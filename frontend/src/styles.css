@@ -179,6 +179,12 @@ input[type=range] { width: 100%; accent-color: var(--accent); }
 .puces-faits { display: inline-flex; flex-wrap: wrap; gap: 4px; }
 .puce-fait { font: 600 0.72rem var(--f-mono); border: 1px solid var(--trait); background: var(--voile); border-radius: 5px; padding: 1px 6px; cursor: pointer; color: var(--accent); }
 .puce-fait:hover { border-color: var(--accent); }
+.bouton-info { flex: none; width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--accent); background: transparent;
+  color: var(--accent); font: italic 700 0.8rem/1 Georgia, "Times New Roman", serif; cursor: pointer; display: inline-grid; place-items: center; padding: 0; }
+.bouton-info:hover { background: var(--accent-doux); }
+.tiroir-fait { display: grid; gap: 8px; padding-top: 14px; border-top: 1px solid var(--trait); }
+.tiroir-fait-tete { display: flex; align-items: center; gap: 8px; }
+.tiroir-fait h3 { font-size: 1rem; }
 
 /* Étape 4 */
 .verdict-tete { display: grid; gap: 10px; justify-items: start; border-top: 6px solid var(--grey); }

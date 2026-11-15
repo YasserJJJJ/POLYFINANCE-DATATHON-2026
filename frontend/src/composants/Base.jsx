@@ -48,16 +48,15 @@ export function Etiquette({ type }) {
   return <span className={`etiquette t-${(type || '').toLowerCase()}`}>{TYPES[type] || type}</span>
 }
 
+// Un seul bouton « i » par phrase ou par règle : l'écran reste simple, le détail s'ouvre au clic.
 export function PucesFaits({ ids, ouvrir }) {
-  if (!ids?.length) return null
+  const liste = [...new Set((ids || []).filter(Boolean))]
+  if (!liste.length) return null
+  const titre = liste.length > 1 ? "D'où viennent ces chiffres ?" : "D'où vient ce chiffre ?"
   return (
-    <span className="puces-faits">
-      {ids.filter(Boolean).map((id) => (
-        <button key={id} type="button" className="puce-fait" onClick={() => ouvrir(id)}>
-          {id}
-        </button>
-      ))}
-    </span>
+    <button type="button" className="bouton-info" onClick={() => ouvrir(liste)} aria-label={titre} title={titre}>
+      i
+    </button>
   )
 }
 

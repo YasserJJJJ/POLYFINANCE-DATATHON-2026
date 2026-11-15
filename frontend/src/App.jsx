@@ -74,6 +74,9 @@ export default function App() {
     }
   }
 
+  // Toujours une liste d'identifiants : une phrase peut s'appuyer sur plusieurs chiffres.
+  const ouvrirFait = (ids) => setFaitOuvert([].concat(ids))
+
   const recommencer = () => { setEtape(0); setDossier(null); setProfil(PROFIL_VIERGE); setDemande({ texte: '', ticker: null, montant_cad: null }) }
 
   return (
@@ -129,9 +132,9 @@ export default function App() {
               <Etape2Verifier profil={profil} setProfil={setProfil} demande={demande} setDemande={setDemande}
                 actifs={actifs} questions={questions} onRetour={() => setEtape(0)} onLancer={lancer} />
             )}
-            {etape === 2 && <Etape3Trace dossier={dossier} direct={direct} onFini={() => setEtape(3)} ouvrirFait={setFaitOuvert} />}
+            {etape === 2 && <Etape3Trace dossier={dossier} direct={direct} onFini={() => setEtape(3)} ouvrirFait={ouvrirFait} />}
             {etape === 3 && dossier && (
-              <Etape4Verdict dossier={dossier} ouvrirFait={setFaitOuvert} onBascule={() => setEtape(4)}
+              <Etape4Verdict dossier={dossier} ouvrirFait={ouvrirFait} onBascule={() => setEtape(4)}
                 onModifier={() => setEtape(1)} />
             )}
             {etape === 4 && dossier && (
@@ -147,7 +150,7 @@ export default function App() {
       </footer>
 
       {faitOuvert && (
-        <TiroirFait fait={(dossier?.faits || direct.faits).find((f) => f.id === faitOuvert)}
+        <TiroirFait faits={faitOuvert.map((id) => (dossier?.faits || direct.faits).find((f) => f.id === id))}
           onFermer={() => setFaitOuvert(null)} />
       )}
     </div>

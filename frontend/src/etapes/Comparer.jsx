@@ -10,7 +10,7 @@ const CACHE = new Map()
 export default function Comparer({ personas }) {
   const [memeDemande, setMemeDemande] = useState(true)
   const [resultats, setResultats] = useState({})
-  const [faitOuvert, setFaitOuvert] = useState(null)   // { cle: persona, id: "F-n" } : chaque colonne a son dossier
+  const [faitOuvert, setFaitOuvert] = useState(null)   // { cle: persona, ids: ["F-n"] } : chaque colonne a son dossier
   const ref = personas.robert.demande
 
   useEffect(() => {
@@ -59,7 +59,7 @@ export default function Comparer({ personas }) {
                       <li key={r.code} className={`regle n-${r.niveau}`}>
                         <div className="regle-tete"><strong>{r.libelle}</strong><PuceNiveau niveau={r.niveau} /></div>
                         <p>{r.explication}</p>
-                        <PucesFaits ids={r.faits} ouvrir={(id) => setFaitOuvert({ cle, id })} />
+                        <PucesFaits ids={r.faits} ouvrir={(ids) => setFaitOuvert({ cle, ids })} />
                       </li>
                     ))}
                   </ul>
@@ -75,7 +75,7 @@ export default function Comparer({ personas }) {
         })}
       </div>
       {faitOuvert && resultats[faitOuvert.cle]?.faits && (
-        <TiroirFait fait={resultats[faitOuvert.cle].faits.find((f) => f.id === faitOuvert.id)}
+        <TiroirFait faits={faitOuvert.ids.map((id) => resultats[faitOuvert.cle].faits.find((f) => f.id === id))}
           onFermer={() => setFaitOuvert(null)} />
       )}
     </section>
