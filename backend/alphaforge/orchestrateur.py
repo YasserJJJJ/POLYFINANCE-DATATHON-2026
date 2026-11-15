@@ -14,6 +14,7 @@ from . import gardien
 from .agents import analyste, profileur, redacteur, sceptique
 from .donnees import info_actif
 from .dossier import Dossier
+from .sources import references_de
 
 
 # Placements larges essayés, dans l'ordre, quand une exclusion bloque la demande.
@@ -32,7 +33,8 @@ def _alternative(d: Dossier) -> dict | None:
         if etat in ("coherent", "ajustement"):
             f = d.ajouter_fait(f"Pire chute de {t} ({info['name']})", m["pire_chute_pct"], "%", "FAIT",
                                "Yahoo Finance via yfinance, jeu de départ AlphaForge",
-                               "Même méthode que pour la demande, en CAD, 2021-11-12 → 2026-11-12.")
+                               "Même méthode que pour la demande, en CAD, 2021-11-12 → 2026-11-12.",
+                               references=references_de("alternative"))
             return {"nom": "Alternative compatible avec tes exclusions de secteur", "ticker": t, "libelle_actif": info["name"],
                     "montant_cad": d.demande["montant_cad"], "horizon_ans": d.profil.get("horizon_ans"),
                     "etat": etat, "faits": [f.id]}

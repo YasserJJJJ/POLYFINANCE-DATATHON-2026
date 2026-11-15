@@ -13,6 +13,7 @@ from .. import calculs, llm
 from ..donnees import _prix
 from ..dossier import Dossier, Objection
 from ..format import fr
+from ..sources import references_de
 from ..garde_fous import mots_de_conseil, rapport_calcule, sans_accents
 
 MAX_OBJECTIONS = 3
@@ -28,7 +29,8 @@ def _chute_en_devise_locale(ticker: str) -> float:
 def _devise(d: Dossier, m: dict, ids: dict) -> str:
     usd = _chute_en_devise_locale(d.demande["ticker"])
     f = d.ajouter_fait(f"Pire chute de {d.demande['ticker']} en USD (sans conversion)", usd, "%", "FAIT",
-                       "Yahoo Finance", "Même calcul, sans conversion en CAD.")
+                       "Yahoo Finance", "Même calcul, sans conversion en CAD.",
+                       references=references_de("devise_usd"))
     return (f"Recalcul fait ({f.id}) : {fr(usd)} % en USD contre {fr(m['pire_chute_pct'])} % en CAD "
             f"(écart de {fr(round(m['pire_chute_pct'] - usd, 1))} point(s)). On garde la mesure en CAD.")
 

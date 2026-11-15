@@ -43,3 +43,19 @@ Source de vérité : [backend/alphaforge/dossier.py](../backend/alphaforge/dossi
 | `questions` | Questions à poser quand une information manque |
 | `texte` | `{reformulation, verdict, tensions, miroir[], pourquoi[], ce_qui_changerait[], limites[], avertissement}` ; chaque phrase `{texte, type, faits}` |
 | `trace` | `[{agent, action, detail, faits, duree_ms}]` dans l'ordre d'exécution |
+
+## Ajouts du 15 novembre (branche `fusion-corrections-deploiement`, à valider par l'équipe)
+
+Tous **optionnels et rétrocompatibles** : un client qui les ignore continue de fonctionner.
+
+| Champ | Contenu |
+|---|---|
+| `faits[].references` | Identifiants du registre des sources (`GET /api/sources`) : données utilisées, méthode, base théorique ou réglementaire |
+| `faits[]` de type `HYPOTHESE` | Les seuils et barèmes de l'équipe (perte supportable, capacité, concentration, volatilité, corrélation) entrent au registre comme faits, cités par les règles qui les appliquent |
+| `regles[].type` | Nature de l'explication : `FAIT`, `HYPOTHESE` ou `SCENARIO` (source unique : `gardien.TYPE_REGLE`) |
+| `regles[].references` | Sur quoi repose la règle |
+| `trace[].references` | Pourquoi l'agent est conçu ainsi (études citées) |
+| phrase `{texte, type, faits, references?}` | `references` présent pour les limites tirées du dossier de recherche |
+| `profil.evaluation.poids_pct` | Part de l'épargne placée, arrondie une seule fois en code |
+| `demande.texte_lu` | `true` quand la personne a relu l'étape 2 : l'analyse ne re-remplit pas un champ qu'elle a vidé |
+| `GET /api/sources` | `{references, justifications, agents}` : le registre complet (`backend/alphaforge/sources.py`) |

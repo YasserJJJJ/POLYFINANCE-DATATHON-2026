@@ -26,6 +26,7 @@ class Fait:
     source: str
     methode: str
     lu_ou_calcule: Literal["lu", "calcule"] = "calcule"
+    references: list[str] = field(default_factory=list)  # identifiants de sources.REFERENCES (données, méthode, théorie)
 
 
 @dataclass
@@ -35,6 +36,8 @@ class Regle:
     niveau: NiveauRegle
     explication: str
     faits: list[str] = field(default_factory=list)
+    references: list[str] = field(default_factory=list)   # sur quoi repose la règle (sources.py)
+    type: TypeFait = "HYPOTHESE"                           # nature de l'explication : FAIT, HYPOTHESE ou SCENARIO
 
 
 @dataclass
@@ -56,6 +59,7 @@ class EtapeTrace:
     detail: str
     faits: list[str] = field(default_factory=list)
     duree_ms: int = 0
+    references: list[str] = field(default_factory=list)   # pourquoi cet agent est conçu ainsi (sources.AGENTS)
 
 
 @dataclass
@@ -74,9 +78,10 @@ class Dossier:
     trace: list[EtapeTrace] = field(default_factory=list)
 
     def ajouter_fait(self, libelle: str, valeur: Any, unite: str, type_: TypeFait,
-                     source: str, methode: str, lu_ou_calcule: str = "calcule") -> Fait:
+                     source: str, methode: str, lu_ou_calcule: str = "calcule",
+                     references: list[str] | None = None) -> Fait:
         fait = Fait(f"F-{len(self.faits) + 1}", libelle, valeur, unite, type_, source,
-                    methode, lu_ou_calcule)  # type: ignore[arg-type]
+                    methode, lu_ou_calcule, list(references or []))  # type: ignore[arg-type]
         self.faits.append(fait)
         return fait
 
@@ -85,8 +90,9 @@ class Dossier:
 
     def tracer(self, agent: str, action: str, detail: str, faits: list[str] | None = None,
                debut: float | None = None) -> None:
+        from .sources import references_agent
         duree = int((time.perf_counter() - debut) * 1000) if debut else 0
-        self.trace.append(EtapeTrace(agent, action, detail, faits or [], duree))
+        self.trace.append(EtapeTrace(agent, action, detail, faits or [], duree, references_agent(agent)))
 
     def to_dict(self) -> dict:
         return asdict(self)

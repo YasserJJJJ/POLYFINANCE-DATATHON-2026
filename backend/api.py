@@ -8,7 +8,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from alphaforge import calculs, llm
+from alphaforge import calculs, llm, sources
 from alphaforge.agents import profileur
 from alphaforge.donnees import serie_cad, univers
 from alphaforge.dossier import Dossier
@@ -39,6 +39,12 @@ def personas() -> dict:
 @app.get("/api/actifs")
 def actifs() -> list[dict]:
     return univers().reset_index().to_dict(orient="records")
+
+
+@app.get("/api/sources")
+def sources_du_projet() -> dict:
+    """Registre des sources : données, règles de calcul, références et choix de l'équipe (alphaforge/sources.py)."""
+    return sources.registre()
 
 
 @app.get("/api/questions")
