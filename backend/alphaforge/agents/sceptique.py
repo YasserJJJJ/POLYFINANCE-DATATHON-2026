@@ -40,11 +40,22 @@ def _fenetre(d: Dossier, m: dict, ids: dict) -> str:
     return "Limite ajoutée au texte final : la pire chute est celle observée sur 5 ans, pas un maximum."
 
 
+ECART_NET_POINTS = 10  # écart à partir duquel on dit que la chute « tient surtout au placement » (choix de rédaction)
+
+
 def _reference(d: Dossier, m: dict, ids: dict) -> str:
     ref = d.fait(ids.get("reference", ""))
-    return (f"Comparaison faite avec le marché canadien large ({ref.id} : {ref.valeur} %) : la chute de "
-            f"{d.demande['ticker']} ({m['pire_chute_pct']} %) est propre à ce placement, pas au marché.") if ref else \
-        "Pas de référence disponible : comparaison impossible."
+    if not ref:
+        return "Pas de référence disponible : comparaison impossible."
+    ticker, chute = d.demande["ticker"], m["pire_chute_pct"]
+    ecart = round(abs(chute) - abs(ref.valeur), 1)
+    tete = (f"Comparaison faite avec le marché canadien large ({ref.id} : {ref.valeur} %) : la chute de "
+            f"{ticker} ({chute} %) ")
+    if ecart >= ECART_NET_POINTS:
+        return tete + "est nettement plus forte : elle tient surtout au placement lui-même."
+    if ecart > 0:
+        return tete + "est un peu plus forte : une bonne partie vient du marché dans son ensemble."
+    return tete + "n'est pas plus forte que celle du marché."
 
 
 def _une_annee(d: Dossier, m: dict, ids: dict) -> str:
@@ -53,11 +64,17 @@ def _une_annee(d: Dossier, m: dict, ids: dict) -> str:
             "Une baisse forte peut donc survenir en moins d'un an.")
 
 
+SEUIL_GARDIEN = 0.8  # même seuil que la règle « Diversification réelle » de gardien.py
+
+
 def _concentration(d: Dossier, m: dict, ids: dict) -> str:
     forts = {t: c for t, c in (m.get("correlations") or {}).items() if c >= 0.6}
     if not forts:
         return "Vérifié : corrélations avec les placements actuels toutes sous 0,6."
-    return "Vérifié : ce placement bouge avec " + ", ".join(f"{t} ({c})" for t, c in forts.items()) + "."
+    texte = "Vérifié : ce placement bouge en partie avec " + ", ".join(f"{t} ({c})" for t, c in forts.items()) + "."
+    if all(c < SEUIL_GARDIEN for c in forts.values()):
+        texte += " Le Gardien ne parle de fausse diversification qu'à partir de 0,8 (seuil de l'équipe)."
+    return texte
 
 
 CATALOGUE = {
@@ -77,7 +94,7 @@ CATALOGUE = {
                         "Une baisse forte peut-elle arriver vite, avant que la personne ait le temps de réagir ?",
                         "Lire la pire période de 12 mois glissants.", _une_annee),
     "diversification": (lambda m, ids: bool(m.get("correlations")), "correlation",
-                        "Ce placement diversifie-t-il vraiment ce que la personne détient déjà ?",
+                        "Ce placement diversifie-t-il vraiment ce que tu détiens déjà ?",
                         "Lire les corrélations avec le portefeuille actuel.", _concentration),
 }
 
