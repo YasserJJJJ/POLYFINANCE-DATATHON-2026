@@ -123,11 +123,41 @@ def _dossier_pour_modele(d: Dossier, base: dict) -> str:
     return json.dumps(resume, ensure_ascii=False, default=str)
 
 
+DATE_ISO = re.compile(r"(\d{4})-\d{2}-\d{2}")
+CITATION = re.compile(r"«\s*(.+?)\s*»")
+# Un petit entier n'est toléré que sans unité (« 3 options ») : « 3 ans » ou « 3 % » doit venir du dossier.
+AVEC_UNITE = re.compile(r"(\d[\d\s  ]*(?:[.,]\d+)?)\s*(?:%|\$|ans?\b|an\(s\)|fois\b|mois\b|points?\b)")
+PETITS = {float(i) for i in range(0, 11)} | {100.0}
+NOTATION = re.compile(r"\d\s*[kK]\b|\d[eE][+-]?\d")
+
+
+def _nombres_exacts(texte: str) -> set[float]:
+    """Comme llm.nombres, mais sans arrondi : 70,94 reste 70.94 (différent de 70,9)."""
+    out = set()
+    for brut in llm._NOMBRE.findall(texte or ""):
+        try:
+            out.add(abs(float(re.sub(r"[\s  ]", "", brut).replace(",", "."))))
+        except ValueError:
+            continue
+    return out
+
+
+def _normaliser(s: str) -> str:
+    s = s.lower().replace("’", "'").replace("\u202f", " ").replace("\xa0", " ")
+    return re.sub(r"\s+", " ", re.sub(r"[«»\"“”.,!?;:]", " ", s)).strip()
+
+
+def _mots_de_la_personne(d: Dossier) -> list[str]:
+    return [m for m in d.profil.get("citations", []) + [d.demande.get("texte") or ""] if m]
+
+
 def _nombres_autorises(d: Dossier, base: dict) -> set[float]:
+    """Nombres du dossier. La phrase libre et les citations n'en font PAS partie : un nombre écrit par la
+    personne (« Tesla va monter de 300 % ») ne doit jamais devenir un chiffre présenté comme établi.
+    Ses mots restent citables mot pour mot, entre « », et sont contrôlés à part."""
+    ev = {k: v for k, v in d.profil.get("evaluation", {}).items() if k != "capacite_raisons"}
     sources = [json.dumps(base, ensure_ascii=False), json.dumps(d.options, default=str),
-               json.dumps(d.verdict), json.dumps(d.profil.get("evaluation", {}), default=str),
-               " ".join(r.explication for r in d.regles), " ".join(d.profil.get("citations", [])),
-               d.demande.get("texte", "") or ""]
+               json.dumps(d.verdict), json.dumps(ev, default=str), " ".join(r.explication for r in d.regles)]
     for f in d.faits:
         sources.append(f"{f.valeur} {f.methode} {f.libelle}")
         if isinstance(f.valeur, (int, float)):
@@ -135,42 +165,70 @@ def _nombres_autorises(d: Dossier, base: dict) -> set[float]:
     for champ in ("epargne_totale_cad", "somme_a_preserver_cad", "horizon_ans", "retrait_prevu_ans", "age"):
         if d.profil.get(champ) is not None:
             sources.append(str(d.profil[champ]))
+    for champ in ("montant_cad",):
+        if d.demande.get(champ) is not None:
+            sources.append(str(d.demande[champ]))
     autorises = set()
     for s in sources:
-        autorises |= llm.nombres(s)
-    return autorises | {float(i) for i in range(0, 11)}
+        s = DATE_ISO.sub(lambda m: m.group(1), s)   # 2023-01-03 → 2023 : le jour et le mois n'autorisent rien
+        autorises |= _nombres_exacts(s) | llm.nombres(s)
+    return autorises
 
 
-def verifier(texte_json: dict, autorises: set[float], ids_valides: set[str]) -> list[str]:
-    """Renvoie la liste des défauts NOMMÉS (vide = texte accepté)."""
+def verifier(texte_json: dict, autorises: set[float], ids_valides: set[str],
+             ses_mots: list[str] | None = None) -> list[str]:
+    """Renvoie la liste des défauts NOMMÉS (vide = texte accepté). Ne lève jamais d'exception :
+    une réponse mal formée du modèle devient un défaut, pas une panne de l'analyse."""
     defauts = []
-    # Toujours permis : petits entiers (« 3 options », « 2 ans ») et l'échelle des jauges (« 30/100 »).
-    autorises = autorises | {float(i) for i in range(0, 11)} | {100.0}
-    if not isinstance(texte_json.get("reformulation"), str) or not texte_json["reformulation"].strip():
+    if not isinstance(texte_json, dict):
+        return ["la réponse n'est pas un objet JSON"]
+    reform = texte_json.get("reformulation")
+    if not isinstance(reform, str) or not reform.strip():
         defauts.append("la reformulation est absente")
-    phrases = [texte_json.get("reformulation", "")]
-    for section in SECTIONS[1:]:
-        for ph in texte_json.get(section, []) or []:
-            if not isinstance(ph, dict) or not str(ph.get("texte", "")).strip():
+        reform = ""
+    phrases = [reform]
+    for section in SECTIONS_MODELE[1:]:
+        bloc = texte_json.get(section) or []
+        if not isinstance(bloc, list):
+            defauts.append(f"la section « {section} » n'est pas une liste")
+            continue
+        for ph in bloc:
+            if not isinstance(ph, dict) or not isinstance(ph.get("texte"), str) or not ph["texte"].strip():
                 defauts.append(f"une phrase de « {section} » est vide ou mal formée")
                 continue
+            faits = ph.get("faits") or []
+            if not isinstance(faits, list) or not all(isinstance(f, str) for f in faits):
+                defauts.append(f"la liste des faits de « {ph['texte'][:50]}… » est mal formée")
+                faits = []
             if ph.get("type") not in TYPES:
                 defauts.append(f"la phrase « {ph['texte'][:50]}… » a un type invalide ({ph.get('type')})")
-            inconnus = [f for f in ph.get("faits", []) if f not in ids_valides]
+            inconnus = [f for f in faits if f not in ids_valides]
             if inconnus:
                 defauts.append(f"tu cites des faits qui n'existent pas : {', '.join(inconnus)}")
             phrases.append(ph["texte"])
     if not texte_json.get("pourquoi"):
         defauts.append("la section « pourquoi » est vide")
+    mots = [_normaliser(m) for m in (ses_mots or [])]
     for ph in phrases:
-        en_trop = sorted(n for n in llm.nombres(ph) if n not in autorises)
+        # Citations : mot pour mot dans les mots de la personne ; leurs nombres sont alors les siens, pas des faits.
+        hors_citation = ph
+        for c in CITATION.findall(ph):
+            if ses_mots is not None and not any(_normaliser(c) in m for m in mots):
+                defauts.append(f"citation non textuelle : « {c[:50]} »")
+            else:
+                hors_citation = hors_citation.replace(c, " ")
+        if NOTATION.search(hors_citation):
+            defauts.append(f"notation de nombre ambiguë dans « {ph[:60]}… » : écris le nombre en entier")
+        en_trop = {n for n in _nombres_exacts(hors_citation) if n not in autorises and n not in PETITS}
+        for brut in AVEC_UNITE.findall(hors_citation):
+            en_trop |= {n for n in _nombres_exacts(brut) if n not in autorises}
         if en_trop:
-            defauts.append(f"nombre(s) absent(s) du dossier : {', '.join(str(n).rstrip('0').rstrip('.') for n in en_trop)} "
+            defauts.append(f"nombre(s) absent(s) du dossier : {', '.join(f'{n:g}' for n in sorted(en_trop))} "
                            f"dans « {ph[:60]}… »")
         bas = f" {ph.lower()} "
-        mots = [m for m in INTERDITS if re.search(rf"\b{re.escape(m)}\b", bas)]
-        if mots:
-            defauts.append(f"mot(s) de conseil interdit(s) : {', '.join(mots)}")
+        interdits = [m for m in INTERDITS if re.search(rf"\b{re.escape(m)}\b", bas)]
+        if interdits:
+            defauts.append(f"mot(s) de conseil interdit(s) : {', '.join(interdits)}")
     return defauts
 
 
@@ -186,10 +244,10 @@ def executer(d: Dossier) -> None:
         for essai in (1, 2):
             try:
                 propose = llm.appeler_json(SYSTEME, consigne, llm.MODELE_PRINCIPAL, 1800)
+                defauts = verifier(propose, autorises, ids_valides, _mots_de_la_personne(d))
             except Exception as e:
                 journal.append(f"essai {essai} : réponse inutilisable ({type(e).__name__})")
                 break
-            defauts = verifier(propose, autorises, ids_valides)
             if not defauts:
                 texte = {**base, **{k: propose.get(k, base[k]) for k in SECTIONS_MODELE}}
                 source = llm.nom(llm.MODELE_PRINCIPAL)

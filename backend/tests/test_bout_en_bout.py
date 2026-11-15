@@ -70,7 +70,7 @@ def test_garde_fou_accepte_un_texte_ancre():
     from alphaforge.agents.redacteur import verifier
     texte = {"reformulation": "Tu veux placer 10 000 $ sur 4 ans.",
              "pourquoi": [{"texte": "Sa pire chute observée est de 70,9 %.", "type": "FAIT", "faits": ["F-2"]}]}
-    assert verifier(texte, autorises={10000.0, 70.9}, ids_valides={"F-2"}) == []
+    assert verifier(texte, autorises={10000.0, 70.9, 4.0}, ids_valides={"F-2"}) == []
 
 
 def test_chaque_phrase_affichee_porte_une_etiquette():
