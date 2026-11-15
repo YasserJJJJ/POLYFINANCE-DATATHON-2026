@@ -205,8 +205,21 @@ def corriger_etiquettes(texte: dict) -> tuple[dict, list[str]]:
     return sortie, corrections
 
 
+# Affirmations d'un état au présent (« ta demande est cohérente »). Le conditionnel (« serait », « si ») reste permis.
+DIT_COHERENT = re.compile(r"(?<!in)coherente?s? avec ta situation|(?:est|reste) (?:tout a fait |bien )?(?<!in)coherente?s?"
+                          r"|toutes les regles sont respectees")
+DIT_INCOHERENT = re.compile(r"(?:est|reste) (?:tout a fait |bien )?incoherente?s?|incoherente?s? avec ta situation")
+
+
+def contredit_le_verdict(phrase: str, etat: str | None) -> bool:
+    bas = sans_accents(phrase.lower())
+    if not etat or re.search(r"\bsi\b|\bserait\b|\bdeviendrait\b|\bpas coherent", bas) or "ajust" in bas:
+        return False
+    return bool((DIT_COHERENT.search(bas) and etat != "coherent") or (DIT_INCOHERENT.search(bas) and etat != "incoherent"))
+
+
 def verifier(texte_json: dict, autorises: set[float], ids_valides: set[str],
-             ses_mots: list[str] | None = None) -> list[str]:
+             ses_mots: list[str] | None = None, etat: str | None = None) -> list[str]:
     """Renvoie la liste des défauts NOMMÉS (vide = texte accepté). Ne lève jamais d'exception :
     une réponse mal formée du modèle devient un défaut, pas une panne de l'analyse."""
     defauts = []
@@ -255,6 +268,8 @@ def verifier(texte_json: dict, autorises: set[float], ids_valides: set[str],
         if en_trop:
             defauts.append(f"nombre(s) absent(s) du dossier : {', '.join(f'{n:g}' for n in sorted(en_trop))} "
                            f"dans « {ph[:60]}… »")
+        if contredit_le_verdict(ph, etat):
+            defauts.append(f"« {ph[:50]}… » contredit le verdict du Gardien ({etat}) : tu ne changes pas le verdict")
         interdits = mots_de_conseil(ph)
         if interdits:
             defauts.append(f"mot(s) de conseil interdit(s) : {', '.join(interdits)}")
@@ -273,7 +288,7 @@ def executer(d: Dossier) -> None:
         for essai in (1, 2):
             try:
                 propose = llm.appeler_json(SYSTEME, consigne, llm.MODELE_PRINCIPAL, 1800)
-                defauts = verifier(propose, autorises, ids_valides, _mots_de_la_personne(d))
+                defauts = verifier(propose, autorises, ids_valides, _mots_de_la_personne(d), d.verdict.get("etat"))
             except Exception as e:
                 journal.append(f"essai {essai} : réponse inutilisable ({type(e).__name__})")
                 break

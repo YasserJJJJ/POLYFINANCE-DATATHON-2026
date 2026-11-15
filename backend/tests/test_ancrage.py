@@ -117,3 +117,19 @@ def test_le_code_corrige_les_etiquettes_du_modele_et_le_dit(monkeypatch):
     types_ = {ph["texte"]: ph["type"] for ph in d["texte"]["pourquoi"]}
     assert types_[seuil] == "HYPOTHESE" and types_[scen] == "SCENARIO"
     assert any("étiquette(s) corrigée(s)" in j for j in d["texte"]["controle"])
+
+
+# --- Le texte ne contredit jamais le verdict du Gardien ---
+@pytest.mark.parametrize("etat, phrase, refus", [
+    ("incoherent", "Ta demande est cohérente avec ta situation.", True),
+    ("ajustement", "Toutes les règles sont respectées.", True),
+    ("coherent", "Ce placement est incohérent pour toi.", True),
+    ("incoherent", "Ta demande est incohérente avec ta situation.", False),
+    ("ajustement", "Elle serait cohérente avec 20 000 $.", False),
+    ("ajustement", "Elle est cohérente avec un ajustement.", False),
+])
+def test_contradiction_du_verdict(etat, phrase, refus):
+    defauts = redacteur.verifier({"reformulation": "Reformulation.",
+                                  "pourquoi": [{"texte": phrase, "type": "HYPOTHESE", "faits": []}]},
+                                 set(), set(), None, etat)
+    assert any("contredit le verdict" in x for x in defauts) is refus
