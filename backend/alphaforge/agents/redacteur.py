@@ -18,9 +18,8 @@ import time
 from .. import llm
 from ..dossier import Dossier
 from ..format import dollars
+from ..garde_fous import mots_de_conseil
 
-INTERDITS = ["achetez", "achète", "achèterais", "vendez", "vends", "je recommande", "je te recommande",
-             "je vous recommande", "garanti", "sans risque", "tu devrais acheter"]
 TYPES = {"FAIT", "HYPOTHESE", "SCENARIO"}
 SECTIONS = ("reformulation", "miroir", "pourquoi", "ce_qui_changerait")
 # Sections rédigées par le modèle. « ce_qui_changerait » reste écrit par le code : seul le Gardien sait ce qui
@@ -78,7 +77,8 @@ def _modele_de_phrases(d: Dossier) -> dict:
                      f"de son épargne, avec un horizon de {p.get('horizon_ans')} an(s).")
     miroir = []
     perte = d.fait(ids["perte"])
-    for citation in p.get("citations", [])[:1]:
+    # Une citation qui contient elle-même une formule de conseil (« achète maintenant ») n'est pas reprise.
+    for citation in [c for c in p.get("citations", []) if not mots_de_conseil(c)][:1]:
         miroir.append(_phrase(f"Tu as dit : « {citation} ». Si ce placement revivait sa pire chute observée, "
                               f"il perdrait environ {dollars(abs(perte.valeur))}.", "SCENARIO", [ids["perte"], ids["chute"]]))
     pourquoi = [_phrase(r.explication, TYPE_REGLE.get(r.code, "HYPOTHESE"), r.faits)
@@ -225,8 +225,7 @@ def verifier(texte_json: dict, autorises: set[float], ids_valides: set[str],
         if en_trop:
             defauts.append(f"nombre(s) absent(s) du dossier : {', '.join(f'{n:g}' for n in sorted(en_trop))} "
                            f"dans « {ph[:60]}… »")
-        bas = f" {ph.lower()} "
-        interdits = [m for m in INTERDITS if re.search(rf"\b{re.escape(m)}\b", bas)]
+        interdits = mots_de_conseil(ph)
         if interdits:
             defauts.append(f"mot(s) de conseil interdit(s) : {', '.join(interdits)}")
     return defauts
