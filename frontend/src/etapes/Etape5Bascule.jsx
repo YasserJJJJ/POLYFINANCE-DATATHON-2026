@@ -49,10 +49,14 @@ function fiche(d) {
   ].join('\n')
 }
 
+const VIDE = { montants: [], horizons: [], cases: [] }
+
 export default function Etape5Bascule({ dossier, onRetour, onRecommencer }) {
-  const { bascule } = dossier
+  // Verdict gris : le Gardien ne calcule pas de grille (bascule = {}). Avant, la page devenait blanche.
+  const bascule = dossier.bascule?.cases?.length ? dossier.bascule : VIDE
   const montants = useMemo(() => [...bascule.montants].sort((a, b) => a - b), [bascule])
-  const [iM, setIM] = useState(montants.indexOf(dossier.demande.montant_cad))
+  // Montant de départ : la case de la demande (fraction 1 de la grille), même si le montant n'est pas entier.
+  const [iM, setIM] = useState(Math.max(0, montants.indexOf(Math.round(dossier.demande.montant_cad))))
   const [h, setH] = useState(dossier.profil.horizon_ans)
   const [copie, setCopie] = useState('')
   const montant = montants[iM]
@@ -85,7 +89,7 @@ export default function Etape5Bascule({ dossier, onRetour, onRecommencer }) {
           </div>
           <div className="champ">
             <label htmlFor="b-horizon">Horizon : <strong>{h} an(s)</strong></label>
-            <input id="b-horizon" type="range" min={bascule.horizons[0]} max={bascule.horizons.at(-1)} value={h} onChange={(e) => setH(Number(e.target.value))} />
+            <input id="b-horizon" type="range" min={bascule.horizons[0]} max={bascule.horizons.at(-1)} value={h ?? bascule.horizons[0] ?? 1} onChange={(e) => setH(Number(e.target.value))} />
           </div>
           <p className="muted petit">Ta demande de départ : {dollars(dossier.demande.montant_cad)} sur {dossier.profil.horizon_ans} an(s).</p>
         </div>
@@ -99,10 +103,11 @@ export default function Etape5Bascule({ dossier, onRetour, onRecommencer }) {
                   <span className="ax-y">{dollars(m)}</span>
                   {bascule.horizons.map((hz) => {
                     const c = bascule.cases.find((x) => x.montant_cad === m && x.horizon_ans === hz)
+                    const e = ETATS[c?.etat] || ETATS.indetermine
                     const ici = m === montant && hz === h
                     return (
-                      <button key={hz} type="button" title={`${dollars(m)}, ${hz} an(s) : ${ETATS[c.etat].libelle}`}
-                        className={`cellule ${ETATS[c.etat].classe} ${ici ? 'ici' : ''}`}
+                      <button key={hz} type="button" title={`${dollars(m)}, ${hz} an(s) : ${e.libelle}`}
+                        className={`cellule ${e.classe} ${ici ? 'ici' : ''}`}
                         onClick={() => { setIM(montants.indexOf(m)); setH(hz) }} aria-label={`${dollars(m)}, ${hz} ans`} />
                     )
                   })}

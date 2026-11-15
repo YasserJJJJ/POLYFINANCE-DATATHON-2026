@@ -56,7 +56,9 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
         <ul className="phrases">{texte.ce_qui_changerait.map((p, i) => <Phrase key={i} p={p} ouvrir={ouvrirFait} />)}</ul>
       )}
       <div className="actions">
-        <button type="button" className="bouton principal" onClick={onBascule}>Bouger les curseurs</button>
+        {dossier.bascule?.cases?.length > 0
+          ? <button type="button" className="bouton principal" onClick={onBascule}>Bouger les curseurs</button>
+          : <p className="muted petit">Les curseurs de bascule s'ouvrent dès que le verdict peut être calculé.</p>}
         <button type="button" className="bouton discret" onClick={onModifier}>Modifier mes réponses</button>
       </div>
 
