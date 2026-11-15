@@ -9,9 +9,10 @@ from __future__ import annotations
 import json
 import os
 
-MODELE_LEGER = os.environ.get("ALPHAFORGE_MODELE_LEGER", "")    # ex. un modèle Claude Haiku sur Bedrock
-MODELE_PRINCIPAL = os.environ.get("ALPHAFORGE_MODELE", "")       # ex. un modèle Claude Sonnet sur Bedrock
-REGION = os.environ.get("AWS_REGION", "ca-central-1")
+# Identifiants recommandés par l'atelier AWS du datathon (profils d'inférence « global »).
+MODELE_LEGER = os.environ.get("ALPHAFORGE_MODELE_LEGER", "global.amazon.nova-2-lite-v1:0")
+MODELE_PRINCIPAL = os.environ.get("ALPHAFORGE_MODELE", "global.anthropic.claude-sonnet-5")
+REGION = os.environ.get("AWS_REGION", "us-east-1")  # région du compte d'équipe du datathon
 
 
 def actif() -> bool:
@@ -29,7 +30,8 @@ def appeler(systeme: str, message: str, modele: str | None = None, max_tokens: i
         messages=[{"role": "user", "content": [{"text": message}]}],
         inferenceConfig={"maxTokens": max_tokens, "temperature": 0.2},
     )
-    return reponse["output"]["message"]["content"][0]["text"]
+    # Certains modèles renvoient d'abord un bloc de raisonnement : on concatène tous les blocs texte.
+    return "".join(b["text"] for b in reponse["output"]["message"]["content"] if "text" in b)
 
 
 def appeler_json(systeme: str, message: str, modele: str | None = None) -> dict:

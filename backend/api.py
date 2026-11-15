@@ -8,7 +8,10 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from alphaforge.donnees import univers
+from alphaforge import calculs
+from alphaforge.agents import profileur
+from alphaforge.donnees import serie_cad, univers
+from alphaforge.dossier import Dossier
 from alphaforge.orchestrateur import analyser
 from alphaforge.personas import PERSONAS
 from alphaforge.profil import QUESTIONS_TOLERANCE
@@ -40,6 +43,26 @@ def actifs() -> list[dict]:
 @app.get("/api/questions")
 def questions() -> list[dict]:
     return QUESTIONS_TOLERANCE
+
+
+@app.post("/api/comprendre")
+def comprendre(req: Requete) -> dict:
+    """Étape « On vérifie ensemble » : seulement le Profileur (rapide, sans calcul de marché)."""
+    d = Dossier(profil=dict(req.profil), demande=dict(req.demande))
+    profileur.executer(d)
+    return {"profil": d.profil, "demande": d.demande, "questions": d.questions}
+
+
+@app.get("/api/serie/{ticker}")
+def serie(ticker: str) -> dict:
+    """Prix hebdomadaire en CAD, base 100, pour le graphique de la pire chute."""
+    try:
+        s = serie_cad(ticker).resample("W-FRI").last().dropna()
+    except KeyError as e:
+        raise HTTPException(status_code=404, detail=str(e)) from e
+    base = float(s.iloc[0])
+    return {"ticker": ticker, "pire_chute": calculs.pire_chute(ticker),
+            "points": [{"date": str(i.date()), "valeur": round(float(v) / base * 100, 2)} for i, v in s.items()]}
 
 
 @app.post("/api/analyse")

@@ -1,0 +1,130 @@
+import { dollars } from '../api.js'
+import { Etiquette, PuceNiveau, PuceVerdict, PucesFaits } from '../composants/Base.jsx'
+import GraphiqueChute from '../composants/GraphiqueChute.jsx'
+
+function Phrase({ p, ouvrir }) {
+  return (
+    <li className="phrase">
+      <Etiquette type={p.type} />
+      <span>{p.texte}</span>
+      <PucesFaits ids={p.faits} ouvrir={ouvrir} />
+    </li>
+  )
+}
+
+function Option({ o, principal }) {
+  return (
+    <div className={`carte option ${principal ? 'principale' : ''}`}>
+      <p className="option-nom">{o.nom}</p>
+      <PuceVerdict etat={o.etat} />
+      <dl className="option-chiffres">
+        <div><dt>Montant</dt><dd>{dollars(o.montant_cad)}</dd></div>
+        <div><dt>Horizon</dt><dd>{o.horizon_ans} an(s)</dd></div>
+      </dl>
+    </div>
+  )
+}
+
+export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifier }) {
+  const { verdict, texte, regles, options, faits, objections, qualite_donnees: qualite, demande } = dossier
+  const ids = demande.ids_faits || {}
+  const ordre = { rouge: 0, orange: 1, gris: 2, ok: 3, non_evaluee: 4 }
+  const reglesTriees = [...regles].sort((a, b) => ordre[a.niveau] - ordre[b.niveau])
+
+  return (
+    <section className="etape4">
+      <div className={`verdict-tete carte etat-${verdict.etat}`}>
+        <p className="surtitre">Le second avis</p>
+        <PuceVerdict etat={verdict.etat} grand libelle={verdict.libelle} />
+        <p className="compte-regles"><strong>{verdict.respectees}</strong> règle(s) respectée(s) sur <strong>{verdict.evaluees}</strong></p>
+        {texte?.reformulation && <p className="reformulation">{texte.reformulation}</p>}
+        {texte?.tensions?.map((t) => <p key={t} className="tension">{t}</p>)}
+      </div>
+
+      {texte?.miroir?.length > 0 && (
+        <div className="carte miroir">
+          <h2>Le miroir</h2>
+          <ul className="phrases">{texte.miroir.map((p, i) => <Phrase key={i} p={p} ouvrir={ouvrirFait} />)}</ul>
+        </div>
+      )}
+
+      <div className="trois-options">
+        {options.map((o, i) => <Option key={o.nom} o={o} principal={i === 1 && options.length === 3} />)}
+      </div>
+      {texte?.ce_qui_changerait?.length > 0 && (
+        <ul className="phrases">{texte.ce_qui_changerait.map((p, i) => <Phrase key={i} p={p} ouvrir={ouvrirFait} />)}</ul>
+      )}
+      <div className="actions">
+        <button type="button" className="bouton principal" onClick={onBascule}>Bouger les curseurs</button>
+        <button type="button" className="bouton discret" onClick={onModifier}>Modifier mes réponses</button>
+      </div>
+
+      <div className="colonnes">
+        <div className="carte">
+          <h2>Les règles appliquées</h2>
+          <ul className="regles">
+            {reglesTriees.map((r) => (
+              <li key={r.code} className={`regle n-${r.niveau}`}>
+                <div className="regle-tete"><strong>{r.libelle}</strong><PuceNiveau niveau={r.niveau} /></div>
+                <p>{r.explication}</p>
+                <PucesFaits ids={r.faits} ouvrir={ouvrirFait} />
+              </li>
+            ))}
+          </ul>
+          <p className="muted petit">Ces règles sont du code, pas l'avis d'une IA. Le verdict ne peut pas les contredire.</p>
+        </div>
+
+        <div className="pile">
+          <div className="carte">
+            <h2>La pire chute observée</h2>
+            <GraphiqueChute ticker={demande.ticker} faitId={ids.chute} ouvrir={ouvrirFait} />
+          </div>
+          <div className="carte">
+            <h2>Ce que le Sceptique a contesté</h2>
+            {objections.map((o) => (
+              <div key={o.id} className="objection">
+                <p><span className="mono">{o.id}</span> {o.texte}</p>
+                <p className="recalcul">↳ {o.reponse}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="carte">
+        <h2>Tous les chiffres utilisés</h2>
+        <div className="defile-x">
+          <table className="registre">
+            <thead><tr><th>Id</th><th>Ce que c'est</th><th>Valeur</th><th>Type</th></tr></thead>
+            <tbody>
+              {faits.map((f) => (
+                <tr key={f.id}>
+                  <td><button type="button" className="puce-fait" onClick={() => ouvrirFait(f.id)}>{f.id}</button></td>
+                  <td>{f.libelle}</td>
+                  <td className="nombre">{typeof f.valeur === 'object' ? Object.entries(f.valeur).map(([k, v]) => `${k} ${v}`).join(', ') : `${f.valeur} ${f.unite}`}</td>
+                  <td><Etiquette type={f.type} /></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div className="colonnes">
+        <div className="carte">
+          <h2>Qualité des données</h2>
+          <ul className="qualite">
+            {qualite.map((c) => (
+              <li key={c.code} className={`q-${c.statut}`}><span className="q-statut">{c.statut === 'ok' ? '✓' : '!'}</span>{c.libelle} <span className="muted">— {c.detail}</span></li>
+            ))}
+          </ul>
+        </div>
+        <div className="carte">
+          <h2>Limites</h2>
+          <ul className="phrases">{texte?.limites?.map((p, i) => <Phrase key={i} p={p} ouvrir={ouvrirFait} />)}</ul>
+          <p className="avertissement">{texte?.avertissement}</p>
+        </div>
+      </div>
+    </section>
+  )
+}
