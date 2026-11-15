@@ -86,3 +86,10 @@ def test_api_expose_le_registre():
     import api
     reg = api.sources_du_projet()
     assert set(reg) == {"references", "justifications", "agents"} and len(reg["references"]) >= 25
+
+
+def test_doc_sources_a_jour():
+    # docs/sources.md est généré depuis le registre : il ne doit jamais diverger du code.
+    from pathlib import Path
+    import generer_doc_sources as g
+    assert Path(g.CIBLE).read_text(encoding="utf-8") == g.generer(), "relancer : python generer_doc_sources.py"
