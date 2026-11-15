@@ -12,6 +12,7 @@ import time
 from .. import calculs, llm
 from ..donnees import _prix
 from ..dossier import Dossier, Objection
+from ..garde_fous import mots_de_conseil, sans_accents
 
 MAX_OBJECTIONS = 3
 
@@ -116,14 +117,34 @@ def _choix_llm(d: Dossier, possibles: list[str]) -> list[tuple[str, str]]:
                 f"Vérifications possibles :\n" + "\n".join(f"- {c} : {CATALOGUE[c][3]}" for c in possibles))
     brut = llm.appeler_json(SYSTEME, contexte, llm.MODELE_PRINCIPAL, 700)
     choix = []
-    for o in brut.get("objections", [])[:MAX_OBJECTIONS]:
+    for o in (brut.get("objections") or [])[:MAX_OBJECTIONS]:
+        if not isinstance(o, dict):
+            continue
         if o.get("code") in possibles and o["code"] not in [c for c, _ in choix]:
             texte = str(o.get("texte", "")).strip()[:300]
-            if texte and not llm.nombres(texte) - {1.0, 2.0, 3.0, 5.0, 12.0}:  # aucun chiffre inventé
+            if texte and _texte_acceptable(o["code"], texte):
                 choix.append((o["code"], texte))
             else:
                 choix.append((o["code"], CATALOGUE[o["code"]][2]))
     return choix
+
+
+# Mots du thème de chaque vérification : l'objection rédigée par le modèle doit parler de la vérification
+# que le code exécute (sinon on affiche la question du catalogue).
+THEMES = {"devise": ("dollar", "change", "usd", "cad", "devise"),
+          "recuperation_inconnue": ("sommet", "recup", "remont"),
+          "fenetre_courte": ("fenetre", "5 ans", "cinq ans", "borne", "pire cas", "historique", "crise", "periode",
+                             "plancher", "plafond", "observe"),
+          "comparer_marche": ("marche",),
+          "rapidite_baisse": ("vite", "rapide", "12 mois", "un an", "moins d'un an", "brutal"),
+          "diversification": ("diversif", "correl", "bouge", "detiens", "portefeuille")}
+
+
+def _texte_acceptable(code: str, texte: str) -> bool:
+    """Aucun chiffre inventé, aucune formule de conseil, et le texte parle bien de la vérification choisie."""
+    bas = sans_accents(texte.lower())
+    return (not llm.nombres(texte) - {1.0, 2.0, 3.0, 5.0, 12.0} and not mots_de_conseil(texte)
+            and any(mot in bas for mot in THEMES.get(code, ())))
 
 
 def executer(d: Dossier) -> None:
@@ -135,9 +156,10 @@ def executer(d: Dossier) -> None:
     if llm.actif():
         try:
             choix = _choix_llm(d, possibles)
-            source = llm.nom(llm.MODELE_PRINCIPAL)
-        except Exception:
-            choix = []
+            source = (llm.nom(llm.MODELE_PRINCIPAL) if choix else
+                      "règles : le modèle n'a proposé aucune vérification valide")
+        except Exception as e:
+            choix, source = [], f"règles : réponse du modèle inutilisable ({type(e).__name__})"
     if not choix:
         choix = [(c, CATALOGUE[c][2]) for c in possibles if c in ("devise", "recuperation_inconnue", "fenetre_courte")]
         choix = choix[:MAX_OBJECTIONS]
