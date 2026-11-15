@@ -22,7 +22,7 @@ CANDIDATS_ALTERNATIVE = ["ESGV", "XIU.TO", "XBB.TO", "FTS.TO"]
 
 def _alternative(d: Dossier) -> dict | None:
     """Premier placement large, hors secteurs exclus, que le Gardien juge acceptable au même montant."""
-    exclusions = [e.lower() for e in d.profil.get("exclusions", [])]
+    exclusions = gardien.exclusions_normalisees(d.profil)
     for t in CANDIDATS_ALTERNATIVE:
         info = info_actif(t)
         if t == d.demande["ticker"] or any(e in str(info["sector"]).lower() for e in exclusions):

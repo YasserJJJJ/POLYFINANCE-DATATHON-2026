@@ -27,7 +27,7 @@ class Requete(BaseModel):
 
 @app.get("/api/sante")
 def sante() -> dict:
-    return {"ok": True, "llm": llm.actif(), "raison": llm.raison_indisponible(),
+    return {"ok": True, "llm": llm.acces_verifie(), "raison": llm.raison_indisponible(),
             "modeles": {"principal": llm.nom(llm.MODELE_PRINCIPAL), "leger": llm.nom(llm.MODELE_LEGER)}}
 
 

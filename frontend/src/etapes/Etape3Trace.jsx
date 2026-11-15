@@ -4,7 +4,7 @@ import { PucesFaits } from '../composants/Base.jsx'
 export const AGENTS = {
   Profileur: { role: 'Comprend ta demande et structure ton profil', nature: 'Agent IA' },
   'Contrôle données': { role: 'Vérifie les données avant tout calcul', nature: 'Code' },
-  Analyste: { role: 'Choisit les mesures et appelle les outils de calcul', nature: 'Agent IA + outils' },
+  Analyste: { role: 'Appelle les outils de calcul et écrit les faits F-n', nature: 'Code' },
   Sceptique: { role: 'Cherche une faille et force un recalcul', nature: 'Agent IA' },
   Gardien: { role: 'Applique les règles et décide du verdict', nature: 'Code' },
   Rédacteur: { role: 'Explique, sans rien ajouter', nature: 'Agent IA' },

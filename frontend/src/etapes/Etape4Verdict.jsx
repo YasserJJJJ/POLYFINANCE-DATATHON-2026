@@ -45,10 +45,24 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
         </div>
       </div>
 
+      {verdict.etat === 'indetermine' && dossier.questions?.length > 0 && (
+        <div className="carte manque">
+          <h2>Ce qu'il me faut pour conclure</h2>
+          <ul>{dossier.questions.map((q) => <li key={q}>{q}</li>)}</ul>
+        </div>
+      )}
+
       {texte?.miroir?.length > 0 && (
         <div className="carte miroir">
           <h2>Le miroir</h2>
           <ul className="phrases">{texte.miroir.map((p, i) => <Phrase key={i} p={p} ouvrir={ouvrirFait} />)}</ul>
+        </div>
+      )}
+
+      {texte?.pourquoi?.length > 0 && (
+        <div className="carte">
+          <h2>Pourquoi ce verdict</h2>
+          <ul className="phrases">{texte.pourquoi.map((p, i) => <Phrase key={i} p={p} ouvrir={ouvrirFait} />)}</ul>
         </div>
       )}
 
@@ -59,7 +73,9 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
         <ul className="phrases">{texte.ce_qui_changerait.map((p, i) => <Phrase key={i} p={p} ouvrir={ouvrirFait} />)}</ul>
       )}
       <div className="actions">
-        <button type="button" className="bouton principal" onClick={onBascule}>Bouger les curseurs</button>
+        {dossier.bascule?.cases?.length > 0
+          ? <button type="button" className="bouton principal" onClick={onBascule}>Bouger les curseurs</button>
+          : <p className="muted petit">Les curseurs de bascule s'ouvrent dès que le verdict peut être calculé.</p>}
         <button type="button" className="bouton discret" onClick={onModifier}>Modifier mes réponses</button>
       </div>
 

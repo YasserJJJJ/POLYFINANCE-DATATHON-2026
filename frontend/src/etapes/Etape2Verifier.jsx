@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { api, dollars } from '../api.js'
 import { Jauge } from '../composants/Base.jsx'
 
-const SECTEURS_FR = {
+export const SECTEURS_FR = {
   Energy: 'Énergie (pétrole, gaz, pipelines)', 'Crypto asset': 'Cryptoactifs', Financials: 'Finance',
   'Information Technology': 'Technologies', 'Consumer Discretionary': 'Consommation discrétionnaire',
   'Health Care': 'Santé', Utilities: 'Services publics', Industrials: 'Industrie',

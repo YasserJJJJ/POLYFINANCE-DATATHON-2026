@@ -31,29 +31,36 @@ expliquent. Chaque chiffre affiché est un fait `F-n` relié à sa source et à 
 
 ## Architecture
 
+Ce qui tourne aujourd'hui (local + Amazon Bedrock) :
+
 ```
-Interface React (Amplify)
-   │  POST /api/analyse
+Interface React + Vite (frontend/, lancée en local)
+   │  POST /api/analyse, /api/comprendre
    ▼
+API FastAPI (backend/api.py)
+   │
 Orchestrateur en code (ordre fixe) ── dossier de décision partagé (faits F-1…F-n, trace)
-   Profileur (LLM) → Contrôle données (code) → Analyste (LLM + outils) → Sceptique (LLM)
-   → Gardien (code, décide) → Rédacteur (LLM) → contrôle d'ancrage (Bedrock Guardrails)
+   Profileur (Nova 2 Lite) → Contrôle données (code) → Analyste (code) → Sceptique (Claude Sonnet 5)
+   → Gardien (code, décide) → Rédacteur (Claude Sonnet 5) → contrôle d'ancrage (code)
    │
    ▼
-Outils de calcul Python ── données nettoyées (S3)
+Outils de calcul Python (calculs.py) ── jeu de départ officiel (data/raw/alphaforge_starter)
 ```
+
+Visé, **pas encore en place** : déploiement de l'API (Lambda ou AgentCore Runtime), interface sur Amplify ou
+S3 + CloudFront, données sur S3, Bedrock Guardrails en plus du contrôle d'ancrage en code. Voir [infra/](infra/).
 
 | Agent | Nature | Rôle |
 |---|---|---|
 | Profileur | LLM léger | Structure la demande et le profil, repère ce qui manque et les tensions |
 | Contrôle données | Code | 7 contrôles avant tout calcul (fiche qualité) |
-| Analyste | LLM + outils | Appelle les calculs, écrit les faits F-n |
+| Analyste | Code | Appelle les calculs, écrit les faits F-n (pas de modèle pour l'instant) |
 | Sceptique | LLM | 1 à 3 objections, chacune liée à un fait et à un recalcul |
 | Gardien | Code | Règles explicites → verdict, plus petit ajustement, grille de bascule |
 | Rédacteur | LLM | Explique sans rien ajouter, chaque phrase étiquetée |
 
-Services AWS visés : Amazon Bedrock (Claude + Guardrails), Bedrock AgentCore Runtime (Strands), AWS Lambda,
-Amazon S3, AWS Amplify. Voir [infra/](infra/).
+Service AWS utilisé aujourd'hui : **Amazon Bedrock** (API Converse, profils d'inférence `global.*`, région
+us-east-1). Services visés : Bedrock Guardrails, Bedrock AgentCore Runtime ou AWS Lambda, Amazon S3, AWS Amplify.
 
 ### Les agents sur Amazon Bedrock
 
@@ -61,7 +68,7 @@ Amazon S3, AWS Amplify. Voir [infra/](infra/).
 |---|---|---|
 | Profileur | Nova Lite | Le symbole existe, les nombres sont plausibles, les secteurs existent ; seuls les champs vides sont remplis |
 | Sceptique | Claude Sonnet | Il ne peut choisir que parmi 6 vérifications autorisées, que le code exécute ; objection sans chiffre inventé |
-| Rédacteur | Claude Sonnet | Chaque nombre du texte existe déjà dans le dossier, chaque F-n cité existe, aucun mot de conseil |
+| Rédacteur | Claude Sonnet | Chaque nombre du texte existe déjà dans le dossier (la phrase libre n'autorise aucun nombre), chaque F-n cité existe, citations mot pour mot, aucune formule de conseil, pas de contradiction avec le verdict ; le code corrige les étiquettes FAIT / HYPOTHESE / SCENARIO et l'écrit dans le journal ; « ce qui changerait l'avis » est écrit par le code |
 
 Si le texte du Rédacteur échoue au contrôle, le défaut est **nommé** et renvoyé au modèle pour un second essai ;
 s'il persiste, on garde les phrases modèles. Tout est visible dans la trace et sous « Comment ce texte a été vérifié ».
@@ -76,7 +83,10 @@ python -m venv .venv
 # Windows : .venv\Scripts\activate   ·   macOS/Linux : source .venv/bin/activate
 pip install -r backend/requirements.txt
 cd backend
-pytest -q                                  # banc de tests (hors ligne)
+pytest -q                                  # banc de tests (hors ligne, aucun appel à Bedrock)
+# Agents IA : le profil AWS doit être fixé AVANT de lancer l'API, sinon tout passe en mode hors ligne.
+#   PowerShell : $env:AWS_PROFILE="datathon"; $env:AWS_REGION="us-east-1"
+#   bash       : export AWS_PROFILE=datathon AWS_REGION=us-east-1
 uvicorn api:app --reload --port 8000       # API locale : http://localhost:8000/docs
 cd ../frontend && npm install && npm run dev   # interface : http://localhost:5173
 ```

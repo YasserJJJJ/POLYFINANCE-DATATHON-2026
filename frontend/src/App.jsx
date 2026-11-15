@@ -59,7 +59,9 @@ export default function App() {
     try {
       setDossier(await api.analyser(profil, demande))
     } catch (e) {
-      setErreur(e.message)
+      // Sans dossier, l'écran d'analyse attendrait sans fin : on revient à l'étape 2, réponses conservées.
+      setEtape(1)
+      setErreur(`L'analyse n'a pas pu aboutir. Vérifie tes réponses, puis relance. (${e.message})`)
     }
   }
 
@@ -130,7 +132,7 @@ export default function App() {
 
       <footer className="pied">
         Simulation éducative. Aucune transaction réelle, aucun conseil financier personnalisé. Données publiques
-        2021-11-12 → 2026-11-12 (Yahoo Finance, Banque du Canada, FRED). Montants des profils fictifs.
+        2021-11-12 → 2026-11-12 (prix Yahoo Finance, taux de change Banque du Canada). Montants des profils fictifs.
       </footer>
 
       {faitOuvert && dossier && (

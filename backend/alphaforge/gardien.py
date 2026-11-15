@@ -6,7 +6,7 @@ et les faits (F-n) qui la soutiennent. Les seuils viennent de profil.py.
 from __future__ import annotations
 
 from .dossier import Regle
-from .format import dollars
+from .format import dollars, fr
 from .profil import evaluer
 
 ORDRE = {"gris": 4, "rouge": 3, "orange": 2, "ok": 1, "non_evaluee": 0}
@@ -17,6 +17,23 @@ LIBELLES_ETAT = {
     "incoherent": "Incohérent avec ta situation",
     "indetermine": "Impossible de conclure : il manque une information",
 }
+
+
+# Mots français courants pour les secteurs de assets_universe.csv (l'interface envoie déjà les noms anglais).
+SYNONYMES_SECTEURS = {"énergie": "energy", "energie": "energy", "pétrole": "energy", "petrole": "energy",
+                      "gaz": "energy", "pipelines": "energy", "cryptoactifs": "crypto", "cryptos": "crypto",
+                      "technologies": "information technology", "technologie": "information technology",
+                      "finance": "financials", "santé": "health care", "services publics": "utilities"}
+
+
+def exclusions_normalisees(profil: dict) -> list[str]:
+    """Exclusions en minuscules, sans entrée vide (une chaîne vide excluait tous les secteurs)."""
+    sortie = []
+    for e in profil.get("exclusions") or []:
+        e = str(e).strip().lower()
+        if e:
+            sortie.append(SYNONYMES_SECTEURS.get(e, e))
+    return sortie
 
 
 def appliquer_regles(profil: dict, demande: dict, m: dict, f: dict | None = None) -> list[Regle]:
@@ -32,9 +49,15 @@ def appliquer_regles(profil: dict, demande: dict, m: dict, f: dict | None = None
                                     ("montant", montant), ("tolérance", ev["tolerance"])] if v is None]
     if any(c["statut"] == "echec" for c in m.get("qualite", [])):
         manquants.append("données de marché fiables")
-    if manquants:
-        regles.append(Regle("donnees", "Informations essentielles", "gris",
-                            "Il manque : " + ", ".join(manquants) + "."))
+    # Valeurs impossibles : on ne conclut pas (sinon division par zéro, ou un montant négatif jugé « cohérent »).
+    invalides = [nom for nom, v in [("une épargne totale positive", epargne), ("un montant positif", montant),
+                                    ("un horizon d'au moins 1 an", profil.get("horizon_ans"))]
+                 if v is not None and (isinstance(v, bool) or not isinstance(v, (int, float)) or v <= 0
+                                       or (nom.startswith("un horizon") and v < 1))]
+    if manquants or invalides:
+        morceaux = (["Il manque : " + ", ".join(manquants) + "."] if manquants else []) + \
+                   (["Il faut " + ", ".join(invalides) + "."] if invalides else [])
+        regles.append(Regle("donnees", "Informations essentielles", "gris", " ".join(morceaux)))
         return regles
 
     poids = montant / epargne
@@ -43,16 +66,16 @@ def appliquer_regles(profil: dict, demande: dict, m: dict, f: dict | None = None
 
     # 1. Capacité et tolérance de perte
     if impact > ev["perte_max_capacite_pct"]:
-        niveau, txt = "rouge", (f"Si ce placement revivait sa pire chute ({m['pire_chute_pct']} %), ton épargne "
-                                f"baisserait de {impact} %. Ta capacité de perte est estimée à "
-                                f"{ev['perte_max_capacite_pct']} %.")
+        niveau, txt = "rouge", (f"Si ce placement revivait sa pire chute ({fr(m['pire_chute_pct'])} %), ton épargne "
+                                f"baisserait de {fr(impact)} %. Ta capacité de perte est estimée à "
+                                f"{fr(ev['perte_max_capacite_pct'])} %.")
     elif impact > ev["perte_max_tolerance_pct"]:
-        niveau, txt = "orange", (f"La pire chute observée ferait baisser ton épargne de {impact} %. C'est dans ta "
-                                 f"capacité ({ev['perte_max_capacite_pct']} %), mais au-delà de ce que tu dis "
-                                 f"vouloir risquer ({ev['perte_max_tolerance_pct']} %).")
+        niveau, txt = "orange", (f"La pire chute observée ferait baisser ton épargne de {fr(impact)} %. C'est dans ta "
+                                 f"capacité ({fr(ev['perte_max_capacite_pct'])} %), mais au-delà de ce que tu dis "
+                                 f"vouloir risquer ({fr(ev['perte_max_tolerance_pct'])} %).")
     else:
-        niveau, txt = "ok", (f"La pire chute observée ferait baisser ton épargne de {impact} %, sous ta limite "
-                             f"de {ev['perte_max_retenue_pct']} %.")
+        niveau, txt = "ok", (f"La pire chute observée ferait baisser ton épargne de {fr(impact)} %, sous ta limite "
+                             f"de {fr(ev['perte_max_retenue_pct'])} %.")
     regles.append(Regle("capacite", "Perte supportable", niveau, txt, [f.get("chute", "")]))
 
     # 2. Somme à préserver
@@ -65,7 +88,7 @@ def appliquer_regles(profil: dict, demande: dict, m: dict, f: dict | None = None
                             f"{dollars(preserver)} à préserver."))
 
     # 3. Exclusions (valeurs)
-    exclusions = [e.lower() for e in profil.get("exclusions", [])]
+    exclusions = exclusions_normalisees(profil)
     secteur = str(m.get("secteur", ""))
     if exclusions:
         touche = any(e in secteur.lower() for e in exclusions)
@@ -81,8 +104,8 @@ def appliquer_regles(profil: dict, demande: dict, m: dict, f: dict | None = None
         risque = m["volatilite_pct"] > 25 and (recup is None or retrait < recup)
         regles.append(Regle("retrait", "Retrait prévu", "rouge" if risque else "ok",
                             (f"Tu prévois de retirer de l'argent dans {retrait} an(s). Ce placement est volatil "
-                             f"({m['volatilite_pct']} %/an) et a mis "
-                             + (f"{recup} an(s)" if recup else "plus que la période observée")
+                             f"({fr(m['volatilite_pct'])} %/an) et a mis "
+                             + (f"{fr(recup)} an(s)" if recup else "plus que la période observée")
                              + " à se remettre de sa pire chute.") if risque else
                             "Le retrait prévu laisse le temps de traverser une baisse comparable.",
                             [f.get("volatilite", ""), f.get("recuperation", "")]))
@@ -91,10 +114,10 @@ def appliquer_regles(profil: dict, demande: dict, m: dict, f: dict | None = None
     horizon = profil["horizon_ans"]
     if m.get("recupere"):
         trop_court = horizon < m["recuperation_annees"]
-        detail = f"il a fallu {m['recuperation_annees']} an(s) pour revenir au sommet"
+        detail = f"il a fallu {fr(m['recuperation_annees'])} an(s) pour revenir au sommet"
     else:
         trop_court = horizon < m["annees_depuis_creux"]
-        detail = f"le sommet n'est toujours pas retrouvé {m['annees_depuis_creux']} an(s) après le creux"
+        detail = f"le sommet n'est toujours pas retrouvé {fr(m['annees_depuis_creux'])} an(s) après le creux"
     regles.append(Regle("horizon", "Horizon et temps de récupération", "orange" if trop_court else "ok",
                         f"Ton horizon est de {horizon} an(s) ; après la pire chute, {detail}.",
                         [f.get("recuperation", "")]))
@@ -115,15 +138,21 @@ def appliquer_regles(profil: dict, demande: dict, m: dict, f: dict | None = None
 
     # 8. Fausse diversification (si on connaît les placements actuels)
     correl = m.get("correlations") or {}
+    deja = demande.get("ticker") and demande.get("ticker") in (profil.get("portefeuille_actuel") or [])
+    note_deja = f" Tu détiens déjà {demande['ticker']} : ce placement s'y ajoute." if deja else ""
     if correl:
         forts = {t: c for t, c in correl.items() if c >= 0.8}
+        t_max, c_max = max(correl.items(), key=lambda kv: kv[1])
         regles.append(Regle("diversification", "Diversification réelle", "orange" if forts else "ok",
-                            ("Très corrélé à ce que tu détiens déjà : " + ", ".join(f"{t} ({c})" for t, c in forts.items())
-                             + ". Ça ne diversifie pas.") if forts else "Se comporte différemment de tes placements actuels.",
+                            (("Très corrélé à ce que tu détiens déjà : " + ", ".join(f"{t} ({fr(c)})" for t, c in forts.items())
+                              + ". Ça ne diversifie pas.") if forts else
+                             (f"Corrélation la plus forte avec tes placements : {t_max} ({fr(c_max)}), sous le seuil de 0,8 "
+                              "retenu par l'équipe pour parler de fausse diversification.")) + note_deja,
                             [f.get("correlation", "")]))
     else:
         regles.append(Regle("diversification", "Diversification réelle", "non_evaluee",
-                            "Placements actuels inconnus : diversification non évaluée."))
+                            (f"Tu ne détiens que {demande['ticker']} : diversification non évaluée." if deja else
+                             "Placements actuels inconnus : diversification non évaluée.")))
     return regles
 
 
@@ -153,15 +182,44 @@ def grille_bascule(profil: dict, demande: dict, m: dict) -> dict:
     return {"montants": montants, "horizons": horizons, "cases": cases}
 
 
+RANG = {"coherent": 0, "ajustement": 1, "incoherent": 2, "indetermine": 3}
+PAS_MONTANT = 100  # précision du montant ajusté, en $
+
+
+def _etat(profil: dict, demande: dict, m: dict) -> str:
+    return verdict(appliquer_regles(profil, demande, m))["etat"]
+
+
+def _montant_exact(profil: dict, demande: dict, m: dict, bon: float, mauvais: float, cible: str) -> int:
+    """Plus grand montant (au pas de 100 $) entre `bon` (atteint la cible) et `mauvais` (ne l'atteint pas).
+    La grille est monotone en montant (vérifiée par les tests), donc une recherche par dichotomie suffit."""
+    bas, haut = int(bon // PAS_MONTANT), int(mauvais // PAS_MONTANT)
+    while haut - bas > 1:
+        milieu = (bas + haut) // 2
+        if _etat(profil, {**demande, "montant_cad": milieu * PAS_MONTANT}, m) == cible:
+            bas = milieu
+        else:
+            haut = milieu
+    return max(bas * PAS_MONTANT, int(bon))
+
+
 def plus_petit_ajustement(profil: dict, demande: dict, m: dict) -> dict | None:
-    """Premier changement (montant d'abord, puis horizon) qui rend la demande cohérente,
-    sinon qui la rend au moins acceptable avec ajustement."""
+    """Plus petit changement (montant d'abord, puis horizon) qui rend la demande cohérente,
+    sinon qui l'améliore au moins d'un état. Un « ajustement » qui ne change pas l'état n'en est pas un."""
     base_h = profil["horizon_ans"]
-    candidats = [({"montant_cad": round(demande["montant_cad"] * fr)}, {}) for fr in FRACTIONS[1:]]
-    candidats += [({}, {"horizon_ans": base_h + k}) for k in range(1, 6)]
+    actuel = _etat(profil, demande, m)
+    montant = demande["montant_cad"]
     for cible in ("coherent", "ajustement"):
-        for chg_d, chg_p in candidats:
-            r = appliquer_regles({**profil, **chg_p}, {**demande, **chg_d}, m)
-            if verdict(r)["etat"] == cible:
-                return {"changement": {**chg_d, **chg_p}, "etat": cible}
+        if RANG[cible] >= RANG[actuel]:
+            continue
+        precedent = montant
+        for fr in FRACTIONS[1:]:
+            essai = round(montant * fr)
+            if _etat(profil, {**demande, "montant_cad": essai}, m) == cible:
+                exact = _montant_exact(profil, demande, m, essai, precedent, cible)
+                return {"changement": {"montant_cad": exact}, "etat": cible}
+            precedent = essai
+        for k in range(1, 6):
+            if _etat({**profil, "horizon_ans": base_h + k}, demande, m) == cible:
+                return {"changement": {"horizon_ans": base_h + k}, "etat": cible}
     return None
