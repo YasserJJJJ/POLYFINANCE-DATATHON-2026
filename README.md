@@ -20,8 +20,10 @@ expliquent. Chaque chiffre affiché est un fait `F-n` relié à sa source et à 
 
 ## Le parcours
 
-1. **Dis-le avec tes mots** : une phrase libre (« Je veux… J'ai… Mais j'ai peur de… ») ou une persona.
-2. **On vérifie ensemble** : champs pré-remplis, curseurs, 1 mise en situation + 3 questions → 2 jauges
+1. **Dis-le avec tes mots** : après un écran d'accueil, une conversation. Une phrase libre (« Je veux… J'ai…
+   Mais j'ai peur de… ») ou une persona ; le Profileur reformule, puis on ne pose que les questions qui manquent,
+   une à la fois, en disant pourquoi.
+2. **On vérifie ensemble** : un résumé corrigeable (« Modifier »), 1 mise en situation + 3 questions → 2 jauges
    (tolérance et capacité, on retient la plus basse).
 3. **Analyse en direct** : la trace des agents défile.
 4. **Le verdict** : 4 états (cohérent / avec ajustement / incohérent / impossible de conclure), 3 options

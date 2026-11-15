@@ -1,28 +1,24 @@
 import { useEffect, useState } from 'react'
 import { api } from './api.js'
-import Etape1Mots from './etapes/Etape1Mots.jsx'
-import Etape2Verifier from './etapes/Etape2Verifier.jsx'
+import Accueil from './etapes/Accueil.jsx'
+import Conversation from './etapes/Conversation.jsx'
 import Etape3Trace from './etapes/Etape3Trace.jsx'
 import Etape4Verdict from './etapes/Etape4Verdict.jsx'
 import Etape5Bascule from './etapes/Etape5Bascule.jsx'
 import Comparer from './etapes/Comparer.jsx'
 import TiroirFait from './composants/TiroirFait.jsx'
 import { RegistreContext } from './composants/Sources.jsx'
+import { PROFIL_VIERGE } from './composants/Profil.jsx'
 
 export const NOM_PRODUIT = 'AlphaForge AI'
 export const SOUS_TITRE = 'Second avis'
 
 const ETAPES = ['Tes mots', 'On vérifie', 'Analyse', 'Verdict', 'Curseurs']
 
-const PROFIL_VIERGE = {
-  nom: 'Toi', age: null, experience: null, horizon_ans: null, tolerance: null, reponses_tolerance: {},
-  epargne_totale_cad: null, somme_a_preserver_cad: null, revenu_stable: null, fonds_urgence: null,
-  dettes_importantes: null, retrait_prevu_ans: null, exclusions: [], portefeuille_actuel: [], citations: [],
-}
-
 export default function App() {
   const [etape, setEtape] = useState(0)
-  const [vue, setVue] = useState('parcours')
+  const [vue, setVue] = useState('accueil')
+  const [conversation, setConversation] = useState(0)
   const [personas, setPersonas] = useState(null)
   const [actifs, setActifs] = useState([])
   const [questions, setQuestions] = useState([])
@@ -42,17 +38,6 @@ export default function App() {
       .catch((e) => setErreur(`Impossible de joindre l'API. Lance-la avec « uvicorn api:app --port 8000 » dans backend/. (${e.message})`))
   }, [])
 
-  const choisirPersona = (cle) => {
-    const p = personas[cle]
-    setProfil({ ...PROFIL_VIERGE, ...p.profil })
-    setDemande({ ...p.demande })
-  }
-
-  const partirDeMesMots = (texte) => {
-    setProfil((p) => ({ ...p, citations: texte.split(/(?<=[.!?])\s+/).filter((s) => s.trim().length > 3) }))
-    setDemande({ texte, ticker: null, montant_cad: null })
-  }
-
   const lancer = async () => {
     setDossier(null)
     setEtape(2)
@@ -66,14 +51,25 @@ export default function App() {
     }
   }
 
-  const recommencer = () => { setEtape(0); setDossier(null); setProfil(PROFIL_VIERGE); setDemande({ texte: '', ticker: null, montant_cad: null }) }
+  const recommencer = () => {
+    setEtape(0); setDossier(null); setProfil(PROFIL_VIERGE); setDemande({ texte: '', ticker: null, montant_cad: null })
+    setConversation((n) => n + 1)
+  }
+
+  if (vue === 'accueil') {
+    return (
+      <Accueil nom={NOM_PRODUIT} sousTitre={SOUS_TITRE} onCommencer={() => { recommencer(); setVue('parcours'); window.scrollTo(0, 0) }}
+        onComparer={() => setVue('comparer')} />
+    )
+  }
 
   return (
     <RegistreContext.Provider value={registre}>
     <div className="app">
       <header className="entete">
         <div className="entete-int">
-          <button type="button" className="marque" onClick={() => { setVue('parcours'); recommencer() }}>
+          <button type="button" className="marque" onClick={() => { setVue('accueil'); recommencer() }}
+            aria-label={`${NOM_PRODUIT}, retour à l'accueil`}>
             <span className="marque-signe" aria-hidden="true">≠</span>
             {NOM_PRODUIT}
             <span className="marque-sous">{SOUS_TITRE}</span>
@@ -113,14 +109,13 @@ export default function App() {
 
         {vue === 'parcours' && (
           <>
-            {etape === 0 && (
-              <Etape1Mots personas={personas} onPersona={(cle) => { choisirPersona(cle); setEtape(1) }}
-                onTexte={(t) => { partirDeMesMots(t); setEtape(1) }} />
-            )}
-            {etape === 1 && (
-              <Etape2Verifier profil={profil} setProfil={setProfil} demande={demande} setDemande={setDemande}
-                actifs={actifs} questions={questions} onRetour={() => setEtape(0)} onLancer={lancer} />
-            )}
+            {/* Les étapes 1 et 2 forment une seule conversation. Elle reste montée pendant l'analyse pour que
+                « Modifier mes réponses » ramène au résumé sans rien perdre. */}
+            <div hidden={etape > 1}>
+              <Conversation key={conversation} personas={personas} actifs={actifs} questions={questions}
+                profil={profil} setProfil={setProfil} demande={demande} setDemande={setDemande}
+                onPhase={setEtape} onLancer={lancer} />
+            </div>
             {etape === 2 && <Etape3Trace dossier={dossier} onFini={() => setEtape(3)} ouvrirFait={setFaitOuvert} />}
             {etape === 3 && dossier && (
               <Etape4Verdict dossier={dossier} ouvrirFait={setFaitOuvert} onBascule={() => setEtape(4)}

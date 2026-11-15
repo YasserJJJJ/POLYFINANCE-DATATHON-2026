@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { dollars } from '../api.js'
 import { ETATS, PuceVerdict } from '../composants/Base.jsx'
-import { SECTEURS_FR } from './Etape2Verifier.jsx'
+import { SECTEURS_FR } from '../composants/Profil.jsx'
 import { sourcesDuDossier, useRegistre } from '../composants/Sources.jsx'
 
 const LEXIQUE = {
