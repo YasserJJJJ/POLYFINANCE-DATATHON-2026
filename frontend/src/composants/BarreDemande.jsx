@@ -25,7 +25,7 @@ function Editeur({ champ, profil, demande, actifs, onAppliquer, onFermer }) {
       )}
       {champ.type === 'nombre' && (
         <input ref={premier} type="number" min={champ.min ?? 0} max={champ.max} step={champ.pas ?? 1}
-          value={valeur ?? ''} placeholder={champ.vide || ''} onChange={(e) => setValeur(nombre(e.target.value))} />
+          value={valeur ?? ''} placeholder={champ.indice || ''} onChange={(e) => setValeur(nombre(e.target.value))} />
       )}
       {champ.type === 'curseur' && (
         <>
@@ -65,10 +65,10 @@ const CHAMPS = [
   { cle: 'epargne', titre: 'Épargne totale ($ CA)', type: 'nombre', pas: 1000, min: 1,
     lire: (p) => p.epargne_totale_cad, ecrire: (p, d, v) => ({ profil: { ...p, epargne_totale_cad: v }, demande: d }),
     puce: (p) => `épargne ${dollars(p.epargne_totale_cad)}` },
-  { cle: 'preserver', titre: 'Somme à ne jamais risquer ($ CA)', type: 'nombre', pas: 1000, vide: 'aucune',
+  { cle: 'preserver', titre: 'Somme à ne jamais risquer ($ CA)', type: 'nombre', pas: 1000, indice: 'aucune',
     lire: (p) => p.somme_a_preserver_cad, ecrire: (p, d, v) => ({ profil: { ...p, somme_a_preserver_cad: v }, demande: d }),
     puce: (p) => (p.somme_a_preserver_cad == null ? 'à préserver : —' : `à préserver ${dollars(p.somme_a_preserver_cad)}`) },
-  { cle: 'retrait', titre: "Retrait prévu dans combien d'années ? (vide : aucun)", type: 'nombre', min: 0, max: 50, vide: 'aucun',
+  { cle: 'retrait', titre: "Retrait prévu dans combien d'années ? (vide : aucun)", type: 'nombre', min: 0, max: 50, indice: 'aucun',
     lire: (p) => p.retrait_prevu_ans, ecrire: (p, d, v) => ({ profil: { ...p, retrait_prevu_ans: v }, demande: d }),
     puce: (p) => (p.retrait_prevu_ans == null ? 'retrait : aucun' : `retrait dans ${p.retrait_prevu_ans} an(s)`) },
   { cle: 'exclusions', titre: 'Secteurs à exclure', type: 'secteurs',
