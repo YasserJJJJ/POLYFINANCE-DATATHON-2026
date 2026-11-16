@@ -215,7 +215,7 @@ def test_hors_ligne_sans_import_boto3_et_reference_inchangee(monkeypatch):
     monkeypatch.setattr(builtins, "__import__", sans_sdk)
     p = PERSONAS["robert"]
     obtenu = analyser(p["profil"], p["demande"])
-    attendu = json.loads((Path(__file__).with_name("reference") / "robert.json").read_text())
+    attendu = json.loads((Path(__file__).with_name("reference") / "robert.json").read_text(encoding="utf-8"))
     assert sans_variations(obtenu) == sans_variations(attendu)
     assert obtenu["appels_modele"] == [] and not llm.acces_verifie()
 

@@ -52,7 +52,8 @@ def main():
     a.sortie.mkdir(parents=True, exist_ok=True)
 
     def sauver(nom, objet):
-        (a.sortie / nom).write_text(json.dumps(objet, ensure_ascii=False, indent=2, default=str) + "\n")
+        (a.sortie / nom).write_text(json.dumps(objet, ensure_ascii=False, indent=2, default=str) + "\n",
+                                    encoding="utf-8")
 
     sante = lire(a.url.rstrip("/") + "/api/sante")
     sauver("sante.json", sante)
@@ -68,8 +69,8 @@ def main():
         sauver(f"{nom}-hors-ligne.json", hors_ligne)
         mesure = a.sortie / f"{nom}-mesure.json"
         if a.reprendre and (a.sortie / f"{nom}-bedrock.json").exists():
-            dossier = json.loads((a.sortie / f"{nom}-bedrock.json").read_text())
-            duree = json.loads(mesure.read_text())["duree_http_s"] if mesure.exists() else None
+            dossier = json.loads((a.sortie / f"{nom}-bedrock.json").read_text(encoding="utf-8"))
+            duree = json.loads(mesure.read_text(encoding="utf-8"))["duree_http_s"] if mesure.exists() else None
         else:
             debut = time.perf_counter()
             dossier = lire(a.url.rstrip("/") + "/api/analyse", entree)

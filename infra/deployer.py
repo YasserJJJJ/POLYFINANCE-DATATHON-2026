@@ -143,7 +143,8 @@ class SuiviCreations:
     def enregistrer(self):
         self.chemin.parent.mkdir(parents=True, exist_ok=True)
         temporaire = self.chemin.with_suffix(".tmp")
-        temporaire.write_text(json.dumps(self.donnees, ensure_ascii=False, indent=2, default=str) + "\n")
+        temporaire.write_text(json.dumps(self.donnees, ensure_ascii=False, indent=2, default=str) + "\n",
+                              encoding="utf-8")
         temporaire.replace(self.chemin)
 
     def ajouter(self, service: str, nom: str, arn: str):

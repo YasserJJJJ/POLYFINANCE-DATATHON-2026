@@ -80,7 +80,7 @@ def main() -> None:
     def enregistrer():
         chemin.parent.mkdir(parents=True, exist_ok=True)
         temporaire = chemin.with_suffix(".tmp")
-        temporaire.write_text(json.dumps(journal, ensure_ascii=False, indent=2, default=str) + "\n")
+        temporaire.write_text(json.dumps(journal, ensure_ascii=False, indent=2, default=str) + "\n", encoding="utf-8")
         temporaire.replace(chemin)
 
     enregistrer()

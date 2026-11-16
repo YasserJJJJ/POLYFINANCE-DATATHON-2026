@@ -26,7 +26,7 @@ def sans_variations(dossier):
 def test_reference_persona(nom, monkeypatch):
     monkeypatch.setenv("ALPHAFORGE_LLM", "off")
     entree = PERSONAS[nom]
-    attendu = json.loads((REFERENCE / f"{nom}.json").read_text())
+    attendu = json.loads((REFERENCE / f"{nom}.json").read_text(encoding="utf-8"))
     obtenu = analyser(entree["profil"], entree["demande"])
     # Compare notamment verdict, règles, tous les attributs des faits, options et grille.
     assert sans_variations(obtenu) == sans_variations(attendu)

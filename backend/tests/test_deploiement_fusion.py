@@ -104,7 +104,7 @@ def test_nettoyage_uniquement_ressources_journalisees(tmp_path):
     client.delete_function.assert_called_once_with(FunctionName="fonction-creee")
     client.list_functions.assert_not_called()
     client.delete_app.assert_not_called()
-    assert json.loads(suivi.chemin.read_text())["creations"][0]["etat"] == "supprime"
+    assert json.loads(suivi.chemin.read_text(encoding="utf-8"))["creations"][0]["etat"] == "supprime"
     deployer.nettoyer(SimpleNamespace(client=lambda nom: client), suivi)
     assert client.delete_function.call_count == 1
 
@@ -131,7 +131,7 @@ def test_echec_deploiement_nettoie_sans_basculer_de_service(monkeypatch, tmp_pat
         deployer.main()
     s3.assert_not_called()
     session.client.return_value.delete_app.assert_called_once_with(appId="app-creee")
-    assert json.loads(journal.read_text())["creations"][0]["etat"] == "supprime"
+    assert json.loads(journal.read_text(encoding="utf-8"))["creations"][0]["etat"] == "supprime"
 
 
 def test_sante_identifiants_et_cors(monkeypatch):
@@ -196,4 +196,4 @@ def test_guardrail_refus_version_supprime_seulement_creation_locale(monkeypatch,
         client.delete_guardrail.assert_not_called()
     else:
         client.delete_guardrail.assert_called_once_with(guardrailIdentifier="nouveau")
-    assert json.loads(journal.read_text())["cree_par_tentative"] is not existant
+    assert json.loads(journal.read_text(encoding="utf-8"))["cree_par_tentative"] is not existant

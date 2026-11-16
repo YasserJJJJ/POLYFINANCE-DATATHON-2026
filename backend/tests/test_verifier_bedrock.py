@@ -7,7 +7,7 @@ from pathlib import Path
 
 def test_sans_identifiants_message_clair_sans_trace_meme_en_cp1252(tmp_path):
     vide = tmp_path / "vide"
-    vide.write_text("")
+    vide.write_text("", encoding="utf-8")
     env = {**os.environ, "AWS_PROFILE": "profil_inexistant_audit", "AWS_CONFIG_FILE": str(vide),
            "AWS_SHARED_CREDENTIALS_FILE": str(vide), "PYTHONIOENCODING": "cp1252"}
     for cle in ("AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "AWS_SESSION_TOKEN"):
