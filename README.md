@@ -4,6 +4,57 @@ Datathon PolyFinances 2026 · Banque Nationale × AWS · simulation éducative, 
 
 AlphaForge confronte une demande d’investissement à la situation déclarée de la personne. Le Gardien en Python décide du verdict. Le portefeuille entier est comparé avant et après l’ajout demandé, sur les mêmes données historiques. Les modèles comprennent, contestent et expliquent ; ils ne décident ni des chiffres ni des règles.
 
+## Essayer en ligne
+
+- Interface déployée (AWS Amplify) : https://main.d1d3b8g2y5hkdd.amplifyapp.com
+- API (AWS Lambda) : https://ldk3ad4p3grqn3ppbcosvznivm0plyck.lambda-url.us-east-1.on.aws/api/sante
+
+## Lancer le projet depuis GitHub, en 4 étapes
+
+Prérequis : Git, Python 3.12 ou plus, Node.js 20 ou plus. Aucune clé AWS n'est nécessaire : sans accès Bedrock,
+l'application tourne hors ligne (les chiffres et le verdict sont calculés par le code ; seuls les textes des agents
+passent par des gabarits).
+
+**1. Cloner le dépôt**
+
+```sh
+git clone https://github.com/YasserJJJJ/POLYFINANCE-DATATHON-2026.git
+cd POLYFINANCE-DATATHON-2026
+```
+
+**2. Installer** (macOS / Linux)
+
+```sh
+python3 -m venv backend/.venv
+backend/.venv/bin/python -m pip install -r backend/requirements.txt
+npm ci --prefix frontend
+```
+
+Windows PowerShell :
+
+```powershell
+py -m venv backend/.venv
+.\backend\.venv\Scripts\python.exe -m pip install -r backend/requirements.txt
+npm ci --prefix frontend
+```
+
+**3. Démarrer l'API** (terminal 1)
+
+```sh
+ALPHAFORGE_LLM=off backend/.venv/bin/python -m uvicorn api:app --app-dir backend --port 8000
+```
+
+Windows PowerShell : `$env:ALPHAFORGE_LLM="off"; .\backend\.venv\Scripts\python.exe -m uvicorn api:app --app-dir backend --port 8000`
+
+**4. Démarrer l'interface** (terminal 2), puis ouvrir http://localhost:5173
+
+```sh
+npm run dev --prefix frontend
+```
+
+Pour activer les agents Bedrock (Claude Sonnet 5, Nova 2 Lite), voir « Amazon Bedrock et hébergement » plus bas.
+Pour lancer les tests : `cd backend && .venv/bin/python -m pytest -q` (Windows : `.venv\Scripts\python.exe -m pytest -q`).
+
 ## Parcours
 
 1. **Tes mots** : demande libre ou persona fictive.
