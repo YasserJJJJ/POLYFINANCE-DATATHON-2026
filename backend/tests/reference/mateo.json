@@ -1524,23 +1524,6 @@
     },
     {
       "id": "F-32",
-      "libelle": "Pire chute de ESGV (Vanguard ESG U.S. Stock ETF)",
-      "lu_ou_calcule": "calcule",
-      "methode": "Même méthode que pour la demande, en CAD, 2021-11-12 → 2026-11-12.",
-      "references": [
-        "donnees-prix",
-        "donnees-change",
-        "donnees-univers",
-        "esma-2022",
-        "berg-2022"
-      ],
-      "source": "Yahoo Finance via yfinance, jeu de départ AlphaForge",
-      "type": "FAIT",
-      "unite": "%",
-      "valeur": -26.9
-    },
-    {
-      "id": "F-33",
       "libelle": "Pire chute de ZST.TO (BMO Ultra Short-Term Bond ETF)",
       "lu_ou_calcule": "calcule",
       "methode": "Même méthode pour tous les placements de la liste, en CAD, 2021-11-12 → 2026-11-12.",
@@ -1557,7 +1540,7 @@
       "valeur": -0.4
     },
     {
-      "id": "F-34",
+      "id": "F-33",
       "libelle": "Pire chute de JNJ (Johnson & Johnson)",
       "lu_ou_calcule": "calcule",
       "methode": "Même méthode pour tous les placements de la liste, en CAD, 2021-11-12 → 2026-11-12.",
@@ -1574,7 +1557,7 @@
       "valeur": -15.5
     },
     {
-      "id": "F-35",
+      "id": "F-34",
       "libelle": "Pire chute de XIU.TO (iShares S&P/TSX 60 Index ETF)",
       "lu_ou_calcule": "calcule",
       "methode": "Même méthode pour tous les placements de la liste, en CAD, 2021-11-12 → 2026-11-12.",
@@ -1618,17 +1601,6 @@
       "montant_cad": 15000,
       "nom": "Ta demande",
       "ticker": "ENB.TO"
-    },
-    {
-      "etat": "coherent",
-      "faits": [
-        "F-32"
-      ],
-      "horizon_ans": 10,
-      "libelle_actif": "Vanguard ESG U.S. Stock ETF",
-      "montant_cad": 15000,
-      "nom": "Alternative compatible avec tes exclusions de secteur",
-      "ticker": "ESGV"
     }
   ],
   "profil": {
@@ -1833,14 +1805,14 @@
   ],
   "suggestions": {
     "critere": "Un placement par famille, en partant de la pire chute observée la plus faible. Aucun classement au rendement passé, qui serait lu comme une prévision.",
-    "evalues": 27,
-    "passent": 26,
+    "evalues": 28,
+    "passent": 27,
     "placements": [
       {
         "a_ajuster": [],
         "etat": "coherent",
         "faits": [
-          "F-33"
+          "F-32"
         ],
         "famille": "Obligations",
         "nom": "BMO Ultra Short-Term Bond ETF",
@@ -1852,7 +1824,7 @@
         "a_ajuster": [],
         "etat": "coherent",
         "faits": [
-          "F-34"
+          "F-33"
         ],
         "famille": "Action d'une entreprise",
         "nom": "Johnson & Johnson",
@@ -1864,7 +1836,7 @@
         "a_ajuster": [],
         "etat": "coherent",
         "faits": [
-          "F-35"
+          "F-34"
         ],
         "famille": "Marché large (FNB d'actions)",
         "nom": "iShares S&P/TSX 60 Index ETF",
@@ -1879,9 +1851,11 @@
     "ce_qui_changerait": [
       {
         "faits": [
-          "F-32"
+          "F-32",
+          "F-33",
+          "F-34"
         ],
-        "texte": "Une option compatible avec tes exclusions existe : ESGV (Vanguard ESG U.S. Stock ETF), même montant.",
+        "texte": "Placements de la liste qui passent tes règles, au même montant : ZST.TO, JNJ, XIU.TO.",
         "type": "SCENARIO"
       }
     ],

@@ -1612,18 +1612,6 @@
       "montant_cad": 10000,
       "nom": "Ta demande",
       "ticker": "BTC-USD"
-    },
-    {
-      "etat": "ajustement",
-      "faits": [
-        "F-9"
-      ],
-      "horizon_ans": 15,
-      "libelle_actif": "iShares S&P/TSX 60 Index ETF",
-      "montant_cad": 10000,
-      "nom": "Placement large, même montant",
-      "note": "Pour comparer, le marché canadien large : pire chute observée -16,4 %, contre -74,2 % pour BTC-USD.",
-      "ticker": "XIU.TO"
     }
   ],
   "profil": {
@@ -1810,7 +1798,7 @@
   ],
   "suggestions": {
     "critere": "Un placement par famille, en partant de la pire chute observée la plus faible. Aucun classement au rendement passé, qui serait lu comme une prévision.",
-    "evalues": 29,
+    "evalues": 30,
     "passent": 3,
     "placements": [
       {
@@ -1853,7 +1841,17 @@
   },
   "texte": {
     "avertissement": "Simulation éducative. Ceci n'est pas un conseil financier personnalisé.",
-    "ce_qui_changerait": [],
+    "ce_qui_changerait": [
+      {
+        "faits": [
+          "F-32",
+          "F-33",
+          "F-34"
+        ],
+        "texte": "Placements de la liste qui passent tes règles, au même montant : JNJ, XOM, ATD.TO.",
+        "type": "SCENARIO"
+      }
+    ],
     "controle": [
       "mode hors ligne demandé (ALPHAFORGE_LLM=off)"
     ],

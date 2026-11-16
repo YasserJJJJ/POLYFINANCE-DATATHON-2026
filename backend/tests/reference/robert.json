@@ -1561,7 +1561,7 @@
     },
     {
       "id": "F-34",
-      "libelle": "Pire chute de SPY (SPDR S&P 500 ETF Trust)",
+      "libelle": "Pire chute de XIU.TO (iShares S&P/TSX 60 Index ETF)",
       "lu_ou_calcule": "calcule",
       "methode": "Même méthode pour tous les placements de la liste, en CAD, 2021-11-12 → 2026-11-12.",
       "references": [
@@ -1574,7 +1574,7 @@
       "source": "Yahoo Finance via yfinance, jeu de départ AlphaForge",
       "type": "FAIT",
       "unite": "%",
-      "valeur": -22.2
+      "valeur": -16.4
     },
     {
       "id": "F-35",
@@ -1642,18 +1642,6 @@
       "nom": "Version ajustée",
       "sens": "baisse",
       "ticker": "TSLA"
-    },
-    {
-      "etat": "coherent",
-      "faits": [
-        "F-9"
-      ],
-      "horizon_ans": 4,
-      "libelle_actif": "iShares S&P/TSX 60 Index ETF",
-      "montant_cad": 80000,
-      "nom": "Placement large, même montant",
-      "note": "Pour comparer, le marché canadien large : pire chute observée -16,4 %, contre -70,9 % pour TSLA.",
-      "ticker": "XIU.TO"
     }
   ],
   "profil": {
@@ -1860,8 +1848,8 @@
   ],
   "suggestions": {
     "critere": "Un placement par famille, en partant de la pire chute observée la plus faible. Aucun classement au rendement passé, qui serait lu comme une prévision.",
-    "evalues": 29,
-    "passent": 6,
+    "evalues": 30,
+    "passent": 7,
     "placements": [
       {
         "a_ajuster": [],
@@ -1882,10 +1870,10 @@
           "F-34"
         ],
         "famille": "Marché large (FNB d'actions)",
-        "nom": "SPDR S&P 500 ETF Trust",
-        "pire_chute_pct": -22.2,
-        "ticker": "SPY",
-        "volatilite_pct": 16.6
+        "nom": "iShares S&P/TSX 60 Index ETF",
+        "pire_chute_pct": -16.4,
+        "ticker": "XIU.TO",
+        "volatilite_pct": 13.1
       },
       {
         "a_ajuster": [],
@@ -1907,6 +1895,15 @@
       {
         "faits": [],
         "texte": "À 38 000 CAD, la règle « Concentration » serait respectée. Le verdict serait « Cohérent avec un ajustement » (variation à la baisse dans cette simulation).",
+        "type": "SCENARIO"
+      },
+      {
+        "faits": [
+          "F-33",
+          "F-34",
+          "F-35"
+        ],
+        "texte": "Placements de la liste qui passent tes règles, au même montant : ZST.TO, XIU.TO, GLD.",
         "type": "SCENARIO"
       }
     ],
