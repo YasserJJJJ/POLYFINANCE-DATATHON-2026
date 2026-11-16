@@ -30,6 +30,11 @@ class LLMIndisponible(Exception):
     pass
 
 
+def journal_appels() -> list[dict]:
+    """Point de branchement K6 ; la tranche 3 instrumentera les appels Bedrock."""
+    return []
+
+
 def mode() -> str:
     return os.environ.get("ALPHAFORGE_LLM", "auto")
 

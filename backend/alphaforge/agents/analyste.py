@@ -17,6 +17,7 @@ from ..dossier import Dossier
 from ..format import dollars, fr
 from ..gardien import (CLASSES_TITRE_UNIQUE, RETRAIT_PROCHE_ANS, SEUIL_CORRELATION, SEUIL_TRES_VOLATIL,
                        SEUIL_VOLATIL_RETRAIT)
+from ..profil import symboles_portefeuille
 from ..sources import references_de
 
 REFERENCE = "XIU.TO"  # marché canadien large, pour donner un ordre de grandeur
@@ -29,7 +30,7 @@ def mesures_actif(ticker: str, portefeuille: list[str] | None = None) -> dict:
     return {**pc, "volatilite_pct": calculs.volatilite_annualisee(ticker),
             "rendement_annualise_pct": calculs.rendement_annualise(ticker), "secteur": info["sector"],
             "asset_class": info["asset_class"], "devise": info["currency"],
-            "correlations": {t: calculs.correlation(ticker, t) for t in (portefeuille or [])
+            "correlations": {t: calculs.correlation(ticker, t) for t in symboles_portefeuille(portefeuille)
                              if t != ticker and t in univers().index},
             "qualite": controle_qualite(ticker)}
 
@@ -144,7 +145,7 @@ def executer(d: Dossier) -> None:
                                   "Scénario fictif : la prochaine baisse peut être plus forte ou plus faible.").id
 
     correls, inconnus = {}, []
-    for t in d.profil.get("portefeuille_actuel", []) or []:
+    for t in symboles_portefeuille(d.profil.get("portefeuille_actuel")):
         if t == ticker:
             continue
         try:

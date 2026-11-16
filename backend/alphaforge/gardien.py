@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from .dossier import Regle
 from .format import dollars, fr
-from .profil import evaluer
+from .profil import evaluer, symboles_portefeuille
 from .sources import references_de
 
 # Seuils de l'équipe (hypothèses, inchangés) : nommés une seule fois pour être affichés comme faits HYPOTHESE.
@@ -180,7 +180,7 @@ def _regles(profil: dict, demande: dict, m: dict, f: dict | None = None) -> list
 
     # 8. Fausse diversification (si on connaît les placements actuels)
     correl = m.get("correlations") or {}
-    deja = demande.get("ticker") and demande.get("ticker") in (profil.get("portefeuille_actuel") or [])
+    deja = demande.get("ticker") and demande.get("ticker") in symboles_portefeuille(profil.get("portefeuille_actuel"))
     note_deja = f" Tu détiens déjà {demande['ticker']} : ce placement s'y ajoute." if deja else ""
     if correl:
         forts = {t: c for t, c in correl.items() if c >= SEUIL_CORRELATION}

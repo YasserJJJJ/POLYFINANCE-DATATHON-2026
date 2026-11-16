@@ -13,6 +13,7 @@ from .. import calculs, llm
 from ..donnees import _prix
 from ..dossier import Dossier, Objection
 from ..format import fr
+from ..profil import symboles_portefeuille
 from ..sources import references_de
 from ..garde_fous import mots_de_conseil, rapport_calcule, sans_accents
 
@@ -122,7 +123,7 @@ Format : {"objections": [{"code": "<code de la liste>", "texte": "<objection>"}]
 def _choix_llm(d: Dossier, possibles: list[str]) -> list[tuple[str, str]]:
     p, m = d.profil, d.demande["mesures"]
     contexte = (f"Personne : {p.get('nom')}, horizon {p.get('horizon_ans')} an(s), expérience {p.get('experience')}, "
-                f"exclusions {p.get('exclusions')}, placements actuels {p.get('portefeuille_actuel')}.\n"
+                f"exclusions {p.get('exclusions')}, placements actuels {symboles_portefeuille(p.get('portefeuille_actuel'))}.\n"
                 f"Demande : {d.demande.get('texte')} ({d.demande['ticker']}, {d.demande['montant_cad']} $).\n"
                 f"Faits : " + "; ".join(f"{f.id} {f.libelle} = {f.valeur} {f.unite}" for f in d.faits) + "\n"
                 f"Vérifications possibles :\n" + "\n".join(f"- {fr(c)} : {CATALOGUE[c][3]}" for c in possibles))

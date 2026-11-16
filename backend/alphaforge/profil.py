@@ -7,6 +7,39 @@ telles dans l'interface. Propriétaire des seuils : Gardien (à valider).
 """
 from __future__ import annotations
 
+import math
+
+
+def symboles_portefeuille(portefeuille: list[str] | dict[str, float] | None) -> list[str]:
+    """Vue des symboles pour les appelants historiques ; ne modifie jamais les poids."""
+    return list(portefeuille) if portefeuille is not None else []
+
+
+def normaliser_portefeuille(
+    portefeuille: list[str] | dict[str, float] | None,
+) -> tuple[dict[str, float] | None, str | None]:
+    """K1 : poids déclarés ou hypothèse équipondérée, sans effet sur les appelants."""
+    if portefeuille is None:
+        return None, None
+    if not isinstance(portefeuille, (list, dict)):
+        raise ValueError("Le portefeuille doit être une liste de symboles ou un dictionnaire de poids.")
+    if not portefeuille:
+        return None, None
+    symboles = symboles_portefeuille(portefeuille)
+    if any(not isinstance(t, str) or not t.strip() for t in symboles):
+        raise ValueError("Chaque symbole du portefeuille doit être une chaîne non vide.")
+    if isinstance(portefeuille, list):
+        uniques = list(dict.fromkeys(symboles))
+        return {t: 1 / len(uniques) for t in uniques}, "hypothese_equiponderee"
+    if any(isinstance(v, bool) or not isinstance(v, (int, float))
+           or v < 0 or v > 1 or not math.isfinite(v) for v in portefeuille.values()):
+        raise ValueError("Les poids doivent être des nombres finis entre 0 et 1.")
+    poids = {t: float(v) for t, v in portefeuille.items()}
+    if not math.isclose(math.fsum(poids.values()), 1.0, rel_tol=0.0, abs_tol=1e-12):
+        raise ValueError("La somme des poids du portefeuille doit être égale à 1.")
+    return poids, "declare"
+
+
 # 3 questions inspirées de l'échelle de tolérance de Grable & Lytton (1999).
 QUESTIONS_TOLERANCE = [
     {

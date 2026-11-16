@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { api, dollars } from '../api.js'
 import { Jauge } from '../composants/Base.jsx'
 import { SourcesCompactes, useRegistre } from '../composants/Sources.jsx'
+import { symbolesPortefeuille } from '../portefeuille.js'
 
 export const SECTEURS_FR = {
   Energy: 'Énergie (pétrole, gaz, pipelines)', 'Crypto asset': 'Cryptoactifs', Financials: 'Finance',
@@ -76,13 +77,14 @@ export default function Etape2Verifier({ profil, setProfil, demande, setDemande,
   const secteurs = useMemo(() => [...new Set(actifs.map((a) => a.sector))].filter((s) => SECTEURS_FR[s]), [actifs])
   const actif = actifs.find((a) => a.ticker === demande.ticker)
   const registre = useRegistre()
+  const portefeuille = symbolesPortefeuille(profil.portefeuille_actuel)
   const ev = compris?.profil?.evaluation
   // Le pourcentage vient du backend (même calcul qu'à l'étape du verdict) pour ne jamais diverger
   // d'un arrondi JS à un arrondi Python ; secours si l'appel /api/comprendre n'a pas encore répondu.
   const poids = ev?.poids_pct ??
     (profil.epargne_totale_cad && demande.montant_cad ? Math.round(demande.montant_cad / profil.epargne_totale_cad * 100) : null)
   const basculeExclusion = (s) => maj('exclusions', profil.exclusions.includes(s) ? profil.exclusions.filter((x) => x !== s) : [...profil.exclusions, s])
-  const ajouterDetenu = (t) => t && !profil.portefeuille_actuel.includes(t) && maj('portefeuille_actuel', [...profil.portefeuille_actuel, t])
+  const ajouterDetenu = (t) => t && !portefeuille.includes(t) && maj('portefeuille_actuel', [...portefeuille, t])
 
   return (
     <section className="etape2">
@@ -179,8 +181,8 @@ export default function Etape2Verifier({ profil, setProfil, demande, setDemande,
 
           <h2>Ce que tu détiens déjà</h2>
           <div className="puces-choix">
-            {profil.portefeuille_actuel.map((t) => (
-              <button key={t} type="button" className="choix actif" onClick={() => maj('portefeuille_actuel', profil.portefeuille_actuel.filter((x) => x !== t))}
+            {portefeuille.map((t) => (
+              <button key={t} type="button" className="choix actif" onClick={() => maj('portefeuille_actuel', portefeuille.filter((x) => x !== t))}
                 aria-label={`Retirer ${t}`}>{t} ×</button>
             ))}
             <select aria-label="Ajouter un placement détenu" value="" onChange={(e) => ajouterDetenu(e.target.value)}>

@@ -77,6 +77,9 @@ class Dossier:
     questions: list[str] = field(default_factory=list)
     texte: dict = field(default_factory=dict)
     trace: list[EtapeTrace] = field(default_factory=list)
+    version_contrat: str = "2"
+    comparaison: dict = field(default_factory=dict)  # K3 : rempli par la tranche 2
+    appels_modele: list[dict] = field(default_factory=list)  # K6 : rempli par la tranche 3
 
     def ajouter_fait(self, libelle: str, valeur: Any, unite: str, type_: TypeFait,
                      source: str, methode: str, lu_ou_calcule: str = "calcule",

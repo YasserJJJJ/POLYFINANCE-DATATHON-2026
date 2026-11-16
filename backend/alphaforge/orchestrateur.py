@@ -12,11 +12,12 @@ import time
 from collections.abc import Callable
 from dataclasses import asdict
 
-from . import gardien
+from . import gardien, llm
 from .agents import analyste, profileur, redacteur, sceptique
 from .donnees import info_actif
 from .dossier import Dossier
 from .format import fr
+from .profil import symboles_portefeuille
 from .sources import references_de
 
 
@@ -31,7 +32,7 @@ def _alternative(d: Dossier) -> dict | None:
         info = info_actif(t)
         if t == d.demande["ticker"] or any(e in str(info["sector"]).lower() for e in exclusions):
             continue
-        m = analyste.mesures_actif(t, d.profil.get("portefeuille_actuel"))
+        m = analyste.mesures_actif(t, symboles_portefeuille(d.profil.get("portefeuille_actuel")))
         etat = gardien.verdict(gardien.appliquer_regles(d.profil, {**d.demande, "ticker": t}, m))["etat"]
         if etat in ("coherent", "ajustement"):
             f = d.ajouter_fait(f"Pire chute de {t} ({info['name']})", m["pire_chute_pct"], "%", "FAIT",
@@ -50,7 +51,7 @@ def _placement_large(d: Dossier, m: dict) -> dict | None:
     info = info_actif(ref)
     if d.demande["ticker"] == ref or any(e in str(info["sector"]).lower() for e in gardien.exclusions_normalisees(d.profil)):
         return None
-    m_ref = analyste.mesures_actif(ref, d.profil.get("portefeuille_actuel"))
+    m_ref = analyste.mesures_actif(ref, symboles_portefeuille(d.profil.get("portefeuille_actuel")))
     etat = gardien.verdict(gardien.appliquer_regles(d.profil, {**d.demande, "ticker": ref}, m_ref))["etat"]
     fait = d.demande["ids_faits"].get("reference")
     return {"nom": "Placement large, même montant", "ticker": ref, "libelle_actif": info["name"],
@@ -78,6 +79,7 @@ def analyser(profil: dict, demande: dict, sur_etape: Callable[[dict], None] | No
     if not d.demande.get("ticker") or d.demande.get("montant_cad") is None:
         d.verdict = {"etat": "indetermine", "libelle": gardien.LIBELLES_ETAT["indetermine"],
                      "respectees": 0, "evaluees": 0}
+        d.appels_modele = llm.journal_appels()
         return d.to_dict()
 
     analyste.executer(d)
@@ -117,4 +119,5 @@ def analyser(profil: dict, demande: dict, sur_etape: Callable[[dict], None] | No
 
     redacteur.executer(d)
     publier()
+    d.appels_modele = llm.journal_appels()
     return d.to_dict()
