@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="fr-CA" data-theme="sombre">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>Pupitre · Second avis</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-niveau="essentiel" data-statut="courante" data-onglet="a">
+<a class="saut" href="#a-corps">Aller aux règles</a>
+
+<header class="bandeau" id="bandeau">
+  <p class="bandeau-txt">Simulation éducative · données de démonstration précalculées par le moteur réel <span class="mut" id="meta"></span></p>
+  <nav class="bandeau-nav" aria-label="Autres prototypes">
+    <a href="../index.html" id="lien-galerie">Galerie</a>
+    <span id="liens-protos"></span>
+  </nav>
+</header>
+
+<section class="etat" id="etat" aria-label="Barre d'état">
+  <div class="etat-l1">
+    <span class="eti">Situation</span>
+    <div class="cas" id="etat-cas" role="group" aria-label="Situation"></div>
+    <label class="cas-part"><span class="sr">Cas particulier</span>
+      <select id="etat-special" data-k="special">
+        <option value="">cas particulier…</option>
+        <option value="sans_epargne">sans épargne connue</option>
+        <option value="impossible">montant supérieur à l'épargne</option>
+        <option value="hors_univers">actif hors univers</option>
+      </select>
+    </label>
+    <p class="demande"><span class="eti">Demande</span> <span id="etat-demande"></span></p>
+  </div>
+  <div class="etat-l2">
+    <div class="etat-live" id="etat-live" role="status" aria-live="polite" aria-atomic="true"></div>
+    <div class="etat-actions" id="etat-actions"></div>
+    <div class="lecture" role="group" aria-label="Niveau de lecture">
+      <span class="eti">Lecture</span>
+      <button type="button" data-act="niveau" data-n="essentiel" id="b-ess" aria-pressed="true">Essentiel</button><button type="button" data-act="niveau" data-n="approfondi" id="b-app" aria-pressed="false">Approfondi</button>
+      <kbd title="raccourci">n</kbd>
+    </div>
+  </div>
+</section>
+
+<nav class="onglets" id="onglets" aria-label="Volets">
+  <button type="button" data-act="onglet" data-o="a" aria-pressed="true">Règles</button>
+  <button type="button" data-act="onglet" data-o="b" aria-pressed="false">Faits</button>
+  <button type="button" data-act="onglet" data-o="c" aria-pressed="false">Journal</button>
+  <button type="button" data-act="onglet" data-o="d" aria-pressed="false">Diff</button>
+</nav>
+
+<main class="pupitre" id="pupitre">
+  <section class="volet vol-a" id="volet-a" aria-labelledby="ta">
+    <header class="vt">
+      <h2 id="ta"><kbd>1</kbd> A · Règles</h2>
+      <span class="vt-info" id="a-info"></span>
+      <span class="tampon">périmé</span>
+      <button type="button" class="zoom" data-act="zoom" data-v="a" aria-pressed="false" title="Agrandir ce volet (z)">agrandir</button>
+    </header>
+    <div class="vc" id="a-corps" tabindex="0" aria-label="Volet A, règles et verdict"></div>
+  </section>
+
+  <section class="volet vol-b" id="volet-b" aria-labelledby="tb">
+    <header class="vt">
+      <h2 id="tb"><kbd>2</kbd> B · Registre des faits</h2>
+      <span class="vt-info" id="b-info"></span>
+      <span class="tampon">périmé</span>
+      <button type="button" class="zoom" data-act="zoom" data-v="b" aria-pressed="false" title="Agrandir ce volet (z)">agrandir</button>
+    </header>
+    <div class="rail" id="b-rail"></div>
+    <div class="b-outils" id="b-outils">
+      <label class="filtre"><span>filtre</span>
+        <input id="b-filtre" type="search" autocomplete="off" spellcheck="false" placeholder="id, libellé, source, méthode… (f)" data-k="filtre">
+      </label>
+      <div class="b-puces" id="b-puces"></div>
+    </div>
+    <div class="vc b-table" id="b-corps" tabindex="0" aria-label="Tableau des faits, défilable"></div>
+    <div class="b-preuve" id="b-preuve" tabindex="0" aria-label="Preuve du fait sélectionné"></div>
+  </section>
+
+  <section class="volet vol-c" id="volet-c" aria-labelledby="tc">
+    <header class="vt">
+      <h2 id="tc"><kbd>3</kbd> C · Journal</h2>
+      <span class="vt-info" id="c-info"></span>
+      <button type="button" class="zoom" data-act="zoom" data-v="c" aria-pressed="false" title="Agrandir ce volet (z)">agrandir</button>
+    </header>
+    <div class="rail" id="c-rail"></div>
+    <div class="vc" id="c-corps" tabindex="0" aria-label="Volet C, journal"></div>
+  </section>
+
+  <section class="volet vol-d" id="volet-d" aria-labelledby="td">
+    <header class="vt">
+      <h2 id="td"><kbd>4</kbd> D · Diff</h2>
+      <span class="vt-info" id="d-info"></span>
+      <button type="button" class="zoom" data-act="zoom" data-v="d" aria-pressed="false" title="Agrandir ce volet (z)">agrandir</button>
+    </header>
+    <div class="d-outils" id="d-outils"></div>
+    <div class="vc" id="d-corps" tabindex="0" aria-label="Volet D, différence entre deux révisions"></div>
+  </section>
+
+  <section class="bande" id="bande" aria-labelledby="ts">
+    <div class="bande-mesures">
+      <header class="vt">
+        <h2 id="ts">S · Sans → avec la demande</h2>
+        <span class="tampon">périmé</span>
+      </header>
+      <div class="vc" id="s-mesures" tabindex="0" aria-label="Mesures appariées"></div>
+    </div>
+    <div class="bande-courbe" id="s-courbe"></div>
+  </section>
+</main>
+
+<footer class="cmd" id="cmd">
+  <button type="button" class="invite" data-act="palette" id="b-invite" aria-haspopup="dialog">
+    <span class="prompt" id="prompt"></span><span class="curseur-txt">tape <kbd>/</kbd> ou <kbd>⌘K</kbd> pour une commande…</span><span class="mobile-txt">Commandes</span>
+  </button>
+  <p class="cmd-msg" id="cmd-msg" aria-live="polite"></p>
+  <div class="cmd-actions" id="cmd-actions"></div>
+  <div class="cmd-outils">
+    <label class="demo">États de démonstration
+      <select id="demo" data-k="demo">
+        <option value="normal">normal</option>
+        <option value="chargement">chargement</option>
+        <option value="erreur">erreur</option>
+        <option value="reprise">reprise</option>
+      </select>
+    </label>
+    <button type="button" class="b-mini" data-act="theme" id="b-theme" title="Thème clair ou sombre (t)">thème</button>
+    <button type="button" class="b-mini" data-act="aide" title="Raccourcis et commandes (?)"><kbd>?</kbd> aide</button>
+  </div>
+</footer>
+
+<dialog id="palette" aria-labelledby="pal-titre">
+  <div class="pal" id="pal-form">
+    <div class="pal-tete">
+      <h2 id="pal-titre">Commande</h2>
+      <button type="button" class="b-mini" data-act="fermer-dlg" aria-label="Fermer la palette">Échap</button>
+    </div>
+    <div class="pal-ligne">
+      <span aria-hidden="true">&gt;</span>
+      <input id="pal-saisie" type="text" role="combobox" aria-expanded="true" aria-controls="pal-liste" aria-autocomplete="list" aria-describedby="pal-aide" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="montant 38000 · retrait na · diff 1 2 · aide">
+    </div>
+    <p class="pal-msg" id="pal-msg" role="alert"></p>
+    <ul class="pal-liste" id="pal-liste" role="listbox" aria-label="Suggestions"></ul>
+    <div class="pal-gros" id="pal-gros"></div>
+    <p class="pal-aide" id="pal-aide"><kbd>↑</kbd><kbd>↓</kbd> choisir · <kbd>Tab</kbd> compléter · <kbd>⏎</kbd> exécuter · <kbd>Échap</kbd> fermer. Seules les valeurs précalculées existent.</p>
+  </div>
+</dialog>
+
+<dialog id="aide" aria-labelledby="aide-titre">
+  <div class="dlg">
+    <div class="pal-tete"><h2 id="aide-titre">Raccourcis et commandes</h2><button type="button" class="b-mini" data-act="fermer-dlg">Échap</button></div>
+    <div id="aide-corps"></div>
+  </div>
+</dialog>
+
+<dialog id="fiche" aria-labelledby="fiche-titre">
+  <div class="dlg">
+    <div class="pal-tete"><h2 id="fiche-titre">Fait</h2><button type="button" class="b-mini" data-act="fermer-dlg">Échap</button></div>
+    <div id="fiche-corps"></div>
+  </div>
+</dialog>
+
+<script src="../socle/fixtures.js"></script>
+<script src="../socle/socle.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

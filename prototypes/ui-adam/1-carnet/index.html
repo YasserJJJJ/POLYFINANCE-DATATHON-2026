@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carnet · Second avis</title>
+  <meta name="description" content="Prototype 1, Carnet : le dossier comme un texte annoté. On corrige la phrase, la page se relit.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-niveau="essentiel" data-statut="courante">
+  <a class="evitement" href="#texte">Aller au texte</a>
+
+  <!-- Titre courant : bandeau permanent, galerie, profondeur de lecture. -->
+  <header class="tete" id="tete">
+    <p class="bandeau" id="bandeau">Simulation éducative · données de démonstration précalculées par le moteur réel</p>
+    <div class="tete-ligne">
+      <p class="titre-courant"><a id="lien-galerie" href="../index.html">Galerie</a><span class="sep" aria-hidden="true">/</span><span class="pc">Second avis</span> <span class="direction">Carnet</span></p>
+      <div class="niveau" role="group" aria-label="Profondeur de lecture">
+        <button type="button" data-niveau="essentiel" data-k="niveau-essentiel" aria-pressed="true">Essentiel</button>
+        <button type="button" data-niveau="approfondi" data-k="niveau-approfondi" aria-pressed="false">Approfondi</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="table">
+    <article class="feuille" id="feuille">
+      <nav class="sommaire" id="sommaire" aria-label="Dossiers et cas limites"></nav>
+      <div id="bandeaux"></div>
+      <main id="texte" tabindex="-1">
+        <noscript><p class="erratum">Ce carnet a besoin de JavaScript pour lire les dossiers du socle.</p></noscript>
+      </main>
+      <footer class="pied" id="pied"></footer>
+    </article>
+  </div>
+
+  <!-- Colophon collant : édition lue, heure de relecture, annuler / rétablir, éditions. -->
+  <div class="colophon" id="colophon" role="region" aria-label="Colophon : édition en cours de lecture"></div>
+
+  <!-- Filigrane de l'épreuve périmée (décor, sans contenu lisible). -->
+  <div class="filigrane" aria-hidden="true"><span>à relire</span></div>
+
+  <dialog class="editions" id="editions" aria-labelledby="editions-titre"></dialog>
+
+  <div class="sr-only" id="annonce" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="../socle/fixtures.js"></script>
+  <script src="../socle/socle.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
