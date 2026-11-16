@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react'
 import { dollars } from '../api.js'
+import BarreDemande from '../composants/BarreDemande.jsx'
 import { Etiquette, PuceIssue, PuceNiveau, PuceVerdict, PucesFaits } from '../composants/Base.jsx'
 import GraphiqueChute from '../composants/GraphiqueChute.jsx'
 import ComparaisonPortefeuille from '../composants/ComparaisonPortefeuille.jsx'
@@ -35,19 +37,73 @@ function Option({ o, principal, ouvrir }) {
 
 const PERSONAS_NOMS = ['Amira', 'Mateo', 'Robert']
 
-export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifier }) {
+// Plan ouvert : les placements de la liste qui passent les règles, en tableau, chacun analysable seul.
+function PlacementsDuPlan({ plan, verdict, ouvrir, onAnalyser }) {
+  return (
+    <div className="carte">
+      <h2>{plan.placements.length ? 'Placements de la liste qui passent les règles pour toi' : 'Aucun placement de la liste ne passe les règles'}</h2>
+      {plan.placements.length > 0 && (
+        <div className="defile-x">
+          <table className="registre comparatif">
+            <thead><tr><th>Placement</th><th>Famille</th><th>Pire chute observée</th><th>Verdict</th><th /></tr></thead>
+            <tbody>
+              {plan.placements.map((pl) => (
+                <tr key={pl.ticker}>
+                  <td><strong>{pl.ticker}</strong><br /><span className="muted petit">{pl.nom}</span></td>
+                  <td>{pl.famille}</td>
+                  <td className="nombre">{String(pl.pire_chute_pct).replace('.', ',')} % <PucesFaits ids={pl.faits} ouvrir={ouvrir} /></td>
+                  <td><PuceVerdict etat={pl.etat} />{pl.a_ajuster.length > 0 && <p className="muted petit">À ajuster : {pl.a_ajuster.join(', ')}</p>}</td>
+                  <td><button type="button" className="bouton discret" onClick={() => onAnalyser(pl.ticker)}>Analyse complète</button></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+      <p className="muted petit">{plan.critere} Ce que les règles acceptent pour toi, pas une recommandation.
+        {verdict.etat === 'incoherent' && plan.bloquante && <> La règle qui bloque le plus souvent : « {plan.bloquante} ».</>}</p>
+      {plan.ecartes?.length > 0 && (
+        <details className="pourquoi-regle">
+          <summary>Pourquoi les autres placements ne sont pas retenus</summary>
+          <ul>{plan.ecartes.map((e) => <li key={e.raison}>{e.raison} : {e.nombre} placement(s)</li>)}</ul>
+        </details>
+      )}
+    </div>
+  )
+}
+
+export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifier, saisie, actifs, onRelancer, relance, onAnalyserPlacement }) {
   const { verdict, texte, regles, options, faits, objections, qualite_donnees: qualite, demande, profil } = dossier
+  const [onglet, setOnglet] = useState('essentiel')
+  useEffect(() => setOnglet('essentiel'), [dossier])   // un nouveau résultat se lit d'abord par l'essentiel
+  const plan = dossier.plan?.ouvert ? dossier.plan : null
+  const nbPlacements = plan ? plan.placements.length : options.length
+  const onglets = [['essentiel', "L'essentiel"], ['placements', `${plan ? 'Les placements' : 'Les options'} (${nbPlacements})`],
+    ['detail', 'Le détail']]
   const estPersona = PERSONAS_NOMS.includes(profil?.nom)
   const ids = demande.ids_faits || {}
   const ordre = { rouge: 0, orange: 1, gris: 2, ok: 3, non_evaluee: 4 }
   const reglesTriees = [...regles].sort((a, b) => ordre[a.niveau] - ordre[b.niveau])
 
   return (
-    <section className="etape4">
+    <section className={`etape4 ${relance ? 'en-relance' : ''}`} aria-busy={relance}>
+      <BarreDemande profil={{ ...saisie.profil, evaluation: profil.evaluation }} demande={saisie.demande} actifs={actifs}
+        onRelancer={onRelancer} onToutRevoir={onModifier} relance={relance} />
+
+      <div className="onglets" role="tablist" aria-label="Niveau de détail">
+        {onglets.map(([cle, nom]) => (
+          <button key={cle} type="button" role="tab" aria-selected={onglet === cle}
+            className={`onglet ${onglet === cle ? 'actif' : ''}`} onClick={() => setOnglet(cle)}>{nom}</button>
+        ))}
+      </div>
+
+      {onglet === 'essentiel' && (<>
       <div className={`verdict-tete carte etat-${verdict.etat}`}>
         <p className="surtitre">Le second avis</p>
         <PuceVerdict etat={verdict.etat} grand libelle={verdict.libelle} />
-        <p className="compte-regles"><strong>{verdict.respectees}</strong> règle(s) respectée(s) sur <strong>{verdict.evaluees}</strong></p>
+        {plan
+          ? <p className="compte-regles"><strong>{verdict.respectees}</strong> placement(s) sur <strong>{verdict.evaluees}</strong> passent toutes les règles</p>
+          : <p className="compte-regles"><strong>{verdict.respectees}</strong> règle(s) respectée(s) sur <strong>{verdict.evaluees}</strong></p>}
         {texte?.reformulation && <p className="reformulation">{texte.reformulation}</p>}
         {texte?.tensions?.map((t) => <p key={t} className="tension">{t}</p>)}
       </div>
@@ -78,19 +134,31 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
         </div>
       )}
 
-      <div className="trois-options">
-        {options.map((o, i) => <Option key={o.nom} o={o} principal={i === 1} ouvrir={ouvrirFait} />)}
-      </div>
       {texte?.ce_qui_changerait?.length > 0 && (
         <ul className="phrases">{texte.ce_qui_changerait.map((p, i) => <Phrase key={i} p={p} ouvrir={ouvrirFait} />)}</ul>
       )}
       <div className="actions">
-        {dossier.bascule?.cases?.length > 0
-          ? <button type="button" className="bouton principal" onClick={onBascule}>Bouger les curseurs</button>
-          : <p className="muted petit">Les curseurs de bascule s'ouvrent dès que le verdict peut être calculé.</p>}
-        <button type="button" className="bouton discret" onClick={onModifier}>Modifier mes réponses</button>
+        <button type="button" className="bouton principal" onClick={() => setOnglet('placements')}>
+          {plan ? `Voir les placements (${nbPlacements})` : 'Comparer les options'}
+        </button>
+        {dossier.bascule?.cases?.length > 0 && <button type="button" className="bouton discret" onClick={onBascule}>Bouger les curseurs</button>}
+        <button type="button" className="bouton discret" onClick={() => setOnglet('detail')}>Voir le détail</button>
       </div>
+      </>)}
 
+      {onglet === 'placements' && (plan
+        ? <PlacementsDuPlan plan={plan} verdict={verdict} ouvrir={ouvrirFait} onAnalyser={onAnalyserPlacement} />
+        : (<>
+          <div className="trois-options">
+            {options.map((o, i) => <Option key={o.nom} o={o} principal={i === 1} ouvrir={ouvrirFait} />)}
+          </div>
+          {dossier.bascule?.cases?.length > 0 && (
+            <div className="actions"><button type="button" className="bouton principal" onClick={onBascule}>Bouger les curseurs</button></div>
+          )}
+        </>))}
+
+      {onglet === 'detail' && (<>
+      {plan && <p className="muted petit">Plan ouvert : les règles ci-dessous sont celles appliquées à {plan.regles_de || 'la liste'}, le premier placement retenu.</p>}
       <div className="colonnes">
         <div className="carte">
           <h2>Les règles appliquées</h2>
@@ -114,7 +182,7 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
             Les seuils (étiquette Hypothèse) sont des choix de l'équipe, au registre des chiffres ci-dessous.</p>
         </div>
 
-        <div className="pile">
+        {!plan && <div className="pile">
           <div className="carte">
             <h2>La pire chute observée du titre seul</h2>
             <p className="muted petit">Cette courbe utilise le calendrier propre du titre. La comparaison du portefeuille utilise ses séances communes.</p>
@@ -130,7 +198,7 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
               </div>
             ))}
           </div>
-        </div>
+        </div>}
       </div>
 
       <div className="carte">
@@ -184,6 +252,7 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
           l'équipe a réellement lu : une référence non relue n'est jamais présentée comme vérifiée.</p>
         <SourcesParType ids={sourcesDuDossier(dossier)} />
       </div>
+      </>)}
     </section>
   )
 }

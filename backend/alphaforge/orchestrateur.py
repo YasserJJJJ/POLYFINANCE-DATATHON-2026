@@ -12,7 +12,7 @@ import time
 from collections.abc import Callable
 from dataclasses import asdict
 
-from . import gardien, llm
+from . import gardien, llm, plan_ouvert
 from .agents import analyste, profileur, redacteur, sceptique
 from .donnees import info_actif
 from .dossier import Dossier
@@ -132,6 +132,11 @@ def analyser(profil: dict, demande: dict, sur_etape: Callable[[dict], None] | No
 
     profileur.executer(d)
     publier()
+    if not d.demande.get("ticker") and d.demande.get("montant_cad") is not None:
+        plan_ouvert.executer(d)          # pas de placement choisi : le Gardien juge le plan sur toute la liste
+        publier()
+        d.appels_modele = llm.journal_appels()
+        return d.to_dict()
     if not d.demande.get("ticker") or d.demande.get("montant_cad") is None:
         d.verdict = {"etat": "indetermine", "libelle": gardien.LIBELLES_ETAT["indetermine"],
                      "respectees": 0, "evaluees": 0}

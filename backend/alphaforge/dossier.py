@@ -80,6 +80,7 @@ class Dossier:
     version_contrat: str = "2"
     comparaison: dict = field(default_factory=dict)  # K3 : rempli par la tranche 2
     appels_modele: list[dict] = field(default_factory=list)  # K6 : rempli par la tranche 3
+    plan: dict = field(default_factory=dict)  # plan ouvert : rempli quand aucun placement n'est choisi
 
     def ajouter_fait(self, libelle: str, valeur: Any, unite: str, type_: TypeFait,
                      source: str, methode: str, lu_ou_calcule: str = "calcule",
@@ -99,4 +100,7 @@ class Dossier:
         self.trace.append(EtapeTrace(agent, action, detail, faits or [], duree, references_agent(agent)))
 
     def to_dict(self) -> dict:
-        return asdict(self)
+        d = asdict(self)
+        if not d["plan"]:
+            del d["plan"]   # champ facultatif : absent quand un placement est choisi (contrat K7)
+        return d

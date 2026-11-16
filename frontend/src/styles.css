@@ -307,3 +307,25 @@ input[type=range] { width: 100%; accent-color: var(--accent); }
 .depot-lu { display: grid; gap: 6px; }
 .depot-lu .bouton { justify-self: start; }
 .lien { background: none; border: 0; padding: 0; color: var(--accent); text-decoration: underline; cursor: pointer; font: inherit; }
+
+/* Option C : la demande en puces modifiables, le résultat en 3 onglets */
+.barre-demande { display: grid; gap: 10px; margin-bottom: 14px; position: sticky; top: 8px; z-index: 5; }
+.puces-demande { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.puce-demande { border: 1px solid var(--trait); background: var(--voile); color: var(--encre); border-radius: 999px;
+  padding: 4px 11px; font-size: 0.82rem; cursor: pointer; }
+.puce-demande:hover, .puce-demande.ouverte { border-color: var(--accent); }
+.puce-demande.vide { border-style: dashed; color: var(--doux); }
+.puce-demande span { color: var(--doux); font-size: 0.75rem; margin-left: 2px; }
+.puce-demande:disabled { opacity: 0.6; cursor: wait; }
+.editeur-puce { display: grid; gap: 8px; max-width: 420px; border: 1px solid var(--accent); border-radius: 10px; padding: 12px;
+  background: var(--surface); }
+.editeur-puce input[type="number"], .editeur-puce select { padding: 6px 8px; border-radius: 7px; border: 1px solid var(--trait);
+  background: var(--voile); }
+.secteurs-editeur { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 12px; font-size: 0.85rem; }
+.relance { color: var(--accent); font-size: 0.85rem; }
+.etape4.en-relance > :not(.barre-demande) { opacity: 0.5; pointer-events: none; transition: opacity .2s; }
+.onglets { display: flex; gap: 4px; border-bottom: 1px solid var(--trait); margin-bottom: 14px; }
+.onglet { background: none; border: 0; border-bottom: 2px solid transparent; padding: 8px 14px; color: var(--doux);
+  font-weight: 600; cursor: pointer; }
+.onglet.actif { color: var(--encre); border-bottom-color: var(--accent); }
+.registre.comparatif td { vertical-align: middle; }

@@ -35,6 +35,7 @@ export default function App() {
   const [faitOuvert, setFaitOuvert] = useState(null)
   const [erreur, setErreur] = useState(null)
   const [champsFichier, setChampsFichier] = useState([])   // informations reprises d'un fichier déposé
+  const [relance, setRelance] = useState(false)             // nouvelle analyse lancée depuis le verdict
 
   const [sante, setSante] = useState(null)
   const [registre, setRegistre] = useState(null)
@@ -63,22 +64,33 @@ export default function App() {
     setChampsFichier(fichier ? fichier.lus : [])
   }
 
-  const lancer = async () => {
-    setDossier(null)
+  // surPlace : relance depuis le verdict (puce modifiée) ; l'ancien résultat reste affiché jusqu'au nouveau.
+  const lancer = async ({ surPlace = false, profil: p = profil, demande: dm = demande } = {}) => {
     setDirect(DIRECT_VIDE)
-    setEtape(2)
+    if (surPlace) setRelance(true)
+    else { setDossier(null); setEtape(2) }
+    const suivre = (m) => setDirect((d) => ({
+      trace: [...d.trace, m.etape],
+      objections: m.objections.length ? m.objections : d.objections,
+      faits: m.faits,
+    }))
     try {
       // texte_lu : la personne a relu et corrigé l'étape 2 ; l'analyse ne re-remplit pas un champ qu'elle a vidé.
-      setDossier(await api.analyserEnDirect(profil, { ...demande, texte_lu: true }, (m) => setDirect((d) => ({
-        trace: [...d.trace, m.etape],
-        objections: m.objections.length ? m.objections : d.objections,
-        faits: m.faits,
-      }))))
+      setDossier(await api.analyserEnDirect(p, { ...dm, texte_lu: true }, surPlace ? () => {} : suivre))
     } catch (e) {
       // Sans dossier, l'écran d'analyse attendrait sans fin : on revient à l'étape 2, réponses conservées.
-      setEtape(1)
+      if (!surPlace) setEtape(1)
       setErreur(e.message)
+    } finally {
+      setRelance(false)
     }
+  }
+
+  const relancer = (p, dm) => {
+    const { evaluation, ...saisi } = p   // l'évaluation est recalculée par le backend
+    setProfil(saisi)
+    setDemande(dm)
+    lancer({ surPlace: true, profil: saisi, demande: dm })
   }
 
   // Toujours une liste d'identifiants : une phrase peut s'appuyer sur plusieurs chiffres.
@@ -142,7 +154,8 @@ export default function App() {
             {etape === 2 && <Etape3Trace dossier={dossier} direct={direct} onFini={() => setEtape(3)} ouvrirFait={ouvrirFait} />}
             {etape === 3 && dossier && (
               <Etape4Verdict dossier={dossier} ouvrirFait={ouvrirFait} onBascule={() => setEtape(4)}
-                onModifier={() => setEtape(1)} />
+                onModifier={() => setEtape(1)} saisie={{ profil, demande }} actifs={actifs} relance={relance}
+                onRelancer={relancer} onAnalyserPlacement={(t) => relancer(profil, { ...demande, ticker: t })} />
             )}
             {etape === 4 && dossier && (
               <Etape5Bascule dossier={dossier} onRetour={() => setEtape(3)} onRecommencer={recommencer} ouvrirFait={ouvrirFait} />
