@@ -105,6 +105,19 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
           ? <p className="compte-regles"><strong>{verdict.respectees}</strong> placement(s) sur <strong>{verdict.evaluees}</strong> passent toutes les règles</p>
           : <p className="compte-regles"><strong>{verdict.respectees}</strong> règle(s) respectée(s) sur <strong>{verdict.evaluees}</strong></p>}
         {texte?.reformulation && <p className="reformulation">{texte.reformulation}</p>}
+        {texte?.miroir?.map((ph, i) => (
+          <p key={i} className="reformulation miroir-integre">
+            {ph.texte.replace(/[.\s]+$/, '')}
+            {ph.faits?.length > 0
+              ? <>, <button type="button" className="lien" onClick={() => ouvrirFait(ph.faits)}>d'après les analyses</button>.</>
+              : '.'}
+            {' '}<Etiquette type={ph.type} />
+          </p>
+        ))}
+        {estPersona && texte?.miroir?.length > 0 && (
+          <p className="muted petit">« Tu as dit » cite une phrase type du profil {profil.nom} (scénario fictif de l'équipe),
+            pas une saisie que tu as faite.</p>
+        )}
         {texte?.tensions?.map((t) => <p key={t} className="tension">{t}</p>)}
       </div>
 
@@ -116,23 +129,22 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
         </div>
       )}
 
-      {texte?.miroir?.length > 0 && (
-        <div className="carte miroir">
-          <h2>Le miroir</h2>
-          <ul className="phrases">{texte.miroir.map((p, i) => <Phrase key={i} p={p} ouvrir={ouvrirFait} />)}</ul>
-          {estPersona && (
-            <p className="muted petit">« Tu as dit » cite une phrase type du profil {profil.nom} (scénario fictif
-              de l'équipe), pas une saisie que tu as faite.</p>
-          )}
-        </div>
-      )}
-
-      {texte?.pourquoi?.length > 0 && (
-        <div className="carte">
-          <h2>Pourquoi ce verdict</h2>
-          <ul className="phrases">{texte.pourquoi.map((p, i) => <Phrase key={i} p={p} ouvrir={ouvrirFait} />)}</ul>
-        </div>
-      )}
+      {/* 2. Pourquoi ce verdict, avec à sa droite le graphique qui soutient l'avis (un placement choisi seulement). */}
+      <div className={!plan && demande.ticker ? 'colonnes' : ''}>
+        {texte?.pourquoi?.length > 0 && (
+          <div className="carte">
+            <h2>Pourquoi ce verdict</h2>
+            <ul className="phrases">{texte.pourquoi.map((p, i) => <Phrase key={i} p={p} ouvrir={ouvrirFait} />)}</ul>
+          </div>
+        )}
+        {!plan && demande.ticker && (
+          <div className="carte">
+            <h2>La pire chute observée de {demande.ticker}</h2>
+            <p className="muted petit">Cette courbe utilise le calendrier propre du titre. La comparaison du portefeuille utilise ses séances communes.</p>
+            <GraphiqueChute ticker={demande.ticker} faitId={ids.chute} ouvrir={ouvrirFait} />
+          </div>
+        )}
+      </div>
 
       {texte?.ce_qui_changerait?.length > 0 && (
         <ul className="phrases">{texte.ce_qui_changerait.map((p, i) => <Phrase key={i} p={p} ouvrir={ouvrirFait} />)}</ul>
@@ -183,11 +195,6 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
         </div>
 
         {!plan && <div className="pile">
-          <div className="carte">
-            <h2>La pire chute observée du titre seul</h2>
-            <p className="muted petit">Cette courbe utilise le calendrier propre du titre. La comparaison du portefeuille utilise ses séances communes.</p>
-            <GraphiqueChute ticker={demande.ticker} faitId={ids.chute} ouvrir={ouvrirFait} />
-          </div>
           <div className="carte">
             <h2>Ce que le Sceptique a contesté</h2>
             {objections.map((o) => (
