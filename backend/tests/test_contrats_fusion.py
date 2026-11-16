@@ -78,7 +78,11 @@ def test_les_appelants_lisent_les_symboles_et_conservent_les_poids(nom):
 
 def test_sceptique_recoit_la_liste_des_symboles(monkeypatch):
     messages = []
-    monkeypatch.setattr(llm, "appeler_json", lambda _s, message, *_a: messages.append(message) or {})
+    def capturer(_s, message, *_a, agent=None):
+        assert agent == "Sceptique"
+        messages.append(message)
+        return {}
+    monkeypatch.setattr(llm, "appeler_json", capturer)
     d = Dossier(profil={"portefeuille_actuel": {"XIU.TO": 0.7, "XBB.TO": 0.3}},
                 demande={"mesures": {}, "ticker": "TSLA", "montant_cad": 100})
     sceptique._choix_llm(d, [])

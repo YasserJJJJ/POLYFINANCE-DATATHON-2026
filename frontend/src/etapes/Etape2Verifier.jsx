@@ -48,6 +48,7 @@ function MiseEnSituation() {
 
 export default function Etape2Verifier({ profil, setProfil, demande, setDemande, actifs, questions, onRetour, onLancer }) {
   const [compris, setCompris] = useState(null)
+  const [erreurLecture, setErreurLecture] = useState('')
   const minuterie = useRef(null)
   const texteApplique = useRef(null)
   const maj = (champ, valeur) => setProfil((p) => ({ ...p, [champ]: valeur }))
@@ -57,6 +58,7 @@ export default function Etape2Verifier({ profil, setProfil, demande, setDemande,
     minuterie.current = setTimeout(() => {
       api.comprendre(profil, demande).then((r) => {
         setCompris(r)
+        setErreurLecture('')
         // Ce que le Profileur a lu dans la phrase ne remplit que les champs vides, une seule fois par phrase :
         // une correction faite à la main n'est jamais écrasée.
         if (texteApplique.current === demande.texte) return
@@ -69,7 +71,7 @@ export default function Etape2Verifier({ profil, setProfil, demande, setDemande,
         if (champs.ticker || champs.montant_cad) {
           setDemande((d) => ({ ...d, ticker: d.ticker ?? champs.ticker ?? null, montant_cad: d.montant_cad ?? champs.montant_cad ?? null }))
         }
-      }).catch(() => {})
+      }).catch((e) => setErreurLecture(e.message))
     }, 300)
     return () => clearTimeout(minuterie.current)
   }, [profil, demande, setDemande, setProfil])
@@ -84,7 +86,12 @@ export default function Etape2Verifier({ profil, setProfil, demande, setDemande,
   const poids = ev?.poids_pct ??
     (profil.epargne_totale_cad && demande.montant_cad ? Math.round(demande.montant_cad / profil.epargne_totale_cad * 100) : null)
   const basculeExclusion = (s) => maj('exclusions', profil.exclusions.includes(s) ? profil.exclusions.filter((x) => x !== s) : [...profil.exclusions, s])
-  const ajouterDetenu = (t) => t && !portefeuille.includes(t) && maj('portefeuille_actuel', [...portefeuille, t])
+  const poidsDeclares = profil.portefeuille_actuel != null && !Array.isArray(profil.portefeuille_actuel)
+  const ajouterDetenu = (t) => t && !portefeuille.includes(t) && maj('portefeuille_actuel',
+    poidsDeclares ? { ...profil.portefeuille_actuel, [t]: 0 } : [...portefeuille, t])
+  const retirerDetenu = (t) => maj('portefeuille_actuel', poidsDeclares
+    ? Object.fromEntries(Object.entries(profil.portefeuille_actuel).filter(([k]) => k !== t))
+    : portefeuille.filter((x) => x !== t))
 
   return (
     <section className="etape2">
@@ -118,6 +125,9 @@ export default function Etape2Verifier({ profil, setProfil, demande, setDemande,
         )}
         <p className="muted petit">Corrige tout ce qui est faux avant l'analyse. Rien n'est calculé à partir d'une information que tu n'as pas vue.</p>
       </div>
+      {erreurLecture && <p className="alerte" role="alert">{erreurLecture}</p>}
+      {demande.montant_cad > profil.epargne_totale_cad && profil.epargne_totale_cad != null &&
+        <p className="manque">Le montant dépasse l'épargne totale. Vérifie les deux montants ; aucune allocation ne pourra être calculée.</p>}
 
       <div className="colonnes">
         <div className="carte formulaire">
@@ -156,12 +166,12 @@ export default function Etape2Verifier({ profil, setProfil, demande, setDemande,
           <div className="champ">
             <label htmlFor="retrait">
               Retrait prévu avant cela ?{' '}
-              <strong>{profil.retrait_prevu_ans == null ? 'Aucun' : `dans ${profil.retrait_prevu_ans} an(s)`}</strong>
+              <strong>{profil.retrait_prevu_ans == null ? 'Non précisé' : `dans ${profil.retrait_prevu_ans} an(s)`}</strong>
             </label>
             <div className="champ-ligne serre">
               <input id="retrait" type="range" min="0" max="15" value={profil.retrait_prevu_ans ?? 0}
                 onChange={(e) => maj('retrait_prevu_ans', Number(e.target.value) || null)} />
-              <button type="button" className="bouton discret" onClick={() => maj('retrait_prevu_ans', null)}>Aucun</button>
+              <button type="button" className="bouton discret" onClick={() => maj('retrait_prevu_ans', null)}>Non précisé</button>
             </div>
           </div>
           <TroisEtats id="revenu" libelle="Revenu stable ?" valeur={profil.revenu_stable} onChange={(v) => maj('revenu_stable', v)} />
@@ -182,7 +192,7 @@ export default function Etape2Verifier({ profil, setProfil, demande, setDemande,
           <h2>Ce que tu détiens déjà</h2>
           <div className="puces-choix">
             {portefeuille.map((t) => (
-              <button key={t} type="button" className="choix actif" onClick={() => maj('portefeuille_actuel', portefeuille.filter((x) => x !== t))}
+              <button key={t} type="button" className="choix actif" onClick={() => retirerDetenu(t)}
                 aria-label={`Retirer ${t}`}>{t} ×</button>
             ))}
             <select aria-label="Ajouter un placement détenu" value="" onChange={(e) => ajouterDetenu(e.target.value)}>
@@ -190,6 +200,22 @@ export default function Etape2Verifier({ profil, setProfil, demande, setDemande,
               {actifs.map((a) => <option key={a.ticker} value={a.ticker}>{a.ticker}</option>)}
             </select>
           </div>
+          {portefeuille.length > 0 && <>
+            <label className="poids-option"><input type="checkbox" checked={poidsDeclares}
+              onChange={(e) => maj('portefeuille_actuel', e.target.checked
+                ? Object.fromEntries(portefeuille.map((t) => [t, 0])) : portefeuille)} />
+              {' '}Je renseigne les poids de mes placements</label>
+            {poidsDeclares
+              ? <div className="poids-saisie">
+                  <p className="muted petit">Fractions de l'épargne, de 0 à 1 : par exemple 0,5 pour la moitié. Leur somme doit être 1. Aucun poids n'est normalisé automatiquement.</p>
+                  {portefeuille.map((t) => <div className="champ" key={t}>
+                    <label htmlFor={`poids-${t}`}>Poids de {t}</label>
+                    <input id={`poids-${t}`} type="number" min="0" max="1" step="any" value={profil.portefeuille_actuel[t] ?? ''}
+                      onChange={(e) => maj('portefeuille_actuel', { ...profil.portefeuille_actuel, [t]: nombre(e.target.value) })} />
+                  </div>)}
+                </div>
+              : <p className="muted petit">Hypothèse d'équipondération : chaque placement détenu reçoit le même poids. Tu peux préciser ces poids.</p>}
+          </>}
         </div>
 
         <div className="pile">

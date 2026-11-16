@@ -1,13 +1,26 @@
 const BASE = import.meta.env.VITE_API_URL || ''
 
+function messageErreur(detail) {
+  if (typeof detail !== 'string') return "L'analyse n'a pas pu aboutir. Vérifie les informations saisies."
+  if (/actifs du jeu de départ|hors.*univers/i.test(detail))
+    return "Actif hors de l'univers des 31 actifs du jeu de départ. Choisis un placement dans la liste."
+  if (/dépasse.*épargne/i.test(detail)) return "Le montant dépasse l'épargne totale. Vérifie les deux montants."
+  return detail
+}
+
+async function erreurReponse(rep) {
+  const corps = await rep.json().catch(() => null)
+  return new Error(corps?.detail ? messageErreur(corps.detail)
+    : "Le service n'a pas pu terminer la demande. Réessaie dans un instant.")
+}
+
 async function requete(chemin, options = {}) {
   const rep = await fetch(`${BASE}${chemin}`, {
     headers: { 'Content-Type': 'application/json' },
     ...options,
   })
   if (!rep.ok) {
-    const detail = await rep.text()
-    throw new Error(`Le serveur a répondu ${rep.status} : ${detail}`)
+    throw await erreurReponse(rep)
   }
   return rep.json()
 }
@@ -32,7 +45,7 @@ async function analyserEnDirect(profil, demande, surEtape) {
   const rep = await fetch(`${BASE}/api/analyse/flux`, {
     method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ profil, demande }),
   })
-  if (!rep.ok) throw new Error(`Le serveur a répondu ${rep.status} : ${await rep.text()}`)
+  if (!rep.ok) throw await erreurReponse(rep)
   const lecteur = rep.body.getReader()
   const decodeur = new TextDecoder()
   let tampon = ''
@@ -47,7 +60,7 @@ async function analyserEnDirect(profil, demande, surEtape) {
       tampon = tampon.slice(fin + 1)
       if (!ligne) continue
       const m = JSON.parse(ligne)
-      if (m.type === 'erreur') throw new Error(`Le serveur a répondu ${m.statut} : ${m.detail}`)
+      if (m.type === 'erreur') throw new Error(messageErreur(m.detail))
       if (m.type === 'dossier') dossier = m.dossier
       else surEtape(m)
     }

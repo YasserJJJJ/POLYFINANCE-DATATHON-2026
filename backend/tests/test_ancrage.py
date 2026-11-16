@@ -135,3 +135,24 @@ def test_contradiction_du_verdict(etat, phrase, refus):
                                   "pourquoi": [{"texte": phrase, "type": "HYPOTHESE", "faits": []}]},
                                  set(), set(), None, etat)
     assert any("contredit le verdict" in x for x in defauts) is refus
+
+
+def test_comparaison_appariee_exacte_acceptee(monkeypatch):
+    appels = faux_modele(monkeypatch, lambda ref: ref)
+    d = _robert()
+    assert d["texte"]["source"] == llm.nom(llm.MODELE_PRINCIPAL)
+    contexte = json.loads(appels[0])
+    assert contexte["comparaison"] == d["comparaison"]
+    assert any("Sur la même fenêtre historique" in p["texte"] for p in d["texte"]["pourquoi"])
+
+
+def test_ecart_recalcule_par_le_modele_refuse(monkeypatch):
+    def incorrect(ref):
+        # −6,34 est un nouvel arrondi de −6,339245, absent des champs K3.
+        return {**ref, "pourquoi": [{"texte": "La baisse du portefeuille change de -6,34 points.",
+                                     "type": "SCENARIO", "faits": ["F-59"]}]}
+    appels = faux_modele(monkeypatch, incorrect)
+    d = _robert()
+    assert len(appels) == 2 and d["texte"]["source"].startswith("modèles de phrases")
+    assert any("nombre(s) absent(s)" in ligne for ligne in d["texte"]["controle"])
+    assert any("-6,339245" in p["texte"] for p in d["texte"]["pourquoi"])

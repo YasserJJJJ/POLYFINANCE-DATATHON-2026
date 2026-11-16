@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { dollars } from '../api.js'
-import { ETATS, PuceVerdict } from '../composants/Base.jsx'
+import { ETATS, PuceVerdict, Etiquette, PucesFaits } from '../composants/Base.jsx'
+import { nombreMesure, SENS_BAISSE } from '../composants/ComparaisonPortefeuille.jsx'
 import { SECTEURS_FR } from './Etape2Verifier.jsx'
 import { sourcesDuDossier, useRegistre } from '../composants/Sources.jsx'
 
@@ -15,6 +16,7 @@ const LEXIQUE = {
 
 function fiche(d, registre) {
   const p = d.profil, ev = p.evaluation, v = d.verdict
+  const c = d.comparaison
   const estPersona = ['Amira', 'Mateo', 'Robert'].includes(p.nom)
   const bloquees = d.regles.filter((r) => r.niveau === 'rouge' || r.niveau === 'orange')
   const volatil = (d.demande.mesures?.volatilite_pct ?? 0) > 25
@@ -42,7 +44,18 @@ function fiche(d, registre) {
     ...bloquees.map((r) => `- ${r.libelle} : ${r.explication}`),
     '',
     `## Les options comparées`,
-    ...d.options.map((o) => `- ${o.nom} : ${dollars(o.montant_cad)}, horizon ${o.horizon_ans} an(s) → ${ETATS[o.etat].libelle}`),
+    ...d.options.map((o) => `- ${o.nom} : ${dollars(o.montant_cad)}, horizon ${o.horizon_ans} an(s) → ${ETATS[o.etat].libelle}${o.constat ? `. ${o.constat}` : ''}`),
+    '',
+    ...(c?.disponible ? [
+      '## Comparaison historique du portefeuille — demande de départ',
+      `Pire baisse : ${nombreMesure(c.avant.pire_chute_pct)} % avant → ${nombreMesure(c.apres.pire_chute_pct)} % après.`,
+      `Écart : ${nombreMesure(c.ecarts.pire_chute_pts)} points ; ${SENS_BAISSE[c.ecarts.sens_pire_chute].toLowerCase()}.`,
+      `Preuves : ${c.faits.avant_pire_chute}, ${c.faits.apres_pire_chute}, ${c.faits.ecart_pire_chute}.`,
+      `Poids ${c.origine_poids === 'declare' ? 'déclarés' : "supposés égaux (hypothèse d'équipondération)"}.`,
+      `Même fenêtre ${c.fenetre.debut} → ${c.fenetre.fin}, en CAD, achat-conservation. Scénario rétrospectif, aucune prévision.`,
+      ...c.limites.map((l) => `- ${l}`), '',
+    ] : []),
+    ...(d.questions?.length ? ['## Informations à confirmer', ...d.questions.map((q) => `- ${q}`), ''] : []),
     '',
     `## Mes questions pour le conseiller`,
     ...questions.map((q) => `- ${q}`),
@@ -62,7 +75,7 @@ function fiche(d, registre) {
 
 const VIDE = { montants: [], horizons: [], cases: [] }
 
-export default function Etape5Bascule({ dossier, onRetour, onRecommencer }) {
+export default function Etape5Bascule({ dossier, onRetour, onRecommencer, ouvrirFait }) {
   // Verdict gris : le Gardien ne calcule pas de grille (bascule = {}). Avant, la page devenait blanche.
   const bascule = dossier.bascule?.cases?.length ? dossier.bascule : VIDE
   const montants = useMemo(() => [...bascule.montants].sort((a, b) => a - b), [bascule])
@@ -74,6 +87,8 @@ export default function Etape5Bascule({ dossier, onRetour, onRecommencer }) {
   const caseActuelle = bascule.cases.find((c) => c.montant_cad === montant && c.horizon_ans === h)
   const registre = useRegistre()
   const texteFiche = useMemo(() => fiche(dossier, registre), [dossier, registre])
+  const monotonie = bascule.monotonie_montant
+  const exemple = monotonie?.exemple
 
   const copier = async () => {
     try { await navigator.clipboard.writeText(texteFiche); setCopie('Copié.') } catch { setCopie('Sélectionne le texte et copie-le.') }
@@ -87,10 +102,18 @@ export default function Etape5Bascule({ dossier, onRetour, onRecommencer }) {
   return (
     <section className="etape5">
       <p className="surtitre">Curseurs de bascule</p>
-      <h1>Qu'est-ce qui rendrait ta demande raisonnable ?</h1>
+      <h1>Comment l'avis change-t-il avec le montant ou l'horizon ?</h1>
       <p className="lede">Bouge le montant ou l'horizon : chaque position est un verdict du Gardien, calculé par le code,
         sans IA ({bascule.cases.length} combinaisons calculées pendant l'analyse).</p>
       {!bascule.cases.length && <p className="manque">Verdict impossible à calculer : complète d'abord les informations manquantes.</p>}
+      {monotonie && !monotonie.observee && <div className="carte">
+        <h2>Une grille non monotone peut être cohérente</h2>
+        <p><Etiquette type="HYPOTHESE" /> {monotonie.explication}</p>
+        {exemple && <p>À {dollars(exemple.montant_bas_cad)} : {ETATS[exemple.etat_bas].libelle} ;
+          à {dollars(exemple.montant_haut_cad)} : {ETATS[exemple.etat_haut].libelle},
+          pour un horizon de {exemple.horizon_ans} an(s). C'est un constat de règle, pas une invitation à placer davantage.</p>}
+        <PucesFaits ids={monotonie.faits} ouvrir={ouvrirFait} />
+      </div>}
 
       <div className="colonnes">
         <div className="carte bascule">
@@ -122,7 +145,8 @@ export default function Etape5Bascule({ dossier, onRetour, onRecommencer }) {
                     return (
                       <button key={hz} type="button" title={`${dollars(m)}, ${hz} an(s) : ${e.libelle}`}
                         className={`cellule ${e.classe} ${ici ? 'ici' : ''}`}
-                        onClick={() => { setIM(montants.indexOf(m)); setH(hz) }} aria-label={`${dollars(m)}, ${hz} ans`} />
+                        onClick={() => { setIM(montants.indexOf(m)); setH(hz) }} aria-label={`${dollars(m)}, ${hz} ans : ${e.libelle}`}
+                        aria-pressed={ici} />
                     )
                   })}
                 </div>
@@ -149,6 +173,7 @@ export default function Etape5Bascule({ dossier, onRetour, onRecommencer }) {
             <span className="muted petit" aria-live="polite">{copie}</span>
           </div>
         </div>
+        <p className="muted petit">La fiche conserve la demande de départ. Les curseurs explorent les verdicts calculés ; pour un nouveau dossier complet, modifie la demande et relance l'analyse.</p>
         <pre className="fiche-texte">{texteFiche}</pre>
       </div>
 

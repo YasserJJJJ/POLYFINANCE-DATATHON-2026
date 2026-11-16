@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { api, dollars } from '../api.js'
 import { PuceNiveau, PuceVerdict, PucesFaits } from '../composants/Base.jsx'
 import TiroirFait from '../composants/TiroirFait.jsx'
+import { nombreMesure, SENS_BAISSE } from '../composants/ComparaisonPortefeuille.jsx'
 
 // Analyses déjà faites pendant la session : rouvrir la vue ne relance pas 3 analyses Bedrock (≈ 13 s chacune).
 const CACHE = new Map()
@@ -54,6 +55,11 @@ export default function Comparer({ personas }) {
                   <p className="reformulation petite">{d.texte.reformulation}</p>
                   <PuceVerdict etat={d.verdict.etat} />
                   <p className="compte-regles">{d.verdict.respectees}/{d.verdict.evaluees} règles respectées</p>
+                  {d.comparaison?.disponible && <p>
+                    {SENS_BAISSE[d.comparaison.ecarts.sens_pire_chute]} :{' '}
+                    {nombreMesure(d.comparaison.ecarts.pire_chute_pts)} points après moins avant.
+                    <PucesFaits ids={[d.comparaison.faits.ecart_pire_chute]} ouvrir={(ids) => setFaitOuvert({ cle, ids })} />
+                  </p>}
                   <ul className="regles compactes">
                     {bloquantes.map((r) => (
                       <li key={r.code} className={`regle n-${r.niveau}`}>

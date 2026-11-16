@@ -23,6 +23,21 @@
 }
 
 * { box-sizing: border-box; }
+.comparaison-portefeuille { border-top: 1px solid var(--trait); padding-top: 16px; margin-top: 12px; gap: 12px; }
+.comparaison-portefeuille h3 { font-size: 1rem; }
+.table-comparaison { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.table-comparaison th, .table-comparaison td { padding: 10px 6px; border-bottom: 1px solid var(--trait); text-align: left; vertical-align: top; }
+.mesure-preuve { background: none; border: 0; border-bottom: 1px dotted var(--accent); padding: 0; color: var(--accent); cursor: pointer; font-variant-numeric: tabular-nums; text-align: left; }
+.comparaison-portefeuille details { color: var(--doux); font-size: .85rem; }
+.comparaison-portefeuille summary { cursor: pointer; color: var(--encre); }
+.preuve-appels { margin-bottom: 12px; }
+.preuve-appels ul { list-style: none; padding: 0; display: grid; gap: 18px; }
+.preuve-appels li { border-top: 1px solid var(--trait); padding-top: 12px; min-width: 0; }
+.preuve-appels h3 { font-size: 1rem; }
+.preuve-appels dl { display: grid; grid-template-columns: minmax(100px, 1fr) minmax(0, 3fr); gap: 5px 16px; font-size: .85rem; }
+.preuve-appels dd { margin: 0; overflow-wrap: anywhere; }
+.poids-saisie { display: grid; gap: 10px; margin-top: 12px; }
+.poids-option { display: block; margin-top: 14px; }
 html, body { margin: 0; }
 body { background: var(--fond); color: var(--encre); font: 15px/1.55 var(--f-texte); }
 h1, h2, h3 { font-family: var(--f-titre); line-height: 1.2; margin: 0; text-wrap: balance; }

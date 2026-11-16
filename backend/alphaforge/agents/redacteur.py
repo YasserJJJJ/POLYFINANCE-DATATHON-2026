@@ -17,7 +17,7 @@ import time
 
 from .. import llm
 from ..dossier import Dossier
-from ..format import dollars
+from ..format import dollars, fr
 from ..garde_fous import mots_de_conseil, rapport_calcule, sans_accents
 
 TYPES = {"FAIT", "HYPOTHESE", "SCENARIO"}
@@ -76,7 +76,34 @@ def _limites_des_donnees(d: Dossier) -> list[dict]:
         limites.append(_phrase("Les prix ajustés de Yahoo peuvent contenir des erreurs d'ajustement, plus fréquentes "
                                "hors des États-Unis selon les mainteneurs de yfinance.", "HYPOTHESE",
                                references=["yfinance-reparation"]))
+    c = d.comparaison
+    if c.get("disponible"):
+        ids = c["faits"]
+        limites += [
+            _phrase("La comparaison porte sur cinq ans, incluant 2022. Cette fenêtre récente ne couvre "
+                    "pas toutes les crises et n'attribue aucune probabilité aux pertes futures.",
+                    "HYPOTHESE", [ids["fenetre_portefeuille"]]),
+            _phrase("Les deux allocations sont mesurées en CAD, en achat-conservation, sans rééquilibrage. "
+                    "L'allocation après est un scénario rétrospectif, pas une prévision.",
+                    "HYPOTHESE", [ids["poids_apres"], ids["limites_portefeuille"]]),
+        ]
+        limites += [_phrase(limite, "HYPOTHESE", [ids["limites_portefeuille"]]) for limite in c["limites"]]
     return limites
+
+
+def _phrase_comparaison(d: Dossier) -> dict | None:
+    """Restitution des champs K3, sans recalcul ni arrondi de l'écart."""
+    c = d.comparaison
+    if not c.get("disponible"):
+        return None
+    sens = {"aggrave": "plus profonde", "ameliore": "moins profonde", "neutre": "inchangée"}
+    return _phrase(
+        f"Sur la même fenêtre historique, la pire baisse du portefeuille est de "
+        f"{fr(c['apres']['pire_chute_pct'])} % après la demande, contre "
+        f"{fr(c['avant']['pire_chute_pct'])} % avant : un écart après moins avant de "
+        f"{fr(c['ecarts']['pire_chute_pts'])} points, soit une baisse "
+        f"{sens[c['ecarts']['sens_pire_chute']]}. Ce scénario ne prédit pas une perte future.",
+        "SCENARIO", [c["faits"][k] for k in ("apres_pire_chute", "avant_pire_chute", "ecart_pire_chute")])
 
 
 def _limite_objection(o) -> dict:
@@ -117,6 +144,9 @@ def _modele_de_phrases(d: Dossier) -> dict:
     if not pourquoi:
         pourquoi = [_phrase(r.explication, TYPE_REGLE.get(r.code, "HYPOTHESE"), r.faits)
                     for r in d.regles if r.niveau == "ok"][:2]
+    comparaison = _phrase_comparaison(d)
+    if comparaison:
+        pourquoi.append(comparaison)
     changerait = []
     aj = next((o for o in d.options if o.get("changement")), None)
     if aj:
@@ -125,7 +155,8 @@ def _modele_de_phrases(d: Dossier) -> dict:
             morceaux.append(f"ramener le montant à {dollars(ch['montant_cad'])}")
         if "horizon_ans" in ch:
             morceaux.append(f"allonger l'horizon à {ch['horizon_ans']} ans")
-        changerait.append(_phrase("Ce qui changerait l'avis : " + " et ".join(morceaux) + ".", "SCENARIO"))
+        changerait.append(_phrase(aj.get("constat") or
+                                  ("Ce qui changerait l'avis : " + " et ".join(morceaux) + "."), "SCENARIO"))
     alt = next((o for o in d.options if o.get("nom", "").startswith("Alternative")), None)
     if alt:
         changerait.append(_phrase(f"Une option compatible avec tes exclusions existe : {alt['ticker']} "
@@ -148,6 +179,8 @@ def _dossier_pour_modele(d: Dossier, base: dict) -> str:
         "faits": [{"id": f.id, "libelle": f.libelle, "valeur": f.valeur, "unite": f.unite, "type": f.type}
                   for f in d.faits],
         "options": d.options,
+        "comparaison": d.comparaison,
+        "questions": d.questions,
         "tensions": p.get("tensions", []),
         "phrases_de_reference": base,
     }
@@ -323,7 +356,8 @@ def executer(d: Dossier) -> None:
         for essai in (1, 2):
             try:
                 # Le dossier sert aussi de source d'ancrage à Bedrock Guardrails, s'il est configuré.
-                propose = llm.appeler_json(SYSTEME, consigne, llm.MODELE_PRINCIPAL, 1800, source_ancrage=dossier_json)
+                propose = llm.appeler_json(SYSTEME, consigne, llm.MODELE_PRINCIPAL, 1800,
+                                           source_ancrage=dossier_json, agent="Rédacteur")
                 defauts = verifier(propose, autorises, ids_valides, _mots_de_la_personne(d), d.verdict.get("etat"))
             except Exception as e:
                 journal.append(f"essai {essai} : réponse inutilisable ({type(e).__name__})")
@@ -348,6 +382,11 @@ def executer(d: Dossier) -> None:
     elif llm.raison_indisponible():
         journal.append(llm.raison_indisponible())
 
+    # La mesure appariée reste visible même si le modèle choisit d'expliquer d'autres règles.
+    comparaison = _phrase_comparaison(d)
+    if comparaison and comparaison not in texte["pourquoi"]:
+        texte["pourquoi"] = [*texte["pourquoi"], comparaison]
+    d.questions.sort(key=lambda q: not q.startswith("Question décisive"))
     limites = [
         _phrase("Les chiffres décrivent la période 2021-2026. Ils ne prédisent pas l'avenir.", "HYPOTHESE"),
         (_phrase("Les montants et l'épargne de ce profil sont fictifs (scénario de l'équipe).", "SCENARIO")

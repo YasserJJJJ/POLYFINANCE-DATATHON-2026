@@ -1,6 +1,7 @@
 import { dollars } from '../api.js'
 import { Etiquette, PuceIssue, PuceNiveau, PuceVerdict, PucesFaits } from '../composants/Base.jsx'
 import GraphiqueChute from '../composants/GraphiqueChute.jsx'
+import ComparaisonPortefeuille from '../composants/ComparaisonPortefeuille.jsx'
 import { ListeSources, SourcesCompactes, SourcesParType, sourcesDuDossier } from '../composants/Sources.jsx'
 
 function Phrase({ p, ouvrir }) {
@@ -24,6 +25,7 @@ function Option({ o, principal, ouvrir }) {
         <div><dt>Montant</dt><dd>{dollars(o.montant_cad)}</dd></div>
         <div><dt>Horizon</dt><dd>{o.horizon_ans} an(s)</dd></div>
       </dl>
+      {o.constat && <p className="option-note">{o.constat} {o.sens && <span className="muted petit">(Montant {o.sens})</span>}</p>}
       {(o.note || o.faits?.length > 0) && (
         <p className="muted petit option-note">{o.note} <PucesFaits ids={o.faits} ouvrir={ouvrir} /></p>
       )}
@@ -50,10 +52,11 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
         {texte?.tensions?.map((t) => <p key={t} className="tension">{t}</p>)}
       </div>
 
-      {verdict.etat === 'indetermine' && dossier.questions?.length > 0 && (
+      {dossier.questions?.length > 0 && (
         <div className="carte manque">
-          <h2>Ce qu'il me faut pour conclure</h2>
-          <ul>{dossier.questions.map((q) => <li key={q}>{q}</li>)}</ul>
+          <h2>{verdict.etat === 'indetermine' ? "Ce qu'il me faut pour conclure" : 'La question qui pourrait changer cet avis'}</h2>
+          <ul>{dossier.questions.map((q) => <li key={q}><strong>{q}</strong>
+            <PucesFaits ids={q.match(/F-\d+/g) || []} ouvrir={ouvrirFait} /></li>)}</ul>
         </div>
       )}
 
@@ -96,6 +99,7 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
               <li key={r.code} className={`regle n-${r.niveau}`}>
                 <div className="regle-tete"><strong>{r.libelle}</strong><PuceNiveau niveau={r.niveau} /></div>
                 <p>{r.type && <Etiquette type={r.type} />} {r.explication}</p>
+                {r.code === 'capacite' && <ComparaisonPortefeuille dossier={dossier} ouvrirFait={ouvrirFait} />}
                 <PucesFaits ids={r.faits} ouvrir={ouvrirFait} />
                 {r.references?.length > 0 && (
                   <details className="pourquoi-regle">
@@ -112,7 +116,8 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
 
         <div className="pile">
           <div className="carte">
-            <h2>La pire chute observée</h2>
+            <h2>La pire chute observée du titre seul</h2>
+            <p className="muted petit">Cette courbe utilise le calendrier propre du titre. La comparaison du portefeuille utilise ses séances communes.</p>
             <GraphiqueChute ticker={demande.ticker} faitId={ids.chute} ouvrir={ouvrirFait} />
           </div>
           <div className="carte">
@@ -138,7 +143,7 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
                 <tr key={f.id}>
                   <td><button type="button" className="puce-fait" onClick={() => ouvrirFait(f.id)}>{f.id}</button></td>
                   <td>{f.libelle}</td>
-                  <td className="nombre">{typeof f.valeur === 'object' ? Object.entries(f.valeur).map(([k, v]) => `${k} ${v}`).join(', ') : `${f.valeur} ${f.unite}`}</td>
+                  <td className="nombre">{typeof f.valeur === 'object' && f.valeur !== null ? Object.entries(f.valeur).map(([k, v]) => `${k} ${v}`).join(', ') : `${f.valeur ?? '—'} ${f.unite}`}</td>
                   <td><Etiquette type={f.type} /></td>
                 </tr>
               ))}

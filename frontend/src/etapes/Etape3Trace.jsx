@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { PuceIssue, PucesFaits } from '../composants/Base.jsx'
 import { SourcesCompactes } from '../composants/Sources.jsx'
+import PreuveAppels from '../composants/PreuveAppels.jsx'
 
 export const AGENTS = {
   Profileur: { role: 'Comprend ta demande et structure ton profil', nature: 'Agent IA' },
@@ -36,8 +37,8 @@ export default function Etape3Trace({ dossier, direct, onFini, ouvrirFait }) {
       <p className="lede">Les chiffres viennent du code. Les agents comprennent, contestent et expliquent.</p>
       <p className="muted petit" aria-live="polite">
         {dossier
-          ? `Analyse terminée en ${(totalMs / 1000).toFixed(1).replace('.', ',')} s. Chaque étape s'est affichée dès que son rôle a fini ; sa durée mesurée est à droite.`
-          : `Les agents travaillent (${secondes} s écoulées). Chaque rôle s'affiche dès qu'il a fini.`}
+          ? `Analyse terminée. Durées des rôles : ${(totalMs / 1000).toFixed(1).replace('.', ',')} s au total ; le détail mesuré figure à droite.`
+          : `Les agents travaillent (${secondes} s écoulées). Selon la connexion, les étapes peuvent arriver ensemble à la fin.`}
       </p>
 
       <ol className="trace">
@@ -70,6 +71,7 @@ export default function Etape3Trace({ dossier, direct, onFini, ouvrirFait }) {
           </li>
         )}
       </ol>
+      <PreuveAppels appels={dossier?.appels_modele} />
       {dossier && (
         <button type="button" className="bouton principal" onClick={onFini}>Voir le verdict</button>
       )}
