@@ -122,6 +122,13 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
   }, [onglet, surligne])
   const voirAnalyses = (idsFaits) => { setSurligne(idsFaits); setOnglet('detail') }
   const plan = dossier.plan?.ouvert ? dossier.plan : null
+  // Les curseurs n'apprennent rien quand toute la carte a le même verdict (une exclusion, par exemple) :
+  // on renvoie plutôt vers la demande, en haut de la page.
+  const curseursUtiles = new Set((dossier.bascule?.cases || []).map((c) => c.etat)).size > 1
+  const ajusterEnHaut = () => {
+    document.querySelector('.barre-demande')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    setTimeout(() => document.getElementById('message-suite')?.focus({ preventScroll: true }), 450)
+  }
   const titreOptions = titreDesOptions(verdict.etat, plan)
   const onglets = [['essentiel', "L'essentiel"], ['detail', 'Le détail et les sources']]
   const estPersona = PERSONAS_NOMS.includes(profil?.nom)
@@ -213,7 +220,9 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
         </section>
       )}
       <div className="actions">
-        {dossier.bascule?.cases?.length > 0 && <button type="button" className="bouton principal" onClick={onBascule}>Bouger les curseurs</button>}
+        {curseursUtiles
+          ? <button type="button" className="bouton principal" onClick={onBascule}>Bouger les curseurs</button>
+          : <button type="button" className="bouton principal" onClick={ajusterEnHaut}>Ajuster mes préférences en conséquence</button>}
         <button type="button" className="bouton discret" onClick={() => setOnglet('detail')}>Voir le détail et les sources</button>
       </div>
       </>)}
