@@ -15,7 +15,7 @@ from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from alphaforge import calculs, gardien, llm, sources, stockage
+from alphaforge import calculs, gardien, llm, sources, stockage, precision
 from alphaforge.agents import profileur
 from alphaforge.donnees import serie_cad, univers
 from alphaforge.dossier import Dossier
@@ -153,6 +153,17 @@ def serie(ticker: str) -> dict:
     base = float(s.iloc[0])
     return {"ticker": ticker, "pire_chute": calculs.pire_chute(ticker),
             "points": [{"date": str(i.date()), "valeur": round(float(v) / base * 100, 2)} for i, v in s.items()]}
+
+
+class Precision(BaseModel):
+    question: str
+    dossier: dict
+
+
+@app.post("/api/preciser")
+def preciser(req: Precision) -> dict:
+    """Question posée après le verdict : réponse du Rédacteur sur le dossier, sous les mêmes garde-fous."""
+    return precision.repondre(req.dossier, req.question)
 
 
 @app.post("/api/analyse")

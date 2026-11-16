@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Etiquette } from './Base.jsx'
 import { ListeSources } from './Sources.jsx'
+import { pourClient } from '../affichage.js'
 
 const affiche = (v) => (typeof v === 'object' && v !== null
   ? Object.entries(v).map(([k, x]) => `${k} : ${x}`).join(' · ')
@@ -11,15 +12,14 @@ function Fait({ fait }) {
     <section className="tiroir-fait">
       <div className="tiroir-fait-tete">
         <Etiquette type={fait.type} />
-        <span className="mono muted">{fait.id}</span>
       </div>
-      <h3>{fait.libelle}</h3>
-      <p className="tiroir-valeur">{affiche(fait.valeur)} {fait.unite}</p>
+      <h3>{pourClient(fait.libelle)}</h3>
+      <p className="tiroir-valeur">{pourClient(`${affiche(fait.valeur)} ${fait.unite}`)}</p>
       <dl>
         <dt>{fait.lu_ou_calcule === 'lu' ? 'Lu dans' : 'Source des données'}</dt>
-        <dd>{fait.source}</dd>
+        <dd>{pourClient(fait.source)}</dd>
         <dt>Méthode</dt>
-        <dd>{fait.methode}</dd>
+        <dd>{pourClient(fait.methode)}</dd>
       </dl>
       {fait.references?.length > 0 && (
         <>

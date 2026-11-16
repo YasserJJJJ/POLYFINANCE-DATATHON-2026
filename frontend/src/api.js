@@ -37,6 +37,8 @@ export const api = {
   analyser: (profil, demande) =>
     requete('/api/analyse', { method: 'POST', body: JSON.stringify({ profil, demande }) }),
   analyserEnDirect,
+  preciser: (dossier, question) =>
+    requete('/api/preciser', { method: 'POST', body: JSON.stringify({ dossier, question }) }),
 }
 
 // Une ligne JSON par étape terminée, puis le dossier. Si tout arrive d'un bloc (Lambda), les étapes sont

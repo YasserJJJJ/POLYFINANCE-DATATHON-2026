@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { api } from './api.js'
+import { api, dollars } from './api.js'
+import { CHAMPS_DEMANDE, CHAMPS_PROFIL } from './fichierClient.js'
 import Etape1Mots from './etapes/Etape1Mots.jsx'
 import Etape2Verifier from './etapes/Etape2Verifier.jsx'
 import Etape3Trace from './etapes/Etape3Trace.jsx'
@@ -36,6 +37,9 @@ export default function App() {
   const [erreur, setErreur] = useState(null)
   const [champsFichier, setChampsFichier] = useState([])   // informations reprises d'un fichier déposé
   const [relance, setRelance] = useState(false)             // nouvelle analyse lancée depuis le verdict
+  const [initiale, setInitiale] = useState('')              // demande de départ, gardée dans la conversation
+  const [echanges, setEchanges] = useState([])
+  const [envoi, setEnvoi] = useState(false)
 
   const [sante, setSante] = useState(null)
   const [registre, setRegistre] = useState(null)
@@ -68,7 +72,7 @@ export default function App() {
   const lancer = async ({ surPlace = false, profil: p = profil, demande: dm = demande } = {}) => {
     setDirect(DIRECT_VIDE)
     if (surPlace) setRelance(true)
-    else { setDossier(null); setEtape(2) }
+    else { setDossier(null); setEtape(2); setInitiale(dm.texte || ''); setEchanges([]) }
     const suivre = (m) => setDirect((d) => ({
       trace: [...d.trace, m.etape],
       objections: m.objections.length ? m.objections : d.objections,
@@ -76,11 +80,14 @@ export default function App() {
     }))
     try {
       // texte_lu : la personne a relu et corrigé l'étape 2 ; l'analyse ne re-remplit pas un champ qu'elle a vidé.
-      setDossier(await api.analyserEnDirect(p, { ...dm, texte_lu: true }, surPlace ? () => {} : suivre))
+      const nouveau = await api.analyserEnDirect(p, { ...dm, texte_lu: true }, surPlace ? () => {} : suivre)
+      setDossier(nouveau)
+      return nouveau
     } catch (e) {
       // Sans dossier, l'écran d'analyse attendrait sans fin : on revient à l'étape 2, réponses conservées.
       if (!surPlace) setEtape(1)
       setErreur(e.message)
+      return null
     } finally {
       setRelance(false)
     }
@@ -90,13 +97,47 @@ export default function App() {
     const { evaluation, ...saisi } = p   // l'évaluation est recalculée par le backend
     setProfil(saisi)
     setDemande(dm)
-    lancer({ surPlace: true, profil: saisi, demande: dm })
+    return lancer({ surPlace: true, profil: saisi, demande: dm })
+  }
+
+  // Un message après le verdict : s'il change la demande, on relance ; sinon, c'est une question.
+  const envoyerMessage = async (texte) => {
+    const ajouter = (...m) => setEchanges((e) => [...e, ...m])
+    ajouter({ auteur: 'toi', texte })
+    setEnvoi(true)
+    try {
+      // Lu sur un profil vierge : on récupère tout ce que le message dit, pour l'appliquer par-dessus la demande.
+      const lu = await api.comprendre({ ...PROFIL_VIERGE, nom: profil.nom }, { texte, ticker: null, montant_cad: null })
+      const champs = lu.profil?.extraits?.champs || {}
+      const cles = Object.keys(champs).filter((k) => champs[k] !== null && champs[k] !== undefined)
+      if (cles.length) {
+        const { ticker, montant_cad: montant, ...pourProfil } = Object.fromEntries(cles.map((k) => [k, champs[k]]))
+        const affiche = (k, v) => `${(CHAMPS_PROFIL[k] || CHAMPS_DEMANDE[k] || [null, k])[1]} : ${
+          k.endsWith('_cad') ? dollars(v) : Array.isArray(v) ? v.join(', ') : typeof v === 'boolean' ? (v ? 'oui' : 'non') : v}`
+        ajouter({ auteur: 'outil', texte: `Pris en compte : ${cles.map((k) => affiche(k, champs[k])).join(' · ')}. Nouvelle analyse…` })
+        const nouveau = await relancer(
+          { ...profil, ...pourProfil, citations: [...(profil.citations || []), texte] },
+          { ...demande, ...(ticker ? { ticker } : {}), ...(montant ? { montant_cad: montant } : {}),
+            texte: [demande.texte, texte].filter(Boolean).join(' ') })
+        if (nouveau) ajouter({ auteur: 'outil', texte: `Nouveau résultat : ${nouveau.verdict.libelle}.` })
+      } else {
+        const r = await api.preciser(dossier, texte)
+        ajouter({ auteur: 'outil', texte: r.reponse, faits: r.faits })
+      }
+    } catch (e) {
+      ajouter({ auteur: 'outil', texte: `Je n'ai pas pu traiter ce message (${e.message}).` })
+    } finally {
+      setEnvoi(false)
+    }
   }
 
   // Toujours une liste d'identifiants : une phrase peut s'appuyer sur plusieurs chiffres.
   const ouvrirFait = (ids) => setFaitOuvert([].concat(ids))
 
-  const recommencer = () => { setEtape(0); setDossier(null); setProfil(PROFIL_VIERGE); setDemande({ texte: '', ticker: null, montant_cad: null }); setChampsFichier([]) }
+  const recommencer = () => {
+    setEtape(0); setDossier(null); setProfil(PROFIL_VIERGE); setDemande({ texte: '', ticker: null, montant_cad: null })
+    setChampsFichier([]); setEchanges([]); setInitiale('')
+  }
 
   return (
     <RegistreContext.Provider value={registre}>
@@ -155,7 +196,8 @@ export default function App() {
             {etape === 3 && dossier && (
               <Etape4Verdict dossier={dossier} ouvrirFait={ouvrirFait} onBascule={() => setEtape(4)}
                 onModifier={() => setEtape(1)} saisie={{ profil, demande }} actifs={actifs} relance={relance}
-                onRelancer={relancer} onAnalyserPlacement={(t) => relancer(profil, { ...demande, ticker: t })} />
+                onRelancer={relancer} onAnalyserPlacement={(t) => relancer(profil, { ...demande, ticker: t })}
+                initiale={initiale} echanges={echanges} onMessage={envoyerMessage} envoi={envoi} />
             )}
             {etape === 4 && dossier && (
               <Etape5Bascule dossier={dossier} onRetour={() => setEtape(3)} onRecommencer={recommencer} ouvrirFait={ouvrirFait} />

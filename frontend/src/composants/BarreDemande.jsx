@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { dollars } from '../api.js'
 import { SECTEURS_FR } from '../etapes/Etape2Verifier.jsx'
+import { pourClient } from '../affichage.js'
 
 // La demande reste visible après le résultat : une rangée de puces, chacune modifiable sur place.
 // « Appliquer et relancer » refait l'analyse avec la nouvelle valeur, sans quitter le verdict.
@@ -82,11 +83,50 @@ const CHAMPS = [
     puce: (p) => `risque ${Math.round(p.evaluation?.tolerance ?? p.tolerance ?? 0)} / 100` },
 ]
 
-export default function BarreDemande({ profil, demande, actifs, onRelancer, onToutRevoir, relance }) {
+// La conversation garde la demande de départ ; un nouveau message change la demande (et relance l'analyse)
+// ou pose une question, à laquelle le Rédacteur répond sur le dossier, sous les mêmes garde-fous.
+function Conversation({ initiale, echanges, onMessage, occupe, onVoirAnalyses }) {
+  const [message, setMessage] = useState('')
+  const fil = useRef(null)
+  useEffect(() => { fil.current?.scrollTo({ top: fil.current.scrollHeight }) }, [echanges.length])
+  const envoyer = (e) => {
+    e.preventDefault()
+    if (!message.trim() || occupe) return
+    onMessage(message.trim())
+    setMessage('')
+  }
+  return (
+    <div className="conversation">
+      <div className="fil" ref={fil} aria-live="polite">
+        <p className="bulle toi"><span className="qui">Ta demande de départ</span>{initiale || 'Saisie dans le formulaire, sans phrase.'}</p>
+        {echanges.map((m, i) => (
+          <p key={i} className={`bulle ${m.auteur}`}>
+            <span className="qui">{m.auteur === 'toi' ? 'Toi' : 'AlphaForge'}</span>
+            {pourClient(m.texte)}
+            {m.faits?.length > 0 && <>{' '}<button type="button" className="lien" onClick={() => onVoirAnalyses(m.faits)}>d'après les analyses</button></>}
+            {m.source && <span className="muted petit"> · {m.source}</span>}
+          </p>
+        ))}
+        {occupe && <p className="bulle outil muted">AlphaForge lit ton message…</p>}
+      </div>
+      <form className="saisie-message" onSubmit={envoyer}>
+        <label htmlFor="message-suite" className="visuellement-cache">Change, ajoute ou demande une précision</label>
+        <input id="message-suite" type="text" value={message} onChange={(e) => setMessage(e.target.value)} disabled={occupe}
+          placeholder="Ex. : Et si j'avais 20 ans devant moi ? · Pourquoi le seuil est de 17 % ?" maxLength={500} />
+        <button type="submit" className="bouton principal" disabled={!message.trim() || occupe}>Envoyer</button>
+      </form>
+    </div>
+  )
+}
+
+export default function BarreDemande({ profil, demande, actifs, onRelancer, onToutRevoir, relance,
+  initiale, echanges = [], onMessage, envoi, onVoirAnalyses }) {
   const [ouvert, setOuvert] = useState(null)
   const champ = CHAMPS.find((c) => c.cle === ouvert)
   return (
     <div className="barre-demande carte">
+      {onMessage && <Conversation initiale={initiale} echanges={echanges} onMessage={onMessage}
+        occupe={envoi || relance} onVoirAnalyses={onVoirAnalyses} />}
       <div className="puces-demande" role="group" aria-label="Ta demande, modifiable">
         <span className="muted petit">Ta demande :</span>
         {CHAMPS.map((c) => (

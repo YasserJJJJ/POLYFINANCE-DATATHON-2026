@@ -309,7 +309,7 @@ input[type=range] { width: 100%; accent-color: var(--accent); }
 .lien { background: none; border: 0; padding: 0; color: var(--accent); text-decoration: underline; cursor: pointer; font: inherit; }
 
 /* Option C : la demande en puces modifiables, le résultat en 3 onglets */
-.barre-demande { display: grid; gap: 10px; margin-bottom: 14px; position: sticky; top: 8px; z-index: 5; }
+.barre-demande { display: grid; gap: 10px; margin-bottom: 14px; }
 .puces-demande { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
 .puce-demande { border: 1px solid var(--trait); background: var(--voile); color: var(--encre); border-radius: 999px;
   padding: 4px 11px; font-size: 0.82rem; cursor: pointer; }
@@ -334,3 +334,19 @@ input[type=range] { width: 100%; accent-color: var(--accent); }
 .miroir-integre { border-left: 3px solid var(--t-scen); padding-left: 12px; }
 .miroir-integre .lien { font-weight: 600; }
 .miroir-integre .etiquette { vertical-align: 2px; }
+
+/* Les options sous un titre adapté, dans l'essentiel ; ligne surlignée quand on vient de « d'après les analyses » */
+.bloc-options { display: grid; gap: 12px; margin-top: 8px; }
+.titre-options { font-size: 1.15rem; margin: 0; }
+.registre tr.surligne td { background: var(--accent-doux); }
+
+/* Conversation au-dessus des puces : demande de départ, messages, réponses */
+.conversation { display: grid; gap: 8px; }
+.fil { display: grid; gap: 6px; max-height: 220px; overflow-y: auto; padding-right: 4px; }
+.bulle { margin: 0; padding: 8px 12px; border-radius: 12px; max-width: 85%; font-size: 0.9rem; display: grid; gap: 2px; }
+.bulle .qui { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--doux); }
+.bulle.toi { background: var(--accent-doux); justify-self: end; }
+.bulle.outil { background: var(--voile); justify-self: start; }
+.saisie-message { display: flex; gap: 8px; }
+.saisie-message input { flex: 1; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--trait); background: var(--voile); }
+.visuellement-cache { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }

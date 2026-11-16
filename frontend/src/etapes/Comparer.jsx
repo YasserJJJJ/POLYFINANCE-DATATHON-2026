@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { api, dollars } from '../api.js'
 import { PuceNiveau, PuceVerdict, PucesFaits } from '../composants/Base.jsx'
 import TiroirFait from '../composants/TiroirFait.jsx'
+import { pourClient } from '../affichage.js'
 import { nombreMesure, SENS_BAISSE } from '../composants/ComparaisonPortefeuille.jsx'
 
 // Analyses déjà faites pendant la session : rouvrir la vue ne relance pas 3 analyses Bedrock (≈ 13 s chacune).
@@ -52,7 +53,7 @@ export default function Comparer({ personas }) {
               <p className="muted petit">Horizon {p.profil.horizon_ans} ans · épargne fictive {dollars(p.profil.epargne_totale_cad)}</p>
               {d ? (
                 <>
-                  <p className="reformulation petite">{d.texte.reformulation}</p>
+                  <p className="reformulation petite">{pourClient(d.texte.reformulation)}</p>
                   <PuceVerdict etat={d.verdict.etat} />
                   <p className="compte-regles">{d.verdict.respectees}/{d.verdict.evaluees} règles respectées</p>
                   {d.comparaison?.disponible && <p>
@@ -64,7 +65,7 @@ export default function Comparer({ personas }) {
                     {bloquantes.map((r) => (
                       <li key={r.code} className={`regle n-${r.niveau}`}>
                         <div className="regle-tete"><strong>{r.libelle}</strong><PuceNiveau niveau={r.niveau} /></div>
-                        <p>{r.explication}</p>
+                        <p>{pourClient(r.explication)}</p>
                         <PucesFaits ids={r.faits} ouvrir={(ids) => setFaitOuvert({ cle, ids })} />
                       </li>
                     ))}

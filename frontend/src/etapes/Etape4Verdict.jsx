@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { dollars } from '../api.js'
+import { pourClient } from '../affichage.js'
 import BarreDemande from '../composants/BarreDemande.jsx'
 import { Etiquette, PuceIssue, PuceNiveau, PuceVerdict, PucesFaits } from '../composants/Base.jsx'
 import GraphiqueChute from '../composants/GraphiqueChute.jsx'
@@ -10,7 +11,7 @@ function Phrase({ p, ouvrir }) {
   return (
     <li className="phrase">
       <Etiquette type={p.type} />
-      <span>{p.texte}</span>
+      <span>{pourClient(p.texte)}</span>
       <PucesFaits ids={p.faits} ouvrir={ouvrir} />
       {p.references?.length > 0 && <SourcesCompactes ids={p.references} prefixe="Source :" />}
     </li>
@@ -27,9 +28,9 @@ function Option({ o, principal, ouvrir }) {
         <div><dt>Montant</dt><dd>{dollars(o.montant_cad)}</dd></div>
         <div><dt>Horizon</dt><dd>{o.horizon_ans} an(s)</dd></div>
       </dl>
-      {o.constat && <p className="option-note">{o.constat} {o.sens && <span className="muted petit">(Montant {o.sens})</span>}</p>}
+      {o.constat && <p className="option-note">{pourClient(o.constat)} {o.sens && <span className="muted petit">(Montant {o.sens})</span>}</p>}
       {(o.note || o.faits?.length > 0) && (
-        <p className="muted petit option-note">{o.note} <PucesFaits ids={o.faits} ouvrir={ouvrir} /></p>
+        <p className="muted petit option-note">{pourClient(o.note)} <PucesFaits ids={o.faits} ouvrir={ouvrir} /></p>
       )}
     </div>
   )
@@ -37,11 +38,21 @@ function Option({ o, principal, ouvrir }) {
 
 const PERSONAS_NOMS = ['Amira', 'Mateo', 'Robert']
 
+function titreDesOptions(etat, plan) {
+  if (plan) {
+    return { coherent: 'Les placements de la liste qui passent tes règles',
+      ajustement: 'Les placements qui passent avec un ajustement',
+      incoherent: 'Ce qui bloque ton plan, et ce qui le débloquerait' }[etat]
+  }
+  return { incoherent: 'Ce qui rendrait ton plan cohérent avec ta situation',
+    ajustement: 'Ce qui rendrait ton plan pleinement cohérent',
+    coherent: "D'autres façons de faire, pour comparer" }[etat]
+}
+
 // Plan ouvert : les placements de la liste qui passent les règles, en tableau, chacun analysable seul.
 function PlacementsDuPlan({ plan, verdict, ouvrir, onAnalyser }) {
   return (
     <div className="carte">
-      <h2>{plan.placements.length ? 'Placements de la liste qui passent les règles pour toi' : 'Aucun placement de la liste ne passe les règles'}</h2>
       {plan.placements.length > 0 && (
         <div className="defile-x">
           <table className="registre comparatif">
@@ -72,14 +83,20 @@ function PlacementsDuPlan({ plan, verdict, ouvrir, onAnalyser }) {
   )
 }
 
-export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifier, saisie, actifs, onRelancer, relance, onAnalyserPlacement }) {
+export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifier, saisie, actifs, onRelancer, relance,
+  onAnalyserPlacement, initiale, echanges, onMessage, envoi }) {
   const { verdict, texte, regles, options, faits, objections, qualite_donnees: qualite, demande, profil } = dossier
   const [onglet, setOnglet] = useState('essentiel')
-  useEffect(() => setOnglet('essentiel'), [dossier])   // un nouveau résultat se lit d'abord par l'essentiel
+  const [surligne, setSurligne] = useState([])   // chiffres d'une phrase, montrés dans « Le détail »
+  useEffect(() => { setOnglet('essentiel'); setSurligne([]) }, [dossier])   // un nouveau résultat se lit d'abord par l'essentiel
+  useEffect(() => {
+    if (onglet !== 'detail' || !surligne.length) return
+    document.querySelector(`[data-fait="${surligne[0]}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  }, [onglet, surligne])
+  const voirAnalyses = (idsFaits) => { setSurligne(idsFaits); setOnglet('detail') }
   const plan = dossier.plan?.ouvert ? dossier.plan : null
-  const nbPlacements = plan ? plan.placements.length : options.length
-  const onglets = [['essentiel', "L'essentiel"], ['placements', `${plan ? 'Les placements' : 'Les options'} (${nbPlacements})`],
-    ['detail', 'Le détail']]
+  const titreOptions = titreDesOptions(verdict.etat, plan)
+  const onglets = [['essentiel', "L'essentiel"], ['detail', 'Le détail et les sources']]
   const estPersona = PERSONAS_NOMS.includes(profil?.nom)
   const ids = demande.ids_faits || {}
   const ordre = { rouge: 0, orange: 1, gris: 2, ok: 3, non_evaluee: 4 }
@@ -88,7 +105,8 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
   return (
     <section className={`etape4 ${relance ? 'en-relance' : ''}`} aria-busy={relance}>
       <BarreDemande profil={{ ...saisie.profil, evaluation: profil.evaluation }} demande={saisie.demande} actifs={actifs}
-        onRelancer={onRelancer} onToutRevoir={onModifier} relance={relance} />
+        onRelancer={onRelancer} onToutRevoir={onModifier} relance={relance}
+        initiale={initiale} echanges={echanges} onMessage={onMessage} envoi={envoi} onVoirAnalyses={voirAnalyses} />
 
       <div className="onglets" role="tablist" aria-label="Niveau de détail">
         {onglets.map(([cle, nom]) => (
@@ -104,12 +122,12 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
         {plan
           ? <p className="compte-regles"><strong>{verdict.respectees}</strong> placement(s) sur <strong>{verdict.evaluees}</strong> passent toutes les règles</p>
           : <p className="compte-regles"><strong>{verdict.respectees}</strong> règle(s) respectée(s) sur <strong>{verdict.evaluees}</strong></p>}
-        {texte?.reformulation && <p className="reformulation">{texte.reformulation}</p>}
+        {texte?.reformulation && <p className="reformulation">{pourClient(texte.reformulation)}</p>}
         {texte?.miroir?.map((ph, i) => (
           <p key={i} className="reformulation miroir-integre">
-            {ph.texte.replace(/[.\s]+$/, '')}
+            {pourClient(ph.texte).replace(/[.\s]+$/, '')}
             {ph.faits?.length > 0
-              ? <>, <button type="button" className="lien" onClick={() => ouvrirFait(ph.faits)}>d'après les analyses</button>.</>
+              ? <>, <button type="button" className="lien" onClick={() => voirAnalyses(ph.faits)}>d'après les analyses</button>.</>
               : '.'}
             {' '}<Etiquette type={ph.type} />
           </p>
@@ -118,13 +136,13 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
           <p className="muted petit">« Tu as dit » cite une phrase type du profil {profil.nom} (scénario fictif de l'équipe),
             pas une saisie que tu as faite.</p>
         )}
-        {texte?.tensions?.map((t) => <p key={t} className="tension">{t}</p>)}
+        {texte?.tensions?.map((t) => <p key={t} className="tension">{pourClient(t)}</p>)}
       </div>
 
       {dossier.questions?.length > 0 && (
         <div className="carte manque">
           <h2>{verdict.etat === 'indetermine' ? "Ce qu'il me faut pour conclure" : 'La question qui pourrait changer cet avis'}</h2>
-          <ul>{dossier.questions.map((q) => <li key={q}><strong>{q}</strong>
+          <ul>{dossier.questions.map((q) => <li key={q}><strong>{pourClient(q)}</strong>
             <PucesFaits ids={q.match(/F-\d+/g) || []} ouvrir={ouvrirFait} /></li>)}</ul>
         </div>
       )}
@@ -146,28 +164,24 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
         )}
       </div>
 
-      {texte?.ce_qui_changerait?.length > 0 && (
-        <ul className="phrases">{texte.ce_qui_changerait.map((p, i) => <Phrase key={i} p={p} ouvrir={ouvrirFait} />)}</ul>
+      {titreOptions && (
+        <section className="bloc-options" aria-labelledby="titre-options">
+          <h2 id="titre-options" className="titre-options">{titreOptions}</h2>
+          {texte?.ce_qui_changerait?.length > 0 && (
+            <ul className="phrases">{texte.ce_qui_changerait.map((p, i) => <Phrase key={i} p={p} ouvrir={ouvrirFait} />)}</ul>
+          )}
+          {plan
+            ? <PlacementsDuPlan plan={plan} verdict={verdict} ouvrir={ouvrirFait} onAnalyser={onAnalyserPlacement} />
+            : <div className="trois-options">
+                {options.map((o, i) => <Option key={o.nom} o={o} principal={i === 1} ouvrir={ouvrirFait} />)}
+              </div>}
+        </section>
       )}
       <div className="actions">
-        <button type="button" className="bouton principal" onClick={() => setOnglet('placements')}>
-          {plan ? `Voir les placements (${nbPlacements})` : 'Comparer les options'}
-        </button>
-        {dossier.bascule?.cases?.length > 0 && <button type="button" className="bouton discret" onClick={onBascule}>Bouger les curseurs</button>}
-        <button type="button" className="bouton discret" onClick={() => setOnglet('detail')}>Voir le détail</button>
+        {dossier.bascule?.cases?.length > 0 && <button type="button" className="bouton principal" onClick={onBascule}>Bouger les curseurs</button>}
+        <button type="button" className="bouton discret" onClick={() => setOnglet('detail')}>Voir le détail et les sources</button>
       </div>
       </>)}
-
-      {onglet === 'placements' && (plan
-        ? <PlacementsDuPlan plan={plan} verdict={verdict} ouvrir={ouvrirFait} onAnalyser={onAnalyserPlacement} />
-        : (<>
-          <div className="trois-options">
-            {options.map((o, i) => <Option key={o.nom} o={o} principal={i === 1} ouvrir={ouvrirFait} />)}
-          </div>
-          {dossier.bascule?.cases?.length > 0 && (
-            <div className="actions"><button type="button" className="bouton principal" onClick={onBascule}>Bouger les curseurs</button></div>
-          )}
-        </>))}
 
       {onglet === 'detail' && (<>
       {plan && <p className="muted petit">Plan ouvert : les règles ci-dessous sont celles appliquées à {plan.regles_de || 'la liste'}, le premier placement retenu.</p>}
@@ -178,7 +192,7 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
             {reglesTriees.map((r) => (
               <li key={r.code} className={`regle n-${r.niveau}`}>
                 <div className="regle-tete"><strong>{r.libelle}</strong><PuceNiveau niveau={r.niveau} /></div>
-                <p>{r.type && <Etiquette type={r.type} />} {r.explication}</p>
+                <p>{r.type && <Etiquette type={r.type} />} {pourClient(r.explication)}</p>
                 {r.code === 'capacite' && <ComparaisonPortefeuille dossier={dossier} ouvrirFait={ouvrirFait} />}
                 <PucesFaits ids={r.faits} ouvrir={ouvrirFait} />
                 {r.references?.length > 0 && (
@@ -199,8 +213,8 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
             <h2>Ce que le Sceptique a contesté</h2>
             {objections.map((o) => (
               <div key={o.id} className="objection">
-                <p><span className="mono">{o.id}</span> {o.texte}</p>
-                <p className="recalcul">↳ {o.reponse}</p>
+                <p>{pourClient(o.texte)}</p>
+                <p className="recalcul">↳ {pourClient(o.reponse)}</p>
                 <PuceIssue issue={o.issue} />
               </div>
             ))}
@@ -212,14 +226,14 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
         <h2>Tous les chiffres utilisés</h2>
         <div className="defile-x">
           <table className="registre">
-            <thead><tr><th>Id</th><th>Ce que c'est</th><th>Valeur</th><th>Type</th></tr></thead>
+            <thead><tr><th>Ce que c'est</th><th>Valeur</th><th>Nature</th><th /></tr></thead>
             <tbody>
               {faits.map((f) => (
-                <tr key={f.id}>
-                  <td><button type="button" className="puce-fait" onClick={() => ouvrirFait(f.id)}>{f.id}</button></td>
-                  <td>{f.libelle}</td>
-                  <td className="nombre">{typeof f.valeur === 'object' && f.valeur !== null ? Object.entries(f.valeur).map(([k, v]) => `${k} ${v}`).join(', ') : `${f.valeur ?? '—'} ${f.unite}`}</td>
+                <tr key={f.id} data-fait={f.id} className={surligne.includes(f.id) ? 'surligne' : ''}>
+                  <td>{pourClient(f.libelle)}</td>
+                  <td className="nombre">{pourClient(typeof f.valeur === 'object' && f.valeur !== null ? Object.entries(f.valeur).map(([k, v]) => `${k} ${v}`).join(', ') : `${f.valeur ?? '—'} ${f.unite}`)}</td>
                   <td><Etiquette type={f.type} /></td>
+                  <td><PucesFaits ids={[f.id]} ouvrir={ouvrirFait} /></td>
                 </tr>
               ))}
             </tbody>
