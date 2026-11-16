@@ -796,7 +796,7 @@
     else {
       const e = AF.etat(), b = AF.brouillon(), cible2 = b && b.cas === e.cas ? b : e, p = AF.parametres();
       let h = '';
-      if (p.retrait.length > 1) h += `<span class="leg-param"><span class="petit-titre" id="lp-r">Retrait prévu</span><span class="segment" role="group" aria-labelledby="lp-r">${p.retrait.map((r) => `<button type="button" data-action="param" data-valeur='${JSON.stringify({ retrait: r })}' data-cle="p-r-${r}" aria-pressed="${cible2.retrait === r}">${esc(r == null ? 'non précisé' : fmt.retrait(r))}</button>`).join('')}</span></span>`;
+      if (p.retrait.length > 1) h += `<span class="leg-param"><span class="petit-titre" id="lp-r">Retrait</span><span class="segment" role="group" aria-labelledby="lp-r">${p.retrait.map((r) => `<button type="button" data-action="param" data-valeur='${JSON.stringify({ retrait: r })}' data-cle="p-r-${r}" aria-pressed="${cible2.retrait === r}">${esc(r == null ? 'non précisé' : fmt.retrait(r))}</button>`).join('')}</span></span>`;
       if (p.exclusion.length > 1) h += `<span class="leg-param"><span class="petit-titre" id="lp-x">Exclure ${esc(secteurExclu(e.cas))}</span><span class="segment" role="group" aria-labelledby="lp-x">${p.exclusion.map((x) => `<button type="button" data-action="param" data-valeur='${JSON.stringify({ exclusion: x })}' data-cle="p-x-${x}" aria-pressed="${cible2.exclusion === x}">${x ? 'oui' : 'non'}</button>`).join('')}</span></span>`;
       if (!h) h = '<span class="leg-fixe">Montant seul précalculé</span>';
       params.innerHTML = h;
