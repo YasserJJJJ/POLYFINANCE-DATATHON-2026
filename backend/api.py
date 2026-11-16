@@ -155,6 +155,19 @@ def serie(ticker: str) -> dict:
             "points": [{"date": str(i.date()), "valeur": round(float(v) / base * 100, 2)} for i, v in s.items()]}
 
 
+@app.get("/api/bougies/{ticker}")
+def bougies(ticker: str) -> dict:
+    """Bougies mensuelles en CAD, base 100, pour l'illustration de l'accueil (données du jeu de départ)."""
+    try:
+        b = calculs.bougies_mensuelles(ticker)
+        nom = str(univers().loc[ticker, "name"])
+    except KeyError as e:
+        raise HTTPException(status_code=404, detail=str(e)) from e
+    return {"ticker": ticker, "nom": nom, "bougies": b, "variation_pct": round(b[-1]["c"] - 100, 1),
+            "methode": "Clôtures ajustées converties en CAD (taux BdC), base 100 à la première séance ; par mois : "
+                       "première, plus haute, plus basse et dernière clôture."}
+
+
 class Precision(BaseModel):
     question: str
     dossier: dict

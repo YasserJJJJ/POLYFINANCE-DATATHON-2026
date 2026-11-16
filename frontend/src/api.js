@@ -32,6 +32,7 @@ export const api = {
   actifs: () => requete('/api/actifs'),
   questions: () => requete('/api/questions'),
   serie: (ticker) => requete(`/api/serie/${encodeURIComponent(ticker)}`),
+  bougies: (ticker) => requete(`/api/bougies/${encodeURIComponent(ticker)}`),
   comprendre: (profil, demande) =>
     requete('/api/comprendre', { method: 'POST', body: JSON.stringify({ profil, demande }) }),
   analyser: (profil, demande) =>

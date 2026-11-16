@@ -54,6 +54,16 @@ def _hebdo(ticker: str) -> pd.Series:
     return serie_cad(ticker).resample("W-FRI").last().dropna()
 
 
+def bougies_mensuelles(ticker: str) -> list[dict]:
+    """Une bougie par mois, en CAD, base 100 à la première séance : première, plus haute, plus basse et dernière
+    clôture ajustée du mois. Le jeu de départ n'a pas de cours d'ouverture : ce sont des clôtures, pas des OHLC."""
+    s = serie_cad(ticker)
+    base = s / float(s.iloc[0]) * 100
+    mois = base.resample("ME").agg(["first", "max", "min", "last"]).dropna()
+    return [{"mois": i.strftime("%Y-%m"), "o": round(float(r["first"]), 2), "h": round(float(r["max"]), 2),
+             "b": round(float(r["min"]), 2), "c": round(float(r["last"]), 2)} for i, r in mois.iterrows()]
+
+
 def pire_annee_glissante(ticker: str) -> dict:
     """Pire rendement sur 12 mois glissants (pas hebdomadaire)."""
     h = _hebdo(ticker)

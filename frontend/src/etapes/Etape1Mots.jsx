@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { dollars } from '../api.js'
 import { lireFichierClient, telechargerModele } from '../fichierClient.js'
+import GraphiqueAccueil from '../composants/GraphiqueAccueil.jsx'
 
 const AMORCES = ['Je veux ', "J'ai ", "Mais j'ai peur de "]
 
@@ -33,6 +34,7 @@ export default function Etape1Mots({ personas, onPersona, onPersonaSansPlacement
 
   return (
     <section className="etape1">
+      <div className="accueil-tete">
       <div className="accroche">
         <p className="surtitre">Avant de cliquer sur « acheter »</p>
         <h1>Dis-nous ce que tu veux faire de ton argent. On vérifie si ça tient debout pour toi.</h1>
@@ -40,6 +42,8 @@ export default function Etape1Mots({ personas, onPersona, onPersonaSansPlacement
           On reformule ta demande, on la confronte à ta situation avec des chiffres réels, et on te montre ce qui
           la rendrait raisonnable. On ne te dira jamais quoi acheter.
         </p>
+      </div>
+      <GraphiqueAccueil />
       </div>
 
       <form className="carte saisie" onSubmit={(e) => { e.preventDefault(); if (pret) onDemarrer({ texte: texte.trim(), fichier }) }}>

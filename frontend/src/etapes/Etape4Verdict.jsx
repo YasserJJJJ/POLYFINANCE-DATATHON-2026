@@ -5,6 +5,7 @@ import BarreDemande from '../composants/BarreDemande.jsx'
 import CarteRaisonnement from '../composants/CarteRaisonnement.jsx'
 import { Etiquette, PuceIssue, PuceNiveau, PuceVerdict, PucesFaits } from '../composants/Base.jsx'
 import GraphiqueChute from '../composants/GraphiqueChute.jsx'
+import RegistreChiffres from '../composants/RegistreChiffres.jsx'
 import ComparaisonPortefeuille from '../composants/ComparaisonPortefeuille.jsx'
 import Editions, { CeQuiChange } from '../composants/Editions.jsx'
 import { toutReplier } from '../repliable.js'
@@ -160,12 +161,13 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
   const { verdict, texte, regles, options, faits, objections, qualite_donnees: qualite, demande, profil } = dossier
   const [onglet, setOnglet] = useState('essentiel')
   const [surligne, setSurligne] = useState([])   // chiffres d'une phrase, montrés dans « Le détail »
+  const [allerAuDetail, setAllerAuDetail] = useState(0)
   useEffect(() => { setOnglet('essentiel'); setSurligne([]) }, [dossier])   // un nouveau résultat se lit d'abord par l'essentiel
+  // « d'après les analyses » : on ouvre « Approfondie » par le haut, la carte du raisonnement allume les chiffres de la phrase.
   useEffect(() => {
-    if (onglet !== 'detail' || !surligne.length) return
-    document.querySelector(`[data-fait="${surligne[0]}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-  }, [onglet, surligne])
-  const voirAnalyses = (idsFaits) => { setSurligne(idsFaits); setOnglet('detail') }
+    if (allerAuDetail) document.querySelector('.etape4 .onglets')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }, [allerAuDetail])
+  const voirAnalyses = (idsFaits) => { setSurligne(idsFaits); setOnglet('detail'); setAllerAuDetail((n) => n + 1) }
   const plan = dossier.plan?.ouvert ? dossier.plan : null
   // Les curseurs n'apprennent rien quand toute la carte a le même verdict (une exclusion, par exemple) :
   // on renvoie plutôt vers la demande, en haut de la page.
@@ -300,21 +302,7 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
         <CarteRaisonnement dossier={dossier} ouvrirFait={ouvrirFait} surligne={surligne} />
         <details className="liste-chiffres" open={surligne.length > 0}>
           <summary>La liste de tous les chiffres du dossier ({faits.length})</summary>
-        <div className="defile-x">
-          <table className="registre">
-            <thead><tr><th>Ce que c'est</th><th>Valeur</th><th>Nature</th><th /></tr></thead>
-            <tbody>
-              {faits.map((f) => (
-                <tr key={f.id} data-fait={f.id} className={surligne.includes(f.id) ? 'surligne' : ''}>
-                  <td>{pourClient(f.libelle)}</td>
-                  <td className="nombre">{pourClient(typeof f.valeur === 'object' && f.valeur !== null ? Object.entries(f.valeur).map(([k, v]) => `${k} ${v}`).join(', ') : `${f.valeur ?? '—'} ${f.unite}`)}</td>
-                  <td><Etiquette type={f.type} /></td>
-                  <td><PucesFaits ids={[f.id]} ouvrir={ouvrirFait} /></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <RegistreChiffres faits={faits} surligne={surligne} ouvrir={ouvrirFait} />
         </details>
       </div>
       {plan && <p className="muted petit">Plan ouvert : les règles ci-dessous sont celles appliquées à {plan.regles_de || 'la liste'}, le premier placement retenu.</p>}
