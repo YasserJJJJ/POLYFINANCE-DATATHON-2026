@@ -61,6 +61,62 @@ def _placement_large(d: Dossier, m: dict) -> dict | None:
                      f"contre {fr(m['pire_chute_pct'])} % pour {d.demande['ticker']}.")}
 
 
+def _question_retrait(d: Dossier, m: dict) -> None:
+    """Teste une hypothèse séparée, sans compléter le profil de la personne."""
+    horizon = d.profil.get("horizon_ans")
+    if d.profil.get("retrait_prevu_ans") is not None or horizon is None:
+        return
+    regles = gardien.appliquer_regles({**d.profil, "retrait_prevu_ans": horizon}, d.demande, m)
+    alternatif = gardien.verdict(regles)
+    if alternatif["etat"] == d.verdict["etat"]:
+        return
+    fait = d.ajouter_fait(
+        "Hypothèse testée : retrait à l'horizon déclaré", horizon, "an(s)", "HYPOTHESE",
+        "Horizon déclaré et Gardien, sans modification du profil",
+        f"Recalcul avec retrait_prevu_ans = horizon_ans : {d.verdict['etat']} → {alternatif['etat']}. "
+        "Le verdict affiché conserve les données fournies.",
+        references=references_de("h_retrait_decisif"),
+    )
+    d.questions.append(
+        f"Question décisive — Prévois-tu un retrait dans {fr(horizon)} an(s), à ton horizon déclaré ? "
+        f"Avec ce retrait, le verdict passerait de « {d.verdict['libelle']} » à "
+        f"« {alternatif['libelle']} ». Cette date reste à confirmer ({fait.id})."
+    )
+
+
+def _documenter_monotonie(d: Dossier) -> None:
+    """Observe la grille exacte ; n'en lisse aucune case."""
+    if not d.bascule or not d.comparaison.get("disponible"):
+        return
+    cases = {(c["montant_cad"], c["horizon_ans"]): c["etat"] for c in d.bascule["cases"]}
+    montants = sorted(d.bascule["montants"])
+    exemple = None
+    for h in d.bascule["horizons"]:
+        for petit, grand in zip(montants, montants[1:]):
+            if gardien.RANG[cases[petit, h]] > gardien.RANG[cases[grand, h]]:
+                exemple = {"montant_bas_cad": petit, "montant_haut_cad": grand, "horizon_ans": h,
+                           "etat_bas": cases[petit, h], "etat_haut": cases[grand, h]}
+                break
+        if exemple:
+            break
+    explication = (
+        "Un montant plus élevé peut améliorer le verdict quand le placement diversifie le portefeuille. "
+        "Les cases sont les résultats exacts du Gardien ; une amélioration n'est pas une erreur de grille."
+        if exemple else "Aucune inversion de verdict observée sur les montants de cette grille."
+    )
+    d.bascule["monotonie_montant"] = {
+        "observee": exemple is None, "explication": explication, "exemple": exemple,
+        "faits": [d.comparaison["faits"]["h_non_monotonie"],
+                  d.comparaison["faits"]["avant_pire_chute"],
+                  d.comparaison["faits"]["apres_pire_chute"],
+                  d.comparaison["faits"]["ecart_pire_chute"]],
+    }
+    if exemple:
+        hypothese = d.fait(d.comparaison["faits"]["h_non_monotonie"])
+        hypothese.valeur = {"explication": hypothese.valeur, "exemple_observe": exemple}
+        hypothese.methode += " Exemple issu des cases de la grille, recalculées par le Gardien."
+
+
 def analyser(profil: dict, demande: dict, sur_etape: Callable[[dict], None] | None = None) -> dict:
     """`sur_etape` reçoit chaque étape de la trace dès que son agent a fini (affichage en direct)."""
     d = Dossier(profil=copy.deepcopy(profil), demande=copy.deepcopy(demande))
@@ -91,6 +147,7 @@ def analyser(profil: dict, demande: dict, sur_etape: Callable[[dict], None] | No
     m, ids = d.demande["mesures"], d.demande["ids_faits"]
     d.regles = gardien.appliquer_regles(d.profil, d.demande, m, ids)
     d.verdict = gardien.verdict(d.regles)
+    _question_retrait(d, m)
     ticker = d.demande["ticker"]
     d.options = [{"nom": "Ta demande", "ticker": ticker, "montant_cad": d.demande["montant_cad"],
                   "horizon_ans": d.profil.get("horizon_ans"), "etat": d.verdict["etat"]}]
@@ -100,6 +157,7 @@ def analyser(profil: dict, demande: dict, sur_etape: Callable[[dict], None] | No
         if aj:
             d.options.append({"nom": "Version ajustée", "ticker": ticker, "changement": aj["changement"],
                               "etat": aj["etat"],
+                              **{k: aj[k] for k in ("sens", "constat") if k in aj},
                               "montant_cad": aj["changement"].get("montant_cad", d.demande["montant_cad"]),
                               "horizon_ans": aj["changement"].get("horizon_ans", d.profil.get("horizon_ans"))})
     alt = _alternative(d) if exclusion else None
@@ -111,6 +169,7 @@ def analyser(profil: dict, demande: dict, sur_etape: Callable[[dict], None] | No
             d.options.append(large)
     if d.verdict["etat"] != "indetermine":
         d.bascule = gardien.grille_bascule(d.profil, d.demande, m)
+        _documenter_monotonie(d)
     d.tracer("Gardien", "applique les règles et décide",
              f"{d.verdict['libelle']} ({d.verdict['respectees']}/{d.verdict['evaluees']} règles respectées). "
              f"Grille de bascule : {len(d.bascule.get('cases', []))} combinaisons recalculées.",
@@ -118,6 +177,14 @@ def analyser(profil: dict, demande: dict, sur_etape: Callable[[dict], None] | No
     publier()
 
     redacteur.executer(d)
+    # Pont de restitution dans le fichier possédé par T2 : le gabarit T1 disait
+    # toujours « ramener ». T4 pourra consommer directement option.constat.
+    ajustee = next((o for o in d.options if o.get("constat")), None)
+    if ajustee:
+        phrases = d.texte.get("ce_qui_changerait") or []
+        d.texte["ce_qui_changerait"] = [
+            {"texte": ajustee["constat"], "type": "SCENARIO", "faits": []}, *phrases[1:]
+        ]
     publier()
     d.appels_modele = llm.journal_appels()
     return d.to_dict()

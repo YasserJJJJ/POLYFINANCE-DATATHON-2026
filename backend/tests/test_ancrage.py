@@ -40,7 +40,7 @@ def test_ce_qui_changerait_reste_ecrit_par_le_code(monkeypatch):
     d = _robert()
     assert d["texte"]["source"] == llm.nom(llm.MODELE_PRINCIPAL)
     textes = " ".join(ph["texte"] for ph in d["texte"]["ce_qui_changerait"])
-    assert "médiatique" not in textes and 38000.0 in llm.nombres(textes)
+    assert "médiatique" not in textes and 38000.0 in llm.nombres(textes)  # amélioration la plus proche, même orange
 
 
 # --- Nombres : seuls ceux du dossier passent ; les mots de la personne restent citables mot pour mot ---
@@ -105,6 +105,8 @@ def test_une_reponse_mal_formee_du_modele_ne_fait_pas_planter_l_analyse(monkeypa
 # --- Étiquettes : le code corrige celles du modèle et le dit ---
 def test_le_code_corrige_les_etiquettes_du_modele_et_le_dit(monkeypatch):
     # Phrases réellement écrites par Claude pour Robert pendant l'audit (bedrock_robert.json).
+    # Elles portent sur l'ancienne approximation (14,2 %) : garder ce test dans ce mode explicite.
+    monkeypatch.setenv("ALPHAFORGE_CAPACITE", "approximation")
     seuil = ("Le point qui pèse le plus : ce placement représenterait 20 % de ton épargne, alors que le seuil "
              "retenu pour un actif aussi volatil est 5 % dans ton profil.")
     scen = "Même avec ce poids élevé, la pire chute historique ferait baisser ton épargne de 14,2 %."

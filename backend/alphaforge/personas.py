@@ -1,7 +1,8 @@
 """Les 3 personas du cas officiel, complétées par des montants fictifs.
 
 Âge, profil de risque, horizon, expérience et préférences : énoncé officiel.
-Montants, fonds d'urgence, sommes à préserver et demandes : SCÉNARIO FICTIF de l'équipe.
+Montants, fonds d'urgence, sommes à préserver, poids et demandes : SCÉNARIO FICTIF de l'équipe.
+Poids équipondérés explicites proposés pour la fusion : à valider par le porteur (décision 5).
 """
 
 PERSONAS = {
@@ -12,7 +13,7 @@ PERSONAS = {
             "epargne_totale_cad": 40000, "somme_a_preserver_cad": 5000,
             "revenu_stable": True, "fonds_urgence": True, "dettes_importantes": False,
             "retrait_prevu_ans": None, "exclusions": [],
-            "portefeuille_actuel": ["QQQ", "NVDA"],
+            "portefeuille_actuel": {"QQQ": 0.5, "NVDA": 0.5},
             "citations": ["Je veux faire croître mon capital à long terme",
                           "Je ne veux pas tout miser sur la techno"],
         },
@@ -26,7 +27,7 @@ PERSONAS = {
             "epargne_totale_cad": 120000, "somme_a_preserver_cad": 30000,
             "revenu_stable": True, "fonds_urgence": True, "dettes_importantes": False,
             "retrait_prevu_ans": None, "exclusions": ["Energy"],
-            "portefeuille_actuel": ["XIU.TO", "XBB.TO"],
+            "portefeuille_actuel": {"XIU.TO": 0.5, "XBB.TO": 0.5},
             "citations": ["Je veux éviter les entreprises liées à des controverses environnementales",
                           "Je cherche un équilibre entre croissance et stabilité"],
         },
@@ -41,7 +42,7 @@ PERSONAS = {
             "epargne_totale_cad": 400000, "somme_a_preserver_cad": 300000,
             "revenu_stable": True, "fonds_urgence": True, "dettes_importantes": False,
             "retrait_prevu_ans": 4, "exclusions": [],
-            "portefeuille_actuel": ["XIU.TO", "XBB.TO", "RY.TO"],
+            "portefeuille_actuel": {"XIU.TO": 1 / 3, "XBB.TO": 1 / 3, "RY.TO": 1 / 3},
             "citations": ["Je veux préserver mon capital", "Tout le monde parle de Tesla en ce moment"],
         },
         "demande": {"texte": "Je veux mettre 80 000 $ dans Tesla, tout le monde en parle.", "ticker": "TSLA",

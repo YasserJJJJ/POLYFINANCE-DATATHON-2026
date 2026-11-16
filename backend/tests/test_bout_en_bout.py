@@ -11,7 +11,14 @@ def _run(nom, **changements):
     return analyser(profil, demande)
 
 
-def test_les_trois_personas_donnent_trois_verdicts():
+def test_les_trois_personas_donnent_trois_verdicts(monkeypatch):
+    # K5 rend Amira incohérente aussi : les raisons restent propres à chaque personne.
+    monkeypatch.setenv("ALPHAFORGE_CAPACITE", "portefeuille")
+    dossiers = {nom: _run(nom) for nom in PERSONAS}
+    assert all(d["verdict"]["etat"] == "incoherent" for d in dossiers.values())
+    signatures = {tuple((r["code"], r["niveau"]) for r in d["regles"]) for d in dossiers.values()}
+    assert len(signatures) == 3
+    monkeypatch.setenv("ALPHAFORGE_CAPACITE", "approximation")
     etats = {nom: _run(nom)["verdict"]["etat"] for nom in PERSONAS}
     assert len(set(etats.values())) >= 2, etats
 

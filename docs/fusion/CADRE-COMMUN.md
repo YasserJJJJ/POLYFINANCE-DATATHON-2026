@@ -73,7 +73,7 @@ Jeu de départ complet : `/Users/vpro/Downloads/Datathon2026 2/alphaforge_starte
 4. Le texte d'un modèle passe le contrôle d'ancrage ou est remplacé par le gabarit en code.
 5. L'application fonctionne sans identifiants AWS (mode hors ligne).
 6. Les 201 tests du socle restent verts, ou chaque test modifié est justifié dans le compte rendu.
-7. La grille de bascule reste monotone en montant.
+7. La grille est monotone en montant quand la demande aggrave la pire baisse du portefeuille ; quand elle l'améliore (actif diversifiant), un montant plus élevé peut donner un meilleur verdict, et le dossier le dit. Révision autorisée par le porteur pendant la tranche 2, consignée dans `REVISIONS.md`.
 8. Simulation seulement : aucun conseil d'achat ou de vente, aucune prévision, aucune transaction.
 9. Français dans l'interface, les textes et la documentation. Montants en CAD.
 10. Contrat HTTP rétrocompatible : on ajoute des champs facultatifs, on ne renomme ni ne retire rien.

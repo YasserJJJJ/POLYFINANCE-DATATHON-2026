@@ -9,11 +9,11 @@ from __future__ import annotations
 
 import time
 
-from .. import calculs, llm
+from .. import calculs, llm, portefeuille
 from ..donnees import _prix
 from ..dossier import Dossier, Objection
 from ..format import fr
-from ..profil import symboles_portefeuille
+from ..profil import evaluer, symboles_portefeuille
 from ..sources import references_de
 from ..garde_fous import mots_de_conseil, rapport_calcule, sans_accents
 
@@ -90,7 +90,32 @@ def _concentration(d: Dossier, m: dict, ids: dict) -> tuple[str, str]:
     return texte, "confirmee"
 
 
+def _portefeuille_entier(d: Dossier, m: dict, ids: dict) -> tuple[str, str]:
+    """Vérifie la mesure appariée et la confronte au seuil, sans décider du verdict."""
+    c = d.comparaison
+    recalcul = portefeuille.comparer_pertes(d.profil, d.demande)
+    if not recalcul.get("disponible") or not c.get("disponible"):
+        return "La mesure du portefeuille entier n'est pas disponible.", "limite"
+    if any(c[bras]["pire_chute_pct"] != recalcul[bras]["pire_chute_pct"] for bras in ("avant", "apres")):
+        return "Le recalcul ne confirme pas les mesures présentées : cette preuve doit être vérifiée.", "limite"
+    seuil = evaluer(d.profil)["perte_max_retenue_pct"]
+    if c["origine_poids"] != "declare" or seuil is None:
+        return ("Les deux bras sont recalculés, mais les poids ou le seuil restent à confirmer ; "
+                "l'hypothèse ne prouve pas le risque du portefeuille réellement détenu."), "limite"
+    apres = recalcul["apres"]["pire_chute_pct"]
+    depasse = abs(apres) > seuil
+    return (f"Recalcul du portefeuille entier ({ids['apres_pire_chute']}) : pire baisse après {fr(apres)} %, "
+            f"pour une perte supportable retenue de {fr(seuil)} % ({ids['h_perte']}). "
+            + ("La baisse dépasse ce seuil ; le Gardien applique aussi sa règle d'attribution."
+               if depasse else "La baisse ne dépasse pas ce seuil dans cette simulation."),
+            "confirmee" if depasse else "ecartee")
+
+
 CATALOGUE = {
+    "portefeuille_entier": (lambda m, ids: "apres_pire_chute" in ids, "h_perte",
+                            "La perte supportable tient-elle compte de toutes les lignes du portefeuille ?",
+                            "Recalculer la baisse du portefeuille après, puis la comparer au seuil retenu.",
+                            _portefeuille_entier),
     "devise": (lambda m, ids: m["devise"] == "USD", "chute",
                "La pire chute est-elle mesurée en dollars canadiens ? Pour un investisseur canadien, le taux de change compte.",
                "Recalculer la pire chute en USD et comparer.", _devise),
@@ -143,7 +168,8 @@ def _choix_llm(d: Dossier, possibles: list[str]) -> list[tuple[str, str]]:
 
 # Mots du thème de chaque vérification : l'objection rédigée par le modèle doit parler de la vérification
 # que le code exécute (sinon on affiche la question du catalogue).
-THEMES = {"devise": ("dollar", "change", "usd", "cad", "devise"),
+THEMES = {"portefeuille_entier": ("portefeuille", "supportable", "toutes les lignes"),
+          "devise": ("dollar", "change", "usd", "cad", "devise"),
           "recuperation_inconnue": ("sommet", "recup", "remont"),
           "fenetre_courte": ("fenetre", "5 ans", "cinq ans", "borne", "pire cas", "historique", "crise", "periode",
                              "plancher", "plafond", "observe"),
@@ -174,7 +200,8 @@ def executer(d: Dossier) -> None:
         except Exception as e:
             choix, source = [], f"règles : réponse du modèle inutilisable ({type(e).__name__})"
     if not choix:
-        choix = [(c, CATALOGUE[c][2]) for c in possibles if c in ("devise", "recuperation_inconnue", "fenetre_courte")]
+        choix = [(c, CATALOGUE[c][2]) for c in possibles
+                 if c in ("portefeuille_entier", "devise", "recuperation_inconnue", "fenetre_courte")]
         choix = choix[:MAX_OBJECTIONS]
 
     for code, texte in choix:

@@ -50,9 +50,25 @@ CAS = [
     ("12 Amira : horizon et montant absents", "amira", {"horizon_ans": None}, {"montant_cad": None, "texte": ""}, "indetermine", set()),
 ]
 
+# Changements attendus de K5 ; le même banc conserve aussi tous les résultats de C
+# sous la bascule documentée. Aucun seuil ni cas du banc n'est retiré.
+ATTENDUS_PORTFEUILLE = {
+    "01": ("incoherent", {"capacite", "concentration"}),
+    "03": ("incoherent", {"capacite", "concentration", "coussin"}),
+    "04": ("incoherent", {"capacite", "retrait", "concentration"}),
+    "05": ("incoherent", {"capacite", "preserver", "concentration"}),
+    "07": ("incoherent", {"capacite", "concentration"}),
+    "08": ("ajustement", {"capacite"}),
+    "09": ("incoherent", {"capacite", "retrait", "concentration"}),
+}
 
+
+@pytest.mark.parametrize("mode", ["portefeuille", "approximation"])
 @pytest.mark.parametrize("nom, persona, profil, demande, etat, regles", CAS, ids=[c[0] for c in CAS])
-def test_cas(nom, persona, profil, demande, etat, regles):
+def test_cas(nom, persona, profil, demande, etat, regles, mode, monkeypatch):
+    monkeypatch.setenv("ALPHAFORGE_CAPACITE", mode)
+    if mode == "portefeuille":
+        etat, regles = ATTENDUS_PORTFEUILLE.get(nom[:2], (etat, regles))
     d = lancer(persona, profil, demande)
     assert d["verdict"]["etat"] == etat, (nom, d["verdict"], regles_non_ok(d))
     if etat != "indetermine":
@@ -134,7 +150,7 @@ def test_seuil_de_concentration_sans_saut_entre_deux_points_de_score():
 
 def test_un_seul_titre_peu_volatil_n_est_plus_coherent_a_87_pour_cent():
     d = lancer("amira", demande={"ticker": "AAPL", "montant_cad": 35000})       # 87,5 % de 40 000 $
-    assert d["verdict"]["etat"] == "ajustement" and regles_non_ok(d) == {"concentration"}
+    assert d["verdict"]["etat"] == "ajustement" and regles_non_ok(d) == {"concentration", "capacite"}
 
 
 def test_un_fnb_large_n_est_pas_soumis_au_seuil_d_un_titre():

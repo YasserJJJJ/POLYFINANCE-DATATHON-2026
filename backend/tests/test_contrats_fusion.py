@@ -1,4 +1,4 @@
-"""Contrat 2 inactif et compatibilité des portefeuilles pondérés."""
+"""Contrat 2 actif : les symboles restent compatibles, les poids sont utilisés."""
 import copy
 
 import pytest
@@ -9,7 +9,6 @@ from alphaforge.dossier import Dossier
 from alphaforge.orchestrateur import analyser
 from alphaforge.personas import PERSONAS
 from alphaforge.profil import normaliser_portefeuille, symboles_portefeuille
-from test_reference_personas import sans_variations
 
 
 @pytest.mark.parametrize("portefeuille", [None, [], {}])
@@ -68,10 +67,13 @@ def test_les_appelants_lisent_les_symboles_et_conservent_les_poids(nom):
     attendu = analyser(entree["profil"], entree["demande"])
     assert obtenu["profil"]["portefeuille_actuel"] == poids
     assert profil["portefeuille_actuel"] == poids
-    obtenu["profil"]["portefeuille_actuel"] = symboles
-    assert sans_variations(obtenu) == sans_variations(attendu)
+    # K3 actif : les mesures du titre C restent identiques ; le portefeuille B
+    # dépend désormais des poids. Ne plus exiger l'ignorance des poids de T1.
+    assert obtenu["demande"]["mesures"] == attendu["demande"]["mesures"]
     assert obtenu["version_contrat"] == "2"
-    assert obtenu["comparaison"] == {} and obtenu["appels_modele"] == []
+    assert obtenu["comparaison"]["poids_avant"] == poids
+    assert obtenu["comparaison"]["avant"] != attendu["comparaison"]["avant"]
+    assert obtenu["appels_modele"] == []
 
 
 def test_sceptique_recoit_la_liste_des_symboles(monkeypatch):

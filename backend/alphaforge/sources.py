@@ -18,6 +18,40 @@ from __future__ import annotations
 # --------------------------------------------------------------------------------------------- références
 # type : donnees | reglementation | recherche | methode | interne
 REFERENCES: dict[str, dict] = {
+    "donnees-profil": {
+        "type": "donnees", "auteurs": "Personne utilisatrice ; équipe pour les personas fictives",
+        "titre": "Profil et demande saisis : portefeuille_actuel, epargne_totale_cad, montant_cad",
+        "annee": "2026", "publication": "Entrées du dossier de simulation", "lien": "",
+        "examen": "types et poids validés par le code ; déclarations non vérifiées auprès d'un dépositaire",
+        "apport": "Poids et capital de départ déclarés. Les montants et poids des trois personas sont fictifs "
+                  "et restent à valider par le porteur. Une liste sans poids est une hypothèse d'équipondération.",
+    },
+    "moteur-historique-b": {
+        "type": "methode", "auteurs": "Équipe AlphaForge, réalisation B (Folio 0.7.0)",
+        "titre": "Comparaison appariée cad-buy-and-hold-v1", "annee": "2026",
+        "publication": "backend/alphaforge/moteurs/historique/analytics.py et datasets.py",
+        "lien": "", "examen": "code transféré de l'archive B ; empreintes vérifiées ; tests d'origine exécutés",
+        "apport": "Achat-conservation en CAD sur la grille commune fixe ; FX du jour ou antérieur (7 jours maximum). "
+                  "Pire baisse sommet-creux, volatilité des rendements simples annualisée par la fréquence observée, "
+                  "TCAC sur le temps calendaire. Les sorties *_pct sont déjà en points. "
+                  "Les limites de meta.limitations et les avertissements des instruments restent dans le dossier.",
+    },
+    "allocation-a": {
+        "type": "methode", "auteurs": "Équipe AlphaForge, réalisation A (datathon2026 0.1.0)",
+        "titre": "Ajout proportionnel blend", "annee": "2026",
+        "publication": "backend/alphaforge/moteurs/allocation.py, original analytics.py:192-198",
+        "lien": "", "examen": "fonction copiée de l'archive A et testée, formule inchangée",
+        "apport": "Réduit les poids initiaux par 1 − part, puis ajoute part à la ligne demandée, même déjà détenue.",
+    },
+    "fusion-k5": {
+        "type": "interne", "auteurs": "Équipe AlphaForge",
+        "titre": "Contrats K3–K5 et attribution de la perte supportable", "annee": "2026",
+        "publication": "docs/fusion/CADRE-COMMUN.md, sections 6 et 14", "lien": "",
+        "examen": "mandat d'intégration lu ; hypothèse d'équipe à valider par le porteur (décision 4)",
+        "apport": "Seuils inchangés, évalués sur le portefeuille après la demande. Un dépassement antérieur de "
+                  "capacité ne rend pas la demande rouge si elle n'aggrave pas la baisse. La tolérance reste évaluée. "
+                  "Retour au calcul antérieur avec ALPHAFORGE_CAPACITE=approximation.",
+    },
     # ---- Données (le jeu de départ officiel, fourni par les organisateurs) ----
     "donnees-prix": {
         "type": "donnees", "auteurs": "Organisateurs du datathon ; Yahoo Finance via yfinance",
@@ -249,6 +283,42 @@ REFERENCES: dict[str, dict] = {
 # Pour chaque élément : données utilisées, règle de calcul appliquée par le code, références, et, s'il y a lieu,
 # l'hypothèse de l'équipe (un choix, pas un fait).
 JUSTIFICATIONS: dict[str, dict] = {
+    "portefeuille": {
+        "donnees": ["donnees-prix", "donnees-change", "donnees-univers", "donnees-profil"],
+        "calcul": "Deux allocations, un appel à compare_portfolios de B, même fenêtre et grille. "
+                  "Écarts = après − avant ; écart de pire baisse négatif → aggrave, positif → ameliore, nul → neutre. "
+                  "Jamais de soustraction entre mesures de C et de B.",
+        "references": ["moteur-historique-b"],
+    },
+    "allocation-ajout": {
+        "donnees": ["donnees-profil"], "calcul": "part = montant / épargne ; poids après = poids avant × (1 − part), "
+                                 "puis ajout de part à la ligne demandée.",
+        "references": ["allocation-a", "moteur-historique-b"],
+    },
+    "h_equiponderation": {
+        "donnees": [], "calcul": "Une liste de N symboles distincts sans poids reçoit 1/N par ligne.",
+        "references": ["fusion-k5"],
+        "hypothese": "Poids inconnus supposés égaux ; aucune déclaration de la personne n'est inventée.",
+    },
+    "h_attribution": {
+        "donnees": [], "calcul": "Si la pire baisse avant dépasse déjà la capacité et que l'écart après − avant "
+                                 "est positif ou nul, ne pas attribuer le rouge à cette demande.",
+        "references": ["fusion-k5"],
+        "hypothese": "Choix d'attribution de l'équipe à valider ; aucun seuil modifié.",
+    },
+    "h_non_monotonie": {
+        "donnees": ["donnees-profil"],
+        "calcul": "Chaque montant est recalculé. Un ajout diversifiant peut réduire la pire baisse et améliorer "
+                  "le verdict quand son montant augmente. La grille conserve ces résultats.",
+        "references": ["fusion-k5", "moteur-historique-b"],
+        "hypothese": "Invariant 7 révisé par le porteur : monotonie conditionnelle, aucun lissage de la grille.",
+    },
+    "h_retrait_decisif": {
+        "donnees": [], "calcul": "Date de retrait absente : comparer le verdict fourni au verdict avec retrait "
+                                 "à l'horizon déclaré. Question décisive seulement si l'état diffère.",
+        "references": ["acvm-31-103cp", "fusion-k5"],
+        "hypothese": "Hypothèse testée séparément ; ni la date ni le verdict affiché ne sont remplacés.",
+    },
     # ---- Faits calculés par l'Analyste ----
     "chute": {"donnees": ["donnees-prix", "donnees-change"],
               "calcul": "Pire chute = min sur t de (P_t / max_{s≤t} P_s − 1), P en $ CA (adj_close × taux USD/CAD du "
@@ -319,9 +389,12 @@ JUSTIFICATIONS: dict[str, dict] = {
                       "avec un placement déjà détenu.", "references": ["markowitz-1952"],
                       "hypothese": "Seuil choisi par l'équipe."},
     # ---- Règles du Gardien ----
-    "regle-capacite": {"calcul": "Impact = (montant / épargne) × |pire chute|. Rouge au-delà de la capacité de perte, "
-                       "orange au-delà de la tolérance, sinon respectée.",
-                       "references": ["ocri-gn-3400", "acvm-31-103cp", "chekhlov-2005"]},
+    "regle-capacite": {"calcul": "Impact = |pire baisse du portefeuille après|, comparé aux seuils de capacité "
+                       "(rouge) et de tolérance (orange). Un dépassement antérieur de capacité non aggravé ne "
+                       "rend pas la demande rouge. Sans comparaison, ou avec ALPHAFORGE_CAPACITE=approximation : "
+                       "(montant / épargne) × |pire chute du titre C|, reste du portefeuille supposé stable.",
+                       "references": ["ocri-gn-3400", "acvm-31-103cp", "chekhlov-2005",
+                                      "moteur-historique-b", "fusion-k5"]},
     "regle-preserver": {"calcul": "Rouge si épargne − montant < somme à préserver.", "references": ["chhabra-2005", "das-2010"]},
     "regle-exclusion": {"calcul": "Rouge si le secteur de l'actif fait partie des exclusions déclarées.",
                         "references": ["esma-2022", "berg-2022"]},
@@ -348,8 +421,11 @@ JUSTIFICATIONS: dict[str, dict] = {
     "verdict": {"calcul": "Le plus grave des niveaux des règles décide : rouge → incohérent, orange → ajustement, gris → "
                 "impossible de conclure, sinon cohérent. Aucun modèle n'intervient.",
                 "references": ["acvm-ocri-31-368", "turpin-2023", "kim-2025"]},
-    "ajustement": {"calcul": "Plus petit montant (au pas de 100 $), puis plus petit allongement d'horizon, qui améliore "
-                   "le verdict d'au moins un état.", "references": ["wachter-2018", "miller-2019"]},
+    "ajustement": {"calcul": "Montant le plus proche de la demande qui améliore le verdict d'au moins un état, "
+                   "recherche exhaustive au pas de 100 CAD dans les deux sens, entre 100 CAD et l'épargne totale. "
+                   "À distance égale, baisse examinée d'abord. Si aucun montant ne convient, premier allongement "
+                   "d'horizon de 1 à 5 ans qui améliore l'état. Constat de simulation, pas de conseil.",
+                   "references": ["wachter-2018", "miller-2019", "fusion-k5"]},
     "bascule": {"calcul": "Verdict du Gardien recalculé pour 8 montants × 20 horizons, sans modèle.",
                 "references": ["wachter-2018"]},
 }
