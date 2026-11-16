@@ -51,6 +51,14 @@ export default function App() {
       .catch((e) => setErreur(`Impossible de joindre l'API. Lance-la avec « uvicorn api:app --port 8000 » dans backend/. (${e.message})`))
   }, [])
 
+  // Même persona, mais la demande ne nomme aucun placement : le Gardien juge le plan sur toute la liste.
+  const choisirPersonaSansPlacement = (cle) => {
+    const p = personas[cle]
+    setProfil({ ...PROFIL_VIERGE, ...p.profil })
+    setDemande({ texte: `J'ai ${dollars(p.demande.montant_cad)} à placer.`, ticker: null, montant_cad: p.demande.montant_cad })
+    setChampsFichier([])
+  }
+
   const choisirPersona = (cle) => {
     const p = personas[cle]
     setProfil({ ...PROFIL_VIERGE, ...p.profil })
@@ -186,6 +194,7 @@ export default function App() {
           <>
             {etape === 0 && (
               <Etape1Mots personas={personas} onPersona={(cle) => { choisirPersona(cle); setEtape(1) }}
+                onPersonaSansPlacement={(cle) => { choisirPersonaSansPlacement(cle); setEtape(1) }}
                 onDemarrer={(entree) => { partirDe(entree); setEtape(1) }} />
             )}
             {etape === 1 && (

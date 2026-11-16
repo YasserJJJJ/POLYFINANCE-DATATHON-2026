@@ -40,8 +40,8 @@ const PERSONAS_NOMS = ['Amira', 'Mateo', 'Robert']
 
 function titreDesOptions(etat, plan) {
   if (plan) {
-    return { coherent: 'Les placements de la liste qui passent tes règles',
-      ajustement: 'Les placements qui passent avec un ajustement',
+    return { coherent: 'Ce qui serait cohérent dans ta situation',
+      ajustement: 'Ce qui serait cohérent dans ta situation, avec un ajustement',
       incoherent: 'Ce qui bloque ton plan, et ce qui le débloquerait' }[etat]
   }
   return { incoherent: 'Ce qui rendrait ton plan cohérent avec ta situation',
@@ -53,6 +53,11 @@ function titreDesOptions(etat, plan) {
 function PlacementsDuPlan({ plan, verdict, ouvrir, onAnalyser }) {
   return (
     <div className="carte">
+      <p className="explication-plan"><Etiquette type="SCENARIO" />{' '}
+        Tu n'as pas choisi de placement : voici {plan.placements.length > 1 ? `${plan.placements.length} placements` : 'le placement'} de
+        la liste qui {plan.placements.length > 1 ? 'passent' : 'passe'} toutes tes règles, de familles différentes (obligations, marché
+        large, autre) et hors de tes exclusions. Ils sont choisis par la pire chute observée la plus faible, jamais par le
+        rendement passé. C'est une simulation de ce que les règles acceptent pour toi, pas une recommandation.</p>
       {plan.placements.length > 0 && (
         <div className="defile-x">
           <table className="registre comparatif">
@@ -71,8 +76,9 @@ function PlacementsDuPlan({ plan, verdict, ouvrir, onAnalyser }) {
           </table>
         </div>
       )}
-      <p className="muted petit">{plan.critere} Ce que les règles acceptent pour toi, pas une recommandation.
-        {verdict.etat === 'incoherent' && plan.bloquante && <> La règle qui bloque le plus souvent : « {plan.bloquante} ».</>}</p>
+      {verdict.etat === 'incoherent' && plan.bloquante && (
+        <p className="muted petit">La règle qui bloque le plus souvent : « {plan.bloquante} ». Change ce point de ta demande pour voir le plan basculer.</p>
+      )}
       {plan.ecartes?.length > 0 && (
         <details className="pourquoi-regle">
           <summary>Pourquoi les autres placements ne sont pas retenus</summary>

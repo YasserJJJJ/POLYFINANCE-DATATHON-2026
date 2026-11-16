@@ -350,3 +350,9 @@ input[type=range] { width: 100%; accent-color: var(--accent); }
 .saisie-message { display: flex; gap: 8px; }
 .saisie-message input { flex: 1; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--trait); background: var(--voile); }
 .visuellement-cache { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Plan ouvert : le choix des placements expliqué au client ; carte persona et son lien « sans placement » */
+.explication-plan { font-size: 0.95rem; margin-bottom: 10px; }
+.persona-bloc { display: grid; gap: 6px; align-content: start; }
+.persona-bloc > .persona { height: 100%; }
+.persona-bloc > .lien { justify-self: center; }
