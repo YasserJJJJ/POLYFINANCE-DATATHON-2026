@@ -95,3 +95,10 @@ Le cadre **copié** `docs/fusion/CADRE-COMMUN.md` est modifié uniquement à l'i
 La recherche exhaustive seule a été mesurée à 1,692 s sur Robert avant optimisation (`essai-recherche-exhaustive.json`). Le cache des réponses exactes de B.fx_on ramène cette variante à 0,585 s (`apres-cache-change.json`). Pour la recherche élargie dans les deux sens, l'adaptateur réutilise les primitives **inchangées** de B (`validate_weights`, `_cad_panel`, `_wealth`, `drawdowns`) afin de calculer uniquement la perte nécessaire à la règle ; le dossier K3 reste produit par un appel complet à `compare_portfolios`. L'égalité des deux chemins et la durée finale sont vérifiées séparément. Les montants déjà exclus par les autres règles sont rejetés par ces mêmes règles, sans mesure financière superflue.
 
 Le fichier `agents/redacteur.py` reste réservé à T4. Le pont dans `orchestrateur.py` remplace uniquement la phrase de changement par `option.constat` après restitution, en code. T4 pourra consommer directement ce champ et le champ `option.sens`, ainsi que `bascule.monotonie_montant`.
+
+
+## T4 — Validation des poids fictifs par le porteur
+
+Réponse reçue le 15 novembre 2026 : « Valider ces poids fictifs ». Robert conserve un tiers chacun de XIU.TO, XBB.TO et RY.TO ; Amira moitié QQQ/NVDA ; Mateo moitié XIU.TO/XBB.TO. Ces valeurs restent des scénarios fictifs, non des observations de portefeuilles réels. Aucun calcul ni poids n’a été modifié par cette validation. L’arbitrage K5 et la monotonie conditionnelle de T2 restent applicables.
+
+La restitution T4 ajoute seulement la phrase K3 et les limites du moteur aux références figées. La [comparaison exhaustive](preuves/tranche4/changements-references.json) atteste que seuls `texte.pourquoi` et `texte.limites` changent pour les trois personas ; tous les objets métier restent identiques. Les références T2 demeurent dans `fusion/t2`.

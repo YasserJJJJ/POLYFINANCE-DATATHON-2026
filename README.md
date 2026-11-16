@@ -1,126 +1,102 @@
-# AlphaForge AI — un second avis avant d'investir
+# AlphaForge AI — un second avis avant d’investir
 
-Datathon PolyFinances 2026 · Banque Nationale × AWS · défi **AlphaForge AI**.
+Datathon PolyFinances 2026 · Banque Nationale × AWS · simulation éducative, sans transaction ni conseil financier personnalisé.
 
-> **Problème.** Un investisseur autonome arrive avec une envie floue ou une décision déjà en tête. Les outils
-> existants le classent dans une case et lui proposent un produit. Personne ne l'aide à formuler ce qu'il veut
-> vraiment, ni à vérifier si ça tient face à sa situation.
->
-> **Promesse.** En 2 minutes, on reformule sa demande, on la confronte à sa situation avec des chiffres réels,
-> et on lui montre exactement ce qui la rendrait acceptable, sans jamais lui dire quoi acheter.
+AlphaForge confronte une demande d’investissement à la situation déclarée de la personne. Le Gardien en Python décide du verdict. Le portefeuille entier est comparé avant et après l’ajout demandé, sur les mêmes données historiques. Les modèles comprennent, contestent et expliquent ; ils ne décident ni des chiffres ni des règles.
 
-Simulation éducative uniquement : aucune transaction réelle, aucun conseil financier personnalisé.
+## Parcours
 
-## Le principe
+1. **Tes mots** : demande libre ou persona fictive.
+2. **On vérifie** : épargne, horizon, retrait, exclusions, tolérance et portefeuille. Poids facultatifs ; sans poids, l’équipondération est une hypothèse affichée.
+3. **Analyse** : six rôles, leurs durées et les appels Bedrock réellement constatés (modèle, identifiant, jetons, latence). Sur Lambda, les étapes peuvent arriver ensemble.
+4. **Verdict** : cohérent, avec ajustement, incohérent ou impossible de conclure. Questions décisives, options et comparaison avant/après avec preuves cliquables.
+5. **Curseurs** : chaque case est calculée indépendamment. Une demande diversifiante peut donner un meilleur verdict pour un montant supérieur ; c’est un constat de règle, jamais une recommandation. La fiche conseiller conserve la demande initiale et ses limites.
 
-**Les chiffres viennent du code, les mots viennent des agents.** Le verdict est décidé par des règles écrites
-en Python (le Gardien). Les agents comprennent la demande, choisissent les calculs, contestent les résultats et
-expliquent. Chaque chiffre affiché est un fait `F-n` relié à sa source et à sa méthode, étiqueté
-`FAIT`, `HYPOTHESE` ou `SCENARIO`.
+Les trois personas et leurs poids sont des scénarios fictifs validés par le porteur : Robert, un tiers de XIU.TO, XBB.TO et RY.TO ; Amira, moitié QQQ et NVDA ; Mateo, moitié XIU.TO et XBB.TO.
 
-## Le parcours
+## Installation
 
-1. **Dis-le avec tes mots** : une phrase libre (« Je veux… J'ai… Mais j'ai peur de… ») ou une persona.
-2. **On vérifie ensemble** : champs pré-remplis, curseurs, 1 mise en situation + 3 questions → 2 jauges
-   (tolérance et capacité, on retient la plus basse).
-3. **Analyse en direct** : la trace des agents défile.
-4. **Le verdict** : 4 états (cohérent / avec ajustement / incohérent / impossible de conclure), 3 options
-   comparées, miroir de cohérence, faits cliquables.
-5. **Curseurs de bascule** : le verdict change en direct quand on bouge le montant ou l'horizon. Fiche à
-   apporter à son conseiller.
+Python 3.12 ou plus, Node.js 20 ou plus. Tests locaux de fusion sous Python 3.13 et Node 22 ; Lambda sous Python 3.12. Dépendances déclarées dans `backend/requirements.txt` et verrouillées côté interface. Depuis la racine :
 
-## Architecture
-
-Ce qui tourne aujourd'hui (local + Amazon Bedrock) :
-
-```
-Interface React + Vite (frontend/, lancée en local)
-   │  POST /api/analyse, /api/comprendre
-   ▼
-API FastAPI (backend/api.py)
-   │
-Orchestrateur en code (ordre fixe) ── dossier de décision partagé (faits F-1…F-n, trace)
-   Profileur (Nova 2 Lite) → Contrôle données (code) → Analyste (code) → Sceptique (Claude Sonnet 5)
-   → Gardien (code, décide) → Rédacteur (Claude Sonnet 5) → contrôle d'ancrage (code)
-   │
-   ▼
-Outils de calcul Python (calculs.py) ── jeu de départ officiel (data/raw/alphaforge_starter)
+```sh
+python3 -m venv backend/.venv
+backend/.venv/bin/python -m pip install -r backend/requirements.txt
+npm ci --prefix frontend
 ```
 
-Visé, **pas encore en place** : déploiement de l'API (Lambda ou AgentCore Runtime), interface sur Amplify ou
-S3 + CloudFront, données sur S3, Bedrock Guardrails en plus du contrôle d'ancrage en code. Voir [infra/](infra/).
+Sous Windows PowerShell, remplacer les deux premières lignes par :
 
-| Agent | Nature | Rôle |
-|---|---|---|
-| Profileur | LLM léger | Structure la demande et le profil, repère ce qui manque et les tensions |
-| Contrôle données | Code | 7 contrôles avant tout calcul (fiche qualité) |
-| Analyste | Code | Appelle les calculs, écrit les faits F-n (pas de modèle pour l'instant) |
-| Sceptique | LLM | 1 à 3 objections, chacune liée à un fait et à un recalcul |
-| Gardien | Code | Règles explicites → verdict, plus petit ajustement, grille de bascule |
-| Rédacteur | LLM | Explique sans rien ajouter, chaque phrase étiquetée |
+```powershell
+py -m venv backend/.venv
+.\backend\.venv\Scripts\python.exe -m pip install -r backend/requirements.txt
+```
 
-Service AWS utilisé aujourd'hui : **Amazon Bedrock** (API Converse, profils d'inférence `global.*`, région
-us-east-1). Services visés : Bedrock Guardrails, Bedrock AgentCore Runtime ou AWS Lambda, Amazon S3, AWS Amplify.
+## Démarrer hors ligne — deux terminaux
 
-### Les agents sur Amazon Bedrock
+macOS et Linux, une commande dans chacun :
 
-| Agent | Modèle | Ce que le code vérifie |
-|---|---|---|
-| Profileur | Nova Lite | Le symbole existe, les nombres sont plausibles, les secteurs existent ; seuls les champs vides sont remplis |
-| Sceptique | Claude Sonnet | Il ne peut choisir que parmi 6 vérifications autorisées, que le code exécute ; objection sans chiffre inventé |
-| Rédacteur | Claude Sonnet | Chaque nombre du texte existe déjà dans le dossier (la phrase libre n'autorise aucun nombre), chaque F-n cité existe, citations mot pour mot, aucune formule de conseil, pas de contradiction avec le verdict ; le code corrige les étiquettes FAIT / HYPOTHESE / SCENARIO et l'écrit dans le journal ; « ce qui changerait l'avis » est écrit par le code |
+```sh
+ALPHAFORGE_LLM=off backend/.venv/bin/python -m uvicorn api:app --app-dir backend --port 8000
+```
 
-Si le texte du Rédacteur échoue au contrôle, le défaut est **nommé** et renvoyé au modèle pour un second essai ;
-s'il persiste, on garde les phrases modèles. Tout est visible dans la trace et sous « Comment ce texte a été vérifié ».
+```sh
+npm run dev --prefix frontend
+```
 
-Sans identifiants AWS, chaque agent bascule sur sa version déterministe : la démo marche toujours.
-`ALPHAFORGE_LLM=off` force le mode hors ligne (utilisé par les tests).
+Windows PowerShell, une commande dans chacun :
 
-## Démarrer
+```powershell
+$env:ALPHAFORGE_LLM="off"; .\backend\.venv\Scripts\python.exe -m uvicorn api:app --app-dir backend --port 8000
+```
 
-Prérequis : **Python 3.12 ou plus** (testé avec 3.14.7) et **Node.js 20 ou plus** (testé avec 24.20.0, npm 11.19).
-Les versions des dépendances sont figées dans `backend/requirements.txt` et `frontend/package-lock.json`.
-Sans identifiants AWS, tout fonctionne en mode hors ligne (verdicts identiques, textes rédigés par le code).
+```powershell
+npm run dev --prefix frontend
+```
 
-```bash
-python -m venv .venv
-# Windows : .venv\Scripts\activate   ·   macOS/Linux : source .venv/bin/activate
-pip install -r backend/requirements.txt
+Ouvrir http://localhost:5173. L’API écoute sur http://localhost:8000. `demarrer.ps1` reste disponible ; il n’est pas requis. Les commandes Windows sont documentées, non exécutées pendant cette réception macOS.
+
+## Amazon Bedrock et hébergement
+
+Pour activer les modèles, configurer des identifiants temporaires valides dans le profil AWS **alphaforge**, puis lancer l’API avec `AWS_PROFILE=alphaforge`, `AWS_REGION=us-east-1` et `ALPHAFORGE_LLM=auto`. Aucun identifiant ne va dans Git. Sous PowerShell, définir ces variables avec `$env:NOM="valeur"` avant la commande API.
+
+- Profileur : `global.amazon.nova-2-lite-v1:0`.
+- Sceptique et Rédacteur : `global.anthropic.claude-sonnet-5`.
+- Le contrôle d’ancrage vérifie nombres, faits, citations, étiquettes et absence de conseil. Un refus persistant rend le gabarit en code.
+- `ALPHAFORGE_GUARDRAIL_ID` et `ALPHAFORGE_GUARDRAIL_VERSION` activent le Guardrail supplémentaire du Rédacteur.
+- Sans accès AWS, repli déterministe. `ALPHAFORGE_LLM=off` évite tout appel SDK ; les preuves d’appels sont alors vides.
+
+L’agent intégrateur de cette fusion utilise séparément Astra sur Bedrock ; cela ne change pas les modèles du produit.
+
+Interface : https://main.d1d3b8g2y5hkdd.amplifyapp.com
+API : https://ldk3ad4p3grqn3ppbcosvznivm0plyck.lambda-url.us-east-1.on.aws/
+
+Amplify sert l’interface ; Lambda/Mangum sert FastAPI ; S3 conserve les données et dossiers en privé. IAM restreint les accès et CloudWatch reçoit les journaux. La Function URL est publique ; la concurrence est bornée à deux. L’inventaire, les commandes d’arrêt et les limites sont dans [la réception AWS](docs/fusion/preuves/tranche3/RESSOURCES.md) et [le compte rendu final](docs/fusion/COMPTE-RENDU.md).
+
+L’hébergement dépend du compte de l’événement, dont la fermeture est annoncée le 16 novembre à 13 h 59 dans les documents d’équipe. Les preuves restent dans Git. La latence et les jetons mesurés ne sont pas des garanties de service.
+
+## Vérifier
+
+```sh
 cd backend
-pytest -q                                  # banc de tests (hors ligne, aucun appel à Bedrock)
-# Agents IA : le profil AWS doit être fixé AVANT de lancer l'API, sinon tout passe en mode hors ligne.
-#   PowerShell : $env:AWS_PROFILE="datathon"; $env:AWS_REGION="us-east-1"
-#   bash       : export AWS_PROFILE=datathon AWS_REGION=us-east-1
-uvicorn api:app --reload --port 8000       # API locale : http://localhost:8000/docs
-cd ../frontend && npm install && npm run dev   # interface : http://localhost:5173
+ALPHAFORGE_LLM=off .venv/bin/python -m pytest -q
 ```
 
-Sous Windows, après l'installation : `.\demarrer.ps1` lance l'API, l'interface et le navigateur.
+Puis, depuis la racine : `npm run build --prefix frontend`. Sous Windows, utiliser le Python du venv et `$env:ALPHAFORGE_LLM="off"`.
 
-Agents IA : coller le bloc « Windows (PowerShell) » de Workshop Studio dans un terminal, puis
-`.\infra\enregistrer_identifiants.ps1` (profil `datathon`, région `us-east-1`). Vérifier avec
-`python backend/verifier_bedrock.py`.
+[Réception T4](docs/fusion/preuves/tranche4/README.md) : dix cas métier, références figées, appels réels et comparaison objet à objet. Le contrôle React statique est reproductible avec `node frontend/verifier_restitution.mjs` après les captures. Il ne constitue pas une inspection visuelle : celle-ci est signalée séparément dans le compte rendu.
 
-## Données
+Bascule de comparaison avec l’ancien comportement : `ALPHAFORGE_CAPACITE=approximation`. Elle conserve les seuils et suppose le reste de l’épargne stable. Par défaut, la perte supportable se juge sur le portefeuille après la demande ; cette attribution a été arbitrée par le porteur.
 
-Jeu de départ officiel dans [data/raw/alphaforge_starter/](data/raw/alphaforge_starter/) : 31 actifs, prix
-quotidiens du 2021-11-12 au 2026-11-12 (Yahoo Finance via yfinance), USD/CAD et taux (Banque du Canada),
-séries américaines (FRED). Sources, traitements et limites : [README du jeu](data/raw/alphaforge_starter/README.md)
-et [docs/donnees.md](docs/donnees.md).
+## Provenance
 
-## Organisation
+- **C — Second avis / Yahya** : parcours React, dossier et faits, Profileur, Sceptique, Gardien, Rédacteur, calculs d’actif seul, infrastructure et tests du socle.
+- **B — Folio, archive 0.7.0** : moteur historique `analytics.py` et `datasets.py`, avec ses tests et conventions de séances communes. Le versionnement de dossiers et la recherche documentaire de B ne sont pas intégrés.
+- **A — Claude Code** : fonction `blend` d’ajout proportionnel, collecte des métadonnées Converse et principe d’une comparaison appariée explicitant son sens et ses limites.
 
-| Voie | Propriétaire | Dossier |
-|---|---|---|
-| Produit, parcours, interface, pitch | Yahia | `frontend/`, `pitch/` |
-| Données et calculs | Rayan | `backend/alphaforge/donnees.py`, `calculs.py` |
-| Agents, consignes, architecture | Adam | `backend/alphaforge/agents/`, `orchestrateur.py`, `llm.py` |
-| Gardien, AWS, tests | Yasser | `backend/alphaforge/gardien.py`, `profil.py`, `infra/`, `backend/tests/` |
+Les originaux sont préservés. [Références, archives et empreintes](implementations/REFERENCES.md), [cadre de fusion](docs/fusion/CADRE-COMMUN.md) et [compte rendu](docs/fusion/COMPTE-RENDU.md) détaillent les transferts et adaptations. `implementations/codex/` est une copie antérieure plus large ; les transferts B proviennent de l’archive 0.7.0 vérifiée.
 
-Règles Git : `main` marche toujours, une branche par sujet (`feature/nom-court`), commits au format
-Conventional Commits, petites PR avec 1 approbation. Contrats communs : [docs/contrats.md](docs/contrats.md).
-Plan complet : [docs/plan.md](docs/plan.md).
+## Données et méthode
 
-## Implémentation Codex indépendante pour la fusion
+Le jeu officiel comprend 31 actifs sur 2021-11-12 → 2026-11-12 : prix Yahoo Finance via yfinance, change Banque du Canada. Les séries FRED et macro fournies ne servent pas aux décisions. Univers choisi en 2026, fenêtre courte incluant 2022, prix ajustés, achat-conservation et échantillonnage des cryptoactifs limitent l’interprétation. Aucune pire baisse passée ne borne une perte future.
 
-L’implémentation Codex (Folio, dossier de décision versionné, recherches et tests) est conservée dans [`implementations/codex/`](implementations/codex/IMPORT.md). Elle est importée séparément pour comparaison et intégration ultérieure; l’application à la racine reste distincte.
+[Contrats K1–K7](docs/contrats.md) · [Données et deux moteurs](docs/donnees.md) · [Registre des sources](docs/sources.md) · [Documentation technique du défi](docs/documentation-technique.md).

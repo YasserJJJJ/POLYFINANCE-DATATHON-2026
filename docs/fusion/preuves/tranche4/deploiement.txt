@@ -1,0 +1,155 @@
+{
+  "compte": "471112821226",
+  "region": "us-east-1",
+  "frontend": "amplify",
+  "ressources": [
+    {
+      "service": "s3",
+      "nom": "alphaforge-471112821226-us-east-1",
+      "arn": "arn:aws:s3:::alphaforge-471112821226-us-east-1",
+      "acces": "privé"
+    },
+    {
+      "service": "iam",
+      "nom": "alphaforge-lambda",
+      "arn": "arn:aws:iam::471112821226:role/alphaforge-lambda"
+    },
+    {
+      "service": "lambda",
+      "nom": "alphaforge-api",
+      "arn": "arn:aws:lambda:us-east-1:471112821226:function:alphaforge-api",
+      "url": "Function URL publique, AuthType NONE",
+      "concurrence_reservee": 2
+    },
+    {
+      "service": "amplify",
+      "nom": "alphaforge",
+      "acces": "interface publique ; aucun dossier de décision"
+    },
+    {
+      "service": "logs",
+      "nom": "/aws/lambda/alphaforge-api",
+      "creation": "automatique lors des invocations Lambda"
+    }
+  ],
+  "cors": "Origine exacte du site Amplify ou S3 obtenue avant de configurer Lambda ; aucun joker.",
+  "politique_role": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": "s3:ListBucket",
+        "Resource": "arn:aws:s3:::alphaforge-471112821226-us-east-1",
+        "Condition": {
+          "StringLike": {
+            "s3:prefix": [
+              "data/*"
+            ]
+          }
+        }
+      },
+      {
+        "Effect": "Allow",
+        "Action": "s3:GetObject",
+        "Resource": "arn:aws:s3:::alphaforge-471112821226-us-east-1/data/*"
+      },
+      {
+        "Effect": "Allow",
+        "Action": "s3:PutObject",
+        "Resource": "arn:aws:s3:::alphaforge-471112821226-us-east-1/dossiers/*"
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+          "bedrock:InvokeModel",
+          "bedrock:InvokeModelWithResponseStream"
+        ],
+        "Resource": [
+          "arn:aws:bedrock:::foundation-model/amazon.nova-2-lite-v1:0",
+          "arn:aws:bedrock:::foundation-model/anthropic.claude-sonnet-5",
+          "arn:aws:bedrock:us-east-1:471112821226:inference-profile/global.amazon.nova-2-lite-v1:0",
+          "arn:aws:bedrock:us-east-1:471112821226:inference-profile/global.anthropic.claude-sonnet-5",
+          "arn:aws:bedrock:us-east-1::foundation-model/amazon.nova-2-lite-v1:0",
+          "arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-sonnet-5"
+        ]
+      },
+      {
+        "Effect": "Allow",
+        "Action": "bedrock:ApplyGuardrail",
+        "Resource": "arn:aws:bedrock:us-east-1:471112821226:guardrail/xj89p36uyw64"
+      }
+    ]
+  },
+  "politique_journaux": "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+  "modeles": [
+    "global.anthropic.claude-sonnet-5",
+    "global.amazon.nova-2-lite-v1:0"
+  ],
+  "guardrail_existant": "arn:aws:bedrock:us-east-1:471112821226:guardrail/xj89p36uyw64",
+  "groupe_journaux_existait": true,
+  "creation_guardrail": "Commande séparée infra/creer_guardrail.py ; --verifier pour son plan."
+}
+
+▶ Construction du paquet Lambda (dépendances Linux, Python 3.12)
+  alphaforge-lambda.zip : 28.6 Mo
+
+▶ Construction de l'interface React
+
+> alphaforge-interface@0.1.0 build
+> vite build
+
+vite v6.4.6 building for production...
+transforming...
+✓ 41 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.66 kB │ gzip:  0.39 kB
+dist/assets/index-Z2dj-KvB.css   20.12 kB │ gzip:  5.14 kB
+dist/assets/index-C_-D6GJD.js   200.73 kB │ gzip: 64.38 kB
+✓ built in 490ms
+npm notice
+npm notice New major version of npm available! 10.9.8 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice
+  alphaforge-interface.zip : 0.1 Mo (API : même origine)
+
+▶ AWS Amplify : application et branche
+
+▶ Amazon S3 : bucket alphaforge-471112821226-us-east-1
+  déjà là
+  données du jeu de départ envoyées dans s3://alphaforge-471112821226-us-east-1/data/
+
+▶ IAM : rôle alphaforge-lambda
+  déjà là
+
+▶ AWS Lambda : fonction alphaforge-api
+  mise à jour
+  URL de l'API : https://ldk3ad4p3grqn3ppbcosvznivm0plyck.lambda-url.us-east-1.on.aws/
+
+▶ Vérification de l'API déployée
+  /api/sante : ok=True · agents IA (Bedrock) : oui
+
+▶ Construction de l'interface React
+
+> alphaforge-interface@0.1.0 build
+> vite build
+
+vite v6.4.6 building for production...
+transforming...
+✓ 41 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.66 kB │ gzip:  0.40 kB
+dist/assets/index-Z2dj-KvB.css   20.12 kB │ gzip:  5.14 kB
+dist/assets/index-SMOjzPMu.js   200.80 kB │ gzip: 64.44 kB
+✓ built in 626ms
+  alphaforge-interface.zip : 0.1 Mo (API : https://ldk3ad4p3grqn3ppbcosvznivm0plyck.lambda-url.us-east-1.on.aws/)
+
+▶ AWS Amplify : publication de l'interface
+
+============================================================
+Interface : https://main.d1d3b8g2y5hkdd.amplifyapp.com
+API       : https://ldk3ad4p3grqn3ppbcosvznivm0plyck.lambda-url.us-east-1.on.aws/api/sante
+S3        : s3://alphaforge-471112821226-us-east-1/ (data/, dossiers/)
+============================================================

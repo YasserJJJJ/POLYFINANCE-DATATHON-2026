@@ -73,20 +73,77 @@ Source normative : [cadre commun, section 6](fusion/CADRE-COMMUN.md#6-contrats-c
 
 ```json
 {
-  "disponible": true, "raison": null,
-  "moteur": "historique-B", "version_moteur": "<MODEL_VERSION de analytics.py>",
+  "disponible": true,
+  "raison": null,
+  "moteur": "historique-B",
+  "version_moteur": "cad-buy-and-hold-v1",
   "politique": "achat-conservation, grille commune des séances, CAD, change daté au plus tard du jour",
-  "fenetre": {"debut": "2021-11-12", "fin": "2026-11-12", "observations": 1228},
-  "origine_poids": "declare | hypothese_equiponderee",
-  "poids_avant": {"XIU.TO": 0.3333}, "poids_apres": {"TSLA": 0.2},
-  "avant": {"pire_chute_pct": -14.3, "volatilite_pct": 10.1, "rendement_annualise_pct": 6.2, "valeur_finale_cad": 541000},
-  "apres": {"pire_chute_pct": -20.6, "volatilite_pct": 14.5, "rendement_annualise_pct": 5.5, "valeur_finale_cad": 524000},
-  "ecarts": {"pire_chute_pts": -6.3, "volatilite_pts": 4.4, "sens_pire_chute": "aggrave | ameliore | neutre"},
-  "limites": ["…"], "faits": {"avant_pire_chute": "F-n", "apres_pire_chute": "F-n", "ecart_pire_chute": "F-n"}
+  "fenetre": {
+    "debut": "2021-11-12",
+    "fin": "2026-11-12",
+    "observations": 1228
+  },
+  "poids_avant": {
+    "RY.TO": 0.3333333333333333,
+    "XBB.TO": 0.3333333333333333,
+    "XIU.TO": 0.3333333333333333
+  },
+  "poids_apres": {
+    "RY.TO": 0.26666666666666666,
+    "XBB.TO": 0.26666666666666666,
+    "XIU.TO": 0.26666666666666666,
+    "TSLA": 0.2
+  },
+  "avant": {
+    "pire_chute_pct": -14.256677,
+    "volatilite_pct": 10.047745,
+    "rendement_annualise_pct": 13.00306,
+    "valeur_finale_cad": 737021.43
+  },
+  "apres": {
+    "pire_chute_pct": -20.595922,
+    "volatilite_pct": 14.50247,
+    "rendement_annualise_pct": 11.662517,
+    "valeur_finale_cad": 694335.21
+  },
+  "ecarts": {
+    "pire_chute_pts": -6.339245,
+    "volatilite_pts": 4.454725,
+    "sens_pire_chute": "aggrave"
+  },
+  "limites": [
+    "Comparaison rétrospective, pas prévision ni backtest de sélection historiquement réalisable : univers et prix ajustés acquis en 2026.",
+    "Le drawdown est le creux observé sur cette grille; il ne borne pas une perte future et ignore les mouvements entre observations.",
+    "La volatilité annualisée suppose des intervalles comparables et une mise à l'échelle en racine du temps; week-ends et jours fériés créent des intervalles inégaux.",
+    "Le taux FX est une moyenne indicative, pas un cours exécutable synchronisé avec la clôture des actifs.",
+    "L'heure de valorisation est une convention documentaire; les fichiers ne contiennent pas l'historique des heures exactes de publication.",
+    "Les fenêtres historiques sont descriptives, choisies à l'avance dans le code; aucune probabilité de scénario futur ne leur est attribuée.",
+    "Aucun score ESG, exposition réelle des FNB, valorisation fondamentale ou capacité personnelle de perte n'est déduit de ces données.",
+    "Les poids portent sur les instruments. Les compositions des FNB ne sont pas disponibles : les expositions communes ne sont pas mesurées."
+  ],
+  "faits": {
+    "fenetre_portefeuille": "F-16",
+    "poids_avant": "F-17",
+    "poids_apres": "F-18",
+    "avant_pire_chute": "F-19",
+    "avant_volatilite": "F-20",
+    "avant_rendement": "F-21",
+    "avant_valeur_finale": "F-22",
+    "apres_pire_chute": "F-23",
+    "apres_volatilite": "F-24",
+    "apres_rendement": "F-25",
+    "apres_valeur_finale": "F-26",
+    "ecart_pire_chute": "F-27",
+    "ecart_volatilite": "F-28",
+    "h_attribution": "F-29",
+    "h_non_monotonie": "F-30",
+    "limites_portefeuille": "F-31"
+  },
+  "origine_poids": "declare"
 }
 ```
 
-Les nombres de cet exemple sont indicatifs. Les deux bras sont toujours calculés par le même moteur, sur la même grille et la même fenêtre. `disponible: false` avec une raison écrite quand les poids sont inconnus, qu'un symbole manque ou que les données échouent ; jamais de valeur inventée, `null` ne vaut pas zéro. Les limites viennent de `meta.limitations` du moteur.
+Extrait exact de [Robert avec Bedrock, réception T4](fusion/preuves/tranche4/robert-bedrock.json). Les deux bras sont toujours calculés par le même moteur, sur la même grille et la même fenêtre. `disponible: false` avec une raison écrite quand les poids sont inconnus, qu'un symbole manque ou que les données échouent ; jamais de valeur inventée, `null` ne vaut pas zéro. Les limites viennent de `meta.limitations` du moteur.
 
 **K4 — Autorité des mesures (pas de double autorité).**
 
@@ -139,3 +196,51 @@ terminal porte `type: "erreur"` et `statut: 422`, comme dans le protocole exista
 La conversion des chaînes appartient à la frontière HTTP ; les fonctions
 Python internes continuent de recevoir des nombres. Aucun seuil ni aucune
 formule financière ne change.
+
+
+## Réception du contrat fusionné (T4)
+
+K6 ci-dessous : appel réel du Rédacteur pour le même dossier Robert, via Bedrock `alphaforge` en `us-east-1`. Les champs sont extraits, sans valeur fictive. Les indices `trace[].appels_modele` sont à partir de zéro. Une trace intermédiaire peut ne pas encore contenir ces indices ; le dossier final fait autorité.
+
+```json
+{
+  "appels_modele": [
+    {
+      "agent": "Rédacteur",
+      "modele": "global.anthropic.claude-sonnet-5",
+      "request_id": "d64e5735-94df-4189-a1ca-f42a900d95d3",
+      "stop_reason": "end_turn",
+      "jetons_entree": 12919,
+      "jetons_sortie": 649,
+      "latence_ms": 7645,
+      "garde_fou": "configure"
+    }
+  ]
+}
+```
+
+`questions` place les questions décisives en premier, avec le changement de verdict testé et le fait HYPOTHESE correspondant. La donnée manquante reste absente du profil.
+
+La recherche d’ajustement est exhaustive au pas de 100 CAD, dans les deux sens ; `options[].sens` vaut `baisse` ou `hausse`, et `constat` donne la formulation neutre calculée. La grille existante explore des fractions du montant demandé, jusqu’à ce montant : elle ne couvre pas automatiquement un ajustement proposé à la hausse. Pour une grille couvrant 14 000 et 17 500 CAD de XIU.TO chez Amira, le [dossier de 35 000 CAD](fusion/preuves/tranche4/amira-xiu35000.json) donne :
+
+```json
+{
+  "observee": false,
+  "explication": "Un montant plus élevé peut améliorer le verdict quand le placement diversifie le portefeuille. Les cases sont les résultats exacts du Gardien ; une amélioration n'est pas une erreur de grille.",
+  "exemple": {
+    "montant_bas_cad": 14000,
+    "montant_haut_cad": 17500,
+    "horizon_ans": 2,
+    "etat_bas": "ajustement",
+    "etat_haut": "coherent"
+  },
+  "faits": [
+    "F-28",
+    "F-17",
+    "F-21",
+    "F-25"
+  ]
+}
+```
+
+L’interface conserve les cases exactes et explique cette non-monotonie. La fiche conseiller indique qu’elle décrit la demande de départ. Les mesures K3 ne sont jamais recalculées dans JavaScript.

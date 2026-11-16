@@ -582,3 +582,110 @@ Aucune décision ne bloque la clôture de la tranche 3. Le push sans force de `f
 les tests verts ; l’étiquette `fusion/t3` reste locale. Les coûts et durées supplémentaires du Guardrail sont
 signalés pour la préparation de la démonstration. La réunion des branches et le traitement de l’affichage
 reviennent au prompt 4 ; aucune fusion ni demande d’autorisation supplémentaire n’est faite ici.
+
+
+# Tranche 4 — Intégration, restitution et réception
+
+## 1. Réalisé et décisions appliquées
+
+Le prompt 4 reçu, le cadre et les trois comptes rendus ont été lus avant intégration. Travail dans `/Users/vpro/Documents/ChatGPT/POLYFINANCE-DATATHON-2026`, branche `fusion-corrections-deploiement`, après `git fetch origin` réussi. Les autorisations du porteur couvrent le push sans force, les vérifications Bedrock et le redéploiement. La mise à jour de l’API existante accompagne l’interface pour servir K3 et le Rédacteur fusionnés ; les ressources et leurs permissions restent celles de T3.
+
+La réponse du porteur « Valider ces poids fictifs » est consignée dans `REVISIONS.md`. Robert conserve un tiers de chacun des titres XIU/XBB/RY ; Amira les deux moitiés QQQ/NVDA ; Mateo les deux moitiés XIU/XBB. Ce sont toujours des scénarios fictifs. L’arbitrage K5 et la monotonie conditionnelle restent appliqués sans nouvelle décision de règle.
+
+| Commit | Apport |
+|---|---|
+| `e0b6eca` | Fusion `--no-ff` de T2 `5434beb840ec5013692abe48b325a972564270f7` |
+| `9c4514b` | Fusion `--no-ff` de T3 `2e847f5127c054b81f3d80c8f54e9e74dec3b08c` |
+| `a32e724` | Raccordement explicite du nom des agents aux appels K6, sans modifier leur comportement |
+| `fb6cba8` | Correction d’intégration documentaire : le générateur expose les méthodes K3 déjà dans le registre et échappe les barres des tableaux |
+| `f036e12` | Rédacteur, deux composants React, messages, poids facultatifs, question, fiche, non-monotonie, réception et rendu statique |
+| `1d30724` | Références T4, seules sections de texte modifiées ; version du code publié |
+
+Les conflits de fusion portent uniquement sur les ajouts concurrents à `COMPTE-RENDU.md` et `JOURNAL.md`. Les deux versions ont été lues ; les sections T1 puis T2 puis T3 ont été conservées intégralement. Aucun conflit de comportement n’a été résolu en privilégiant une branche.
+
+## 2. Provenance et adaptation
+
+C reste le parcours, la machine à états, le contrat et l’autorité du verdict. B fournit le moteur apparié déjà transféré en T2. A fournit `blend`, les métadonnées Converse et le principe de restitution de comparaisons mesurées sur la même base. [Contrôle des originaux](preuves/tranche4/controle-origines.json) : trois archives intactes, transferts identiques aux sources après les seules adaptations documentées, `implementations/` et données inchangés ; moteurs/règles identiques à T2, infrastructure/API/collecteur K6 identiques à T3.
+
+Le code neuf est borné à la restitution et à la réception :
+
+- Rédacteur : phrase K3 exacte, sens lu dans le champ calculé, faits liés, contexte du modèle enrichi, question décisive en premier, limites déterministes, nom explicite. Le contrôle d’ancrage n’a pas été assoupli.
+- `ComparaisonPortefeuille` : deux bras, écarts, limite du profil, origine des poids, limites repliées et accès au tiroir existant. Aucun calcul de risque en JavaScript.
+- `PreuveAppels` : métadonnées réellement reçues, ou absence d’appel. L’écran n’affirme plus que Lambda diffuse chaque étape dès sa fin.
+- Vérification : saisie facultative de fractions de poids, conservées sans normalisation automatique. Message montant impossible et qualification hors univers rendus sans enveloppe d’erreur technique. La date de retrait absente est dite « Non précisé ».
+- Comparer : écart par profil. Curseurs : grille exacte non monotone expliquée avec faits ; option à la hausse présentée comme constat ; fiche enrichie et explicitement rattachée à la demande initiale.
+- Tests et scripts : dix cas, deux tests d’ancrage, rendu React statique et captures API. Le vérificateur public réutilise T3 avec K3, contrôle des assets et recherche S3 limitée à la nouvelle demande.
+
+Aucune dépendance ajoutée ; aucune formule, règle, seuil ou modèle changé. Aucun rendu HTML A ou interface B importé. Les deux corrections hors périmètre direct sont isolées dans leurs commits d’intégration ci-dessus.
+
+## 3. Réception et mesures
+
+[Commandes, dix attendus/observés et index des preuves](preuves/tranche4/README.md).
+
+- Après T2 : **313 passed in 20.98s**, build réussi.
+- Après T3 : **332 passed in 19.65s**, build réussi.
+- Final : **344 passed in 19.42s**, soit les 332 tests réunis plus dix cas et deux tests d’ancrage. Aucun test supprimé.
+- Références : [différence exhaustive](preuves/tranche4/changements-references.json), seulement `texte.pourquoi` et `texte.limites`. Verdicts, règles, faits, options, grille et comparaison inchangés face à T2. Les références historiques restent dans Git.
+- Test de contrat adapté au nouvel argument `agent` : le faux appelant accepte ce paramètre et vérifie qu’il vaut Sceptique. Le test 8 compare les mesures entre dossiers sans exiger la stabilité de leurs numéros F-n locaux. Aucun autre test antérieur changé en T4.
+- Hors ligne, caches applicatifs vidés : maximum **613,476 ms** ; trois passages par cas, imports et cache système chauds. [Mesures](preuves/tranche4/performances.json).
+- Build final de publication : **41 modules**, JS 200,80 kB, CSS 20,12 kB, **626 ms**. Dépendances existantes ; les assets servis sont strictement égaux aux fichiers construits.
+
+Les trois essais réels locaux utilisent le Guardrail T3 existant, Nova 2 Lite et Sonnet 5 via Bedrock alphaforge. [Dossiers et appels](preuves/tranche4/bilan-bedrock.json) : Robert 12,631 s / 16 932 jetons ; Amira 12,845 s / 15 784 ; Mateo 12,564 s / 15 718. Trois appels chacun, cinq objets strictement égaux à la version hors ligne : verdict, règles, options, bascule et K3.
+
+Les deux textes d’ancrage nouveaux passent le cas exact et refusent un écart arrondi par le modèle. Robert/TSLA et Amira/BTC restent monotones ; Amira/XIU conserve le contre-exemple 14 000 → ajustement, 17 500 → cohérent. Le rendu statique vérifie la grille de 35 000 CAD qui contient ces montants, et le constat à la hausse proposé depuis 14 000.
+
+## 4. Publication réelle et écarts
+
+[Plan](preuves/tranche4/plan-deploiement.json), [journal](preuves/tranche4/redéploiement.json), [sortie](preuves/tranche4/deploiement.txt), [réception publique](preuves/tranche4/public/bilan.json).
+
+L’interface est publiée à https://main.d1d3b8g2y5hkdd.amplifyapp.com ; l’API est mise à jour sur la même Lambda `alphaforge-api`. **Aucune ressource créée**. Code au commit `1d30724`, empreinte ZIP distante identique, JS/CSS publics égaux au build, santé et CORS conformes, concurrence 2. [Version publiée](preuves/tranche4/version-publiee.json).
+
+Robert par l’API publique donne les cinq objets identiques à la référence hors ligne ; S3 contient sa copie exacte dans `dossiers/20261116-013755-e5a9bd3f.json`. Le Rédacteur est refusé deux fois par le contrôle en code : contradiction de verdict puis citation non textuelle (« Concentration »). Le gabarit prévu est rendu. Cette réception coûte **quatre appels et 30 587 jetons**, avec la dernière ligne à **20,583202 s**. Le flux arrive d’un bloc : 0,038168 s entre première et dernière ligne. La cible 8–14 secondes n’est donc pas systématiquement tenue. Le mécanisme de reprise existait déjà ; aucun rôle ni appel structurel n’a été ajouté. Le coût/temps supplémentaire est conservé dans les preuves, pas masqué comme succès de performance.
+
+**Inspection visuelle non effectuée** pour les cas 1, 2, 3 et 5. Le navigateur intégré ne répond pas ; le contrôle d’autorisation a refusé Google Chrome : « Computer Use was not approved to use Google Chrome ». [Constat exact](preuves/tranche4/inspection-navigateur.json). Aucune capture n’est fabriquée. Le [rendu React statique](preuves/tranche4/rendu-react.json) vérifie des contenus et l’absence d’erreur de rendu, pas la disposition, les clics, le clavier ni le petit écran. Deux options restent : autoriser l’accès au navigateur et rejouer les quatre cas ; ou faire attester leur inspection manuelle. Cette réserve reste visible dans les livrables et la réponse finale.
+
+Le champ `bascule` ne contient que des fractions jusqu’au montant de départ. Une option à la hausse peut donc être hors de cette grille ; elle est affichée séparément. Aucune grille supplémentaire ni recalcul de K3 n’a été introduit dans les curseurs. La fiche décrit explicitement la demande de départ. Cette limite existante est documentée plutôt que remplacée par un nouveau calcul.
+
+## 5. Synthèse finale des invariants et gains
+
+| Invariant du cadre | État et preuve |
+|---|---|
+| 1. Aucun modèle ne décide des chiffres/verdicts | Vérifié : cinq objets égaux pour trois essais locaux réels et Robert public ; simulations de réponses fautives et tests existants conservés. |
+| 2. Gardien seule autorité | Vérifié : règles et pire niveau inchangés ; Mateo reste bloqué par l’exclusion malgré l’écart favorable. |
+| 3. Chiffres reliés aux faits et sources | Chaîne K3 vérifiée et boutons reliés dans React ; clic et présentation visuelle non inspectés. Les métadonnées K6 portent leur propre preuve AWS. |
+| 4. Ancrage ou gabarit | Vérifié : texte exact accepté, faux écart refusé ; repli réel observé en publication. |
+| 5. Sans identifiants AWS | Vérifié : import SDK interdit dans le test, K6 vide, parcours déterministe. |
+| 6. Tests du socle préservés | 344 réussis ; les adaptations T4 des références et d’un faux appelant sont documentées ; aucune suppression. |
+| 7. Monotonie conditionnelle | Vérifié : TSLA/BTC aggravants monotones ; XIU diversifiant conservé avec hypothèse et exemple. |
+| 8. Simulation sans conseil/prévision/transaction | Contrôles conservés ; textes K3 rétrospectifs, ajustements neutres. Aucun passage d’ordre. |
+| 9. Français et CAD | Textes et composants en français ; unités K3/CAD conservées, identifiants techniques inchangés. Rendu visuel non inspecté. |
+| 10. Contrat HTTP compatible | Champs facultatifs ; ancien dossier sans K3/K6 rendu sans erreur ; aucun champ renommé ou supprimé. |
+
+| Gain attendu | Meilleur composant disponible | Produit fusionné, sortie réelle | Limite ou régression |
+|---|---|---|---|
+| Perte supportable sur le portefeuille entier | C : impact 14,2 %, capacité ok pour Robert ; B : −14,256677 % avant, −20,595922 % après, sans verdict de convenance | Mêmes deux mesures B et écart −6,339245 points ; capacité orange, verdict incohérent conservé. Amira : capacité rouge au lieu de ok. [C](preuves/tranche4/comparaison-avec-c.json), [B](preuves/tranche4/comparaison-avec-b.json) | Gain de raccordement au verdict, pas de précision supplémentaire sur B. K5 reste un arbitrage d’équipe ; retour possible avec `ALPHAFORGE_CAPACITE=approximation`. |
+| Comparaison avec sens et limites | A : principe de comparaison appariée ; B : métriques et limites | Trois phrases sourcées K3 ; sens fourni par le moteur ; limites dans le dossier et composant. [Dossiers](preuves/tranche4/README.md), [ancrage](preuves/tranche4/tests-finaux.txt) | Rendu React statique vérifié ; disposition, clics et petit écran non inspectés. La validation visuelle reste à faire. |
+| Chaque appel prouvé | A : métadonnées Converse dans JSON ; C initial : pas de journal K6 | Neuf appels réels pour les trois personas, tous avec identifiants ; modèles, jetons et latences présents dans le rendu. [Bilan](preuves/tranche4/bilan-bedrock.json), [rendu](preuves/tranche4/rendu-react.json) | Affichage interactif non inspecté. 15 718 à 16 932 jetons par dossier avec contexte K3/Guardrail, au-delà de l’objectif initial d’environ 8 000. |
+| Impossible et manquant sans verdict trompeur | B : `infeasible`/`missing_input` ; C initial : avis adouci, sans question décisive | Cas 4/6 indéterminés ; GameStop expliqué ; cas 5 avec ajustement et question qui dit le passage à incohérent. [Réception](preuves/tranche4/README.md) | Équivalence au traitement explicite de B sur les impossibles ; gain propre : question liée au verdict du Gardien. |
+| AWS au-delà de l’inférence | C initial : scripts non exécutés | Interface Amplify et API Lambda mises à jour ; données/dossiers S3 privés, IAM, CloudWatch, Guardrail. [Déploiement](preuves/tranche4/redéploiement.json), [réception publique](preuves/tranche4/public/bilan.json) | Function URL publique, compte événementiel temporaire ; CORS et concurrence 2 ne bornent pas la dépense cumulée. |
+
+Égalités et coûts constatés : hors ligne, maximum 613,476 ms sur les quatre cas mesurés, trois passages avec caches applicatifs vidés ([mesures](preuves/tranche4/performances.json)). Les imports et le cache système restent chauds. Neuf appels locaux Bedrock pour trois dossiers, soit trois chacun comme le chemin nominal antérieur : 12,631 / 12,845 / 12,564 secondes. La plage 8–14 secondes est respectée pour ces trois essais locaux. Robert public prend toutefois 20,583202 s, quatre appels et 30 587 jetons : deux refus du Rédacteur, puis gabarit. Le gain de latence n’est pas confirmé en présence de reprises ; les dépassements T3 restent documentés. La consommation de jetons augmente avec le contexte et le Guardrail : gain de coût non confirmé, optimisation à traiter séparément en préservant l’ancrage.
+
+Compromis maintenus : B seul reste meilleur pour le versionnement des dossiers et la recherche documentaire, non transférés. Le gain de lisibilité interactive n’est pas déclaré vérifié : [blocage du navigateur](preuves/tranche4/inspection-navigateur.json). Corriger cette limite en réalisant les quatre parcours après autorisation du navigateur, ou par une inspection manuelle attestée. Le rendu statique ne la remplace pas.
+
+## 6. Livrables, réserves et clôture
+
+README : installation et deux commandes de démarrage par plateforme, profil alphaforge, hors ligne, provenance A/B/C. Contrats : K3 et K6 exacts extraits de Robert réel, non-monotonie et indices des traces. Données et registre régénéré : conventions des deux moteurs et limites. [Document technique du défi](../documentation-technique.md) : méthodes, traitements, chaîne de preuve, validations et suites réservées.
+
+La réception automatique est verte. L’inspection visuelle reste ouverte avec la preuve et les deux options exposées ci-dessus ; elle ne bloque pas la conservation du résultat autorisé dans Git. Le gain de performance n’est pas garanti avec les reprises ; le coût accru est signalé. Aucun test de charge ni exécution Windows n’est déclaré réalisé. B reste meilleur pour Store/versionnement et recherche documentaire, réservés ; l’architecture A à quatre agents reste hors produit. Les dates de fermeture restent celles annoncées dans les documents d’équipe, sans confirmation supplémentaire du porteur.
+
+La clôture documentaire reçoit l’étiquette locale `fusion/t4` ; push autorisé sans force vers `origin/fusion-corrections-deploiement`, après tests verts. Le SHA distant est vérifié après le push et donné dans la réponse finale. Aucun tag de référence ni original n’est déplacé. L’intégrateur reste sur Bedrock Astra ; aucun sous-agent n’a été lancé, faute de pouvoir vérifier sa route séparée avant appel.
+
+## Déroulé proposé de démonstration — cinq minutes
+
+- **0:00–0:40** : Robert, relire montant, épargne, retrait et poids fictifs ; préciser le caractère éducatif.
+- **0:40–1:50** : lancer l’analyse ; montrer les appels réels ou leur absence, puis le verdict et le portefeuille avant/après. Ouvrir la preuve de la baisse après et sa méthode/source.
+- **1:50–2:40** : comparer l’ajustement et le placement large ; expliquer qu’un écart historique n’est pas une perte future.
+- **2:40–3:40** : Mateo ; montrer l’écart favorable, mais l’exclusion qui prime et l’alternative compatible.
+- **3:40–4:40** : Robert sans date de retrait ; lire la question décisive et ce qui changerait, sans inventer sa réponse.
+- **4:40–5:00** : fiche conseiller, limites, source des données et réserve de latence/repli. Aucune vidéo ni page de présentation n’est créée par cette proposition.

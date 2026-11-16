@@ -1,0 +1,71 @@
+........................................................................ [ 20%]
+........................................................F............... [ 41%]
+...............................................F........................ [ 62%]
+...............................................................FFF...... [ 83%]
+......................................................F.                 [100%]
+=================================== FAILURES ===================================
+_________________ test_sceptique_recoit_la_liste_des_symboles __________________
+tests/test_contrats_fusion.py:84: in test_sceptique_recoit_la_liste_des_symboles
+    sceptique._choix_llm(d, [])
+alphaforge/agents/sceptique.py:155: in _choix_llm
+    brut = llm.appeler_json(SYSTEME, contexte, llm.MODELE_PRINCIPAL, 700, agent="Sceptique")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: test_sceptique_recoit_la_liste_des_symboles.<locals>.<lambda>() got an unexpected keyword argument 'agent'
+___________ test_hors_ligne_sans_import_boto3_et_reference_inchangee ___________
+tests/test_llm.py:219: in test_hors_ligne_sans_import_boto3_et_reference_inchangee
+    assert sans_variations(obtenu) == sans_variations(attendu)
+E   assert {'profil': {'...', ...}], ...} == {'bascule': {....}, ...], ...}
+E     
+E     Omitting 13 identical items, use -vv to show
+E     Differing items:
+E     {'texte': {'reformulation': 'Robert envisage de placer 80\u202f000 $ dans TSLA, soit 20 % de son épargne, avec un hori...Cohérent avec un ajustement » (variation à la baisse dans cette simulation).', 'type': 'SCENARIO', 'faits': []}], ...}} != {'texte': {'avertissement': "Simulation éducative. Ceci n'est pas un conseil financier personnalisé.", 'ce_qui_changer...-73,0 % en USD contre -70,9 % en CAD (écart de 2,1 point(s)). On garde la mesure en CAD.', 'type': 'FAIT'}, ...], ...}}
+E     Use -v to get more diff
+________________________ test_reference_persona[robert] ________________________
+tests/test_reference_personas.py:32: in test_reference_persona
+    assert sans_variations(obtenu) == sans_variations(attendu)
+E   assert {'profil': {'...', ...}], ...} == {'bascule': {....}, ...], ...}
+E     
+E     Omitting 13 identical items, use -vv to show
+E     Differing items:
+E     {'texte': {'reformulation': 'Robert envisage de placer 80\u202f000 $ dans TSLA, soit 20 % de son épargne, avec un hori...Cohérent avec un ajustement » (variation à la baisse dans cette simulation).', 'type': 'SCENARIO', 'faits': []}], ...}} != {'texte': {'avertissement': "Simulation éducative. Ceci n'est pas un conseil financier personnalisé.", 'ce_qui_changer...-73,0 % en USD contre -70,9 % en CAD (écart de 2,1 point(s)). On garde la mesure en CAD.', 'type': 'FAIT'}, ...], ...}}
+E     Use -v to get more diff
+________________________ test_reference_persona[amira] _________________________
+tests/test_reference_personas.py:32: in test_reference_persona
+    assert sans_variations(obtenu) == sans_variations(attendu)
+E   assert {'profil': {'...', ...}], ...} == {'bascule': {....}, ...], ...}
+E     
+E     Omitting 13 identical items, use -vv to show
+E     Differing items:
+E     {'texte': {'reformulation': 'Amira envisage de placer 10\u202f000 $ dans BTC-USD, soit 25 % de son épargne, avec un ho... prédit pas une perte future.', 'type': 'SCENARIO', 'faits': ['F-22', 'F-18', 'F-26']}], 'ce_qui_changerait': [], ...}} != {'texte': {'avertissement': "Simulation éducative. Ceci n'est pas un conseil financier personnalisé.", 'ce_qui_changer...10). La baisse dépasse ce seuil ; le Gardien applique aussi sa règle d'attribution.", 'type': 'HYPOTHESE'}, ...], ...}}
+E     Use -v to get more diff
+________________________ test_reference_persona[mateo] _________________________
+tests/test_reference_personas.py:32: in test_reference_persona
+    assert sans_variations(obtenu) == sans_variations(attendu)
+E   assert {'profil': {'...', ...}], ...} == {'bascule': {....}, ...], ...}
+E     
+E     Omitting 13 identical items, use -vv to show
+E     Differing items:
+E     {'texte': {'reformulation': 'Mateo envisage de placer 15\u202f000 $ dans ENB.TO, soit 12 % de son épargne, avec un hor... exclusions existe : ESGV (Vanguard ESG U.S. Stock ETF), même montant.', 'type': 'SCENARIO', 'faits': ['F-32']}], ...}} != {'texte': {'avertissement': "Simulation éducative. Ceci n'est pas un conseil financier personnalisé.", 'ce_qui_changer... retenue de 22,5 % (F-10). La baisse ne dépasse pas ce seuil dans cette simulation.', 'type': 'HYPOTHESE'}, ...], ...}}
+E     Use -v to get more diff
+___________________________ test_doc_sources_a_jour ____________________________
+tests/test_sources.py:95: in test_doc_sources_a_jour
+    assert Path(g.CIBLE).read_text(encoding="utf-8") == g.generer(), "relancer : python generer_doc_sources.py"
+E   AssertionError: relancer : python generer_doc_sources.py
+E   assert '# Sources, m...de preuve |\n' == '# Sources, m...de preuve |\n'
+E     
+E     Skipping 602 identical leading characters in diff, use -v to show
+E       fiée.
+E       
+E     - ## Portefeuille apparié (B), allocation (A) et attribution (K4–K5)
+E     + ## Faits calculés par l'Analyste
+E       ...
+E     
+E     ...Full output truncated, use '-vv' to show
+=========================== short test summary info ============================
+FAILED tests/test_contrats_fusion.py::test_sceptique_recoit_la_liste_des_symboles
+FAILED tests/test_llm.py::test_hors_ligne_sans_import_boto3_et_reference_inchangee
+FAILED tests/test_reference_personas.py::test_reference_persona[robert] - ass...
+FAILED tests/test_reference_personas.py::test_reference_persona[amira] - asse...
+FAILED tests/test_reference_personas.py::test_reference_persona[mateo] - asse...
+FAILED tests/test_sources.py::test_doc_sources_a_jour - AssertionError: relan...
+6 failed, 338 passed in 19.69s

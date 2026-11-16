@@ -1,0 +1,25 @@
+{
+  "statut": "non_effectuee",
+  "captures": [],
+  "cas_demandes": [
+    1,
+    2,
+    3,
+    5
+  ],
+  "essais": [
+    {
+      "outil": "mcp__cua_repl.createBrowserTab(iab)",
+      "resultat": "native pipe closed before response"
+    },
+    {
+      "outil": "mcp__cua_repl.getState",
+      "resultat": "Browsers: Error: native pipe closed before response"
+    },
+    {
+      "outil": "mcp__cua_repl.getApp(com.google.Chrome)",
+      "resultat": "Computer Use was not approved to use Google Chrome"
+    }
+  ],
+  "verification_independante": "rendu-react.json : rendu statique seulement ; ni clics ni disposition ni inspection visuelle attestés."
+}

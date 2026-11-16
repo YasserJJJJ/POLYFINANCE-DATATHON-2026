@@ -1,0 +1,2164 @@
+{
+  "profil": {
+    "nom": "Mateo",
+    "age": 41,
+    "profession": "Gestionnaire des opérations",
+    "experience": "intermédiaire",
+    "horizon_ans": 10,
+    "tolerance": 50,
+    "epargne_totale_cad": 120000,
+    "somme_a_preserver_cad": 30000,
+    "revenu_stable": true,
+    "fonds_urgence": true,
+    "dettes_importantes": false,
+    "retrait_prevu_ans": null,
+    "exclusions": [
+      "Energy"
+    ],
+    "portefeuille_actuel": {
+      "XIU.TO": 0.5,
+      "XBB.TO": 0.5
+    },
+    "citations": [
+      "Je veux éviter les entreprises liées à des controverses environnementales",
+      "Je cherche un équilibre entre croissance et stabilité"
+    ],
+    "envie": "dividendes",
+    "extraits": {
+      "champs": {},
+      "source": "Nova Lite (Bedrock)"
+    },
+    "evaluation": {
+      "tolerance": 50.0,
+      "capacite": 95.0,
+      "capacite_raisons": [
+        "Horizon de 10 ans ou plus : +25",
+        "Revenu stable : +10",
+        "Fonds d'urgence : +10"
+      ],
+      "score_retenu": 50.0,
+      "limite": "tolérance",
+      "perte_max_tolerance_pct": 22.5,
+      "perte_max_capacite_pct": 38.2,
+      "perte_max_retenue_pct": 22.5,
+      "seuil_concentration_pct": 12.5,
+      "seuil_titre_unique_pct": 25.0,
+      "poids_pct": 12
+    },
+    "tensions": [
+      "Écart entre ce que tu veux risquer (50/100) et ce que ta situation permet (95/100)."
+    ]
+  },
+  "demande": {
+    "texte": "Je veux mettre 15 000 $ dans Enbridge pour les dividendes.",
+    "ticker": "ENB.TO",
+    "montant_cad": 15000,
+    "mesures": {
+      "pire_chute_pct": -21.4,
+      "date_sommet": "2022-06-07",
+      "date_creux": "2023-10-04",
+      "date_retour": "2024-08-01",
+      "recuperation_annees": 0.8,
+      "recupere": true,
+      "annees_depuis_creux": 3.1,
+      "volatilite_pct": 16.1,
+      "rendement_annualise_pct": 12.8,
+      "secteur": "Energy",
+      "asset_class": "equity",
+      "devise": "CAD",
+      "correlations": {
+        "XIU.TO": 0.53,
+        "XBB.TO": 0.17
+      },
+      "qualite": [
+        {
+          "code": "presence",
+          "libelle": "Données présentes",
+          "statut": "ok",
+          "detail": "1255 lignes."
+        },
+        {
+          "code": "doublons",
+          "libelle": "Pas de doublons de date",
+          "statut": "ok",
+          "detail": "0 doublon(s)."
+        },
+        {
+          "code": "magnitude",
+          "libelle": "Prix strictement positifs",
+          "statut": "ok",
+          "detail": "0 prix nul(s) ou négatif(s)."
+        },
+        {
+          "code": "couverture",
+          "libelle": "Couvre la fenêtre 2021-11 → 2026-11",
+          "statut": "ok",
+          "detail": "Du 2021-11-12 au 2026-11-12."
+        },
+        {
+          "code": "trous",
+          "libelle": "Pas de trou anormal dans la série",
+          "statut": "ok",
+          "detail": "Plus long écart entre deux cotations : 5 jour(s)."
+        },
+        {
+          "code": "sauts",
+          "libelle": "Pas de variation journalière > 40 %",
+          "statut": "ok",
+          "detail": "0 variation(s) suspecte(s)."
+        },
+        {
+          "code": "devise",
+          "libelle": "Devise connue et convertie en CAD",
+          "statut": "ok",
+          "detail": "Déjà en CAD."
+        }
+      ]
+    },
+    "ids_faits": {
+      "secteur": "F-1",
+      "chute": "F-2",
+      "recuperation": "F-3",
+      "volatilite": "F-4",
+      "rendement": "F-5",
+      "pire12": "F-6",
+      "perte": "F-7",
+      "correlation": "F-8",
+      "reference": "F-9",
+      "h_perte": "F-10",
+      "h_capacite": "F-11",
+      "h_concentration": "F-12",
+      "h_titre": "F-13",
+      "h_volatil": "F-14",
+      "h_correlation": "F-15",
+      "fenetre_portefeuille": "F-16",
+      "poids_avant": "F-17",
+      "poids_apres": "F-18",
+      "avant_pire_chute": "F-19",
+      "avant_volatilite": "F-20",
+      "avant_rendement": "F-21",
+      "avant_valeur_finale": "F-22",
+      "apres_pire_chute": "F-23",
+      "apres_volatilite": "F-24",
+      "apres_rendement": "F-25",
+      "apres_valeur_finale": "F-26",
+      "ecart_pire_chute": "F-27",
+      "ecart_volatilite": "F-28",
+      "h_attribution": "F-29",
+      "h_non_monotonie": "F-30",
+      "limites_portefeuille": "F-31"
+    }
+  },
+  "faits": [
+    {
+      "id": "F-1",
+      "libelle": "Secteur de Enbridge",
+      "valeur": "Energy",
+      "unite": "",
+      "type": "FAIT",
+      "source": "assets_universe.csv (jeu de départ)",
+      "methode": "Lu tel quel",
+      "lu_ou_calcule": "lu",
+      "references": [
+        "donnees-univers",
+        "esma-2022",
+        "berg-2022"
+      ]
+    },
+    {
+      "id": "F-2",
+      "libelle": "Pire chute de ENB.TO",
+      "valeur": -21.4,
+      "unite": "%",
+      "type": "FAIT",
+      "source": "Yahoo Finance via yfinance, jeu de départ AlphaForge (extrait le 2026-11-13)",
+      "methode": "Baisse maximale sommet → creux du 2021-11-12 au 2026-11-12, adj_close (dividendes réinvestis, fractionnements appliqués). Sommet 2022-06-07, creux 2023-10-04.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "chekhlov-2005",
+        "yfinance-reparation"
+      ]
+    },
+    {
+      "id": "F-3",
+      "libelle": "Temps entre le creux et le retour au sommet (ENB.TO)",
+      "valeur": 0.8,
+      "unite": "an(s)",
+      "type": "FAIT",
+      "source": "Yahoo Finance via yfinance, jeu de départ AlphaForge (extrait le 2026-11-13)",
+      "methode": "Du creux (2023-10-04) au retour au sommet (2024-08-01). Depuis le sommet (2022-06-07), le prix est resté sous son sommet 2,2 an(s).",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "chekhlov-2005"
+      ]
+    },
+    {
+      "id": "F-4",
+      "libelle": "Volatilité annualisée de ENB.TO",
+      "valeur": 16.1,
+      "unite": "%/an",
+      "type": "FAIT",
+      "source": "Yahoo Finance via yfinance, jeu de départ AlphaForge (extrait le 2026-11-13)",
+      "methode": "Écart-type des rendements log quotidiens × √252, en CAD, du 2021-11-12 au 2026-11-12.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "markowitz-1952",
+        "dossier-adam"
+      ]
+    },
+    {
+      "id": "F-5",
+      "libelle": "Rendement annualisé passé de ENB.TO",
+      "valeur": 12.8,
+      "unite": "%/an",
+      "type": "FAIT",
+      "source": "Yahoo Finance via yfinance, jeu de départ AlphaForge (extrait le 2026-11-13)",
+      "methode": "Taux de croissance annuel composé du 2021-11-12 au 2026-11-12, en CAD, dividendes réinvestis. Erreur type de cette moyenne ≈ volatilité / √années = 7,2 points : la vraie moyenne peut s'écarter d'environ ± 14,4 points. Le passé ne prédit pas le futur ; ce chiffre ne sert jamais au verdict.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "demiguel-2009",
+        "van-der-bles-2020"
+      ]
+    },
+    {
+      "id": "F-6",
+      "libelle": "Pire période de 52 semaines (ENB.TO, cours du vendredi)",
+      "valeur": -12.3,
+      "unite": "%",
+      "type": "FAIT",
+      "source": "Yahoo Finance via yfinance, jeu de départ AlphaForge (extrait le 2026-11-13)",
+      "methode": "Rendements sur 52 semaines glissantes, cours du vendredi, fin 2023-10-27. Mesure hebdomadaire : la pire baisse sur 12 mois de cotations quotidiennes peut être plus forte. 27,1 % des périodes de 12 mois sont négatives.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "chekhlov-2005"
+      ]
+    },
+    {
+      "id": "F-7",
+      "libelle": "Perte si la pire chute se répétait",
+      "valeur": -3210.0,
+      "unite": "$",
+      "type": "SCENARIO",
+      "source": "Calcul sur F-2",
+      "methode": "15 000 $ × -21.4 %. Scénario fictif : la prochaine baisse peut être plus forte ou plus faible.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "das-2010"
+      ]
+    },
+    {
+      "id": "F-8",
+      "libelle": "Corrélation de ENB.TO avec tes placements",
+      "valeur": {
+        "XIU.TO": 0.53,
+        "XBB.TO": 0.17
+      },
+      "unite": "",
+      "type": "FAIT",
+      "source": "Yahoo Finance via yfinance, jeu de départ AlphaForge (extrait le 2026-11-13)",
+      "methode": "Corrélation des rendements hebdomadaires (vendredi), en CAD.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "markowitz-1952",
+        "dossier-adam"
+      ]
+    },
+    {
+      "id": "F-9",
+      "libelle": "Pour comparer : pire chute de XIU.TO (marché canadien)",
+      "valeur": -16.4,
+      "unite": "%",
+      "type": "FAIT",
+      "source": "Yahoo Finance via yfinance, jeu de départ AlphaForge (extrait le 2026-11-13)",
+      "methode": "Même méthode, du 2021-11-12 au 2026-11-12.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "chekhlov-2005"
+      ]
+    },
+    {
+      "id": "F-10",
+      "libelle": "Perte supportable retenue pour ton profil (hypothèse de l'équipe)",
+      "valeur": 22.5,
+      "unite": "%",
+      "type": "HYPOTHESE",
+      "source": "Barème de l'équipe (backend/alphaforge/profil.py), publié et modifiable",
+      "methode": "5 + 0,35 × score retenu. Score retenu = le plus bas entre tolérance (50,0) et capacité (95,0), soit 50,0 (limite : tolérance).",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "ocri-gn-3400",
+        "acvm-31-103cp",
+        "osc-iap-2015"
+      ]
+    },
+    {
+      "id": "F-11",
+      "libelle": "Capacité de perte selon ta situation (hypothèse de l'équipe)",
+      "valeur": 38.2,
+      "unite": "%",
+      "type": "HYPOTHESE",
+      "source": "Barème de l'équipe (backend/alphaforge/profil.py), publié et modifiable",
+      "methode": "5 + 0,35 × score de capacité. Détail du score : Horizon de 10 ans ou plus : +25 ; Revenu stable : +10 ; Fonds d'urgence : +10.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "acvm-31-103cp",
+        "osc-iap-2015"
+      ]
+    },
+    {
+      "id": "F-12",
+      "libelle": "Part maximale de l'épargne dans un actif très volatil, pour ton profil (hypothèse de l'équipe)",
+      "valeur": 12.5,
+      "unite": "%",
+      "type": "HYPOTHESE",
+      "source": "Barème de l'équipe (backend/alphaforge/profil.py), publié et modifiable",
+      "methode": "5 + 0,15 × score retenu (50,0), soit de 5 % à 20 % : une fonction continue, pour qu'un point de score ne fasse pas basculer le verdict.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "markowitz-1952",
+        "acvm-ocri-31-368"
+      ]
+    },
+    {
+      "id": "F-13",
+      "libelle": "Part maximale de l'épargne dans un seul titre moins volatil, pour ton profil (hypothèse de l'équipe)",
+      "valeur": 25.0,
+      "unite": "%",
+      "type": "HYPOTHESE",
+      "source": "Barème de l'équipe (backend/alphaforge/profil.py), publié et modifiable",
+      "methode": "Deux fois le seuil des actifs très volatils : une seule entreprise peut chuter seule, même si son prix bouge moins que la moyenne des actifs risqués.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "markowitz-1952"
+      ]
+    },
+    {
+      "id": "F-14",
+      "libelle": "Seuil « actif très volatil » (hypothèse de l'équipe)",
+      "valeur": 30,
+      "unite": "%/an",
+      "type": "HYPOTHESE",
+      "source": "Barème de l'équipe (backend/alphaforge/profil.py), publié et modifiable",
+      "methode": "Au-delà de 30 %/an, la règle de concentration s'applique ; au-delà de 25 %/an, un retrait prévu avant la récupération est jugé risqué.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "markowitz-1952"
+      ]
+    },
+    {
+      "id": "F-15",
+      "libelle": "Seuil de fausse diversification (hypothèse de l'équipe)",
+      "valeur": 0.8,
+      "unite": "",
+      "type": "HYPOTHESE",
+      "source": "Barème de l'équipe (backend/alphaforge/profil.py), publié et modifiable",
+      "methode": "À partir de cette corrélation hebdomadaire avec un placement déjà détenu, le nouveau placement ne diversifie pas.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "markowitz-1952"
+      ]
+    },
+    {
+      "id": "F-16",
+      "libelle": "Fenêtre commune de comparaison",
+      "valeur": {
+        "debut": "2021-11-12",
+        "fin": "2026-11-12",
+        "observations": 1228
+      },
+      "unite": "",
+      "type": "FAIT",
+      "source": "Jeu de départ AlphaForge et moteur historique B",
+      "methode": "Moteur historique-B (cad-buy-and-hold-v1) : achat-conservation, grille commune des séances, CAD, change daté au plus tard du jour. Du 2021-11-12 au 2026-11-12, 1228 observations. Prix ajustés ; métriques en points de pourcentage. Aucune soustraction avec les mesures d'un titre du moteur C.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "donnees-univers",
+        "donnees-profil",
+        "moteur-historique-b"
+      ]
+    },
+    {
+      "id": "F-17",
+      "libelle": "Allocation actuelle utilisée",
+      "valeur": {
+        "XBB.TO": 0.5,
+        "XIU.TO": 0.5
+      },
+      "unite": "fraction",
+      "type": "FAIT",
+      "source": "Jeu de départ AlphaForge et moteur historique B",
+      "methode": "Moteur historique-B (cad-buy-and-hold-v1) : achat-conservation, grille commune des séances, CAD, change daté au plus tard du jour. Du 2021-11-12 au 2026-11-12, 1228 observations. Prix ajustés ; métriques en points de pourcentage. Aucune soustraction avec les mesures d'un titre du moteur C. Poids déclarés.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "donnees-univers",
+        "donnees-profil",
+        "moteur-historique-b"
+      ]
+    },
+    {
+      "id": "F-18",
+      "libelle": "Allocation après ajout du placement",
+      "valeur": {
+        "XBB.TO": 0.4375,
+        "XIU.TO": 0.4375,
+        "ENB.TO": 0.125
+      },
+      "unite": "fraction",
+      "type": "SCENARIO",
+      "source": "Jeu de départ AlphaForge et moteur historique B",
+      "methode": "Moteur historique-B (cad-buy-and-hold-v1) : achat-conservation, grille commune des séances, CAD, change daté au plus tard du jour. Du 2021-11-12 au 2026-11-12, 1228 observations. Prix ajustés ; métriques en points de pourcentage. Aucune soustraction avec les mesures d'un titre du moteur C. Ajout blend de A : chaque poids initial × (1 − montant/épargne), puis ajout de montant/épargne au titre.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-profil",
+        "allocation-a",
+        "moteur-historique-b"
+      ]
+    },
+    {
+      "id": "F-19",
+      "libelle": "Pire baisse du portefeuille avant la demande",
+      "valeur": -13.159563,
+      "unite": "%",
+      "type": "FAIT",
+      "source": "Jeu de départ AlphaForge et moteur historique B",
+      "methode": "Moteur historique-B (cad-buy-and-hold-v1) : achat-conservation, grille commune des séances, CAD, change daté au plus tard du jour. Du 2021-11-12 au 2026-11-12, 1228 observations. Prix ajustés ; métriques en points de pourcentage. Aucune soustraction avec les mesures d'un titre du moteur C.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "donnees-univers",
+        "donnees-profil",
+        "moteur-historique-b"
+      ]
+    },
+    {
+      "id": "F-20",
+      "libelle": "Volatilité du portefeuille avant la demande",
+      "valeur": 8.277483,
+      "unite": "%/an",
+      "type": "FAIT",
+      "source": "Jeu de départ AlphaForge et moteur historique B",
+      "methode": "Moteur historique-B (cad-buy-and-hold-v1) : achat-conservation, grille commune des séances, CAD, change daté au plus tard du jour. Du 2021-11-12 au 2026-11-12, 1228 observations. Prix ajustés ; métriques en points de pourcentage. Aucune soustraction avec les mesures d'un titre du moteur C.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "donnees-univers",
+        "donnees-profil",
+        "moteur-historique-b"
+      ]
+    },
+    {
+      "id": "F-21",
+      "libelle": "Rendement annualisé passé du portefeuille avant la demande",
+      "valeur": 7.956738,
+      "unite": "%/an",
+      "type": "FAIT",
+      "source": "Jeu de départ AlphaForge et moteur historique B",
+      "methode": "Moteur historique-B (cad-buy-and-hold-v1) : achat-conservation, grille commune des séances, CAD, change daté au plus tard du jour. Du 2021-11-12 au 2026-11-12, 1228 observations. Prix ajustés ; métriques en points de pourcentage. Aucune soustraction avec les mesures d'un titre du moteur C.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "donnees-univers",
+        "donnees-profil",
+        "moteur-historique-b"
+      ]
+    },
+    {
+      "id": "F-22",
+      "libelle": "Valeur finale rétrospective du portefeuille avant la demande",
+      "valeur": 175958.67,
+      "unite": "$",
+      "type": "FAIT",
+      "source": "Jeu de départ AlphaForge et moteur historique B",
+      "methode": "Moteur historique-B (cad-buy-and-hold-v1) : achat-conservation, grille commune des séances, CAD, change daté au plus tard du jour. Du 2021-11-12 au 2026-11-12, 1228 observations. Prix ajustés ; métriques en points de pourcentage. Aucune soustraction avec les mesures d'un titre du moteur C.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "donnees-univers",
+        "donnees-profil",
+        "moteur-historique-b"
+      ]
+    },
+    {
+      "id": "F-23",
+      "libelle": "Pire baisse du portefeuille après la demande",
+      "valeur": -12.062254,
+      "unite": "%",
+      "type": "SCENARIO",
+      "source": "Jeu de départ AlphaForge et moteur historique B",
+      "methode": "Moteur historique-B (cad-buy-and-hold-v1) : achat-conservation, grille commune des séances, CAD, change daté au plus tard du jour. Du 2021-11-12 au 2026-11-12, 1228 observations. Prix ajustés ; métriques en points de pourcentage. Aucune soustraction avec les mesures d'un titre du moteur C.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "donnees-univers",
+        "donnees-profil",
+        "moteur-historique-b"
+      ]
+    },
+    {
+      "id": "F-24",
+      "libelle": "Volatilité du portefeuille après la demande",
+      "valeur": 8.357148,
+      "unite": "%/an",
+      "type": "SCENARIO",
+      "source": "Jeu de départ AlphaForge et moteur historique B",
+      "methode": "Moteur historique-B (cad-buy-and-hold-v1) : achat-conservation, grille commune des séances, CAD, change daté au plus tard du jour. Du 2021-11-12 au 2026-11-12, 1228 observations. Prix ajustés ; métriques en points de pourcentage. Aucune soustraction avec les mesures d'un titre du moteur C.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "donnees-univers",
+        "donnees-profil",
+        "moteur-historique-b"
+      ]
+    },
+    {
+      "id": "F-25",
+      "libelle": "Rendement annualisé passé du portefeuille après la demande",
+      "valeur": 8.611539,
+      "unite": "%/an",
+      "type": "SCENARIO",
+      "source": "Jeu de départ AlphaForge et moteur historique B",
+      "methode": "Moteur historique-B (cad-buy-and-hold-v1) : achat-conservation, grille commune des séances, CAD, change daté au plus tard du jour. Du 2021-11-12 au 2026-11-12, 1228 observations. Prix ajustés ; métriques en points de pourcentage. Aucune soustraction avec les mesures d'un titre du moteur C.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "donnees-univers",
+        "donnees-profil",
+        "moteur-historique-b"
+      ]
+    },
+    {
+      "id": "F-26",
+      "libelle": "Valeur finale rétrospective du portefeuille après la demande",
+      "valeur": 181359.46,
+      "unite": "$",
+      "type": "SCENARIO",
+      "source": "Jeu de départ AlphaForge et moteur historique B",
+      "methode": "Moteur historique-B (cad-buy-and-hold-v1) : achat-conservation, grille commune des séances, CAD, change daté au plus tard du jour. Du 2021-11-12 au 2026-11-12, 1228 observations. Prix ajustés ; métriques en points de pourcentage. Aucune soustraction avec les mesures d'un titre du moteur C.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "donnees-univers",
+        "donnees-profil",
+        "moteur-historique-b"
+      ]
+    },
+    {
+      "id": "F-27",
+      "libelle": "Écart de pire baisse : après moins avant",
+      "valeur": 1.097309,
+      "unite": "points",
+      "type": "SCENARIO",
+      "source": "Jeu de départ AlphaForge et moteur historique B",
+      "methode": "Moteur historique-B (cad-buy-and-hold-v1) : achat-conservation, grille commune des séances, CAD, change daté au plus tard du jour. Du 2021-11-12 au 2026-11-12, 1228 observations. Prix ajustés ; métriques en points de pourcentage. Aucune soustraction avec les mesures d'un titre du moteur C. Sens calculé : ameliore. Valeurs négatives : un écart négatif aggrave la baisse.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "donnees-univers",
+        "donnees-profil",
+        "moteur-historique-b"
+      ]
+    },
+    {
+      "id": "F-28",
+      "libelle": "Écart de volatilité : après moins avant",
+      "valeur": 0.079665,
+      "unite": "points",
+      "type": "SCENARIO",
+      "source": "Jeu de départ AlphaForge et moteur historique B",
+      "methode": "Moteur historique-B (cad-buy-and-hold-v1) : achat-conservation, grille commune des séances, CAD, change daté au plus tard du jour. Du 2021-11-12 au 2026-11-12, 1228 observations. Prix ajustés ; métriques en points de pourcentage. Aucune soustraction avec les mesures d'un titre du moteur C.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "donnees-univers",
+        "donnees-profil",
+        "moteur-historique-b"
+      ]
+    },
+    {
+      "id": "F-29",
+      "libelle": "Attribution de la perte supportable (hypothèse de l'équipe)",
+      "valeur": "Un dépassement antérieur de capacité ne rend pas la demande rouge si elle n'aggrave pas la pire baisse.",
+      "unite": "",
+      "type": "HYPOTHESE",
+      "source": "Jeu de départ AlphaForge et moteur historique B",
+      "methode": "Moteur historique-B (cad-buy-and-hold-v1) : achat-conservation, grille commune des séances, CAD, change daté au plus tard du jour. Du 2021-11-12 au 2026-11-12, 1228 observations. Prix ajustés ; métriques en points de pourcentage. Aucune soustraction avec les mesures d'un titre du moteur C. La tolérance reste évaluée ; les seuils restent inchangés.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "fusion-k5"
+      ]
+    },
+    {
+      "id": "F-30",
+      "libelle": "Montant et risque : monotonie conditionnelle (hypothèse de l'équipe)",
+      "valeur": "Quand une demande diversifie le portefeuille et améliore sa pire baisse, un montant plus élevé peut donner un meilleur verdict. Chaque case est jugée séparément ; ce constat n'est pas un conseil.",
+      "unite": "",
+      "type": "HYPOTHESE",
+      "source": "Jeu de départ AlphaForge et moteur historique B",
+      "methode": "Moteur historique-B (cad-buy-and-hold-v1) : achat-conservation, grille commune des séances, CAD, change daté au plus tard du jour. Du 2021-11-12 au 2026-11-12, 1228 observations. Prix ajustés ; métriques en points de pourcentage. Aucune soustraction avec les mesures d'un titre du moteur C. Comparaison liée : avant F-19, après F-23, écart F-27. Décision du porteur, révision de l'invariant 7.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-profil",
+        "fusion-k5",
+        "moteur-historique-b"
+      ]
+    },
+    {
+      "id": "F-31",
+      "libelle": "Limites de la comparaison historique",
+      "valeur": [
+        "Comparaison rétrospective, pas prévision ni backtest de sélection historiquement réalisable : univers et prix ajustés acquis en 2026.",
+        "Le drawdown est le creux observé sur cette grille; il ne borne pas une perte future et ignore les mouvements entre observations.",
+        "La volatilité annualisée suppose des intervalles comparables et une mise à l'échelle en racine du temps; week-ends et jours fériés créent des intervalles inégaux.",
+        "Le taux FX est une moyenne indicative, pas un cours exécutable synchronisé avec la clôture des actifs.",
+        "L'heure de valorisation est une convention documentaire; les fichiers ne contiennent pas l'historique des heures exactes de publication.",
+        "Les fenêtres historiques sont descriptives, choisies à l'avance dans le code; aucune probabilité de scénario futur ne leur est attribuée.",
+        "Aucun score ESG, exposition réelle des FNB, valorisation fondamentale ou capacité personnelle de perte n'est déduit de ces données.",
+        "Les poids portent sur les instruments. Les compositions des FNB ne sont pas disponibles : les expositions communes ne sont pas mesurées."
+      ],
+      "unite": "",
+      "type": "FAIT",
+      "source": "Jeu de départ AlphaForge et moteur historique B",
+      "methode": "Moteur historique-B (cad-buy-and-hold-v1) : achat-conservation, grille commune des séances, CAD, change daté au plus tard du jour. Du 2021-11-12 au 2026-11-12, 1228 observations. Prix ajustés ; métriques en points de pourcentage. Aucune soustraction avec les mesures d'un titre du moteur C.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "donnees-univers",
+        "donnees-profil",
+        "moteur-historique-b"
+      ]
+    },
+    {
+      "id": "F-32",
+      "libelle": "Pire chute de ESGV (Vanguard ESG U.S. Stock ETF)",
+      "valeur": -26.9,
+      "unite": "%",
+      "type": "FAIT",
+      "source": "Yahoo Finance via yfinance, jeu de départ AlphaForge",
+      "methode": "Même méthode que pour la demande, en CAD, 2021-11-12 → 2026-11-12.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "donnees-univers",
+        "esma-2022",
+        "berg-2022"
+      ]
+    }
+  ],
+  "objections": [
+    {
+      "id": "O-1",
+      "cible": "F-8",
+      "texte": "Enbridge touche directement à l'exclusion sectorielle que tu as toi-même posée, donc le secteur devrait être vérifié avant tout calcul de corrélation.",
+      "recalcul": "Lire les corrélations avec le portefeuille actuel.",
+      "resolue": true,
+      "reponse": "Vérifié : corrélations avec les placements actuels toutes sous 0,6.",
+      "issue": "ecartee"
+    },
+    {
+      "id": "O-2",
+      "cible": "F-2",
+      "texte": "La fenêtre ne couvre que 5 ans. Une crise plus forte (2008, 2020) n'y figure pas.",
+      "recalcul": "Marquer la pire chute comme borne observée, pas comme pire cas possible.",
+      "resolue": true,
+      "reponse": "Limite ajoutée au texte final : la pire chute est celle observée sur 5 ans, pas un maximum.",
+      "issue": "limite"
+    },
+    {
+      "id": "O-3",
+      "cible": "F-2",
+      "texte": "Cette chute vient-elle du placement lui-même ou de tout le marché ?",
+      "recalcul": "Comparer à la pire chute du marché canadien large.",
+      "resolue": true,
+      "reponse": "Comparaison faite avec le marché canadien large (F-9 : -16,4 %) : la chute de ENB.TO (-21,4 %) est un peu plus forte : une bonne partie vient du marché dans son ensemble.",
+      "issue": "confirmee"
+    }
+  ],
+  "regles": [
+    {
+      "code": "capacite",
+      "libelle": "Perte supportable",
+      "niveau": "ok",
+      "explication": "Pire baisse du portefeuille après la demande : -12,062254 %, contre -13,159563 % avant ; écart après moins avant : 1,097309 points (ameliore). Capacité de perte : 38,2 % ; tolérance : 22,5 %. ",
+      "faits": [
+        "F-19",
+        "F-23",
+        "F-27",
+        "F-10",
+        "F-11",
+        "F-29"
+      ],
+      "references": [
+        "ocri-gn-3400",
+        "acvm-31-103cp",
+        "chekhlov-2005",
+        "moteur-historique-b",
+        "fusion-k5"
+      ],
+      "type": "SCENARIO"
+    },
+    {
+      "code": "preserver",
+      "libelle": "Somme à préserver",
+      "niveau": "ok",
+      "explication": "Après ce placement, il resterait 105 000 $ hors de ce titre, pour 30 000 $ à préserver.",
+      "faits": [],
+      "references": [
+        "chhabra-2005",
+        "das-2010"
+      ],
+      "type": "SCENARIO"
+    },
+    {
+      "code": "exclusion",
+      "libelle": "Respect de tes exclusions",
+      "niveau": "rouge",
+      "explication": "Secteur de l'actif : Énergie (Energy). Il fait partie de tes exclusions.",
+      "faits": [
+        "F-1"
+      ],
+      "references": [
+        "esma-2022",
+        "berg-2022"
+      ],
+      "type": "FAIT"
+    },
+    {
+      "code": "horizon",
+      "libelle": "Horizon et temps de récupération",
+      "niveau": "ok",
+      "explication": "Ton horizon est de 10 an(s) ; après la pire chute, il a fallu 0,8 an(s) pour revenir au sommet.",
+      "faits": [
+        "F-3"
+      ],
+      "references": [
+        "acvm-31-103cp",
+        "chekhlov-2005"
+      ],
+      "type": "FAIT"
+    },
+    {
+      "code": "concentration",
+      "libelle": "Concentration",
+      "niveau": "ok",
+      "explication": "Ce placement représente 12 % de ton épargne. Pour un seul titre, moins volatil, le seuil retenu pour ton profil est 25 %.",
+      "faits": [
+        "F-4",
+        "F-13",
+        "F-14"
+      ],
+      "references": [
+        "markowitz-1952",
+        "acvm-ocri-31-368",
+        "acvm-31-103cp"
+      ],
+      "type": "HYPOTHESE"
+    },
+    {
+      "code": "coussin",
+      "libelle": "Fonds d'urgence",
+      "niveau": "ok",
+      "explication": "Tu as un fonds d'urgence.",
+      "faits": [],
+      "references": [
+        "acvm-31-103cp"
+      ],
+      "type": "HYPOTHESE"
+    },
+    {
+      "code": "diversification",
+      "libelle": "Diversification réelle",
+      "niveau": "ok",
+      "explication": "Corrélation la plus forte avec tes placements : XIU.TO (0,53), sous le seuil de 0,8 retenu par l'équipe pour parler de fausse diversification.",
+      "faits": [
+        "F-8",
+        "F-15"
+      ],
+      "references": [
+        "markowitz-1952"
+      ],
+      "type": "HYPOTHESE"
+    }
+  ],
+  "verdict": {
+    "etat": "incoherent",
+    "libelle": "Incohérent avec ta situation",
+    "respectees": 6,
+    "evaluees": 7
+  },
+  "options": [
+    {
+      "nom": "Ta demande",
+      "ticker": "ENB.TO",
+      "montant_cad": 15000,
+      "horizon_ans": 10,
+      "etat": "incoherent"
+    },
+    {
+      "nom": "Alternative compatible avec tes exclusions de secteur",
+      "ticker": "ESGV",
+      "libelle_actif": "Vanguard ESG U.S. Stock ETF",
+      "montant_cad": 15000,
+      "horizon_ans": 10,
+      "etat": "coherent",
+      "faits": [
+        "F-32"
+      ]
+    }
+  ],
+  "bascule": {
+    "montants": [
+      15000,
+      11250,
+      7500,
+      6000,
+      4500,
+      3000,
+      1500,
+      750
+    ],
+    "horizons": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "cases": [
+      {
+        "montant_cad": 15000,
+        "horizon_ans": 1,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 15000,
+        "horizon_ans": 2,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 15000,
+        "horizon_ans": 3,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 15000,
+        "horizon_ans": 4,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 15000,
+        "horizon_ans": 5,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 15000,
+        "horizon_ans": 6,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 15000,
+        "horizon_ans": 7,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 15000,
+        "horizon_ans": 8,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 15000,
+        "horizon_ans": 9,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 15000,
+        "horizon_ans": 10,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 15000,
+        "horizon_ans": 11,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 15000,
+        "horizon_ans": 12,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 15000,
+        "horizon_ans": 13,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 15000,
+        "horizon_ans": 14,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 15000,
+        "horizon_ans": 15,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 15000,
+        "horizon_ans": 16,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 15000,
+        "horizon_ans": 17,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 15000,
+        "horizon_ans": 18,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 15000,
+        "horizon_ans": 19,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 15000,
+        "horizon_ans": 20,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 11250,
+        "horizon_ans": 1,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 11250,
+        "horizon_ans": 2,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 11250,
+        "horizon_ans": 3,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 11250,
+        "horizon_ans": 4,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 11250,
+        "horizon_ans": 5,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 11250,
+        "horizon_ans": 6,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 11250,
+        "horizon_ans": 7,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 11250,
+        "horizon_ans": 8,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 11250,
+        "horizon_ans": 9,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 11250,
+        "horizon_ans": 10,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 11250,
+        "horizon_ans": 11,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 11250,
+        "horizon_ans": 12,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 11250,
+        "horizon_ans": 13,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 11250,
+        "horizon_ans": 14,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 11250,
+        "horizon_ans": 15,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 11250,
+        "horizon_ans": 16,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 11250,
+        "horizon_ans": 17,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 11250,
+        "horizon_ans": 18,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 11250,
+        "horizon_ans": 19,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 11250,
+        "horizon_ans": 20,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 7500,
+        "horizon_ans": 1,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 7500,
+        "horizon_ans": 2,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 7500,
+        "horizon_ans": 3,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 7500,
+        "horizon_ans": 4,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 7500,
+        "horizon_ans": 5,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 7500,
+        "horizon_ans": 6,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 7500,
+        "horizon_ans": 7,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 7500,
+        "horizon_ans": 8,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 7500,
+        "horizon_ans": 9,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 7500,
+        "horizon_ans": 10,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 7500,
+        "horizon_ans": 11,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 7500,
+        "horizon_ans": 12,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 7500,
+        "horizon_ans": 13,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 7500,
+        "horizon_ans": 14,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 7500,
+        "horizon_ans": 15,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 7500,
+        "horizon_ans": 16,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 7500,
+        "horizon_ans": 17,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 7500,
+        "horizon_ans": 18,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 7500,
+        "horizon_ans": 19,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 7500,
+        "horizon_ans": 20,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 6000,
+        "horizon_ans": 1,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 6000,
+        "horizon_ans": 2,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 6000,
+        "horizon_ans": 3,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 6000,
+        "horizon_ans": 4,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 6000,
+        "horizon_ans": 5,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 6000,
+        "horizon_ans": 6,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 6000,
+        "horizon_ans": 7,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 6000,
+        "horizon_ans": 8,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 6000,
+        "horizon_ans": 9,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 6000,
+        "horizon_ans": 10,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 6000,
+        "horizon_ans": 11,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 6000,
+        "horizon_ans": 12,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 6000,
+        "horizon_ans": 13,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 6000,
+        "horizon_ans": 14,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 6000,
+        "horizon_ans": 15,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 6000,
+        "horizon_ans": 16,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 6000,
+        "horizon_ans": 17,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 6000,
+        "horizon_ans": 18,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 6000,
+        "horizon_ans": 19,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 6000,
+        "horizon_ans": 20,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 4500,
+        "horizon_ans": 1,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 4500,
+        "horizon_ans": 2,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 4500,
+        "horizon_ans": 3,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 4500,
+        "horizon_ans": 4,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 4500,
+        "horizon_ans": 5,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 4500,
+        "horizon_ans": 6,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 4500,
+        "horizon_ans": 7,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 4500,
+        "horizon_ans": 8,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 4500,
+        "horizon_ans": 9,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 4500,
+        "horizon_ans": 10,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 4500,
+        "horizon_ans": 11,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 4500,
+        "horizon_ans": 12,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 4500,
+        "horizon_ans": 13,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 4500,
+        "horizon_ans": 14,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 4500,
+        "horizon_ans": 15,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 4500,
+        "horizon_ans": 16,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 4500,
+        "horizon_ans": 17,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 4500,
+        "horizon_ans": 18,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 4500,
+        "horizon_ans": 19,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 4500,
+        "horizon_ans": 20,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 3000,
+        "horizon_ans": 1,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 3000,
+        "horizon_ans": 2,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 3000,
+        "horizon_ans": 3,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 3000,
+        "horizon_ans": 4,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 3000,
+        "horizon_ans": 5,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 3000,
+        "horizon_ans": 6,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 3000,
+        "horizon_ans": 7,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 3000,
+        "horizon_ans": 8,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 3000,
+        "horizon_ans": 9,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 3000,
+        "horizon_ans": 10,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 3000,
+        "horizon_ans": 11,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 3000,
+        "horizon_ans": 12,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 3000,
+        "horizon_ans": 13,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 3000,
+        "horizon_ans": 14,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 3000,
+        "horizon_ans": 15,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 3000,
+        "horizon_ans": 16,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 3000,
+        "horizon_ans": 17,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 3000,
+        "horizon_ans": 18,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 3000,
+        "horizon_ans": 19,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 3000,
+        "horizon_ans": 20,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 1500,
+        "horizon_ans": 1,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 1500,
+        "horizon_ans": 2,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 1500,
+        "horizon_ans": 3,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 1500,
+        "horizon_ans": 4,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 1500,
+        "horizon_ans": 5,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 1500,
+        "horizon_ans": 6,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 1500,
+        "horizon_ans": 7,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 1500,
+        "horizon_ans": 8,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 1500,
+        "horizon_ans": 9,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 1500,
+        "horizon_ans": 10,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 1500,
+        "horizon_ans": 11,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 1500,
+        "horizon_ans": 12,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 1500,
+        "horizon_ans": 13,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 1500,
+        "horizon_ans": 14,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 1500,
+        "horizon_ans": 15,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 1500,
+        "horizon_ans": 16,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 1500,
+        "horizon_ans": 17,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 1500,
+        "horizon_ans": 18,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 1500,
+        "horizon_ans": 19,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 1500,
+        "horizon_ans": 20,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 750,
+        "horizon_ans": 1,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 750,
+        "horizon_ans": 2,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 750,
+        "horizon_ans": 3,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 750,
+        "horizon_ans": 4,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 750,
+        "horizon_ans": 5,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 750,
+        "horizon_ans": 6,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 750,
+        "horizon_ans": 7,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 750,
+        "horizon_ans": 8,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 750,
+        "horizon_ans": 9,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 750,
+        "horizon_ans": 10,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 750,
+        "horizon_ans": 11,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 750,
+        "horizon_ans": 12,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 750,
+        "horizon_ans": 13,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 750,
+        "horizon_ans": 14,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 750,
+        "horizon_ans": 15,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 750,
+        "horizon_ans": 16,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 750,
+        "horizon_ans": 17,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 750,
+        "horizon_ans": 18,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 750,
+        "horizon_ans": 19,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 750,
+        "horizon_ans": 20,
+        "etat": "incoherent"
+      }
+    ],
+    "monotonie_montant": {
+      "observee": true,
+      "explication": "Aucune inversion de verdict observée sur les montants de cette grille.",
+      "exemple": null,
+      "faits": [
+        "F-30",
+        "F-19",
+        "F-23",
+        "F-27"
+      ]
+    }
+  },
+  "qualite_donnees": [
+    {
+      "code": "presence",
+      "libelle": "Données présentes",
+      "statut": "ok",
+      "detail": "1255 lignes."
+    },
+    {
+      "code": "doublons",
+      "libelle": "Pas de doublons de date",
+      "statut": "ok",
+      "detail": "0 doublon(s)."
+    },
+    {
+      "code": "magnitude",
+      "libelle": "Prix strictement positifs",
+      "statut": "ok",
+      "detail": "0 prix nul(s) ou négatif(s)."
+    },
+    {
+      "code": "couverture",
+      "libelle": "Couvre la fenêtre 2021-11 → 2026-11",
+      "statut": "ok",
+      "detail": "Du 2021-11-12 au 2026-11-12."
+    },
+    {
+      "code": "trous",
+      "libelle": "Pas de trou anormal dans la série",
+      "statut": "ok",
+      "detail": "Plus long écart entre deux cotations : 5 jour(s)."
+    },
+    {
+      "code": "sauts",
+      "libelle": "Pas de variation journalière > 40 %",
+      "statut": "ok",
+      "detail": "0 variation(s) suspecte(s)."
+    },
+    {
+      "code": "devise",
+      "libelle": "Devise connue et convertie en CAD",
+      "statut": "ok",
+      "detail": "Déjà en CAD."
+    }
+  ],
+  "questions": [],
+  "texte": {
+    "reformulation": "Mateo envisage de placer 15 000 $ dans ENB.TO, soit 12 % de son épargne, avec un horizon de 10 an(s).",
+    "miroir": [
+      {
+        "texte": "Tu as dit : « Je veux éviter les entreprises liées à des controverses environnementales ». Si ce placement revivait sa pire chute observée, il perdrait environ 3 210 $.",
+        "type": "SCENARIO",
+        "faits": [
+          "F-7",
+          "F-2"
+        ]
+      }
+    ],
+    "pourquoi": [
+      {
+        "texte": "Le secteur de Enbridge est Énergie, un secteur que tu as toi-même exclu.",
+        "type": "FAIT",
+        "faits": [
+          "F-1"
+        ]
+      },
+      {
+        "texte": "C'est cette seule règle qui fait basculer le verdict en incohérent, les 6 autres règles évaluées sont respectées.",
+        "type": "HYPOTHESE",
+        "faits": []
+      },
+      {
+        "texte": "Sur la fenêtre historique commune, la pire baisse du portefeuille serait de -12,062254 % après la demande, contre -13,159563 % avant : un écart de 1,097309 points, donc une baisse moins profonde. Ce scénario ne prédit pas une perte future.",
+        "type": "SCENARIO",
+        "faits": [
+          "F-23",
+          "F-19",
+          "F-27"
+        ]
+      },
+      {
+        "texte": "Ta tolérance au risque est de 50/100 alors que ta capacité, selon ta situation, atteint 95/100 : cet écart est la tension retenue pour ton profil.",
+        "type": "HYPOTHESE",
+        "faits": []
+      },
+      {
+        "texte": "Sur la même fenêtre historique, la pire baisse du portefeuille est de -12,062254 % après la demande, contre -13,159563 % avant : un écart après moins avant de 1,097309 points, soit une baisse moins profonde. Ce scénario ne prédit pas une perte future.",
+        "type": "SCENARIO",
+        "faits": [
+          "F-23",
+          "F-19",
+          "F-27"
+        ]
+      }
+    ],
+    "ce_qui_changerait": [
+      {
+        "texte": "Une option compatible avec tes exclusions existe : ESGV (Vanguard ESG U.S. Stock ETF), même montant.",
+        "type": "SCENARIO",
+        "faits": [
+          "F-32"
+        ]
+      }
+    ],
+    "verdict": "Incohérent avec ta situation : 6 règle(s) respectée(s) sur 7.",
+    "tensions": [
+      "Écart entre ce que tu veux risquer (50/100) et ce que ta situation permet (95/100)."
+    ],
+    "limites": [
+      {
+        "texte": "Les chiffres décrivent la période 2021-2026. Ils ne prédisent pas l'avenir.",
+        "type": "HYPOTHESE",
+        "faits": []
+      },
+      {
+        "texte": "Les montants et l'épargne de ce profil sont fictifs (scénario de l'équipe).",
+        "type": "SCENARIO",
+        "faits": []
+      },
+      {
+        "texte": "L'univers de 31 actifs a été choisi en 2026 : il ne contient que des placements qui existent encore (biais du survivant). Les pires cas réels peuvent être plus graves.",
+        "type": "HYPOTHESE",
+        "faits": [],
+        "references": [
+          "donnees-univers",
+          "dossier-adam"
+        ]
+      },
+      {
+        "texte": "Ton horizon (10 ans) dépasse les 5 ans de données : rien ici ne valide ce qui se passerait sur 10 ans. Les chiffres décrivent le passé récent.",
+        "type": "HYPOTHESE",
+        "faits": [],
+        "references": [
+          "demiguel-2009"
+        ]
+      },
+      {
+        "texte": "Les prix ajustés de Yahoo peuvent contenir des erreurs d'ajustement, plus fréquentes hors des États-Unis selon les mainteneurs de yfinance.",
+        "type": "HYPOTHESE",
+        "faits": [],
+        "references": [
+          "yfinance-reparation"
+        ]
+      },
+      {
+        "texte": "La comparaison porte sur cinq ans, incluant 2022. Cette fenêtre récente ne couvre pas toutes les crises et n'attribue aucune probabilité aux pertes futures.",
+        "type": "HYPOTHESE",
+        "faits": [
+          "F-16"
+        ]
+      },
+      {
+        "texte": "Les deux allocations sont mesurées en CAD, en achat-conservation, sans rééquilibrage. L'allocation après est un scénario rétrospectif, pas une prévision.",
+        "type": "HYPOTHESE",
+        "faits": [
+          "F-18",
+          "F-31"
+        ]
+      },
+      {
+        "texte": "Comparaison rétrospective, pas prévision ni backtest de sélection historiquement réalisable : univers et prix ajustés acquis en 2026.",
+        "type": "HYPOTHESE",
+        "faits": [
+          "F-31"
+        ]
+      },
+      {
+        "texte": "Le drawdown est le creux observé sur cette grille; il ne borne pas une perte future et ignore les mouvements entre observations.",
+        "type": "HYPOTHESE",
+        "faits": [
+          "F-31"
+        ]
+      },
+      {
+        "texte": "La volatilité annualisée suppose des intervalles comparables et une mise à l'échelle en racine du temps; week-ends et jours fériés créent des intervalles inégaux.",
+        "type": "HYPOTHESE",
+        "faits": [
+          "F-31"
+        ]
+      },
+      {
+        "texte": "Le taux FX est une moyenne indicative, pas un cours exécutable synchronisé avec la clôture des actifs.",
+        "type": "HYPOTHESE",
+        "faits": [
+          "F-31"
+        ]
+      },
+      {
+        "texte": "L'heure de valorisation est une convention documentaire; les fichiers ne contiennent pas l'historique des heures exactes de publication.",
+        "type": "HYPOTHESE",
+        "faits": [
+          "F-31"
+        ]
+      },
+      {
+        "texte": "Les fenêtres historiques sont descriptives, choisies à l'avance dans le code; aucune probabilité de scénario futur ne leur est attribuée.",
+        "type": "HYPOTHESE",
+        "faits": [
+          "F-31"
+        ]
+      },
+      {
+        "texte": "Aucun score ESG, exposition réelle des FNB, valorisation fondamentale ou capacité personnelle de perte n'est déduit de ces données.",
+        "type": "HYPOTHESE",
+        "faits": [
+          "F-31"
+        ]
+      },
+      {
+        "texte": "Les poids portent sur les instruments. Les compositions des FNB ne sont pas disponibles : les expositions communes ne sont pas mesurées.",
+        "type": "HYPOTHESE",
+        "faits": [
+          "F-31"
+        ]
+      },
+      {
+        "texte": "Vérifié : corrélations avec les placements actuels toutes sous 0,6.",
+        "type": "FAIT",
+        "faits": [
+          "F-8"
+        ]
+      },
+      {
+        "texte": "Limite ajoutée au texte final : la pire chute est celle observée sur 5 ans, pas un maximum.",
+        "type": "HYPOTHESE",
+        "faits": [
+          "F-2"
+        ]
+      },
+      {
+        "texte": "Comparaison faite avec le marché canadien large (F-9 : -16,4 %) : la chute de ENB.TO (-21,4 %) est un peu plus forte : une bonne partie vient du marché dans son ensemble.",
+        "type": "FAIT",
+        "faits": [
+          "F-9"
+        ]
+      }
+    ],
+    "avertissement": "Simulation éducative. Ceci n'est pas un conseil financier personnalisé.",
+    "source": "Claude Sonnet (Bedrock)",
+    "controle": [
+      "essai 1 : accepté par le contrôle d'ancrage",
+      "1 étiquette(s) corrigée(s) par le code : « C'est cette seule règle qui fait bascule… » : FAIT → HYPOTHESE"
+    ]
+  },
+  "trace": [
+    {
+      "agent": "Profileur",
+      "action": "structure le profil",
+      "detail": "Demande comprise : ENB.TO pour 15000 $. Tolérance 50.0, capacité 95.0 → on retient 50.0 (limite : tolérance). Lecture de la phrase : Nova Lite (Bedrock).",
+      "faits": [],
+      "duree_ms": 1053,
+      "references": [
+        "clamber-2024",
+        "ross-lo-2026",
+        "acvm-31-103cp"
+      ],
+      "appels_modele": [
+        0
+      ]
+    },
+    {
+      "agent": "Contrôle données",
+      "action": "7 contrôles avant calcul",
+      "detail": "7/7 contrôles réussis pour ENB.TO.",
+      "faits": [],
+      "duree_ms": 5,
+      "references": [
+        "yfinance-reparation",
+        "dossier-adam"
+      ],
+      "appels_modele": []
+    },
+    {
+      "agent": "Analyste",
+      "action": "appelle les outils de calcul",
+      "detail": "31 faits produits (pire chute -21.4 %, volatilité 16.1 %/an). Sources : prix Yahoo Finance.",
+      "faits": [
+        "F-1",
+        "F-2",
+        "F-3",
+        "F-4",
+        "F-5",
+        "F-6",
+        "F-7",
+        "F-8",
+        "F-9",
+        "F-10",
+        "F-11",
+        "F-12",
+        "F-13",
+        "F-14",
+        "F-15",
+        "F-16",
+        "F-17",
+        "F-18",
+        "F-19",
+        "F-20",
+        "F-21",
+        "F-22",
+        "F-23",
+        "F-24",
+        "F-25",
+        "F-26",
+        "F-27",
+        "F-28",
+        "F-29",
+        "F-30",
+        "F-31"
+      ],
+      "duree_ms": 29,
+      "references": [
+        "gao-pal-2023",
+        "turpin-2023"
+      ],
+      "appels_modele": []
+    },
+    {
+      "agent": "Sceptique",
+      "action": "objecte et force des vérifications",
+      "detail": "3 objection(s) choisie(s) parmi 5 vérifications autorisées (Claude Sonnet (Bedrock)). Chacune a été exécutée par le code : 1 confirmée(s), 1 écartée(s), 1 limite(s) notée(s).",
+      "faits": [
+        "F-8",
+        "F-2",
+        "F-2"
+      ],
+      "duree_ms": 3992,
+      "references": [
+        "gou-critic-2024",
+        "huang-2024",
+        "choi-2025"
+      ],
+      "appels_modele": [
+        1
+      ]
+    },
+    {
+      "agent": "Gardien",
+      "action": "applique les règles et décide",
+      "detail": "Incohérent avec ta situation (6/7 règles respectées). Grille de bascule : 160 combinaisons recalculées.",
+      "faits": [
+        "F-19",
+        "F-23",
+        "F-27",
+        "F-10",
+        "F-11",
+        "F-29",
+        "F-1",
+        "F-3",
+        "F-4",
+        "F-13",
+        "F-14",
+        "F-8",
+        "F-15"
+      ],
+      "duree_ms": 90,
+      "references": [
+        "anthropic-2024",
+        "kim-2025",
+        "acvm-ocri-31-368"
+      ],
+      "appels_modele": []
+    },
+    {
+      "agent": "Rédacteur",
+      "action": "explique le dossier, puis passe le contrôle d'ancrage",
+      "detail": "Texte : Claude Sonnet (Bedrock). essai 1 : accepté par le contrôle d'ancrage · 1 étiquette(s) corrigée(s) par le code : « C'est cette seule règle qui fait bascule… » : FAIT → HYPOTHESE",
+      "faits": [],
+      "duree_ms": 7389,
+      "references": [
+        "turpin-2023",
+        "huang-2024",
+        "miller-2019",
+        "bansal-2021"
+      ],
+      "appels_modele": [
+        2
+      ]
+    }
+  ],
+  "version_contrat": "2",
+  "comparaison": {
+    "disponible": true,
+    "raison": null,
+    "moteur": "historique-B",
+    "version_moteur": "cad-buy-and-hold-v1",
+    "politique": "achat-conservation, grille commune des séances, CAD, change daté au plus tard du jour",
+    "fenetre": {
+      "debut": "2021-11-12",
+      "fin": "2026-11-12",
+      "observations": 1228
+    },
+    "poids_avant": {
+      "XBB.TO": 0.5,
+      "XIU.TO": 0.5
+    },
+    "poids_apres": {
+      "XBB.TO": 0.4375,
+      "XIU.TO": 0.4375,
+      "ENB.TO": 0.125
+    },
+    "avant": {
+      "pire_chute_pct": -13.159563,
+      "volatilite_pct": 8.277483,
+      "rendement_annualise_pct": 7.956738,
+      "valeur_finale_cad": 175958.67
+    },
+    "apres": {
+      "pire_chute_pct": -12.062254,
+      "volatilite_pct": 8.357148,
+      "rendement_annualise_pct": 8.611539,
+      "valeur_finale_cad": 181359.46
+    },
+    "ecarts": {
+      "pire_chute_pts": 1.097309,
+      "volatilite_pts": 0.079665,
+      "sens_pire_chute": "ameliore"
+    },
+    "limites": [
+      "Comparaison rétrospective, pas prévision ni backtest de sélection historiquement réalisable : univers et prix ajustés acquis en 2026.",
+      "Le drawdown est le creux observé sur cette grille; il ne borne pas une perte future et ignore les mouvements entre observations.",
+      "La volatilité annualisée suppose des intervalles comparables et une mise à l'échelle en racine du temps; week-ends et jours fériés créent des intervalles inégaux.",
+      "Le taux FX est une moyenne indicative, pas un cours exécutable synchronisé avec la clôture des actifs.",
+      "L'heure de valorisation est une convention documentaire; les fichiers ne contiennent pas l'historique des heures exactes de publication.",
+      "Les fenêtres historiques sont descriptives, choisies à l'avance dans le code; aucune probabilité de scénario futur ne leur est attribuée.",
+      "Aucun score ESG, exposition réelle des FNB, valorisation fondamentale ou capacité personnelle de perte n'est déduit de ces données.",
+      "Les poids portent sur les instruments. Les compositions des FNB ne sont pas disponibles : les expositions communes ne sont pas mesurées."
+    ],
+    "faits": {
+      "fenetre_portefeuille": "F-16",
+      "poids_avant": "F-17",
+      "poids_apres": "F-18",
+      "avant_pire_chute": "F-19",
+      "avant_volatilite": "F-20",
+      "avant_rendement": "F-21",
+      "avant_valeur_finale": "F-22",
+      "apres_pire_chute": "F-23",
+      "apres_volatilite": "F-24",
+      "apres_rendement": "F-25",
+      "apres_valeur_finale": "F-26",
+      "ecart_pire_chute": "F-27",
+      "ecart_volatilite": "F-28",
+      "h_attribution": "F-29",
+      "h_non_monotonie": "F-30",
+      "limites_portefeuille": "F-31"
+    },
+    "origine_poids": "declare"
+  },
+  "appels_modele": [
+    {
+      "agent": "Profileur",
+      "modele": "global.amazon.nova-2-lite-v1:0",
+      "request_id": "ee82e3fe-e6a7-4979-8a17-5feff15884ec",
+      "stop_reason": "end_turn",
+      "jetons_entree": 734,
+      "jetons_sortie": 120,
+      "latence_ms": 1021,
+      "garde_fou": "absent"
+    },
+    {
+      "agent": "Sceptique",
+      "modele": "global.anthropic.claude-sonnet-5",
+      "request_id": "80e1a62a-29bd-410b-aaae-5bf723a572b2",
+      "stop_reason": "end_turn",
+      "jetons_entree": 2224,
+      "jetons_sortie": 236,
+      "latence_ms": 3767,
+      "garde_fou": "absent"
+    },
+    {
+      "agent": "Rédacteur",
+      "modele": "global.anthropic.claude-sonnet-5",
+      "request_id": "58aea5f7-4743-4faa-abb3-b56c77f5fa41",
+      "stop_reason": "end_turn",
+      "jetons_entree": 11873,
+      "jetons_sortie": 531,
+      "latence_ms": 7361,
+      "garde_fou": "configure"
+    }
+  ]
+}

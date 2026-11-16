@@ -1,0 +1,134 @@
+{
+  "robert": {
+    "duree_http_s": 12.631,
+    "egalites": {
+      "verdict": true,
+      "regles": true,
+      "options": true,
+      "bascule": true,
+      "comparaison": true
+    },
+    "appels": [
+      {
+        "agent": "Profileur",
+        "modele": "global.amazon.nova-2-lite-v1:0",
+        "request_id": "edc174ba-f517-4ee4-94da-9bc793c47191",
+        "stop_reason": "end_turn",
+        "jetons_entree": 735,
+        "jetons_sortie": 124,
+        "latence_ms": 1031,
+        "garde_fou": "absent"
+      },
+      {
+        "agent": "Sceptique",
+        "modele": "global.anthropic.claude-sonnet-5",
+        "request_id": "9f3086b8-ac30-41e1-b666-4903ede253d1",
+        "stop_reason": "end_turn",
+        "jetons_entree": 2282,
+        "jetons_sortie": 223,
+        "latence_ms": 3316,
+        "garde_fou": "absent"
+      },
+      {
+        "agent": "Rédacteur",
+        "modele": "global.anthropic.claude-sonnet-5",
+        "request_id": "d64e5735-94df-4189-a1ca-f42a900d95d3",
+        "stop_reason": "end_turn",
+        "jetons_entree": 12919,
+        "jetons_sortie": 649,
+        "latence_ms": 7645,
+        "garde_fou": "configure"
+      }
+    ],
+    "nombre_appels": 3,
+    "jetons": 16932
+  },
+  "amira": {
+    "duree_http_s": 12.845,
+    "egalites": {
+      "verdict": true,
+      "regles": true,
+      "options": true,
+      "bascule": true,
+      "comparaison": true
+    },
+    "appels": [
+      {
+        "agent": "Profileur",
+        "modele": "global.amazon.nova-2-lite-v1:0",
+        "request_id": "91683cf1-b12f-41ac-a833-20242021f0a7",
+        "stop_reason": "end_turn",
+        "jetons_entree": 729,
+        "jetons_sortie": 125,
+        "latence_ms": 1276,
+        "garde_fou": "absent"
+      },
+      {
+        "agent": "Sceptique",
+        "modele": "global.anthropic.claude-sonnet-5",
+        "request_id": "1f126ecc-3e22-43e8-a899-6aa5c0793260",
+        "stop_reason": "end_turn",
+        "jetons_entree": 2215,
+        "jetons_sortie": 277,
+        "latence_ms": 3966,
+        "garde_fou": "absent"
+      },
+      {
+        "agent": "Rédacteur",
+        "modele": "global.anthropic.claude-sonnet-5",
+        "request_id": "dfc0fc8c-15ac-43a8-9ea9-8cfac4415c00",
+        "stop_reason": "end_turn",
+        "jetons_entree": 11815,
+        "jetons_sortie": 623,
+        "latence_ms": 6954,
+        "garde_fou": "configure"
+      }
+    ],
+    "nombre_appels": 3,
+    "jetons": 15784
+  },
+  "mateo": {
+    "duree_http_s": 12.564,
+    "egalites": {
+      "verdict": true,
+      "regles": true,
+      "options": true,
+      "bascule": true,
+      "comparaison": true
+    },
+    "appels": [
+      {
+        "agent": "Profileur",
+        "modele": "global.amazon.nova-2-lite-v1:0",
+        "request_id": "ee82e3fe-e6a7-4979-8a17-5feff15884ec",
+        "stop_reason": "end_turn",
+        "jetons_entree": 734,
+        "jetons_sortie": 120,
+        "latence_ms": 1021,
+        "garde_fou": "absent"
+      },
+      {
+        "agent": "Sceptique",
+        "modele": "global.anthropic.claude-sonnet-5",
+        "request_id": "80e1a62a-29bd-410b-aaae-5bf723a572b2",
+        "stop_reason": "end_turn",
+        "jetons_entree": 2224,
+        "jetons_sortie": 236,
+        "latence_ms": 3767,
+        "garde_fou": "absent"
+      },
+      {
+        "agent": "Rédacteur",
+        "modele": "global.anthropic.claude-sonnet-5",
+        "request_id": "58aea5f7-4743-4faa-abb3-b56c77f5fa41",
+        "stop_reason": "end_turn",
+        "jetons_entree": 11873,
+        "jetons_sortie": 531,
+        "latence_ms": 7361,
+        "garde_fou": "configure"
+      }
+    ],
+    "nombre_appels": 3,
+    "jetons": 15718
+  }
+}

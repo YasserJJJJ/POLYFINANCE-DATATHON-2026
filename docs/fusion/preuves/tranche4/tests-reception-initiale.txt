@@ -1,0 +1,14 @@
+.......F.......................................................          [100%]
+=================================== FAILURES ===================================
+____________ test_08_retrait_puis_montant_accord_grille_comparaison ____________
+tests/test_reception_fusion.py:99: in test_08_retrait_puis_montant_accord_grille_comparaison
+    assert initial["comparaison"] == retrait["comparaison"]
+E   AssertionError: assert {'disponible'...hold-v1', ...} == {'disponible'...hold-v1', ...}
+E     
+E     Omitting 13 identical items, use -vv to show
+E     Differing items:
+E     {'faits': {'fenetre_portefeuille': 'F-16', 'poids_avant': 'F-17', 'poids_apres': 'F-18', 'avant_pire_chute': 'F-19', ...}} != {'faits': {'fenetre_portefeuille': 'F-15', 'poids_avant': 'F-16', 'poids_apres': 'F-17', 'avant_pire_chute': 'F-18', ...}}
+E     Use -v to get more diff
+=========================== short test summary info ============================
+FAILED tests/test_reception_fusion.py::test_08_retrait_puis_montant_accord_grille_comparaison
+1 failed, 62 passed in 5.89s

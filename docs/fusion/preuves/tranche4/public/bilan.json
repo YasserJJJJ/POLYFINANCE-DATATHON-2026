@@ -1,0 +1,63 @@
+{
+  "sante_ok": true,
+  "interface_ok": true,
+  "cors_ok": true,
+  "decisions_identiques": {
+    "verdict": true,
+    "regles": true,
+    "options": true,
+    "bascule": true,
+    "comparaison": true
+  },
+  "archivage": {
+    "bucket": "alphaforge-471112821226-us-east-1",
+    "cle": "dossiers/20261116-013755-e5a9bd3f.json",
+    "egalite_complete": true,
+    "sha256": "f0a6c300e244efacbdcc39d362624b3398083d9378954ea1184e6f96163b75e2"
+  },
+  "appels": [
+    {
+      "agent": "Profileur",
+      "modele": "global.amazon.nova-2-lite-v1:0",
+      "request_id": "12635294-7cad-4508-8efc-03dd248b420c",
+      "stop_reason": "end_turn",
+      "jetons_entree": 735,
+      "jetons_sortie": 124,
+      "latence_ms": 882,
+      "garde_fou": "absent"
+    },
+    {
+      "agent": "Sceptique",
+      "modele": "global.anthropic.claude-sonnet-5",
+      "request_id": "24d45391-aa80-4d5e-95cb-dc4a1358e0be",
+      "stop_reason": "end_turn",
+      "jetons_entree": 2282,
+      "jetons_sortie": 219,
+      "latence_ms": 2997,
+      "garde_fou": "absent"
+    },
+    {
+      "agent": "Rédacteur",
+      "modele": "global.anthropic.claude-sonnet-5",
+      "request_id": "8a8f8d06-d9d1-4ff3-afa8-d5f8cdf07472",
+      "stop_reason": "end_turn",
+      "jetons_entree": 12919,
+      "jetons_sortie": 718,
+      "latence_ms": 8279,
+      "garde_fou": "configure"
+    },
+    {
+      "agent": "Rédacteur",
+      "modele": "global.anthropic.claude-sonnet-5",
+      "request_id": "588fa6ee-b0b0-474a-a750-ff3d828f0e1a",
+      "stop_reason": "end_turn",
+      "jetons_entree": 13014,
+      "jetons_sortie": 576,
+      "latence_ms": 7059,
+      "garde_fou": "configure"
+    }
+  ],
+  "premiere_ligne_s": 20.545034,
+  "derniere_ligne_s": 20.583202,
+  "etalement_lignes_s": 0.038168
+}

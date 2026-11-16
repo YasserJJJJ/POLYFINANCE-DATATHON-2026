@@ -1,0 +1,391 @@
+{
+  "conditions": "3 analyses par cas, sans modèle ni réseau ; caches applicatifs vidés, imports déjà chargés.",
+  "resultats": {
+    "robert": {
+      "durees_ms": [
+        318.848,
+        305.082,
+        313.061
+      ],
+      "maximum_ms": 318.848,
+      "verdict": {
+        "etat": "incoherent",
+        "libelle": "Incohérent avec ta situation",
+        "respectees": 5,
+        "evaluees": 7
+      },
+      "niveaux": {
+        "capacite": "orange",
+        "preserver": "ok",
+        "retrait": "ok",
+        "horizon": "ok",
+        "concentration": "rouge",
+        "coussin": "ok",
+        "diversification": "ok"
+      },
+      "comparaison": {
+        "disponible": true,
+        "raison": null,
+        "moteur": "historique-B",
+        "version_moteur": "cad-buy-and-hold-v1",
+        "politique": "achat-conservation, grille commune des séances, CAD, change daté au plus tard du jour",
+        "fenetre": {
+          "debut": "2021-11-12",
+          "fin": "2026-11-12",
+          "observations": 1228
+        },
+        "poids_avant": {
+          "RY.TO": 0.3333333333333333,
+          "XBB.TO": 0.3333333333333333,
+          "XIU.TO": 0.3333333333333333
+        },
+        "poids_apres": {
+          "RY.TO": 0.26666666666666666,
+          "XBB.TO": 0.26666666666666666,
+          "XIU.TO": 0.26666666666666666,
+          "TSLA": 0.2
+        },
+        "avant": {
+          "pire_chute_pct": -14.256677,
+          "volatilite_pct": 10.047745,
+          "rendement_annualise_pct": 13.00306,
+          "valeur_finale_cad": 737021.43
+        },
+        "apres": {
+          "pire_chute_pct": -20.595922,
+          "volatilite_pct": 14.50247,
+          "rendement_annualise_pct": 11.662517,
+          "valeur_finale_cad": 694335.21
+        },
+        "ecarts": {
+          "pire_chute_pts": -6.339245,
+          "volatilite_pts": 4.454725,
+          "sens_pire_chute": "aggrave"
+        },
+        "limites": [
+          "Comparaison rétrospective, pas prévision ni backtest de sélection historiquement réalisable : univers et prix ajustés acquis en 2026.",
+          "Le drawdown est le creux observé sur cette grille; il ne borne pas une perte future et ignore les mouvements entre observations.",
+          "La volatilité annualisée suppose des intervalles comparables et une mise à l'échelle en racine du temps; week-ends et jours fériés créent des intervalles inégaux.",
+          "Le taux FX est une moyenne indicative, pas un cours exécutable synchronisé avec la clôture des actifs.",
+          "L'heure de valorisation est une convention documentaire; les fichiers ne contiennent pas l'historique des heures exactes de publication.",
+          "Les fenêtres historiques sont descriptives, choisies à l'avance dans le code; aucune probabilité de scénario futur ne leur est attribuée.",
+          "Aucun score ESG, exposition réelle des FNB, valorisation fondamentale ou capacité personnelle de perte n'est déduit de ces données.",
+          "Les poids portent sur les instruments. Les compositions des FNB ne sont pas disponibles : les expositions communes ne sont pas mesurées."
+        ],
+        "faits": {
+          "fenetre_portefeuille": "F-16",
+          "poids_avant": "F-17",
+          "poids_apres": "F-18",
+          "avant_pire_chute": "F-19",
+          "avant_volatilite": "F-20",
+          "avant_rendement": "F-21",
+          "avant_valeur_finale": "F-22",
+          "apres_pire_chute": "F-23",
+          "apres_volatilite": "F-24",
+          "apres_rendement": "F-25",
+          "apres_valeur_finale": "F-26",
+          "ecart_pire_chute": "F-27",
+          "ecart_volatilite": "F-28",
+          "h_attribution": "F-29",
+          "h_non_monotonie": "F-30",
+          "limites_portefeuille": "F-31"
+        },
+        "origine_poids": "declare"
+      },
+      "ajustement": {
+        "nom": "Version ajustée",
+        "ticker": "TSLA",
+        "changement": {
+          "montant_cad": 38000
+        },
+        "etat": "ajustement",
+        "sens": "baisse",
+        "constat": "À 38 000 CAD, la règle « Concentration » serait respectée. Le verdict serait « Cohérent avec un ajustement » (variation à la baisse dans cette simulation).",
+        "montant_cad": 38000,
+        "horizon_ans": 4
+      }
+    },
+    "amira": {
+      "durees_ms": [
+        613.476,
+        613.115,
+        609.636
+      ],
+      "maximum_ms": 613.476,
+      "verdict": {
+        "etat": "incoherent",
+        "libelle": "Incohérent avec ta situation",
+        "respectees": 4,
+        "evaluees": 6
+      },
+      "niveaux": {
+        "capacite": "rouge",
+        "preserver": "ok",
+        "horizon": "ok",
+        "concentration": "orange",
+        "coussin": "ok",
+        "diversification": "ok"
+      },
+      "comparaison": {
+        "disponible": true,
+        "raison": null,
+        "moteur": "historique-B",
+        "version_moteur": "cad-buy-and-hold-v1",
+        "politique": "achat-conservation, grille commune des séances, CAD, change daté au plus tard du jour",
+        "fenetre": {
+          "debut": "2021-11-12",
+          "fin": "2026-11-12",
+          "observations": 1228
+        },
+        "poids_avant": {
+          "NVDA": 0.5,
+          "QQQ": 0.5
+        },
+        "poids_apres": {
+          "NVDA": 0.375,
+          "QQQ": 0.375,
+          "BTC-USD": 0.25
+        },
+        "avant": {
+          "pire_chute_pct": -46.806061,
+          "volatilite_pct": 38.78213,
+          "rendement_annualise_pct": 32.832368,
+          "valeur_finale_cad": 165389.46
+        },
+        "apres": {
+          "pire_chute_pct": -50.609205,
+          "volatilite_pct": 36.478585,
+          "rendement_annualise_pct": 27.857864,
+          "valeur_finale_cad": 136658.02
+        },
+        "ecarts": {
+          "pire_chute_pts": -3.803144,
+          "volatilite_pts": -2.303545,
+          "sens_pire_chute": "aggrave"
+        },
+        "limites": [
+          "Comparaison rétrospective, pas prévision ni backtest de sélection historiquement réalisable : univers et prix ajustés acquis en 2026.",
+          "Le drawdown est le creux observé sur cette grille; il ne borne pas une perte future et ignore les mouvements entre observations.",
+          "La volatilité annualisée suppose des intervalles comparables et une mise à l'échelle en racine du temps; week-ends et jours fériés créent des intervalles inégaux.",
+          "Le taux FX est une moyenne indicative, pas un cours exécutable synchronisé avec la clôture des actifs.",
+          "L'heure de valorisation est une convention documentaire; les fichiers ne contiennent pas l'historique des heures exactes de publication.",
+          "Les fenêtres historiques sont descriptives, choisies à l'avance dans le code; aucune probabilité de scénario futur ne leur est attribuée.",
+          "Aucun score ESG, exposition réelle des FNB, valorisation fondamentale ou capacité personnelle de perte n'est déduit de ces données.",
+          "Les poids portent sur les instruments. Les compositions des FNB ne sont pas disponibles : les expositions communes ne sont pas mesurées.",
+          "Crypto échantillonnée aux seules séances communes : les creux intrajournaliers et de fin de semaine peuvent être invisibles."
+        ],
+        "faits": {
+          "fenetre_portefeuille": "F-15",
+          "poids_avant": "F-16",
+          "poids_apres": "F-17",
+          "avant_pire_chute": "F-18",
+          "avant_volatilite": "F-19",
+          "avant_rendement": "F-20",
+          "avant_valeur_finale": "F-21",
+          "apres_pire_chute": "F-22",
+          "apres_volatilite": "F-23",
+          "apres_rendement": "F-24",
+          "apres_valeur_finale": "F-25",
+          "ecart_pire_chute": "F-26",
+          "ecart_volatilite": "F-27",
+          "h_attribution": "F-28",
+          "h_non_monotonie": "F-29",
+          "limites_portefeuille": "F-30"
+        },
+        "origine_poids": "declare"
+      },
+      "ajustement": null
+    },
+    "mateo": {
+      "durees_ms": [
+        274.625,
+        273.851,
+        270.122
+      ],
+      "maximum_ms": 274.625,
+      "verdict": {
+        "etat": "incoherent",
+        "libelle": "Incohérent avec ta situation",
+        "respectees": 6,
+        "evaluees": 7
+      },
+      "niveaux": {
+        "capacite": "ok",
+        "preserver": "ok",
+        "exclusion": "rouge",
+        "horizon": "ok",
+        "concentration": "ok",
+        "coussin": "ok",
+        "diversification": "ok"
+      },
+      "comparaison": {
+        "disponible": true,
+        "raison": null,
+        "moteur": "historique-B",
+        "version_moteur": "cad-buy-and-hold-v1",
+        "politique": "achat-conservation, grille commune des séances, CAD, change daté au plus tard du jour",
+        "fenetre": {
+          "debut": "2021-11-12",
+          "fin": "2026-11-12",
+          "observations": 1228
+        },
+        "poids_avant": {
+          "XBB.TO": 0.5,
+          "XIU.TO": 0.5
+        },
+        "poids_apres": {
+          "XBB.TO": 0.4375,
+          "XIU.TO": 0.4375,
+          "ENB.TO": 0.125
+        },
+        "avant": {
+          "pire_chute_pct": -13.159563,
+          "volatilite_pct": 8.277483,
+          "rendement_annualise_pct": 7.956738,
+          "valeur_finale_cad": 175958.67
+        },
+        "apres": {
+          "pire_chute_pct": -12.062254,
+          "volatilite_pct": 8.357148,
+          "rendement_annualise_pct": 8.611539,
+          "valeur_finale_cad": 181359.46
+        },
+        "ecarts": {
+          "pire_chute_pts": 1.097309,
+          "volatilite_pts": 0.079665,
+          "sens_pire_chute": "ameliore"
+        },
+        "limites": [
+          "Comparaison rétrospective, pas prévision ni backtest de sélection historiquement réalisable : univers et prix ajustés acquis en 2026.",
+          "Le drawdown est le creux observé sur cette grille; il ne borne pas une perte future et ignore les mouvements entre observations.",
+          "La volatilité annualisée suppose des intervalles comparables et une mise à l'échelle en racine du temps; week-ends et jours fériés créent des intervalles inégaux.",
+          "Le taux FX est une moyenne indicative, pas un cours exécutable synchronisé avec la clôture des actifs.",
+          "L'heure de valorisation est une convention documentaire; les fichiers ne contiennent pas l'historique des heures exactes de publication.",
+          "Les fenêtres historiques sont descriptives, choisies à l'avance dans le code; aucune probabilité de scénario futur ne leur est attribuée.",
+          "Aucun score ESG, exposition réelle des FNB, valorisation fondamentale ou capacité personnelle de perte n'est déduit de ces données.",
+          "Les poids portent sur les instruments. Les compositions des FNB ne sont pas disponibles : les expositions communes ne sont pas mesurées."
+        ],
+        "faits": {
+          "fenetre_portefeuille": "F-16",
+          "poids_avant": "F-17",
+          "poids_apres": "F-18",
+          "avant_pire_chute": "F-19",
+          "avant_volatilite": "F-20",
+          "avant_rendement": "F-21",
+          "avant_valeur_finale": "F-22",
+          "apres_pire_chute": "F-23",
+          "apres_volatilite": "F-24",
+          "apres_rendement": "F-25",
+          "apres_valeur_finale": "F-26",
+          "ecart_pire_chute": "F-27",
+          "ecart_volatilite": "F-28",
+          "h_attribution": "F-29",
+          "h_non_monotonie": "F-30",
+          "limites_portefeuille": "F-31"
+        },
+        "origine_poids": "declare"
+      },
+      "ajustement": null
+    },
+    "amira_xiu_14000": {
+      "durees_ms": [
+        298.301,
+        296.559,
+        296.682
+      ],
+      "maximum_ms": 298.301,
+      "verdict": {
+        "etat": "ajustement",
+        "libelle": "Cohérent avec un ajustement",
+        "respectees": 4,
+        "evaluees": 5
+      },
+      "niveaux": {
+        "capacite": "orange",
+        "preserver": "ok",
+        "horizon": "ok",
+        "coussin": "ok",
+        "diversification": "ok"
+      },
+      "comparaison": {
+        "disponible": true,
+        "raison": null,
+        "moteur": "historique-B",
+        "version_moteur": "cad-buy-and-hold-v1",
+        "politique": "achat-conservation, grille commune des séances, CAD, change daté au plus tard du jour",
+        "fenetre": {
+          "debut": "2021-11-12",
+          "fin": "2026-11-12",
+          "observations": 1228
+        },
+        "poids_avant": {
+          "NVDA": 0.5,
+          "QQQ": 0.5
+        },
+        "poids_apres": {
+          "NVDA": 0.325,
+          "QQQ": 0.325,
+          "XIU.TO": 0.35
+        },
+        "avant": {
+          "pire_chute_pct": -46.806061,
+          "volatilite_pct": 38.78213,
+          "rendement_annualise_pct": 32.832368,
+          "valeur_finale_cad": 165389.46
+        },
+        "apres": {
+          "pire_chute_pct": -34.989514,
+          "volatilite_pct": 30.601266,
+          "rendement_annualise_pct": 27.366893,
+          "valeur_finale_cad": 134054.58
+        },
+        "ecarts": {
+          "pire_chute_pts": 11.816547,
+          "volatilite_pts": -8.180864,
+          "sens_pire_chute": "ameliore"
+        },
+        "limites": [
+          "Comparaison rétrospective, pas prévision ni backtest de sélection historiquement réalisable : univers et prix ajustés acquis en 2026.",
+          "Le drawdown est le creux observé sur cette grille; il ne borne pas une perte future et ignore les mouvements entre observations.",
+          "La volatilité annualisée suppose des intervalles comparables et une mise à l'échelle en racine du temps; week-ends et jours fériés créent des intervalles inégaux.",
+          "Le taux FX est une moyenne indicative, pas un cours exécutable synchronisé avec la clôture des actifs.",
+          "L'heure de valorisation est une convention documentaire; les fichiers ne contiennent pas l'historique des heures exactes de publication.",
+          "Les fenêtres historiques sont descriptives, choisies à l'avance dans le code; aucune probabilité de scénario futur ne leur est attribuée.",
+          "Aucun score ESG, exposition réelle des FNB, valorisation fondamentale ou capacité personnelle de perte n'est déduit de ces données.",
+          "Les poids portent sur les instruments. Les compositions des FNB ne sont pas disponibles : les expositions communes ne sont pas mesurées."
+        ],
+        "faits": {
+          "fenetre_portefeuille": "F-14",
+          "poids_avant": "F-15",
+          "poids_apres": "F-16",
+          "avant_pire_chute": "F-17",
+          "avant_volatilite": "F-18",
+          "avant_rendement": "F-19",
+          "avant_valeur_finale": "F-20",
+          "apres_pire_chute": "F-21",
+          "apres_volatilite": "F-22",
+          "apres_rendement": "F-23",
+          "apres_valeur_finale": "F-24",
+          "ecart_pire_chute": "F-25",
+          "ecart_volatilite": "F-26",
+          "h_attribution": "F-27",
+          "h_non_monotonie": "F-28",
+          "limites_portefeuille": "F-29"
+        },
+        "origine_poids": "declare"
+      },
+      "ajustement": {
+        "nom": "Version ajustée",
+        "ticker": "XIU.TO",
+        "changement": {
+          "montant_cad": 16300
+        },
+        "etat": "coherent",
+        "sens": "hausse",
+        "constat": "À 16 300 CAD, la règle « Perte supportable » serait respectée. Le verdict serait « Cohérent avec ta situation » (variation à la hausse dans cette simulation).",
+        "montant_cad": 16300,
+        "horizon_ans": 15
+      }
+    }
+  }
+}

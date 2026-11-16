@@ -162,17 +162,17 @@ Tout code neuf est justifié dans le compte rendu par l'un de ces trois motifs :
 
 Chaque gain se compare au meilleur composant déjà disponible, pas au plus faible.
 
-| Gain attendu | Comparé à | Preuve à produire |
-|---|---|---|
-| La perte supportable est jugée sur le portefeuille entier | C seul (`part × pire chute`) et B seul (trajectoires sans verdict) | Robert : la règle cite −20,6 % après contre −14,3 % avant ; test qui échoue avec `ALPHAFORGE_CAPACITE=approximation` et réussit sans |
-| Une affirmation de comparaison porte son sens et ses limites | A (principe non intégré à son produit) | chaque écart a un fait, un sens calculé par le code, et les limites du moteur affichées |
-| Chaque appel de modèle est prouvé | A (preuve dans `dossier.json`, sans interface) et C (aucun journal) | identifiants de requête, jetons et latence visibles à l'étape « Analyse » pour une exécution réelle |
-| Demande impossible et donnée manquante traitées sans verdict trompeur | B (états `infeasible`, `missing_input`) et C (verdict adouci sans question) | cas de réception 4, 6 et 7 |
-| Fonctionnement AWS au-delà de l'inférence, si autorisé | C (scripts jamais exécutés) | adresse de l'application déployée, journal de déploiement, une analyse réelle par l'adresse publique |
+| Gain attendu | Meilleur composant disponible | Produit fusionné, sortie réelle | Limite ou régression |
+|---|---|---|---|
+| Perte supportable sur le portefeuille entier | C : impact 14,2 %, capacité ok pour Robert ; B : −14,256677 % avant, −20,595922 % après, sans verdict de convenance | Mêmes deux mesures B et écart −6,339245 points ; capacité orange, verdict incohérent conservé. Amira : capacité rouge au lieu de ok. [C](preuves/tranche4/comparaison-avec-c.json), [B](preuves/tranche4/comparaison-avec-b.json) | Gain de raccordement au verdict, pas de précision supplémentaire sur B. K5 reste un arbitrage d’équipe ; retour possible avec `ALPHAFORGE_CAPACITE=approximation`. |
+| Comparaison avec sens et limites | A : principe de comparaison appariée ; B : métriques et limites | Trois phrases sourcées K3 ; sens fourni par le moteur ; limites dans le dossier et composant. [Dossiers](preuves/tranche4/README.md), [ancrage](preuves/tranche4/tests-finaux.txt) | Rendu React statique vérifié ; disposition, clics et petit écran non inspectés. La validation visuelle reste à faire. |
+| Chaque appel prouvé | A : métadonnées Converse dans JSON ; C initial : pas de journal K6 | Neuf appels réels pour les trois personas, tous avec identifiants ; modèles, jetons et latences présents dans le rendu. [Bilan](preuves/tranche4/bilan-bedrock.json), [rendu](preuves/tranche4/rendu-react.json) | Affichage interactif non inspecté. 15 718 à 16 932 jetons par dossier avec contexte K3/Guardrail, au-delà de l’objectif initial d’environ 8 000. |
+| Impossible et manquant sans verdict trompeur | B : `infeasible`/`missing_input` ; C initial : avis adouci, sans question décisive | Cas 4/6 indéterminés ; GameStop expliqué ; cas 5 avec ajustement et question qui dit le passage à incohérent. [Réception](preuves/tranche4/README.md) | Équivalence au traitement explicite de B sur les impossibles ; gain propre : question liée au verdict du Gardien. |
+| AWS au-delà de l’inférence | C initial : scripts non exécutés | Interface Amplify et API Lambda mises à jour ; données/dossiers S3 privés, IAM, CloudWatch, Guardrail. [Déploiement](preuves/tranche4/redéploiement.json), [réception publique](preuves/tranche4/public/bilan.json) | Function URL publique, compte événementiel temporaire ; CORS et concurrence 2 ne bornent pas la dépense cumulée. |
 
-Ce qui doit rester égal : durée hors ligne d'une analyse sous 1 s ; avec Bedrock dans la plage mesurée (8 à 14 s) ; aucun appel de modèle ajouté.
+Égalités et coûts constatés : hors ligne, maximum 613,476 ms sur les quatre cas mesurés, trois passages avec caches applicatifs vidés ([mesures](preuves/tranche4/performances.json)). Les imports et le cache système restent chauds. Neuf appels locaux Bedrock pour trois dossiers, soit trois chacun comme le chemin nominal antérieur : 12,631 / 12,845 / 12,564 secondes. La plage 8–14 secondes est respectée pour ces trois essais locaux. Robert public prend toutefois 20,583202 s, quatre appels et 30 587 jetons : deux refus du Rédacteur, puis gabarit. Le gain de latence n’est pas confirmé en présence de reprises ; les dépassements T3 restent documentés. La consommation de jetons augmente avec le contexte et le Guardrail : gain de coût non confirmé, optimisation à traiter séparément en préservant l’ancrage.
 
-Compromis assumés : la fusion ne reprend ni le versionnement de B ni la recherche documentaire ; sur ces deux points B seul reste meilleur que le produit fusionné.
+Compromis maintenus : B seul reste meilleur pour le versionnement des dossiers et la recherche documentaire, non transférés. Le gain de lisibilité interactive n’est pas déclaré vérifié : [blocage du navigateur](preuves/tranche4/inspection-navigateur.json). Corriger cette limite en réalisant les quatre parcours après autorisation du navigateur, ou par une inspection manuelle attestée. Le rendu statique ne la remplace pas.
 
 ## 12. Reprise et retour arrière
 
@@ -200,6 +200,6 @@ Un résultat n'est annoncé que s'il est accompagné de sa sortie. Un test non e
 2. **Déploiement** : autoriser ou non la création des ressources AWS (Lambda, S3, Amplify, Guardrail) sur le compte `471112821226`, sachant que le script actuel ouvre une adresse publique sans authentification qui déclenche des appels Bedrock facturés.
 3. **Interface** : trois habillages coexistent (sombre de `feature/interface-parcours`, clair de la branche d'intégration, Tailwind de `feature/yasser-interface`). Par défaut la fusion garde celui de `feature/interface-parcours`, qui est le code évalué.
 4. **Règle K5** : valider que la perte supportable se juge sur le portefeuille après la demande, avec les seuils actuels. Le propriétaire des seuils est le Gardien.
-5. **Poids des portefeuilles fictifs** des trois personas (K1) : valeurs proposées par la tranche 2, à valider.
+5. **Poids des portefeuilles fictifs** des trois personas (K1) : valeurs de T2 validées par le porteur en T4 le 15 novembre 2026 ; voir `REVISIONS.md`. Ils restent explicitement fictifs.
 6. **Échéances** : confirmer 23 h 59 ce dimanche pour le dépôt et 13 h 59 lundi pour la fermeture du compte AWS.
 7. **Recherche critique** : accepter que cette fonction soit tenue, dans cette fusion, par le Sceptique à catalogue fermé et le registre des sources, la recherche documentaire de B restant une extension.

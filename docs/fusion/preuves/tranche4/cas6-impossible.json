@@ -1,0 +1,64 @@
+{
+  "profil": {
+    "nom": "Robert",
+    "age": 59,
+    "profession": "Professionnel de la santé",
+    "experience": "avancée",
+    "horizon_ans": 4,
+    "tolerance": 30,
+    "epargne_totale_cad": 100000,
+    "somme_a_preserver_cad": 300000,
+    "revenu_stable": true,
+    "fonds_urgence": true,
+    "dettes_importantes": false,
+    "retrait_prevu_ans": 4,
+    "exclusions": [],
+    "portefeuille_actuel": {
+      "XIU.TO": 0.3333333333333333,
+      "XBB.TO": 0.3333333333333333,
+      "RY.TO": 0.3333333333333333
+    },
+    "citations": [
+      "Je veux préserver mon capital",
+      "Tout le monde parle de Tesla en ce moment"
+    ]
+  },
+  "demande": {
+    "texte": "Je veux mettre 80 000 $ dans Tesla, tout le monde en parle.",
+    "ticker": "TSLA",
+    "montant_cad": 120000
+  },
+  "faits": [],
+  "objections": [],
+  "regles": [
+    {
+      "code": "donnees",
+      "libelle": "Informations essentielles",
+      "niveau": "gris",
+      "explication": "Le montant dépasse l'épargne totale.",
+      "faits": [],
+      "references": [
+        "acvm-ocri-31-368",
+        "dossier-adam"
+      ],
+      "type": "FAIT"
+    }
+  ],
+  "verdict": {
+    "etat": "indetermine",
+    "libelle": "Impossible de conclure : il manque une information",
+    "respectees": 0,
+    "evaluees": 0
+  },
+  "options": [],
+  "bascule": {},
+  "qualite_donnees": [],
+  "questions": [
+    "Le montant dépasse l'épargne totale."
+  ],
+  "texte": {},
+  "trace": [],
+  "version_contrat": "2",
+  "comparaison": {},
+  "appels_modele": []
+}

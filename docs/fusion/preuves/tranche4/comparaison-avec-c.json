@@ -1,0 +1,179 @@
+{
+  "robert": {
+    "fusion": {
+      "verdict": {
+        "etat": "incoherent",
+        "libelle": "Incohérent avec ta situation",
+        "respectees": 5,
+        "evaluees": 7
+      },
+      "capacite": {
+        "code": "capacite",
+        "libelle": "Perte supportable",
+        "niveau": "orange",
+        "explication": "Pire baisse du portefeuille après la demande : -20,595922 %, contre -14,256677 % avant ; écart après moins avant : -6,339245 points (aggrave). Capacité de perte : 26,0 % ; tolérance : 15,5 %. ",
+        "faits": [
+          "F-19",
+          "F-23",
+          "F-27",
+          "F-10",
+          "F-11",
+          "F-29"
+        ],
+        "references": [
+          "ocri-gn-3400",
+          "acvm-31-103cp",
+          "chekhlov-2005",
+          "moteur-historique-b",
+          "fusion-k5"
+        ],
+        "type": "SCENARIO"
+      }
+    },
+    "approximation": {
+      "verdict": {
+        "etat": "incoherent",
+        "libelle": "Incohérent avec ta situation",
+        "respectees": 6,
+        "evaluees": 7
+      },
+      "capacite": {
+        "code": "capacite",
+        "libelle": "Perte supportable",
+        "niveau": "ok",
+        "explication": "La pire chute observée ferait baisser ton épargne de 14,2 %, sous ta limite de 15,5 %. Cette approximation suppose le reste du portefeuille stable.",
+        "faits": [
+          "F-2",
+          "F-10",
+          "F-11"
+        ],
+        "references": [
+          "ocri-gn-3400",
+          "acvm-31-103cp",
+          "chekhlov-2005",
+          "moteur-historique-b",
+          "fusion-k5"
+        ],
+        "type": "SCENARIO"
+      }
+    }
+  },
+  "amira": {
+    "fusion": {
+      "verdict": {
+        "etat": "incoherent",
+        "libelle": "Incohérent avec ta situation",
+        "respectees": 4,
+        "evaluees": 6
+      },
+      "capacite": {
+        "code": "capacite",
+        "libelle": "Perte supportable",
+        "niveau": "rouge",
+        "explication": "Pire baisse du portefeuille après la demande : -50,609205 %, contre -46,806061 % avant ; écart après moins avant : -3,803144 points (aggrave). Capacité de perte : 38,2 % ; tolérance : 33,0 %. Le portefeuille actuel dépassait déjà la capacité avant cette demande. ",
+        "faits": [
+          "F-18",
+          "F-22",
+          "F-26",
+          "F-10",
+          "F-11",
+          "F-28"
+        ],
+        "references": [
+          "ocri-gn-3400",
+          "acvm-31-103cp",
+          "chekhlov-2005",
+          "moteur-historique-b",
+          "fusion-k5"
+        ],
+        "type": "SCENARIO"
+      }
+    },
+    "approximation": {
+      "verdict": {
+        "etat": "ajustement",
+        "libelle": "Cohérent avec un ajustement",
+        "respectees": 5,
+        "evaluees": 6
+      },
+      "capacite": {
+        "code": "capacite",
+        "libelle": "Perte supportable",
+        "niveau": "ok",
+        "explication": "La pire chute observée ferait baisser ton épargne de 18,6 %, sous ta limite de 33,0 %. Cette approximation suppose le reste du portefeuille stable.",
+        "faits": [
+          "F-2",
+          "F-10",
+          "F-11"
+        ],
+        "references": [
+          "ocri-gn-3400",
+          "acvm-31-103cp",
+          "chekhlov-2005",
+          "moteur-historique-b",
+          "fusion-k5"
+        ],
+        "type": "SCENARIO"
+      }
+    }
+  },
+  "mateo": {
+    "fusion": {
+      "verdict": {
+        "etat": "incoherent",
+        "libelle": "Incohérent avec ta situation",
+        "respectees": 6,
+        "evaluees": 7
+      },
+      "capacite": {
+        "code": "capacite",
+        "libelle": "Perte supportable",
+        "niveau": "ok",
+        "explication": "Pire baisse du portefeuille après la demande : -12,062254 %, contre -13,159563 % avant ; écart après moins avant : 1,097309 points (ameliore). Capacité de perte : 38,2 % ; tolérance : 22,5 %. ",
+        "faits": [
+          "F-19",
+          "F-23",
+          "F-27",
+          "F-10",
+          "F-11",
+          "F-29"
+        ],
+        "references": [
+          "ocri-gn-3400",
+          "acvm-31-103cp",
+          "chekhlov-2005",
+          "moteur-historique-b",
+          "fusion-k5"
+        ],
+        "type": "SCENARIO"
+      }
+    },
+    "approximation": {
+      "verdict": {
+        "etat": "incoherent",
+        "libelle": "Incohérent avec ta situation",
+        "respectees": 6,
+        "evaluees": 7
+      },
+      "capacite": {
+        "code": "capacite",
+        "libelle": "Perte supportable",
+        "niveau": "ok",
+        "explication": "La pire chute observée ferait baisser ton épargne de 2,7 %, sous ta limite de 22,5 %. Cette approximation suppose le reste du portefeuille stable.",
+        "faits": [
+          "F-2",
+          "F-10",
+          "F-11"
+        ],
+        "references": [
+          "ocri-gn-3400",
+          "acvm-31-103cp",
+          "chekhlov-2005",
+          "moteur-historique-b",
+          "fusion-k5"
+        ],
+        "type": "SCENARIO"
+      }
+    }
+  }
+}

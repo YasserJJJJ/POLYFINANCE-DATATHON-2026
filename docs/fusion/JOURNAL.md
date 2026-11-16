@@ -171,3 +171,19 @@
 - Le commit documentaire de clôture porte l’étiquette locale `fusion/t3`. Push autorisé sans force vers
   `origin/fusion/aws` après les 268 tests verts ; le SHA distant vérifié est donné dans la réponse finale.
 - La publication et les données AWS disparaîtront à la fermeture annoncée du compte le 16 novembre à 13 h 59.
+
+
+# Tranche 4 — Intégration finale
+
+- Prompt 4, cadre et rapports lus ; `git fetch origin` puis T2 et T3 fusionnés sans avance rapide. Seuls conflits : ajouts aux deux journaux, conservés intégralement. 313 puis 332 tests et builds verts.
+- Poids fictifs explicitement validés par le porteur ; arbitrage K5 conservé.
+- `a32e724` : noms d’agents explicites. `fb6cba8` : registre K3 inclus dans le générateur. Deux corrections d’intégration isolées.
+- `f036e12` : restitution K3, preuves K6, poids facultatifs, questions, fiche, non-monotonie et tests. `1d30724` : références aux seuls ajouts de textes, preuve exhaustive ; aucun objet métier modifié.
+- Réception : dix cas et deux ancrages ajoutés ; 344 tests réussis. Rendu React statique réussi ; maximum hors ligne 613,476 ms.
+- Trois dossiers Bedrock réels : trois appels chacun ; 12,631 / 12,845 / 12,564 s ; cinq objets métier égaux hors ligne. Guardrail existant, profil alphaforge, us-east-1.
+- Contrôle navigateur intégré indisponible ; Google Chrome refusé par Computer Use. Pas d’inspection ni de capture, réserve explicite avec deux voies de résolution.
+- Mise à jour de l’interface et de l’API existantes, aucune création de ressource. Code `1d30724` ; assets publics et ZIP identiques. Robert public : cinq égalités, copie S3 exacte, quatre appels puis gabarit après deux refus du Rédacteur, 20,583202 s / 30 587 jetons. Latence cible dépassée, flux reçu d’un bloc.
+- Archives, imports, données, règles et moteurs préservés. Docs, gains, synthèse des dix invariants et démonstration proposée consolidés. Pas de vidéo ni page de présentation.
+- Réception automatique verte ; tag local fusion/t4 puis push sans force vers la branche autorisée. Inspection visuelle et coût/latence sous charge restent ouverts.
+
+- Serveurs locaux de réception arrêtés après usage ; aucun identifiant ni clé dans les nouveaux artefacts. Fichiers de dépendances et verrou inchangés. Liens locaux des livrables vérifiés.
