@@ -35,7 +35,7 @@ Source de vérité : [backend/alphaforge/dossier.py](../backend/alphaforge/dossi
 | `regles` | `[{code, libelle, niveau, explication, faits}]` ; `niveau` ∈ `ok`, `orange`, `rouge`, `gris`, `non_evaluee` |
 | `faits` | `[{id: "F-3", libelle, valeur, unite, type, source, methode, lu_ou_calcule}]` ; `type` ∈ `FAIT`, `HYPOTHESE`, `SCENARIO` |
 | `objections` | `[{id: "O-1", cible: "F-2", texte, recalcul, resolue, reponse, issue}]` — `resolue` : la vérification a été exécutée par le code ; `issue` : `confirmee` (elle donne raison au Sceptique), `ecartee` (le fait tient tel quel) ou `limite` (limite de méthode, rien à trancher) |
-| `options` | Ta demande / Version ajustée (si elle existe) / Placement large, même montant (XIU.TO, jugé par le Gardien), ou l'alternative compatible avec les exclusions : `{nom, ticker, montant_cad, horizon_ans, etat, changement?, libelle_actif?, faits?, note?}` |
+| `options` | Ta demande / Version ajustée (si elle existe : le montant ou l'horizon change ; si seul le placement bloque, le premier placement de `suggestions`, même montant et même horizon, `changement: {ticker}`) / Placement large, même montant (XIU.TO, jugé par le Gardien) quand il n'y a pas de `suggestions` : `{nom, ticker, montant_cad, horizon_ans, etat, changement?, libelle_actif?, faits?, note?, constat?}` |
 | `bascule` | `{montants: [...], horizons: [...], cases: [{montant_cad, horizon_ans, etat}]}` pour les curseurs |
 | `profil.evaluation` | Les 2 jauges : `tolerance`, `capacite`, `capacite_raisons`, `score_retenu`, `perte_max_*_pct`, `seuil_concentration_pct`, `seuil_titre_unique_pct` |
 | `profil.tensions` | Tensions repérées (effet de mode, écart tolérance/capacité), en mots factuels |

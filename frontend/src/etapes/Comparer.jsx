@@ -71,7 +71,7 @@ export default function Comparer({ personas }) {
                     ))}
                   </ul>
                   {d.options[1]?.changement && (
-                    <p className="ajustement">Version ajustée : {dollars(d.options[1].montant_cad)} sur {d.options[1].horizon_ans} an(s)</p>
+                    <p className="ajustement">Version ajustée : {d.options[1].changement.ticker ? `${d.options[1].ticker}, ` : ''}{dollars(d.options[1].montant_cad)} sur {d.options[1].horizon_ans} an(s)</p>
                   )}
                 </>
               ) : r?.erreur

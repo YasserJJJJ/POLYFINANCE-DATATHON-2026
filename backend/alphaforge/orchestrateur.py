@@ -37,6 +37,25 @@ def _placement_large(d: Dossier, m: dict) -> dict | None:
                      f"contre {fr(m['pire_chute_pct'])} % pour {d.demande['ticker']}.")}
 
 
+def _version_autre_placement(d: Dossier, m: dict) -> dict | None:
+    """Quand seul le placement bloque (exclusion, ou aucun montant ni horizon ne suffit) : la même demande,
+    même montant et même horizon, avec le premier placement de la liste qui passe les règles."""
+    if any(o.get("changement") for o in d.options):
+        return None                      # un ajustement du montant ou de l'horizon suffit déjà
+    suggeres = (d.suggestions or {}).get("placements") or []
+    if not suggeres:
+        return None
+    pl, avant = suggeres[0], d.demande["ticker"]
+    return {"nom": "Version ajustée", "ticker": pl["ticker"], "libelle_actif": pl["nom"],
+            "changement": {"ticker": pl["ticker"]}, "etat": pl["etat"],
+            "montant_cad": d.demande["montant_cad"], "horizon_ans": d.profil.get("horizon_ans"),
+            "faits": pl["faits"],
+            "constat": (f"Seul le placement change : {pl['ticker']} au lieu de {avant}, même montant et même horizon. "
+                        f"Le verdict serait « {gardien.LIBELLES_ETAT[pl['etat']]} »."),
+            "note": (f"Pire chute observée {fr(pl['pire_chute_pct'])} %, "
+                     f"contre {fr(m['pire_chute_pct'])} % pour {avant}.")}
+
+
 def _question_retrait(d: Dossier, m: dict) -> None:
     """Teste une hypothèse séparée, sans compléter le profil de la personne."""
     horizon = d.profil.get("horizon_ans")
@@ -148,6 +167,9 @@ def analyser(profil: dict, demande: dict, sur_etape: Callable[[dict], None] | No
     # de comparaison que s'il n'y a pas de suggestion.
     if d.verdict["etat"] == "incoherent":
         plan_ouvert.suggerer(d)
+        version = _version_autre_placement(d, m)
+        if version:
+            d.options.insert(1, version)
     if not d.suggestions:
         large = _placement_large(d, m)
         if large:
@@ -170,7 +192,7 @@ def analyser(profil: dict, demande: dict, sur_etape: Callable[[dict], None] | No
     if ajustee:
         phrases = d.texte.get("ce_qui_changerait") or []
         d.texte["ce_qui_changerait"] = [
-            {"texte": ajustee["constat"], "type": "SCENARIO", "faits": []}, *phrases[1:]
+            {"texte": ajustee["constat"], "type": "SCENARIO", "faits": ajustee.get("faits") or []}, *phrases[1:]
         ]
     publier()
     d.appels_modele = llm.journal_appels()

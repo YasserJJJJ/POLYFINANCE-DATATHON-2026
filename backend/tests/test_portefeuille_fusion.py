@@ -315,5 +315,8 @@ def test_faux_client_ne_change_aucune_decision_ni_comparaison(nom, monkeypatch):
     monkeypatch.setattr(llm, "_client", {"bedrock": SimpleNamespace(converse=converse)})
     avec_faux = analyser(p, dem)
     assert appels
-    for cle in ("verdict", "regles", "options", "bascule", "comparaison"):
+    for cle in ("verdict", "regles", "bascule", "comparaison"):
         assert avec_faux[cle] == hors_ligne[cle], cle
+    # Les options sont identiques ; seul le numéro F-n d'un fait créé après le Sceptique peut glisser.
+    sans_ids = lambda options: [{k: v for k, v in o.items() if k != "faits"} for o in options]
+    assert sans_ids(avec_faux["options"]) == sans_ids(hors_ligne["options"])

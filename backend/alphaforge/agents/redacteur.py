@@ -155,6 +155,8 @@ def _modele_de_phrases(d: Dossier) -> dict:
             morceaux.append(f"ramener le montant à {dollars(ch['montant_cad'])}")
         if "horizon_ans" in ch:
             morceaux.append(f"allonger l'horizon à {ch['horizon_ans']} ans")
+        if "ticker" in ch:
+            morceaux.append(f"choisir {ch['ticker']} au même montant et au même horizon")
         changerait.append(_phrase(aj.get("constat") or
                                   ("Ce qui changerait l'avis : " + " et ".join(morceaux) + "."), "SCENARIO"))
     suggeres = (d.suggestions or {}).get("placements") or []
