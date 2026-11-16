@@ -152,7 +152,7 @@ def _choix_llm(d: Dossier, possibles: list[str]) -> list[tuple[str, str]]:
                 f"Demande : {d.demande.get('texte')} ({d.demande['ticker']}, {d.demande['montant_cad']} $).\n"
                 f"Faits : " + "; ".join(f"{f.id} {f.libelle} = {f.valeur} {f.unite}" for f in d.faits) + "\n"
                 f"Vérifications possibles :\n" + "\n".join(f"- {fr(c)} : {CATALOGUE[c][3]}" for c in possibles))
-    brut = llm.appeler_json(SYSTEME, contexte, llm.MODELE_PRINCIPAL, 700)
+    brut = llm.appeler_json(SYSTEME, contexte, llm.MODELE_PRINCIPAL, 700, agent="Sceptique")
     choix = []
     for o in (brut.get("objections") or [])[:MAX_OBJECTIONS]:
         if not isinstance(o, dict):

@@ -60,7 +60,8 @@ def extraire_llm(texte: str) -> dict:
     """Extraction par le modèle léger, validée champ par champ. Mise en cache par texte."""
     catalogue, tickers, secteurs = _catalogue()
     brut = llm.appeler_json(SYSTEME, f"Placements possibles :\n{catalogue}\n\nSecteurs possibles : "
-                                     f"{', '.join(secteurs)}\n\nPhrase : « {texte} »", llm.MODELE_LEGER, 600)
+                                     f"{', '.join(secteurs)}\n\nPhrase : « {texte} »", llm.MODELE_LEGER, 600,
+                            agent="Profileur")
     propre: dict = {}
     if brut.get("ticker") in tickers:
         propre["ticker"] = brut["ticker"]
