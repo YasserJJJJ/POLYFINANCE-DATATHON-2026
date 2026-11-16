@@ -1,0 +1,210 @@
+{
+  "robert": {
+    "verdict_avant": {
+      "etat": "incoherent",
+      "evaluees": 7,
+      "libelle": "Incohérent avec ta situation",
+      "respectees": 6
+    },
+    "verdict_apres": {
+      "etat": "incoherent",
+      "libelle": "Incohérent avec ta situation",
+      "respectees": 5,
+      "evaluees": 7
+    },
+    "niveaux_avant": {
+      "capacite": "ok",
+      "preserver": "ok",
+      "retrait": "ok",
+      "horizon": "ok",
+      "concentration": "rouge",
+      "coussin": "ok",
+      "diversification": "ok"
+    },
+    "niveaux_apres": {
+      "capacite": "orange",
+      "preserver": "ok",
+      "retrait": "ok",
+      "horizon": "ok",
+      "concentration": "rouge",
+      "coussin": "ok",
+      "diversification": "ok"
+    },
+    "options_avant": {
+      "Ta demande": {
+        "ticker": "TSLA",
+        "montant_cad": 80000,
+        "horizon_ans": 4,
+        "etat": "incoherent"
+      },
+      "Version ajustée": {
+        "ticker": "TSLA",
+        "montant_cad": 38000,
+        "horizon_ans": 4,
+        "etat": "coherent"
+      },
+      "Placement large, même montant": {
+        "ticker": "XIU.TO",
+        "montant_cad": 80000,
+        "horizon_ans": 4,
+        "etat": "coherent"
+      }
+    },
+    "options_apres": {
+      "Ta demande": {
+        "ticker": "TSLA",
+        "montant_cad": 80000,
+        "horizon_ans": 4,
+        "etat": "incoherent"
+      },
+      "Version ajustée": {
+        "ticker": "TSLA",
+        "montant_cad": 38000,
+        "horizon_ans": 4,
+        "etat": "ajustement"
+      },
+      "Placement large, même montant": {
+        "ticker": "XIU.TO",
+        "montant_cad": 80000,
+        "horizon_ans": 4,
+        "etat": "coherent"
+      }
+    },
+    "nombre_faits_avant": 16,
+    "nombre_faits_apres": 32,
+    "valeurs_faits_originaux_modifiees": {},
+    "nombre_cases_changees": 19
+  },
+  "amira": {
+    "verdict_avant": {
+      "etat": "ajustement",
+      "evaluees": 6,
+      "libelle": "Cohérent avec un ajustement",
+      "respectees": 5
+    },
+    "verdict_apres": {
+      "etat": "incoherent",
+      "libelle": "Incohérent avec ta situation",
+      "respectees": 4,
+      "evaluees": 6
+    },
+    "niveaux_avant": {
+      "capacite": "ok",
+      "preserver": "ok",
+      "horizon": "ok",
+      "concentration": "orange",
+      "coussin": "ok",
+      "diversification": "ok"
+    },
+    "niveaux_apres": {
+      "capacite": "rouge",
+      "preserver": "ok",
+      "horizon": "ok",
+      "concentration": "orange",
+      "coussin": "ok",
+      "diversification": "ok"
+    },
+    "options_avant": {
+      "Ta demande": {
+        "ticker": "BTC-USD",
+        "montant_cad": 10000,
+        "horizon_ans": 15,
+        "etat": "ajustement"
+      },
+      "Version ajustée": {
+        "ticker": "BTC-USD",
+        "montant_cad": 6800,
+        "horizon_ans": 15,
+        "etat": "coherent"
+      },
+      "Placement large, même montant": {
+        "ticker": "XIU.TO",
+        "montant_cad": 10000,
+        "horizon_ans": 15,
+        "etat": "coherent"
+      }
+    },
+    "options_apres": {
+      "Ta demande": {
+        "ticker": "BTC-USD",
+        "montant_cad": 10000,
+        "horizon_ans": 15,
+        "etat": "incoherent"
+      },
+      "Placement large, même montant": {
+        "ticker": "XIU.TO",
+        "montant_cad": 10000,
+        "horizon_ans": 15,
+        "etat": "ajustement"
+      }
+    },
+    "nombre_faits_avant": 15,
+    "nombre_faits_apres": 31,
+    "valeurs_faits_originaux_modifiees": {},
+    "nombre_cases_changees": 160
+  },
+  "mateo": {
+    "verdict_avant": {
+      "etat": "incoherent",
+      "evaluees": 7,
+      "libelle": "Incohérent avec ta situation",
+      "respectees": 6
+    },
+    "verdict_apres": {
+      "etat": "incoherent",
+      "libelle": "Incohérent avec ta situation",
+      "respectees": 6,
+      "evaluees": 7
+    },
+    "niveaux_avant": {
+      "capacite": "ok",
+      "preserver": "ok",
+      "exclusion": "rouge",
+      "horizon": "ok",
+      "concentration": "ok",
+      "coussin": "ok",
+      "diversification": "ok"
+    },
+    "niveaux_apres": {
+      "capacite": "ok",
+      "preserver": "ok",
+      "exclusion": "rouge",
+      "horizon": "ok",
+      "concentration": "ok",
+      "coussin": "ok",
+      "diversification": "ok"
+    },
+    "options_avant": {
+      "Ta demande": {
+        "ticker": "ENB.TO",
+        "montant_cad": 15000,
+        "horizon_ans": 10,
+        "etat": "incoherent"
+      },
+      "Alternative compatible avec tes exclusions de secteur": {
+        "ticker": "ESGV",
+        "montant_cad": 15000,
+        "horizon_ans": 10,
+        "etat": "coherent"
+      }
+    },
+    "options_apres": {
+      "Ta demande": {
+        "ticker": "ENB.TO",
+        "montant_cad": 15000,
+        "horizon_ans": 10,
+        "etat": "incoherent"
+      },
+      "Alternative compatible avec tes exclusions de secteur": {
+        "ticker": "ESGV",
+        "montant_cad": 15000,
+        "horizon_ans": 10,
+        "etat": "coherent"
+      }
+    },
+    "nombre_faits_avant": 16,
+    "nombre_faits_apres": 32,
+    "valeurs_faits_originaux_modifiees": {},
+    "nombre_cases_changees": 0
+  }
+}
