@@ -157,8 +157,8 @@ export default function CarteRaisonnement({ dossier, ouvrirFait, surligne = [] }
   return (
     <div className="carte-raisonnement" ref={cadre}>
       <svg className="liens-raisonnement" width={traits.largeur} height={traits.hauteur} aria-hidden="true">
-        {traits.chemins.map((c) => (
-          <path key={`${c.a}-${c.b}`} d={c.d} className={allume ? (allume.has(c.a) && allume.has(c.b) ? 'allume' : 'eteint') : ''} />
+        {traits.chemins.map((c, i) => (
+          <path key={`${c.a}-${c.b}-${i}`} d={c.d} className={allume ? (allume.has(c.a) && allume.has(c.b) ? 'allume' : 'eteint') : ''} />
         ))}
       </svg>
       <div className="colonnes-raisonnement">

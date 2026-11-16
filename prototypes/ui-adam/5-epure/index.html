@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Épure · Second avis</title>
+<meta name="description" content="Prototype 5, Épure : le portefeuille sans et avec la demande, mesurés de la même façon et cotés comme une planche de dessin technique.">
+<meta name="color-scheme" content="dark">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-statut="courante" data-niveau="essentiel">
+<a class="evitement" href="#planche">Aller à la planche</a>
+
+<!-- Bandeau permanent : nature de la simulation, date et commit (AF.meta), liens vers la galerie et les autres directions. -->
+<div class="bandeau" role="note" aria-label="Nature de la simulation">
+  <p class="bandeau-texte"><strong>Simulation éducative</strong> · données de démonstration précalculées par le moteur réel · <span id="meta-date">date</span> · commit <code id="meta-commit">—</code></p>
+  <nav class="bandeau-liens" aria-label="Autres prototypes">
+    <a id="lien-galerie" href="../index.html">Galerie</a>
+    <span class="bandeau-sep" aria-hidden="true">·</span>
+    <span class="bandeau-autres">Autres directions :
+      <a data-proto="1-carnet" href="../1-carnet/index.html">Carnet</a>
+      <a data-proto="2-relief" href="../2-relief/index.html">Relief</a>
+      <a data-proto="3-pupitre" href="../3-pupitre/index.html">Pupitre</a>
+      <a data-proto="4-fil" href="../4-fil/index.html">Fil</a>
+    </span>
+  </nav>
+</div>
+
+<!-- Barre d'outils : situation, cas particuliers, niveau de lecture, historique, états de démonstration. -->
+<header class="outils" id="outils">
+  <p class="marque"><span class="marque-nom">Épure</span><span class="marque-sous">Second avis · planche cotée</span></p>
+
+  <div class="groupe" role="group" aria-labelledby="g-situation">
+    <span class="groupe-titre" id="g-situation">Situation</span>
+    <span class="groupe-boutons" id="choix-cas"></span>
+  </div>
+
+  <details class="menu" id="menu-speciaux">
+    <summary>Cas particuliers</summary>
+    <div class="menu-corps">
+      <p class="menu-note">Dossiers réels, hors de l'historique :</p>
+      <button type="button" data-action="special" data-cle="sans_epargne">Épargne inconnue</button>
+      <button type="button" data-action="special" data-cle="impossible">Montant supérieur à l'épargne</button>
+      <button type="button" data-action="special" data-cle="hors_univers">Placement hors univers</button>
+    </div>
+  </details>
+
+  <div class="groupe niveau niveau-outils" role="group" aria-labelledby="g-niveau">
+    <span class="groupe-titre" id="g-niveau">Lecture</span>
+    <span class="groupe-boutons">
+      <button type="button" id="niv-essentiel" data-action="niveau" data-n="essentiel" aria-pressed="true">Essentiel</button>
+      <button type="button" id="niv-approfondi" data-action="niveau" data-n="approfondi" aria-pressed="false">Approfondi</button>
+    </span>
+  </div>
+
+  <div class="groupe" role="group" aria-labelledby="g-hist">
+    <span class="sr" id="g-hist">Historique des révisions</span>
+    <span class="groupe-boutons">
+      <button type="button" id="btn-annuler" data-action="annuler"><span aria-hidden="true">↶</span> Annuler</button>
+      <button type="button" id="btn-refaire" data-action="refaire"><span aria-hidden="true">↷</span> Refaire</button>
+    </span>
+  </div>
+
+  <div class="groupe demo">
+    <label class="groupe-titre" for="choix-demo">États de démonstration</label>
+    <select id="choix-demo">
+      <option value="normal">Normal</option>
+      <option value="chargement">Chargement</option>
+      <option value="erreur">Erreur</option>
+      <option value="reprise">Reprise</option>
+    </select>
+  </div>
+</header>
+
+<main id="planche" class="planche" tabindex="-1" aria-labelledby="tete-titre">
+  <!-- Repères de zone d'une feuille de dessin (décor). -->
+  <div class="zones" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span></div>
+  <!-- Tampon d'archive, en travers de la planche. -->
+  <div class="tampon" id="tampon" aria-hidden="true"></div>
+
+  <section class="tete" id="tete" aria-label="En-tête de la planche"></section>
+
+  <div class="zone-haut">
+    <section class="vues" id="vues" aria-labelledby="vues-titre"></section>
+
+    <aside class="cartouche" id="cartouche" aria-labelledby="cartouche-titre">
+      <h2 class="sr" id="cartouche-titre">Cartouche : verdict, paramètres et révisions</h2>
+      <div class="c-bandeau">
+        <div class="c-verdict" id="c-verdict" aria-live="polite" aria-atomic="true"></div>
+        <button type="button" class="niveau-mobile" id="nivm" data-action="niveau-bascule" aria-pressed="false" aria-describedby="nivm-aide">
+          <span class="interrupteur" aria-hidden="true"></span>Approfondi
+        </button>
+        <span class="sr" id="nivm-aide">Niveau de lecture : enfoncé, lecture approfondie ; relâché, lecture essentielle.</span>
+        <button type="button" class="c-repli" id="c-repli" data-action="repli" aria-expanded="false" aria-controls="c-corps">
+          <span class="c-repli-texte">Cartouche</span><span aria-hidden="true" class="c-repli-signe">▴</span>
+        </button>
+      </div>
+      <div class="c-corps" id="c-corps"></div>
+    </aside>
+  </div>
+
+  <section class="rideau bloc" id="rideau" aria-labelledby="rideau-titre"></section>
+
+  <div class="zone-bas">
+    <section class="bloc nomenclature" id="nomenclature" aria-labelledby="nomenclature-titre"></section>
+    <section class="bloc notes" id="notes" aria-labelledby="notes-titre"></section>
+    <section class="bloc variantes" id="variantes" aria-labelledby="variantes-titre"></section>
+    <section class="bloc gamme" id="gamme" aria-labelledby="gamme-titre"></section>
+    <section class="bloc limites" id="limites" aria-labelledby="limites-titre"></section>
+  </div>
+</main>
+
+<div class="sr" id="annonce" role="status" aria-live="polite"></div>
+
+<!-- Fiche de mesure : du chiffre au fait, puis aux références, dans la même fenêtre. -->
+<dialog class="fiche" id="fiche" aria-labelledby="fiche-titre">
+  <div class="fiche-tete">
+    <p class="fiche-sur">Fiche de mesure</p>
+    <h2 id="fiche-titre">Mesure</h2>
+    <button type="button" class="fermer" data-action="fermer" aria-label="Fermer la fiche">Fermer <span aria-hidden="true">✕</span></button>
+  </div>
+  <div class="fiche-corps" id="fiche-corps"></div>
+</dialog>
+
+<!-- Planches à comparer : différence entre deux révisions quelconques (AF.comparer). -->
+<dialog class="fiche comparer" id="comparer" aria-labelledby="cmp-titre">
+  <div class="fiche-tete">
+    <p class="fiche-sur">Planches à comparer</p>
+    <h2 id="cmp-titre">Révision ↔ révision</h2>
+    <button type="button" class="fermer" data-action="fermer" aria-label="Fermer la comparaison">Fermer <span aria-hidden="true">✕</span></button>
+  </div>
+  <div class="cmp-choix">
+    <label>Planche de gauche <select id="cmp-a"></select></label>
+    <span aria-hidden="true" class="cmp-fleche">↔</span>
+    <label>Planche de droite <select id="cmp-b"></select></label>
+  </div>
+  <div class="fiche-corps" id="cmp-corps"></div>
+</dialog>
+
+<script src="../socle/fixtures.js"></script>
+<script src="../socle/socle.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

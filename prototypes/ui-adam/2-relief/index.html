@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Second avis · Relief</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="evitement" href="#coupe">Aller à la coupe du point</a>
+
+  <p class="bandeau" role="note">
+    <span class="bandeau-txt">Simulation éducative · données de démonstration précalculées par le moteur réel</span>
+    <span class="bandeau-meta" id="meta"></span>
+  </p>
+
+  <header class="barre">
+    <div class="marque">
+      <span class="marque-nom">Second avis</span>
+      <span class="marque-dir">Relief <span class="marque-sous">· la décision comme un territoire</span></span>
+    </div>
+
+    <details class="menu" id="menu-speciaux">
+      <summary>Cas particuliers</summary>
+      <div class="menu-corps" id="speciaux-corps"></div>
+    </details>
+
+    <div class="niveau">
+      <span class="petit-titre" id="niv-titre">Lecture</span>
+      <div class="segment" role="group" aria-labelledby="niv-titre">
+        <button type="button" data-niveau="essentiel" data-cle="niv-essentiel">Essentiel</button>
+        <button type="button" data-niveau="approfondi" data-cle="niv-approfondi">Approfondi</button>
+      </div>
+    </div>
+
+    <div class="barre-fin">
+      <details class="menu menu-droite" id="menu-liens">
+        <summary>Galerie <span class="sous sous-large">et directions</span></summary>
+        <div class="menu-corps" id="liens-corps"></div>
+      </details>
+      <label class="demo">
+        <span class="demo-tag">États de démonstration</span>
+        <select id="demo" data-cle="demo">
+          <option value="normal">Démo · normal</option>
+          <option value="chargement">Démo · chargement</option>
+          <option value="erreur">Démo · erreur</option>
+          <option value="reprise">Démo · reprise</option>
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <main class="plan" id="plan">
+    <section class="atelier" aria-labelledby="atelier-titre">
+      <h1 class="sr-only" id="atelier-titre">Carte de la décision : montant et horizon</h1>
+
+      <div class="legende" id="legende">
+        <div class="leg-commandes">
+          <nav class="situations" aria-label="Situation étudiée">
+            <span class="petit-titre" id="sit-titre">Situation</span>
+            <div class="segment" role="group" aria-labelledby="sit-titre" id="choix-cas"></div>
+          </nav>
+          <div class="leg-params" id="leg-params"></div>
+          <details class="menu deroulant" id="menu-liste">
+            <summary>Liste des montants</summary>
+            <div class="menu-corps large" id="liste-montants"></div>
+          </details>
+          <details class="menu deroulant" id="menu-route">
+            <summary>Feuille de route <span class="sous">des rôles</span></summary>
+            <div class="menu-corps large" id="route"></div>
+          </details>
+        </div>
+      </div>
+
+      <div class="carte-cadre" id="carte-cadre">
+        <div class="bande-carte" id="bande-carte" hidden></div>
+        <svg id="carte" class="carte" role="img" aria-labelledby="carte-desc" focusable="false">
+          <desc id="carte-desc">Carte des verdicts selon le montant et l'horizon.</desc>
+          <defs id="c-defs"></defs>
+          <g id="c-fond"></g>
+          <g id="c-avant"></g>
+        </svg>
+        <div class="poignee" id="poignee" role="slider" tabindex="0" aria-orientation="vertical" data-cle="poignee"></div>
+        <button type="button" class="sonder-ici" id="sonder-carte" hidden data-cle="sonder-carte">Sonder ici</button>
+        <div class="sonde" id="sonde" hidden></div>
+        <div class="voile" id="voile" hidden></div>
+      </div>
+
+      <div class="pied-carte">
+        <nav class="itineraire" aria-labelledby="iti-titre">
+          <div class="iti-tete">
+            <h2 class="petit-titre" id="iti-titre">Itinéraire</h2>
+            <div class="iti-actions">
+              <button type="button" id="annuler" data-cle="annuler" aria-keyshortcuts="Control+Z Meta+Z">↶ Annuler</button>
+              <button type="button" id="retablir" data-cle="retablir" aria-keyshortcuts="Control+Shift+Z Meta+Shift+Z">↷ Rétablir</button>
+            </div>
+          </div>
+          <ol class="iti-liste" id="iti-liste"></ol>
+        </nav>
+        <div class="leg-bloc">
+          <h2 class="petit-titre">Légende</h2>
+          <div class="leg-zones" id="leg-zones"></div>
+          <p class="leg-note">Courbes fines : décor, sans mesure.</p>
+          <details class="menu deroulant vers-haut" id="menu-signes">
+            <summary>Tous les signes</summary>
+            <div class="menu-corps large" id="signes"></div>
+          </details>
+        </div>
+        <div class="cartouche" id="cartouche"></div>
+      </div>
+    </section>
+
+    <aside class="coupe" id="coupe" aria-labelledby="coupe-titre" tabindex="-1">
+      <button type="button" class="feuille-bascule" id="feuille-bascule" aria-expanded="false" aria-controls="coupe-corps" data-cle="feuille">
+        <span class="feuille-poignee" aria-hidden="true"></span>
+        <span id="feuille-txt">Déplier la coupe</span>
+      </button>
+      <h2 class="sr-only" id="coupe-titre">Coupe du point choisi</h2>
+      <div class="coupe-tete" id="coupe-tete"></div>
+      <nav class="coupe-nav" id="coupe-nav" aria-label="Sections de la coupe"></nav>
+      <div class="coupe-corps" id="coupe-corps"></div>
+    </aside>
+  </main>
+
+  <dialog class="fiche" id="fiche" aria-labelledby="fiche-titre">
+    <div class="fiche-tete">
+      <p class="fiche-sur" id="fiche-sur">Fiche de relevé</p>
+      <h2 class="fiche-titre" id="fiche-titre"></h2>
+      <button type="button" class="fiche-fermer" id="fiche-fermer" aria-label="Fermer la fiche">✕</button>
+    </div>
+    <div class="fiche-corps" id="fiche-corps"></div>
+  </dialog>
+
+  <div class="sr-only" id="annonce" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="../socle/fixtures.js"></script>
+  <script src="../socle/socle.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

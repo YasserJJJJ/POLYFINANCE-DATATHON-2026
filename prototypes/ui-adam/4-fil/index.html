@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Second avis · Fil</title>
+  <meta name="description" content="Prototype « Fil » : une conversation verticale avec ses propres « et si ». Simulation éducative.">
+  <meta name="theme-color" content="#eceef3">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="evitement" href="#fil">Aller au fil</a>
+
+  <!-- Bandeau permanent : jamais masquable. -->
+  <p class="bandeau" id="bandeau">
+    <span class="bandeau-texte">Simulation éducative · données de démonstration précalculées par le moteur réel</span>
+    <span class="bandeau-meta" id="bandeau-meta"></span>
+  </p>
+
+  <header class="tete">
+    <div class="tete-in">
+      <button type="button" class="marque" id="marque" aria-label="Second avis : remonter en haut du fil">
+        <span class="marque-ico" aria-hidden="true"></span>
+        <span class="marque-nom">Second avis</span>
+      </button>
+      <fieldset class="niveau">
+        <legend class="sr">Niveau de lecture</legend>
+        <input type="radio" name="niveau" id="niveau-essentiel" value="essentiel">
+        <label for="niveau-essentiel">Essentiel</label>
+        <input type="radio" name="niveau" id="niveau-approfondi" value="approfondi">
+        <label for="niveau-approfondi">Approfondi</label>
+      </fieldset>
+      <button type="button" class="bouton-icone" id="ouvrir-menu" aria-haspopup="dialog">
+        <span class="ico" aria-hidden="true" id="ico-menu"></span><span class="sr">Plus : situations, plan du fil, démonstration</span>
+      </button>
+    </div>
+    <div class="statut-bande" id="statut-bande" hidden></div>
+  </header>
+
+  <div class="mise">
+    <main class="colonne" id="fil" tabindex="-1">
+      <h1 class="sr" id="haut">Second avis : le fil de ta demande</h1>
+      <ol class="fil" id="liste-fil" aria-label="Le fil : ta demande, puis chaque avis"></ol>
+      <footer class="pied" id="pied"></footer>
+
+      <!-- Barre « Et si… » : collée en bas, à hauteur de pouce. -->
+      <section class="barre" id="barre" aria-label="Et si…">
+        <div class="toast" id="toast" hidden></div>
+        <button type="button" class="saut" id="saut" hidden></button>
+        <div id="barre-contenu"></div>
+      </section>
+    </main>
+
+    <aside class="panneau" id="panneau" aria-label="Plan du fil et comparaison"></aside>
+  </div>
+
+  <!-- Feuille basse : preuves, situations, menu. Un seul dialogue natif, Échap ferme. -->
+  <dialog class="feuille" id="feuille" aria-labelledby="feuille-titre">
+    <div class="feuille-in">
+      <div class="feuille-tete">
+        <button type="button" class="bouton-icone" id="feuille-retour" hidden><span class="ico" aria-hidden="true" id="ico-retour"></span><span class="sr">Retour</span></button>
+        <h2 class="feuille-titre" id="feuille-titre" tabindex="-1"></h2>
+        <button type="button" class="bouton-icone" id="feuille-fermer"><span class="ico" aria-hidden="true" id="ico-fermer"></span><span class="sr">Fermer</span></button>
+      </div>
+      <div class="feuille-corps" id="feuille-corps"></div>
+    </div>
+  </dialog>
+
+  <!-- Région annoncée aux lecteurs d'écran : présente dès le chargement. -->
+  <div class="sr" id="annonce" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="../socle/fixtures.js"></script>
+  <script src="../socle/socle.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

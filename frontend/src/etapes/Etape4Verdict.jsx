@@ -6,6 +6,8 @@ import CarteRaisonnement from '../composants/CarteRaisonnement.jsx'
 import { Etiquette, PuceIssue, PuceNiveau, PuceVerdict, PucesFaits } from '../composants/Base.jsx'
 import GraphiqueChute from '../composants/GraphiqueChute.jsx'
 import ComparaisonPortefeuille from '../composants/ComparaisonPortefeuille.jsx'
+import Editions, { CeQuiChange } from '../composants/Editions.jsx'
+import { toutReplier } from '../repliable.js'
 import { ListeSources, SourcesCompactes, SourcesParType, sourcesDuDossier } from '../composants/Sources.jsx'
 
 function Phrase({ p, ouvrir }) {
@@ -38,6 +40,49 @@ function Option({ o, principal, ouvrir }) {
 }
 
 const PERSONAS_NOMS = ['Amira', 'Mateo', 'Robert']
+
+// Titre de la double page : l'avis du Gardien, en deux temps. Les mots viennent du verdict, pas d'un calcul.
+const TITRES = {
+  coherent: ['Cohérent', 'avec ta situation.'],
+  ajustement: ['Cohérent,', 'avec un ajustement.'],
+  incoherent: ['Incohérent', 'avec ta situation.'],
+  indetermine: ['Impossible de conclure :', 'il manque une information.'],
+}
+const fr1 = (n) => Number(n).toLocaleString('fr-CA', { minimumFractionDigits: 1, maximumFractionDigits: 1 }).replace('-', '−')
+const SENS = { aggrave: 'une baisse plus profonde', ameliore: 'une baisse moins profonde', neutre: 'la même baisse' }
+
+// Page de droite : le chiffre qui porte l'avis. Avec un portefeuille connu, c'est la pire baisse du portefeuille
+// après la demande, face à celle d'avant (même moteur, même fenêtre). Sinon, le décompte des règles.
+function ResultatHeros({ dossier, plan, ouvrir, children }) {
+  const k = dossier.comparaison
+  const v = dossier.verdict
+  if (!plan && k?.disponible) {
+    const f = k.faits || {}
+    const preuves = [f.apres_pire_chute, f.avant_pire_chute, f.ecart_pire_chute].filter(Boolean)
+    return (
+      <aside className="heros-resultat" aria-label="Le chiffre qui porte l'avis">
+        <span className="heros-cercles" aria-hidden="true" />
+        <span className="heros-libelle">Pire baisse de ton portefeuille, avec ta demande</span>
+        <button type="button" className="heros-nombre" onClick={() => ouvrir(preuves)} title="D'où vient ce chiffre ?">{fr1(k.apres.pire_chute_pct)}</button>
+        <span className="heros-unite"><span>% · observé {k.fenetre.debut.slice(0, 4)}–{k.fenetre.fin.slice(0, 4)}</span><span aria-hidden="true">↗</span></span>
+        <p className="heros-note">Contre <strong>{fr1(k.avant.pire_chute_pct)} %</strong> sans ta demande :
+          un écart de <strong>{fr1(k.ecarts.pire_chute_pts)} points</strong>, soit {SENS[k.ecarts.sens_pire_chute] || ''}.
+          Mesuré de la même façon, sur la même période passée. <strong>Ce n'est pas une prévision.</strong></p>
+        {children}
+      </aside>
+    )
+  }
+  return (
+    <aside className="heros-resultat" aria-label="Le décompte qui porte l'avis">
+      <span className="heros-cercles" aria-hidden="true" />
+      <span className="heros-libelle">{plan ? 'Placements de la liste qui passent tes règles' : 'Règles respectées'}</span>
+      <span className="heros-nombre" style={{ cursor: 'default' }}>{v.respectees}<small style={{ fontSize: '0.35em', letterSpacing: 0 }}> / {v.evaluees}</small></span>
+      <p className="heros-note">Le verdict est décidé par des règles écrites en code, jamais par un modèle.
+        {k && !k.disponible && k.raison ? ` Comparaison du portefeuille indisponible : ${k.raison}` : ''}</p>
+      {children}
+    </aside>
+  )
+}
 
 function titreDesOptions(etat, plan) {
   if (plan) {
@@ -111,7 +156,7 @@ function PlacementsDuPlan({ plan, verdict, ouvrir, onAnalyser, suggestion = fals
 }
 
 export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifier, saisie, actifs, onRelancer, relance,
-  onAnalyserPlacement, initiale, echanges, onMessage, envoi }) {
+  onAnalyserPlacement, initiale, echanges, onMessage, envoi, editions = [], indexEdition = 0, onVoirEdition }) {
   const { verdict, texte, regles, options, faits, objections, qualite_donnees: qualite, demande, profil } = dossier
   const [onglet, setOnglet] = useState('essentiel')
   const [surligne, setSurligne] = useState([])   // chiffres d'une phrase, montrés dans « Le détail »
@@ -130,7 +175,8 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
     setTimeout(() => document.getElementById('message-suite')?.focus({ preventScroll: true }), 450)
   }
   const titreOptions = titreDesOptions(verdict.etat, plan)
-  const onglets = [['essentiel', "L'essentiel"], ['detail', 'Le détail et les sources']]
+  const onglets = [['essentiel', 'Essentielle'], ['detail', 'Approfondie']]
+  const titre = TITRES[verdict.etat]
   const estPersona = PERSONAS_NOMS.includes(profil?.nom)
   const ids = demande.ids_faits || {}
   const ordre = { rouge: 0, orange: 1, gris: 2, ok: 3, non_evaluee: 4 }
@@ -142,17 +188,25 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
         onRelancer={onRelancer} onToutRevoir={onModifier} relance={relance}
         initiale={initiale} echanges={echanges} onMessage={onMessage} envoi={envoi} onVoirAnalyses={voirAnalyses} />
 
+      <Editions editions={editions} index={indexEdition} onVoir={onVoirEdition} />
+
       <div className="onglets" role="tablist" aria-label="Niveau de détail">
         {onglets.map(([cle, nom]) => (
           <button key={cle} type="button" role="tab" aria-selected={onglet === cle}
             className={`onglet ${onglet === cle ? 'actif' : ''}`} onClick={() => setOnglet(cle)}>{nom}</button>
         ))}
+        <span className="replier-tout">
+          <button type="button" className="lien" onClick={() => toutReplier(true)}>Tout replier</button>
+          <button type="button" className="lien" onClick={() => toutReplier(false)}>Tout déplier</button>
+        </span>
       </div>
 
       {onglet === 'essentiel' && (<>
       <div className={`verdict-tete carte etat-${verdict.etat}`}>
-        <p className="surtitre">Le second avis</p>
-        <PuceVerdict etat={verdict.etat} grand libelle={verdict.libelle} />
+        <div className="heros-texte">
+        <p className="surtitre">Le second avis / {plan ? 'plan ouvert' : demande.ticker || 'demande'}</p>
+        <h1 className="heros-titre" aria-live="polite">{titre && !plan ? <>{titre[0]} <em>{titre[1]}</em></> : verdict.libelle}</h1>
+        <PuceVerdict etat={verdict.etat} libelle={verdict.libelle} />
         {plan
           ? <p className="compte-regles"><strong>{verdict.respectees}</strong> placement(s) sur <strong>{verdict.evaluees}</strong> passent toutes les règles</p>
           : <p className="compte-regles"><strong>{verdict.respectees}</strong> règle(s) respectée(s) sur <strong>{verdict.evaluees}</strong></p>}
@@ -166,12 +220,22 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
             {' '}<Etiquette type={ph.type} />
           </p>
         ))}
-        {estPersona && texte?.miroir?.length > 0 && (
-          <p className="muted petit">« Tu as dit » cite une phrase type du profil {profil.nom} (scénario fictif de l'équipe),
-            pas une saisie que tu as faite.</p>
-        )}
-        {texte?.tensions?.map((t) => <p key={t} className="tension">{pourClient(t)}</p>)}
+        </div>
+        <ResultatHeros dossier={dossier} plan={plan} ouvrir={ouvrirFait}>
+          {texte?.tensions?.length > 0 && (
+            <div className="heros-tensions">
+              <span className="heros-libelle">Ce qui tend ta demande</span>
+              {texte.tensions.map((t) => <p key={t} className="tension">{pourClient(t)}</p>)}
+            </div>
+          )}
+          {estPersona && texte?.miroir?.length > 0 && (
+            <p className="muted petit heros-mention">« Tu as dit » cite une phrase type du profil {profil.nom} (scénario fictif de l'équipe),
+              pas une saisie que tu as faite.</p>
+          )}
+        </ResultatHeros>
       </div>
+
+      <CeQuiChange editions={editions} index={indexEdition} />
 
       {dossier.questions?.length > 0 && (
         <div className="carte manque">
