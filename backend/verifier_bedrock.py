@@ -1,4 +1,4 @@
-"""Vérifie l'accès à Claude sur Bedrock avec le profil AWS « datathon ».
+"""Vérifie l'accès aux modèles Bedrock avec AWS_PROFILE (défaut : alphaforge).
 
 Lancer depuis backend/ :  python verifier_bedrock.py
 Code de sortie : 0 si les deux modèles répondent, 1 sinon (identifiants absents ou expirés, modèle refusé…).
@@ -11,7 +11,7 @@ for flux in (sys.stdout, sys.stderr):
     if hasattr(flux, "reconfigure"):
         flux.reconfigure(encoding="utf-8", errors="replace")
 
-os.environ.setdefault("AWS_PROFILE", "datathon")
+os.environ.setdefault("AWS_PROFILE", "alphaforge")
 os.environ.setdefault("AWS_REGION", "us-east-1")
 
 import boto3  # noqa: E402
@@ -30,7 +30,8 @@ print("Compte AWS :", identite["Account"][:4] + "…" + identite["Account"][-2:]
 echecs = 0
 for modele in (llm.MODELE_PRINCIPAL, llm.MODELE_LEGER):
     try:
-        reponse = llm.appeler("Réponds en une phrase courte, en français.", "Dis bonjour à l'équipe AlphaForge.", modele, 60)
+        reponse = llm.appeler("Réponds en une phrase courte, en français.", "Dis bonjour à l'équipe AlphaForge.",
+                             modele, 60, agent="Vérification")
         print(f"OK  {modele} → {reponse.strip()}")
     except Exception as e:  # on affiche l'erreur telle quelle pour la diagnostiquer
         echecs += 1

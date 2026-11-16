@@ -3,8 +3,8 @@
     python infra/creer_guardrail.py              # crée ou retrouve le guardrail, publie une version
     python infra/creer_guardrail.py --verifier   # n'écrit rien : affiche ce qui serait créé
 
-À LANCER EN ÉQUIPE, au moment du déploiement (voir docs/deploiement.md) : ce script crée une ressource dans le
-compte AWS partagé. Il est idempotent : relancé, il retrouve le guardrail existant par son nom.
+À lancer après autorisation du porteur et affichage du plan (voir docs/deploiement.md).
+Il retrouve un guardrail existant par son nom. AWS_PROFILE est respecté ; défaut : alphaforge.
 
 Ce que le guardrail ajoute au contrôle en code du Rédacteur (il ne le remplace jamais) :
   - un sujet refusé « conseil d'achat ou de vente » ;
@@ -14,13 +14,17 @@ Si le guardrail bloque une réponse (stopReason = guardrail_intervened), llm.py 
 Rédacteur retombe sur ses phrases modèles, exactement comme après un refus du contrôle d'ancrage.
 
 Après création, activer avec les variables d'environnement affichées (ALPHAFORGE_GUARDRAIL_ID et _VERSION).
-Non testé sur le vrai compte au moment de l'écriture : les tests (backend/tests/test_llm.py) utilisent un faux client.
+Le journal conserve l'identité de la ressource ; un échec de publication supprime uniquement le guardrail
+créé par cette tentative. Un guardrail préexistant n'est jamais supprimé.
 """
 from __future__ import annotations
 
 import argparse
+import json
 import os
+from pathlib import Path
 import sys
+import time
 
 for _flux in (sys.stdout, sys.stderr):
     if hasattr(_flux, "reconfigure"):
@@ -54,26 +58,67 @@ CONFIG = dict(
 def main() -> None:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--verifier", action="store_true", help="affiche la configuration sans rien créer")
+    p.add_argument("--journal", type=Path, help="nouveau journal JSON de création")
     a = p.parse_args()
     if a.verifier:
-        import json
         print(json.dumps(CONFIG, ensure_ascii=False, indent=2))
         print("\nRien n'a été créé (--verifier).")
         return
 
     import boto3
 
-    profil = os.environ.get("AWS_PROFILE") or (None if os.environ.get("AWS_ACCESS_KEY_ID") else "datathon")
-    bedrock = boto3.Session(profile_name=profil, region_name=REGION).client("bedrock")
-    existant = next((g for g in bedrock.list_guardrails().get("guardrails", []) if g["name"] == NOM), None)
-    if existant:
-        identifiant = existant["id"]
-        print(f"Guardrail déjà là : {identifiant}")
-    else:
-        identifiant = bedrock.create_guardrail(**CONFIG)["guardrailId"]
-        print(f"Guardrail créé : {identifiant}")
-    version = bedrock.create_guardrail_version(guardrailIdentifier=identifiant,
-                                               description="Version publiée pour l'API AlphaForge")["version"]
+    profil = os.environ.get("AWS_PROFILE") or (None if os.environ.get("AWS_ACCESS_KEY_ID") else "alphaforge")
+    session = boto3.Session(profile_name=profil, region_name=REGION)
+    if session.client("sts").get_caller_identity()["Account"] != "471112821226" or REGION != "us-east-1":
+        raise ValueError("Le mandat autorise uniquement le compte 471112821226 en us-east-1.")
+    bedrock = session.client("bedrock")
+    chemin = a.journal or Path(__file__).parent / "build" / f"guardrail-{time.time_ns()}.json"
+    if chemin.exists():
+        raise ValueError(f"Journal déjà présent : {chemin}. Choisir un nouveau --journal.")
+    journal = {"nom": NOM, "region": REGION, "cree_par_tentative": False, "statut": "en_cours"}
+
+    def enregistrer():
+        chemin.parent.mkdir(parents=True, exist_ok=True)
+        temporaire = chemin.with_suffix(".tmp")
+        temporaire.write_text(json.dumps(journal, ensure_ascii=False, indent=2, default=str) + "\n")
+        temporaire.replace(chemin)
+
+    enregistrer()
+    try:
+        existant = next((g for g in bedrock.list_guardrails().get("guardrails", []) if g["name"] == NOM), None)
+        if existant:
+            identifiant = existant["id"]
+            journal.update(id=identifiant, arn=existant["arn"])
+            print(f"Guardrail déjà là : {identifiant}")
+        else:
+            cree = bedrock.create_guardrail(**CONFIG)
+            identifiant = cree["guardrailId"]
+            journal.update(id=identifiant, arn=cree["guardrailArn"], cree_par_tentative=True)
+            enregistrer()
+            print(f"Guardrail créé : {identifiant}", flush=True)
+        for _ in range(30):
+            statut = bedrock.get_guardrail(guardrailIdentifier=identifiant)["status"]
+            if statut == "READY":
+                break
+            if statut == "FAILED":
+                raise RuntimeError("La création du Guardrail a échoué.")
+            time.sleep(2)
+        else:
+            raise TimeoutError("Le Guardrail n'est pas prêt après 60 secondes.")
+        version = bedrock.create_guardrail_version(guardrailIdentifier=identifiant,
+                                                   description="Version publiée pour l'API AlphaForge")["version"]
+        journal.update(version=version, statut="publie")
+        enregistrer()
+    except Exception as e:
+        journal.update(statut="echec", erreur=str(e))
+        if journal["cree_par_tentative"]:
+            try:
+                bedrock.delete_guardrail(guardrailIdentifier=journal["id"])
+                journal["statut"] = "supprime_apres_echec"
+            except Exception as nettoyage:
+                journal["erreur_nettoyage"] = str(nettoyage)
+        enregistrer()
+        raise
     print(f"Version publiée : {version}\n")
     print("À ajouter à l'environnement de l'API (Lambda ou local) :")
     print(f"  ALPHAFORGE_GUARDRAIL_ID={identifiant}")
