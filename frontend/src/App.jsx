@@ -44,6 +44,16 @@ export default function App() {
   const [editions, setEditions] = useState([])   // chaque analyse reçue, gardée telle quelle pour être relue
   const [lue, setLue] = useState(null)           // index de l'édition relue ; null = la dernière
 
+  // Thème : clair (papier) ou sombre. Le choix de la personne est gardé ; à défaut, on suit le réglage du système.
+  const [theme, setTheme] = useState(() => {
+    try { const t = localStorage.getItem('folio-theme'); if (t === 'clair' || t === 'sombre') return t } catch (e) { /* stockage indisponible */ }
+    return window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'sombre' : 'clair'
+  })
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    try { localStorage.setItem('folio-theme', theme) } catch (e) { /* le thème reste valable pour cette page */ }
+  }, [theme])
+
   const [sante, setSante] = useState(null)
   const [registre, setRegistre] = useState(null)
 
@@ -168,6 +178,10 @@ export default function App() {
         <div className="entete-int">
           <div className="manchette-gauche">
             <button type="button" className="lien-retour" onClick={() => { setVue('parcours'); recommencer() }}>← Nouvelle demande</button>
+            <button type="button" className="choix-theme" role="switch" aria-checked={theme === 'sombre'}
+              onClick={() => setTheme(theme === 'sombre' ? 'clair' : 'sombre')} title="Changer de thème">
+              <span aria-hidden="true">{theme === 'sombre' ? '☾' : '☼'}</span> Thème {theme === 'sombre' ? 'sombre' : 'clair'}
+            </button>
           </div>
           <button type="button" className="marque" onClick={() => { setVue('parcours'); recommencer() }} aria-label={`Folio, ${NOM_PRODUIT} ${SOUS_TITRE} : revenir au début`}>
             folio
