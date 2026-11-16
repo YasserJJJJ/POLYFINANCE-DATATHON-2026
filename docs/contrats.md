@@ -115,3 +115,27 @@ Ces deux familles donnent des valeurs différentes pour un même titre (TSLA : �
 - `profil.symboles_portefeuille(portefeuille)` est le seul accès aux symboles des appelants Python. `frontend/src/portefeuille.js` fournit la même projection pour les opérations de liste de React. Les poids restent dans le profil jusqu'à une modification explicite des lignes par la personne. Ce pont a été autorisé séparément par le porteur ; voir [la révision](fusion/REVISIONS.md).
 - `llm.journal_appels()` rend une liste vide dans cette tranche ; `orchestrateur.analyser` la rattache au dossier sur ses deux chemins de sortie. La tranche 3 instrumentera cette fonction.
 - Les références des trois personas comparent tout le dossier hors durées et ces trois nouveaux champs : verdict, règles, faits, options et grille notamment.
+
+### Qualification des entrées HTTP
+
+Les routes `/api/comprendre`, `/api/analyse` et `/api/analyse/flux` convertissent
+les chaînes numériques finies des champs montant, horizon, épargne, somme à
+préserver, retrait prévu et tolérance. Une exclusion en chaîne devient une
+liste d'un élément. Le profil et la demande fournis par l'appelant ne sont pas
+modifiés.
+
+Les entrées non numériques ou non finies restent invalides : le Gardien émet
+la règle `donnees`, niveau `gris`, et le verdict `indetermine`. L'API arrête ces
+demandes avant les calculs et la lecture de texte libre ; elle ne remplace pas
+une saisie invalide par une valeur extraite du texte. `/api/comprendre` rend
+les raisons dans `questions`.
+
+Un montant supérieur à l'épargne totale donne le même verdict, avec la raison
+« Le montant dépasse l'épargne totale. ». Un symbole demandé hors univers
+reste une erreur 422, expliquée en français en mentionnant les 31 actifs du
+jeu de départ. Dans le flux NDJSON, le statut HTTP reste 200 et le message
+terminal porte `type: "erreur"` et `statut: 422`, comme dans le protocole existant.
+
+La conversion des chaînes appartient à la frontière HTTP ; les fonctions
+Python internes continuent de recevoir des nombres. Aucun seuil ni aucune
+formule financière ne change.

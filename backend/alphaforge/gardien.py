@@ -5,6 +5,8 @@ et les faits (F-n) qui la soutiennent. Les seuils viennent de profil.py.
 """
 from __future__ import annotations
 
+import math
+
 from .dossier import Regle
 from .format import dollars, fr
 from .profil import evaluer, symboles_portefeuille
@@ -51,11 +53,39 @@ SECTEURS_FR = {"Energy": "Énergie", "Crypto asset": "Cryptoactifs", "Financials
 def exclusions_normalisees(profil: dict) -> list[str]:
     """Exclusions en minuscules, sans entrée vide (une chaîne vide excluait tous les secteurs)."""
     sortie = []
-    for e in profil.get("exclusions") or []:
+    exclusions = profil.get("exclusions") or []
+    if isinstance(exclusions, str):
+        exclusions = [exclusions]
+    for e in exclusions:
         e = str(e).strip().lower()
         if e:
             sortie.append(SYNONYMES_SECTEURS.get(e, e))
     return sortie
+
+
+def erreurs_entree(profil: dict, demande: dict) -> list[str]:
+    """Entrées invalides, à contrôler avant les scores et les calculs de marché."""
+    erreurs = []
+    champs = [
+        ("une épargne totale positive", profil.get("epargne_totale_cad"), 0),
+        ("un montant positif", demande.get("montant_cad"), 0),
+        ("un horizon d'au moins 1 an", profil.get("horizon_ans"), 1),
+        ("une somme à préserver numérique", profil.get("somme_a_preserver_cad"), None),
+        ("un retrait prévu numérique", profil.get("retrait_prevu_ans"), None),
+        ("une tolérance numérique", profil.get("tolerance"), None),
+    ]
+    for nom, valeur, minimum in champs:
+        if valeur is None:
+            continue  # les champs manquants peuvent encore être extraits du texte
+        if (isinstance(valeur, bool) or not isinstance(valeur, (int, float))
+                or (isinstance(valeur, float) and not math.isfinite(valeur))
+                or (minimum is not None and (valeur <= 0 or valeur < minimum))):
+            erreurs.append(f"Il faut {nom}.")
+    if not erreurs:
+        montant, epargne = demande.get("montant_cad"), profil.get("epargne_totale_cad")
+        if montant is not None and epargne is not None and montant > epargne:
+            erreurs.append("Le montant dépasse l'épargne totale.")
+    return erreurs
 
 
 def appliquer_regles(profil: dict, demande: dict, m: dict, f: dict | None = None) -> list[Regle]:
@@ -71,6 +101,9 @@ def _regles(profil: dict, demande: dict, m: dict, f: dict | None = None) -> list
     """profil : champs du profil ; demande : ticker, montant_cad ; m : mesures
     calculées ; f : identifiants des faits (pour relier chaque règle à ses preuves)."""
     f = f or {}
+    erreurs = erreurs_entree(profil, demande)
+    if erreurs:
+        return [Regle("donnees", "Informations essentielles", "gris", " ".join(erreurs))]
     ev = evaluer(profil)
     regles: list[Regle] = []
     epargne = profil.get("epargne_totale_cad")
@@ -80,15 +113,8 @@ def _regles(profil: dict, demande: dict, m: dict, f: dict | None = None) -> list
                                     ("montant", montant), ("tolérance", ev["tolerance"])] if v is None]
     if any(c["statut"] == "echec" for c in m.get("qualite", [])):
         manquants.append("données de marché fiables")
-    # Valeurs impossibles : on ne conclut pas (sinon division par zéro, ou un montant négatif jugé « cohérent »).
-    invalides = [nom for nom, v in [("une épargne totale positive", epargne), ("un montant positif", montant),
-                                    ("un horizon d'au moins 1 an", profil.get("horizon_ans"))]
-                 if v is not None and (isinstance(v, bool) or not isinstance(v, (int, float)) or v <= 0
-                                       or (nom.startswith("un horizon") and v < 1))]
-    if manquants or invalides:
-        morceaux = (["Il manque : " + ", ".join(manquants) + "."] if manquants else []) + \
-                   (["Il faut " + ", ".join(invalides) + "."] if invalides else [])
-        regles.append(Regle("donnees", "Informations essentielles", "gris", " ".join(morceaux)))
+    if manquants:
+        regles.append(Regle("donnees", "Informations essentielles", "gris", "Il manque : " + ", ".join(manquants) + "."))
         return regles
 
     poids = montant / epargne
