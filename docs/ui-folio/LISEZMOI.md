@@ -8,7 +8,7 @@ Source du style : `FOLIO_UI_KIT` (Folio 0.7.0), voie « transférer le langage v
 
 - `frontend/public/fonts/` : DM Sans et Newsreader (six fichiers, licences SIL OFL jointes). Plus aucune police chargée depuis un service externe.
 - `frontend/src/folio.css` : palette (papier, encre verte, rouge d'annotation), typographie, filets, manchette, onglets, double page du résultat. Chargée après `styles.css` : elle rhabille les classes existantes, elle n'en retire aucune.
-- En-tête sobre sur une ligne : « AlphaForge AI · Second avis » (le nom de l'énoncé), étapes en chiffres romains, état du dossier, thème.
+- Manchette : « AlphaForge AI » (le nom de l'énoncé) au centre, à l'emplacement et à la taille du mot-symbole d'origine, « Second avis » dessous ; état du dossier à droite, thème à gauche, étapes en chiffres romains.
 - Verdict en double page : l'avis en grand titre à gauche ; à droite le chiffre qui le porte, la pire baisse du portefeuille avec la demande, face à celle d'avant, avec son écart et son sens rendus par le moteur. Le chiffre ouvre sa preuve.
 - Lecture « Essentielle » et « Approfondie » : les deux onglets existants, présentés comme dans Folio.
 

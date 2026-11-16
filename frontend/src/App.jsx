@@ -178,36 +178,40 @@ export default function App() {
     <div className="app">
       <header className="entete">
         <div className="entete-int">
-          <button type="button" className="marque" onClick={() => { setVue('parcours'); recommencer() }} title="Nouvelle demande">
+          <div className="manchette-gauche">
+            <button type="button" className="lien-retour" onClick={() => { setVue('parcours'); recommencer() }}>← Nouvelle demande</button>
+            <button type="button" className="choix-theme" role="switch" aria-checked={theme === 'sombre'}
+              onClick={() => setTheme(theme === 'sombre' ? 'clair' : 'sombre')} title="Changer de thème">
+              <span aria-hidden="true">{theme === 'sombre' ? '☾' : '☼'}</span> Thème {theme === 'sombre' ? 'sombre' : 'clair'}
+            </button>
+          </div>
+          <button type="button" className="marque" onClick={() => { setVue('parcours'); recommencer() }} aria-label={`${NOM_PRODUIT}, ${SOUS_TITRE} : revenir au début`}>
             {NOM_PRODUIT}
             <span className="marque-sous">{SOUS_TITRE}</span>
           </button>
-          {vue === 'parcours' && (
-            <ol className="etapes" aria-label="Étapes du parcours">
-              {ETAPES.map((nom, i) => (
-                <li key={nom} className={i === etape ? 'actuelle' : i < etape ? 'faite' : ''} aria-current={i === etape ? 'step' : undefined}>
-                  <span className="etape-num" aria-hidden="true">{ROMAINS[i]}</span>
-                  <span className="etape-nom">{nom}</span>
-                </li>
-              ))}
-            </ol>
-          )}
           <div className="manchette-droite">
-            {editions.length > 0 && (
-              <span className="etat-dossier">{lue !== null ? 'Archive' : 'Édition'} {indexEdition + 1}/{editions.length}{relance ? ' · analyse en cours' : ''}</span>
-            )}
+            <div>Le dossier de décision</div>
+            <div>{editions.length === 0 ? 'Simulation éducative'
+              : `${lue !== null ? 'Archive' : 'Édition'} ${indexEdition + 1} sur ${editions.length} · ${relance ? 'analyse en cours' : 'analyse terminée'}`}</div>
             {sante && (
               <span className={`etat-agents ${sante.llm ? 'actifs' : ''}`}
                 title={sante.llm ? `${sante.modeles.principal} et ${sante.modeles.leger}` : sante.raison || ''}>
                 <i aria-hidden="true" />
-                {sante.llm ? 'Bedrock' : 'Hors ligne'}
+                {sante.llm ? 'Agents IA : Bedrock' : 'Agents : mode hors ligne'}
               </span>
             )}
-            <button type="button" className="choix-theme" role="switch" aria-checked={theme === 'sombre'}
-              onClick={() => setTheme(theme === 'sombre' ? 'clair' : 'sombre')} title="Changer de thème"
-              aria-label={`Thème ${theme === 'sombre' ? 'sombre' : 'clair'} : changer`}>
-              <span aria-hidden="true">{theme === 'sombre' ? '☾' : '☼'}</span>
-            </button>
+          </div>
+          <div className="barre-etapes">
+            {vue === 'parcours' ? (
+              <ol className="etapes" aria-label="Étapes du parcours">
+                {ETAPES.map((nom, i) => (
+                  <li key={nom} className={i === etape ? 'actuelle' : i < etape ? 'faite' : ''} aria-current={i === etape ? 'step' : undefined}>
+                    <span className="etape-num" aria-hidden="true">{ROMAINS[i]}</span>
+                    <span className="etape-nom">{nom}</span>
+                  </li>
+                ))}
+              </ol>
+            ) : <span />}
             <button type="button" className="bouton discret" onClick={() => setVue(vue === 'parcours' ? 'comparer' : 'parcours')}>
               {vue === 'parcours' ? 'Comparer les 3 profils' : 'Retour au parcours'}
             </button>
