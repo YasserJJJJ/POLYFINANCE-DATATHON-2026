@@ -45,3 +45,9 @@ Non vérifié : étape « Curseurs », vue « Comparer les 3 profils », plan ou
 cd backend && uvicorn api:app --port 8000
 cd frontend && npm install && npm run dev
 ```
+
+## Mise en page sans blanc (ajout)
+
+- Les zones à deux colonnes (vérification, pourquoi et graphique, règles et sceptique, qualité et limites, curseurs) ne sont plus deux blocs de hauteurs inégales : le contenu coule d'une colonne à l'autre et s'équilibre. Un bloc replié ne laisse plus de vide à côté de lui.
+- La page de droite du verdict porte aussi « Ce qui tend ta demande », sous le chiffre.
+- Les boutons « i » sont petits et placés à la suite du texte qu'ils documentent, au lieu d'occuper une ligne.

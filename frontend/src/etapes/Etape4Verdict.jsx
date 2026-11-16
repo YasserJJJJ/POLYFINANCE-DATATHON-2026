@@ -53,7 +53,7 @@ const SENS = { aggrave: 'une baisse plus profonde', ameliore: 'une baisse moins 
 
 // Page de droite : le chiffre qui porte l'avis. Avec un portefeuille connu, c'est la pire baisse du portefeuille
 // après la demande, face à celle d'avant (même moteur, même fenêtre). Sinon, le décompte des règles.
-function ResultatHeros({ dossier, plan, ouvrir }) {
+function ResultatHeros({ dossier, plan, ouvrir, children }) {
   const k = dossier.comparaison
   const v = dossier.verdict
   if (!plan && k?.disponible) {
@@ -68,6 +68,7 @@ function ResultatHeros({ dossier, plan, ouvrir }) {
         <p className="heros-note">Contre <strong>{fr1(k.avant.pire_chute_pct)} %</strong> sans ta demande :
           un écart de <strong>{fr1(k.ecarts.pire_chute_pts)} points</strong>, soit {SENS[k.ecarts.sens_pire_chute] || ''}.
           Mesuré de la même façon, sur la même période passée. <strong>Ce n'est pas une prévision.</strong></p>
+        {children}
       </aside>
     )
   }
@@ -78,6 +79,7 @@ function ResultatHeros({ dossier, plan, ouvrir }) {
       <span className="heros-nombre" style={{ cursor: 'default' }}>{v.respectees}<small style={{ fontSize: '0.35em', letterSpacing: 0 }}> / {v.evaluees}</small></span>
       <p className="heros-note">Le verdict est décidé par des règles écrites en code, jamais par un modèle.
         {k && !k.disponible && k.raison ? ` Comparaison du portefeuille indisponible : ${k.raison}` : ''}</p>
+      {children}
     </aside>
   )
 }
@@ -211,13 +213,19 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
             {' '}<Etiquette type={ph.type} />
           </p>
         ))}
-        {estPersona && texte?.miroir?.length > 0 && (
-          <p className="muted petit">« Tu as dit » cite une phrase type du profil {profil.nom} (scénario fictif de l'équipe),
-            pas une saisie que tu as faite.</p>
-        )}
-        {texte?.tensions?.map((t) => <p key={t} className="tension">{pourClient(t)}</p>)}
         </div>
-        <ResultatHeros dossier={dossier} plan={plan} ouvrir={ouvrirFait} />
+        <ResultatHeros dossier={dossier} plan={plan} ouvrir={ouvrirFait}>
+          {texte?.tensions?.length > 0 && (
+            <div className="heros-tensions">
+              <span className="heros-libelle">Ce qui tend ta demande</span>
+              {texte.tensions.map((t) => <p key={t} className="tension">{pourClient(t)}</p>)}
+            </div>
+          )}
+          {estPersona && texte?.miroir?.length > 0 && (
+            <p className="muted petit heros-mention">« Tu as dit » cite une phrase type du profil {profil.nom} (scénario fictif de l'équipe),
+              pas une saisie que tu as faite.</p>
+          )}
+        </ResultatHeros>
       </div>
 
       <CeQuiChange editions={editions} index={indexEdition} />
