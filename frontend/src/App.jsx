@@ -34,6 +34,7 @@ export default function App() {
   const [direct, setDirect] = useState(DIRECT_VIDE)   // étapes reçues pendant l'analyse, avant le dossier complet
   const [faitOuvert, setFaitOuvert] = useState(null)
   const [erreur, setErreur] = useState(null)
+  const [champsFichier, setChampsFichier] = useState([])   // informations reprises d'un fichier déposé
 
   const [sante, setSante] = useState(null)
   const [registre, setRegistre] = useState(null)
@@ -49,11 +50,17 @@ export default function App() {
     const p = personas[cle]
     setProfil({ ...PROFIL_VIERGE, ...p.profil })
     setDemande({ ...p.demande })
+    setChampsFichier([])
   }
 
-  const partirDeMesMots = (texte) => {
-    setProfil((p) => ({ ...p, citations: texte.split(/(?<=[.!?])\s+/).filter((s) => s.trim().length > 3) }))
-    setDemande({ texte, ticker: null, montant_cad: null })
+  // Phrase seule, fichier seul, ou les deux : le fichier remplit ce qu'il connaît, la phrase complète le reste
+  // (le Profileur ne remplit que les champs encore vides).
+  const partirDe = ({ texte, fichier }) => {
+    const phrases = texte.split(/(?<=[.!?])\s+/).filter((s) => s.trim().length > 3)
+    const duFichier = fichier?.profil || {}
+    setProfil({ ...PROFIL_VIERGE, ...duFichier, citations: [...(duFichier.citations || []), ...phrases] })
+    setDemande({ ticker: null, montant_cad: null, ...(fichier?.demande || {}), texte: texte || fichier?.demande?.texte || '' })
+    setChampsFichier(fichier ? fichier.lus : [])
   }
 
   const lancer = async () => {
@@ -77,7 +84,7 @@ export default function App() {
   // Toujours une liste d'identifiants : une phrase peut s'appuyer sur plusieurs chiffres.
   const ouvrirFait = (ids) => setFaitOuvert([].concat(ids))
 
-  const recommencer = () => { setEtape(0); setDossier(null); setProfil(PROFIL_VIERGE); setDemande({ texte: '', ticker: null, montant_cad: null }) }
+  const recommencer = () => { setEtape(0); setDossier(null); setProfil(PROFIL_VIERGE); setDemande({ texte: '', ticker: null, montant_cad: null }); setChampsFichier([]) }
 
   return (
     <RegistreContext.Provider value={registre}>
@@ -126,10 +133,10 @@ export default function App() {
           <>
             {etape === 0 && (
               <Etape1Mots personas={personas} onPersona={(cle) => { choisirPersona(cle); setEtape(1) }}
-                onTexte={(t) => { partirDeMesMots(t); setEtape(1) }} />
+                onDemarrer={(entree) => { partirDe(entree); setEtape(1) }} />
             )}
             {etape === 1 && (
-              <Etape2Verifier profil={profil} setProfil={setProfil} demande={demande} setDemande={setDemande}
+              <Etape2Verifier profil={profil} setProfil={setProfil} demande={demande} setDemande={setDemande} champsFichier={champsFichier}
                 actifs={actifs} questions={questions} onRetour={() => setEtape(0)} onLancer={lancer} />
             )}
             {etape === 2 && <Etape3Trace dossier={dossier} direct={direct} onFini={() => setEtape(3)} ouvrirFait={ouvrirFait} />}

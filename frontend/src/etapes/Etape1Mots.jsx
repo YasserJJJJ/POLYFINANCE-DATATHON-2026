@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { dollars } from '../api.js'
+import { lireFichierClient, telechargerModele } from '../fichierClient.js'
 
 const AMORCES = ['Je veux ', "J'ai ", "Mais j'ai peur de "]
 
@@ -9,8 +10,24 @@ const PERSONAS_RESUME = {
   robert: { age: 59, risque: 'Risque faible à modéré', horizon: '3 à 5 ans', teste: 'Une demande médiatisée face à sa retraite proche' },
 }
 
-export default function Etape1Mots({ personas, onPersona, onTexte }) {
+export default function Etape1Mots({ personas, onPersona, onDemarrer }) {
   const [texte, setTexte] = useState('')
+  const [fichier, setFichier] = useState(null)
+  const [erreurFichier, setErreurFichier] = useState('')
+  const [survol, setSurvol] = useState(false)
+  const champFichier = useRef(null)
+
+  const charger = async (f) => {
+    if (!f) return
+    setErreurFichier('')
+    try {
+      setFichier(await lireFichierClient(f))
+    } catch (e) {
+      setFichier(null)
+      setErreurFichier(e.message)
+    }
+  }
+  const pret = texte.trim() || fichier
 
   const ajouterAmorce = (a) => setTexte((t) => (t && !t.endsWith(' ') ? `${t} ${a}` : `${t}${a}`))
 
@@ -25,7 +42,7 @@ export default function Etape1Mots({ personas, onPersona, onTexte }) {
         </p>
       </div>
 
-      <form className="carte saisie" onSubmit={(e) => { e.preventDefault(); if (texte.trim()) onTexte(texte.trim()) }}>
+      <form className="carte saisie" onSubmit={(e) => { e.preventDefault(); if (pret) onDemarrer({ texte: texte.trim(), fichier }) }}>
         <label htmlFor="texte-libre" className="titre-champ">Avec tes mots</label>
         <textarea id="texte-libre" rows={4} value={texte} onChange={(e) => setTexte(e.target.value)}
           placeholder="Ex. : Je veux mettre 10 000 $ en Bitcoin. J'ai 40 000 $ d'épargne. Mais j'ai peur de tout perdre." />
@@ -34,8 +51,32 @@ export default function Etape1Mots({ personas, onPersona, onTexte }) {
             <button key={a} type="button" className="amorce" onClick={() => ajouterAmorce(a)}>{a.trim()}…</button>
           ))}
         </div>
+        <div className={`depot ${survol ? 'survol' : ''}`}
+          onDragOver={(e) => { e.preventDefault(); setSurvol(true) }} onDragLeave={() => setSurvol(false)}
+          onDrop={(e) => { e.preventDefault(); setSurvol(false); charger(e.dataTransfer.files?.[0]) }}>
+          {fichier ? (
+            <div className="depot-lu" aria-live="polite">
+              <p><strong>{fichier.nom}</strong> : {fichier.lus.length} information(s) reprise(s), {fichier.lus.join(', ')}.</p>
+              {fichier.ignores.length > 0 && (
+                <p className="muted petit">Non reprises : {fichier.ignores.join(', ')}.</p>
+              )}
+              <button type="button" className="bouton discret" onClick={() => { setFichier(null); champFichier.current.value = '' }}>
+                Retirer le fichier
+              </button>
+            </div>
+          ) : (
+            <p className="muted petit">
+              Tu as déjà tes informations (profil, portefeuille) ? Dépose un fichier JSON ici, avec ou sans phrase.
+              {' '}<button type="button" className="lien" onClick={() => champFichier.current.click()}>Choisir un fichier</button>
+              {' · '}<button type="button" className="lien" onClick={telechargerModele}>Télécharger le modèle</button>
+            </p>
+          )}
+          <input ref={champFichier} type="file" accept="application/json,.json" hidden
+            onChange={(e) => charger(e.target.files?.[0])} aria-label="Fichier JSON de tes informations" />
+          {erreurFichier && <p className="alerte petit" role="alert">{erreurFichier}</p>}
+        </div>
         <div className="actions">
-          <button type="submit" className="bouton principal" disabled={!texte.trim()}>Continuer</button>
+          <button type="submit" className="bouton principal" disabled={!pret}>Continuer</button>
         </div>
       </form>
 

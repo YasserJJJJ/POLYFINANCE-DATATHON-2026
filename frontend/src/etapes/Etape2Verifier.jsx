@@ -46,7 +46,7 @@ function MiseEnSituation() {
   )
 }
 
-export default function Etape2Verifier({ profil, setProfil, demande, setDemande, actifs, questions, onRetour, onLancer }) {
+export default function Etape2Verifier({ profil, setProfil, demande, setDemande, champsFichier = [], actifs, questions, onRetour, onLancer }) {
   const [compris, setCompris] = useState(null)
   const [erreurLecture, setErreurLecture] = useState('')
   const minuterie = useRef(null)
@@ -104,6 +104,9 @@ export default function Etape2Verifier({ profil, setProfil, demande, setDemande,
           <strong>{profil.horizon_ans ?? '…'} an(s)</strong>.
         </p>
         {demande.texte && <p className="citation">« {demande.texte} »</p>}
+        {champsFichier.length > 0 && (
+          <p className="muted petit">Repris de ton fichier : {champsFichier.join(', ')}. Tu peux tout corriger ci-dessous.</p>
+        )}
         {compris?.profil?.extraits && Object.keys(compris.profil.extraits.champs || {}).length > 0 && (
           <p className="muted petit">
             Lu dans ta phrase par {compris.profil.extraits.source}, puis vérifié par le code :{' '}
