@@ -1,0 +1,118 @@
+<poste-local> UserWarning: graph has no max_node_executions or execution_timeout set; execution is unbounded
+  graphe = b.build()
+node_id=<analyse>, error=<Model stopped generating due to maximum token limit. The partial message has been added to the conversation history. You can continue by calling the agent again. For more information see: https://strandsagents.com/docs/user-guide/concepts/agents/agent-loop/#maxtokensreachedexception> | node failed
+graph execution failed
+Traceback (most recent call last):
+  File "<poste-local>", line 715, in stream_async
+    async for event in self._execute_graph(invocation_state):
+    ...<3 lines>...
+        yield event.as_dict()
+  File "<poste-local>", line 843, in _execute_graph
+    async for event in self._execute_nodes_parallel(current_batch, invocation_state):
+        yield event
+  File "<poste-local>", line 921, in _execute_nodes_parallel
+    raise event
+  File "<poste-local>", line 959, in _stream_node_to_queue
+    async for event in self._execute_node(node, invocation_state):
+        await event_queue.put(event)
+  File "<poste-local>", line 1110, in _execute_node
+    async for event in node.executor.stream_async(
+    ...<9 lines>...
+            node_cancel_signal_set = signal is not None and signal.is_set()
+  File "<poste-local>", line 1620, in stream_async
+    async for event in events:
+    ...<8 lines>...
+            yield as_dict
+  File "<poste-local>", line 1776, in _run_loop
+    async for event in self._middleware_registry.invoke(
+    ...<12 lines>...
+        yield event
+  File "<poste-local>", line 154, in invoke
+    async for event in gen:
+        yield event
+  File "<poste-local>", line 1958, in terminal
+    async for event in events:
+    ...<17 lines>...
+        yield event
+  File "<poste-local>", line 2015, in _execute_event_loop_cycle
+    async for event in events:
+        yield event
+  File "<poste-local>", line 302, in event_loop_cycle
+    raise MaxTokensReachedException(
+    ...<7 lines>...
+    )
+strands.types.exceptions.MaxTokensReachedException: Model stopped generating due to maximum token limit. The partial message has been added to the conversation history. You can continue by calling the agent again. For more information see: https://strandsagents.com/docs/user-guide/concepts/agents/agent-loop/#maxtokensreachedexception
+Traceback (most recent call last):
+  File "<poste-local>", line 50, in <module>
+    res = graphe("La concentration sur un seul titre augmente-t-elle la dispersion des issues ? Source d'essai : sha256:abc123.")
+  File "<poste-local>", line 612, in __call__
+    return run_async(lambda: self.invoke_async(task, invocation_state, invocation_context=invocation_context))
+  File "<poste-local>", line 45, in run_async
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "<poste-local>", line 162, in wrapped_func
+    return original_func(*func_args, **func_kwargs)
+  File "<poste-local>", line 38, in execute
+    return asyncio.run(execute_async())
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 721, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "<poste-local>", line 33, in execute_async
+    return await async_func()
+           ^^^^^^^^^^^^^^^^^^
+  File "<poste-local>", line 637, in invoke_async
+    async for event in events:
+        final_event = event
+  File "<poste-local>", line 715, in stream_async
+    async for event in self._execute_graph(invocation_state):
+    ...<3 lines>...
+        yield event.as_dict()
+  File "<poste-local>", line 843, in _execute_graph
+    async for event in self._execute_nodes_parallel(current_batch, invocation_state):
+        yield event
+  File "<poste-local>", line 921, in _execute_nodes_parallel
+    raise event
+  File "<poste-local>", line 959, in _stream_node_to_queue
+    async for event in self._execute_node(node, invocation_state):
+        await event_queue.put(event)
+  File "<poste-local>", line 1110, in _execute_node
+    async for event in node.executor.stream_async(
+    ...<9 lines>...
+            node_cancel_signal_set = signal is not None and signal.is_set()
+  File "<poste-local>", line 1620, in stream_async
+    async for event in events:
+    ...<8 lines>...
+            yield as_dict
+  File "<poste-local>", line 1776, in _run_loop
+    async for event in self._middleware_registry.invoke(
+    ...<12 lines>...
+        yield event
+  File "<poste-local>", line 154, in invoke
+    async for event in gen:
+        yield event
+  File "<poste-local>", line 1958, in terminal
+    async for event in events:
+    ...<17 lines>...
+        yield event
+  File "<poste-local>", line 2015, in _execute_event_loop_cycle
+    async for event in events:
+        yield event
+  File "<poste-local>", line 302, in event_loop_cycle
+    raise MaxTokensReachedException(
+    ...<7 lines>...
+    )
+strands.types.exceptions.MaxTokensReachedException: Model stopped generating due to maximum token limit. The partial message has been added to the conversation history. You can continue by calling the agent again. For more information see: https://strandsagents.com/docs/user-guide/concepts/agents/agent-loop/#maxtokensreachedexception

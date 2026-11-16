@@ -1,0 +1,30 @@
+
+=== chaine, sans cache de nœuds ===
+première exécution               : {'agent0': 1, 'agent1': 1, 'agent2': 1, 'agent3': 1}
+après correction montant → 8000  : {'agent0': 0, 'agent1': 1, 'agent2': 1, 'agent3': 1} → 1 fiche(s) ; dixième du montant = 800.0
+après retour à montant = 5000    : {'agent0': 0, 'agent1': 1, 'agent2': 1, 'agent3': 1} → 1 fiche(s) ; dixième du montant = 500.0
+
+=== chaine, avec cache de nœuds ===
+première exécution               : {'agent0': 1, 'agent1': 1, 'agent2': 1, 'agent3': 1}
+après correction montant → 8000  : {'agent0': 0, 'agent1': 0, 'agent2': 1, 'agent3': 1} → 1 fiche(s) ; dixième du montant = 800.0
+après retour à montant = 5000    : {'agent0': 0, 'agent1': 0, 'agent2': 0, 'agent3': 0} → 1 fiche(s) ; dixième du montant = 500.0
+
+=== losange, sans cache de nœuds ===
+première exécution               : {'agent0': 1, 'agent1': 1, 'agent2': 1, 'agent3': 1}
+après correction montant → 8000  : {'agent0': 0, 'agent1': 1, 'agent2': 1, 'agent3': 1} → 1 fiche(s) ; dixième du montant = 800.0
+après retour à montant = 5000    : {'agent0': 0, 'agent1': 1, 'agent2': 1, 'agent3': 1} → 1 fiche(s) ; dixième du montant = 500.0
+
+=== losange, avec cache de nœuds ===
+première exécution               : {'agent0': 1, 'agent1': 1, 'agent2': 1, 'agent3': 1}
+après correction montant → 8000  : {'agent0': 0, 'agent1': 0, 'agent2': 1, 'agent3': 1} → 1 fiche(s) ; dixième du montant = 800.0
+après retour à montant = 5000    : {'agent0': 0, 'agent1': 0, 'agent2': 0, 'agent3': 0} → 1 fiche(s) ; dixième du montant = 500.0
+
+=== autre processus, autre fil, mêmes entrées, cache SQLite partagé ===
+exécutions supplémentaires : {'agent0': 0, 'agent1': 0, 'agent2': 0, 'agent3': 0} → 1 fiche(s) ; dixième du montant = 500.0 
+
+=== même fonction, formule changée (dixième + 1), mêmes entrées, même cache ===
+avant le changement : {'agent0': 1, 'agent1': 1, 'agent2': 1, 'agent3': 1} → 1 fiche(s) ; dixième du montant = 500.0
+après le changement : {'agent0': 0, 'agent1': 0, 'agent2': 0, 'agent3': 0} → 1 fiche(s) ; dixième du montant = 500.0 (501.0 attendu si la nouvelle formule a tourné ; 500.0 = ancien résultat servi par le cache)
+
+=== autre fonction sous le même nom de nœud (formule : dixième + 1), mêmes entrées, même cache ===
+exécutions supplémentaires : {'agent0': 0, 'agent1': 0, 'agent2': 0, 'agent2 (autre fonction)': 1, 'agent3': 1} → 1 fiche(s) ; dixième du montant = 501.0 (501.0 attendu si le nouveau code a tourné) 

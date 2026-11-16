@@ -1,0 +1,14 @@
+  crochet AfterModelCallEvent : raison d'arrêt = tool_use | blocs = ['toolUse'] | exception = None
+  crochet AfterModelCallEvent : raison d'arrêt = end_turn | blocs = ['reasoningContent', 'text'] | exception = None
+raison d'arrêt : end_turn
+réponse : La pire baisse enregistrée pour TSLA est de -43,2 %, mais l'outil indique qu'il s'agit d'une valeur fictive de test, donc à ne pas considérer comme une donnée de marché réelle.
+outil exécuté avec : ['TSLA']
+jetons cumulés selon Strands : {'inputTokens': 1037, 'outputTokens': 180, 'totalTokens': 1217, 'cacheReadInputTokens': 0, 'cacheWriteInputTokens': 0}
+nombre de cycles selon Strands : 2
+détail par cycle selon Strands : [{'inputTokens': 471, 'outputTokens': 55, 'totalTokens': 526, 'cacheReadInputTokens': 0, 'cacheWriteInputTokens': 0}, {'inputTokens': 566, 'outputTokens': 125, 'totalTokens': 691, 'cacheReadInputTokens': 0, 'cacheWriteInputTokens': 0}]
+un identifiant de requête AWS dans le résultat Strands ? False
+
+[essai2] appels Bedrock de cet essai (toutes relances) : 2 ; total tous essais : 2/20
+    Converse 200 d6ba8811-bd6d-4fe2-9a44-7f6b3dff6328 {'inputTokens': 471, 'outputTokens': 55, 'totalTokens': 526, 'cacheReadInputTokens': 0, 'cacheWriteInputTokens': 0} tool_use 1.41 s
+    Converse 200 6dde67bc-ede1-4f81-af7d-c7580c4e1dc0 {'inputTokens': 566, 'outputTokens': 125, 'totalTokens': 691, 'cacheReadInputTokens': 0, 'cacheWriteInputTokens': 0} end_turn 2.0 s
+[essai2] hôtes résolus par ce processus : ['bedrock-runtime.us-east-1.amazonaws.com']

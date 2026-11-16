@@ -1,0 +1,53 @@
+# Scénarios de démonstration. Tout ce qui n'est pas dans l'énoncé est une HYPOTHÈSE de
+# démonstration, affichée comme telle dans le dossier et modifiable.
+
+[robert]
+persona = "robert"
+titre = "Robert, à quelques années de la retraite, est tenté par Tesla"
+demande = "J'aimerais consacrer une partie de mon portefeuille à Tesla ; on en parle partout."
+origine_demande = "initiative de la personne"
+actif_demande = "TSLA"
+part_declaree = 0.10            # hypothèse : la part n'est pas précisée dans la demande
+parts_etudiees = [0.05, 0.10, 0.20]
+seuil_perte = -0.15             # hypothèse : capacité de perte inconnue ; seuil de démonstration
+horizon_etude_ans = 3           # borne basse de l'horizon déclaré (3 à 5 ans)
+alternative = "QQQ"             # exposition diversifiée à la croissance, même part
+[robert.portefeuille_actuel]    # hypothèse : portefeuille fictif de départ
+"XBB.TO" = 0.40
+"ZST.TO" = 0.10
+"XIU.TO" = 0.30
+"SPY" = 0.20
+
+[amira]
+persona = "amira"
+titre = "Amira veut de la croissance IA et crypto, sans tout miser sur la technologie"
+demande = "Je veux un portefeuille de croissance axé sur l'IA et la crypto, sans tout miser sur la technologie."
+origine_demande = "analyse demandée par la personne"
+plafond_risque_groupe = 0.50    # hypothèse : « éviter de miser exclusivement » → aucun groupe > 50 % du risque
+horizon_etude_ans = 3           # l'échantillon (5 ans) ne permet pas d'observer 15 ans
+[amira.portefeuille_propose]    # hypothèse : traduction fictive de la demande
+"NVDA" = 0.20
+"TSLA" = 0.10
+"QQQ" = 0.25
+"SHOP.TO" = 0.10
+"BTC-USD" = 0.15
+"ETH-USD" = 0.10
+"SPY" = 0.10
+[amira.panier_diversification]  # hypothèse : panier hors technologie vers lequel on déplace une part
+"XIU.TO" = 0.20                  # la variante comparée est construite par une règle (outil
+"SPY" = 0.20                     # diversification_sweep), pas choisie à la main
+"CNR.TO" = 0.20
+"ATD.TO" = 0.20
+"GLD" = 0.20
+
+# Regroupement des expositions pour la concentration (étiquettes de l'univers du jeu de départ).
+# QQQ est classé « technologie » d'après sa description (Nasdaq-100, forte pondération
+# technologique) ; sans composition détaillée, son exposition réelle n'est pas mesurée.
+[groupes]
+"Technologie" = ["NVDA", "AAPL", "MSFT", "GOOGL", "SHOP.TO", "CSU.TO", "QQQ"]
+"Cryptoactifs" = ["BTC-USD", "ETH-USD"]
+"Consommation discrétionnaire" = ["TSLA", "AMZN"]
+"Actions diversifiées" = ["SPY", "XIU.TO", "ESGV"]
+"Obligations" = ["XBB.TO", "ZST.TO", "AGG", "TLT"]
+"Or" = ["GLD"]
+"Autres actions" = ["RY.TO", "TD.TO", "MFC.TO", "ENB.TO", "CNQ.TO", "CNR.TO", "FTS.TO", "ATD.TO", "JPM", "JNJ", "PG", "XOM"]

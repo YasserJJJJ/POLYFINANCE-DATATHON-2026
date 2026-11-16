@@ -1,0 +1,29 @@
+[project]
+name = "datathon2026"
+version = "0.1.0"
+description = "Datathon PolyFinances 2026 — AlphaForge AI : solution agentique auto-explicative d'aide à la décision d'investissement (simulation uniquement)."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "boto3>=1.44.3",
+    "numpy>=2.0",
+    "pandas>=2.2",
+]
+
+[project.scripts]
+alphaforge = "datathon2026.cli:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/datathon2026"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

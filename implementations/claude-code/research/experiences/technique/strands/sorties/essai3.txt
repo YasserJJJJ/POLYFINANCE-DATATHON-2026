@@ -1,0 +1,27 @@
+
+=== cas valide : structure Qualification, max_tokens=400, limites=None ===
+raison d'arrêt : tool_use
+structured_output : Qualification(type_de_question='concentration', horizon_annees=7, inconnues=['Évolution future du cours de Tesla', 'Poids réel des autres actifs du patrimoine', 'Besoins de revenus à la retraite'])
+texte de la réponse : '{"type_de_question":"concentration","horizon_annees":7,"inconnues":["Évolution future du cours de Tesla","Poids réel des autres actifs du patrimoine","Besoins de revenus à la retraite"]}'
+appels de modèle consommés par ce cas : 1
+messages laissés dans l'agent : [('user', ['text']), ('assistant', ['reasoningContent', 'toolUse']), ('user', ['toolResult'])]
+  résultat d'outil renvoyé au modèle : success | [{'text': 'Successfully validated Qualification structured output'}]
+
+=== cas invalide : structure QualificationRefusee, max_tokens=400, limites={'structured_output_attempts': 1} ===
+raison d'arrêt : limit_structured_output_attempts
+structured_output : None
+texte de la réponse : ''
+appels de modèle consommés par ce cas : 1
+messages laissés dans l'agent : [('user', ['text']), ('assistant', ['reasoningContent', 'toolUse']), ('user', ['toolResult'])]
+  résultat d'outil renvoyé au modèle : error | [{'text': "Validation failed for QualificationRefusee. Please fix the following errors:\n- Field 'horizon_annees': Value error, refus volontaire de l'essai : horizon non accepté"}]
+
+=== cas tronquee : structure QualificationLongue, max_tokens=40, limites={'structured_output_attempts': 1} ===
+EXCEPTION : strands.types.exceptions.MaxTokensReachedException | Model stopped generating due to maximum token limit. The partial message has been added to the conversation history. You can continue by calling the agent again. For more information see: https://strandsagents.com/docs/user-guide/concepts/agents/agent-loop/#maxtokensreachedexception
+appels de modèle consommés par ce cas : 1
+messages laissés dans l'agent : [('user', ['text']), ('assistant', ['reasoningContent'])]
+
+[essai3] appels Bedrock de cet essai (toutes relances) : 3 ; total tous essais : 5/20
+    Converse 200 0457bee4-35ca-47eb-9c24-55f6cdacc67d {'inputTokens': 718, 'outputTokens': 286, 'totalTokens': 1004, 'cacheReadInputTokens': 0, 'cacheWriteInputTokens': 0} tool_use 4.5 s
+    Converse 200 4330cf30-dbd3-4a9d-8913-281741fbdf77 {'inputTokens': 772, 'outputTokens': 340, 'totalTokens': 1112, 'cacheReadInputTokens': 0, 'cacheWriteInputTokens': 0} tool_use 2.82 s
+    Converse 200 3c4272bf-df67-4a2e-addc-7e3f46c5218b {'inputTokens': 660, 'outputTokens': 40, 'totalTokens': 700, 'cacheReadInputTokens': 0, 'cacheWriteInputTokens': 0} max_tokens 1.32 s
+[essai3] hôtes résolus par ce processus : ['bedrock-runtime.us-east-1.amazonaws.com']

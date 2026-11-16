@@ -1,0 +1,160 @@
+{
+ "TSLA": {
+  "rendement_annualise": {
+   "valeur": 0.05533302838586707,
+   "unite": "fraction (0.055 = 5,5 % par an), rendement composé (CAGR)",
+   "devise": "CAD (USD converti au dernier taux USD/CAD Banque du Canada connu, report vers l'avant)",
+   "frequence": "quotidienne (série de valeur, calendrier propre à l'actif)",
+   "facteur_annualisation": "exposant 365.25/jours calendaires (pas 252)",
+   "fenetre": "2021-11-12 -> 2026-11-12 (fenêtre complète)",
+   "fonction": "src/datathon2026/analytics.py:90 (cagr), appelée par tools.py:137 asset_metrics",
+   "traitement_change": "converti en CAD par merge_asof backward (analytics.py:54-61); change inclus dans le rendement"
+  },
+  "volatilite_annualisee": {
+   "valeur": 0.5574997150196948,
+   "unite": "fraction, écart type échantillon (ddof=1)",
+   "devise": "CAD (USD converti au dernier taux USD/CAD Banque du Canada connu, report vers l'avant)",
+   "frequence": "hebdomadaire (dernier cours de chaque semaine finissant le vendredi, W-FRI), n=261 rendements",
+   "facteur_annualisation": "x sqrt(52)",
+   "fenetre": "2021-11-12 -> 2026-11-12 (fenêtre complète)",
+   "fonction": "src/datathon2026/analytics.py:96 (annual_vol), appelée par tools.py:139",
+   "traitement_change": "converti en CAD par merge_asof backward (analytics.py:54-61); change inclus dans le rendement"
+  },
+  "pire_baisse": {
+   "valeur": -0.7088064947998852,
+   "unite": "fraction négative (-0.709 = -70,9 %)",
+   "devise": "CAD (USD converti au dernier taux USD/CAD Banque du Canada connu, report vers l'avant)",
+   "frequence": "quotidienne (série de l'actif ; hebdomadaire pour un portefeuille)",
+   "facteur_annualisation": "sans objet",
+   "fenetre": "2021-11-12 -> 2026-11-12 (fenêtre complète)",
+   "fonction": "src/datathon2026/analytics.py:114 (max_drawdown), appelée par tools.py:141",
+   "traitement_change": "converti en CAD par merge_asof backward (analytics.py:54-61); change inclus dans le rendement"
+  }
+ },
+ "BTC-USD": {
+  "rendement_annualise": {
+   "valeur": 0.04757847975525875,
+   "unite": "fraction (0.055 = 5,5 % par an), rendement composé (CAGR)",
+   "devise": "CAD (USD converti au dernier taux USD/CAD Banque du Canada connu, report vers l'avant)",
+   "frequence": "quotidienne (série de valeur, calendrier propre à l'actif)",
+   "facteur_annualisation": "exposant 365.25/jours calendaires (pas 252)",
+   "fenetre": "2021-11-12 -> 2026-11-12 (fenêtre complète)",
+   "fonction": "src/datathon2026/analytics.py:90 (cagr), appelée par tools.py:137 asset_metrics",
+   "traitement_change": "converti en CAD par merge_asof backward (analytics.py:54-61); change inclus dans le rendement"
+  },
+  "volatilite_annualisee": {
+   "valeur": 0.5068105932504952,
+   "unite": "fraction, écart type échantillon (ddof=1)",
+   "devise": "CAD (USD converti au dernier taux USD/CAD Banque du Canada connu, report vers l'avant)",
+   "frequence": "hebdomadaire (dernier cours de chaque semaine finissant le vendredi, W-FRI), n=261 rendements",
+   "facteur_annualisation": "x sqrt(52)",
+   "fenetre": "2021-11-12 -> 2026-11-12 (fenêtre complète)",
+   "fonction": "src/datathon2026/analytics.py:96 (annual_vol), appelée par tools.py:139",
+   "traitement_change": "converti en CAD par merge_asof backward (analytics.py:54-61); change inclus dans le rendement"
+  },
+  "pire_baisse": {
+   "valeur": -0.7418272417088669,
+   "unite": "fraction négative (-0.709 = -70,9 %)",
+   "devise": "CAD (USD converti au dernier taux USD/CAD Banque du Canada connu, report vers l'avant)",
+   "frequence": "quotidienne (série de l'actif ; hebdomadaire pour un portefeuille)",
+   "facteur_annualisation": "sans objet",
+   "fenetre": "2021-11-12 -> 2026-11-12 (fenêtre complète)",
+   "fonction": "src/datathon2026/analytics.py:114 (max_drawdown), appelée par tools.py:141",
+   "traitement_change": "converti en CAD par merge_asof backward (analytics.py:54-61); change inclus dans le rendement"
+  }
+ },
+ "ENB.TO": {
+  "rendement_annualise": {
+   "valeur": 0.12804167968259783,
+   "unite": "fraction (0.055 = 5,5 % par an), rendement composé (CAGR)",
+   "devise": "CAD (cote en CAD)",
+   "frequence": "quotidienne (série de valeur, calendrier propre à l'actif)",
+   "facteur_annualisation": "exposant 365.25/jours calendaires (pas 252)",
+   "fenetre": "2021-11-12 -> 2026-11-12 (fenêtre complète)",
+   "fonction": "src/datathon2026/analytics.py:90 (cagr), appelée par tools.py:137 asset_metrics",
+   "traitement_change": "converti en CAD par merge_asof backward (analytics.py:54-61); aucun (cote en CAD)"
+  },
+  "volatilite_annualisee": {
+   "valeur": 0.17354313714198052,
+   "unite": "fraction, écart type échantillon (ddof=1)",
+   "devise": "CAD (cote en CAD)",
+   "frequence": "hebdomadaire (dernier cours de chaque semaine finissant le vendredi, W-FRI), n=261 rendements",
+   "facteur_annualisation": "x sqrt(52)",
+   "fenetre": "2021-11-12 -> 2026-11-12 (fenêtre complète)",
+   "fonction": "src/datathon2026/analytics.py:96 (annual_vol), appelée par tools.py:139",
+   "traitement_change": "converti en CAD par merge_asof backward (analytics.py:54-61); aucun (cote en CAD)"
+  },
+  "pire_baisse": {
+   "valeur": -0.2137754707126388,
+   "unite": "fraction négative (-0.709 = -70,9 %)",
+   "devise": "CAD (cote en CAD)",
+   "frequence": "quotidienne (série de l'actif ; hebdomadaire pour un portefeuille)",
+   "facteur_annualisation": "sans objet",
+   "fenetre": "2021-11-12 -> 2026-11-12 (fenêtre complète)",
+   "fonction": "src/datathon2026/analytics.py:114 (max_drawdown), appelée par tools.py:141",
+   "traitement_change": "converti en CAD par merge_asof backward (analytics.py:54-61); aucun (cote en CAD)"
+  }
+ },
+ "SPY": {
+  "rendement_annualise": {
+   "valeur": 0.1447164598575732,
+   "unite": "fraction (0.055 = 5,5 % par an), rendement composé (CAGR)",
+   "devise": "CAD (USD converti au dernier taux USD/CAD Banque du Canada connu, report vers l'avant)",
+   "frequence": "quotidienne (série de valeur, calendrier propre à l'actif)",
+   "facteur_annualisation": "exposant 365.25/jours calendaires (pas 252)",
+   "fenetre": "2021-11-12 -> 2026-11-12 (fenêtre complète)",
+   "fonction": "src/datathon2026/analytics.py:90 (cagr), appelée par tools.py:137 asset_metrics",
+   "traitement_change": "converti en CAD par merge_asof backward (analytics.py:54-61); change inclus dans le rendement"
+  },
+  "volatilite_annualisee": {
+   "valeur": 0.14897803872118423,
+   "unite": "fraction, écart type échantillon (ddof=1)",
+   "devise": "CAD (USD converti au dernier taux USD/CAD Banque du Canada connu, report vers l'avant)",
+   "frequence": "hebdomadaire (dernier cours de chaque semaine finissant le vendredi, W-FRI), n=261 rendements",
+   "facteur_annualisation": "x sqrt(52)",
+   "fenetre": "2021-11-12 -> 2026-11-12 (fenêtre complète)",
+   "fonction": "src/datathon2026/analytics.py:96 (annual_vol), appelée par tools.py:139",
+   "traitement_change": "converti en CAD par merge_asof backward (analytics.py:54-61); change inclus dans le rendement"
+  },
+  "pire_baisse": {
+   "valeur": -0.22245742927246515,
+   "unite": "fraction négative (-0.709 = -70,9 %)",
+   "devise": "CAD (USD converti au dernier taux USD/CAD Banque du Canada connu, report vers l'avant)",
+   "frequence": "quotidienne (série de l'actif ; hebdomadaire pour un portefeuille)",
+   "facteur_annualisation": "sans objet",
+   "fenetre": "2021-11-12 -> 2026-11-12 (fenêtre complète)",
+   "fonction": "src/datathon2026/analytics.py:114 (max_drawdown), appelée par tools.py:141",
+   "traitement_change": "converti en CAD par merge_asof backward (analytics.py:54-61); change inclus dans le rendement"
+  }
+ },
+ "correlation_TSLA_SPY": {
+  "valeur": 0.5127174682940829,
+  "unite": "coefficient de Pearson",
+  "devise": "CAD",
+  "frequence": "rendements hebdomadaires (W-FRI), n=261",
+  "facteur_annualisation": "sans objet",
+  "fenetre": "2021-11-19 -> 2026-11-12 (261 rendements hebdomadaires, dropna commun)",
+  "fonction": "src/datathon2026/tools.py:271 (correlation), appelée via Session.call",
+  "traitement_change": "rendements hebdomadaires de valeurs en CAD (change inclus)"
+ },
+ "controle_independant": {
+  "actif": "TSLA",
+  "methode": "pandas, relecture directe des CSV du jeu de départ, adj_close x usdcad (merge_asof backward), puis CAGR sur jours/365.25, vol = std(ddof=1) des rendements W-FRI x sqrt(52), pire baisse sur série quotidienne",
+  "resultats_meme_convention": {
+   "rendement_annualise": 0.05533302838586707,
+   "volatilite_annualisee": 0.5574997150196948,
+   "pire_baisse": -0.7088064947998852
+  },
+  "ecart_avec_produit": {
+   "rendement_annualise": 0.0,
+   "volatilite": 0.0,
+   "pire_baisse": 0.0
+  },
+  "note": "identité attendue (même convention, algorithme écrit indépendamment mais identique en principe) : ne valide que l'implémentation, pas le choix de convention",
+  "sensibilite_aux_conventions_TSLA": {
+   "rendement_annualise_en_USD_non_converti": 0.029027743520543714,
+   "volatilite_quotidienne_x_sqrt252_CAD": 0.5891162747078174,
+   "volatilite_hebdo_en_USD": 0.5684277143303956
+  }
+ }
+}

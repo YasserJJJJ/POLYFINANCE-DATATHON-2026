@@ -1,0 +1,16 @@
+historique (du plus ancien au plus récent) :
+  pas -1 source=input point=1f1e12aa-094f-64ae-bfff-1e4896df91d8 parent=None suivants=('__start__',) clés=['journal'] créé=2026-11-15T19:27:42.418852+00:00
+  pas  0 source=loop  point=1f1e12aa-0951-674a-8000-62fd8dea3727 parent=1f1e12aa-094f-64ae-bfff-1e4896df91d8 suivants=('agent0',) clés=['demande', 'journal'] créé=2026-11-15T19:27:42.419736+00:00
+  pas  1 source=loop  point=1f1e12aa-0953-6c34-8001-ea437be71117 parent=1f1e12aa-0951-674a-8000-62fd8dea3727 suivants=('agent1',) clés=['demande', 'journal', 'montant', 'theme'] créé=2026-11-15T19:27:42.420680+00:00
+  pas  2 source=loop  point=1f1e12aa-0955-60ca-8002-bb276a5663e6 parent=1f1e12aa-0953-6c34-8001-ea437be71117 suivants=('agent2',) clés=['demande', 'fiches', 'journal', 'montant', 'theme'] créé=2026-11-15T19:27:42.421210+00:00
+  pas  3 source=loop  point=1f1e12aa-0956-6466-8003-bbd7c4ae5562 parent=1f1e12aa-0955-60ca-8002-bb276a5663e6 suivants=('agent3',) clés=['calcul', 'demande', 'fiches', 'journal', 'montant', 'theme'] créé=2026-11-15T19:27:42.421712+00:00
+  pas  4 source=loop  point=1f1e12aa-0957-66ae-8004-ca388c870579 parent=1f1e12aa-0956-6466-8003-bbd7c4ae5562 suivants=() clés=['calcul', 'demande', 'fiches', 'journal', 'montant', 'restitution', 'theme'] créé=2026-11-15T19:27:42.422181+00:00
+
+ce qu'un point enregistre : ['channel_values', 'channel_versions', 'id', 'ts', 'updated_channels', 'v', 'versions_seen']
+versions des canaux : {'__start__': '00000000000000000000000000000002.0.38664231927611636', 'demande': '00000000000000000000000000000002.0.38664231927611636', 'branch:to:agent0': '00000000000000000000000000000003.0.7341742900215154', 'montant': '00000000000000000000000000000003.0.7341742900215154', 'theme': '00000000000000000000000000000003.0.7341742900215154', 'journal': '00000000000000000000000000000006.0.6784899716714883', 'branch:to:agent1': '00000000000000000000000000000004.0.38919646068510294', 'fiches': '00000000000000000000000000000004.0.38919646068510294', 'branch:to:agent2': '00000000000000000000000000000005.0.22689108167809346', 'calcul': '00000000000000000000000000000005.0.22689108167809346', 'branch:to:agent3': '00000000000000000000000000000006.0.6784899716714883', 'restitution': '00000000000000000000000000000006.0.6784899716714883'}
+métadonnées : {'source': 'loop', 'step': 4, 'parents': {}}
+écritures en attente rattachées : 0
+
+mêmes valeurs : True ; même identifiant : False (1f1e12aa-0957-66ae-8004-ca388c870579 / 1f1e12aa-0961-6244-8004-30b79362c654)
+réécriture d'un point existant : acceptée ; même identifiant : True ; restitution relue : contenu réécrit après coup
+exécutions par nœud (deux fils) : {'agent0': 2, 'agent1': 2, 'agent2': 2, 'agent3': 2}

@@ -1,0 +1,34 @@
+sequenceDiagram
+    autonumber
+    actor U as Utilisateur
+    participant C as cli.py ou app.py
+    participant A as BedrockAgent
+    participant B as Amazon Bedrock Converse
+    participant S as Session et outils locaux
+    participant V as Dossier et vérificateur
+    participant F as runs dossier.json
+    participant R as report.py
+
+    U->>C: profil fictif et demande
+    C->>A: run avec la clé du dossier et le scénario
+    loop seize tours au plus
+        A->>B: converse avec la consigne, les messages et dix outils
+        B-->>A: message du modèle, toolUse, RequestId, jetons
+        alt outil de calcul ou de lecture
+            A->>S: exécution locale de l outil
+            S-->>A: identifiants et valeurs affichées, trace complétée
+        else soumettre_dossier
+            A->>V: Dossier construit depuis la soumission, puis verification
+            V-->>A: problèmes par élément, ou aucun
+            alt problèmes et moins de deux corrections demandées
+                A->>B: au tour suivant, toolResult en erreur avec la liste des problèmes
+            else aucun problème, ou deux corrections déjà demandées
+                A->>A: dossier retenu et fin de la boucle
+            end
+        end
+    end
+    A-->>C: Dossier avec le bloc aws, ou RuntimeError sans dossier
+    C->>F: cli.py seulement, to_dict puis écriture de dossier.json
+    C->>R: render du dictionnaire du dossier
+    R-->>C: page HTML autonome
+    C-->>U: dossier.html sous runs avec cli.py, HTML dans la réponse avec app.py

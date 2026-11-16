@@ -1,0 +1,62 @@
+Secteur des lignes détenues en direct : {'XIU.TO': 'Broad market (Canada)', 'SPY': 'Broad market (U.S.)', 'ENB.TO': 'Energy', 'CNQ.TO': 'Energy', 'RY.TO': 'Financials', 'XBB.TO': 'Bonds (Canada aggregate)'}
+Part du secteur Énergie visible dans les lignes en direct : 20 % ; à l'intérieur de XIU.TO : inconnue (aucune composition de fonds dans les données)
+Semaines : 261 ; jours ouvrables communs : 1227
+
+Mesures hebdomadaires en dollars canadiens (volatilité annualisée ; pire baisse observée ; perte moyenne des 5 % pires semaines ; nombre effectif de lignes en risque)
+   ne rien changer                            vol 0.0991 (quotidien 0.1055) ; pire baisse -0.1133 ; pires semaines -0.0292 ; lignes effectives 4.59 (quotidien 4.28) ; premier contributeur XIU.TO 0.290 ; part de risque des titres Énergie 0.291 (quotidien 0.257)
+   sans le secteur Énergie (ENB.TO, CNQ.TO)   vol 0.0966 (quotidien 0.1048) ; pire baisse -0.1334 ; pires semaines -0.0266 ; lignes effectives 2.96 (quotidien 2.83) ; premier contributeur SPY 0.422 ; part de risque des titres Énergie 0.000 (quotidien 0.000)
+      écarts appariés avec « ne rien changer », intervalles à 90 % : volatilité -0.0024 (-0.0078 à +0.0038) ; pires semaines +0.0025 (-0.0001 à +0.0056) ; pire baisse -0.0201 (-0.0589 à +0.0131) ; lignes effectives -1.63 (-1.7256 à -1.4657)
+   fonds filtré ESGV à la place de SPY        vol 0.1004 (quotidien 0.1072) ; pire baisse -0.1170 ; pires semaines -0.0295 ; lignes effectives 4.50 (quotidien 4.18) ; premier contributeur ESGV 0.297 ; part de risque des titres Énergie 0.272 (quotidien 0.244)
+      écarts appariés avec « ne rien changer », intervalles à 90 % : volatilité +0.0014 (+0.0008 à +0.0019) ; pires semaines -0.0003 (-0.0006 à -0.0001) ; pire baisse -0.0037 (-0.0119 à +0.0012) ; lignes effectives -0.09 (-0.1470 à -0.0537)
+   les deux                                   vol 0.1005 (quotidien 0.1084) ; pire baisse -0.1473 ; pires semaines -0.0273 ; lignes effectives 2.89 (quotidien 2.76) ; premier contributeur ESGV 0.451 ; part de risque des titres Énergie 0.000 (quotidien 0.000)
+      écarts appariés avec « ne rien changer », intervalles à 90 % : volatilité +0.0015 (-0.0042 à +0.0081) ; pires semaines +0.0019 (-0.0007 à +0.0052) ; pire baisse -0.0340 (-0.0828 à +0.0081) ; lignes effectives -1.71 (-1.8007 à -1.5434)
+   sans les producteurs seulement (CNQ.TO)    vol 0.0951 (quotidien 0.1013) ; pire baisse -0.1136 ; pires semaines -0.0266 ; lignes effectives 3.63 (quotidien 3.37) ; premier contributeur SPY 0.358 ; part de risque des titres Énergie 0.113 (quotidien 0.093)
+      écarts appariés avec « ne rien changer », intervalles à 90 % : volatilité -0.0040 (-0.0075 à -0.0000) ; pires semaines +0.0026 (+0.0004 à +0.0046) ; pire baisse -0.0004 (-0.0335 à +0.0124) ; lignes effectives -0.97 (-1.0346 à -0.8721)
+
+Fonds filtré contre fonds large
+   hebdomadaire, CAD : corrélation ESGV-SPY 0.991 ; volatilité ESGV 0.1637, SPY 0.1490
+   quotidien, CAD : corrélation ESGV-SPY 0.991 ; volatilité ESGV 0.1824, SPY 0.1687
+   écart de volatilité ESGV moins SPY : +0.0147 ; intervalle à 90 % de +0.0122 à +0.0174
+
+Corrélations selon la convention (hebdomadaire CAD | quotidien CAD)
+   XIU.TO  SPY     +0.67 | +0.71
+   XIU.TO  XBB.TO  +0.25 | +0.20
+   ENB.TO  XIU.TO  +0.53 | +0.48
+   CNQ.TO  XIU.TO  +0.37 | +0.43
+   RY.TO   XIU.TO  +0.72 | +0.73
+
+Écart de lignes effectives avec « ne rien changer », selon la longueur de bloc et la fréquence (intervalle à 90 %, 2 000 histoires)
+   sans le secteur Énergie (ENB.TO, CNQ.TO)   hebdomadaire  bloc de   1 : de -1.73 à -1.50 ; négatif dans 1.000
+   sans le secteur Énergie (ENB.TO, CNQ.TO)   hebdomadaire  bloc de   4 : de -1.73 à -1.49 ; négatif dans 1.000
+   sans le secteur Énergie (ENB.TO, CNQ.TO)   hebdomadaire  bloc de  13 : de -1.73 à -1.47 ; négatif dans 1.000
+   sans le secteur Énergie (ENB.TO, CNQ.TO)   hebdomadaire  bloc de  26 : de -1.73 à -1.43 ; négatif dans 1.000
+   sans le secteur Énergie (ENB.TO, CNQ.TO)   quotidien     bloc de   5 : de -1.52 à -1.37 ; négatif dans 1.000
+   sans le secteur Énergie (ENB.TO, CNQ.TO)   quotidien     bloc de  20 : de -1.54 à -1.36 ; négatif dans 1.000
+   sans le secteur Énergie (ENB.TO, CNQ.TO)   quotidien     bloc de  65 : de -1.56 à -1.32 ; négatif dans 1.000
+   sans le secteur Énergie (ENB.TO, CNQ.TO)   quotidien     bloc de 130 : de -1.58 à -1.29 ; négatif dans 1.000
+   sans les producteurs seulement (CNQ.TO)    hebdomadaire  bloc de   1 : de -1.03 à -0.88 ; négatif dans 1.000
+   sans les producteurs seulement (CNQ.TO)    hebdomadaire  bloc de   4 : de -1.03 à -0.88 ; négatif dans 1.000
+   sans les producteurs seulement (CNQ.TO)    hebdomadaire  bloc de  13 : de -1.04 à -0.87 ; négatif dans 1.000
+   sans les producteurs seulement (CNQ.TO)    hebdomadaire  bloc de  26 : de -1.04 à -0.85 ; négatif dans 1.000
+   sans les producteurs seulement (CNQ.TO)    quotidien     bloc de   5 : de -0.95 à -0.87 ; négatif dans 1.000
+   sans les producteurs seulement (CNQ.TO)    quotidien     bloc de  20 : de -0.96 à -0.87 ; négatif dans 1.000
+   sans les producteurs seulement (CNQ.TO)    quotidien     bloc de  65 : de -0.96 à -0.86 ; négatif dans 1.000
+   sans les producteurs seulement (CNQ.TO)    quotidien     bloc de 130 : de -0.96 à -0.85 ; négatif dans 1.000
+   fonds filtré ESGV à la place de SPY        hebdomadaire  bloc de   1 : de -0.15 à -0.05 ; négatif dans 1.000
+   fonds filtré ESGV à la place de SPY        hebdomadaire  bloc de   4 : de -0.14 à -0.05 ; négatif dans 1.000
+   fonds filtré ESGV à la place de SPY        hebdomadaire  bloc de  13 : de -0.14 à -0.05 ; négatif dans 1.000
+   fonds filtré ESGV à la place de SPY        hebdomadaire  bloc de  26 : de -0.15 à -0.05 ; négatif dans 1.000
+   fonds filtré ESGV à la place de SPY        quotidien     bloc de   5 : de -0.14 à -0.07 ; négatif dans 1.000
+   fonds filtré ESGV à la place de SPY        quotidien     bloc de  20 : de -0.15 à -0.07 ; négatif dans 1.000
+   fonds filtré ESGV à la place de SPY        quotidien     bloc de  65 : de -0.15 à -0.07 ; négatif dans 1.000
+   fonds filtré ESGV à la place de SPY        quotidien     bloc de 130 : de -0.15 à -0.06 ; négatif dans 1.000
+
+Écart de volatilité annualisée ESGV moins SPY, selon la fréquence et la longueur de bloc (intervalle à 90 %, 2 000 histoires)
+   hebdomadaire  bloc de   1 : observé +0.0147 ; de +0.0119 à +0.0175 ; positif dans 1.000
+   hebdomadaire  bloc de   4 : observé +0.0147 ; de +0.0121 à +0.0176 ; positif dans 1.000
+   hebdomadaire  bloc de  13 : observé +0.0147 ; de +0.0121 à +0.0175 ; positif dans 1.000
+   hebdomadaire  bloc de  26 : observé +0.0147 ; de +0.0124 à +0.0171 ; positif dans 1.000
+   quotidien     bloc de   5 : observé +0.0137 ; de +0.0102 à +0.0167 ; positif dans 1.000
+   quotidien     bloc de  20 : observé +0.0137 ; de +0.0097 à +0.0172 ; positif dans 1.000
+   quotidien     bloc de  65 : observé +0.0137 ; de +0.0091 à +0.0182 ; positif dans 1.000
+   quotidien     bloc de 130 : observé +0.0137 ; de +0.0087 à +0.0185 ; positif dans 1.000

@@ -1,0 +1,11 @@
+erreurs d'outils :
+  outil qui échoue, réglage par défaut : exception remontée au graphe : ValueError : série de prix absente pour TSLA
+  outil qui échoue, handle_tool_errors=True : message rendu au modèle, statut = error ; contenu = Error: ValueError('série de prix absente pour TSLA')
+ Please fix your mistakes.
+  arguments invalides, réglage par défaut : message rendu au modèle, statut = error ; contenu = Error invoking tool 'chercher_fiche' with kwargs {'mauvais': 1} with error:
+ sujet: Field required
+ Please fix the error and try again.
+outils disjoints :
+  le rôle 1 demande l'outil du rôle 2 : message rendu au modèle, statut = error ; contenu = Error: calculer_volatilite is not a valid tool, try one of [chercher_fiche].
+relance d'un nœud (RetryPolicy) :
+  résultat : réussi au troisième essai ; exécutions : {'noeud_fragile': 3}

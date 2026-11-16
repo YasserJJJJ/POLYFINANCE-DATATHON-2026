@@ -1,0 +1,39 @@
+<poste-local> UserWarning: graph has no max_node_executions or execution_timeout set; execution is unbounded
+  graphe = b.build()
+processus b : état du graphe à la construction : statut = Status.EXECUTING, nœuds faits = ['recherche']
+statut du graphe : Status.COMPLETED
+ordre d'exécution : ['recherche', 'analyse']
+nœuds faits / en échec : 2 / 0
+sortie structurée du nœud amont, relue de la session : None
+réponse du nœud aval : 
+jetons cumulés du graphe : {'inputTokens': 753, 'outputTokens': 775, 'totalTokens': 1528, 'cacheReadInputTokens': 0, 'cacheWriteInputTokens': 0}
+entrée du nœud aval : {
+ "processus": "b",
+ "messages": [
+  {
+   "role": "user",
+   "content": [
+    {
+     "text": "Original Task: La concentration sur un seul titre augmente-t-elle la dispersion des issues ? Source d'essai : sha256:abc123."
+    },
+    {
+     "text": "\nInputs from previous nodes:"
+    },
+    {
+     "text": "\nFrom recherche:"
+    },
+    {
+     "text": "  - Agent: "
+    }
+   ],
+   "tracking_id": "eebb6612-59dd-417a-aef1-ea6b529c86e3"
+  }
+ ]
+}
+fichiers de session du graphe :
+      session_essai8b/session.json 160 octets
+      session_essai8b/multi_agents/multi_agent_graphe_essai8b/multi_agent.json 7596 octets
+
+[essai8b-b] appels Bedrock de cet essai (toutes relances) : 1 ; total tous essais : 19/20
+    Converse 200 d112b83a-cb2b-42f5-9841-53ac5acd8d27 {'inputTokens': 94, 'outputTokens': 76, 'totalTokens': 170, 'cacheReadInputTokens': 0, 'cacheWriteInputTokens': 0} content_filtered 2.1 s
+[essai8b-b] hôtes résolus par ce processus : ['bedrock-runtime.us-east-1.amazonaws.com']

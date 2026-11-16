@@ -1,0 +1,140 @@
+{
+ "echantillon": {
+  "semaines": 261,
+  "debut": "2021-11-19",
+  "fin": "2026-11-12"
+ },
+ "E1_graines": {
+  "actuel": {
+   "moyenne": 0.0533,
+   "ecart_type": 0.0018
+  },
+  "10 % TSLA": {
+   "moyenne": 0.2071,
+   "ecart_type": 0.0049
+  },
+  "10 % QQQ": {
+   "moyenne": 0.1015,
+   "ecart_type": 0.0032
+  },
+  "ecart TSLA - actuel": {
+   "moyenne": 0.1538,
+   "ecart_type": 0.0042
+  }
+ },
+ "E2_blocs": {
+  "2": {
+   "actuel": 0.042,
+   "10 % TSLA": 0.222,
+   "10 % QQQ": 0.073
+  },
+  "4": {
+   "actuel": 0.046,
+   "10 % TSLA": 0.231,
+   "10 % QQQ": 0.082
+  },
+  "8": {
+   "actuel": 0.051,
+   "10 % TSLA": 0.217,
+   "10 % QQQ": 0.095
+  },
+  "13": {
+   "actuel": 0.056,
+   "10 % TSLA": 0.209,
+   "10 % QQQ": 0.107
+  },
+  "26": {
+   "actuel": 0.053,
+   "10 % TSLA": 0.213,
+   "10 % QQQ": 0.106
+  },
+  "52": {
+   "actuel": 0.045,
+   "10 % TSLA": 0.256,
+   "10 % QQQ": 0.088
+  }
+ },
+ "E3_retrait_annee": {
+  "sans 2021-11-19 -> 2022-11-11": {
+   "actuel": 0.0,
+   "10 % TSLA": 0.026,
+   "10 % QQQ": 0.0
+  },
+  "sans 2022-11-18 -> 2023-11-10": {
+   "actuel": 0.068,
+   "10 % TSLA": 0.228,
+   "10 % QQQ": 0.136
+  },
+  "sans 2023-11-17 -> 2024-11-08": {
+   "actuel": 0.105,
+   "10 % TSLA": 0.319,
+   "10 % QQQ": 0.175
+  },
+  "sans 2024-11-15 -> 2025-11-07": {
+   "actuel": 0.072,
+   "10 % TSLA": 0.222,
+   "10 % QQQ": 0.126
+  },
+  "sans 2025-11-14 -> 2026-11-12": {
+   "actuel": 0.085,
+   "10 % TSLA": 0.287,
+   "10 % QQQ": 0.149
+  }
+ },
+ "E4_multivers": {
+  "specifications": 486,
+  "niveau 10 % TSLA (min, 5 %, 25 %, mediane, 75 %, 95 %, max)": [
+   0.002,
+   0.064,
+   0.237,
+   0.429,
+   0.594,
+   0.785,
+   0.905
+  ],
+  "ecart TSLA - actuel": [
+   0.002,
+   0.054,
+   0.162,
+   0.223,
+   0.28,
+   0.37,
+   0.502
+  ],
+  "part des specifications ou ecart > 0": 1.0,
+  "part ou ecart > 0,02": 0.977,
+  "ecart TSLA - QQQ": [
+   0.002,
+   0.039,
+   0.096,
+   0.142,
+   0.182,
+   0.259,
+   0.425
+  ],
+  "part des specifications ou TSLA > QQQ": 1.0,
+  "part ou TSLA - QQQ > 0,02": 0.977,
+  "poids des decisions": {
+   "bloc": {
+    "etendue du niveau": 0.019,
+    "etendue de l'ecart": 0.066
+   },
+   "moyenne": {
+    "etendue du niveau": 0.383,
+    "etendue de l'ecart": 0.095
+   },
+   "seuil": {
+    "etendue du niveau": 0.317,
+    "etendue de l'ecart": 0.088
+   },
+   "horizon": {
+    "etendue du niveau": 0.274,
+    "etendue de l'ecart": 0.073
+   },
+   "retrait": {
+    "etendue du niveau": 0.299,
+    "etendue de l'ecart": 0.066
+   }
+  }
+ }
+}

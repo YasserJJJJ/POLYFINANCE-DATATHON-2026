@@ -1,0 +1,258 @@
+{
+  "quand": "2026-11-15T19:45:43+00:00",
+  "validations": [
+    {
+      "sonde": "validate[notre chaîne]",
+      "etat": "autorise",
+      "resume": {
+        "resultat": "OK",
+        "tronque": false,
+        "diagnostics": []
+      },
+      "ms": 197,
+      "requestId": "f0f86499-063f-4e20-bf9c-4ea2e57bbfb1"
+    },
+    {
+      "sonde": "validate[variante fautive : transition vers un état absent]",
+      "etat": "autorise",
+      "resume": {
+        "resultat": "FAIL",
+        "tronque": false,
+        "diagnostics": [
+          "ERROR MISSING_TRANSITION_TARGET @ /States/Agent1/Next : Missing 'Next' target: EtatQuiNExistePas",
+          "ERROR MISSING_TRANSITION_TARGET @ /States/Agent2Plan : State \"Agent2Plan\" is not reachable."
+        ]
+      },
+      "ms": 30,
+      "requestId": "9e8619af-3722-4116-aa35-c2926b38f958"
+    },
+    {
+      "sonde": "validate[variante fautive : attente sans jeton transmis]",
+      "etat": "autorise",
+      "resume": {
+        "resultat": "OK",
+        "tronque": false,
+        "diagnostics": []
+      },
+      "ms": 176,
+      "requestId": "b554fc86-f60f-4ffb-965c-2bb21c5a0102"
+    },
+    {
+      "sonde": "validate[variante à activités, sans Lambda]",
+      "etat": "autorise",
+      "resume": {
+        "resultat": "OK",
+        "tronque": false,
+        "diagnostics": []
+      },
+      "ms": 34,
+      "requestId": "b59c920b-e3ca-49c4-8adc-d39298f927b6"
+    }
+  ],
+  "essais_d_etats": [
+    {
+      "sonde": "test_state[variable manquante -> question]",
+      "etat": "autorise",
+      "resume": {
+        "statut": "SUCCEEDED",
+        "etat_suivant": "QuestionALaPersonne",
+        "erreur": null,
+        "sortie": "{\"dossier\": \"robert-tesla\", \"tete\": \"sha256:aaaa\", \"donnees\": {\"empreinte\": \"sha256:d0\"}, \"qualification\": {\"empreinte\": \"sha256:q1\", \"variable_manquante\": true, \"question\": \"Quel est votre portefeuille de d\\u00e9part ?\"}, \"note\": {\"empreinte\": \"sha256:n1\"}, \"registre\": {\"empreinte\": \"sha256:r1\", \"verdict\": \"change\", \"amendements\": 0}}"
+      },
+      "ms": 145,
+      "requestId": "2a61a922-d74c-43f0-ae3e-14926775625e"
+    },
+    {
+      "sonde": "test_state[rien ne manque -> agent 1]",
+      "etat": "autorise",
+      "resume": {
+        "statut": "SUCCEEDED",
+        "etat_suivant": "Agent1",
+        "erreur": null,
+        "sortie": "{\"dossier\": \"robert-tesla\", \"tete\": \"sha256:aaaa\", \"donnees\": {\"empreinte\": \"sha256:d0\"}, \"qualification\": {\"variable_manquante\": false}, \"note\": {\"empreinte\": \"sha256:n1\"}, \"registre\": {\"empreinte\": \"sha256:r1\", \"verdict\": \"change\", \"amendements\": 0}}"
+      },
+      "ms": 36,
+      "requestId": "d97186bf-2455-4391-b59a-dda2c55ce126"
+    },
+    {
+      "sonde": "test_state[verdict change, premier passage -> agent 2]",
+      "etat": "autorise",
+      "resume": {
+        "statut": "SUCCEEDED",
+        "etat_suivant": "Agent2Note",
+        "erreur": null,
+        "sortie": "{\"dossier\": \"robert-tesla\", \"tete\": \"sha256:aaaa\", \"donnees\": {\"empreinte\": \"sha256:d0\"}, \"qualification\": {\"empreinte\": \"sha256:q1\", \"variable_manquante\": true, \"question\": \"Quel est votre portefeuille de d\\u00e9part ?\"}, \"note\": {\"empreinte\": \"sha256:n1\"}, \"registre\": {\"empreinte\": \"sha256:r1\", \"verdict\": \"change\", \"amendements\": 0}}"
+      },
+      "ms": 39,
+      "requestId": "1da339df-37fa-41bd-8408-2eee6cf99990"
+    },
+    {
+      "sonde": "test_state[verdict change, déjà amendé -> interrompue]",
+      "etat": "autorise",
+      "resume": {
+        "statut": "SUCCEEDED",
+        "etat_suivant": "EtudeInterrompue",
+        "erreur": null,
+        "sortie": "{\"dossier\": \"robert-tesla\", \"tete\": \"sha256:aaaa\", \"donnees\": {\"empreinte\": \"sha256:d0\"}, \"qualification\": {\"empreinte\": \"sha256:q1\", \"variable_manquante\": true, \"question\": \"Quel est votre portefeuille de d\\u00e9part ?\"}, \"note\": {\"empreinte\": \"sha256:n1\"}, \"registre\": {\"verdict\": \"change\", \"amendements\": 1}}"
+      },
+      "ms": 34,
+      "requestId": "17258e51-9727-42fc-9c36-7059a33ef4df"
+    },
+    {
+      "sonde": "test_state[verdict tient -> agent 3]",
+      "etat": "autorise",
+      "resume": {
+        "statut": "SUCCEEDED",
+        "etat_suivant": "Agent3",
+        "erreur": null,
+        "sortie": "{\"dossier\": \"robert-tesla\", \"tete\": \"sha256:aaaa\", \"donnees\": {\"empreinte\": \"sha256:d0\"}, \"qualification\": {\"empreinte\": \"sha256:q1\", \"variable_manquante\": true, \"question\": \"Quel est votre portefeuille de d\\u00e9part ?\"}, \"note\": {\"empreinte\": \"sha256:n1\"}, \"registre\": {\"verdict\": \"tient\", \"amendements\": 0}}"
+      },
+      "ms": 33,
+      "requestId": "8978fec8-e1b7-4e90-bfb3-2692018b1f61"
+    },
+    {
+      "sonde": "test_state[question : réponse reçue]",
+      "etat": "autorise",
+      "resume": {
+        "statut": "SUCCEEDED",
+        "etat_suivant": "Agent0",
+        "erreur": null,
+        "sortie": "{\"dossier\":\"robert-tesla\",\"tete\":\"sha256:aaaa\",\"donnees\":{\"empreinte\":\"sha256:d0\"},\"qualification\":{\"empreinte\":\"sha256:q1\",\"variable_manquante\":true,\"question\":\"Quel est votre portefeuille de départ ?\"},\"note\":{\"empreinte\":\"sha256:n1\"},\"registre\":{\"empreinte\":\"sha256:r1\",\"verdict\":\"change\",\"amendements\":0},\"reponse\":{\"reponse\":\"60 % obligations, 40 % actions\",\"affichage\":\"sha256:aff1\"}}"
+      },
+      "ms": 36,
+      "requestId": "377e87b2-a453-4ff6-b536-b88bcc6fcf94"
+    },
+    {
+      "sonde": "test_state[question : délai dépassé]",
+      "etat": "autorise",
+      "resume": {
+        "statut": "CAUGHT_ERROR",
+        "etat_suivant": "EtudeInterrompue",
+        "erreur": "States.Timeout",
+        "sortie": "{\"dossier\":\"robert-tesla\",\"tete\":\"sha256:aaaa\",\"donnees\":{\"empreinte\":\"sha256:d0\"},\"qualification\":{\"empreinte\":\"sha256:q1\",\"variable_manquante\":true,\"question\":\"Quel est votre portefeuille de départ ?\"},\"note\":{\"empreinte\":\"sha256:n1\"},\"registre\":{\"empreinte\":\"sha256:r1\",\"verdict\":\"change\",\"amendements\":0},\"panne\":{\"Error\":\"States.Timeout\",\"Cause\":\"aucune réponse en 24 h\"}}"
+      },
+      "ms": 167,
+      "requestId": "66436a17-6e5a-42ac-aa80-9663c453f45e"
+    },
+    {
+      "sonde": "test_state[agent 1 : limitation de débit, premier échec]",
+      "etat": "autorise",
+      "resume": {
+        "statut": "RETRIABLE",
+        "etat_suivant": null,
+        "erreur": "ThrottlingException",
+        "sortie": ""
+      },
+      "ms": 40,
+      "requestId": "6afc7c7f-e69a-45d6-adcc-4def2e9f674a"
+    },
+    {
+      "sonde": "test_state[agent 1 : limitation de débit, réessais épuisés]",
+      "etat": "autorise",
+      "resume": {
+        "statut": "CAUGHT_ERROR",
+        "etat_suivant": "EtudeInterrompue",
+        "erreur": "ThrottlingException",
+        "sortie": "{\"dossier\":\"robert-tesla\",\"tete\":\"sha256:aaaa\",\"donnees\":{\"empreinte\":\"sha256:d0\"},\"qualification\":{\"empreinte\":\"sha256:q1\",\"variable_manquante\":true,\"question\":\"Quel est votre portefeuille de départ ?\"},\"note\":{\"empreinte\":\"sha256:n1\"},\"registre\":{\"empreinte\":\"sha256:r1\",\"verdict\":\"change\",\"amendements\":0},\"panne\":{\"Error\":\"ThrottlingException\",\"Cause\":\"débit\"}}"
+      },
+      "ms": 34,
+      "requestId": "03770677-c9eb-4ee4-a330-ce2ee6ec10e4"
+    },
+    {
+      "sonde": "test_state[agent 0 : porte refusée]",
+      "etat": "autorise",
+      "resume": {
+        "statut": "CAUGHT_ERROR",
+        "etat_suivant": "EtudeInterrompue",
+        "erreur": "PorteRefusee",
+        "sortie": "{\"dossier\":\"robert-tesla\",\"tete\":\"sha256:aaaa\",\"donnees\":{\"empreinte\":\"sha256:d0\"},\"qualification\":{\"empreinte\":\"sha256:q1\",\"variable_manquante\":true,\"question\":\"Quel est votre portefeuille de départ ?\"},\"note\":{\"empreinte\":\"sha256:n1\"},\"registre\":{\"empreinte\":\"sha256:r1\",\"verdict\":\"change\",\"amendements\":0},\"refus\":{\"Error\":\"PorteRefusee\",\"Cause\":\"citation absente de la demande\"}}"
+      },
+      "ms": 38,
+      "requestId": "f739cf10-61f4-42a5-9440-b0cb4852ec7e"
+    },
+    {
+      "sonde": "test_state[agent 1 : réussite]",
+      "etat": "autorise",
+      "resume": {
+        "statut": "FAILED",
+        "etat_suivant": null,
+        "erreur": "States.Runtime",
+        "sortie": ""
+      },
+      "ms": 32,
+      "requestId": "4adfe4d2-1329-4b31-bc2c-b6e75666d54e"
+    },
+    {
+      "sonde": "test_state[agent 1 : réussite, réponse non contrôlée]",
+      "etat": "autorise",
+      "resume": {
+        "statut": "SUCCEEDED",
+        "etat_suivant": "Agent2Plan",
+        "erreur": null,
+        "sortie": "{\"dossier\":\"robert-tesla\",\"tete\":\"sha256:aaaa\",\"donnees\":{\"empreinte\":\"sha256:d0\"},\"qualification\":{\"empreinte\":\"sha256:q1\",\"variable_manquante\":true,\"question\":\"Quel est votre portefeuille de départ ?\"},\"note\":{\"empreinte\":\"sha256:n1\"},\"registre\":{\"empreinte\":\"sha256:r1\",\"verdict\":\"change\",\"amendements\":0},\"plan_methodes\":{\"empreinte\":\"sha256:p1\"}}"
+      },
+      "ms": 34,
+      "requestId": "c1ebd480-154c-421b-a207-33f612bdd376"
+    },
+    {
+      "sonde": "test_state[agent 3 : intégration Bedrock directe]",
+      "etat": "autorise",
+      "resume": {
+        "statut": "FAILED",
+        "etat_suivant": null,
+        "erreur": "States.Runtime",
+        "sortie": ""
+      },
+      "ms": 34,
+      "requestId": "8e324086-c1b3-4693-bac2-d4e9ab8c4616"
+    },
+    {
+      "sonde": "test_state[agent 3 : intégration Bedrock directe, réponse non contrôlée]",
+      "etat": "autorise",
+      "resume": {
+        "statut": "SUCCEEDED",
+        "etat_suivant": "ReactionDeLaPersonne",
+        "erreur": null,
+        "sortie": "{\"dossier\":\"robert-tesla\",\"tete\":\"sha256:aaaa\",\"donnees\":{\"empreinte\":\"sha256:d0\"},\"qualification\":{\"empreinte\":\"sha256:q1\",\"variable_manquante\":true,\"question\":\"Quel est votre portefeuille de départ ?\"},\"note\":{\"empreinte\":\"sha256:n1\"},\"registre\":{\"empreinte\":\"sha256:r1\",\"verdict\":\"change\",\"amendements\":0},\"restitution\":{\"texte\":\"restitution fictive\"}}"
+      },
+      "ms": 47,
+      "requestId": "c4437ab9-a5b2-4443-8ff5-d13017e2d397"
+    },
+    {
+      "sonde": "test_state[activités : question, réponse reçue]",
+      "etat": "autorise",
+      "resume": {
+        "statut": "SUCCEEDED",
+        "etat_suivant": "Agent0",
+        "erreur": null,
+        "sortie": "{\"dossier\":\"robert-tesla\",\"tete\":\"sha256:aaaa\",\"donnees\":{\"empreinte\":\"sha256:d0\"},\"qualification\":{\"empreinte\":\"sha256:q1\",\"variable_manquante\":true,\"question\":\"Quel est votre portefeuille de départ ?\"},\"note\":{\"empreinte\":\"sha256:n1\"},\"registre\":{\"empreinte\":\"sha256:r1\",\"verdict\":\"change\",\"amendements\":0},\"reponse\":{\"reponse\":\"60 % obligations, 40 % actions\"}}"
+      },
+      "ms": 31,
+      "requestId": "61d4d0dc-da8c-4f91-9c50-f66866305735"
+    },
+    {
+      "sonde": "test_state[activités : agent 1 réussit]",
+      "etat": "autorise",
+      "resume": {
+        "statut": "SUCCEEDED",
+        "etat_suivant": "Agent2Plan",
+        "erreur": null,
+        "sortie": "{\"dossier\":\"robert-tesla\",\"tete\":\"sha256:aaaa\",\"donnees\":{\"empreinte\":\"sha256:d0\"},\"qualification\":{\"empreinte\":\"sha256:q1\",\"variable_manquante\":true,\"question\":\"Quel est votre portefeuille de départ ?\"},\"note\":{\"empreinte\":\"sha256:n1\"},\"registre\":{\"empreinte\":\"sha256:r1\",\"verdict\":\"change\",\"amendements\":0},\"plan_methodes\":{\"empreinte\":\"sha256:p1\"}}"
+      },
+      "ms": 46,
+      "requestId": "8bf846af-e1e2-4d2a-858c-115ce84778c2"
+    },
+    {
+      "sonde": "test_state[activités : processus local mort (délai)]",
+      "etat": "autorise",
+      "resume": {
+        "statut": "CAUGHT_ERROR",
+        "etat_suivant": "EtudeInterrompue",
+        "erreur": "States.Timeout",
+        "sortie": "{\"dossier\":\"robert-tesla\",\"tete\":\"sha256:aaaa\",\"donnees\":{\"empreinte\":\"sha256:d0\"},\"qualification\":{\"empreinte\":\"sha256:q1\",\"variable_manquante\":true,\"question\":\"Quel est votre portefeuille de départ ?\"},\"note\":{\"empreinte\":\"sha256:n1\"},\"registre\":{\"empreinte\":\"sha256:r1\",\"verdict\":\"change\",\"amendements\":0},\"panne\":{\"Error\":\"States.Timeout\",\"Cause\":\"aucun travailleur\"}}"
+      },
+      "ms": 31,
+      "requestId": "42a9944d-f581-4a57-9e01-2ff773a744f1"
+    }
+  ]
+}

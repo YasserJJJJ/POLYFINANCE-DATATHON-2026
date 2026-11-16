@@ -1,0 +1,21 @@
+nombre d'événements par mode : {'(appelant)': 2, 'checkpoints': 7, 'values': 7, 'tasks': 10, 'updates': 5, 'custom': 2, 'messages': 7}
+  (appelant)  "envoi de la demande"
+  updates     {"__interrupt__": [{"question": "Quel montant envisagez-vous d'investir ?", "champ": "montant"}]}
+  (appelant)  "envoi de la réponse de la personne"
+  updates     {"agent0": ["journal", "montant", "theme"]}
+  updates     {"agent1": ["fiches", "journal"]}
+  custom      {"type": "avancement", "role": "agent2", "etape": "calcul lancé"}
+  custom      {"type": "avancement", "role": "agent2", "etape": "calcul terminé", "resultat": {"dixieme_du_montant": 500.0}}
+  updates     {"agent2": ["calcul", "journal"]}
+  messages    {"fragment": "", "blocs": [], "noeud": "agent3"}
+  messages    {"fragment": "", "blocs": ["reasoning_content"], "noeud": "agent3"}
+  messages    {"fragment": "", "blocs": ["reasoning_content"], "noeud": "agent3"}
+  messages    {"fragment": "", "blocs": [], "noeud": "agent3"}
+  messages    {"fragment": "", "blocs": ["texte"], "noeud": "agent3"}
+  messages    {"fragment": "", "blocs": ["texte"], "noeud": "agent3"}
+  messages    {"fragment": "", "blocs": ["texte"], "noeud": "agent3"}
+  updates     {"agent3": ["journal", "restitution"]}
+exemple « tasks »       : {'noeud': 'agent0', 'fin': False, 'cles': ['id', 'input', 'name', 'triggers']}
+exemple « checkpoints » : {'suivants': ['__start__'], 'pas': -1}
+restitution finale : ''
+trace de l'agent 3 : agent3 : budget 60 jetons ; arrêt = max_tokens ; jetons = {'input_tokens': 39, 'output_tokens': 60, 'total_tokens': 99, 'input_token_details': {'cache_creation': 0, 'cache_read': 0}} ; blocs = ['reasoning_content']

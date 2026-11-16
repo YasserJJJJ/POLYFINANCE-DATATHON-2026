@@ -1,0 +1,99 @@
+[
+ {
+  "nom": "chat",
+  "attributs": {
+   "gen_ai.event.start_time": "2026-11-15T19:11:17.868781+00:00",
+   "gen_ai.operation.name": "chat",
+   "gen_ai.system": "strands-agents",
+   "gen_ai.request.model": "global.anthropic.claude-haiku-5-5",
+   "gen_ai.event.end_time": "2026-11-15T19:11:19.231262+00:00",
+   "gen_ai.usage.prompt_tokens": 55,
+   "gen_ai.usage.input_tokens": 55,
+   "gen_ai.usage.completion_tokens": 19,
+   "gen_ai.usage.output_tokens": 19,
+   "gen_ai.usage.total_tokens": 74,
+   "gen_ai.server.time_to_first_token": 1188,
+   "gen_ai.server.request.duration": 1271
+  },
+  "evenements": [
+   {
+    "nom": "gen_ai.system.message",
+    "attributs": {
+     "content": "[{\"text\": \"Tu réponds en cinq mots au plus.\"}]"
+    }
+   },
+   {
+    "nom": "gen_ai.user.message",
+    "attributs": {
+     "content": "[{\"text\": \"Dis bonjour. (MARQUE-CONFIDENTIELLE-4721)\"}]"
+    }
+   },
+   {
+    "nom": "gen_ai.choice",
+    "attributs": {
+     "finish_reason": "end_turn",
+     "message": "[{\"text\": \"Bonjour ! Comment allez-vous ?\"}]"
+    }
+   }
+  ]
+ },
+ {
+  "nom": "execute_event_loop_cycle",
+  "attributs": {
+   "gen_ai.event.start_time": "2026-11-15T19:11:17.868627+00:00",
+   "gen_ai.operation.name": "execute_event_loop_cycle",
+   "gen_ai.system": "strands-agents",
+   "event_loop.cycle_id": "b21ca15b-8de8-475d-a463-340919abb20d",
+   "gen_ai.event.end_time": "2026-11-15T19:11:19.231439+00:00"
+  },
+  "evenements": [
+   {
+    "nom": "gen_ai.user.message",
+    "attributs": {
+     "content": "[{\"text\": \"Dis bonjour. (MARQUE-CONFIDENTIELLE-4721)\"}]"
+    }
+   }
+  ]
+ },
+ {
+  "nom": "invoke_agent agent3_restitution",
+  "attributs": {
+   "gen_ai.event.start_time": "2026-11-15T19:11:17.868086+00:00",
+   "gen_ai.operation.name": "invoke_agent",
+   "gen_ai.system": "strands-agents",
+   "gen_ai.agent.name": "agent3_restitution",
+   "gen_ai.request.model": "global.anthropic.claude-haiku-5-5",
+   "gen_ai.event.end_time": "2026-11-15T19:11:19.231681+00:00",
+   "gen_ai.usage.prompt_tokens": 55,
+   "gen_ai.usage.completion_tokens": 19,
+   "gen_ai.usage.input_tokens": 55,
+   "gen_ai.usage.output_tokens": 19,
+   "gen_ai.usage.total_tokens": 74,
+   "gen_ai.usage.cache_read.input_tokens": 0,
+   "gen_ai.usage.cache_creation.input_tokens": 0,
+   "gen_ai.usage.cache_read_input_tokens": 0,
+   "gen_ai.usage.cache_write_input_tokens": 0
+  },
+  "evenements": [
+   {
+    "nom": "gen_ai.system.message",
+    "attributs": {
+     "content": "[{\"text\": \"Tu réponds en cinq mots au plus.\"}]"
+    }
+   },
+   {
+    "nom": "gen_ai.user.message",
+    "attributs": {
+     "content": "[{\"text\": \"Dis bonjour. (MARQUE-CONFIDENTIELLE-4721)\"}]"
+    }
+   },
+   {
+    "nom": "gen_ai.choice",
+    "attributs": {
+     "message": "Bonjour ! Comment allez-vous ?\n",
+     "finish_reason": "end_turn"
+    }
+   }
+  ]
+ }
+]

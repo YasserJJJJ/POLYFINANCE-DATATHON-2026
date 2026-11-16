@@ -1,0 +1,2049 @@
+{
+ "archive": "IMPLEMENTATION_IDENTIFIANT-A-ATTRIBUER_2026-11-15.zip",
+ "dossier_racine": "IMPLEMENTATION_IDENTIFIANT-A-ATTRIBUER_2026-11-15",
+ "implementation": "identifiant à attribuer",
+ "projet": "AlphaForge — Datathon PolyFinances 2026 (simulation uniquement)",
+ "date_de_l_export": "2026-11-15T18:31:26-05:00",
+ "version_source": {
+  "paquet": "datathon2026 0.1.0 (pyproject.toml)",
+  "commit": "55d164c5366361b3033360e7fc6af9b8d649fcb7",
+  "date_du_commit": "2026-11-15T07:08:56-05:00",
+  "branche": "main",
+  "depot_distant": null,
+  "modifications_non_commitees": true,
+  "fichiers_suivis_modifies": [
+   "README.md",
+   "docs/comparaison-agent-workflow.md",
+   "docs/coordination.md",
+   "docs/decisions.md",
+   "docs/etat.md",
+   "docs/technique.md",
+   "scripts/comparer_agent_workflow.py",
+   "scripts/configurer-aws-workshop.sh",
+   "src/datathon2026/agent.py",
+   "src/datathon2026/evidence.py",
+   "tests/test_evidence.py"
+  ],
+  "non_suivis": [
+   "docs/refonte/",
+   "evaluation-fusion/",
+   "research/R07-registre-des-sources-2026-11-15.md",
+   "research/R08-outils-routes-et-ressources-2026-11-15.md",
+   "research/R09-experiences-discriminantes-2026-11-15.md",
+   "research/experiences/",
+   "research/fiches/",
+   "research/outils/",
+   "research/sources/"
+  ],
+  "note": "l'export part de l'arbre de travail : il contient les modifications non commitées et des dossiers non suivis par git (runs/, docs/refonte/, research/…)"
+ },
+ "fichiers": {
+  "nombre": 260,
+  "octets": 8471916,
+  "liste": [
+   {
+    "chemin": ".gitignore",
+    "octets": 594,
+    "sha256": "1bc0ee111cf0b3964ad1168e5395418481d48df5e42e137eeb777d116ed259b2",
+    "role": "produit : règles d'exclusion, dont celle des données",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": ".python-version",
+    "octets": 5,
+    "sha256": "02e735b3dfe1c32833eb550b7ff8ffa17f5f2bc3fa1e7bae61a8f5a3883ce398",
+    "role": "produit : version de Python employée",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "LIRE_EN_PREMIER.md",
+    "octets": 19121,
+    "sha256": "8244a35dc15a05d74a03af2797feeead5446b3acbd713599739fe4e13777bf28",
+    "role": "point d'entrée de l'archive",
+    "origine": "écrit pour l'export"
+   },
+   {
+    "chemin": "NOTE_DE_SELECTION.md",
+    "octets": 14708,
+    "sha256": "3f059919821288864b5108ae7428a3155ebad1e392b8cf18b2839b184e5c0087",
+    "role": "note de sélection et vérifications",
+    "origine": "écrit pour l'export"
+   },
+   {
+    "chemin": "README.md",
+    "octets": 217,
+    "sha256": "cac0807524bfc66ecb9c821f3f4fe0f9ee5699e3a039b4f4bcab4f93c3307d36",
+    "role": "description du paquet exigée par pyproject.toml",
+    "origine": "écrit pour l'export"
+   },
+   {
+    "chemin": "config/personas.toml",
+    "octets": 2763,
+    "sha256": "1f36a83dc93388e76283f134bc3e2d2ce63d0cceda2b6758b8988c7b3b686a9e",
+    "role": "produit : profils et scénarios fictifs",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "config/scenarios.toml",
+    "octets": 2674,
+    "sha256": "420396f34f902bd1aec4fafaf17ed68c51f3b49ed1a53f482bd2a20bcf51eed2",
+    "role": "produit : profils et scénarios fictifs",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "data/README.md",
+    "octets": 1466,
+    "sha256": "d25951e6004b9f20f06fbbfc38c715f33590f9ead8c4f13f00677e8f307bc49c",
+    "role": "données : provenance et conditions",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "data/external/.gitkeep",
+    "octets": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "role": "données : emplacement attendu",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "data/processed/.gitkeep",
+    "octets": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "role": "données : emplacement attendu",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "data/raw/.gitkeep",
+    "octets": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "role": "données : emplacement attendu",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "docs/acces-aws.md",
+    "octets": 9732,
+    "sha256": "037ad49bd8a8b5fbf3bde1a68b51e5611d08492e28172f7d478d459e0caee741",
+    "role": "documentation du produit : configuration de l'accès AWS (citée par cli.py)",
+    "origine": "retouché à l'export : bandeau d'état ajouté en tête"
+   },
+   {
+    "chemin": "docs/comparaison-agent-workflow.md",
+    "octets": 3498,
+    "sha256": "244ffe982e76372ee59fc5a47c4382b336b987e13feef1b9d149e914aaf5cba7",
+    "role": "documentation du produit : sortie du script de comparaison",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "docs/decisions.md",
+    "octets": 13354,
+    "sha256": "3d6fa6b22e40d009faf2409590e99d32ce398d357e2a1cbad316c8919d149015",
+    "role": "documentation du produit : décisions d'architecture",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "docs/refonte/architecture/00-synthese.md",
+    "octets": 27647,
+    "sha256": "3d654a3d38595a4c356ffcb776554ea2b3f5cf3f7f94fe2c7e14ae45ca9bef98",
+    "role": "conception : architecture cible à quatre agents, non construite",
+    "origine": "retouché à l'export : bandeau d'état ajouté en tête"
+   },
+   {
+    "chemin": "docs/refonte/architecture/01-resolutions.md",
+    "octets": 64168,
+    "sha256": "82177091e5d5bd3013737849f5dbf235c2a67d8b5acb38ab7336396997cfece2",
+    "role": "conception : architecture cible à quatre agents, non construite",
+    "origine": "retouché à l'export : bandeau d'état ajouté en tête"
+   },
+   {
+    "chemin": "docs/refonte/architecture/02-dossier.md",
+    "octets": 38718,
+    "sha256": "9c9f48a071c2631ef40b6eb98491d9a21e03eb329a8e6d28944b740ee5dd5caf",
+    "role": "conception : architecture cible à quatre agents, non construite",
+    "origine": "retouché à l'export : bandeau d'état ajouté en tête"
+   },
+   {
+    "chemin": "docs/refonte/architecture/03-contrats-des-agents.md",
+    "octets": 45934,
+    "sha256": "2bb55239b6b46cacc219e814631892aa22fbb36189b90f37b7b32a4ec3839cca",
+    "role": "conception : architecture cible à quatre agents, non construite",
+    "origine": "retouché à l'export : bandeau d'état ajouté en tête"
+   },
+   {
+    "chemin": "docs/refonte/architecture/04-graphes-et-revision.md",
+    "octets": 18749,
+    "sha256": "80d89b066d3122f9c3fa79fc1442cecd0840c53d85b666d3a969ab2d5a15cafc",
+    "role": "conception : architecture cible à quatre agents, non construite",
+    "origine": "retouché à l'export : bandeau d'état ajouté en tête"
+   },
+   {
+    "chemin": "docs/refonte/architecture/05-types-de-resultats.md",
+    "octets": 17210,
+    "sha256": "3f173a11cb019f72383726af5934f3f105c58fc1923cf39b2bafadbef7e79218",
+    "role": "conception : architecture cible à quatre agents, non construite",
+    "origine": "retouché à l'export : bandeau d'état ajouté en tête"
+   },
+   {
+    "chemin": "docs/refonte/architecture/06-comparatif-technique.md",
+    "octets": 26474,
+    "sha256": "c6913e3827477af4425405cb147eb3fa5041490665c6b72d9c07d85fd2fae693",
+    "role": "conception : architecture cible à quatre agents, non construite",
+    "origine": "retouché à l'export : bandeau d'état ajouté en tête"
+   },
+   {
+    "chemin": "docs/refonte/architecture/07-dossier-illustratif.md",
+    "octets": 32847,
+    "sha256": "a396ef317718b0af78232bf800eeb16afee6f2e277b2b7fca825639ac0ce0bb8",
+    "role": "conception : architecture cible à quatre agents, non construite",
+    "origine": "retouché à l'export : bandeau d'état ajouté en tête"
+   },
+   {
+    "chemin": "docs/refonte/architecture/08-schemas.md",
+    "octets": 7427,
+    "sha256": "9300d404c174e5606b528f0389cb35af9978804a7c63e7c6f49309ee57528c86",
+    "role": "conception : architecture cible à quatre agents, non construite",
+    "origine": "retouché à l'export : bandeau d'état ajouté en tête"
+   },
+   {
+    "chemin": "docs/refonte/architecture/09-reception.md",
+    "octets": 24401,
+    "sha256": "f6cee78b86c531febcfab20286b6b5cdcc0b9d1f22513c6d98bbed676dbdf897",
+    "role": "conception : architecture cible à quatre agents, non construite",
+    "origine": "retouché à l'export : bandeau d'état ajouté en tête"
+   },
+   {
+    "chemin": "docs/refonte/architecture/10-pratiques-observees.md",
+    "octets": 23774,
+    "sha256": "c08a91a5f707d2b01e6a0f9339fbd7f0c4c48ce4ad2fee56e2f58e6a0c0dfdeb",
+    "role": "conception : architecture cible à quatre agents, non construite",
+    "origine": "retouché à l'export : bandeau d'état ajouté en tête"
+   },
+   {
+    "chemin": "docs/refonte/architecture/schemas/architecture.png",
+    "octets": 500678,
+    "sha256": "e40f72a6c67eeeec8d94692a69327dd1bd1c3528748ae7cfab22b2efb085b625",
+    "role": "conception : architecture cible à quatre agents, non construite",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "docs/refonte/architecture/schemas/architecture.svg",
+    "octets": 19228,
+    "sha256": "593afc36b3cc4743716944a74bcf1fe121115fcc649e27cbef0e5efe8323b4d7",
+    "role": "conception : architecture cible à quatre agents, non construite",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "docs/refonte/architecture/schemas/etats-d-une-piece.png",
+    "octets": 70913,
+    "sha256": "217faf66e90c0e244367a7f74ec4ef3345f982458d0fda24d4226a588e5ace0f",
+    "role": "conception : architecture cible à quatre agents, non construite",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "docs/refonte/architecture/schemas/etats-d-une-piece.svg",
+    "octets": 217408,
+    "sha256": "577d35f5effb3f4957f0e7321a58fb07c20e5eb01bf631ae52958e98477ac3fa",
+    "role": "conception : architecture cible à quatre agents, non construite",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "docs/refonte/architecture/schemas/revision-sequence.png",
+    "octets": 109977,
+    "sha256": "6e66dcd9b69e85294bd47a8adaf618d20de4204a2fd197cd6981c2913f2383f7",
+    "role": "conception : architecture cible à quatre agents, non construite",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "docs/refonte/architecture/schemas/revision-sequence.svg",
+    "octets": 211213,
+    "sha256": "c35d0c8276724f375b77894af444de3a0c6b9ba112783c88ae1b78ccaba945ed",
+    "role": "conception : architecture cible à quatre agents, non construite",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "docs/refonte/calcul_exploratoire.py",
+    "octets": 8073,
+    "sha256": "dd0e678f2b0ed23b37cf4159fa96b0252c24427f8945214c63ef86eaf8211087",
+    "role": "recherche : diagnostic du produit et étude des rôles",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "docs/refonte/diagnostic-et-contrat.md",
+    "octets": 46013,
+    "sha256": "c893b0d35538b346fa7ba09f99578e0aab786718b3a24054842ecef96dfc64f5",
+    "role": "recherche : diagnostic du produit et étude des rôles",
+    "origine": "retouché à l'export : bandeau d'état ajouté en tête"
+   },
+   {
+    "chemin": "docs/refonte/fiches-des-agents.md",
+    "octets": 262390,
+    "sha256": "3e6c1dce8c54b8285deb465e808aeebb32ee2757994665639607bd6ef1203aa1",
+    "role": "recherche : diagnostic du produit et étude des rôles",
+    "origine": "retouché à l'export : bandeau d'état ajouté en tête"
+   },
+   {
+    "chemin": "docs/refonte/recherche-processus-professionnels.md",
+    "octets": 81673,
+    "sha256": "f5366700ea715449b7296bf5e5c49e3fedf91e1b170f000ff50528f644f6f93c",
+    "role": "recherche : diagnostic du produit et étude des rôles",
+    "origine": "retouché à l'export : bandeau d'état ajouté en tête"
+   },
+   {
+    "chemin": "docs/refonte/revue-par-questions.md",
+    "octets": 263319,
+    "sha256": "d79a3e4a2097c7897dd002b8fe261e5eccb97dede213a06151811cc170986266",
+    "role": "recherche : diagnostic du produit et étude des rôles",
+    "origine": "retouché à l'export : bandeau d'état ajouté en tête"
+   },
+   {
+    "chemin": "docs/technique.md",
+    "octets": 8671,
+    "sha256": "edc64021aec6c05461d36d9024d4ceb6727d8fdc564140bf5cc3a363e1cbe0dc",
+    "role": "documentation du produit",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "evaluation-fusion/CAPACITES.json",
+    "octets": 230762,
+    "sha256": "bfdec907e2db0e11ab89987f7751f01fb4d2be3d249ef5492fd328fe8187b331",
+    "role": "annexe : inventaire exploitable",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "evaluation-fusion/CAPACITES.md",
+    "octets": 208824,
+    "sha256": "cc50dd39abd1f122f4f04e4c61ea68ebbd449c8250dd1fbe3fd11bfc990537e4",
+    "role": "annexe : inventaire lisible",
+    "origine": "retouché à l'export : bandeau d'état ajouté en tête"
+   },
+   {
+    "chemin": "evaluation-fusion/DEPENDANCES.md",
+    "octets": 42796,
+    "sha256": "7a759d8c0707adb82114f53a8b4b08ed07e901fcf7b5cc1000774d503963df56",
+    "role": "annexe : dépendances et couplages",
+    "origine": "retouché à l'export : bandeau d'état ajouté en tête"
+   },
+   {
+    "chemin": "evaluation-fusion/INDEX-DES-PREUVES.md",
+    "octets": 36399,
+    "sha256": "fb980a43c4031034c770b4b91aa82d9213ab0963c32572bc530dcc3237246182",
+    "role": "annexe : index des preuves",
+    "origine": "retouché à l'export : bandeau d'état ajouté en tête"
+   },
+   {
+    "chemin": "evaluation-fusion/PRESENTATION.md",
+    "octets": 210526,
+    "sha256": "65c3210691313cd7f3a3bd421de0e0a7fa7107268ff27a930a4f026964fa3224",
+    "role": "annexe : présentation détaillée",
+    "origine": "retouché à l'export : bandeau d'état ajouté en tête"
+   },
+   {
+    "chemin": "evaluation-fusion/REPRODUCTION.md",
+    "octets": 14126,
+    "sha256": "83d16b17f9c423184287508e491b2c2f96976e80be92e03ca712618fef31eb1b",
+    "role": "annexe : reproduction détaillée",
+    "origine": "retouché à l'export : bandeau d'état ajouté en tête"
+   },
+   {
+    "chemin": "evaluation-fusion/preuves/agent-robert-mesures.txt",
+    "octets": 2329,
+    "sha256": "80f57961003ca4a53ff04c940eedf8621261b066058a93eef7423a3065825722",
+    "role": "preuves : sorties de commandes exécutées le 15 novembre",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "evaluation-fusion/preuves/agent-robert.txt",
+    "octets": 282,
+    "sha256": "f682f8f2fbd8206d24aa79feba0737b2e471ff965b3a40bfee14e89ecbbc7c9d",
+    "role": "preuves : sorties de commandes exécutées le 15 novembre",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "evaluation-fusion/preuves/aws-verifier.txt",
+    "octets": 1024,
+    "sha256": "a61f614e48ed5fbc55e397b16b53b1badcd375b6b189180cf75b75ab61ae1f38",
+    "role": "preuves : sorties de commandes exécutées le 15 novembre",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "evaluation-fusion/preuves/demo-comparaison.txt",
+    "octets": 546,
+    "sha256": "f98d5e68024202983d92814a32975bb1ffd5394b5a50cde6ae9308f59405f991",
+    "role": "preuves : sorties de commandes exécutées le 15 novembre",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "evaluation-fusion/preuves/demo.txt",
+    "octets": 379,
+    "sha256": "9e36a0dc243b6d78a7766c4f26545a692b713cf04e5f4fd9ab10d03b56c2513e",
+    "role": "preuves : sorties de commandes exécutées le 15 novembre",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "evaluation-fusion/preuves/dossiers-d-agent.txt",
+    "octets": 1859,
+    "sha256": "1bd38029f4131cb6640fda4c0dba81b311d4caf93872292d78d72ea541193c32",
+    "role": "preuves : sorties de commandes exécutées le 15 novembre",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "evaluation-fusion/preuves/execution-agent-2026-11-15/dossier.html",
+    "octets": 116941,
+    "sha256": "3170ea8ba45d24358a5a164a7c96f56247eabdb5d3801f1293a16f97bde6ba2d",
+    "role": "preuves : sorties de commandes exécutées le 15 novembre",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "evaluation-fusion/preuves/execution-agent-2026-11-15/dossier.json",
+    "octets": 192765,
+    "sha256": "6bb4ac5bf21651d8aefd52a4476eed06a08e0bc36eceb8768192637f526a3b9c",
+    "role": "preuves : sorties de commandes exécutées le 15 novembre",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "evaluation-fusion/preuves/horodatage.txt",
+    "octets": 20,
+    "sha256": "05a4ab31535423b153f180626c1f054096f67563672fad2c39e15d594d164cef",
+    "role": "preuves : sorties de commandes exécutées le 15 novembre",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "evaluation-fusion/preuves/prototype-dossier.txt",
+    "octets": 2248,
+    "sha256": "47d6c2184a0ead2aa62ad1be80443a7230c6299add1fed988c97e18beaebdc15",
+    "role": "preuves : sorties de commandes exécutées le 15 novembre",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "evaluation-fusion/preuves/pytest.txt",
+    "octets": 99,
+    "sha256": "2cca012d6224a7fade74a5bcb954f5333420346240da5e73e1e88ff899b3674b",
+    "role": "preuves : sorties de commandes exécutées le 15 novembre",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "evaluation-fusion/preuves/rendre.txt",
+    "octets": 1356,
+    "sha256": "54c2958b809d7ee69a2f7f22148bd5d00561938af59ddfdfbdd773c6a88f99f8",
+    "role": "preuves : sorties de commandes exécutées le 15 novembre",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "evaluation-fusion/schemas/composants-produit.mmd",
+    "octets": 1677,
+    "sha256": "4c9a37e4075b7f1491471c564fb36e19c54e8bcf4abc3d1f4212a4789a0fd667",
+    "role": "annexe : schémas",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "evaluation-fusion/schemas/composants-produit.png",
+    "octets": 152478,
+    "sha256": "58e204adf11bb44bf548894129e869f5d3f922160187e7c7105a03a4cda7387f",
+    "role": "annexe : schémas",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "evaluation-fusion/schemas/composants-produit.svg",
+    "octets": 231254,
+    "sha256": "b9354b54c6d3a0e38e115241c4637167ef4214d80ba1b6b1582801cc81e532bb",
+    "role": "annexe : schémas",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "evaluation-fusion/schemas/conception-architecture.png",
+    "octets": 500678,
+    "sha256": "e40f72a6c67eeeec8d94692a69327dd1bd1c3528748ae7cfab22b2efb085b625",
+    "role": "annexe : schémas",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "evaluation-fusion/schemas/conception-architecture.svg",
+    "octets": 19228,
+    "sha256": "593afc36b3cc4743716944a74bcf1fe121115fcc649e27cbef0e5efe8323b4d7",
+    "role": "annexe : schémas",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "evaluation-fusion/schemas/conception-etats-d-une-piece.png",
+    "octets": 70913,
+    "sha256": "217faf66e90c0e244367a7f74ec4ef3345f982458d0fda24d4226a588e5ace0f",
+    "role": "annexe : schémas",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "evaluation-fusion/schemas/conception-etats-d-une-piece.svg",
+    "octets": 217408,
+    "sha256": "577d35f5effb3f4957f0e7321a58fb07c20e5eb01bf631ae52958e98477ac3fa",
+    "role": "annexe : schémas",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "evaluation-fusion/schemas/conception-revision-sequence.png",
+    "octets": 109977,
+    "sha256": "6e66dcd9b69e85294bd47a8adaf618d20de4204a2fd197cd6981c2913f2383f7",
+    "role": "annexe : schémas",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "evaluation-fusion/schemas/conception-revision-sequence.svg",
+    "octets": 211213,
+    "sha256": "c35d0c8276724f375b77894af444de3a0c6b9ba112783c88ae1b78ccaba945ed",
+    "role": "annexe : schémas",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "evaluation-fusion/schemas/sequence-agent.mmd",
+    "octets": 1533,
+    "sha256": "f9e480f98db7cfedcbdab6ca8faa8c4f6b5e1feb77ad1fb974f2e577cfd91c61",
+    "role": "annexe : schémas",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "evaluation-fusion/schemas/sequence-agent.png",
+    "octets": 132374,
+    "sha256": "2e788fe4cdd3f96f6467eaad2c5edb9b9de5a613abf37bd05a42d8ea682863f5",
+    "role": "annexe : schémas",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "evaluation-fusion/schemas/sequence-agent.svg",
+    "octets": 209628,
+    "sha256": "5efa20c9150721d0bd357cc05dff2e6dcb920e39740fc8b1f37a2e0a8f06b45c",
+    "role": "annexe : schémas",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "pyproject.toml",
+    "octets": 635,
+    "sha256": "6e847adf6a6bd99182c8aaf6ead5884a81adaf9efebc4cd3c4819961347e574b",
+    "role": "produit : définition du paquet et dépendances",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/R01-aws-chemin-agent-2026-11-14.md",
+    "octets": 4023,
+    "sha256": "53d2fa1d305af9b635e05b5b6e723c61c8bdf4bd1cf95f7aa2e70536aabe3e2b",
+    "role": "recherche : note du 14 novembre",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/R02-fnb-esg-donnees-2026-11-14.md",
+    "octets": 4196,
+    "sha256": "e1a2fbc56a7eb9c09fccaa16b5a7c4d2e4b18d08169094411a61ba786d384364",
+    "role": "recherche : note du 14 novembre",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/R03-adequation-profil-2026-11-14.md",
+    "octets": 3397,
+    "sha256": "e8917ed44a8307e21e9a8324209d493c5bd702f2025d11ad7d15f88ccdeb079e",
+    "role": "recherche : note du 14 novembre",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/R04-explicabilite-fidele-2026-11-14.md",
+    "octets": 4533,
+    "sha256": "f549e75d0cdbcd2684581eac4590fad92d2530a0ca735d40c2b56220b6207aa4",
+    "role": "recherche : note du 14 novembre",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/R05-presentation-finance-2026-11-14.md",
+    "octets": 2276,
+    "sha256": "cda4dafd226221720e8774a22c3f6efffdf6a93787364846d02a1c3c5d45b886",
+    "role": "recherche : note du 14 novembre",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/R07-registre-des-sources-2026-11-15.md",
+    "octets": 460832,
+    "sha256": "cafd6cd5d6c5a481971993ff66fdfad6642ba0d236fa38806b2b1af612a47858",
+    "role": "recherche : registre des sources",
+    "origine": "retouché à l'export : 2 chemin(s) personnel(s) masqué(s)"
+   },
+   {
+    "chemin": "research/R09-experiences-discriminantes-2026-11-15.md",
+    "octets": 33810,
+    "sha256": "cff89a47586d7780e98904b7a413ad3fca1d374da04fec00ddfd7a8078e98eee",
+    "role": "recherche : expériences et leurs résultats",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/calibration_reechantillonnage.py",
+    "octets": 5095,
+    "sha256": "9585969886eb6c9a97484c8c889830efd37790d26cb8baf000687be7d519ac0d",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/dossier_illustratif.py",
+    "octets": 6448,
+    "sha256": "7354b1036136113f21bcb2fc74c8510580614782f2245b68fb4d31568087c91e",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/ecart_et_niveau.py",
+    "octets": 6155,
+    "sha256": "d60322ccf647b68bd217bfbf4203d4d6cd9642e84d6953450cb5ec39486ce1b5",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/methodes_analyse.py",
+    "octets": 18752,
+    "sha256": "9243ac3fcc1395ab14e338bc3efbd63251d87b18fad3e3b036958888768c51c8",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/modele_qualification_et_citations.py",
+    "octets": 14010,
+    "sha256": "5e73e87930f4a08d7d901b07a33aaa5fe0be833d23b5be591b018b5e221007c1",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/multivers_exploratoire.py",
+    "octets": 5331,
+    "sha256": "5286b2ddfc877d6bc4aee85497909415b0c0c016a45e7ca951a80d2b4375e563",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/parcours_contraste.py",
+    "octets": 7226,
+    "sha256": "1d28ce7ade315b6cbfa07436f12d5451ab28701946bda26925891a28fce500ad",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/rendement_d_equilibre.py",
+    "octets": 3663,
+    "sha256": "b22e8080bf3dd7cc05ea89eaf0bf704568c6cdc36b72fdd0d74eadc13c39ea8e",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/sorties/calibration_reechantillonnage.txt",
+    "octets": 4294,
+    "sha256": "5fa664fb0505d367b623f6563ff1cf1f27cc35c03d4f135150b1b2c6c4a9c655",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/sorties/dossier_illustratif.txt",
+    "octets": 3940,
+    "sha256": "d281abb0cbb94084c9355499856f85372a34359d12041cb05d9e57f4b60014bf",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/sorties/ecart_et_niveau.txt",
+    "octets": 2735,
+    "sha256": "ff8f05291713647e62222e2ca38ece51dd8e0c954df6a298e9a8a1f7b69b4be2",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/sorties/m1_qualification.json",
+    "octets": 86317,
+    "sha256": "99d2575024d47e7c4fe2f70d9cc67b55e4513ba42d8d30be4259db88fbbab28a",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/sorties/m2_citations.json",
+    "octets": 21055,
+    "sha256": "38b6c3215a6aa79b2696654109c05fdeace3def42ff93e16c9d056023162262c",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/sorties/m2_citations.txt",
+    "octets": 296,
+    "sha256": "fbe56cc3e6aa12bf6d31eceba54e2951a912d84510ae3d744c62ce378028ad3d",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/sorties/methodes_analyse.txt",
+    "octets": 11480,
+    "sha256": "f4fb405cda9d76704dc506387d11c61e2eef58202cc90295cbf698a56d242860",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/sorties/multivers_exploratoire.json",
+    "octets": 2436,
+    "sha256": "5fb32dfa8c4feefa548f69892c569458a74bb9cd53b580035e5e25892e871da2",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/sorties/parcours_contraste.txt",
+    "octets": 7198,
+    "sha256": "c0b543deb6d838e35624b64515cf31c2dc42ea499e5106bb5d936f4b8b2be4ed",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/sorties/rendement_d_equilibre.txt",
+    "octets": 1808,
+    "sha256": "447232223c518c842728b9c451f872cfbac915e1e4f2b13195b9aebd7a395343",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/LISEZMOI.md",
+    "octets": 9518,
+    "sha256": "b6df2bde353f2cbc1be3ac8a34bb317ec9f8cd11c8a4253b4c5dea411c0f28d5",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/chaine.py",
+    "octets": 3849,
+    "sha256": "40e1fd540d47978e2f5b0669d643f6c1ddaa7e9cc4c6d3a1d7288542efae72de",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/dossier.py",
+    "octets": 17334,
+    "sha256": "30abd999a899b09d5fde49b87f1d2bb5415dc10387f5cd8989f4a6ffbf6c4994",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/essais.py",
+    "octets": 29841,
+    "sha256": "b77ada6051b64b71c843dbd9d86aae53725e225f2c55e4170437af830947fdae",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/export_prov.py",
+    "octets": 4314,
+    "sha256": "698c90d6d2ab3c274293d5e56a844b5ce6143d15e9e4f36a5d2b2621b5a553b3",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/contre_epreuve_verrou.json",
+    "octets": 217,
+    "sha256": "0148db3d840ca806464aa0adc55c18425e759684ae608853051d596bb7910b4f",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/dossier.prov.json",
+    "octets": 23619,
+    "sha256": "f2bb14993bed42a7b474f26b368a4150d2a928a0f5a85aa9e941da2fc143ec2c",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/dossier.provn",
+    "octets": 14944,
+    "sha256": "aefec3b2f2f14d4c1f32317eb890f1104bfed26210935a70f56c6ef2dc4ffdfc",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/dossier_exemple/journal/principale.jsonl",
+    "octets": 17192,
+    "sha256": "3c20e007f8e914bef34466d067c207057044a3b37f9bb36af02f3dbad775e423",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/dossier_exemple/pieces/011c2b78b5f37452b0fe1468afbc1ac1095f5b5a7999866646d7513f5c8b33d4.json",
+    "octets": 33,
+    "sha256": "011c2b78b5f37452b0fe1468afbc1ac1095f5b5a7999866646d7513f5c8b33d4",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/dossier_exemple/pieces/0b452a9d95301ae438e8d0bb0dd3bfe96784aba33bf4b7fdc318d0b116eceee4.json",
+    "octets": 106,
+    "sha256": "0b452a9d95301ae438e8d0bb0dd3bfe96784aba33bf4b7fdc318d0b116eceee4",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/dossier_exemple/pieces/1ab8f38d3c72187195607a0c9a9bcddfddb2e7c75a844ea82b266630d3cfbfce.json",
+    "octets": 144,
+    "sha256": "1ab8f38d3c72187195607a0c9a9bcddfddb2e7c75a844ea82b266630d3cfbfce",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/dossier_exemple/pieces/1cf7c5fe1226d53ff64e4e758cc74cf1d6180efdf741ee15cc8873931e876ae7.json",
+    "octets": 56,
+    "sha256": "1cf7c5fe1226d53ff64e4e758cc74cf1d6180efdf741ee15cc8873931e876ae7",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/dossier_exemple/pieces/268afebd456abd6326f4cdf503aff48ddf2575156d599ad6bf270e86dd7bc5ff.json",
+    "octets": 145,
+    "sha256": "268afebd456abd6326f4cdf503aff48ddf2575156d599ad6bf270e86dd7bc5ff",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/dossier_exemple/pieces/3d84b0b5e1b27773ab9ba192550c902e08fc0eb0e8c09681f3033b77d2172585.json",
+    "octets": 31,
+    "sha256": "3d84b0b5e1b27773ab9ba192550c902e08fc0eb0e8c09681f3033b77d2172585",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/dossier_exemple/pieces/414bf989e102c5e9e1ad5be618bb2d904fa90decd68fda375c215b366dc7855d.json",
+    "octets": 39,
+    "sha256": "414bf989e102c5e9e1ad5be618bb2d904fa90decd68fda375c215b366dc7855d",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/dossier_exemple/pieces/415af1a770a6828768c7aea7d8291a924d6b434102a06807ebb86bbc23cf4faf.json",
+    "octets": 145,
+    "sha256": "415af1a770a6828768c7aea7d8291a924d6b434102a06807ebb86bbc23cf4faf",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/dossier_exemple/pieces/538a427147ba1e2f2f94a5000a4ce5356d825e201d6542a8bdae7cbb15d9afa7.json",
+    "octets": 118,
+    "sha256": "538a427147ba1e2f2f94a5000a4ce5356d825e201d6542a8bdae7cbb15d9afa7",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/dossier_exemple/pieces/599aa585a8031661245f6dbce052f712972d162a489294041707152f66287337.json",
+    "octets": 106,
+    "sha256": "599aa585a8031661245f6dbce052f712972d162a489294041707152f66287337",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/dossier_exemple/pieces/5da94cc299f8efdf69ae5cc3fcffeb5bfa687f80c17abf5256356588e00e6d69.json",
+    "octets": 40,
+    "sha256": "5da94cc299f8efdf69ae5cc3fcffeb5bfa687f80c17abf5256356588e00e6d69",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/dossier_exemple/pieces/5dc03d59f5e797f58c2571117825efb0eb963a5a12b8f8b2fe88d96986eebfb7.json",
+    "octets": 33,
+    "sha256": "5dc03d59f5e797f58c2571117825efb0eb963a5a12b8f8b2fe88d96986eebfb7",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/dossier_exemple/pieces/5f516951b05274fbb47f1a50f8dfa598b5d122d54784f6f1c07d9e956d746016.json",
+    "octets": 36,
+    "sha256": "5f516951b05274fbb47f1a50f8dfa598b5d122d54784f6f1c07d9e956d746016",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/dossier_exemple/pieces/78917975a2bc3b9088360d8609a7a5f60689cf1ff6f205046daa19760a722829.json",
+    "octets": 43,
+    "sha256": "78917975a2bc3b9088360d8609a7a5f60689cf1ff6f205046daa19760a722829",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/dossier_exemple/pieces/94a4dcb95129721700ece9974dd8925863d764b61844d26a93cac197237c6dfe.json",
+    "octets": 171,
+    "sha256": "94a4dcb95129721700ece9974dd8925863d764b61844d26a93cac197237c6dfe",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/dossier_exemple/pieces/96f019ee5c61c52aa79355b058593d5edd27b70641094113cd9ab1ddbee868a9.json",
+    "octets": 129,
+    "sha256": "96f019ee5c61c52aa79355b058593d5edd27b70641094113cd9ab1ddbee868a9",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/dossier_exemple/pieces/9865c3bd65cddc622b229b7da134deffb4363e274a4f2e35fada4a44739fd2c7.json",
+    "octets": 149,
+    "sha256": "9865c3bd65cddc622b229b7da134deffb4363e274a4f2e35fada4a44739fd2c7",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/dossier_exemple/pieces/9c40a2afaeaa08668b74c58a9172bac550a4177bb29bc10fe4a3b37a1092e639.json",
+    "octets": 74,
+    "sha256": "9c40a2afaeaa08668b74c58a9172bac550a4177bb29bc10fe4a3b37a1092e639",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/dossier_exemple/pieces/bf25209a52939a285b86d8c725e0662c2f78e7cf7a674f46504eb6a356e952cf.json",
+    "octets": 128,
+    "sha256": "bf25209a52939a285b86d8c725e0662c2f78e7cf7a674f46504eb6a356e952cf",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/dossier_exemple/pieces/eacd2ef5cced3e0d9464593128d8a29d83e28e73acea5a4bda14e30cce26f906.json",
+    "octets": 73,
+    "sha256": "eacd2ef5cced3e0d9464593128d8a29d83e28e73acea5a4bda14e30cce26f906",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/essais.txt",
+    "octets": 2221,
+    "sha256": "cabe79ca4524f3ba78eb00a055deb8120c37b9e58748c2cc6183c86e903c57f1",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/essais_avec_prov.txt",
+    "octets": 2202,
+    "sha256": "df312c070842a2d2c324b1fd33f1b2c6c50e4c2a4910b61677a629b8f3edce65",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/mesures.json",
+    "octets": 1534,
+    "sha256": "ffb8156a39b3a84a0bf8324b679c4e38dd12e1218bf782e9db9df2322eacba84",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/sorties/verif_sqlite.txt",
+    "octets": 358,
+    "sha256": "6d6f618e41e9dea29e9a5400ce5c8e6b0f5e08503669e2fb69045a129025228f",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/dossier_maison/verif_sqlite.py",
+    "octets": 2706,
+    "sha256": "c6a65f7d5faaf4d6758c44b33f6118d8d7783c417a49f2f316ef43e3726a832e",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/LISEZMOI.md",
+    "octets": 4929,
+    "sha256": "cdb744e8f47315f68e254f94506bb16c051f18f47ac5ada2407447e0008e71c8",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/commun.py",
+    "octets": 6897,
+    "sha256": "7a879bb933cc9646965590568bf50872b15d00795ecfcb74349ded5c59ce2561",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/essai01_installation.py",
+    "octets": 3240,
+    "sha256": "895a1f352ed5437897f6ff582808fc50ebabecf6e88378d99659b7dda339a082",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/essai02_bedrock.py",
+    "octets": 2135,
+    "sha256": "ced8f74f72a750cb5addc07813b5562d380817db982ce130c6caa14ad3bfd92d",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/essai03_graphe.py",
+    "octets": 3101,
+    "sha256": "591f884611cf3e366ff8e05853d37c6a4bab83db18806b5c419c701b36204c2f",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/essai04_interruption.py",
+    "octets": 4480,
+    "sha256": "5d838b20b2ebaaf69bf7c95402ca041ccdb878c72fbdedada117e91db6a33c6e",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/essai05_historique.py",
+    "octets": 2301,
+    "sha256": "604a0c40f3c7cde1d77d581aa5852efa415096d765ce4d99fdfbfa1ef39452cd",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/essai06_correction.py",
+    "octets": 5951,
+    "sha256": "43c2b2a34862d7c07d6a571c54dfee7228b3639fc4f0aedbf8eb04b590e44d5e",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/essai07_bifurcation.py",
+    "octets": 2752,
+    "sha256": "c9521728fd43ca26a3dfee26506694a4a116cff978f13ddde5d365831f2dd758",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/essai08_concurrence.py",
+    "octets": 4957,
+    "sha256": "528452c492311cd35a7e78d19295bea0bcb89419fb027fcac03b11a00a906544",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/essai09_evenements.py",
+    "octets": 4720,
+    "sha256": "5a50460bca2d0a7a2a0561c84f27a7489375c4d62fa7b822b27551dd81f9dae8",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/essai10_telemetrie.py",
+    "octets": 2378,
+    "sha256": "b455ff3e7d633d7c38cb48f33dcf53fb595446791c3479e18988c19d0ee30488",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/essai11_erreurs_et_outils.py",
+    "octets": 3124,
+    "sha256": "8f6d2cc709f27468a018f252d93f653d2e64d399895f1cf11bb44cabc2a963c0",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/sorties/essai01_paquets.json",
+    "octets": 5741,
+    "sha256": "6796cdab44a004c3f21933c7a3b43dd3f8cb77ab4a821fac574e2d3d64e9f422",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/sorties/essai02_bedrock.json",
+    "octets": 686,
+    "sha256": "673e60c12d3e13a0c65fb4c8570fe5a8d07270385eceb2a1fe7895caf1ca2190",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/sorties/essai02_sortie.txt",
+    "octets": 578,
+    "sha256": "0a367b30e3b26a69d423066229c4c362dddbdaec35502ff6fc787dfa873059b7",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/sorties/essai03_sortie.txt",
+    "octets": 1713,
+    "sha256": "55bcf7e1e2732f485c61835dbd033ba5ae450217b591b8eb11a12d72e04fc788",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/sorties/essai04_sortie.txt",
+    "octets": 2402,
+    "sha256": "8ed62c0704464137888c344bc5936cf438444e95d58a1b1560ac04f6cd87aafc",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/sorties/essai05_sortie.txt",
+    "octets": 2758,
+    "sha256": "c3d89327e687b6f51a5dcbf800e1e48437fb4e30592a0e62ad26e0698886ecfc",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/sorties/essai06_sortie.txt",
+    "octets": 2538,
+    "sha256": "d5cbfaa5c40a52ef85532727e9a1c28d047cfde50e3257ed338f5083e4e01b2c",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/sorties/essai07_sortie.txt",
+    "octets": 664,
+    "sha256": "1fdf36b3338fa60f205e9b278a979c4d2f4ed9cbdaa33760a90379f5691ee4f8",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/sorties/essai08_sortie.txt",
+    "octets": 1745,
+    "sha256": "2ed0b07ec43336fdc3c26d39670c86a9b23e1ad6790a8558372015ce760e8260",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/sorties/essai09_evenements_budget400.jsonl",
+    "octets": 3999,
+    "sha256": "94960d109d48021cddad4f30e25ef42872c6c860cbf05b69b643f473f6a494de",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/sorties/essai09_evenements_budget60.jsonl",
+    "octets": 3621,
+    "sha256": "4ea4420894450b828de4e17d51ecbc8990ee42520dd21799c6d3a871a1f19d26",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/sorties/essai09_sortie_budget400.txt",
+    "octets": 2038,
+    "sha256": "ad87d5856f1cee498d8972979eca1fc293bdb779878f651248b406b86af0dfa7",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/sorties/essai09_sortie_budget60.txt",
+    "octets": 1686,
+    "sha256": "ab5c147eab27f11813a8e9a572c3d144b5d2afee0b889d1c74234d640cf5f539",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/sorties/essai10_sortie.txt",
+    "octets": 572,
+    "sha256": "888c2f578e1b513ef8bddb085c06cf7f41451932be9b5105440037cef36ac63e",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/langgraph/sorties/essai11_sortie.txt",
+    "octets": 862,
+    "sha256": "956530670e82a6a74871ad9743f2d85ec29aa4c01a229843a2302dd32a79b327",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/services_aws/LISEZMOI.md",
+    "octets": 13816,
+    "sha256": "abb22c1b5e4b33c02610466e64ace7fd35c49b945bce36919f6762e4ad346645",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/services_aws/chaine_alphaforge.asl.json",
+    "octets": 8554,
+    "sha256": "40e82bfad3a06b9ba7ba541246705f2aa93cd3575b0606474986d3ccafe47c31",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/services_aws/commun.py",
+    "octets": 3919,
+    "sha256": "15a1c35133acb100a2d799bbf55e92acd36d5aefdcceea99a0c24072f4b7bc87",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/services_aws/essai1_inventaire.py",
+    "octets": 4703,
+    "sha256": "a84d9cd41bcd4e78495e8c24b7eb3667a43a40b94396d18f52e1e3ab4ac0cfae",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/services_aws/essai2_droits.py",
+    "octets": 5243,
+    "sha256": "8c1fb1ba6aeaed62b182cab88a1ec3c3a84ae63df1496549a1b9beaa5b8d8601",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/services_aws/essai3_step_functions.py",
+    "octets": 8842,
+    "sha256": "413e58ef52b37a80fda28aedd30c0319327593e1e1441f7c97523826bd13deb3",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/services_aws/essai4_appels_du_produit.py",
+    "octets": 5525,
+    "sha256": "dc151ff20ed59e0d2fc0cf9da5468fabd94ed2ac9604e2d456e95c964acf2d30",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/services_aws/essai5_observation.py",
+    "octets": 4257,
+    "sha256": "afdb6f544677aa7a8256dd119f493ec6cd31f1337df64cbb65cab1c89f769dcb",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/services_aws/essai6_emulation_locale.py",
+    "octets": 7267,
+    "sha256": "0fcd4b57be39224bdd72ed4b9bd942e6d6f423a9edbf762203bde45072a15edc",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/services_aws/services_produit.py",
+    "octets": 2956,
+    "sha256": "6f998fe590cfd3b86843f7bb05f11b7dc2127b40e021f408ff0ab361ca53eaf0",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/services_aws/sorties/appels_bedrock.jsonl",
+    "octets": 1334,
+    "sha256": "5d0656c9e5c8daa437d9fe1453049ee64071b92182a3b378333dfaa3f0b770aa",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/services_aws/sorties/chaine_variante_activites.asl.json",
+    "octets": 10780,
+    "sha256": "2795355c092665f6c42572577f36f010323814ef958b333243aaa1f7d8f986c8",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/services_aws/sorties/essai2.txt",
+    "octets": 3844,
+    "sha256": "8f13840f5f75ac8bb20199626a345b0d97b16709587556c15d3b275a3332f8f1",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/services_aws/sorties/essai2_droits.json",
+    "octets": 6867,
+    "sha256": "fb563f50ec70dd1e887e1dd7a8d1d21a9dacf4caf6c20435314b8c8a818d805e",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/services_aws/sorties/essai3.txt",
+    "octets": 4619,
+    "sha256": "c73bfc42cb7cb653a5b4daf63da59ee6fc0a2ce1ed7baf27fe2519c37530878e",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/services_aws/sorties/essai3_step_functions.json",
+    "octets": 12566,
+    "sha256": "fc5c4fe0f8489471d3b8f5788c8293c90bbeed43724d28516c21f0be5bff20ea",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/services_aws/sorties/essai4.txt",
+    "octets": 806,
+    "sha256": "b20a65ad2c60efd8ac3381356bbf920887a298577921b29a4f6a004ddb4ae225",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/services_aws/sorties/essai4_appels_du_produit.json",
+    "octets": 3057,
+    "sha256": "673ee836654425ff716e339a43e14152699c536ba4b14f3cab6e753ea09ead45",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/services_aws/sorties/essai5.txt",
+    "octets": 1376,
+    "sha256": "4379a12adccbd7d5dd5d2c300e824c1950bf659905a5b9281026f529cb4fc821",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/services_aws/sorties/essai5_observation.json",
+    "octets": 3949,
+    "sha256": "8494c13e4160a8eb84cb98d001a82f9009170e2ceb42a62277b27e8ff165c12e",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/services_aws/sorties/essai6.txt",
+    "octets": 748,
+    "sha256": "ce68ebc4384b2d52cfe77a229634c3e9aa48d6fbac14b24a67b28f9b5b7ffc6d",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/services_aws/sorties/essai6_emulation_locale.json",
+    "octets": 795,
+    "sha256": "e7aa4530a3e8c34441f5fe8a3742077279f239d8cdc89610672a4d42493d0156",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/LISEZMOI.md",
+    "octets": 4936,
+    "sha256": "3cbb2785ebe545693fe3a90e75ad51027d1a9447b75e26c264d5b6e8ef977f42",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/commun.py",
+    "octets": 4022,
+    "sha256": "b9b8b5439d6cb516dc25cd327a1aa1de3b3bb9c14274690735e057d85c25b676",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/essai1_installation.py",
+    "octets": 1493,
+    "sha256": "a1cf3946fa1fe2f3c8edcc7661af1b20b0e6d7a04f188db340256be4cefe13bf",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/essai2_agent_outil.py",
+    "octets": 2271,
+    "sha256": "3e38da0b14d856adae8de1e6a0962c96fc218315b2cda3dc15d0c0f1636ac561",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/essai3_sortie_structuree.py",
+    "octets": 3099,
+    "sha256": "6d133a6f9006fbb230380801012ce0eeefb5b4cd842e82bf36b22750c8ae0dbc",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/essai4_outils_par_role.py",
+    "octets": 3630,
+    "sha256": "87ad5acc183a2f777742cf52297734d01bac9498c9c422eddfdba3455663a5b3",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/essai5_limite_de_tours.py",
+    "octets": 1332,
+    "sha256": "cf789e0a6ae154b600f0a95e0d24948c692ec3e3a61a8168d805463eeebc2af3",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/essai6_question_a_la_personne.py",
+    "octets": 2410,
+    "sha256": "83ec02f46cba6652743827b72d32d423d5bfcd3d0e1c025d17330e3b60d2f94e",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/essai7_session_deux_processus.py",
+    "octets": 3361,
+    "sha256": "cf3497392120bd39ae8523558ee71d978dd5817f77730e6419210e07c95a96ba",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/essai8_graphe.py",
+    "octets": 3162,
+    "sha256": "ef20f2ef1ff540add0f573cbf1fce99218849f9fdcac15683070a3d098e390a0",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/essai8b_reprise_graphe.py",
+    "octets": 4007,
+    "sha256": "c87fdfe6d4122ff10bfb5d143b7e680e4ecdb5bc23ba5c459e3189029fde1f7e",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/essai9_traces.py",
+    "octets": 2749,
+    "sha256": "df7a94da235efd2de60a58f81c7efdc39fd30a304e9debd7d0c68704d4816d02",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/sorties/appels_bedrock.jsonl",
+    "octets": 7584,
+    "sha256": "697e835cbc154af1e50883ce5183dcda209a39f80b1d4eec7ce67a7562f45ec9",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/sorties/essai1.txt",
+    "octets": 4958,
+    "sha256": "e5ccb88f2d72219a81c495ed6f1c24f3e5f4b441003a0181f9a75823d49e9c4c",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "retouché à l'export : 1 chemin(s) personnel(s) masqué(s)"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/sorties/essai2.txt",
+    "octets": 1538,
+    "sha256": "d4e5457a9e2a7367a5e09a9ce91e56f71a97f8bc032b917cc5f2cd50ef778042",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/sorties/essai3.txt",
+    "octets": 2786,
+    "sha256": "b8fca95fcbfc5a14d6c1972b03d1f02ce44da5dbc763ce3f790160caf800cc94",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/sorties/essai4.txt",
+    "octets": 1610,
+    "sha256": "18bc1b4eddf1e837bc9717860608445181d91e96be742b8d14b717b1ee395427",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/sorties/essai4_refus.jsonl",
+    "octets": 226,
+    "sha256": "37d1a5a1e728bdcc0abf54499bc915692c672fbb839a15abcbcccc0d84431faf",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/sorties/essai5.txt",
+    "octets": 970,
+    "sha256": "155ae2c3d5f5612a9a3493bf1da9301ce852a49fb3861c0b63babf45b5837f4b",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/sorties/essai6.txt",
+    "octets": 2024,
+    "sha256": "320f286bd36ed6bea1bb24f15db14e01326a46d98321f07259d25144f374ca5a",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/sorties/essai7_interruption.json",
+    "octets": 316,
+    "sha256": "27c397a9a8ae1e393d390673a0cd3a11f3ba93a171406ec8df3991083bf76abf",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/sorties/essai7a.txt",
+    "octets": 843,
+    "sha256": "b420320f75e81f38d779b08e4931d5b6387ce8afd7c3a1a2424eab29b02b98aa",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/sorties/essai7b.txt",
+    "octets": 2197,
+    "sha256": "a8f0722492ceb8856ce9c7cbaca58f9d567ac42f62f71cb7f4f14e9c396f3c91",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/sorties/essai8.txt",
+    "octets": 6119,
+    "sha256": "2328fc5378d2c3dea86e061fe2c2b1a910b1ad4364f5b1c6f9a328f6a248cc2b",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "retouché à l'export : 30 chemin(s) personnel(s) masqué(s)"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/sorties/essai8_entree_noeud_aval.json",
+    "octets": 677,
+    "sha256": "324fbe89e85da875f3fddc84b3181250b974e6393b5eaf25a2ab5c943d8d03d9",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/sorties/essai8_premier_passage_exception.txt",
+    "octets": 6121,
+    "sha256": "09f73872d2a380205d69eb236c2ae248b46bbc7fe92ca2c85d77b2835cebf2c1",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "retouché à l'export : 30 chemin(s) personnel(s) masqué(s)"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/sorties/essai8b_a.txt",
+    "octets": 308,
+    "sha256": "d7141df7d0c3e1ea4f1790a51b608779565364801773aabf8c5ddd8b4d6f0ae7",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "retouché à l'export : 1 chemin(s) personnel(s) masqué(s)"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/sorties/essai8b_b.txt",
+    "octets": 1596,
+    "sha256": "000e0330c2c4a2260637b7b7782e6ea94ed32db9673bcb1f30907625471e3150",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "retouché à l'export : 1 chemin(s) personnel(s) masqué(s)"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/sorties/essai8b_entree_noeud_aval.json",
+    "octets": 442,
+    "sha256": "2918edceba7a34e7a7a4ba569dabd014e867eea9b6c7bc5993d33e0ce85cf2a0",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/sorties/essai9.txt",
+    "octets": 1961,
+    "sha256": "606fd7dea7049b347b97e00aaa4a94da70b7c2dd2fec120883eabda3046d4d68",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/sorties/essai9_segments.json",
+    "octets": 2821,
+    "sha256": "1f1b9c073eabb7e25a7e5b8e7d70d872153f204ad863be2f125f718a8db6e22d",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/sorties/sessions/session_essai7/agents/agent_agent0/agent.json",
+    "octets": 446,
+    "sha256": "b279abf9949cc3779d6300a5c48e2db45af74e7862d89f09d0f2ade921f07794",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/sorties/sessions/session_essai7/agents/agent_agent0/messages/message_0.json",
+    "octets": 363,
+    "sha256": "c2fe9e4b6b6eee3b05a352d424b34384406cb194b4d231ceddf1993941062d42",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/sorties/sessions/session_essai7/agents/agent_agent0/messages/message_1.json",
+    "octets": 1950,
+    "sha256": "b2eafe319ca58da5af7f11713c6c0eafd73d55550d9ada2bb18a9223bd8f1f50",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/sorties/sessions/session_essai7/agents/agent_agent0/messages/message_2.json",
+    "octets": 530,
+    "sha256": "60506e396d9e6f3e4659038fadb8682b865bc11ee82ccc77bcbf226af3e53ce4",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/sorties/sessions/session_essai7/agents/agent_agent0/messages/message_3.json",
+    "octets": 2049,
+    "sha256": "89391c7263e0d9de6d0943d1f13f32740abc52049bb099fbd73bf82447c1c460",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/sorties/sessions/session_essai7/session.json",
+    "octets": 159,
+    "sha256": "01e760d365f7fd2f60dbda93488331b3a180f35cf719549036df0dd550795a77",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/sorties/sessions_graphe/session_essai8b/multi_agents/multi_agent_graphe_essai8b/multi_agent.json",
+    "octets": 7596,
+    "sha256": "ff1e4aee2863ab66125925e611de4f79511fbdafca781f0849567d618c2cc1ea",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/experiences/technique/strands/sorties/sessions_graphe/session_essai8b/session.json",
+    "octets": 160,
+    "sha256": "34bc7e2491d0bf0a487063edd08938ce50632b7e60af4a286b451fdaef33ee25",
+    "role": "expériences hors produit : scripts, sorties, essais techniques",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/outils/consolider_recherche.py",
+    "octets": 16655,
+    "sha256": "24ba881ff8881a5174c703910d410c3baf26808957733d8f10872c10a91fb2b6",
+    "role": "recherche : outils réutilisables",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/outils/recherche_web.py",
+    "octets": 2906,
+    "sha256": "4760abf1c90d08222aa55153640708b93d9655ea1c8f97463f87809a7fffb4f7",
+    "role": "recherche : outils réutilisables",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/outils/schema_architecture.py",
+    "octets": 11002,
+    "sha256": "f3d6fc69a4aaaeae472948f7f0150a2142673499918fac1f1515307ff94ed08a",
+    "role": "recherche : outils réutilisables",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/sources/manifeste-pratiques.json",
+    "octets": 53492,
+    "sha256": "25e0f51f6c9ecb33647e1dbb8d325500f52991af2ca3adf0fb2bb86fe18faea8",
+    "role": "recherche : références et empreintes des textes non joints",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "research/sources/manifeste.json",
+    "octets": 418920,
+    "sha256": "fc0ee692f3735853995a0af03a7d322d26873d9b610944e807e2199f06898716",
+    "role": "recherche : références et empreintes des textes non joints",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "runs/amira-agent/dossier.html",
+    "octets": 65126,
+    "sha256": "3a4ba71e7faed0600bfeaf2d5780a75563a77ea4c921e50a825fc44174c38b04",
+    "role": "résultats précalculés : rendu du dossier",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "runs/amira-agent/dossier.json",
+    "octets": 84488,
+    "sha256": "2711c4592274a7c0f997308bc535e13721358dd643f91121f58d2de0885e28a6",
+    "role": "résultats précalculés : dossier produit le 15 novembre",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "runs/amira-croissance/dossier.html",
+    "octets": 63167,
+    "sha256": "670fdf30e5475725fd6cd753451293b3876d76cf581708ac97cf2990da8fe0ef",
+    "role": "résultats précalculés : rendu du dossier",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "runs/amira-croissance/dossier.json",
+    "octets": 85534,
+    "sha256": "5272f6505559f3d14d8a57c5b455e614b0914931defe69044ed28bd52d96f41e",
+    "role": "résultats précalculés : dossier produit le 15 novembre",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "runs/amira-libre-bitcoin-or/dossier.html",
+    "octets": 80479,
+    "sha256": "627777c3978f273f7bcc6954931f29fb8e9bcfdceb6297451b42c9c090421f1d",
+    "role": "résultats précalculés : rendu du dossier",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "runs/amira-libre-bitcoin-or/dossier.json",
+    "octets": 100319,
+    "sha256": "c93860b5d58b59369f5ca5a86fe0d80f24a1f3202e2476bc545beccdbac9a634",
+    "role": "résultats précalculés : dossier produit le 15 novembre",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "runs/index.html",
+    "octets": 14554,
+    "sha256": "0acb826d77e350e87142f223df71ba1f958573657b1798fd95af5af97804aa69",
+    "role": "résultats précalculés : index des dossiers",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "runs/mateo-libre-esg/dossier.html",
+    "octets": 69411,
+    "sha256": "c2e0fc1e8dba2113a6b37174862ffe49852b0790fccd78935c927a02b8ba2a2c",
+    "role": "résultats précalculés : rendu du dossier",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "runs/mateo-libre-esg/dossier.json",
+    "octets": 75025,
+    "sha256": "4e7324cae9d1255cca0e5230f0db3b47a363e58eb851993b37a5684b239e9dd7",
+    "role": "résultats précalculés : dossier produit le 15 novembre",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "runs/robert-agent/dossier.html",
+    "octets": 110525,
+    "sha256": "df532029e9fc2af0570308ee73e944d2c0f9487f7c352873b1823888bf90a5e0",
+    "role": "résultats précalculés : rendu du dossier",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "runs/robert-agent/dossier.json",
+    "octets": 186599,
+    "sha256": "2d6f585dd00573cb19e1535b7d2ddb68ce42289ebac78a22ffe5550ed7fe4875",
+    "role": "résultats précalculés : dossier produit le 15 novembre",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "runs/robert-libre-gamestop/dossier.html",
+    "octets": 29566,
+    "sha256": "8f20149e3bf15d1179d4e2ec075f4343c1915bfc29e489bb59fced27372b7873",
+    "role": "résultats précalculés : rendu du dossier",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "runs/robert-libre-gamestop/dossier.json",
+    "octets": 20521,
+    "sha256": "1b20e9357fef06f9be8e44ac30fd0726e840a072d23879c33740d6e18875f20c",
+    "role": "résultats précalculés : dossier produit le 15 novembre",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "runs/robert-libre-or/dossier.html",
+    "octets": 84807,
+    "sha256": "68701ff5f2d40625d7e737addd2e106c91acc00126f61f2c7808ebc3735be275",
+    "role": "résultats précalculés : rendu du dossier",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "runs/robert-libre-or/dossier.json",
+    "octets": 118798,
+    "sha256": "e479e9ce7fb598d2e9e4c36138e1845701a3490aefb32776d5300b7b5ebf406c",
+    "role": "résultats précalculés : dossier produit le 15 novembre",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "runs/robert-tsla/dossier.html",
+    "octets": 102650,
+    "sha256": "28b956c406f71a2133af795779b7751163ead6162727bc447c1814c6ab6aa081",
+    "role": "résultats précalculés : rendu du dossier",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "runs/robert-tsla/dossier.json",
+    "octets": 179222,
+    "sha256": "7685712d7a86d0629e270f041d7faffba7bbea64d6c260e39c198a89a217eb6a",
+    "role": "résultats précalculés : dossier produit le 15 novembre",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "scripts/comparer_agent_workflow.py",
+    "octets": 4272,
+    "sha256": "7f958eada618224102fcbfc3f3b0e7ad2aad0c03e0ad20b8f13b86eaa86b934e",
+    "role": "produit : comparaison des dossiers de l'agent à l'enchaînement fixe",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "scripts/lancer-app.sh",
+    "octets": 207,
+    "sha256": "3fc120858bc8ac182514864f0696f40ae3aaf98508727cc65c4a2d2724ea5019",
+    "role": "produit : lanceur de l'application locale",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "src/datathon2026/__init__.py",
+    "octets": 101,
+    "sha256": "3ebb498d2ed923c1fae3928223adeb589666e603a046b71432669cea88ed4528",
+    "role": "produit : code source",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "src/datathon2026/agent.py",
+    "octets": 24866,
+    "sha256": "6cb2dc9841c93ba346ef71bdfed604ab2136312904069ffc89d036ffabf324c2",
+    "role": "produit : code source",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "src/datathon2026/analytics.py",
+    "octets": 7961,
+    "sha256": "588ad1ca468e08d233a2b4ec28783e847b45e94729afb356b9f0559583c3e433",
+    "role": "produit : code source",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "src/datathon2026/app.py",
+    "octets": 20575,
+    "sha256": "80b7f9a3231e906786c855af4e46c2d611ce7a6337ead845d1ef4b0788e13e7f",
+    "role": "produit : code source",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "src/datathon2026/cli.py",
+    "octets": 7570,
+    "sha256": "351fc465845fc65049c104d1ecf4483a881c0dcabe69c760d08729a19d3713f7",
+    "role": "produit : code source",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "src/datathon2026/data.py",
+    "octets": 4091,
+    "sha256": "6c98b5a7038d1f8be8636314e3dd308e17b23cdeb9973dafd686f16eca8bc3f9",
+    "role": "produit : code source",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "src/datathon2026/dossier.py",
+    "octets": 5951,
+    "sha256": "84a3aafc22e0e84e8de47ebbee0f77c34eeb8b997c7832170dddbe4c81d0cd36",
+    "role": "produit : code source",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "src/datathon2026/evidence.py",
+    "octets": 16440,
+    "sha256": "8d50fd04701177092df42ea204afc21158710ea24249aca6edddc01268e2d1dd",
+    "role": "produit : code source",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "src/datathon2026/paths.py",
+    "octets": 413,
+    "sha256": "c8bab04b7d0535ace6dafe161c613b1850402c2a5b5d7dc3f0002ca5bb7e055c",
+    "role": "produit : code source",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "src/datathon2026/report.py",
+    "octets": 35636,
+    "sha256": "d5f7c2419555824c6331ea6162ec9c934338de6f8adf7694a6e44cf50c27b6d4",
+    "role": "produit : code source",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "src/datathon2026/tools.py",
+    "octets": 17056,
+    "sha256": "e54529152795b3849ccdcfd05ffe10ef31ae0f8519054aafebc31632c26e42ea",
+    "role": "produit : code source",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "src/datathon2026/workflow.py",
+    "octets": 17504,
+    "sha256": "d619f8711e651fa998b52579d8ec07fa8b4db065f3a26067c13c0226ff23d8fd",
+    "role": "produit : code source",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "tests/test_agent.py",
+    "octets": 5014,
+    "sha256": "19a65ab8ef44be7a00b1609df155b571664a0a9076f68317d10b5e77229d9ad1",
+    "role": "produit : tests",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "tests/test_analytics.py",
+    "octets": 2536,
+    "sha256": "72000513fa7e946d2354433213e2117d7315bb63db171d6d0a5833bca09fcbff",
+    "role": "produit : tests",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "tests/test_app.py",
+    "octets": 2182,
+    "sha256": "9120167c4fd5dcd0c87b793935b9cfd7265a698f44336dcfde805cb59a08f1b3",
+    "role": "produit : tests",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "tests/test_data.py",
+    "octets": 2691,
+    "sha256": "5ef1f6a324df0afafd4a793e8d8f7fc5d3e29a336b3373ae60ba3ba7ed451606",
+    "role": "produit : tests",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "tests/test_evidence.py",
+    "octets": 8102,
+    "sha256": "d3fdbb5f08b02f2496176df9de1377fe25e3a07a65507bf658578ace20cf4934",
+    "role": "produit : tests",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "tests/test_workflow.py",
+    "octets": 3244,
+    "sha256": "a4097ade00ad7bf6ef3262894320fa585eedc512f54f7f6c91c7f627a14b03df",
+    "role": "produit : tests",
+    "origine": "copié tel quel"
+   },
+   {
+    "chemin": "uv.lock",
+    "octets": 48257,
+    "sha256": "75260467bca8b7bc4a98acd59a092d1ff07e05a1674b599791ebd67ff0b0e3f9",
+    "role": "produit : verrouillage des dépendances",
+    "origine": "copié tel quel"
+   }
+  ],
+  "note": "MANIFESTE.json ne se liste pas lui-même ; l'empreinte de l'archive est dans le fichier .sha256 placé à côté d'elle"
+ },
+ "exclusions": [
+  {
+   "categorie": "Historique Git",
+   "fichiers": 29,
+   "octets": 5742745,
+   "raison": "l'export est un instantané ; le commit source est dans le manifeste",
+   "consequence": "aucune"
+  },
+  {
+   "categorie": "Environnement installé et caches",
+   "fichiers": 6504,
+   "octets": 110372406,
+   "raison": "réinstallable par `uv sync`",
+   "consequence": "aucune"
+  },
+  {
+   "categorie": "Instructions et réglages de l'assistant de développement",
+   "fichiers": 2,
+   "octets": 1784,
+   "raison": "consignes de travail, non du produit ; leurs conventions techniques sont reprises dans LIRE_EN_PREMIER.md",
+   "consequence": "aucune"
+  },
+  {
+   "categorie": "Données du jeu de départ",
+   "fichiers": 9,
+   "octets": 4389200,
+   "raison": "le projet ne les redistribue pas (.gitignore, data/README.md)",
+   "consequence": "à copier dans data/raw/alphaforge_starter/ ; sans elles, `alphaforge rendre` fonctionne et 23 des 51 tests passent ; `demo`, `agent` et l'application échouent"
+  },
+  {
+   "categorie": "Textes de tiers téléchargés pour la recherche",
+   "fichiers": 2047,
+   "octets": 881811919,
+   "raison": "aucun droit de redistribution ; 880 Mo",
+   "consequence": "références, liens et empreintes dans research/sources/manifeste*.json et research/R07"
+  },
+  {
+   "categorie": "Cadrage, mandat et suivi de travail",
+   "fichiers": 11,
+   "octets": 204087,
+   "raison": "consignes historiques, état de séance et coordination entre sessions : remplacés par LIRE_EN_PREMIER.md",
+   "consequence": "quelques documents conservés y renvoient encore (liste en fin de note)"
+  },
+  {
+   "categorie": "Conversions de l'énoncé et de la présentation des organisateurs",
+   "fichiers": 36,
+   "octets": 5813325,
+   "raison": "documents des organisateurs, communs aux participants",
+   "consequence": "aucune"
+  },
+  {
+   "categorie": "Livrables vides",
+   "fichiers": 2,
+   "octets": 596,
+   "raison": "titres seuls ou dossier vide",
+   "consequence": "aucune"
+  },
+  {
+   "categorie": "Lanceurs et scripts propres au poste",
+   "fichiers": 3,
+   "octets": 7939,
+   "raison": "lancement de l'outil de développement et saisie d'identifiants d'atelier ; le dernier, modifié localement, n'a pas été ouvert",
+   "consequence": "docs/acces-aws.md cite ces scripts ; l'accès se configure par un profil AWS nommé `alphaforge`"
+  },
+  {
+   "categorie": "Notes de recherche sur l'outil de développement",
+   "fichiers": 2,
+   "octets": 19151,
+   "raison": "portent sur la session de développement, non sur le produit",
+   "consequence": "quelques documents de conception y renvoient"
+  },
+  {
+   "categorie": "Fiches et journaux intermédiaires de la recherche",
+   "fichiers": 51,
+   "octets": 2921183,
+   "raison": "sorties brutes des passes de recherche et de revue (2,8 Mo) ; leurs conclusions sont dans docs/refonte/ et research/R07",
+   "consequence": "les documents de conception citent ces fiches comme pièces de travail"
+  },
+  {
+   "categorie": "Pièces de l'étape précédente du dossier d'évaluation",
+   "fichiers": 17,
+   "octets": 789062,
+   "raison": "relevés bruts, scripts d'assemblage, manifeste d'une autre archive, doublon de l'inventaire",
+   "consequence": "evaluation-fusion/*.md citent `MANIFESTE.json` : lire celui de la racine ; ils citent aussi outils/ et inventaire/"
+  },
+  {
+   "categorie": "README d'origine",
+   "fichiers": 1,
+   "octets": 5771,
+   "raison": "contenait des consignes de reprise pour l'assistant de développement ; remplacé par un renvoi vers LIRE_EN_PREMIER.md",
+   "consequence": "aucune ; pyproject.toml exige la présence du fichier"
+  },
+  {
+   "categorie": "Caches et fichiers système",
+   "fichiers": 27,
+   "raison": "réinstallables ou sans contenu",
+   "consequence": "aucune"
+  },
+  {
+   "categorie": "Sorties intermédiaires des essais techniques",
+   "fichiers": 50,
+   "raison": "bases et journaux régénérables, pages de documentation téléchargées, script lié au poste",
+   "consequence": "les comptes rendus (.txt, .json) et les LISEZMOI.md des essais restent ; relancer un essai recrée ses bases"
+  },
+  {
+   "categorie": "Inventaire brut du compte AWS de l'atelier",
+   "fichiers": 2,
+   "raison": "noms de ressources d'un compte",
+   "consequence": "résumé dans research/experiences/technique/services_aws/LISEZMOI.md"
+  },
+  {
+   "categorie": "Anciennes versions de dossiers",
+   "fichiers": 6,
+   "raison": "copies antérieures des dossiers de l'agent",
+   "consequence": "trois exécutions d'agent en moins dans les mesures ; elles restent décrites dans evaluation-fusion/preuves/dossiers-d-agent.txt"
+  }
+ ],
+ "donnees_non_incluses": {
+  "emplacement_attendu": "data/raw/alphaforge_starter/",
+  "fichiers_lus_par_le_produit": [
+   "prices_daily.csv",
+   "fx_usdcad_daily.csv",
+   "assets_universe.csv"
+  ],
+  "liste": [
+   {
+    "chemin": "data/raw/alphaforge_starter/README.md",
+    "octets": 10675,
+    "sha256": "c713abb2a5b80a6677d61d24068a4614ce8f357f0bfa5ef950986a75c704e203"
+   },
+   {
+    "chemin": "data/raw/alphaforge_starter/assets_universe.csv",
+    "octets": 2089,
+    "sha256": "f78de8ecb36d914a3448db63498cc9a04a34d805bccb79c481dda1650755467d"
+   },
+   {
+    "chemin": "data/raw/alphaforge_starter/build_dataset.py",
+    "octets": 10947,
+    "sha256": "1c6bd7ce45e32a672d115a5ff3cbf5b29e9eb201423e47df09c81355558067dd"
+   },
+   {
+    "chemin": "data/raw/alphaforge_starter/corporate_actions.csv",
+    "octets": 29728,
+    "sha256": "37d99f1472f9f1c7360432835353488bdf72bb055295ec66155211a30d8312b1"
+   },
+   {
+    "chemin": "data/raw/alphaforge_starter/data_quality_warnings.txt",
+    "octets": 68,
+    "sha256": "87fdb2abea76029c6ad32c57548c6a04e8018be0c1aadc9b7438561eef5789b6"
+   },
+   {
+    "chemin": "data/raw/alphaforge_starter/fx_usdcad_daily.csv",
+    "octets": 33344,
+    "sha256": "f04e218ac5b0145fd552b3d0dcfbf73e5e17bb9a6fb4562460dbec95cb8972b3"
+   },
+   {
+    "chemin": "data/raw/alphaforge_starter/macro_rates.csv",
+    "octets": 1074518,
+    "sha256": "2c04b0ca5590396fee1f0de13c0b2a95731125a61c79166d553d106f0375c73e"
+   },
+   {
+    "chemin": "data/raw/alphaforge_starter/prices_daily.csv",
+    "octets": 3224985,
+    "sha256": "ff2a3f2d0a7d72ea835e8d616d041e0510f018340cef3d3e55b918830e8a569d"
+   },
+   {
+    "chemin": "data/raw/alphaforge_starter/sources_metadata.csv",
+    "octets": 2846,
+    "sha256": "7ff17052c8235888c4984430830610ae0d81c0df71585afaacb87ba5fe531bdf"
+   }
+  ]
+ },
+ "controles": {
+  "secrets": "aucune occurrence",
+  "motifs_cherches": [
+   "clé d'accès AWS (AKIA/ASIA)",
+   "clé secrète ou jeton de session AWS",
+   "jeton dans une adresse",
+   "clé privée",
+   "clé d'API (forme sk-…)",
+   "clé d'API affectée",
+   "numéro de compte AWS complet dans un ARN",
+   "chemin personnel"
+  ],
+  "liens_symboliques": 0,
+  "python_compile": "tous les fichiers .py",
+  "references_vers_pieces_non_jointes": 46,
+  "chemins_non_resolus": 14
+ }
+}

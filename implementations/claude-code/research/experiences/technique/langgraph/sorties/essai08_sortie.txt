@@ -1,0 +1,15 @@
+A. deux écritures successives qui nomment la même tête
+   seconde écriture acceptée ; parents : True et True (même tête)
+   dernier état du fil : montant = 2222.0 ; journal = ['agent3 : restitution préparée', 'écriture 2 (tête périmée)']
+   l'écriture 1 figure-t-elle dans le dernier état ? False
+B. deux processus écrivent au même instant
+   {"ecrivain": "P1", "tete_lue": "1f1e12ac-6bf7-6d20-8005-f72330afa45d", "point_ecrit": "1f1e12ac-83f3-6082-8006-0de5da37bba3", "erreur": null}
+   {"ecrivain": "P2", "tete_lue": "1f1e12ac-6bf7-6d20-8005-f72330afa45d", "point_ecrit": "1f1e12ac-83ee-6852-8006-c01219037e80", "erreur": null}
+   dernier état du fil : montant = 3333.0 ; journal = ['écriture 2 (tête périmée)', 'écriture de P1']
+   points du fil : 10
+C. deux processus lancent le graphe au même instant sur le même fil
+   {"lanceur": "6000", "restitution": "1 fiche(s) ; dixième du montant = 600.0", "journal": ["agent0 : faits déclarés extraits", "agent1 : recherche sur volatilité", "agent2 : calcul pour 6000.0", "agent3 : restitution préparée"], "erreur": null}
+   {"lanceur": "7000", "restitution": "1 fiche(s) ; dixième du montant = 700.0", "journal": ["agent0 : faits déclarés extraits", "agent1 : recherche sur volatilité", "agent2 : calcul pour 7000.0", "agent3 : restitution préparée"], "erreur": null}
+   exécutions par nœud : {'agent0': 2, 'agent1': 2, 'agent2': 2, 'agent3': 2}
+   points du fil : 12 ; dernier état : 1 fiche(s) ; dixième du montant = 600.0 ; journal = ['agent0 : faits déclarés extraits', 'agent1 : recherche sur volatilité', 'agent2 : calcul pour 6000.0', 'agent3 : restitution préparée']
+   points ayant plusieurs enfants (lignes parallèles non déclarées) : 1

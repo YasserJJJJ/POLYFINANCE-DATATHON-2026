@@ -1,0 +1,41 @@
+flowchart TD
+    U["Utilisateur"]
+    CLI["cli.py : commandes demo, agent, rendre, aws-verifier"]
+    APP["app.py : serveur HTTP local 127.0.0.1 et page web"]
+    WF["workflow.py : enchaînement fixe robert, amira"]
+    AG["agent.py : BedrockAgent, boucle d'outils"]
+    BR["Amazon Bedrock Runtime, API Converse (service externe)"]
+    TL["tools.py : Session, trace, sept outils déterministes"]
+    AN["analytics.py : Market et calculs"]
+    DA["data.py : lecture des fichiers"]
+    CSV["data/raw/alphaforge_starter : fichiers CSV du jeu de départ"]
+    CFG["config/personas.toml et config/scenarios.toml"]
+    EV["evidence.py : Record, Registry, vérificateur des textes"]
+    DO["dossier.py : Dossier, verification, to_dict, from_dict"]
+    RP["report.py : rendu HTML et graphiques SVG"]
+    RUNS["runs/NOM/dossier.json, runs/NOM/dossier.html, runs/index.html"]
+
+    U -->|"ligne de commande"| CLI
+    U -->|"navigateur, POST /api/dossier"| APP
+    CLI -->|"demo"| WF
+    CLI -->|"agent"| AG
+    APP -->|"mode reference"| WF
+    APP -->|"mode agent"| AG
+    AG -->|"converse : consigne, messages, dix outils"| BR
+    BR -->|"toolUse, RequestId, jetons"| AG
+    WF -->|"Session.call"| TL
+    AG -->|"Session.call"| TL
+    TL --> AN
+    AN --> DA
+    DA --> CSV
+    DA --> CFG
+    TL -->|"scénarios et groupes"| CFG
+    TL -->|"Registry.add"| EV
+    WF -->|"construit"| DO
+    AG -->|"construit et fait vérifier"| DO
+    DO -->|"verify_claims"| EV
+    CLI -->|"Dossier.save"| RUNS
+    CLI -->|"report.render"| RP
+    APP -->|"report.render, HTML renvoyé sans écriture"| RP
+    RP -->|"dossier.html, écrit par cli.py"| RUNS
+    RUNS -->|"rendre : Dossier.from_dict"| CLI

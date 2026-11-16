@@ -1,0 +1,15 @@
+cloudwatch[Invocations global.anthropic.claude-haiku-5-5] autorise {'somme_sur_une_heure': 29.0}
+cloudwatch[InputTokenCount global.anthropic.claude-haiku-5-5] autorise {'somme_sur_une_heure': 14219.0}
+cloudwatch[OutputTokenCount global.anthropic.claude-haiku-5-5] autorise {'somme_sur_une_heure': 4561.0}
+cloudwatch[Invocations amazon.titan-embed-text-v2:0] autorise {'somme_sur_une_heure': 2.0}
+cloudwatch[Invocations cohere.rerank-v3-5:0] autorise {'somme_sur_une_heure': 0}
+cloudwatch[SearchUnits cohere.rerank-v3-5:0] autorise {'somme_sur_une_heure': 0}
+CloudTrail Converse         autorise  lus=82 sources=['bedrock.amazonaws.com'] nature=['Management'] les nôtres=2
+CloudTrail InvokeModel      autorise  lus=15 sources=['bedrock.amazonaws.com'] nature=['Management'] les nôtres=2
+CloudTrail Rerank           autorise  lus=0 sources=[] nature=[] les nôtres=0
+CloudTrail InvokeWebSearch  autorise  lus=0 sources=[] nature=[] les nôtres=0
+Identifiants de nos appels : 6 ; retrouvés dans CloudTrail : 4
+   retrouvé 2a10616b-718c-435d-bbc7-ffc02ca81f5c converse global.anthropic.claude-haiku-5-5
+   retrouvé ac268eae-f746-4104-9564-7fa935d7c531 converse global.anthropic.claude-haiku-5-5
+   retrouvé c1ff24d8-f53c-48da-83d2-0afb4ead4a79 plongement amazon.titan-embed-text-v2:0
+   retrouvé 56517582-5a90-468a-999a-b3d3cf0c1144 plongement amazon.titan-embed-text-v2:0

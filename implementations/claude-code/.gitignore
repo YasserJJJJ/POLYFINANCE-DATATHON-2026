@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Secrets (clés AWS, API) — ne jamais versionner
+.env
+.env.*
+!.env.example
+
+# Données : les conditions Yahoo Finance limitent la redistribution.
+# Les données brutes et dérivées restent locales ; voir data/README.md.
+data/raw/*
+data/processed/*
+data/external/*
+!data/**/.gitkeep
+
+# Sorties d'exécution (dossiers générés)
+runs/
+
+# macOS / Office
+.DS_Store
+~$*
+
+# Réglages Claude Code locaux (Bedrock, profil AWS) — propres à cette machine
+.claude/settings.local.json

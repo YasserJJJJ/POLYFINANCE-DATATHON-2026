@@ -1,0 +1,15 @@
+état final : {'demande': 'Investir 5000 $ ; thème : volatilité', 'montant': 5000.0, 'theme': 'volatilité', 'fiches': ['fiche sur « volatilité »'], 'calcul': {'dixieme_du_montant': 500.0}, 'restitution': '1 fiche(s) ; dixième du montant = 500.0', 'journal': ['agent0 : faits déclarés extraits', 'agent1 : recherche sur volatilité', 'agent2 : calcul pour 5000.0', 'agent3 : restitution préparée']}
+exécutions par nœud : {'agent0': 1, 'agent1': 1, 'agent2': 1, 'agent3': 1}
+état relu identique : True ; nœuds suivants : ()
+exécutions après relance d'un fil terminé : {'agent0': 1, 'agent1': 1, 'agent2': 1, 'agent3': 1}
+table checkpoints : 6 lignes ; colonnes ['thread_id', 'checkpoint_ns', 'checkpoint_id', 'parent_checkpoint_id', 'type', 'checkpoint', 'metadata']
+table writes : 14 lignes ; colonnes ['thread_id', 'checkpoint_ns', 'checkpoint_id', 'task_id', 'task_path', 'idx', 'channel', 'type', 'value']
+identifiants des points : ['1f1e12a9-df77-65d2-bfff-fedc07bfccec', '1f1e12a9-df79-6364-8000-3bee3e714a54', '1f1e12a9-df7b-6308-8001-39eef8491718'] …
+format d'un point enregistré : ('msgpack', 292)
+contrôle des types par le moteur :
+  TypedDict, un nœud écrit un texte dans un champ « float » : accepté, état final = {'montant': 'beaucoup'}
+  TypedDict, un nœud écrit une clé absente du schéma : accepté, état final = {'montant': 1.0}
+  Pydantic, mauvais type écrit par le dernier nœud : accepté, état final = {'montant': 'beaucoup'}
+  Pydantic, mauvais type écrit puis lu par un nœud suivant : refusé par ValidationError : 1 validation error for EtatPydantic
+montant
+  Input should be a valid number, unable to parse string as a number [type=float_parsing, input_

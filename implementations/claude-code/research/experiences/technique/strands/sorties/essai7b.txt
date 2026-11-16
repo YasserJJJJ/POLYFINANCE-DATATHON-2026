@@ -1,0 +1,30 @@
+processus b (pid 32799) : messages présents à la création de l'agent : [('user', ['text']), ('assistant', ['reasoningContent', 'toolUse'])]
+   état d'interruption restauré : activé = True | interruptions = [{'id': 'v1:tool_call:tooluse_4yGhDi1HiGLlasa8eAZsJf:f5f6fb98-dd57-5a5d-853f-d5bf1abb20fd', 'name': 'question_a_la_personne', 'reason': {'question': "Quel est l'horizon de placement de Robert pour cette participation de 40 % dans Tesla (par exemple, moins de 2 ans, 2 à 5 ans, plus de 5 ans) ?"}, 'response': None}]
+   raison d'arrêt après reprise : end_turn
+   réponse : Avec un horizon de 7 ans, détenir 40 % de Tesla reste très risqué, car une seule action fortement volatile concentre le risque, et ce délai laisse surtout le temps de subir des baisses importantes sans diversifier le risque spécifique à l'e
+   historique : [('user', ['text']), ('assistant', ['reasoningContent', 'toolUse']), ('user', ['toolResult']), ('assistant', ['reasoningContent', 'text'])]
+   fichiers de session après reprise :
+      session_essai7/session.json 159 octets
+      session_essai7/agents/agent_agent0/agent.json 446 octets
+      session_essai7/agents/agent_agent0/messages/message_0.json 363 octets
+      session_essai7/agents/agent_agent0/messages/message_1.json 1950 octets
+      session_essai7/agents/agent_agent0/messages/message_2.json 530 octets
+      session_essai7/agents/agent_agent0/messages/message_3.json 2049 octets
+   contenu du premier fichier de message (en clair) : {
+  "message": {
+    "role": "user",
+    "content": [
+      {
+        "text": "Robert veut savoir si garder 40 % de Tesla est risqué."
+      }
+    ],
+    "tracking_id": "ba64d536-b758-4912-b760-90ba80eb8d5a"
+  },
+  "message_id": 0,
+  "redact_message": null,
+  "created_at": "2026-11-15T19:11:17.869460+00:00",
+  "updated_at": "202
+
+[essai7-b] appels Bedrock de cet essai (toutes relances) : 1 ; total tous essais : 15/20
+    Converse 200 6e74410c-f3bd-481f-ad84-5c4c767672ed {'inputTokens': 691, 'outputTokens': 186, 'totalTokens': 877, 'cacheReadInputTokens': 0, 'cacheWriteInputTokens': 0} end_turn 2.2 s
+[essai7-b] hôtes résolus par ce processus : ['bedrock-runtime.us-east-1.amazonaws.com']

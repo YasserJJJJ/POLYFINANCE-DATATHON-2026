@@ -1,0 +1,215 @@
+{
+  "quand": "2026-11-15T19:45:16+00:00",
+  "role": "WSParticipantRole",
+  "simulation": {
+    "Step Functions": {
+      "sonde": "iam.simulate_principal_policy[Step Functions]",
+      "etat": "autorise",
+      "resume": {
+        "states:CreateStateMachine": "allowed",
+        "states:StartExecution": "allowed",
+        "states:SendTaskSuccess": "allowed",
+        "states:TestState": "allowed",
+        "states:ValidateStateMachineDefinition": "allowed"
+      },
+      "ms": 512,
+      "requestId": "34bc2cf7-9959-4f89-a9f0-66345fc5f895"
+    },
+    "Rôles d'exécution": {
+      "sonde": "iam.simulate_principal_policy[Rôles d'exécution]",
+      "etat": "autorise",
+      "resume": {
+        "iam:CreateRole": "allowed",
+        "iam:PassRole": "allowed",
+        "iam:PutRolePolicy": "allowed",
+        "iam:AttachRolePolicy": "allowed"
+      },
+      "ms": 164,
+      "requestId": "da25b3fe-bf4f-45ac-9e4e-5a891d674607"
+    },
+    "S3": {
+      "sonde": "iam.simulate_principal_policy[S3]",
+      "etat": "autorise",
+      "resume": {
+        "s3:CreateBucket": "allowed",
+        "s3:PutBucketVersioning": "allowed",
+        "s3:PutBucketObjectLockConfiguration": "allowed",
+        "s3:PutObject": "allowed",
+        "s3:GetObjectVersion": "allowed"
+      },
+      "ms": 228,
+      "requestId": "feee1424-dc35-4c80-a262-f5a8921d514a"
+    },
+    "DynamoDB": {
+      "sonde": "iam.simulate_principal_policy[DynamoDB]",
+      "etat": "autorise",
+      "resume": {
+        "dynamodb:CreateTable": "allowed",
+        "dynamodb:PutItem": "allowed",
+        "dynamodb:Query": "allowed",
+        "dynamodb:ExportTableToPointInTime": "allowed"
+      },
+      "ms": 155,
+      "requestId": "678fded1-34e3-420c-b6fc-658d5faf37ae"
+    },
+    "Journal Bedrock": {
+      "sonde": "iam.simulate_principal_policy[Journal Bedrock]",
+      "etat": "autorise",
+      "resume": {
+        "bedrock:PutModelInvocationLoggingConfiguration": "allowed",
+        "logs:CreateLogGroup": "allowed",
+        "logs:PutRetentionPolicy": "allowed"
+      },
+      "ms": 212,
+      "requestId": "8fde3983-2051-4038-a25a-852541b02226"
+    },
+    "Garde-fous": {
+      "sonde": "iam.simulate_principal_policy[Garde-fous]",
+      "etat": "autorise",
+      "resume": {
+        "bedrock:CreateGuardrail": "allowed",
+        "bedrock:ApplyGuardrail": "allowed"
+      },
+      "ms": 797,
+      "requestId": "bb6a4f7e-b007-4ce5-90b2-4ce9c76651d6"
+    },
+    "Bases de connaissances": {
+      "sonde": "iam.simulate_principal_policy[Bases de connaissances]",
+      "etat": "autorise",
+      "resume": {
+        "bedrock:CreateKnowledgeBase": "allowed",
+        "bedrock:CreateDataSource": "allowed",
+        "bedrock:Retrieve": "allowed",
+        "bedrock:Rerank": "allowed",
+        "s3vectors:CreateVectorBucket": "allowed",
+        "s3vectors:CreateIndex": "allowed",
+        "s3vectors:PutVectors": "allowed",
+        "s3vectors:QueryVectors": "allowed"
+      },
+      "ms": 146,
+      "requestId": "d3b0d05e-dffa-4d1b-9fa0-55f85965e166"
+    },
+    "AgentCore": {
+      "sonde": "iam.simulate_principal_policy[AgentCore]",
+      "etat": "autorise",
+      "resume": {
+        "bedrock-agentcore:CreateAgentRuntime": "allowed",
+        "bedrock-agentcore:InvokeAgentRuntime": "allowed",
+        "bedrock-agentcore:CreateMemory": "allowed",
+        "bedrock-agentcore:CreateEvent": "allowed",
+        "bedrock-agentcore:CreateGateway": "allowed",
+        "bedrock-agentcore:CreatePolicyEngine": "allowed",
+        "bedrock-agentcore:CreateEvaluator": "allowed",
+        "bedrock-agentcore:Evaluate": "allowed",
+        "bedrock-agentcore:InvokeWebSearch": "allowed"
+      },
+      "ms": 239,
+      "requestId": "b86c8ab8-718a-4e42-8f8e-13308682f7af"
+    },
+    "Lambda": {
+      "sonde": "iam.simulate_principal_policy[Lambda]",
+      "etat": "autorise",
+      "resume": {
+        "lambda:CreateFunction": "allowed",
+        "lambda:InvokeFunction": "allowed"
+      },
+      "ms": 133,
+      "requestId": "6f8ac067-29ba-4192-8bb0-36236985a092"
+    },
+    "Inférence": {
+      "sonde": "iam.simulate_principal_policy[Inférence]",
+      "etat": "autorise",
+      "resume": {
+        "bedrock:InvokeModel": "allowed",
+        "bedrock:Converse": "allowed"
+      },
+      "ms": 1294,
+      "requestId": "f8e0091a-1b5d-46df-84f7-be83855a54a9"
+    }
+  },
+  "lecture_du_role": [
+    {
+      "sonde": "iam.list_attached_role_policies",
+      "etat": "autorise",
+      "resume": [
+        "AdministratorAccess",
+        "SageMakerStudioAdminIAMConsolePolicy",
+        "deny-kiro-api-secret-0",
+        "ws-default-policy"
+      ],
+      "ms": 54,
+      "requestId": "40ca5731-d623-4b12-89d8-8c06d0a58e62"
+    },
+    {
+      "sonde": "iam.list_role_policies",
+      "etat": "autorise",
+      "resume": [
+        "DenyIAMUserAndKeyCreation"
+      ],
+      "ms": 58,
+      "requestId": "3a6c7321-db3f-45a4-b2ea-9f66b62fee63"
+    },
+    {
+      "sonde": "iam.get_role",
+      "etat": "autorise",
+      "resume": {
+        "limite_de_permissions": "aucune",
+        "duree_max_session_s": 43200
+      },
+      "ms": 193,
+      "requestId": "a9975d5f-35b7-470c-912f-a0ec277891d1"
+    },
+    {
+      "sonde": "iam.list_roles",
+      "etat": "autorise",
+      "resume": {
+        "nombre": 35,
+        "assumables_par": [
+          "appsync.amazonaws.com",
+          "autoscaling.amazonaws.com",
+          "cloud9.amazonaws.com",
+          "cloudtrail.amazonaws.com",
+          "dev.reaper.workshopstudio.aws.internal",
+          "ec2.amazonaws.com",
+          "eks-nodegroup.amazonaws.com",
+          "eks.amazonaws.com",
+          "elasticfilesystem.amazonaws.com",
+          "elasticloadbalancing.amazonaws.com",
+          "fsx.amazonaws.com",
+          "gamma.reaper.workshopstudio.aws.internal",
+          "guardduty.amazonaws.com",
+          "lambda.amazonaws.com",
+          "license-management.marketplace.amazonaws.com",
+          "license-manager.amazonaws.com",
+          "license-manager.member-account.amazonaws.com",
+          "opensearchservice.amazonaws.com",
+          "organizations.amazonaws.com",
+          "prod.reaper.workshopstudio.aws.internal",
+          "q.amazonaws.com",
+          "rds.amazonaws.com",
+          "reaper.workshopstudio.aws.internal",
+          "resource-explorer-2.amazonaws.com",
+          "spot.amazonaws.com",
+          "ssm.amazonaws.com",
+          "support.amazonaws.com",
+          "trustedadvisor.amazonaws.com",
+          "user-subscriptions.amazonaws.com"
+        ]
+      },
+      "ms": 101,
+      "requestId": "7cdd7f74-235d-4812-9fd0-19bea35aa25b"
+    }
+  ],
+  "regles_d_organisation_evaluees": {
+    "Step Functions": true,
+    "Rôles d'exécution": true,
+    "S3": true,
+    "DynamoDB": true,
+    "Journal Bedrock": true,
+    "Garde-fous": true,
+    "Bases de connaissances": true,
+    "AgentCore": true,
+    "Lambda": true,
+    "Inférence": true
+  }
+}

@@ -1,0 +1,41 @@
+# Documentation technique (version de travail, 2026-11-15)
+
+Plan repris de l'énoncé (C15). Les sections marquées « à compléter » dépendent de travaux non encore faits.
+
+## 1. Méthodes, modèles et technologies
+
+- **Orchestration** : agent Amazon Bedrock (API Converse, outils exécutés dans notre code ; décision D2) et workflow fixe de référence utilisant les mêmes outils. Le modèle choisit les outils, rédige et choisit ce qui est montré (chiffres clés, tableau d'options, séries du graphique) ; il ne calcule rien et ne trace rien : le graphique est construit par le code à partir des données.
+- **Outils déterministes** (Python, pandas, numpy) : provenance et limites des données, description historique d'un actif, portefeuille fictif rééquilibré chaque semaine, contributions à la variance, balayage d'une part jusqu'à un seuil de perte, balayage vers un panier jusqu'à un plafond de risque par groupe, corrélation. Chaque outil valide ses entrées et renvoie une erreur explicite (seuil de perte positif, poids dont la somme n'est pas 1, titre absent de l'univers) : l'erreur est rendue à l'agent et reste visible dans la trace.
+- **Demande libre** : `alphaforge agent <profil> --demande "…"` traite une demande sans hypothèse fournie d'avance ; l'agent pose alors ses propres hypothèses et doit les déclarer.
+- **Pourquoi pas plus d'agents** : un orchestrateur et des outils suffisent tant qu'un spécialiste n'apporte pas de gain mesuré. La comparaison avec le workflow fixe (critère de réfutation D1 (a)) est dans `docs/comparaison-agent-workflow.md`, produit par `scripts/comparer_agent_workflow.py` à partir des dossiers enregistrés.
+
+## 2. Données, conventions et hypothèses
+
+Jeu de départ AlphaForge, empreintes SHA-256 inscrites dans chaque dossier (`D-0001`…). Conventions (D3) : valeurs en CAD au dernier taux Banque du Canada connu (âge du taux enregistré, au plus 4 jours) ; rendements hebdomadaires (dernière observation de chaque semaine se terminant le vendredi) pour neutraliser les calendriers TSX/US et la cotation 7 j/7 des cryptos ; volatilité ×√52 ; pire baisse d'un actif sur série quotidienne, d'un portefeuille sur série hebdomadaire. Hypothèses de démonstration (portefeuilles fictifs, seuil de perte de Robert, plafond de risque d'Amira, panier de diversification) dans `config/scenarios.toml`, toutes affichées avec le statut « hypothèse ».
+
+## 3. Mécanisme d'explicabilité
+
+1. Chaque outil inscrit ses résultats au **registre** : identifiant, libellé, valeur, unité, statut, origine, période, conventions.
+2. Les textes s'écrivent avec des **références** : `{{R-0003}}` (valeur formatée), `{{P-0010.label}}` (libellé), et trois comparaisons dont le sens est calculé sur les valeurs arrondies telles qu'affichées : `{{cmp:R-1:R-2}}` (supérieure à, inférieure à, égale à), `{{cmpabs:R-1:R-2}}` (plus forte que, moins forte que, pour des pertes) et `{{cmpduree:R-1:P-2}}` (une durée face à un horizon : atteint ou dépasse, atteint presque, représente une part importante de, reste nettement inférieure à). Le code accorde ensuite la tournure avec les mots voisins (« supérieure à » + « le plafond » → « supérieure au plafond » ; « un rendement inférieur à ») : seul l'accord change, jamais le sens.
+3. Le **vérificateur** refuse : référence inconnue ou mal formée ; comparaison entre unités incompatibles ; chiffre écrit hors référence (sauf s'il figure dans le libellé ou la période d'un enregistrement cité) ; grandeur écrite en lettres (« dix pour cent », « la moitié ») ; comparatif écrit à la main (« dépasse », « supérieur », « plus … que », « davantage que », « plus élevé », « monte », « augmente »…), sauf dans les sections « question » et « condition » et dans une proposition introduite par « si », qui formulent des hypothèses et non des constats (« même si » affirme et reste contrôlé) ; affirmation sans référence. Les mêmes règles s'appliquent à la synthèse, aux chiffres clés et aux en-têtes de tableaux.
+4. Le **statut** d'une affirmation est le plus faible de ses références (mesuré < déclaré < scénario < hypothèse < inconnu) : une conclusion qui dépend d'une hypothèse est affichée comme telle.
+5. Pour l'agent, un dossier refusé lui est renvoyé avec la liste des problèmes (deux corrections au plus) ; un élément de présentation invalide (identifiant inconnu, série inconnue) est écarté et signalé de la même façon.
+6. Un dossier enregistré se **revérifie hors ligne** : `alphaforge rendre` relit chaque `dossier.json`, repasse le vérificateur courant et régénère le HTML, sans recalcul ni appel de modèle. Les dossiers de l'agent restent donc contrôlables après la fermeture du compte AWS.
+
+**Ce que le contrôle ne voit pas.** Il est lexical et numérique, pas sémantique. Il ne détecte ni un verbe de variation hors de sa liste (« réduit », « ramène »), ni une affirmation tirée de la mémoire du modèle plutôt que du registre (relevé à la relecture : « un seul cycle de la crypto »), ni une interprétation discutable d'une valeur exacte, ni un libellé appliqué à la mauvaise grandeur. Ces défauts se trouvent à la relecture ; ils ne sont pas couverts par la mention « contrôle conforme ».
+
+**Exemple (Robert).** « Avec `10,0 %` (R-0059) du portefeuille en TSLA, la pire baisse historique serait *plus forte que* celle du portefeuille actuel (`−15,3 %` R-0056 contre `−12,3 %` R-0014) » : les trois valeurs et le sens « plus forte que » viennent du registre ; l'affirmation est marquée « hypothèse », car le portefeuille actuel et la part de 10 % sont des hypothèses de démonstration.
+
+**Défaut trouvé pendant la construction et corrigé.** Une première version écrivait à la main des liaisons comme « mais » ou « ramène à ». Pour la variante d'Amira, le texte affirmait une baisse du risque technologique alors que le chiffre montrait une hausse (52,4 % → 58,8 %). D'où les comparaisons calculées, et le remplacement de la variante choisie à la main par une règle explicite (plus petite part à déplacer vers un panier déclaré).
+
+## 4. Validations, limites et améliorations
+
+**Validations exécutées** (`uv run pytest`) : fautes injectées dans le vérificateur (chiffre manuscrit, grandeur en lettres, comparatif manuscrit, année non sourcée, référence inconnue ou mal formée, comparaison invalide, affirmation non étayée) ; accord des comparaisons calculées ; pertes maximales sur trajectoires connues ; identité de conversion `1 + r_CAD = (1 + r_USD)(1 + r_FX)` sur les données ; rendements hebdomadaires définis pour TSX, US et crypto ; contributions au risque sommant à 1 ; cohérence du point de bascule de Robert ; respect du plafond par la variante d'Amira ; changement d'hypothèse → changement de conclusion ; refus des entrées d'outil invalides ; aller-retour d'un dossier enregistré ; boucle d'agent avec client Bedrock simulé (rejet puis acceptation, erreur d'outil renvoyée, présentation contrôlée puis rendue).
+
+**Exécuté sur Amazon Bedrock** (15 novembre 2026, Sonnet 5.5, us-east-1) : deux scénarios de démonstration et quatre demandes libres, dont une préférence ESG sans donnée ESG au registre et un titre absent de l'univers. Appels, jetons, corrections demandées et outils choisis : `docs/comparaison-agent-workflow.md` ; `RequestId` de chaque appel dans le `dossier.json` correspondant. Chaque dossier a été relu à la main ; les défauts trouvés ont été corrigés dans le code (accord des comparaisons, validation des entrées d'outils, grandeurs en lettres), puis les demandes rejouées.
+
+**Non vérifié à ce jour** : variabilité d'une exécution à l'autre (un dossier par demande) ; autres modèles que Sonnet 5.5 ; rendu à moins de 500 px de large ; compréhension par des utilisateurs.
+
+**Limites** : cinq ans d'historique (une seule fenêtre de trois ans sans chevauchement) ; univers choisi après coup (biais du survivant) ; regroupement d'actifs simplifié, sans composition des FNB ; aucune donnée ESG : sur une demande ESG, l'agent compare les prix et écrit que les controverses ne sont pas mesurées ; seuils de démonstration non issus d'une norme ; contrôle lexical et non sémantique (section 3).
+
+**Améliorations prévues** : exposition par transparence (composition SPY datée) ; preuves ESG à trois états pour Mateo ; journal d'invocation Bedrock et dossier écrit dans S3 versionné (accord du porteur requis) ; relecture sémantique des affirmations par un second modèle.

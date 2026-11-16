@@ -1,0 +1,64 @@
+{
+ "python": "3.12.7",
+ "assertions": 118,
+ "duree_des_essais_s": 1.354,
+ "durees": {
+  "(c) reprise après un arrêt réel, puis question à la personne": 0.086,
+  "ligne du journal tronquée par une panne": 0.01,
+  "(a) invalidation sélective, six champs": 0.087,
+  "(b) variante sur une branche": 0.02,
+  "(d) écritures concurrentes": 1.061,
+  "(e) retour en vigueur sans recalcul": 0.016,
+  "(f) erronée contre périmée": 0.021,
+  "(g) préparé, affiché, choisi": 0.011,
+  "(h) export PROV-JSON": 0.003,
+  "empreintes et droits d'écriture": 0.015,
+  "erreur d'outil": 0.016,
+  "intégrité du journal et des pièces": 0.008
+ },
+ "prov": {
+  "enregistrements": 156,
+  "par_section": {
+   "entity": 21,
+   "activity": 12,
+   "agent": 9,
+   "used": 33,
+   "wasGeneratedBy": 10,
+   "wasAssociatedWith": 12,
+   "wasAttributedTo": 22,
+   "wasDerivedFrom": 35,
+   "wasInvalidatedBy": 1,
+   "wasInfluencedBy": 1
+  },
+  "paquet_prov": "absent"
+ },
+ "lignes": {
+  "chaine.py": 84,
+  "dossier.py": 313,
+  "essais.py": 501,
+  "export_prov.py": 79,
+  "verif_sqlite.py": 47
+ },
+ "dossier_de_base": {
+  "evenements_ligne_principale": 21,
+  "pieces": 14,
+  "fichiers": 15,
+  "octets": 11299
+ },
+ "dossier_exemple": {
+  "evenements_ligne_principale": 35,
+  "pieces": 20,
+  "fichiers": 21,
+  "octets": 18991
+ },
+ "long_journal": {
+  "evenements": 621,
+  "construction_s": 2.828,
+  "lecture_s": 0.0023,
+  "tete_s": 0.0025,
+  "etats_s": 0.0415,
+  "verifier_s": 0.026
+ },
+ "cent_depots_avec_fsync_s": 0.111,
+ "cent_depots_sans_fsync_s": 0.103
+}

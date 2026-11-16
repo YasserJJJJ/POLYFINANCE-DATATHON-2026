@@ -1,0 +1,59 @@
+Step Functions : autorise
+    allowed          states:CreateStateMachine
+    allowed          states:StartExecution
+    allowed          states:SendTaskSuccess
+    allowed          states:TestState
+    allowed          states:ValidateStateMachineDefinition
+Rôles d'exécution : autorise
+    allowed          iam:CreateRole
+    allowed          iam:PassRole
+    allowed          iam:PutRolePolicy
+    allowed          iam:AttachRolePolicy
+S3 : autorise
+    allowed          s3:CreateBucket
+    allowed          s3:PutBucketVersioning
+    allowed          s3:PutBucketObjectLockConfiguration
+    allowed          s3:PutObject
+    allowed          s3:GetObjectVersion
+DynamoDB : autorise
+    allowed          dynamodb:CreateTable
+    allowed          dynamodb:PutItem
+    allowed          dynamodb:Query
+    allowed          dynamodb:ExportTableToPointInTime
+Journal Bedrock : autorise
+    allowed          bedrock:PutModelInvocationLoggingConfiguration
+    allowed          logs:CreateLogGroup
+    allowed          logs:PutRetentionPolicy
+Garde-fous : autorise
+    allowed          bedrock:CreateGuardrail
+    allowed          bedrock:ApplyGuardrail
+Bases de connaissances : autorise
+    allowed          bedrock:CreateKnowledgeBase
+    allowed          bedrock:CreateDataSource
+    allowed          bedrock:Retrieve
+    allowed          bedrock:Rerank
+    allowed          s3vectors:CreateVectorBucket
+    allowed          s3vectors:CreateIndex
+    allowed          s3vectors:PutVectors
+    allowed          s3vectors:QueryVectors
+AgentCore : autorise
+    allowed          bedrock-agentcore:CreateAgentRuntime
+    allowed          bedrock-agentcore:InvokeAgentRuntime
+    allowed          bedrock-agentcore:CreateMemory
+    allowed          bedrock-agentcore:CreateEvent
+    allowed          bedrock-agentcore:CreateGateway
+    allowed          bedrock-agentcore:CreatePolicyEngine
+    allowed          bedrock-agentcore:CreateEvaluator
+    allowed          bedrock-agentcore:Evaluate
+    allowed          bedrock-agentcore:InvokeWebSearch
+Lambda : autorise
+    allowed          lambda:CreateFunction
+    allowed          lambda:InvokeFunction
+Inférence : autorise
+    allowed          bedrock:InvokeModel
+    allowed          bedrock:Converse
+autorise  iam.list_attached_role_policies      ['AdministratorAccess', 'SageMakerStudioAdminIAMConsolePolicy', 'deny-kiro-api-secret-0', 'ws-default-policy']
+autorise  iam.list_role_policies               ['DenyIAMUserAndKeyCreation']
+autorise  iam.get_role                         {'limite_de_permissions': 'aucune', 'duree_max_session_s': 43200}
+autorise  iam.list_roles                       {'nombre': 35, 'assumables_par': ['appsync.amazonaws.com', 'autoscaling.amazonaws.com', 'cloud9.amazonaws.com', 'cloudtrail.amazonaws.com', 'dev.reaper.workshopstudio.aws.internal', 'ec2.amazonaws.com', 'eks-nodegroup.amazonaws.com', 'eks.amazonaws.com', 'elasticfilesystem.amazonaws.com', 'elasticloadbalancing.amazonaws.com', 'fsx.amazonaws.com', 'gamma.reaper.workshopstudio.aws.internal', 'guardduty.amazonaws.com', 'lambda.amazonaws.com', 'license-management.marketplace.amazonaws.com', 'license-manager.amazonaws.com', 'license-manager.member-account.amazonaws.com', 'opensearchservice.amazonaws.com', 'organizations.amazonaws.com', 'prod.reaper.workshopstudio.aws.internal', 'q.amazonaws.com', 'rds.amazonaws.com', 'reaper.workshopstudio.aws.internal', 'resource-explorer-2.amazonaws.com', 'spot.amazonaws.com', 'ssm.amazonaws.com', 'support.amazonaws.com', 'trustedadvisor.amazonaws.com', 'user-subscriptions.amazonaws.com']}
+Règles d'organisation évaluées par la simulation : {'Step Functions': True, "Rôles d'exécution": True, 'S3': True, 'DynamoDB': True, 'Journal Bedrock': True, 'Garde-fous': True, 'Bases de connaissances': True, 'AgentCore': True, 'Lambda': True, 'Inférence': True}

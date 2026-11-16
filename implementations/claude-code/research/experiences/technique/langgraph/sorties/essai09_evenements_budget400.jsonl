@@ -1,0 +1,44 @@
+{"mode": "(appelant)", "resume": "envoi de la demande"}
+{"mode": "checkpoints", "resume": {"suivants": ["__start__"], "pas": -1}}
+{"mode": "values", "resume": {"cles": ["demande", "journal"]}}
+{"mode": "checkpoints", "resume": {"suivants": ["agent0"], "pas": 0}}
+{"mode": "tasks", "resume": {"noeud": "agent0", "fin": false, "cles": ["id", "input", "name", "triggers"]}}
+{"mode": "updates", "resume": {"__interrupt__": [{"question": "Quel montant envisagez-vous d'investir ?", "champ": "montant"}]}}
+{"mode": "values", "resume": {"cles": ["__interrupt__", "demande", "journal"]}}
+{"mode": "tasks", "resume": {"noeud": "agent0", "fin": true, "cles": ["error", "id", "interrupts", "name", "result"]}}
+{"mode": "(appelant)", "resume": "envoi de la réponse de la personne"}
+{"mode": "values", "resume": {"cles": ["demande", "journal"]}}
+{"mode": "checkpoints", "resume": {"suivants": ["agent0"], "pas": 0}}
+{"mode": "tasks", "resume": {"noeud": "agent0", "fin": false, "cles": ["id", "input", "name", "triggers"]}}
+{"mode": "updates", "resume": {"agent0": ["journal", "montant", "theme"]}}
+{"mode": "tasks", "resume": {"noeud": "agent0", "fin": true, "cles": ["error", "id", "interrupts", "name", "result"]}}
+{"mode": "values", "resume": {"cles": ["demande", "journal", "montant", "theme"]}}
+{"mode": "checkpoints", "resume": {"suivants": ["agent1"], "pas": 1}}
+{"mode": "tasks", "resume": {"noeud": "agent1", "fin": false, "cles": ["id", "input", "name", "triggers"]}}
+{"mode": "updates", "resume": {"agent1": ["fiches", "journal"]}}
+{"mode": "tasks", "resume": {"noeud": "agent1", "fin": true, "cles": ["error", "id", "interrupts", "name", "result"]}}
+{"mode": "values", "resume": {"cles": ["demande", "fiches", "journal", "montant", "theme"]}}
+{"mode": "checkpoints", "resume": {"suivants": ["agent2"], "pas": 2}}
+{"mode": "tasks", "resume": {"noeud": "agent2", "fin": false, "cles": ["id", "input", "name", "triggers"]}}
+{"mode": "custom", "resume": {"type": "avancement", "role": "agent2", "etape": "calcul lancé"}}
+{"mode": "custom", "resume": {"type": "avancement", "role": "agent2", "etape": "calcul terminé", "resultat": {"dixieme_du_montant": 500.0}}}
+{"mode": "updates", "resume": {"agent2": ["calcul", "journal"]}}
+{"mode": "tasks", "resume": {"noeud": "agent2", "fin": true, "cles": ["error", "id", "interrupts", "name", "result"]}}
+{"mode": "values", "resume": {"cles": ["calcul", "demande", "fiches", "journal", "montant", "theme"]}}
+{"mode": "checkpoints", "resume": {"suivants": ["agent3"], "pas": 3}}
+{"mode": "tasks", "resume": {"noeud": "agent3", "fin": false, "cles": ["id", "input", "name", "triggers"]}}
+{"mode": "messages", "resume": {"fragment": "", "blocs": [], "noeud": "agent3"}}
+{"mode": "messages", "resume": {"fragment": "", "blocs": ["reasoning_content"], "noeud": "agent3"}}
+{"mode": "messages", "resume": {"fragment": "", "blocs": ["reasoning_content"], "noeud": "agent3"}}
+{"mode": "messages", "resume": {"fragment": "", "blocs": [], "noeud": "agent3"}}
+{"mode": "messages", "resume": {"fragment": "Le", "blocs": ["text"], "noeud": "agent3"}}
+{"mode": "messages", "resume": {"fragment": " dixième du montant va", "blocs": ["text"], "noeud": "agent3"}}
+{"mode": "messages", "resume": {"fragment": "ut 500,0 $.", "blocs": ["text"], "noeud": "agent3"}}
+{"mode": "messages", "resume": {"fragment": "", "blocs": [], "noeud": "agent3"}}
+{"mode": "messages", "resume": {"fragment": "", "blocs": ["texte"], "noeud": "agent3"}}
+{"mode": "messages", "resume": {"fragment": "", "blocs": ["texte"], "noeud": "agent3"}}
+{"mode": "messages", "resume": {"fragment": "", "blocs": ["texte"], "noeud": "agent3"}}
+{"mode": "updates", "resume": {"agent3": ["journal", "restitution"]}}
+{"mode": "tasks", "resume": {"noeud": "agent3", "fin": true, "cles": ["error", "id", "interrupts", "name", "result"]}}
+{"mode": "values", "resume": {"cles": ["calcul", "demande", "fiches", "journal", "montant", "restitution", "theme"]}}
+{"mode": "checkpoints", "resume": {"suivants": [], "pas": 4}}

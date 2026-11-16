@@ -1,0 +1,57 @@
+# Personas de référence du défi AlphaForge AI.
+# Source : « Datathon - Case Officiel 2026 FR.pdf », pages 4 à 7 (PolyFinances).
+# Profils entièrement fictifs. Les champs reprennent l'énoncé ; « teste » résume
+# la section « Ce que le persona teste ».
+
+[amira]
+nom = "Amira"
+age = 26
+profession = "Ingénieure logicielle"
+situation = "Célibataire, sans enfant"
+experience = "intermédiaire"
+profil_risque = "élevé"
+horizon_ans = { min = 15 }  # « 15 ans ou plus » : pas de borne haute
+objectif = "Faire croître son capital à long terme"
+preferences = [
+    "Très intéressée par l'intelligence artificielle et les technologies émergentes",
+    "Ouverte aux entreprises en forte croissance et à une volatilité importante",
+    "Intéressée par les cryptoactifs",
+    "Souhaite maintenir une certaine diversification et éviter de miser exclusivement sur les technologies",
+]
+teste = "« Risque élevé » ne signifie pas « tout est acceptable » : garder une diversification cohérente."
+
+[mateo]
+nom = "Mateo"
+age = 41
+profession = "Gestionnaire des opérations"
+situation = "En couple, père de deux enfants"
+experience = "intermédiaire"
+profil_risque = "modéré"
+horizon_ans = { min = 8, max = 12 }
+objectif = "Faire croître son capital de façon équilibrée à moyen et à long terme"
+preferences = [
+    "Accorde une grande importance aux facteurs ESG",
+    "Souhaite éviter les entreprises liées à des controverses environnementales ou sociales importantes",
+    "Recherche un équilibre entre potentiel de croissance et stabilité",
+    "Ouvert aux technologies émergentes si elles correspondent à son profil de risque",
+    "Peu intéressé par les placements hautement spéculatifs",
+]
+teste = "Intégrer des critères non financiers (ESG), pas seulement rendement et risque."
+
+[robert]
+nom = "Robert"
+age = 59
+profession = "Professionnel de la santé"
+situation = "Marié, père d'enfants adultes ; envisage la retraite dans les prochaines années"
+experience = "avancée"
+profil_risque = "faible à modéré"
+horizon_ans = { min = 3, max = 5 }
+objectif = "Préserver son capital tout en maintenant un potentiel de croissance"
+preferences = [
+    "Préfère les entreprises établies et les placements dont il comprend bien le modèle d'affaires",
+    "Accorde de l'importance à la stabilité et à la qualité des entreprises",
+    "Peu intéressé par les cryptoactifs",
+    "Suit activement les marchés et s'intéresse aux nouvelles occasions d'investissement",
+    "Peut être tenté par une entreprise très médiatisée, même si elle est plus risquée que ce qu'il recherche",
+]
+teste = "Remettre en question une demande incohérente avec le profil, expliquer les risques, ne pas acquiescer automatiquement."

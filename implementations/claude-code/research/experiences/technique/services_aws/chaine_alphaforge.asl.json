@@ -1,0 +1,148 @@
+{
+  "Comment": "AlphaForge — une étude, de la qualification à la restitution. Définition d'essai : jamais déployée. Les fonctions Lambda nommées n'existent pas.",
+  "StartAt": "QualifierDonnees",
+  "TimeoutSeconds": 172800,
+  "States": {
+    "QualifierDonnees": {
+      "Comment": "Code, sans modèle : empreintes, fenêtre, conventions.",
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {"FunctionName": "alphaforge-greffier", "Payload": {"tache": "qualifier_donnees", "dossier.$": "$.dossier", "tete.$": "$.tete"}},
+      "ResultSelector": {"empreinte.$": "$.Payload.empreinte"},
+      "ResultPath": "$.donnees",
+      "Retry": [{"ErrorEquals": ["Lambda.TooManyRequestsException", "Lambda.ServiceException"], "IntervalSeconds": 2, "MaxAttempts": 3, "BackoffRate": 2.0}],
+      "Catch": [{"ErrorEquals": ["States.ALL"], "ResultPath": "$.panne", "Next": "EtudeInterrompue"}],
+      "Next": "Agent0"
+    },
+    "Agent0": {
+      "Comment": "Rôle à modèle : la fonction appelle Bedrock, passe la porte, dépose la pièce et rend son empreinte.",
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {"FunctionName": "alphaforge-role", "Payload": {"role": "agent0", "dossier.$": "$.dossier", "tete.$": "$.tete", "entrees.$": "$.donnees"}},
+      "ResultSelector": {"empreinte.$": "$.Payload.empreinte", "variable_manquante.$": "$.Payload.variable_manquante", "question.$": "$.Payload.question"},
+      "ResultPath": "$.qualification",
+      "Retry": [{"ErrorEquals": ["ThrottlingException", "Lambda.TooManyRequestsException"], "IntervalSeconds": 3, "MaxAttempts": 2, "BackoffRate": 2.0}],
+      "Catch": [
+        {"ErrorEquals": ["PorteRefusee"], "ResultPath": "$.refus", "Next": "EtudeInterrompue"},
+        {"ErrorEquals": ["States.ALL"], "ResultPath": "$.panne", "Next": "EtudeInterrompue"}
+      ],
+      "Next": "FautIlDemander"
+    },
+    "FautIlDemander": {
+      "Type": "Choice",
+      "Choices": [{"Variable": "$.qualification.variable_manquante", "BooleanEquals": true, "Next": "QuestionALaPersonne"}],
+      "Default": "Agent1"
+    },
+    "QuestionALaPersonne": {
+      "Comment": "L'étude est suspendue : la machine attend le jeton que l'interface renverra avec la réponse (SendTaskSuccess).",
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke.waitForTaskToken",
+      "Parameters": {"FunctionName": "alphaforge-greffier", "Payload": {"tache": "poser_question", "question.$": "$.qualification.question", "jeton.$": "$$.Task.Token", "dossier.$": "$.dossier"}},
+      "TimeoutSeconds": 86400,
+      "ResultPath": "$.reponse",
+      "Catch": [{"ErrorEquals": ["States.Timeout"], "ResultPath": "$.panne", "Next": "EtudeInterrompue"}],
+      "Next": "Agent0"
+    },
+    "Agent1": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {"FunctionName": "alphaforge-role", "Payload": {"role": "agent1", "dossier.$": "$.dossier", "tete.$": "$.tete", "entrees.$": "$.qualification"}},
+      "ResultSelector": {"empreinte.$": "$.Payload.empreinte"},
+      "ResultPath": "$.plan_methodes",
+      "Retry": [{"ErrorEquals": ["ThrottlingException"], "IntervalSeconds": 3, "MaxAttempts": 2, "BackoffRate": 2.0}],
+      "Catch": [{"ErrorEquals": ["States.ALL"], "ResultPath": "$.panne", "Next": "EtudeInterrompue"}],
+      "Next": "Agent2Plan"
+    },
+    "Agent2Plan": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {"FunctionName": "alphaforge-role", "Payload": {"role": "agent2_plan", "dossier.$": "$.dossier", "tete.$": "$.tete", "entrees.$": "$.plan_methodes"}},
+      "ResultSelector": {"empreinte.$": "$.Payload.empreinte", "calculs.$": "$.Payload.calculs"},
+      "ResultPath": "$.plan_scelle",
+      "Catch": [{"ErrorEquals": ["States.ALL"], "ResultPath": "$.panne", "Next": "EtudeInterrompue"}],
+      "Next": "Calculs"
+    },
+    "Calculs": {
+      "Comment": "Parallélisme : un calcul du plan par itération, quatre à la fois ; un calcul déjà fait pour les mêmes empreintes est rendu sans recalcul par la fonction.",
+      "Type": "Map",
+      "ItemsPath": "$.plan_scelle.calculs",
+      "MaxConcurrency": 4,
+      "ItemProcessor": {
+        "ProcessorConfig": {"Mode": "INLINE"},
+        "StartAt": "UnCalcul",
+        "States": {
+          "UnCalcul": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::lambda:invoke",
+            "Parameters": {"FunctionName": "alphaforge-calcul", "Payload.$": "$"},
+            "OutputPath": "$.Payload",
+            "Retry": [{"ErrorEquals": ["Lambda.TooManyRequestsException"], "IntervalSeconds": 2, "MaxAttempts": 3, "BackoffRate": 2.0}],
+            "End": true
+          }
+        }
+      },
+      "ResultPath": "$.calculs",
+      "Catch": [{"ErrorEquals": ["States.ALL"], "ResultPath": "$.panne", "Next": "EtudeInterrompue"}],
+      "Next": "Agent2Note"
+    },
+    "Agent2Note": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {"FunctionName": "alphaforge-role", "Payload": {"role": "agent2_note", "dossier.$": "$.dossier", "tete.$": "$.tete", "entrees.$": "$.calculs"}},
+      "ResultSelector": {"empreinte.$": "$.Payload.empreinte"},
+      "ResultPath": "$.note",
+      "Catch": [{"ErrorEquals": ["States.ALL"], "ResultPath": "$.panne", "Next": "EtudeInterrompue"}],
+      "Next": "Confrontation"
+    },
+    "Confrontation": {
+      "Comment": "Batterie fixe (code) puis contradicteur (modèle, contexte neuf) ; le verdict est calculé par le code.",
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {"FunctionName": "alphaforge-role", "Payload": {"role": "contradicteur", "dossier.$": "$.dossier", "tete.$": "$.tete", "entrees.$": "$.note"}},
+      "ResultSelector": {"empreinte.$": "$.Payload.empreinte", "verdict.$": "$.Payload.verdict", "amendements.$": "$.Payload.amendements"},
+      "ResultPath": "$.registre",
+      "Catch": [{"ErrorEquals": ["States.ALL"], "ResultPath": "$.panne", "Next": "EtudeInterrompue"}],
+      "Next": "VerdictChange"
+    },
+    "VerdictChange": {
+      "Comment": "« Change » bloque la restitution ; l'agent 2 amende une seule fois.",
+      "Type": "Choice",
+      "Choices": [
+        {"And": [{"Variable": "$.registre.verdict", "StringEquals": "change"}, {"Variable": "$.registre.amendements", "NumericLessThan": 1}], "Next": "Agent2Note"},
+        {"Variable": "$.registre.verdict", "StringEquals": "change", "Next": "EtudeInterrompue"}
+      ],
+      "Default": "Agent3"
+    },
+    "Agent3": {
+      "Comment": "Intégration directe à Bedrock, sans fonction : possible, mais la porte et le dépôt au dossier ne sont alors pas faits ici.",
+      "Type": "Task",
+      "Resource": "arn:aws:states:::bedrock:invokeModel",
+      "Parameters": {
+        "ModelId": "global.anthropic.claude-haiku-5-5",
+        "Body": {"anthropic_version": "bedrock-2023-05-31", "max_tokens": 600, "messages": [{"role": "user", "content": [{"type": "text", "text.$": "States.Format('Restitue la note {}', $.note.empreinte)"}]}]}
+      },
+      "ResultSelector": {"texte.$": "$.Body.content[0].text"},
+      "ResultPath": "$.restitution",
+      "Retry": [{"ErrorEquals": ["Bedrock.ThrottlingException"], "IntervalSeconds": 3, "MaxAttempts": 2, "BackoffRate": 2.0}],
+      "Catch": [{"ErrorEquals": ["States.ALL"], "ResultPath": "$.panne", "Next": "EtudeInterrompue"}],
+      "Next": "ReactionDeLaPersonne"
+    },
+    "ReactionDeLaPersonne": {
+      "Comment": "Deuxième suspension : la personne répond à la question décisive, corrige, ouvre une variante ou clôt.",
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke.waitForTaskToken",
+      "Parameters": {"FunctionName": "alphaforge-greffier", "Payload": {"tache": "attendre_reaction", "jeton.$": "$$.Task.Token", "dossier.$": "$.dossier"}},
+      "TimeoutSeconds": 86400,
+      "ResultPath": "$.reaction",
+      "Catch": [{"ErrorEquals": ["States.Timeout"], "ResultPath": "$.panne", "Next": "EtudeComplete"}],
+      "Next": "SuiteDeLaReaction"
+    },
+    "SuiteDeLaReaction": {
+      "Type": "Choice",
+      "Choices": [{"Variable": "$.reaction.nature", "StringEquals": "correction", "Next": "Agent0"}],
+      "Default": "EtudeComplete"
+    },
+    "EtudeComplete": {"Type": "Succeed"},
+    "EtudeInterrompue": {"Comment": "Jamais présentée comme une conclusion.", "Type": "Fail", "Error": "EtudeInterrompue", "Cause": "Panne, refus d'une porte ou limite technique"}
+  }
+}

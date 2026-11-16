@@ -1,0 +1,222 @@
+{
+ "produit": "C (Second avis)",
+ "note_generale": "Valeurs telles que renvoyées par les fonctions du produit (arrondies à 0,1 par le code). Données : jeu complet scratchpad/data/alphaforge_starter, ALPHAFORGE_DATA. Les résultats sont identiques avec les données partielles de l'archive (201 tests passent dans les deux cas).",
+ "mesures": {
+  "TSLA": {
+   "rendement_annualise": {
+    "valeur": 5.5,
+    "unite": "% par an (TCAC, premier→dernier prix ajusté ; prix ajusté dividendes/splits)",
+    "devise": "CAD",
+    "devise_source": "USD",
+    "frequence": "quotidienne (aucun rééchantillonnage)",
+    "facteur_annualisation": "exposant 1/années, années = jours calendaires/365,25",
+    "fenetre": "2021-11-12 -> 2026-11-12 (1255 cotations)",
+    "fonction": "backend/alphaforge/calculs.py:45-48",
+    "traitement_change": "USD converti en CAD au taux BdC du jour (ffill/bfill), effet de change inclus dans rendement, volatilité et chute"
+   },
+   "volatilite_annualisee": {
+    "valeur": 58.8,
+    "unite": "% par an (écart-type des rendements log quotidiens, ddof=1)",
+    "devise": "CAD",
+    "devise_source": "USD",
+    "frequence": "quotidienne (cotations 252 j/an actions ; 365 j/an crypto)",
+    "facteur_annualisation": "√252",
+    "fenetre": "2021-11-12 -> 2026-11-12 (1255 cotations)",
+    "fonction": "backend/alphaforge/calculs.py:39-42 ; donnees.py:51-52",
+    "traitement_change": "USD converti en CAD au taux BdC du jour (ffill/bfill), effet de change inclus dans rendement, volatilité et chute"
+   },
+   "pire_baisse_max_drawdown": {
+    "valeur": -70.9,
+    "unite": "% (sommet→creux, sur série CAD)",
+    "devise": "CAD",
+    "devise_source": "USD",
+    "frequence": "quotidienne",
+    "facteur_annualisation": "sans objet",
+    "fenetre": "2021-11-12 -> 2026-11-12 (1255 cotations)",
+    "fonction": "backend/alphaforge/calculs.py:16-36",
+    "traitement_change": "USD converti en CAD au taux BdC du jour (ffill/bfill), effet de change inclus dans rendement, volatilité et chute",
+    "detail": {
+     "pire_chute_pct": -70.9,
+     "date_sommet": "2022-01-03",
+     "date_creux": "2023-01-03",
+     "date_retour": "2024-12-05",
+     "recuperation_annees": 1.9,
+     "recupere": true,
+     "annees_depuis_creux": 3.9
+    }
+   }
+  },
+  "BTC-USD": {
+   "rendement_annualise": {
+    "valeur": 4.8,
+    "unite": "% par an (TCAC, premier→dernier prix ajusté ; prix ajusté dividendes/splits)",
+    "devise": "CAD",
+    "devise_source": "USD",
+    "frequence": "quotidienne (aucun rééchantillonnage)",
+    "facteur_annualisation": "exposant 1/années, années = jours calendaires/365,25",
+    "fenetre": "2021-11-12 -> 2026-11-12 (1827 cotations)",
+    "fonction": "backend/alphaforge/calculs.py:45-48",
+    "traitement_change": "USD converti en CAD au taux BdC du jour (ffill/bfill), effet de change inclus dans rendement, volatilité et chute"
+   },
+   "volatilite_annualisee": {
+    "valeur": 50.3,
+    "unite": "% par an (écart-type des rendements log quotidiens, ddof=1)",
+    "devise": "CAD",
+    "devise_source": "USD",
+    "frequence": "quotidienne (cotations 252 j/an actions ; 365 j/an crypto)",
+    "facteur_annualisation": "√365",
+    "fenetre": "2021-11-12 -> 2026-11-12 (1827 cotations)",
+    "fonction": "backend/alphaforge/calculs.py:39-42 ; donnees.py:51-52",
+    "traitement_change": "USD converti en CAD au taux BdC du jour (ffill/bfill), effet de change inclus dans rendement, volatilité et chute"
+   },
+   "pire_baisse_max_drawdown": {
+    "valeur": -74.2,
+    "unite": "% (sommet→creux, sur série CAD)",
+    "devise": "CAD",
+    "devise_source": "USD",
+    "frequence": "quotidienne",
+    "facteur_annualisation": "sans objet",
+    "fenetre": "2021-11-12 -> 2026-11-12 (1827 cotations)",
+    "fonction": "backend/alphaforge/calculs.py:16-36",
+    "traitement_change": "USD converti en CAD au taux BdC du jour (ffill/bfill), effet de change inclus dans rendement, volatilité et chute",
+    "detail": {
+     "pire_chute_pct": -74.2,
+     "date_sommet": "2021-11-14",
+     "date_creux": "2022-11-21",
+     "date_retour": "2024-02-28",
+     "recuperation_annees": 1.3,
+     "recupere": true,
+     "annees_depuis_creux": 4.0
+    }
+   }
+  },
+  "ENB.TO": {
+   "rendement_annualise": {
+    "valeur": 12.8,
+    "unite": "% par an (TCAC, premier→dernier prix ajusté ; prix ajusté dividendes/splits)",
+    "devise": "CAD",
+    "devise_source": "CAD",
+    "frequence": "quotidienne (aucun rééchantillonnage)",
+    "facteur_annualisation": "exposant 1/années, années = jours calendaires/365,25",
+    "fenetre": "2021-11-12 -> 2026-11-12 (1255 cotations)",
+    "fonction": "backend/alphaforge/calculs.py:45-48",
+    "traitement_change": "déjà en CAD, aucune conversion"
+   },
+   "volatilite_annualisee": {
+    "valeur": 16.1,
+    "unite": "% par an (écart-type des rendements log quotidiens, ddof=1)",
+    "devise": "CAD",
+    "devise_source": "CAD",
+    "frequence": "quotidienne (cotations 252 j/an actions ; 365 j/an crypto)",
+    "facteur_annualisation": "√252",
+    "fenetre": "2021-11-12 -> 2026-11-12 (1255 cotations)",
+    "fonction": "backend/alphaforge/calculs.py:39-42 ; donnees.py:51-52",
+    "traitement_change": "déjà en CAD, aucune conversion"
+   },
+   "pire_baisse_max_drawdown": {
+    "valeur": -21.4,
+    "unite": "% (sommet→creux, sur série CAD)",
+    "devise": "CAD",
+    "devise_source": "CAD",
+    "frequence": "quotidienne",
+    "facteur_annualisation": "sans objet",
+    "fenetre": "2021-11-12 -> 2026-11-12 (1255 cotations)",
+    "fonction": "backend/alphaforge/calculs.py:16-36",
+    "traitement_change": "déjà en CAD, aucune conversion",
+    "detail": {
+     "pire_chute_pct": -21.4,
+     "date_sommet": "2022-06-07",
+     "date_creux": "2023-10-04",
+     "date_retour": "2024-08-01",
+     "recuperation_annees": 0.8,
+     "recupere": true,
+     "annees_depuis_creux": 3.1
+    }
+   }
+  },
+  "SPY": {
+   "rendement_annualise": {
+    "valeur": 14.5,
+    "unite": "% par an (TCAC, premier→dernier prix ajusté ; prix ajusté dividendes/splits)",
+    "devise": "CAD",
+    "devise_source": "USD",
+    "frequence": "quotidienne (aucun rééchantillonnage)",
+    "facteur_annualisation": "exposant 1/années, années = jours calendaires/365,25",
+    "fenetre": "2021-11-12 -> 2026-11-12 (1255 cotations)",
+    "fonction": "backend/alphaforge/calculs.py:45-48",
+    "traitement_change": "USD converti en CAD au taux BdC du jour (ffill/bfill), effet de change inclus dans rendement, volatilité et chute"
+   },
+   "volatilite_annualisee": {
+    "valeur": 16.6,
+    "unite": "% par an (écart-type des rendements log quotidiens, ddof=1)",
+    "devise": "CAD",
+    "devise_source": "USD",
+    "frequence": "quotidienne (cotations 252 j/an actions ; 365 j/an crypto)",
+    "facteur_annualisation": "√252",
+    "fenetre": "2021-11-12 -> 2026-11-12 (1255 cotations)",
+    "fonction": "backend/alphaforge/calculs.py:39-42 ; donnees.py:51-52",
+    "traitement_change": "USD converti en CAD au taux BdC du jour (ffill/bfill), effet de change inclus dans rendement, volatilité et chute"
+   },
+   "pire_baisse_max_drawdown": {
+    "valeur": -22.2,
+    "unite": "% (sommet→creux, sur série CAD)",
+    "devise": "CAD",
+    "devise_source": "USD",
+    "frequence": "quotidienne",
+    "facteur_annualisation": "sans objet",
+    "fenetre": "2021-11-12 -> 2026-11-12 (1255 cotations)",
+    "fonction": "backend/alphaforge/calculs.py:16-36",
+    "traitement_change": "USD converti en CAD au taux BdC du jour (ffill/bfill), effet de change inclus dans rendement, volatilité et chute",
+    "detail": {
+     "pire_chute_pct": -22.2,
+     "date_sommet": "2021-12-27",
+     "date_creux": "2022-06-16",
+     "date_retour": "2023-07-18",
+     "recuperation_annees": 1.1,
+     "recupere": true,
+     "annees_depuis_creux": 4.4
+    }
+   }
+  }
+ },
+ "correlation_TSLA_SPY": {
+  "valeur": 0.51,
+  "unite": "coefficient de Pearson",
+  "devise": "CAD (les deux séries converties)",
+  "frequence": "hebdomadaire (dernier cours du vendredi, rendements simples)",
+  "facteur_annualisation": "sans objet",
+  "fenetre": "2021-11-12 -> 2026-11-12",
+  "fonction": "backend/alphaforge/calculs.py:64-68",
+  "traitement_change": "USD converti en CAD pour les deux séries"
+ },
+ "pire_12_mois_TSLA": {
+  "valeur": {
+   "pire_12_mois_pct": -64.8,
+   "fin_periode": "2023-01-06",
+   "part_periodes_negatives_pct": 41.0
+  },
+  "fonction": "backend/alphaforge/calculs.py:55-61",
+  "note": "52 semaines glissantes sur cours du vendredi (approximation déclarée)"
+ },
+ "controle_independant": {
+  "actif": "TSLA",
+  "methode": "pandas seul (sans importer le code du produit), prices_daily.csv adj_close x usdcad (reindex union + ffill + bfill) ; rendements log quotidiens, écart-type ddof=1 x sqrt(252) ; TCAC sur jours/365,25 ; drawdown = min(P/cummax-1) ; corrélation sur close du vendredi (resample W-FRI).",
+  "CAD": {
+   "rendement_annualise_pct": 5.533,
+   "volatilite_pct": 58.793,
+   "max_drawdown_pct": -70.881,
+   "correlation_TSLA_SPY_hebdo": 0.5127
+  },
+  "USD_sans_conversion": {
+   "rendement_annualise_pct": 2.903,
+   "volatilite_pct": 59.446,
+   "max_drawdown_pct": -72.97
+  },
+  "autres": {
+   "volatilite_rendements_simples_CAD_pct": 58.912,
+   "correlation_TSLA_SPY_quotidienne_CAD": 0.5753
+  },
+  "ecart_avec_produit": "produit = 5,5 / 58,8 / -70,9 / 0,51 : écart <= 0,05 point (arrondi). Même convention.",
+  "effet_change_TSLA": "le change USD/CAD ajoute +2,6 points de rendement annualisé et ramène la pire baisse de -73,0 % (USD) à -70,9 % (CAD)."
+ }
+}

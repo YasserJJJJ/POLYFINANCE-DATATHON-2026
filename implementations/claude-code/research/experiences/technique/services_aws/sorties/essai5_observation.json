@@ -1,0 +1,134 @@
+{
+  "quand": "2026-11-15T19:46:16+00:00",
+  "cloudwatch": [
+    {
+      "sonde": "cloudwatch[Invocations global.anthropic.claude-haiku-5-5]",
+      "etat": "autorise",
+      "resume": {
+        "somme_sur_une_heure": 29.0
+      },
+      "ms": 368,
+      "requestId": "6d67d069-f098-4682-97e3-ce35bcca20c3"
+    },
+    {
+      "sonde": "cloudwatch[InputTokenCount global.anthropic.claude-haiku-5-5]",
+      "etat": "autorise",
+      "resume": {
+        "somme_sur_une_heure": 14219.0
+      },
+      "ms": 31,
+      "requestId": "645badd6-44dc-4e46-9a79-e07ef2700718"
+    },
+    {
+      "sonde": "cloudwatch[OutputTokenCount global.anthropic.claude-haiku-5-5]",
+      "etat": "autorise",
+      "resume": {
+        "somme_sur_une_heure": 4561.0
+      },
+      "ms": 24,
+      "requestId": "394e6803-817a-4c74-9657-6d27b61d74b3"
+    },
+    {
+      "sonde": "cloudwatch[Invocations amazon.titan-embed-text-v2:0]",
+      "etat": "autorise",
+      "resume": {
+        "somme_sur_une_heure": 2.0
+      },
+      "ms": 26,
+      "requestId": "57e5e2fc-5ee0-4291-9bd1-c1cd4ac9f28a"
+    },
+    {
+      "sonde": "cloudwatch[Invocations cohere.rerank-v3-5:0]",
+      "etat": "autorise",
+      "resume": {
+        "somme_sur_une_heure": 0
+      },
+      "ms": 25,
+      "requestId": "297a1aca-4f42-46e0-8b70-ec7d00497280"
+    },
+    {
+      "sonde": "cloudwatch[SearchUnits cohere.rerank-v3-5:0]",
+      "etat": "autorise",
+      "resume": {
+        "somme_sur_une_heure": 0
+      },
+      "ms": 29,
+      "requestId": "8dcee3ff-33be-4e91-8b39-0bf785c45205"
+    }
+  ],
+  "cloudtrail": {
+    "Converse": {
+      "sonde": "cloudtrail.lookup_events[Converse]",
+      "etat": "autorise",
+      "resume": {
+        "evenements_lus": 82,
+        "sources": [
+          "bedrock.amazonaws.com"
+        ],
+        "nature": [
+          "Management"
+        ],
+        "les_notres": {
+          "2a10616b-718c-435d-bbc7-ffc02ca81f5c": "converse global.anthropic.claude-haiku-5-5",
+          "ac268eae-f746-4104-9564-7fa935d7c531": "converse global.anthropic.claude-haiku-5-5"
+        }
+      },
+      "ms": 642,
+      "requestId": "b8031db5-a252-4377-80e7-9df73bc4eb44"
+    },
+    "InvokeModel": {
+      "sonde": "cloudtrail.lookup_events[InvokeModel]",
+      "etat": "autorise",
+      "resume": {
+        "evenements_lus": 15,
+        "sources": [
+          "bedrock.amazonaws.com"
+        ],
+        "nature": [
+          "Management"
+        ],
+        "les_notres": {
+          "c1ff24d8-f53c-48da-83d2-0afb4ead4a79": "plongement amazon.titan-embed-text-v2:0",
+          "56517582-5a90-468a-999a-b3d3cf0c1144": "plongement amazon.titan-embed-text-v2:0"
+        }
+      },
+      "ms": 240,
+      "requestId": "2af783be-bde1-439c-ab0d-acbe8fe1354d"
+    },
+    "Rerank": {
+      "sonde": "cloudtrail.lookup_events[Rerank]",
+      "etat": "autorise",
+      "resume": {
+        "evenements_lus": 0,
+        "sources": [],
+        "nature": [],
+        "les_notres": {}
+      },
+      "ms": 63,
+      "requestId": "1e2a2998-92e8-4e63-ae6c-5b6868de5da4"
+    },
+    "InvokeWebSearch": {
+      "sonde": "cloudtrail.lookup_events[InvokeWebSearch]",
+      "etat": "autorise",
+      "resume": {
+        "evenements_lus": 0,
+        "sources": [],
+        "nature": [],
+        "les_notres": {}
+      },
+      "ms": 55,
+      "requestId": "9f0ae5b4-7c03-4ac8-bbd3-be227f20a5ce"
+    }
+  },
+  "nos_identifiants": 6,
+  "retrouves_dans_cloudtrail": {
+    "2a10616b-718c-435d-bbc7-ffc02ca81f5c": "converse global.anthropic.claude-haiku-5-5",
+    "ac268eae-f746-4104-9564-7fa935d7c531": "converse global.anthropic.claude-haiku-5-5",
+    "c1ff24d8-f53c-48da-83d2-0afb4ead4a79": "plongement amazon.titan-embed-text-v2:0",
+    "56517582-5a90-468a-999a-b3d3cf0c1144": "plongement amazon.titan-embed-text-v2:0"
+  },
+  "non_retrouves": {
+    "bc113508-06ae-4036-9d65-34bc7373c2f1": "reclassement cohere.rerank-v3-5:0",
+    "18847b31-898e-49d4-bbb5-4f7266463226": "recherche web AgentCore"
+  }
+}

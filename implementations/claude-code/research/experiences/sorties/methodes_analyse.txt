@@ -1,0 +1,105 @@
+Échantillon : 261 semaines, du 2021-11-19 au 2026-11-12
+
+X1. Longueur de bloc estimée (rééchantillonnage stationnaire), en semaines
+   actuel     rendements   1.1 | valeurs absolues  15.8 | carrés   1.5
+   10 % TSLA  rendements   1.2 | valeurs absolues  15.6 | carrés   0.3
+   10 % QQQ   rendements   1.5 | valeurs absolues  15.7 | carrés   1.6
+   par actif (rendements, carrés) : {'XBB.TO': (2.4, 1.8), 'ZST.TO': (25.1, 11.4), 'XIU.TO': (0.8, 0.9), 'SPY': (2.8, 2.4), 'TSLA': (0.6, 0.2), 'QQQ': (2.2, 2.1)}
+   retenus pour la comparaison : 1.5 (rendements) et 1.6 (carrés), contre 13 (choix manuel)
+   Part des trajectoires de 3 ans dont la pire baisse franchit 15 % | finissant sous le départ — moyennes historiques
+      bloc   1.0 : actuel 0.036 | 0.038 ; 10 % TSLA 0.213 | 0.077 ; 10 % QQQ 0.069 | 0.040
+      bloc   1.5 : actuel 0.041 | 0.042 ; 10 % TSLA 0.213 | 0.079 ; 10 % QQQ 0.071 | 0.044
+      bloc   1.6 : actuel 0.039 | 0.040 ; 10 % TSLA 0.215 | 0.079 ; 10 % QQQ 0.070 | 0.042
+      bloc   2.0 : actuel 0.042 | 0.042 ; 10 % TSLA 0.222 | 0.079 ; 10 % QQQ 0.073 | 0.043
+      bloc   4.0 : actuel 0.046 | 0.039 ; 10 % TSLA 0.231 | 0.071 ; 10 % QQQ 0.082 | 0.042
+      bloc   8.0 : actuel 0.051 | 0.038 ; 10 % TSLA 0.217 | 0.065 ; 10 % QQQ 0.095 | 0.042
+      bloc  13.0 : actuel 0.056 | 0.042 ; 10 % TSLA 0.209 | 0.061 ; 10 % QQQ 0.107 | 0.046
+      bloc  26.0 : actuel 0.053 | 0.048 ; 10 % TSLA 0.213 | 0.063 ; 10 % QQQ 0.106 | 0.051
+      bloc  52.0 : actuel 0.045 | 0.047 ; 10 % TSLA 0.256 | 0.063 ; 10 % QQQ 0.088 | 0.049
+   Part des trajectoires de 3 ans dont la pire baisse franchit 15 % | finissant sous le départ — aucun rendement moyen crédité
+      bloc   1.0 : actuel 0.351 | 0.526 ; 10 % TSLA 0.644 | 0.538 ; 10 % QQQ 0.454 | 0.530
+      bloc   1.5 : actuel 0.348 | 0.525 ; 10 % TSLA 0.639 | 0.538 ; 10 % QQQ 0.442 | 0.529
+      bloc   1.6 : actuel 0.353 | 0.523 ; 10 % TSLA 0.639 | 0.533 ; 10 % QQQ 0.446 | 0.530
+      bloc   2.0 : actuel 0.352 | 0.524 ; 10 % TSLA 0.640 | 0.540 ; 10 % QQQ 0.444 | 0.529
+      bloc   4.0 : actuel 0.337 | 0.517 ; 10 % TSLA 0.633 | 0.540 ; 10 % QQQ 0.433 | 0.521
+      bloc   8.0 : actuel 0.339 | 0.516 ; 10 % TSLA 0.613 | 0.532 ; 10 % QQQ 0.433 | 0.516
+      bloc  13.0 : actuel 0.354 | 0.505 ; 10 % TSLA 0.603 | 0.531 ; 10 % QQQ 0.439 | 0.505
+      bloc  26.0 : actuel 0.384 | 0.501 ; 10 % TSLA 0.575 | 0.528 ; 10 % QQQ 0.450 | 0.499
+      bloc  52.0 : actuel 0.428 | 0.500 ; 10 % TSLA 0.548 | 0.522 ; 10 % QQQ 0.472 | 0.498
+
+X2. Formule d'annualisation du notebook contre rendement composé réalisé (devise de cotation, quotidien)
+         notebook  compose    vol  ecart  demi_variance
+actif                                                  
+SHOP.TO     0.229   -0.000  0.644  0.229          0.208
+ETH-USD     0.068   -0.154  0.685  0.223          0.234
+NVDA        0.609    0.406  0.519  0.203          0.135
+TSLA        0.228    0.029  0.596  0.199          0.177
+BTC-USD     0.162    0.021  0.508  0.140          0.129
+AMZN        0.163    0.087  0.367  0.076          0.067
+CNQ.TO      0.351    0.287  0.307  0.064          0.047
+GOOGL       0.216    0.152  0.326  0.064          0.053
+   actifs dont l'écart dépasse 2 points : 18 sur 31 ; écart médian +0.031 ; maximal +0.229
+   classement « rendement / risque » : 21 actifs changent de rang ; plus grand saut 8 rangs
+   corrélations : 465 paires ; écart absolu médian 0.060 ; part des paires au-delà de 0,10 : 0.280 ; au-delà de 0,20 : 0.019
+      XIU.TO   XBB.TO  notebook +0.19 | hebdomadaire en CAD +0.25
+      SPY      XIU.TO  notebook +0.77 | hebdomadaire en CAD +0.67
+      BTC-USD  SPY     notebook +0.43 | hebdomadaire en CAD +0.23
+      TSLA     SPY     notebook +0.60 | hebdomadaire en CAD +0.51
+      GLD      XIU.TO  notebook +0.33 | hebdomadaire en CAD +0.17
+      SPY      XBB.TO  notebook +0.15 | hebdomadaire en CAD +0.22
+      SPY      AGG     notebook +0.22 | hebdomadaire en CAD +0.09
+
+X3. Moyenne contre variance (erreurs types par rééchantillonnage stationnaire, 5 000 tirages)
+   TSLA    hebdo (n=261) : moyenne +0.205 ± 0.249 ; volatilité 0.557 ± 0.032 | quotidien (n=1254) : moyenne +0.227 ± 0.260 ; volatilité 0.589 ± 0.019
+   SPY     hebdo (n=261) : moyenne +0.146 ± 0.062 ; volatilité 0.149 ± 0.010 | quotidien (n=1254) : moyenne +0.150 ± 0.058 ; volatilité 0.167 ± 0.015
+   XIU.TO  hebdo (n=261) : moyenne +0.135 ± 0.056 ; volatilité 0.125 ± 0.007 | quotidien (n=1254) : moyenne +0.137 ± 0.050 ; volatilité 0.131 ± 0.007
+   XBB.TO  hebdo (n=261) : moyenne +0.009 ± 0.028 ; volatilité 0.066 ± 0.004 | quotidien (n=1254) : moyenne +0.009 ± 0.028 ; volatilité 0.066 ± 0.003
+   écart de rendement moyen annuel Tesla moins portefeuille actuel : +0.128 ; intervalle à 90 % de -0.268 à +0.517
+   années d'historique pour distinguer une prime de 5 points par an à deux erreurs types : 453 (écart type de l'écart : 0.532)
+
+X4. Niveaux contre écarts appariés (5 000 rééchantillons de l'historique, mêmes semaines pour les deux options)
+   perte moyenne des 5 % pires semaines : actuel de -0.0238 à -0.0166 ; 10 % TSLA de -0.0301 à -0.0233 ; écart apparié de -0.0087 à -0.0046 ; part des tirages où 10 % TSLA est plus défavorable : 1.000
+   volatilité annualisée : actuel de +0.0667 à +0.0792 ; 10 % TSLA de +0.0939 à +0.1097 ; écart apparié de +0.0238 à +0.0343 ; part des tirages où 10 % TSLA est plus défavorable : 1.000
+   pire baisse sur 5 ans : actuel de -0.1607 à -0.0541 ; 10 % TSLA de -0.2360 à -0.0797 ; écart apparié de -0.1036 à -0.0016 ; part des tirages où 10 % TSLA est plus défavorable : 0.961
+
+X5. Contraction de la covariance (31 actifs, 261 semaines)
+   intensité de contraction de Ledoit-Wolf : 0.039 ; conditionnement : échantillon 69023, contracté 278
+   Robert actuel     volatilité prévue : échantillon 0.0731, contractée 0.0786 ; plus grand déplacement d'une part de risque : 0.0553
+   Robert 10 % TSLA  volatilité prévue : échantillon 0.1021, contractée 0.1042 ; plus grand déplacement d'une part de risque : 0.0341
+   Amira proposé     volatilité prévue : échantillon 0.3031, contractée 0.2975 ; plus grand déplacement d'une part de risque : 0.0016
+   variance minimale sans contrainte, 104 semaines d'estimation puis 26 semaines réalisées, 6 fenêtres : volatilité réalisée moyenne échantillon 0.0041 ; Ledoit-Wolf 0.0439 ; poids égaux 0.0998
+   fenêtres où l'échantillon fait pire que Ledoit-Wolf : 0 sur 6
+
+X6. Le rééchantillonnage vaut-il prévision ? Fenêtre croissante, horizon d'un an, 2 000 scénarios par date
+   passé d'au moins 104 semaines, actuel     : 106 dates de départ (environ 3 années sans chevauchement) | pire baisse : dans la bande 5-95 % 0.80, plus grave que 95 % des scénarios 0.00, plus douce que 95 % 0.20, rang médian 0.74 | valeur finale : dans la bande 0.84, rang médian 0.86
+   passé d'au moins 104 semaines, 10 % TSLA  : 106 dates de départ (environ 3 années sans chevauchement) | pire baisse : dans la bande 5-95 % 0.84, plus grave que 95 % des scénarios 0.00, plus douce que 95 % 0.16, rang médian 0.86 | valeur finale : dans la bande 0.63, rang médian 0.90
+   passé d'au moins 156 semaines, actuel     : 54 dates de départ (environ 2 années sans chevauchement) | pire baisse : dans la bande 5-95 % 1.00, plus grave que 95 % des scénarios 0.00, plus douce que 95 % 0.00, rang médian 0.75 | valeur finale : dans la bande 0.96, rang médian 0.79
+   passé d'au moins 156 semaines, 10 % TSLA  : 54 dates de départ (environ 2 années sans chevauchement) | pire baisse : dans la bande 5-95 % 1.00, plus grave que 95 % des scénarios 0.00, plus douce que 95 % 0.00, rang médian 0.87 | valeur finale : dans la bande 1.00, rang médian 0.74
+
+X3 bis. Même comparaison avec un bloc commun en temps calendaire (13 semaines ; 63 jours ouvrables)
+   TSLA    hebdo : moyenne ± 0.223 ; volatilité ± 0.037 | quotidien : moyenne ± 0.221 ; volatilité ± 0.032
+   SPY     hebdo : moyenne ± 0.056 ; volatilité ± 0.013 | quotidien : moyenne ± 0.055 ; volatilité ± 0.017
+   XIU.TO  hebdo : moyenne ± 0.048 ; volatilité ± 0.009 | quotidien : moyenne ± 0.048 ; volatilité ± 0.008
+   XBB.TO  hebdo : moyenne ± 0.026 ; volatilité ± 0.005 | quotidien : moyenne ± 0.026 ; volatilité ± 0.005
+
+X4 bis. La « part maximale de Tesla sous le seuil de 15 % » est-elle déterminée par cinq ans d'historique ?
+   sur l'historique observé : part maximale 0.09 (pire baisse à 10 % : -0.153)
+   bloc  1.5 : part maximale sur 2 000 histoires rééchantillonnées — 5 % -0.01, quart 0.07, médiane 0.12, trois quarts 0.17, 95 % 0.26 ; aucune part admissible : 0.065 ; plafond de la grille (30 %) atteint : 0.025
+   bloc 13.0 : part maximale sur 2 000 histoires rééchantillonnées — 5 % -0.01, quart 0.07, médiane 0.12, trois quarts 0.17, 95 % 0.25 ; aucune part admissible : 0.103 ; plafond de la grille (30 %) atteint : 0.024
+
+X5 bis. Contraction de la matrice de corrélation (variances d'échantillon conservées), et test sur les seules actions
+   intensité sur données réduites : 0.063
+   Robert actuel     volatilité prévue : échantillon 0.0731, corrélation contractée 0.0720 ; plus grand déplacement d'une part de risque : 0.0015
+   Robert 10 % TSLA  volatilité prévue : échantillon 0.1021, corrélation contractée 0.1004 ; plus grand déplacement d'une part de risque : 0.0041
+   Amira proposé     volatilité prévue : échantillon 0.3031, corrélation contractée 0.2960 ; plus grand déplacement d'une part de risque : 0.0013
+   20 actions, variance minimale sans contrainte, 52 semaines d'estimation, 8 fenêtres de 26 semaines : volatilité réalisée moyenne échantillon 0.1089 ; Ledoit-Wolf 0.0946 ; corrélation contractée 0.0934 ; poids égaux 0.1177 ; fenêtres où l'échantillon fait pire que Ledoit-Wolf : 7
+   20 actions, variance minimale sans contrainte, 104 semaines d'estimation, 6 fenêtres de 26 semaines : volatilité réalisée moyenne échantillon 0.0899 ; Ledoit-Wolf 0.0836 ; corrélation contractée 0.0830 ; poids égaux 0.1087 ; fenêtres où l'échantillon fait pire que Ledoit-Wolf : 5
+
+X7. Dépendance à une sous-période (reproduction indépendante d'un constat de la recherche sur la confrontation ; ajout sans critère écrit d'avance)
+   Part des trajectoires de 3 ans franchissant 15 %, moyennes de l'échantillon restant, bloc de 13 semaines, 10 000 trajectoires
+   échantillon complet                                     (261 semaines) : actuel 0.056 ; 10 % TSLA 0.209 ; 10 % QQQ 0.107 | pire baisse observée à 10 % TSLA : -0.153
+   sans l'année 1 (2021-11-19 au 2022-11-11)               (209 semaines) : actuel 0.000 ; 10 % TSLA 0.026 ; 10 % QQQ 0.000 | pire baisse observée à 10 % TSLA : -0.100
+   sans l'année 2 (2022-11-18 au 2023-11-10)               (209 semaines) : actuel 0.068 ; 10 % TSLA 0.228 ; 10 % QQQ 0.136 | pire baisse observée à 10 % TSLA : -0.146
+   sans l'année 3 (2023-11-17 au 2024-11-08)               (209 semaines) : actuel 0.105 ; 10 % TSLA 0.319 ; 10 % QQQ 0.175 | pire baisse observée à 10 % TSLA : -0.153
+   sans l'année 4 (2024-11-15 au 2025-11-07)               (209 semaines) : actuel 0.072 ; 10 % TSLA 0.222 ; 10 % QQQ 0.126 | pire baisse observée à 10 % TSLA : -0.153
+   sans l'année 5 (2025-11-14 au 2026-11-06)               (209 semaines) : actuel 0.081 ; 10 % TSLA 0.271 ; 10 % QQQ 0.141 | pire baisse observée à 10 % TSLA : -0.153

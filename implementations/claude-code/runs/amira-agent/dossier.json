@@ -1,0 +1,2507 @@
+{
+  "scenario": "amira-agent",
+  "titre": "Croissance IA et crypto : jusqu'où diversifier ?",
+  "persona": "amira",
+  "demande": "Je veux un portefeuille de croissance axé sur l'IA et la crypto, sans tout miser sur la technologie.",
+  "mode": "agent Bedrock (global.anthropic.claude-sonnet-5-5)",
+  "cree_le": "2026-11-15T11:59:15+00:00",
+  "resume": {
+    "gabarit": "Le portefeuille de démonstration cible bien l'IA et la crypto, mais la part du risque du groupe Technologie y est de {{R-0023}}, soit une part {{cmp:R-0023:R-0032}} le plafond fixé. Déplacer {{R-0031}} vers un panier diversifié ramène cette part à {{R-0063}} et fait passer la pire baisse historique de {{R-0004}} à {{R-0036}}, sans retirer la crypto.",
+    "texte": "Le portefeuille de démonstration cible bien l'IA et la crypto, mais la part du risque du groupe Technologie y est de 52,4 %, soit une part supérieure au plafond fixé. Déplacer 25,0 % vers un panier diversifié ramène cette part à 49,4 % et fait passer la pire baisse historique de −52,1 % à −43,1 %, sans retirer la crypto."
+  },
+  "affirmations": [
+    {
+      "id": "A-001",
+      "section": "cadre",
+      "gabarit": "Simulation sur profil fictif, sans transaction ni conseil personnalisé. Le portefeuille proposé, le plafond de part du risque par groupe et le panier de diversification sont des hypothèses de démonstration, modifiables. La fenêtre d'étude des mesures est aussi une hypothèse de démonstration, distincte de l'horizon de la personne.",
+      "texte": "Simulation sur profil fictif, sans transaction ni conseil personnalisé. Le portefeuille proposé, le plafond de part du risque par groupe et le panier de diversification sont des hypothèses de démonstration, modifiables. La fenêtre d'étude des mesures est aussi une hypothèse de démonstration, distincte de l'horizon de la personne.",
+      "references": [],
+      "statut": "non étayée"
+    },
+    {
+      "id": "A-002",
+      "section": "profil",
+      "gabarit": "Objectif : {{P-0005}}. Horizon : « {{P-0004}} ». Profil de risque déclaré : « {{P-0003}} ».",
+      "texte": "Objectif : Faire croître son capital à long terme. Horizon : « 15 ans ou plus ». Profil de risque déclaré : « élevé ».",
+      "references": [
+        "P-0005",
+        "P-0004",
+        "P-0003"
+      ],
+      "statut": "déclaré"
+    },
+    {
+      "id": "A-003",
+      "section": "profil",
+      "gabarit": "Préférences déclarées : « {{P-0008}} » ; « {{P-0009}} » ; « {{P-0010}} » ; « {{P-0011}} ».",
+      "texte": "Préférences déclarées : « Très intéressée par l'intelligence artificielle et les technologies émergentes » ; « Ouverte aux entreprises en forte croissance et à une volatilité importante » ; « Intéressée par les cryptoactifs » ; « Souhaite maintenir une certaine diversification et éviter de miser exclusivement sur les technologies ».",
+      "references": [
+        "P-0008",
+        "P-0009",
+        "P-0010",
+        "P-0011"
+      ],
+      "statut": "déclaré"
+    },
+    {
+      "id": "A-004",
+      "section": "profil",
+      "gabarit": "{{P-0012.label}} : non renseignée. {{P-0013.label}} : non renseignée. {{P-0014.label}} : non renseigné. Le profil de risque déclaré ne les remplace pas.",
+      "texte": "Capacité de perte (perte supportable sans compromettre les projets) : non renseignée. Besoins de liquidité et retraits prévus : non renseignée. Patrimoine total et part concernée : non renseigné. Le profil de risque déclaré ne les remplace pas.",
+      "references": [
+        "P-0012",
+        "P-0013",
+        "P-0014"
+      ],
+      "statut": "inconnu"
+    },
+    {
+      "id": "A-005",
+      "section": "constat",
+      "gabarit": "Dans le portefeuille proposé ({{R-0001}}), le groupe Technologie pèse {{R-0022}} du poids et porte {{R-0023}} du risque. Cette part du risque est {{cmp:R-0023:R-0032}} le plafond de démonstration.",
+      "texte": "Dans le portefeuille proposé (NVDA 20 %, TSLA 10 %, QQQ 25 %, SHOP.TO 10 %, BTC-USD 15 %, ETH-USD 10 %, SPY 10 %), le groupe Technologie pèse 55,0 % du poids et porte 52,4 % du risque. Cette part du risque est supérieure au plafond de démonstration.",
+      "references": [
+        "R-0001",
+        "R-0022",
+        "R-0023",
+        "R-0032"
+      ],
+      "statut": "hypothèse"
+    },
+    {
+      "id": "A-006",
+      "section": "constat",
+      "gabarit": "Les cryptoactifs pèsent {{R-0024}} du poids et portent {{R-0025}} du risque. À eux deux, Technologie et Cryptoactifs concentrent l'essentiel du risque. Les actions diversifiées ne portent que {{R-0029}} du risque pour {{R-0028}} du poids.",
+      "texte": "Les cryptoactifs pèsent 25,0 % du poids et portent 31,8 % du risque. À eux deux, Technologie et Cryptoactifs concentrent l'essentiel du risque. Les actions diversifiées ne portent que 3,7 % du risque pour 10,0 % du poids.",
+      "references": [
+        "R-0024",
+        "R-0025",
+        "R-0029",
+        "R-0028"
+      ],
+      "statut": "hypothèse"
+    },
+    {
+      "id": "A-007",
+      "section": "constat",
+      "gabarit": "Historiquement, ce portefeuille affiche une volatilité de {{R-0003}}, une pire baisse de {{R-0004}} et un rendement 2022 de {{R-0005}}. Son rendement annualisé historique est de {{R-0002}}.",
+      "texte": "Historiquement, ce portefeuille affiche une volatilité de 30,3 %, une pire baisse de −52,1 % et un rendement 2022 de −46,6 %. Son rendement annualisé historique est de 19,6 %.",
+      "references": [
+        "R-0003",
+        "R-0004",
+        "R-0005",
+        "R-0002"
+      ],
+      "statut": "hypothèse"
+    },
+    {
+      "id": "A-008",
+      "section": "tension",
+      "gabarit": "La demande « sans tout miser sur la technologie » est partiellement respectée en nombre de lignes, mais pas en risque : la part du risque du groupe Technologie est {{cmp:R-0023:R-0032}} le plafond de démonstration. Le groupe Consommation discrétionnaire (Tesla) pèse {{R-0026}} et n'est pas compté dans Technologie.",
+      "texte": "La demande « sans tout miser sur la technologie » est partiellement respectée en nombre de lignes, mais pas en risque : la part du risque du groupe Technologie est supérieure au plafond de démonstration. Le groupe Consommation discrétionnaire (Tesla) pèse 10,0 % et n'est pas compté dans Technologie.",
+      "references": [
+        "R-0023",
+        "R-0032",
+        "R-0026"
+      ],
+      "statut": "hypothèse"
+    },
+    {
+      "id": "A-009",
+      "section": "tension",
+      "gabarit": "La pire baisse historique de {{R-0004}} est à mettre en face de {{P-0012.label}} : non renseignée. Sans cette information, on ne peut pas dire si une telle baisse est supportable, malgré l'horizon long déclaré.",
+      "texte": "La pire baisse historique de −52,1 % est à mettre en face de Capacité de perte (perte supportable sans compromettre les projets) : non renseignée. Sans cette information, on ne peut pas dire si une telle baisse est supportable, malgré l'horizon long déclaré.",
+      "references": [
+        "R-0004",
+        "P-0012"
+      ],
+      "statut": "inconnu"
+    },
+    {
+      "id": "A-010",
+      "section": "alternative",
+      "gabarit": "Option diversifiée : déplacer {{R-0031}} du portefeuille vers le panier {{R-0030}}, pour respecter le plafond de {{R-0032}}. Résultat : {{R-0033}}.",
+      "texte": "Option diversifiée : déplacer 25,0 % du portefeuille vers le panier XIU.TO 20 %, SPY 20 %, CNR.TO 20 %, ATD.TO 20 %, GLD 20 %, pour respecter le plafond de 50,0 %. Résultat : ATD.TO 5 %, BTC-USD 11 %, CNR.TO 5 %, ETH-USD 8 %, GLD 5 %, NVDA 15 %, QQQ 19 %, SHOP.TO 8 %, SPY 12 %, TSLA 8 %, XIU.TO 5 %.",
+      "references": [
+        "R-0031",
+        "R-0030",
+        "R-0032",
+        "R-0033"
+      ],
+      "statut": "hypothèse"
+    },
+    {
+      "id": "A-011",
+      "section": "alternative",
+      "gabarit": "La part du risque du groupe Technologie passe à {{R-0063}}, soit une part {{cmp:R-0063:R-0032}} le plafond. Les cryptoactifs restent présents avec {{R-0064}} du poids et {{R-0065}} du risque.",
+      "texte": "La part du risque du groupe Technologie passe à 49,4 %, soit une part inférieure au plafond. Les cryptoactifs restent présents avec 18,8 % du poids et 29,2 % du risque.",
+      "references": [
+        "R-0063",
+        "R-0032",
+        "R-0064",
+        "R-0065"
+      ],
+      "statut": "hypothèse"
+    },
+    {
+      "id": "A-012",
+      "section": "alternative",
+      "gabarit": "Cette option a une pire baisse historique de {{R-0036}}, soit une baisse {{cmpabs:R-0036:R-0004}} celle du portefeuille proposé. Sa volatilité est de {{R-0035}} contre {{R-0003}}. Son rendement annualisé historique est de {{R-0034}} contre {{R-0002}}. Son rendement 2022 est de {{R-0037}} contre {{R-0005}}.",
+      "texte": "Cette option a une pire baisse historique de −43,1 %, soit une baisse moins forte que celle du portefeuille proposé. Sa volatilité est de 24,2 % contre 30,3 %. Son rendement annualisé historique est de 18,8 % contre 19,6 %. Son rendement 2022 est de −36,7 % contre −46,6 %.",
+      "references": [
+        "R-0036",
+        "R-0004",
+        "R-0035",
+        "R-0003",
+        "R-0034",
+        "R-0002",
+        "R-0037",
+        "R-0005"
+      ],
+      "statut": "hypothèse"
+    },
+    {
+      "id": "A-013",
+      "section": "alternative",
+      "gabarit": "Cette option reste un portefeuille à risque élevé : le plafond ne s'applique qu'aux groupes pris séparément, et la crypto garde un poids important. Le graphique compare les groupes des deux options.",
+      "texte": "Cette option reste un portefeuille à risque élevé : le plafond ne s'applique qu'aux groupes pris séparément, et la crypto garde un poids important. Le graphique compare les groupes des deux options.",
+      "references": [
+        "R-0032",
+        "R-0064",
+        "R-0065"
+      ],
+      "statut": "hypothèse"
+    },
+    {
+      "id": "A-014",
+      "section": "question",
+      "gabarit": "Information décisive : quelle perte la personne peut-elle absorber sans devoir vendre ? {{P-0012.label}} est non renseignée, tout comme {{P-0013.label}}. Qu'en est-il de ses besoins d'argent à court terme ?",
+      "texte": "Information décisive : quelle perte la personne peut-elle absorber sans devoir vendre ? Capacité de perte (perte supportable sans compromettre les projets) est non renseignée, tout comme Besoins de liquidité et retraits prévus. Qu'en est-il de ses besoins d'argent à court terme ?",
+      "references": [
+        "P-0012",
+        "P-0013"
+      ],
+      "statut": "inconnu"
+    },
+    {
+      "id": "A-015",
+      "section": "condition",
+      "gabarit": "Si la capacité de perte est faible, même la pire baisse de {{R-0036}} de l'option diversifiée pourrait être trop forte, et il faudrait augmenter la part du panier. Si elle est confirmée comme large, le portefeuille proposé reste défendable au regard de l'horizon « {{P-0004}} », à condition d'accepter un plafond de {{R-0032}} dépassé par la Technologie.",
+      "texte": "Si la capacité de perte est faible, même la pire baisse de −43,1 % de l'option diversifiée pourrait être trop forte, et il faudrait augmenter la part du panier. Si elle est confirmée comme large, le portefeuille proposé reste défendable au regard de l'horizon « 15 ans ou plus », à condition d'accepter un plafond de 50,0 % dépassé par la Technologie.",
+      "references": [
+        "R-0036",
+        "P-0004",
+        "R-0032"
+      ],
+      "statut": "hypothèse"
+    },
+    {
+      "id": "A-016",
+      "section": "limite",
+      "gabarit": "Fraîcheur du change : l'âge maximal du taux USD/CAD est de {{D-0004}}. Durée de l'échantillon : {{D-0005}}, ce qui est court pour juger un horizon long et ne couvre qu'un seul cycle de la crypto.",
+      "texte": "Fraîcheur du change : l'âge maximal du taux USD/CAD est de 4 jours. Durée de l'échantillon : 5,0 ans, ce qui est court pour juger un horizon long et ne couvre qu'un seul cycle de la crypto.",
+      "references": [
+        "D-0004",
+        "D-0005"
+      ],
+      "statut": "mesuré"
+    },
+    {
+      "id": "A-017",
+      "section": "limite",
+      "gabarit": "Biais de l'univers : {{D-0006}}. Les rendements passés des titres retenus sont donc probablement flatteurs et ne prédisent pas l'avenir.",
+      "texte": "Biais de l'univers : univers constitué après coup, parmi des titres importants à la date d'extraction (biais du survivant). Les rendements passés des titres retenus sont donc probablement flatteurs et ne prédisent pas l'avenir.",
+      "references": [
+        "D-0006"
+      ],
+      "statut": "source"
+    }
+  ],
+  "enregistrements": {
+    "P-0001": {
+      "id": "P-0001",
+      "label": "Prénom (profil fictif)",
+      "value": "Amira",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 5",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "Amira"
+    },
+    "P-0002": {
+      "id": "P-0002",
+      "label": "Âge",
+      "value": 26,
+      "unit": "count",
+      "status": "déclaré",
+      "origin": "énoncé, p. 5",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "26"
+    },
+    "P-0003": {
+      "id": "P-0003",
+      "label": "Profil de risque déclaré",
+      "value": "élevé",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 5",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "élevé"
+    },
+    "P-0004": {
+      "id": "P-0004",
+      "label": "Horizon de placement",
+      "value": "15 ans ou plus",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 5",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "15 ans ou plus"
+    },
+    "P-0005": {
+      "id": "P-0005",
+      "label": "Objectif",
+      "value": "Faire croître son capital à long terme",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 5",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "Faire croître son capital à long terme"
+    },
+    "P-0006": {
+      "id": "P-0006",
+      "label": "Expérience en placement",
+      "value": "intermédiaire",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 5",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "intermédiaire"
+    },
+    "P-0007": {
+      "id": "P-0007",
+      "label": "Horizon minimal",
+      "value": 15,
+      "unit": "years",
+      "status": "déclaré",
+      "origin": "énoncé, p. 5",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "15,0 ans"
+    },
+    "P-0008": {
+      "id": "P-0008",
+      "label": "Préférence déclarée",
+      "value": "Très intéressée par l'intelligence artificielle et les technologies émergentes",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 5",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "Très intéressée par l'intelligence artificielle et les technologies émergentes"
+    },
+    "P-0009": {
+      "id": "P-0009",
+      "label": "Préférence déclarée",
+      "value": "Ouverte aux entreprises en forte croissance et à une volatilité importante",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 5",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "Ouverte aux entreprises en forte croissance et à une volatilité importante"
+    },
+    "P-0010": {
+      "id": "P-0010",
+      "label": "Préférence déclarée",
+      "value": "Intéressée par les cryptoactifs",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 5",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "Intéressée par les cryptoactifs"
+    },
+    "P-0011": {
+      "id": "P-0011",
+      "label": "Préférence déclarée",
+      "value": "Souhaite maintenir une certaine diversification et éviter de miser exclusivement sur les technologies",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 5",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "Souhaite maintenir une certaine diversification et éviter de miser exclusivement sur les technologies"
+    },
+    "P-0012": {
+      "id": "P-0012",
+      "label": "Capacité de perte (perte supportable sans compromettre les projets)",
+      "value": null,
+      "unit": "text",
+      "status": "inconnu",
+      "origin": "non fourni par l'énoncé",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "non disponible"
+    },
+    "P-0013": {
+      "id": "P-0013",
+      "label": "Besoins de liquidité et retraits prévus",
+      "value": null,
+      "unit": "text",
+      "status": "inconnu",
+      "origin": "non fourni par l'énoncé",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "non disponible"
+    },
+    "P-0014": {
+      "id": "P-0014",
+      "label": "Patrimoine total et part concernée",
+      "value": null,
+      "unit": "text",
+      "status": "inconnu",
+      "origin": "non fourni par l'énoncé",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "non disponible"
+    },
+    "P-0015": {
+      "id": "P-0015",
+      "label": "Demande formulée",
+      "value": "Je veux un portefeuille de croissance axé sur l'IA et la crypto, sans tout miser sur la technologie.",
+      "unit": "text",
+      "status": "scénario",
+      "origin": "scénario de démonstration",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "Je veux un portefeuille de croissance axé sur l'IA et la crypto, sans tout miser sur la technologie."
+    },
+    "P-0016": {
+      "id": "P-0016",
+      "label": "Origine de la demande",
+      "value": "analyse demandée par la personne",
+      "unit": "text",
+      "status": "scénario",
+      "origin": "scénario de démonstration",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "analyse demandée par la personne"
+    },
+    "D-0001": {
+      "id": "D-0001",
+      "label": "Fichier prices_daily.csv",
+      "value": "ff2a3f2d0a7d72ea",
+      "unit": "text",
+      "status": "source",
+      "origin": "jeu de départ AlphaForge (PolyFinances)",
+      "subject": "",
+      "period": null,
+      "conventions": [],
+      "inputs": {
+        "sha256": "ff2a3f2d0a7d72ea835e8d616d041e0510f018340cef3d3e55b918830e8a569d"
+      },
+      "display": "ff2a3f2d0a7d72ea"
+    },
+    "D-0002": {
+      "id": "D-0002",
+      "label": "Fichier fx_usdcad_daily.csv",
+      "value": "f04e218ac5b0145f",
+      "unit": "text",
+      "status": "source",
+      "origin": "jeu de départ AlphaForge (PolyFinances)",
+      "subject": "",
+      "period": null,
+      "conventions": [],
+      "inputs": {
+        "sha256": "f04e218ac5b0145fd552b3d0dcfbf73e5e17bb9a6fb4562460dbec95cb8972b3"
+      },
+      "display": "f04e218ac5b0145f"
+    },
+    "D-0003": {
+      "id": "D-0003",
+      "label": "Fichier assets_universe.csv",
+      "value": "f78de8ecb36d914a",
+      "unit": "text",
+      "status": "source",
+      "origin": "jeu de départ AlphaForge (PolyFinances)",
+      "subject": "",
+      "period": null,
+      "conventions": [],
+      "inputs": {
+        "sha256": "f78de8ecb36d914a3448db63498cc9a04a34d805bccb79c481dda1650755467d"
+      },
+      "display": "f78de8ecb36d914a"
+    },
+    "D-0004": {
+      "id": "D-0004",
+      "label": "Âge maximal du taux de change utilisé (jours)",
+      "value": 4,
+      "unit": "days",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "",
+      "period": null,
+      "conventions": [
+        "dernier taux Banque du Canada connu à la date de valorisation"
+      ],
+      "inputs": {},
+      "display": "4 jours"
+    },
+    "D-0005": {
+      "id": "D-0005",
+      "label": "Durée de l'échantillon de prix",
+      "value": 4.999315537303217,
+      "unit": "years",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [],
+      "inputs": {},
+      "display": "5,0 ans"
+    },
+    "D-0006": {
+      "id": "D-0006",
+      "label": "Limite connue de l'univers d'actifs",
+      "value": "univers constitué après coup, parmi des titres importants à la date d'extraction (biais du survivant)",
+      "unit": "text",
+      "status": "source",
+      "origin": "data/README.md (jeu de départ PolyFinances)",
+      "subject": "",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "univers constitué après coup, parmi des titres importants à la date d'extraction (biais du survivant)"
+    },
+    "R-0001": {
+      "id": "R-0001",
+      "label": "Composition Proposé",
+      "value": "NVDA 20 %, TSLA 10 %, QQQ 25 %, SHOP.TO 10 %, BTC-USD 15 %, ETH-USD 10 %, SPY 10 %",
+      "unit": "text",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Proposé",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "NVDA 20 %, TSLA 10 %, QQQ 25 %, SHOP.TO 10 %, BTC-USD 15 %, ETH-USD 10 %, SPY 10 %"
+    },
+    "R-0002": {
+      "id": "R-0002",
+      "label": "Rendement annualisé Proposé",
+      "value": 0.19625969733345627,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Proposé",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0001"
+        ]
+      },
+      "display": "19,6 %"
+    },
+    "R-0003": {
+      "id": "R-0003",
+      "label": "Volatilité annualisée Proposé",
+      "value": 0.3031174316351833,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Proposé",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0001"
+        ]
+      },
+      "display": "30,3 %"
+    },
+    "R-0004": {
+      "id": "R-0004",
+      "label": "Pire baisse depuis un sommet Proposé",
+      "value": -0.5209005244927707,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Proposé",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "série hebdomadaire : les creux en cours de semaine ne sont pas vus"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0001"
+        ]
+      },
+      "display": "−52,1 %"
+    },
+    "R-0005": {
+      "id": "R-0005",
+      "label": "Rendement 2022 Proposé",
+      "value": -0.465970749562043,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Proposé",
+      "period": [
+        "2021-12-31",
+        "2022-12-31"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0001"
+        ]
+      },
+      "display": "−46,6 %"
+    },
+    "R-0006": {
+      "id": "R-0006",
+      "label": "Pire rendement sur une fenêtre de 3 ans Proposé",
+      "value": 0.8630007355962606,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Proposé",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0001"
+        ]
+      },
+      "display": "86,3 %"
+    },
+    "R-0007": {
+      "id": "R-0007",
+      "label": "Poids de NVDA dans Proposé",
+      "value": 0.2,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Proposé",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "20,0 %"
+    },
+    "R-0008": {
+      "id": "R-0008",
+      "label": "Part du risque (variance) due à NVDA dans Proposé",
+      "value": 0.23996477533662977,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Proposé",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0001"
+        ]
+      },
+      "display": "24,0 %"
+    },
+    "R-0009": {
+      "id": "R-0009",
+      "label": "Poids de BTC-USD dans Proposé",
+      "value": 0.15,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Proposé",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "15,0 %"
+    },
+    "R-0010": {
+      "id": "R-0010",
+      "label": "Part du risque (variance) due à BTC-USD dans Proposé",
+      "value": 0.1666081459258374,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Proposé",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0001"
+        ]
+      },
+      "display": "16,7 %"
+    },
+    "R-0011": {
+      "id": "R-0011",
+      "label": "Poids de ETH-USD dans Proposé",
+      "value": 0.1,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Proposé",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "10,0 %"
+    },
+    "R-0012": {
+      "id": "R-0012",
+      "label": "Part du risque (variance) due à ETH-USD dans Proposé",
+      "value": 0.15180010950042636,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Proposé",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0001"
+        ]
+      },
+      "display": "15,2 %"
+    },
+    "R-0013": {
+      "id": "R-0013",
+      "label": "Poids de SHOP.TO dans Proposé",
+      "value": 0.1,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Proposé",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "10,0 %"
+    },
+    "R-0014": {
+      "id": "R-0014",
+      "label": "Part du risque (variance) due à SHOP.TO dans Proposé",
+      "value": 0.14440339550569026,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Proposé",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0001"
+        ]
+      },
+      "display": "14,4 %"
+    },
+    "R-0015": {
+      "id": "R-0015",
+      "label": "Poids de QQQ dans Proposé",
+      "value": 0.25,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Proposé",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "25,0 %"
+    },
+    "R-0016": {
+      "id": "R-0016",
+      "label": "Part du risque (variance) due à QQQ dans Proposé",
+      "value": 0.13951104660961072,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Proposé",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0001"
+        ]
+      },
+      "display": "14,0 %"
+    },
+    "R-0017": {
+      "id": "R-0017",
+      "label": "Poids de TSLA dans Proposé",
+      "value": 0.1,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Proposé",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "10,0 %"
+    },
+    "R-0018": {
+      "id": "R-0018",
+      "label": "Part du risque (variance) due à TSLA dans Proposé",
+      "value": 0.12037561676150059,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Proposé",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0001"
+        ]
+      },
+      "display": "12,0 %"
+    },
+    "R-0019": {
+      "id": "R-0019",
+      "label": "Poids de SPY dans Proposé",
+      "value": 0.1,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Proposé",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "10,0 %"
+    },
+    "R-0020": {
+      "id": "R-0020",
+      "label": "Part du risque (variance) due à SPY dans Proposé",
+      "value": 0.03733691036030497,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Proposé",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0001"
+        ]
+      },
+      "display": "3,7 %"
+    },
+    "R-0021": {
+      "id": "R-0021",
+      "label": "Part du risque des trois premières lignes de Proposé",
+      "value": 0.5583730307628936,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Proposé",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0001"
+        ]
+      },
+      "display": "55,8 %"
+    },
+    "R-0022": {
+      "id": "R-0022",
+      "label": "Poids du groupe Technologie dans Proposé",
+      "value": 0.55,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Proposé",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "55,0 %"
+    },
+    "R-0023": {
+      "id": "R-0023",
+      "label": "Part du risque du groupe Technologie dans Proposé",
+      "value": 0.5238792174519308,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Proposé",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "regroupement : config/scenarios.toml"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0001"
+        ]
+      },
+      "display": "52,4 %"
+    },
+    "R-0024": {
+      "id": "R-0024",
+      "label": "Poids du groupe Cryptoactifs dans Proposé",
+      "value": 0.25,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Proposé",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "25,0 %"
+    },
+    "R-0025": {
+      "id": "R-0025",
+      "label": "Part du risque du groupe Cryptoactifs dans Proposé",
+      "value": 0.3184082554262637,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Proposé",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "regroupement : config/scenarios.toml"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0001"
+        ]
+      },
+      "display": "31,8 %"
+    },
+    "R-0026": {
+      "id": "R-0026",
+      "label": "Poids du groupe Consommation discrétionnaire dans Proposé",
+      "value": 0.1,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Proposé",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "10,0 %"
+    },
+    "R-0027": {
+      "id": "R-0027",
+      "label": "Part du risque du groupe Consommation discrétionnaire dans Proposé",
+      "value": 0.12037561676150059,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Proposé",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "regroupement : config/scenarios.toml"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0001"
+        ]
+      },
+      "display": "12,0 %"
+    },
+    "R-0028": {
+      "id": "R-0028",
+      "label": "Poids du groupe Actions diversifiées dans Proposé",
+      "value": 0.1,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Proposé",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "10,0 %"
+    },
+    "R-0029": {
+      "id": "R-0029",
+      "label": "Part du risque du groupe Actions diversifiées dans Proposé",
+      "value": 0.03733691036030497,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Proposé",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "regroupement : config/scenarios.toml"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0001"
+        ]
+      },
+      "display": "3,7 %"
+    },
+    "R-0030": {
+      "id": "R-0030",
+      "label": "Panier de diversification de Diversifié",
+      "value": "XIU.TO 20 %, SPY 20 %, CNR.TO 20 %, ATD.TO 20 %, GLD 20 %",
+      "unit": "text",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Diversifié",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "XIU.TO 20 %, SPY 20 %, CNR.TO 20 %, ATD.TO 20 %, GLD 20 %"
+    },
+    "R-0031": {
+      "id": "R-0031",
+      "label": "Part minimale à déplacer vers le panier pour respecter le plafond (Diversifié)",
+      "value": 0.25,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Diversifié",
+      "period": null,
+      "conventions": [
+        "grille par pas de 5 points",
+        "part du risque par groupe, covariance hebdomadaire"
+      ],
+      "inputs": {
+        "part_max_groupe_selon_alpha": {
+          "0.0": 0.5238792174519308,
+          "0.05": 0.5195954869961316,
+          "0.1": 0.5145970796534153,
+          "0.15": 0.5087471927057392,
+          "0.2": 0.5018792585024834,
+          "0.25": 0.4937901530903182,
+          "0.3": 0.48423210385109766,
+          "0.35": 0.47290335938610517,
+          "0.4": 0.45943804360227003,
+          "0.45": 0.44339633339579126,
+          "0.5": 0.42425744421251477,
+          "0.55": 0.401420288487637,
+          "0.6": 0.3742206177210018,
+          "0.65": 0.34197940708211017,
+          "0.7": 0.30410480804808626,
+          "0.75": 0.2631389248507521,
+          "0.8": 0.3011429587678873,
+          "0.85": 0.357903059270383,
+          "0.9": 0.41810531370229076,
+          "0.95": 0.4777934435238308,
+          "1.0": 0.5316088660587585
+        },
+        "depend_de": [
+          "R-0030",
+          "R-0032"
+        ]
+      },
+      "display": "25,0 %"
+    },
+    "R-0032": {
+      "id": "R-0032",
+      "label": "Plafond de part du risque par groupe (Diversifié)",
+      "value": 0.5,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Diversifié",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "50,0 %"
+    },
+    "R-0033": {
+      "id": "R-0033",
+      "label": "Composition Diversifié",
+      "value": "ATD.TO 5 %, BTC-USD 11 %, CNR.TO 5 %, ETH-USD 8 %, GLD 5 %, NVDA 15 %, QQQ 19 %, SHOP.TO 8 %, SPY 12 %, TSLA 8 %, XIU.TO 5 %",
+      "unit": "text",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Diversifié",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "ATD.TO 5 %, BTC-USD 11 %, CNR.TO 5 %, ETH-USD 8 %, GLD 5 %, NVDA 15 %, QQQ 19 %, SHOP.TO 8 %, SPY 12 %, TSLA 8 %, XIU.TO 5 %"
+    },
+    "R-0034": {
+      "id": "R-0034",
+      "label": "Rendement annualisé Diversifié",
+      "value": 0.1882442121012713,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Diversifié",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0033"
+        ]
+      },
+      "display": "18,8 %"
+    },
+    "R-0035": {
+      "id": "R-0035",
+      "label": "Volatilité annualisée Diversifié",
+      "value": 0.24213379073534286,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Diversifié",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0033"
+        ]
+      },
+      "display": "24,2 %"
+    },
+    "R-0036": {
+      "id": "R-0036",
+      "label": "Pire baisse depuis un sommet Diversifié",
+      "value": -0.43092188906859497,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Diversifié",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "série hebdomadaire : les creux en cours de semaine ne sont pas vus"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0033"
+        ]
+      },
+      "display": "−43,1 %"
+    },
+    "R-0037": {
+      "id": "R-0037",
+      "label": "Rendement 2022 Diversifié",
+      "value": -0.3669637956799793,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Diversifié",
+      "period": [
+        "2021-12-31",
+        "2022-12-31"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0033"
+        ]
+      },
+      "display": "−36,7 %"
+    },
+    "R-0038": {
+      "id": "R-0038",
+      "label": "Pire rendement sur une fenêtre de 3 ans Diversifié",
+      "value": 0.7674820777767111,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Diversifié",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0033"
+        ]
+      },
+      "display": "76,7 %"
+    },
+    "R-0039": {
+      "id": "R-0039",
+      "label": "Poids de NVDA dans Diversifié",
+      "value": 0.15,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Diversifié",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "15,0 %"
+    },
+    "R-0040": {
+      "id": "R-0040",
+      "label": "Part du risque (variance) due à NVDA dans Diversifié",
+      "value": 0.22364958939502957,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Diversifié",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0033"
+        ]
+      },
+      "display": "22,4 %"
+    },
+    "R-0041": {
+      "id": "R-0041",
+      "label": "Poids de BTC-USD dans Diversifié",
+      "value": 0.1125,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Diversifié",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "11,2 %"
+    },
+    "R-0042": {
+      "id": "R-0042",
+      "label": "Part du risque (variance) due à BTC-USD dans Diversifié",
+      "value": 0.15170287290671577,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Diversifié",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0033"
+        ]
+      },
+      "display": "15,2 %"
+    },
+    "R-0043": {
+      "id": "R-0043",
+      "label": "Poids de ETH-USD dans Diversifié",
+      "value": 0.075,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Diversifié",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "7,5 %"
+    },
+    "R-0044": {
+      "id": "R-0044",
+      "label": "Part du risque (variance) due à ETH-USD dans Diversifié",
+      "value": 0.14016489116802777,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Diversifié",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0033"
+        ]
+      },
+      "display": "14,0 %"
+    },
+    "R-0045": {
+      "id": "R-0045",
+      "label": "Poids de SHOP.TO dans Diversifié",
+      "value": 0.075,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Diversifié",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "7,5 %"
+    },
+    "R-0046": {
+      "id": "R-0046",
+      "label": "Part du risque (variance) due à SHOP.TO dans Diversifié",
+      "value": 0.1370223552167943,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Diversifié",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0033"
+        ]
+      },
+      "display": "13,7 %"
+    },
+    "R-0047": {
+      "id": "R-0047",
+      "label": "Poids de QQQ dans Diversifié",
+      "value": 0.1875,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Diversifié",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "18,8 %"
+    },
+    "R-0048": {
+      "id": "R-0048",
+      "label": "Part du risque (variance) due à QQQ dans Diversifié",
+      "value": 0.13311820847849432,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Diversifié",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0033"
+        ]
+      },
+      "display": "13,3 %"
+    },
+    "R-0049": {
+      "id": "R-0049",
+      "label": "Poids de TSLA dans Diversifié",
+      "value": 0.075,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Diversifié",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "7,5 %"
+    },
+    "R-0050": {
+      "id": "R-0050",
+      "label": "Part du risque (variance) due à TSLA dans Diversifié",
+      "value": 0.11221017963556774,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Diversifié",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0033"
+        ]
+      },
+      "display": "11,2 %"
+    },
+    "R-0051": {
+      "id": "R-0051",
+      "label": "Poids de SPY dans Diversifié",
+      "value": 0.125,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Diversifié",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "12,5 %"
+    },
+    "R-0052": {
+      "id": "R-0052",
+      "label": "Part du risque (variance) due à SPY dans Diversifié",
+      "value": 0.0606986138290618,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Diversifié",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0033"
+        ]
+      },
+      "display": "6,1 %"
+    },
+    "R-0053": {
+      "id": "R-0053",
+      "label": "Poids de XIU.TO dans Diversifié",
+      "value": 0.05,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Diversifié",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "5,0 %"
+    },
+    "R-0054": {
+      "id": "R-0054",
+      "label": "Part du risque (variance) due à XIU.TO dans Diversifié",
+      "value": 0.014801367921761404,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Diversifié",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0033"
+        ]
+      },
+      "display": "1,5 %"
+    },
+    "R-0055": {
+      "id": "R-0055",
+      "label": "Poids de ATD.TO dans Diversifié",
+      "value": 0.05,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Diversifié",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "5,0 %"
+    },
+    "R-0056": {
+      "id": "R-0056",
+      "label": "Part du risque (variance) due à ATD.TO dans Diversifié",
+      "value": 0.014760406760677589,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Diversifié",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0033"
+        ]
+      },
+      "display": "1,5 %"
+    },
+    "R-0057": {
+      "id": "R-0057",
+      "label": "Poids de CNR.TO dans Diversifié",
+      "value": 0.05,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Diversifié",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "5,0 %"
+    },
+    "R-0058": {
+      "id": "R-0058",
+      "label": "Part du risque (variance) due à CNR.TO dans Diversifié",
+      "value": 0.010214719081220913,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Diversifié",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0033"
+        ]
+      },
+      "display": "1,0 %"
+    },
+    "R-0059": {
+      "id": "R-0059",
+      "label": "Poids de GLD dans Diversifié",
+      "value": 0.05,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Diversifié",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "5,0 %"
+    },
+    "R-0060": {
+      "id": "R-0060",
+      "label": "Part du risque (variance) due à GLD dans Diversifié",
+      "value": 0.001656795606648995,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Diversifié",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0033"
+        ]
+      },
+      "display": "0,2 %"
+    },
+    "R-0061": {
+      "id": "R-0061",
+      "label": "Part du risque des trois premières lignes de Diversifié",
+      "value": 0.5155173534697731,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Diversifié",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0033"
+        ]
+      },
+      "display": "51,6 %"
+    },
+    "R-0062": {
+      "id": "R-0062",
+      "label": "Poids du groupe Technologie dans Diversifié",
+      "value": 0.41250000000000003,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Diversifié",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "41,2 %"
+    },
+    "R-0063": {
+      "id": "R-0063",
+      "label": "Part du risque du groupe Technologie dans Diversifié",
+      "value": 0.49379015309031815,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Diversifié",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "regroupement : config/scenarios.toml"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0033"
+        ]
+      },
+      "display": "49,4 %"
+    },
+    "R-0064": {
+      "id": "R-0064",
+      "label": "Poids du groupe Cryptoactifs dans Diversifié",
+      "value": 0.1875,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Diversifié",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "18,8 %"
+    },
+    "R-0065": {
+      "id": "R-0065",
+      "label": "Part du risque du groupe Cryptoactifs dans Diversifié",
+      "value": 0.2918677640747436,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Diversifié",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "regroupement : config/scenarios.toml"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0033"
+        ]
+      },
+      "display": "29,2 %"
+    },
+    "R-0066": {
+      "id": "R-0066",
+      "label": "Poids du groupe Consommation discrétionnaire dans Diversifié",
+      "value": 0.075,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Diversifié",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "7,5 %"
+    },
+    "R-0067": {
+      "id": "R-0067",
+      "label": "Part du risque du groupe Consommation discrétionnaire dans Diversifié",
+      "value": 0.11221017963556774,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Diversifié",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "regroupement : config/scenarios.toml"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0033"
+        ]
+      },
+      "display": "11,2 %"
+    },
+    "R-0068": {
+      "id": "R-0068",
+      "label": "Poids du groupe Actions diversifiées dans Diversifié",
+      "value": 0.175,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Diversifié",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "17,5 %"
+    },
+    "R-0069": {
+      "id": "R-0069",
+      "label": "Part du risque du groupe Actions diversifiées dans Diversifié",
+      "value": 0.0754999817508232,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Diversifié",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "regroupement : config/scenarios.toml"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0033"
+        ]
+      },
+      "display": "7,5 %"
+    },
+    "R-0070": {
+      "id": "R-0070",
+      "label": "Poids du groupe Autres actions dans Diversifié",
+      "value": 0.1,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Diversifié",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "10,0 %"
+    },
+    "R-0071": {
+      "id": "R-0071",
+      "label": "Part du risque du groupe Autres actions dans Diversifié",
+      "value": 0.024975125841898503,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Diversifié",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "regroupement : config/scenarios.toml"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0033"
+        ]
+      },
+      "display": "2,5 %"
+    },
+    "R-0072": {
+      "id": "R-0072",
+      "label": "Poids du groupe Or dans Diversifié",
+      "value": 0.05,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Diversifié",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "5,0 %"
+    },
+    "R-0073": {
+      "id": "R-0073",
+      "label": "Part du risque du groupe Or dans Diversifié",
+      "value": 0.001656795606648995,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Diversifié",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "regroupement : config/scenarios.toml"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0033"
+        ]
+      },
+      "display": "0,2 %"
+    }
+  },
+  "trace": [
+    {
+      "outil": "profile_facts",
+      "arguments": {
+        "persona": "amira",
+        "scenario": {
+          "persona": "amira",
+          "titre": "Amira veut de la croissance IA et crypto, sans tout miser sur la technologie",
+          "demande": "Je veux un portefeuille de croissance axé sur l'IA et la crypto, sans tout miser sur la technologie.",
+          "origine_demande": "analyse demandée par la personne",
+          "plafond_risque_groupe": 0.5,
+          "horizon_etude_ans": 3,
+          "portefeuille_propose": {
+            "NVDA": 0.2,
+            "TSLA": 0.1,
+            "QQQ": 0.25,
+            "SHOP.TO": 0.1,
+            "BTC-USD": 0.15,
+            "ETH-USD": 0.1,
+            "SPY": 0.1
+          },
+          "panier_diversification": {
+            "XIU.TO": 0.2,
+            "SPY": 0.2,
+            "CNR.TO": 0.2,
+            "ATD.TO": 0.2,
+            "GLD": 0.2
+          }
+        }
+      },
+      "enregistrements": [
+        "P-0001",
+        "P-0002",
+        "P-0003",
+        "P-0004",
+        "P-0005",
+        "P-0006",
+        "P-0007",
+        "P-0008",
+        "P-0009",
+        "P-0010",
+        "P-0011",
+        "P-0012",
+        "P-0013",
+        "P-0014",
+        "P-0015",
+        "P-0016"
+      ],
+      "duree_ms": 1.6
+    },
+    {
+      "outil": "data_manifest",
+      "arguments": {},
+      "enregistrements": [
+        "D-0001",
+        "D-0002",
+        "D-0003",
+        "D-0004",
+        "D-0005",
+        "D-0006"
+      ],
+      "duree_ms": 3.9
+    },
+    {
+      "outil": "portfolio_metrics",
+      "arguments": {
+        "name": "Proposé",
+        "weights": {
+          "NVDA": 0.2,
+          "TSLA": 0.1,
+          "QQQ": 0.25,
+          "SHOP.TO": 0.1,
+          "BTC-USD": 0.15,
+          "ETH-USD": 0.1,
+          "SPY": 0.1
+        },
+        "horizon_years": 3
+      },
+      "enregistrements": [
+        "R-0001",
+        "R-0002",
+        "R-0003",
+        "R-0004",
+        "R-0005",
+        "R-0006",
+        "R-0007",
+        "R-0008",
+        "R-0009",
+        "R-0010",
+        "R-0011",
+        "R-0012",
+        "R-0013",
+        "R-0014",
+        "R-0015",
+        "R-0016",
+        "R-0017",
+        "R-0018",
+        "R-0019",
+        "R-0020",
+        "R-0021",
+        "R-0022",
+        "R-0023",
+        "R-0024",
+        "R-0025",
+        "R-0026",
+        "R-0027",
+        "R-0028",
+        "R-0029"
+      ],
+      "duree_ms": 9.9
+    },
+    {
+      "outil": "diversification_sweep",
+      "arguments": {
+        "name": "Diversifié",
+        "base": {
+          "NVDA": 0.2,
+          "TSLA": 0.1,
+          "QQQ": 0.25,
+          "SHOP.TO": 0.1,
+          "BTC-USD": 0.15,
+          "ETH-USD": 0.1,
+          "SPY": 0.1
+        },
+        "sleeve": {
+          "XIU.TO": 0.2,
+          "SPY": 0.2,
+          "CNR.TO": 0.2,
+          "ATD.TO": 0.2,
+          "GLD": 0.2
+        },
+        "cap": 0.5
+      },
+      "enregistrements": [
+        "R-0030",
+        "R-0031",
+        "R-0032"
+      ],
+      "duree_ms": 18.2
+    },
+    {
+      "outil": "portfolio_metrics",
+      "arguments": {
+        "name": "Diversifié",
+        "weights": {
+          "ATD.TO": 0.05,
+          "BTC-USD": 0.1125,
+          "CNR.TO": 0.05,
+          "ETH-USD": 0.075,
+          "GLD": 0.05,
+          "NVDA": 0.15,
+          "QQQ": 0.1875,
+          "SHOP.TO": 0.075,
+          "SPY": 0.125,
+          "TSLA": 0.075,
+          "XIU.TO": 0.05
+        },
+        "horizon_years": 3
+      },
+      "enregistrements": [
+        "R-0033",
+        "R-0034",
+        "R-0035",
+        "R-0036",
+        "R-0037",
+        "R-0038",
+        "R-0039",
+        "R-0040",
+        "R-0041",
+        "R-0042",
+        "R-0043",
+        "R-0044",
+        "R-0045",
+        "R-0046",
+        "R-0047",
+        "R-0048",
+        "R-0049",
+        "R-0050",
+        "R-0051",
+        "R-0052",
+        "R-0053",
+        "R-0054",
+        "R-0055",
+        "R-0056",
+        "R-0057",
+        "R-0058",
+        "R-0059",
+        "R-0060",
+        "R-0061",
+        "R-0062",
+        "R-0063",
+        "R-0064",
+        "R-0065",
+        "R-0066",
+        "R-0067",
+        "R-0068",
+        "R-0069",
+        "R-0070",
+        "R-0071",
+        "R-0072",
+        "R-0073"
+      ],
+      "duree_ms": 5.3
+    }
+  ],
+  "graphiques": [
+    {
+      "titre": "Part du poids et part du risque par groupe d'actifs",
+      "type": "barres",
+      "unite": "pct",
+      "mise_en_evidence": "Risque, Proposé",
+      "series": {
+        "Poids, Proposé": [
+          [
+            "Technologie",
+            0.55
+          ],
+          [
+            "Cryptoactifs",
+            0.25
+          ],
+          [
+            "Consommation discrétionnaire",
+            0.1
+          ],
+          [
+            "Actions diversifiées",
+            0.1
+          ]
+        ],
+        "Risque, Proposé": [
+          [
+            "Technologie",
+            0.5239
+          ],
+          [
+            "Cryptoactifs",
+            0.3184
+          ],
+          [
+            "Consommation discrétionnaire",
+            0.1204
+          ],
+          [
+            "Actions diversifiées",
+            0.0373
+          ]
+        ],
+        "Risque, Diversifié": [
+          [
+            "Technologie",
+            0.4938
+          ],
+          [
+            "Cryptoactifs",
+            0.2919
+          ],
+          [
+            "Consommation discrétionnaire",
+            0.1122
+          ],
+          [
+            "Actions diversifiées",
+            0.0755
+          ]
+        ]
+      },
+      "sources": [
+        "R-0023",
+        "R-0025",
+        "R-0027",
+        "R-0029",
+        "R-0063",
+        "R-0065",
+        "R-0067",
+        "R-0069",
+        "R-0071",
+        "R-0073"
+      ],
+      "note": "Part du risque : contribution de chaque groupe à la variance des rendements hebdomadaires. Regroupement selon config/scenarios.toml.",
+      "repere": {
+        "valeur": 0.5,
+        "libelle": "plafond de démonstration"
+      }
+    }
+  ],
+  "fiche_profil": [
+    [
+      "Profil de risque",
+      "P-0003"
+    ],
+    [
+      "Horizon",
+      "P-0004"
+    ],
+    [
+      "Objectif",
+      "P-0005"
+    ],
+    [
+      "Expérience",
+      "P-0006"
+    ],
+    [
+      "Origine de la demande",
+      "P-0016"
+    ]
+  ],
+  "chiffres_cles": [
+    {
+      "libelle": "Part du risque Technologie, portefeuille proposé",
+      "valeur": "R-0023",
+      "detail": "Plafond de démonstration : {{R-0032}}"
+    },
+    {
+      "libelle": "Part du risque Technologie, option diversifiée",
+      "valeur": "R-0063",
+      "detail": "Après déplacement de {{R-0031}} vers le panier {{R-0030}}"
+    },
+    {
+      "libelle": "Pire baisse historique, portefeuille proposé",
+      "valeur": "R-0004",
+      "detail": ""
+    },
+    {
+      "libelle": "Pire baisse historique, option diversifiée",
+      "valeur": "R-0036",
+      "detail": ""
+    }
+  ],
+  "tableaux": [
+    {
+      "titre": "Portefeuille proposé et option diversifiée",
+      "colonnes": [
+        "Poids Technologie",
+        "Part du risque Technologie",
+        "Part du risque Cryptoactifs",
+        "Volatilité",
+        "Pire baisse",
+        "Rendement 2022"
+      ],
+      "lignes": [
+        {
+          "nom": "Proposé",
+          "cellules": [
+            "R-0022",
+            "R-0023",
+            "R-0025",
+            "R-0003",
+            "R-0004",
+            "R-0005"
+          ]
+        },
+        {
+          "nom": "Diversifié",
+          "cellules": [
+            "R-0062",
+            "R-0063",
+            "R-0065",
+            "R-0035",
+            "R-0036",
+            "R-0037"
+          ]
+        }
+      ]
+    }
+  ],
+  "aws": {
+    "service": "Amazon Bedrock Runtime (Converse)",
+    "region": "us-east-1",
+    "modele": "global.anthropic.claude-sonnet-5-5",
+    "appels": [
+      {
+        "requestId": "fd437835-097a-4bbd-9742-546311577047",
+        "stopReason": "tool_use",
+        "inputTokens": 4518,
+        "outputTokens": 100,
+        "latenceMs": 1011
+      },
+      {
+        "requestId": "817dd710-bb6f-48f8-92b2-e5227c910204",
+        "stopReason": "tool_use",
+        "inputTokens": 7552,
+        "outputTokens": 432,
+        "latenceMs": 2450
+      },
+      {
+        "requestId": "ee0aa7d7-8b52-41a4-b53d-ea4f45c4fe3a",
+        "stopReason": "tool_use",
+        "inputTokens": 9374,
+        "outputTokens": 297,
+        "latenceMs": 1952
+      },
+      {
+        "requestId": "75859c95-0dff-46c5-9cc9-a963de96bec5",
+        "stopReason": "tool_use",
+        "inputTokens": 11133,
+        "outputTokens": 4549,
+        "latenceMs": 29415
+      },
+      {
+        "requestId": "d4894685-0625-4e39-bb5e-e2105a071c41",
+        "stopReason": "tool_use",
+        "inputTokens": 16420,
+        "outputTokens": 3111,
+        "latenceMs": 14176
+      }
+    ],
+    "corrections_demandees": 1
+  },
+  "verification": {
+    "affirmations": 17,
+    "valeurs_reliees": 59,
+    "affirmations_en_echec": [],
+    "problemes": {},
+    "ok": true,
+    "elements_verifies": 30
+  }
+}

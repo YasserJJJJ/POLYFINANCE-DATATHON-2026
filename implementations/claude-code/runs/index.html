@@ -1,0 +1,74 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dossiers AlphaForge</title><style>
+:root{color-scheme:light;--paper:#ffffff;--ink:#111111;--ink-2:#3d3d3d;--ink-3:#6b6b6b;--rule:#111111;--hair:#d9d9d9;--hair-2:#ececec;--tint:#f4f4f2;
+--accent:#1d4f91;--gray-1:#4a4a4a;--gray-2:#9c9c9c;--gray-3:#c8c8c8;--bad:#b3261e}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--paper:#141414;--ink:#ececea;--ink-2:#c9c9c6;--ink-3:#9a9a96;--rule:#ececea;--hair:#3a3a38;--hair-2:#262625;--tint:#1c1c1b;
+--accent:#7fa9e3;--gray-1:#bdbdba;--gray-2:#7c7c79;--gray-3:#4f4f4d;--bad:#f28b82}}
+:root[data-theme="dark"]{color-scheme:dark;--paper:#141414;--ink:#ececea;--ink-2:#c9c9c6;--ink-3:#9a9a96;--rule:#ececea;--hair:#3a3a38;--hair-2:#262625;--tint:#1c1c1b;
+--accent:#7fa9e3;--gray-1:#bdbdba;--gray-2:#7c7c79;--gray-3:#4f4f4d;--bad:#f28b82}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;font-variant-numeric:tabular-nums}
+a{color:inherit}
+.serif,h1,h2,.fig figcaption,.annex>summary{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif}
+.page{max-width:980px;margin:0 auto;padding:0 20px 56px;overflow-wrap:anywhere}
+.mast{display:flex;align-items:baseline;gap:16px;border-bottom:2px solid var(--rule);padding:18px 0 8px;font-size:13px;color:var(--ink-2)}
+.mast b{color:var(--ink);font-size:15px;letter-spacing:.01em}.mast .sp{flex:1}
+.linkbtn{font:inherit;font-size:13px;background:none;border:0;border-bottom:1px solid var(--ink-3);color:var(--ink-2);padding:0;cursor:pointer}
+.linkbtn[aria-pressed="true"]{color:var(--accent);border-color:var(--accent)}
+h1{font-size:36px;line-height:1.15;font-weight:600;letter-spacing:-.01em;margin:28px 0 10px;max-width:24ch}
+.ask{font-size:18px;color:var(--ink-2);margin:0 0 6px;font-style:italic}
+.meta{font-size:13px;color:var(--ink-3);margin:0 0 22px}
+.profile{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin:0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.profile div{padding:10px 16px 10px 0}.profile dt{font-size:12px;color:var(--ink-3)}.profile dd{margin:2px 0 0;font-size:15px}
+h2{font-size:24px;font-weight:600;margin:44px 0 4px;padding-top:12px;border-top:1px solid var(--hair)}
+h2 .no{color:var(--ink-3);font-weight:400;margin-right:10px}
+.sub{font-size:14px;color:var(--ink-3);margin:0 0 14px}
+.synth{font-size:19px;line-height:1.65;margin:8px 0 10px;max-width:70ch}
+.control{font-size:13px;color:var(--ink-3);margin:0 0 6px}.control.ko{color:var(--bad);font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));border-top:2px solid var(--rule);border-bottom:1px solid var(--hair);margin:22px 0 8px}
+.kpi{padding:12px 18px 14px 0}.kpi+.kpi{padding-left:18px;border-left:1px solid var(--hair)}
+.kpi-l{font-size:13px;color:var(--ink-2);line-height:1.35;min-height:2.7em}
+.kpi-v{font-size:30px;line-height:1.2;margin:4px 0 2px}.kpi-v .v{text-decoration:none}
+.kpi-d{font-size:13px;color:var(--ink-3)}
+.claims{margin:0;padding:0 0 0 22px}.claims li{padding:7px 0;border-bottom:1px solid var(--hair-2);display:grid;grid-template-columns:1fr auto;gap:16px;align-items:baseline}
+.claims li::marker{color:var(--ink-3);font-size:14px}.claims p{margin:0;max-width:72ch}
+.stw{font-size:12px;color:var(--ink-3);white-space:nowrap;position:relative}
+.v{text-decoration:underline dotted var(--ink-3);text-underline-offset:3px;text-decoration-thickness:1px;position:relative}
+.v.num{white-space:nowrap;font-weight:600}.v.txt{text-decoration:none}.v.txt:hover{text-decoration:underline dotted}.v.hyp{font-style:italic}.v.unk{color:var(--ink-3);font-style:italic}
+.v:hover,.v:focus-visible{color:var(--accent);text-decoration-color:var(--accent)}
+.rid{display:none;font-size:10px;font-weight:400;font-style:normal;color:var(--ink-3);margin-left:2px}body.show-ids .rid{display:inline}
+.cmp{text-decoration:underline dotted var(--ink-3);text-underline-offset:3px;position:relative}
+[data-tip]:hover::after,[data-tip]:focus-visible::after{content:attr(data-tip);position:absolute;left:0;top:calc(100% + 4px);z-index:30;width:max-content;max-width:300px;white-space:normal;
+background:var(--ink);color:var(--paper);font:400 12px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-style:normal;padding:6px 8px;text-align:left}
+.stw[data-tip]:hover::after{left:auto;right:0}
+.bad{color:var(--bad);font-weight:700}
+.fig{margin:22px 0 8px}.fig figcaption{font-size:17px;font-weight:600;border-top:2px solid var(--rule);padding-top:8px;margin-bottom:8px}
+.fignum{font-weight:700;margin-right:6px}.unit{display:block;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:13px;font-weight:400;color:var(--ink-3)}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--ink-2);margin-bottom:4px}.key i{display:inline-block;width:16px;height:3px;margin-right:6px;vertical-align:middle}
+.plot{position:relative}.fig svg{width:100%;height:auto;display:block}
+.grid{stroke:var(--hair-2);stroke-width:1}.zero{stroke:var(--ink);stroke-width:1}.tick{stroke:var(--ink-3)}.ax{fill:var(--ink-3);font-size:11px}
+.cat{fill:var(--ink-2);font-size:12px}.bl{fill:var(--ink-2);font-size:11px}.dl{font-size:12px;font-weight:600}.ref{stroke:var(--ink-2);stroke-dasharray:3 3}.cross{stroke:var(--ink-3)}
+.tooltip{position:absolute;top:6px;pointer-events:none;background:var(--ink);color:var(--paper);font-size:12px;padding:6px 8px;white-space:nowrap;line-height:1.5}
+.srcnote{border-top:1px solid var(--hair);margin-top:6px;padding-top:6px;font-size:12px;color:var(--ink-3)}.srcnote p{margin:1px 0}.srcnote span{font-weight:600;color:var(--ink-2)}
+.srcnote .refs{display:none}body.show-ids .srcnote .refs{display:block}.srcnote a{color:var(--ink-3)}
+.wrap{overflow-x:auto}
+.tbl{border-collapse:collapse;width:100%;font-size:14px;overflow-wrap:normal}.opts{min-width:720px}.opts th[scope=row]{min-width:190px;width:24%}.tbl th,.tbl td{padding:6px 10px;text-align:left;vertical-align:baseline;border-bottom:1px solid var(--hair-2)}
+.tbl thead th{font-size:12px;font-weight:600;color:var(--ink-2);border-bottom:1px solid var(--rule);vertical-align:bottom}
+.tbl tbody tr:last-child td,.tbl tbody tr:last-child th{border-bottom:1px solid var(--rule)}
+.tbl .n{text-align:right;white-space:nowrap}.tbl thead th.n{white-space:normal}.tbl th[scope=row]{font-weight:600}.tbl td.hyp{font-style:italic}
+.opts tbody tr:hover th,.opts tbody tr:hover td{background:var(--tint)}
+.tbl .v{font-weight:400;text-decoration:none}.tbl .v:hover{text-decoration:underline dotted}
+.reg{font-size:13px;table-layout:fixed;min-width:760px}.reg .grp th{font-weight:700;padding-top:14px;color:var(--ink);border-bottom:1px solid var(--hair)}
+.reg .ref{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--ink-3);white-space:nowrap}.reg .per{color:var(--ink-3);white-space:nowrap}.reg td.t{max-width:36ch}
+.reg tr:target td{background:var(--tint)}.reg .srcc{color:var(--ink-3)}.trace{font-size:13px}.trace .ref{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px}.trace .per{color:var(--ink-3)}
+.lead-s{font-size:13px;color:var(--ink-2);margin:6px 0}.convs{font-size:12px;color:var(--ink-3);margin:4px 0 12px;padding-left:22px}
+details.data{margin-top:8px}details.data summary{cursor:pointer;font-size:13px;color:var(--ink-2)}
+.annex{margin-top:52px;border-top:2px solid var(--rule)}.annex>summary{font-size:20px;font-weight:600;padding:12px 0;cursor:pointer}
+.annex h3{font-size:15px;margin:22px 0 6px}.annex p,.annex li{font-size:14px}
+.legend-st{display:grid;grid-template-columns:max-content 1fr;gap:2px 14px;font-size:13px;color:var(--ink-2)}.legend-st b{font-weight:600;color:var(--ink)}
+footer{max-width:980px;margin:0 auto;padding:16px 20px 40px;font-size:12px;color:var(--ink-3);border-top:1px solid var(--hair)}
+@media (max-width:640px){h1{font-size:27px}.synth{font-size:17px}.kpi+.kpi{padding-left:0;border-left:0;border-top:1px solid var(--hair)}.claims li{grid-template-columns:1fr;gap:0}}
+.idx{list-style:none;padding:0;margin:0}.idx li{padding:18px 0;border-bottom:1px solid var(--hair)}.idx a{text-decoration:none}.idx a:hover{color:var(--accent)}</style></head>
+<body><div class="page"><div class="mast"><b>AlphaForge</b><span>Laboratoire de décision d'investissement</span></div>
+<h1>Dossiers de décision</h1><p class="meta">Simulation sur profils fictifs. Chaque conclusion est reliée aux calculs et aux hypothèses qui la soutiennent.</p>
+<ul class="idx"><li><a href="amira-agent/dossier.html"><span class="serif" style="font-size:21px;font-weight:600">Croissance IA et crypto : jusqu&#x27;où diversifier ?</span></a><p class="meta" style="margin:2px 0 6px">Profil fictif : Amira · agent Bedrock (global.anthropic.claude-sonnet-5-5) · contrôle : conforme, 59 valeurs reliées</p><p style="margin:0;max-width:72ch;color:var(--ink-2)">Le portefeuille de démonstration cible bien l&#x27;IA et la crypto, mais la part du risque du groupe Technologie y est de 52,4 %, soit une part supérieure au plafond fixé. Déplacer 25,0 % vers un panier diversifié ramène cette part à 49,4 % et fait passer la pire baisse historique de −52,1 % à −43,1 %, sans retirer la crypto.</p></li><li><a href="amira-croissance/dossier.html"><span class="serif" style="font-size:21px;font-weight:600">Amira veut de la croissance IA et crypto, sans tout miser sur la technologie</span></a><p class="meta" style="margin:2px 0 6px">Profil fictif : Amira · workflow fixe · contrôle : conforme, 51 valeurs reliées</p><p style="margin:0;max-width:72ch;color:var(--ink-2)">Les groupes Technologie et Cryptoactifs portent ensemble 84,2 % du risque du portefeuille proposé, et les trois premières lignes 55,8 %. Déplacer 25,0 % vers un panier hors technologie suffit à respecter le plafond de démonstration (50,0 %), pour une pire baisse historique de −43,1 % contre −52,1 %.</p></li><li><a href="amira-libre-bitcoin-or/dossier.html"><span class="serif" style="font-size:21px;font-weight:600">Risque comparé : Bitcoin, or et actions américaines</span></a><p class="meta" style="margin:2px 0 6px">Profil fictif : Amira · agent Bedrock (global.anthropic.claude-sonnet-5-5) · contrôle : conforme, 50 valeurs reliées</p><p style="margin:0;max-width:72ch;color:var(--ink-2)">Sur l&#x27;échantillon, le Bitcoin a une volatilité de 50,7 % et une pire baisse de −74,2 %. L&#x27;or affiche 16,2 % et −26,0 %, l&#x27;indice d&#x27;actions américaines 14,9 % et −22,2 %. Aucun portefeuille n&#x27;est construit : c&#x27;est une explication, pas une allocation.</p></li><li><a href="mateo-libre-esg/dossier.html"><span class="serif" style="font-size:21px;font-weight:600">ESGV ou SPY : comparaison historique pour Mateo (simulation)</span></a><p class="meta" style="margin:2px 0 6px">Profil fictif : Mateo · agent Bedrock (global.anthropic.claude-sonnet-5-5) · contrôle : conforme, 50 valeurs reliées</p><p style="margin:0;max-width:72ch;color:var(--ink-2)">Sur l&#x27;échantillon, ESGV affiche un rendement annualisé inférieur à celui de SPY, avec une pire baisse plus forte que celle de SPY. Les deux fonds évoluent presque ensemble (0,99). Les données ne mesurent pas les controverses environnementales : elles ne permettent donc pas de dire qu&#x27;ESGV convient mieux.</p></li><li><a href="robert-agent/dossier.html"><span class="serif" style="font-size:21px;font-weight:600">Tesla dans un portefeuille prudent : ce que montre la simulation</span></a><p class="meta" style="margin:2px 0 6px">Profil fictif : Robert · agent Bedrock (global.anthropic.claude-sonnet-5-5) · contrôle : conforme, 68 valeurs reliées</p><p style="margin:0;max-width:72ch;color:var(--ink-2)">Pour la part déclarée de 10,0 %, la pire baisse historique du portefeuille simulé est de −15,3 %, face à un seuil d&#x27;hypothèse de −15,0 %. La part maximale compatible avec ce seuil est de 9,0 %. L&#x27;alternative QQQ, à poids égal, donne une pire baisse de −14,1 %.</p></li><li><a href="robert-libre-gamestop/dossier.html"><span class="serif" style="font-size:21px;font-weight:600">GameStop (GME) : analyse impossible avec l&#x27;univers disponible</span></a><p class="meta" style="margin:2px 0 6px">Profil fictif : Robert · agent Bedrock (global.anthropic.claude-sonnet-5-5) · contrôle : conforme, 24 valeurs reliées</p><p style="margin:0;max-width:72ch;color:var(--ink-2)">GME ne figure pas dans l&#x27;univers de données du laboratoire : aucun risque ni rendement historique ne peut être chiffré pour ce titre. Le profil indique l&#x27;objectif Préserver son capital tout en maintenant un potentiel de croissance et un horizon de 3 à 5 ans. La capacité de perte n&#x27;est pas renseignée, donc aucune part « un peu » ne peut être justifiée.</p></li><li><a href="robert-libre-or/dossier.html"><span class="serif" style="font-size:21px;font-weight:600">Ajouter de l&#x27;or à un portefeuille d&#x27;obligations et d&#x27;actions canadiennes</span></a><p class="meta" style="margin:2px 0 6px">Profil fictif : Robert · agent Bedrock (global.anthropic.claude-sonnet-5-5) · contrôle : conforme, 56 valeurs reliées</p><p style="margin:0;max-width:72ch;color:var(--ink-2)">Une petite part d&#x27;or (10,0 %) donne une pire baisse historique moins forte que celle du portefeuille actuel (−12,9 %), pour une volatilité de 6,9 % contre 7,1 %. L&#x27;effet est réel mais modeste, et l&#x27;or a lui-même connu une baisse de −26,0 % sur l&#x27;échantillon.</p></li><li><a href="robert-tsla/dossier.html"><span class="serif" style="font-size:21px;font-weight:600">Robert, à quelques années de la retraite, est tenté par Tesla</span></a><p class="meta" style="margin:2px 0 6px">Profil fictif : Robert · workflow fixe · contrôle : conforme, 52 valeurs reliées</p><p style="margin:0;max-width:72ch;color:var(--ink-2)">TSLA a perdu jusqu&#x27;à −70,9 % et est resté 2,9 ans sous son sommet, une durée qui atteint presque l&#x27;horizon minimal de Robert (3,0 ans). À 10,0 % du portefeuille, TSLA porterait 44,1 % du risque. Capacité de perte (perte supportable sans compromettre les projets) : non renseignée, c&#x27;est la donnée qui peut changer la conclusion.</p></li></ul></div></body></html>

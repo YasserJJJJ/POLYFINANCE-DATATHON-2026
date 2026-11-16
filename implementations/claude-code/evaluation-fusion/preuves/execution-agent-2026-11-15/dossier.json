@@ -1,0 +1,7220 @@
+{
+  "scenario": "robert-agent",
+  "titre": "Tesla dans un portefeuille prudent : l'écart chiffré et les options (simulation)",
+  "persona": "robert",
+  "demande": "J'aimerais consacrer une partie de mon portefeuille à Tesla ; on en parle partout.",
+  "mode": "agent Bedrock (global.anthropic.claude-sonnet-5-5)",
+  "cree_le": "2026-11-15T22:51:52+00:00",
+  "resume": {
+    "gabarit": "La demande est : {{P-0016}}. Avec le portefeuille de démonstration {{R-0021}} et le seuil de perte de {{R-0040}}, la part maximale de Tesla est de {{R-0041}}, contre {{R-0073}} pour la part déclarée. À cette part, Tesla représente {{R-0087}} du risque du portefeuille.",
+    "texte": "La demande est : J'aimerais consacrer une partie de mon portefeuille à Tesla ; on en parle partout.. Avec le portefeuille de démonstration XBB.TO 40 %, ZST.TO 10 %, XIU.TO 30 %, SPY 20 % et le seuil de perte de −15,0 %, la part maximale de Tesla est de 9,0 %, contre 10,0 % pour la part déclarée. À cette part, Tesla représente 44,1 % du risque du portefeuille."
+  },
+  "affirmations": [
+    {
+      "id": "A-001",
+      "section": "cadre",
+      "gabarit": "Ceci est une simulation sur un profil fictif. Aucune transaction n'est faite et rien ici n'est un conseil personnalisé. Le portefeuille actuel, le seuil de perte, les parts étudiées et l'horizon d'étude sont des hypothèses de démonstration, modifiables. Le portefeuille actuel est {{R-0021}}. Le seuil de perte retenu est {{R-0040}}. Les parts étudiées pour Tesla sont {{R-0054}}, {{R-0073}} et {{R-0096}}. L'alternative étudiée est un fonds indiciel de croissance, QQQ, à {{R-0123}}. Les calculs portent sur un horizon d'étude de {{P-0007}}, avec un rééquilibrage chaque semaine.",
+      "texte": "Ceci est une simulation sur un profil fictif. Aucune transaction n'est faite et rien ici n'est un conseil personnalisé. Le portefeuille actuel, le seuil de perte, les parts étudiées et l'horizon d'étude sont des hypothèses de démonstration, modifiables. Le portefeuille actuel est XBB.TO 40 %, ZST.TO 10 %, XIU.TO 30 %, SPY 20 %. Le seuil de perte retenu est −15,0 %. Les parts étudiées pour Tesla sont 5,0 %, 10,0 % et 20,0 %. L'alternative étudiée est un fonds indiciel de croissance, QQQ, à 10,0 %. Les calculs portent sur un horizon d'étude de 3,0 ans, avec un rééquilibrage chaque semaine.",
+      "references": [
+        "R-0021",
+        "R-0040",
+        "R-0054",
+        "R-0073",
+        "R-0096",
+        "R-0123",
+        "P-0007"
+      ],
+      "statut": "hypothèse"
+    },
+    {
+      "id": "A-002",
+      "section": "profil",
+      "gabarit": "Objectif déclaré : « {{P-0005}} ». L'horizon est {{P-0004}}, avec un horizon minimal de {{P-0007}}. Le profil de risque indiqué est {{P-0003}}. L'expérience est {{P-0006}}.",
+      "texte": "Objectif déclaré : « Préserver son capital tout en maintenant un potentiel de croissance ». L'horizon est 3 à 5 ans, avec un horizon minimal de 3,0 ans. Le profil de risque indiqué est faible à modéré. L'expérience est avancée.",
+      "references": [
+        "P-0005",
+        "P-0004",
+        "P-0007",
+        "P-0003",
+        "P-0006"
+      ],
+      "statut": "déclaré"
+    },
+    {
+      "id": "A-003",
+      "section": "profil",
+      "gabarit": "Préférences déclarées : « {{P-0008}} » et « {{P-0009}} ». Autre trait noté : « {{P-0012}} ». La demande vient de la personne : {{P-0017}}.",
+      "texte": "Préférences déclarées : « Préfère les entreprises établies et les placements dont il comprend bien le modèle d'affaires » et « Accorde de l'importance à la stabilité et à la qualité des entreprises ». Autre trait noté : « Peut être tenté par une entreprise très médiatisée, même si elle est plus risquée que ce qu'il recherche ». La demande vient de la personne : initiative de la personne.",
+      "references": [
+        "P-0008",
+        "P-0009",
+        "P-0012",
+        "P-0017"
+      ],
+      "statut": "scénario"
+    },
+    {
+      "id": "A-004",
+      "section": "profil",
+      "gabarit": "{{P-0013.label}} : non renseignée. {{P-0014.label}} : non renseignée. {{P-0015.label}} : non renseigné. Sans ces trois informations, on ne peut pas dire quelle perte la personne peut réellement supporter.",
+      "texte": "Capacité de perte (perte supportable sans compromettre les projets) : non renseignée. Besoins de liquidité et retraits prévus : non renseignée. Patrimoine total et part concernée : non renseigné. Sans ces trois informations, on ne peut pas dire quelle perte la personne peut réellement supporter.",
+      "references": [
+        "P-0013",
+        "P-0014",
+        "P-0015"
+      ],
+      "statut": "inconnu"
+    },
+    {
+      "id": "A-005",
+      "section": "constat",
+      "gabarit": "Historiquement, Tesla a connu une perte maximale de {{R-0003}} depuis son sommet. Son rendement 2022 est de {{R-0008}} et sa volatilité de {{R-0002}}. Pour QQQ, la perte maximale est de {{R-0013}}, le rendement 2022 de {{R-0018}} et la volatilité de {{R-0012}}.",
+      "texte": "Historiquement, Tesla a connu une perte maximale de −70,9 % depuis son sommet. Son rendement 2022 est de −62,6 % et sa volatilité de 55,7 %. Pour QQQ, la perte maximale est de −32,1 %, le rendement 2022 de −28,0 % et la volatilité de 20,6 %.",
+      "references": [
+        "R-0003",
+        "R-0008",
+        "R-0002",
+        "R-0013",
+        "R-0018",
+        "R-0012"
+      ],
+      "statut": "mesuré"
+    },
+    {
+      "id": "A-006",
+      "section": "constat",
+      "gabarit": "Tesla est resté sous son sommet pendant {{R-0007}}. Cette durée {{cmpduree:R-0007:P-0007}} l'horizon minimal de la personne. Le rendement annualisé historique est de {{R-0001}} pour Tesla contre {{R-0011}} pour QQQ.",
+      "texte": "Tesla est resté sous son sommet pendant 2,9 ans. Cette durée atteint presque l'horizon minimal de la personne. Le rendement annualisé historique est de 5,5 % pour Tesla contre 15,3 % pour QQQ.",
+      "references": [
+        "R-0007",
+        "P-0007",
+        "R-0001",
+        "R-0011"
+      ],
+      "statut": "déclaré"
+    },
+    {
+      "id": "A-007",
+      "section": "constat",
+      "gabarit": "Le portefeuille actuel de démonstration a une perte maximale de {{R-0024}}, une volatilité de {{R-0023}} et un rendement 2022 de {{R-0025}}. Il est construit avec {{R-0038}} d'obligations.",
+      "texte": "Le portefeuille actuel de démonstration a une perte maximale de −12,3 %, une volatilité de 7,3 % et un rendement 2022 de −8,7 %. Il est construit avec 50,0 % d'obligations.",
+      "references": [
+        "R-0024",
+        "R-0023",
+        "R-0025",
+        "R-0038",
+        "R-0021"
+      ],
+      "statut": "hypothèse"
+    },
+    {
+      "id": "A-008",
+      "section": "tension",
+      "gabarit": "Avec {{R-0073}} de Tesla, la perte maximale du portefeuille est de {{R-0070}}. C'est une baisse {{cmpabs:R-0070:R-0040}} le seuil de {{R-0040}}. La part maximale de Tesla qui respecte ce seuil est de {{R-0041}}. La part de {{R-0073}} est {{cmp:R-0073:R-0041}} cette part maximale.",
+      "texte": "Avec 10,0 % de Tesla, la perte maximale du portefeuille est de −15,3 %. C'est une baisse plus forte que le seuil de −15,0 %. La part maximale de Tesla qui respecte ce seuil est de 9,0 %. La part de 10,0 % est supérieure à cette part maximale.",
+      "references": [
+        "R-0073",
+        "R-0070",
+        "R-0040",
+        "R-0041"
+      ],
+      "statut": "hypothèse"
+    },
+    {
+      "id": "A-009",
+      "section": "tension",
+      "gabarit": "Le poids de Tesla est de {{R-0086}}, mais sa part du risque du portefeuille est de {{R-0087}}. Cette part du risque est celle du groupe Consommation discrétionnaire (ici Tesla seul). Avant l'ajout, les obligations pesaient {{R-0038}} du portefeuille et portaient {{R-0039}} du risque.",
+      "texte": "Le poids de Tesla est de 10,0 %, mais sa part du risque du portefeuille est de 44,1 %. Cette part du risque est celle du groupe Consommation discrétionnaire (ici Tesla seul). Avant l'ajout, les obligations pesaient 50,0 % du portefeuille et portaient 21,3 % du risque.",
+      "references": [
+        "R-0086",
+        "R-0087",
+        "R-0038",
+        "R-0039"
+      ],
+      "statut": "hypothèse"
+    },
+    {
+      "id": "A-010",
+      "section": "tension",
+      "gabarit": "À {{R-0096}} de Tesla, la perte maximale du portefeuille est de {{R-0093}}, le rendement 2022 de {{R-0094}} et la volatilité de {{R-0092}}. Tesla porte alors {{R-0097}} du risque. C'est une baisse {{cmpabs:R-0093:R-0040}} le seuil de {{R-0040}}.",
+      "texte": "À 20,0 % de Tesla, la perte maximale du portefeuille est de −22,3 %, le rendement 2022 de −21,7 % et la volatilité de 14,5 %. Tesla porte alors 71,3 % du risque. C'est une baisse plus forte que le seuil de −15,0 %.",
+      "references": [
+        "R-0096",
+        "R-0093",
+        "R-0094",
+        "R-0092",
+        "R-0097",
+        "R-0040"
+      ],
+      "statut": "hypothèse"
+    },
+    {
+      "id": "A-011",
+      "section": "tension",
+      "gabarit": "Le profil indique {{P-0003}} et la préférence : « {{P-0008}} ». Or Tesla a connu une perte maximale de {{R-0003}}. La notoriété du titre n'est pas une mesure de risque. L'écart entre la demande et le profil est donc réel, mais il dépend de la part choisie.",
+      "texte": "Le profil indique faible à modéré et la préférence : « Préfère les entreprises établies et les placements dont il comprend bien le modèle d'affaires ». Or Tesla a connu une perte maximale de −70,9 %. La notoriété du titre n'est pas une mesure de risque. L'écart entre la demande et le profil est donc réel, mais il dépend de la part choisie.",
+      "references": [
+        "P-0003",
+        "P-0008",
+        "R-0003"
+      ],
+      "statut": "déclaré"
+    },
+    {
+      "id": "A-012",
+      "section": "alternative",
+      "gabarit": "Option A : Tesla à {{R-0054}}. La perte maximale du portefeuille est de {{R-0047}}, soit une baisse {{cmpabs:R-0047:R-0040}} le seuil de {{R-0040}}. Le rendement 2022 est de {{R-0048}} et la volatilité de {{R-0046}}. Tesla porte {{R-0055}} du risque.",
+      "texte": "Option A : Tesla à 5,0 %. La perte maximale du portefeuille est de −13,5 %, soit une baisse moins forte que le seuil de −15,0 %. Le rendement 2022 est de −12,0 % et la volatilité de 8,5 %. Tesla porte 21,8 % du risque.",
+      "references": [
+        "R-0054",
+        "R-0047",
+        "R-0040",
+        "R-0048",
+        "R-0046",
+        "R-0055"
+      ],
+      "statut": "hypothèse"
+    },
+    {
+      "id": "A-013",
+      "section": "alternative",
+      "gabarit": "Option B : QQQ à {{R-0123}} au lieu de Tesla. La perte maximale du portefeuille est de {{R-0116}}, le rendement 2022 de {{R-0117}} et la volatilité de {{R-0115}}. QQQ porte {{R-0124}} du risque. La part maximale de QQQ au seuil de {{R-0042}} est de {{R-0043}}.",
+      "texte": "Option B : QQQ à 10,0 % au lieu de Tesla. La perte maximale du portefeuille est de −14,1 %, le rendement 2022 de −10,7 % et la volatilité de 8,2 %. QQQ porte 20,9 % du risque. La part maximale de QQQ au seuil de −15,0 % est de 15,0 %.",
+      "references": [
+        "R-0123",
+        "R-0116",
+        "R-0117",
+        "R-0115",
+        "R-0124",
+        "R-0042",
+        "R-0043"
+      ],
+      "statut": "hypothèse"
+    },
+    {
+      "id": "A-014",
+      "section": "alternative",
+      "gabarit": "QQQ reste un placement concentré dans la technologie. Le groupe Technologie porte {{R-0133}} du risque pour un poids de {{R-0132}}. Il offre en revanche l'exposition à de nombreuses entreprises à la fois, ce qui est cohérent avec la préférence : « {{P-0008}} ».",
+      "texte": "QQQ reste un placement concentré dans la technologie. Le groupe Technologie porte 20,9 % du risque pour un poids de 10,0 %. Il offre en revanche l'exposition à de nombreuses entreprises à la fois, ce qui est cohérent avec la préférence : « Préfère les entreprises établies et les placements dont il comprend bien le modèle d'affaires ».",
+      "references": [
+        "R-0133",
+        "R-0132",
+        "P-0008"
+      ],
+      "statut": "hypothèse"
+    },
+    {
+      "id": "A-015",
+      "section": "alternative",
+      "gabarit": "Option C : ne rien changer. Le portefeuille actuel garde une perte maximale de {{R-0024}} et une volatilité de {{R-0023}}.",
+      "texte": "Option C : ne rien changer. Le portefeuille actuel garde une perte maximale de −12,3 % et une volatilité de 7,3 %.",
+      "references": [
+        "R-0024",
+        "R-0023",
+        "R-0021"
+      ],
+      "statut": "hypothèse"
+    },
+    {
+      "id": "A-016",
+      "section": "question",
+      "gabarit": "Quelle perte maximale la personne peut-elle supporter sans devoir vendre ? C'est l'information décisive : {{P-0013.label}}, {{P-0014.label}} et {{P-0015.label}} ne sont pas renseignés.",
+      "texte": "Quelle perte maximale la personne peut-elle supporter sans devoir vendre ? C'est l'information décisive : Capacité de perte (perte supportable sans compromettre les projets), Besoins de liquidité et retraits prévus et Patrimoine total et part concernée ne sont pas renseignés.",
+      "references": [
+        "P-0013",
+        "P-0014",
+        "P-0015"
+      ],
+      "statut": "inconnu"
+    },
+    {
+      "id": "A-017",
+      "section": "question",
+      "gabarit": "La personne cherche-t-elle une exposition à Tesla pour elle-même, ou une exposition à la croissance en général ? Elle a indiqué : « {{P-0012}} ».",
+      "texte": "La personne cherche-t-elle une exposition à Tesla pour elle-même, ou une exposition à la croissance en général ? Elle a indiqué : « Peut être tenté par une entreprise très médiatisée, même si elle est plus risquée que ce qu'il recherche ».",
+      "references": [
+        "P-0012"
+      ],
+      "statut": "déclaré"
+    },
+    {
+      "id": "A-018",
+      "section": "condition",
+      "gabarit": "Si la capacité de perte réelle est plus large que le seuil de {{R-0040}}, la part maximale de Tesla de {{R-0041}} pourrait être relevée. Si elle est plus étroite, la part de {{R-0054}} ou l'option QQQ devrait être revue à la baisse.",
+      "texte": "Si la capacité de perte réelle est plus large que le seuil de −15,0 %, la part maximale de Tesla de 9,0 % pourrait être relevée. Si elle est plus étroite, la part de 5,0 % ou l'option QQQ devrait être revue à la baisse.",
+      "references": [
+        "R-0040",
+        "R-0041",
+        "R-0054"
+      ],
+      "statut": "hypothèse"
+    },
+    {
+      "id": "A-019",
+      "section": "condition",
+      "gabarit": "Si l'argent de la personne peut être nécessaire avant la fin de l'horizon de {{P-0004}}, la durée passée sous le sommet par Tesla ({{R-0007}}) pèserait davantage dans la conclusion.",
+      "texte": "Si l'argent de la personne peut être nécessaire avant la fin de l'horizon de 3 à 5 ans, la durée passée sous le sommet par Tesla (2,9 ans) pèserait davantage dans la conclusion.",
+      "references": [
+        "P-0004",
+        "R-0007"
+      ],
+      "statut": "déclaré"
+    },
+    {
+      "id": "A-020",
+      "section": "limite",
+      "gabarit": "Le taux de change a un âge maximal de {{D-0004}}. Cela touche les actifs en dollars américains convertis en dollars canadiens.",
+      "texte": "Le taux de change a un âge maximal de 4 jours. Cela touche les actifs en dollars américains convertis en dollars canadiens.",
+      "references": [
+        "D-0004"
+      ],
+      "statut": "mesuré"
+    },
+    {
+      "id": "A-021",
+      "section": "limite",
+      "gabarit": "L'échantillon dure {{D-0005}}. Pour l'horizon étudié, il n'y a que {{R-0010}} fenêtre indépendante pour Tesla. Une pire fenêtre observée n'est donc pas une borne : le futur peut faire pire.",
+      "texte": "L'échantillon dure 5,0 ans. Pour l'horizon étudié, il n'y a que 1 fenêtre indépendante pour Tesla. Une pire fenêtre observée n'est donc pas une borne : le futur peut faire pire.",
+      "references": [
+        "D-0005",
+        "R-0010"
+      ],
+      "statut": "mesuré"
+    },
+    {
+      "id": "A-022",
+      "section": "limite",
+      "gabarit": "Biais de l'univers : {{D-0006}}. Tesla et QQQ ont survécu et sont importants aujourd'hui, ce qui peut rendre leur passé trop favorable par rapport à un titre choisi au hasard.",
+      "texte": "Biais de l'univers : univers constitué après coup, parmi des titres importants à la date d'extraction (biais du survivant). Tesla et QQQ ont survécu et sont importants aujourd'hui, ce qui peut rendre leur passé trop favorable par rapport à un titre choisi au hasard.",
+      "references": [
+        "D-0006"
+      ],
+      "statut": "source"
+    }
+  ],
+  "enregistrements": {
+    "P-0001": {
+      "id": "P-0001",
+      "label": "Prénom (profil fictif)",
+      "value": "Robert",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 7",
+      "subject": "Robert",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "Robert"
+    },
+    "P-0002": {
+      "id": "P-0002",
+      "label": "Âge",
+      "value": 59,
+      "unit": "count",
+      "status": "déclaré",
+      "origin": "énoncé, p. 7",
+      "subject": "Robert",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "59"
+    },
+    "P-0003": {
+      "id": "P-0003",
+      "label": "Profil de risque déclaré",
+      "value": "faible à modéré",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 7",
+      "subject": "Robert",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "faible à modéré"
+    },
+    "P-0004": {
+      "id": "P-0004",
+      "label": "Horizon de placement",
+      "value": "3 à 5 ans",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 7",
+      "subject": "Robert",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "3 à 5 ans"
+    },
+    "P-0005": {
+      "id": "P-0005",
+      "label": "Objectif",
+      "value": "Préserver son capital tout en maintenant un potentiel de croissance",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 7",
+      "subject": "Robert",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "Préserver son capital tout en maintenant un potentiel de croissance"
+    },
+    "P-0006": {
+      "id": "P-0006",
+      "label": "Expérience en placement",
+      "value": "avancée",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 7",
+      "subject": "Robert",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "avancée"
+    },
+    "P-0007": {
+      "id": "P-0007",
+      "label": "Horizon minimal",
+      "value": 3,
+      "unit": "years",
+      "status": "déclaré",
+      "origin": "énoncé, p. 7",
+      "subject": "Robert",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "3,0 ans"
+    },
+    "P-0008": {
+      "id": "P-0008",
+      "label": "Préférence déclarée",
+      "value": "Préfère les entreprises établies et les placements dont il comprend bien le modèle d'affaires",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 7",
+      "subject": "Robert",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "Préfère les entreprises établies et les placements dont il comprend bien le modèle d'affaires"
+    },
+    "P-0009": {
+      "id": "P-0009",
+      "label": "Préférence déclarée",
+      "value": "Accorde de l'importance à la stabilité et à la qualité des entreprises",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 7",
+      "subject": "Robert",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "Accorde de l'importance à la stabilité et à la qualité des entreprises"
+    },
+    "P-0010": {
+      "id": "P-0010",
+      "label": "Préférence déclarée",
+      "value": "Peu intéressé par les cryptoactifs",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 7",
+      "subject": "Robert",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "Peu intéressé par les cryptoactifs"
+    },
+    "P-0011": {
+      "id": "P-0011",
+      "label": "Préférence déclarée",
+      "value": "Suit activement les marchés et s'intéresse aux nouvelles occasions d'investissement",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 7",
+      "subject": "Robert",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "Suit activement les marchés et s'intéresse aux nouvelles occasions d'investissement"
+    },
+    "P-0012": {
+      "id": "P-0012",
+      "label": "Préférence déclarée",
+      "value": "Peut être tenté par une entreprise très médiatisée, même si elle est plus risquée que ce qu'il recherche",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 7",
+      "subject": "Robert",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "Peut être tenté par une entreprise très médiatisée, même si elle est plus risquée que ce qu'il recherche"
+    },
+    "P-0013": {
+      "id": "P-0013",
+      "label": "Capacité de perte (perte supportable sans compromettre les projets)",
+      "value": null,
+      "unit": "text",
+      "status": "inconnu",
+      "origin": "non fourni par l'énoncé",
+      "subject": "Robert",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "non disponible"
+    },
+    "P-0014": {
+      "id": "P-0014",
+      "label": "Besoins de liquidité et retraits prévus",
+      "value": null,
+      "unit": "text",
+      "status": "inconnu",
+      "origin": "non fourni par l'énoncé",
+      "subject": "Robert",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "non disponible"
+    },
+    "P-0015": {
+      "id": "P-0015",
+      "label": "Patrimoine total et part concernée",
+      "value": null,
+      "unit": "text",
+      "status": "inconnu",
+      "origin": "non fourni par l'énoncé",
+      "subject": "Robert",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "non disponible"
+    },
+    "P-0016": {
+      "id": "P-0016",
+      "label": "Demande formulée",
+      "value": "J'aimerais consacrer une partie de mon portefeuille à Tesla ; on en parle partout.",
+      "unit": "text",
+      "status": "scénario",
+      "origin": "scénario de démonstration",
+      "subject": "Robert",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "J'aimerais consacrer une partie de mon portefeuille à Tesla ; on en parle partout."
+    },
+    "P-0017": {
+      "id": "P-0017",
+      "label": "Origine de la demande",
+      "value": "initiative de la personne",
+      "unit": "text",
+      "status": "scénario",
+      "origin": "scénario de démonstration",
+      "subject": "Robert",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "initiative de la personne"
+    },
+    "D-0001": {
+      "id": "D-0001",
+      "label": "Fichier prices_daily.csv",
+      "value": "ff2a3f2d0a7d72ea",
+      "unit": "text",
+      "status": "source",
+      "origin": "jeu de départ AlphaForge (PolyFinances)",
+      "subject": "",
+      "period": null,
+      "conventions": [],
+      "inputs": {
+        "sha256": "ff2a3f2d0a7d72ea835e8d616d041e0510f018340cef3d3e55b918830e8a569d"
+      },
+      "display": "ff2a3f2d0a7d72ea"
+    },
+    "D-0002": {
+      "id": "D-0002",
+      "label": "Fichier fx_usdcad_daily.csv",
+      "value": "f04e218ac5b0145f",
+      "unit": "text",
+      "status": "source",
+      "origin": "jeu de départ AlphaForge (PolyFinances)",
+      "subject": "",
+      "period": null,
+      "conventions": [],
+      "inputs": {
+        "sha256": "f04e218ac5b0145fd552b3d0dcfbf73e5e17bb9a6fb4562460dbec95cb8972b3"
+      },
+      "display": "f04e218ac5b0145f"
+    },
+    "D-0003": {
+      "id": "D-0003",
+      "label": "Fichier assets_universe.csv",
+      "value": "f78de8ecb36d914a",
+      "unit": "text",
+      "status": "source",
+      "origin": "jeu de départ AlphaForge (PolyFinances)",
+      "subject": "",
+      "period": null,
+      "conventions": [],
+      "inputs": {
+        "sha256": "f78de8ecb36d914a3448db63498cc9a04a34d805bccb79c481dda1650755467d"
+      },
+      "display": "f78de8ecb36d914a"
+    },
+    "D-0004": {
+      "id": "D-0004",
+      "label": "Âge maximal du taux de change utilisé (jours)",
+      "value": 4,
+      "unit": "days",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "",
+      "period": null,
+      "conventions": [
+        "dernier taux Banque du Canada connu à la date de valorisation"
+      ],
+      "inputs": {},
+      "display": "4 jours"
+    },
+    "D-0005": {
+      "id": "D-0005",
+      "label": "Durée de l'échantillon de prix",
+      "value": 4.999315537303217,
+      "unit": "years",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [],
+      "inputs": {},
+      "display": "5,0 ans"
+    },
+    "D-0006": {
+      "id": "D-0006",
+      "label": "Limite connue de l'univers d'actifs",
+      "value": "univers constitué après coup, parmi des titres importants à la date d'extraction (biais du survivant)",
+      "unit": "text",
+      "status": "source",
+      "origin": "data/README.md (jeu de départ PolyFinances)",
+      "subject": "",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "univers constitué après coup, parmi des titres importants à la date d'extraction (biais du survivant)"
+    },
+    "R-0001": {
+      "id": "R-0001",
+      "label": "Rendement annualisé TSLA",
+      "value": 0.05533302838586707,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52"
+      ],
+      "inputs": {
+        "nom": "Tesla"
+      },
+      "display": "5,5 %"
+    },
+    "R-0002": {
+      "id": "R-0002",
+      "label": "Volatilité annualisée TSLA",
+      "value": 0.5574997150196948,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52"
+      ],
+      "inputs": {},
+      "display": "55,7 %"
+    },
+    "R-0003": {
+      "id": "R-0003",
+      "label": "Pire baisse depuis un sommet TSLA",
+      "value": -0.7088064947998852,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "série quotidienne de l'actif"
+      ],
+      "inputs": {},
+      "display": "−70,9 %"
+    },
+    "R-0004": {
+      "id": "R-0004",
+      "label": "Date du sommet précédant la pire baisse TSLA",
+      "value": "2022-01-03",
+      "unit": "date",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "3 janv. 2022"
+    },
+    "R-0005": {
+      "id": "R-0005",
+      "label": "Date du creux TSLA",
+      "value": "2023-01-03",
+      "unit": "date",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "3 janv. 2023"
+    },
+    "R-0006": {
+      "id": "R-0006",
+      "label": "Date de retour au sommet TSLA",
+      "value": "2024-12-05",
+      "unit": "date",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "5 déc. 2024"
+    },
+    "R-0007": {
+      "id": "R-0007",
+      "label": "Durée sous le sommet TSLA",
+      "value": 2.921286789869952,
+      "unit": "years",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [],
+      "inputs": {},
+      "display": "2,9 ans"
+    },
+    "R-0008": {
+      "id": "R-0008",
+      "label": "Rendement 2022 TSLA",
+      "value": -0.6264290865556048,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA",
+      "period": [
+        "2021-12-31",
+        "2022-12-31"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52"
+      ],
+      "inputs": {},
+      "display": "−62,6 %"
+    },
+    "R-0009": {
+      "id": "R-0009",
+      "label": "Pire rendement sur une fenêtre de 3 ans TSLA",
+      "value": -0.2862623097290947,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52"
+      ],
+      "inputs": {
+        "debut_pire_fenetre": "2022-04-04",
+        "fenetres_glissantes": 502
+      },
+      "display": "−28,6 %"
+    },
+    "R-0010": {
+      "id": "R-0010",
+      "label": "Fenêtres de 3 ans sans chevauchement dans l'échantillon",
+      "value": 1,
+      "unit": "count",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [],
+      "inputs": {},
+      "display": "1"
+    },
+    "R-0011": {
+      "id": "R-0011",
+      "label": "Rendement annualisé QQQ",
+      "value": 0.15305808147721423,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "QQQ",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52"
+      ],
+      "inputs": {
+        "nom": "Invesco QQQ Trust (Nasdaq-100)"
+      },
+      "display": "15,3 %"
+    },
+    "R-0012": {
+      "id": "R-0012",
+      "label": "Volatilité annualisée QQQ",
+      "value": 0.20628510282663443,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "QQQ",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52"
+      ],
+      "inputs": {},
+      "display": "20,6 %"
+    },
+    "R-0013": {
+      "id": "R-0013",
+      "label": "Pire baisse depuis un sommet QQQ",
+      "value": -0.32050100606212073,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "QQQ",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "série quotidienne de l'actif"
+      ],
+      "inputs": {},
+      "display": "−32,1 %"
+    },
+    "R-0014": {
+      "id": "R-0014",
+      "label": "Date du sommet précédant la pire baisse QQQ",
+      "value": "2021-12-27",
+      "unit": "date",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "QQQ",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "27 déc. 2021"
+    },
+    "R-0015": {
+      "id": "R-0015",
+      "label": "Date du creux QQQ",
+      "value": "2022-06-16",
+      "unit": "date",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "QQQ",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "16 juin 2022"
+    },
+    "R-0016": {
+      "id": "R-0016",
+      "label": "Date de retour au sommet QQQ",
+      "value": "2023-09-01",
+      "unit": "date",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "QQQ",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "1 sept. 2023"
+    },
+    "R-0017": {
+      "id": "R-0017",
+      "label": "Durée sous le sommet QQQ",
+      "value": 1.678302532511978,
+      "unit": "years",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "QQQ",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [],
+      "inputs": {},
+      "display": "1,7 an"
+    },
+    "R-0018": {
+      "id": "R-0018",
+      "label": "Rendement 2022 QQQ",
+      "value": -0.2797151736109672,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "QQQ",
+      "period": [
+        "2021-12-31",
+        "2022-12-31"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52"
+      ],
+      "inputs": {},
+      "display": "−28,0 %"
+    },
+    "R-0019": {
+      "id": "R-0019",
+      "label": "Pire rendement sur une fenêtre de 3 ans QQQ",
+      "value": 0.3295362188626587,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "QQQ",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52"
+      ],
+      "inputs": {
+        "debut_pire_fenetre": "2022-04-04",
+        "fenetres_glissantes": 502
+      },
+      "display": "33,0 %"
+    },
+    "R-0020": {
+      "id": "R-0020",
+      "label": "Fenêtres de 3 ans sans chevauchement dans l'échantillon",
+      "value": 1,
+      "unit": "count",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "QQQ",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [],
+      "inputs": {},
+      "display": "1"
+    },
+    "R-0021": {
+      "id": "R-0021",
+      "label": "Composition Actuel",
+      "value": "XBB.TO 40 %, ZST.TO 10 %, XIU.TO 30 %, SPY 20 %",
+      "unit": "text",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Actuel",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "XBB.TO 40 %, ZST.TO 10 %, XIU.TO 30 %, SPY 20 %"
+    },
+    "R-0022": {
+      "id": "R-0022",
+      "label": "Rendement annualisé Actuel",
+      "value": 0.07727778306821675,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Actuel",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0021"
+        ]
+      },
+      "display": "7,7 %"
+    },
+    "R-0023": {
+      "id": "R-0023",
+      "label": "Volatilité annualisée Actuel",
+      "value": 0.07313929045625873,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Actuel",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0021"
+        ]
+      },
+      "display": "7,3 %"
+    },
+    "R-0024": {
+      "id": "R-0024",
+      "label": "Pire baisse depuis un sommet Actuel",
+      "value": -0.12329427359004508,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Actuel",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "série hebdomadaire : les creux en cours de semaine ne sont pas vus"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0021"
+        ]
+      },
+      "display": "−12,3 %"
+    },
+    "R-0025": {
+      "id": "R-0025",
+      "label": "Rendement 2022 Actuel",
+      "value": -0.08655644533241691,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Actuel",
+      "period": [
+        "2021-12-31",
+        "2022-12-31"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0021"
+        ]
+      },
+      "display": "−8,7 %"
+    },
+    "R-0026": {
+      "id": "R-0026",
+      "label": "Pire rendement sur une fenêtre de 3 ans Actuel",
+      "value": 0.1725978288520873,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Actuel",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0021"
+        ]
+      },
+      "display": "17,3 %"
+    },
+    "R-0027": {
+      "id": "R-0027",
+      "label": "Poids de XIU.TO dans Actuel",
+      "value": 0.3,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Actuel",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "30,0 %"
+    },
+    "R-0028": {
+      "id": "R-0028",
+      "label": "Part du risque (variance) due à XIU.TO dans Actuel",
+      "value": 0.4484218155896378,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Actuel",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0021"
+        ]
+      },
+      "display": "44,8 %"
+    },
+    "R-0029": {
+      "id": "R-0029",
+      "label": "Poids de SPY dans Actuel",
+      "value": 0.2,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Actuel",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "20,0 %"
+    },
+    "R-0030": {
+      "id": "R-0030",
+      "label": "Part du risque (variance) due à SPY dans Actuel",
+      "value": 0.3386056150686452,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Actuel",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0021"
+        ]
+      },
+      "display": "33,9 %"
+    },
+    "R-0031": {
+      "id": "R-0031",
+      "label": "Poids de XBB.TO dans Actuel",
+      "value": 0.4,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Actuel",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "40,0 %"
+    },
+    "R-0032": {
+      "id": "R-0032",
+      "label": "Part du risque (variance) due à XBB.TO dans Actuel",
+      "value": 0.21063586287267158,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Actuel",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0021"
+        ]
+      },
+      "display": "21,1 %"
+    },
+    "R-0033": {
+      "id": "R-0033",
+      "label": "Poids de ZST.TO dans Actuel",
+      "value": 0.1,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Actuel",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "10,0 %"
+    },
+    "R-0034": {
+      "id": "R-0034",
+      "label": "Part du risque (variance) due à ZST.TO dans Actuel",
+      "value": 0.002336706469045431,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Actuel",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0021"
+        ]
+      },
+      "display": "0,2 %"
+    },
+    "R-0035": {
+      "id": "R-0035",
+      "label": "Part du risque des trois premières lignes de Actuel",
+      "value": 0.9976632935309546,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Actuel",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0021"
+        ]
+      },
+      "display": "99,8 %"
+    },
+    "R-0036": {
+      "id": "R-0036",
+      "label": "Poids du groupe Actions diversifiées dans Actuel",
+      "value": 0.5,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Actuel",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "50,0 %"
+    },
+    "R-0037": {
+      "id": "R-0037",
+      "label": "Part du risque du groupe Actions diversifiées dans Actuel",
+      "value": 0.787027430658283,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Actuel",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "regroupement : config/scenarios.toml"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0021"
+        ]
+      },
+      "display": "78,7 %"
+    },
+    "R-0038": {
+      "id": "R-0038",
+      "label": "Poids du groupe Obligations dans Actuel",
+      "value": 0.5,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Actuel",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "50,0 %"
+    },
+    "R-0039": {
+      "id": "R-0039",
+      "label": "Part du risque du groupe Obligations dans Actuel",
+      "value": 0.21297256934171702,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Actuel",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "regroupement : config/scenarios.toml"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0021"
+        ]
+      },
+      "display": "21,3 %"
+    },
+    "R-0040": {
+      "id": "R-0040",
+      "label": "Seuil de perte retenu",
+      "value": -0.15,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Balayage TSLA",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "−15,0 %"
+    },
+    "R-0041": {
+      "id": "R-0041",
+      "label": "Part maximale de TSLA compatible avec le seuil (pire baisse historique)",
+      "value": 0.09,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Balayage TSLA",
+      "period": null,
+      "conventions": [
+        "grille de 0 à 30% par pas de 1 point",
+        "pire baisse hebdomadaire 2021-2026"
+      ],
+      "inputs": {
+        "profondeurs": {
+          "0.0": -0.12329427359004508,
+          "0.01": -0.1255761839072953,
+          "0.02": -0.1278635000007018,
+          "0.03": -0.13015615296091432,
+          "0.04": -0.1324540738882718,
+          "0.05": -0.13475719389550445,
+          "0.06": -0.13706544411043087,
+          "0.07": -0.139378755678645,
+          "0.08": -0.14169705976619307,
+          "0.09": -0.14626652844296584,
+          "0.1": -0.15278375386608878,
+          "0.11": -0.15938407268725407,
+          "0.12": -0.1660405373649192,
+          "0.13": -0.1726695761481839,
+          "0.14": -0.17927102914332949,
+          "0.15": -0.18622847350763794,
+          "0.16": -0.1935846601365584,
+          "0.17": -0.20089968491875365,
+          "0.18": -0.20817348673348368,
+          "0.19": -0.2155622459387837,
+          "0.2": -0.22314550907840114,
+          "0.21": -0.23068202660961057,
+          "0.22": -0.2381717588844795,
+          "0.23": -0.24561467096439693,
+          "0.24": -0.2530107325800893,
+          "0.25": -0.2603599180913275,
+          "0.26": -0.26766220644635974,
+          "0.27": -0.274917581141065,
+          "0.28": -0.28212603017783944,
+          "0.29": -0.2892875460242318,
+          "0.3": -0.29640212557132384
+        },
+        "depend_de": [
+          "R-0040"
+        ]
+      },
+      "display": "9,0 %"
+    },
+    "R-0042": {
+      "id": "R-0042",
+      "label": "Seuil de perte retenu",
+      "value": -0.15,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "Balayage QQQ",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "−15,0 %"
+    },
+    "R-0043": {
+      "id": "R-0043",
+      "label": "Part maximale de QQQ compatible avec le seuil (pire baisse historique)",
+      "value": 0.15,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "Balayage QQQ",
+      "period": null,
+      "conventions": [
+        "grille de 0 à 30% par pas de 1 point",
+        "pire baisse hebdomadaire 2021-2026"
+      ],
+      "inputs": {
+        "profondeurs": {
+          "0.0": -0.12329427359004508,
+          "0.01": -0.1250577804070151,
+          "0.02": -0.12681922896305364,
+          "0.03": -0.12857861761015987,
+          "0.04": -0.13033594471469223,
+          "0.05": -0.1320912086573397,
+          "0.06": -0.13384440783309348,
+          "0.07": -0.13559554065121604,
+          "0.08": -0.13734460553521166,
+          "0.09": -0.1390916009227987,
+          "0.1": -0.14083652526587653,
+          "0.11": -0.1425793770305015,
+          "0.12": -0.14432015469685178,
+          "0.13": -0.14605885675920116,
+          "0.14": -0.14779548172588952,
+          "0.15": -0.1495300281192924,
+          "0.16": -0.151262494475791,
+          "0.17": -0.15299287934574346,
+          "0.18": -0.15472118129345647,
+          "0.19": -0.1564473988971543,
+          "0.2": -0.15817153074894752,
+          "0.21": -0.1598935754548092,
+          "0.22": -0.16162972929026354,
+          "0.23": -0.1634379954199714,
+          "0.24": -0.16524379943883505,
+          "0.25": -0.1670471406865347,
+          "0.26": -0.1688480185170358,
+          "0.27": -0.17064643229855136,
+          "0.28": -0.17244238141350243,
+          "0.29": -0.1742358652584869,
+          "0.3": -0.17602688324423632
+        },
+        "depend_de": [
+          "R-0042"
+        ]
+      },
+      "display": "15,0 %"
+    },
+    "R-0044": {
+      "id": "R-0044",
+      "label": "Composition TSLA 5 %",
+      "value": "SPY 19 %, TSLA 5 %, XBB.TO 38 %, XIU.TO 28 %, ZST.TO 10 %",
+      "unit": "text",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "TSLA 5 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "SPY 19 %, TSLA 5 %, XBB.TO 38 %, XIU.TO 28 %, ZST.TO 10 %"
+    },
+    "R-0045": {
+      "id": "R-0045",
+      "label": "Rendement annualisé TSLA 5 %",
+      "value": 0.08324828050296396,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 5 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0044"
+        ]
+      },
+      "display": "8,3 %"
+    },
+    "R-0046": {
+      "id": "R-0046",
+      "label": "Volatilité annualisée TSLA 5 %",
+      "value": 0.08472398867845442,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 5 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0044"
+        ]
+      },
+      "display": "8,5 %"
+    },
+    "R-0047": {
+      "id": "R-0047",
+      "label": "Pire baisse depuis un sommet TSLA 5 %",
+      "value": -0.13475719389550445,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 5 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "série hebdomadaire : les creux en cours de semaine ne sont pas vus"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0044"
+        ]
+      },
+      "display": "−13,5 %"
+    },
+    "R-0048": {
+      "id": "R-0048",
+      "label": "Rendement 2022 TSLA 5 %",
+      "value": -0.11995987351204651,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 5 %",
+      "period": [
+        "2021-12-31",
+        "2022-12-31"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0044"
+        ]
+      },
+      "display": "−12,0 %"
+    },
+    "R-0049": {
+      "id": "R-0049",
+      "label": "Pire rendement sur une fenêtre de 3 ans TSLA 5 %",
+      "value": 0.1770593330919814,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 5 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0044"
+        ]
+      },
+      "display": "17,7 %"
+    },
+    "R-0050": {
+      "id": "R-0050",
+      "label": "Poids de XIU.TO dans TSLA 5 %",
+      "value": 0.285,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "TSLA 5 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "28,5 %"
+    },
+    "R-0051": {
+      "id": "R-0051",
+      "label": "Part du risque (variance) due à XIU.TO dans TSLA 5 %",
+      "value": 0.3478919518013537,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 5 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0044"
+        ]
+      },
+      "display": "34,8 %"
+    },
+    "R-0052": {
+      "id": "R-0052",
+      "label": "Poids de SPY dans TSLA 5 %",
+      "value": 0.19,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "TSLA 5 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "19,0 %"
+    },
+    "R-0053": {
+      "id": "R-0053",
+      "label": "Part du risque (variance) due à SPY dans TSLA 5 %",
+      "value": 0.28409318267513545,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 5 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0044"
+        ]
+      },
+      "display": "28,4 %"
+    },
+    "R-0054": {
+      "id": "R-0054",
+      "label": "Poids de TSLA dans TSLA 5 %",
+      "value": 0.05,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "TSLA 5 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "5,0 %"
+    },
+    "R-0055": {
+      "id": "R-0055",
+      "label": "Part du risque (variance) due à TSLA dans TSLA 5 %",
+      "value": 0.21783980664510208,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 5 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0044"
+        ]
+      },
+      "display": "21,8 %"
+    },
+    "R-0056": {
+      "id": "R-0056",
+      "label": "Poids de XBB.TO dans TSLA 5 %",
+      "value": 0.38,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "TSLA 5 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "38,0 %"
+    },
+    "R-0057": {
+      "id": "R-0057",
+      "label": "Part du risque (variance) due à XBB.TO dans TSLA 5 %",
+      "value": 0.148431399962785,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 5 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0044"
+        ]
+      },
+      "display": "14,8 %"
+    },
+    "R-0058": {
+      "id": "R-0058",
+      "label": "Poids de ZST.TO dans TSLA 5 %",
+      "value": 0.095,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "TSLA 5 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "9,5 %"
+    },
+    "R-0059": {
+      "id": "R-0059",
+      "label": "Part du risque (variance) due à ZST.TO dans TSLA 5 %",
+      "value": 0.0017436589156238896,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 5 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0044"
+        ]
+      },
+      "display": "0,2 %"
+    },
+    "R-0060": {
+      "id": "R-0060",
+      "label": "Part du risque des trois premières lignes de TSLA 5 %",
+      "value": 0.8498249411215912,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 5 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0044"
+        ]
+      },
+      "display": "85,0 %"
+    },
+    "R-0061": {
+      "id": "R-0061",
+      "label": "Poids du groupe Actions diversifiées dans TSLA 5 %",
+      "value": 0.475,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "TSLA 5 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "47,5 %"
+    },
+    "R-0062": {
+      "id": "R-0062",
+      "label": "Part du risque du groupe Actions diversifiées dans TSLA 5 %",
+      "value": 0.6319851344764891,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 5 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "regroupement : config/scenarios.toml"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0044"
+        ]
+      },
+      "display": "63,2 %"
+    },
+    "R-0063": {
+      "id": "R-0063",
+      "label": "Poids du groupe Consommation discrétionnaire dans TSLA 5 %",
+      "value": 0.05,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "TSLA 5 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "5,0 %"
+    },
+    "R-0064": {
+      "id": "R-0064",
+      "label": "Part du risque du groupe Consommation discrétionnaire dans TSLA 5 %",
+      "value": 0.21783980664510208,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 5 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "regroupement : config/scenarios.toml"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0044"
+        ]
+      },
+      "display": "21,8 %"
+    },
+    "R-0065": {
+      "id": "R-0065",
+      "label": "Poids du groupe Obligations dans TSLA 5 %",
+      "value": 0.475,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "TSLA 5 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "47,5 %"
+    },
+    "R-0066": {
+      "id": "R-0066",
+      "label": "Part du risque du groupe Obligations dans TSLA 5 %",
+      "value": 0.1501750588784089,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 5 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "regroupement : config/scenarios.toml"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0044"
+        ]
+      },
+      "display": "15,0 %"
+    },
+    "R-0067": {
+      "id": "R-0067",
+      "label": "Composition TSLA 10 %",
+      "value": "SPY 18 %, TSLA 10 %, XBB.TO 36 %, XIU.TO 27 %, ZST.TO 9 %",
+      "unit": "text",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "TSLA 10 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "SPY 18 %, TSLA 10 %, XBB.TO 36 %, XIU.TO 27 %, ZST.TO 9 %"
+    },
+    "R-0068": {
+      "id": "R-0068",
+      "label": "Rendement annualisé TSLA 10 %",
+      "value": 0.08848818534111014,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 10 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0067"
+        ]
+      },
+      "display": "8,8 %"
+    },
+    "R-0069": {
+      "id": "R-0069",
+      "label": "Volatilité annualisée TSLA 10 %",
+      "value": 0.1020887545158681,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 10 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0067"
+        ]
+      },
+      "display": "10,2 %"
+    },
+    "R-0070": {
+      "id": "R-0070",
+      "label": "Pire baisse depuis un sommet TSLA 10 %",
+      "value": -0.15278375386608878,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 10 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "série hebdomadaire : les creux en cours de semaine ne sont pas vus"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0067"
+        ]
+      },
+      "display": "−15,3 %"
+    },
+    "R-0071": {
+      "id": "R-0071",
+      "label": "Rendement 2022 TSLA 10 %",
+      "value": -0.15278375386608878,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 10 %",
+      "period": [
+        "2021-12-31",
+        "2022-12-31"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0067"
+        ]
+      },
+      "display": "−15,3 %"
+    },
+    "R-0072": {
+      "id": "R-0072",
+      "label": "Pire rendement sur une fenêtre de 3 ans TSLA 10 %",
+      "value": 0.1785629032715601,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 10 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0067"
+        ]
+      },
+      "display": "17,9 %"
+    },
+    "R-0073": {
+      "id": "R-0073",
+      "label": "Poids de TSLA dans TSLA 10 %",
+      "value": 0.1,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "TSLA 10 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "10,0 %"
+    },
+    "R-0074": {
+      "id": "R-0074",
+      "label": "Part du risque (variance) due à TSLA dans TSLA 10 %",
+      "value": 0.4412346235110947,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 10 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0067"
+        ]
+      },
+      "display": "44,1 %"
+    },
+    "R-0075": {
+      "id": "R-0075",
+      "label": "Poids de XIU.TO dans TSLA 10 %",
+      "value": 0.27,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "TSLA 10 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "27,0 %"
+    },
+    "R-0076": {
+      "id": "R-0076",
+      "label": "Part du risque (variance) due à XIU.TO dans TSLA 10 %",
+      "value": 0.24684893070298894,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 10 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0067"
+        ]
+      },
+      "display": "24,7 %"
+    },
+    "R-0077": {
+      "id": "R-0077",
+      "label": "Poids de SPY dans TSLA 10 %",
+      "value": 0.18,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "TSLA 10 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "18,0 %"
+    },
+    "R-0078": {
+      "id": "R-0078",
+      "label": "Part du risque (variance) due à SPY dans TSLA 10 %",
+      "value": 0.2143212267124554,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 10 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0067"
+        ]
+      },
+      "display": "21,4 %"
+    },
+    "R-0079": {
+      "id": "R-0079",
+      "label": "Poids de XBB.TO dans TSLA 10 %",
+      "value": 0.36,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "TSLA 10 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "36,0 %"
+    },
+    "R-0080": {
+      "id": "R-0080",
+      "label": "Part du risque (variance) due à XBB.TO dans TSLA 10 %",
+      "value": 0.09639919316093226,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 10 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0067"
+        ]
+      },
+      "display": "9,6 %"
+    },
+    "R-0081": {
+      "id": "R-0081",
+      "label": "Poids de ZST.TO dans TSLA 10 %",
+      "value": 0.09,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "TSLA 10 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "9,0 %"
+    },
+    "R-0082": {
+      "id": "R-0082",
+      "label": "Part du risque (variance) due à ZST.TO dans TSLA 10 %",
+      "value": 0.0011960259125286077,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 10 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0067"
+        ]
+      },
+      "display": "0,1 %"
+    },
+    "R-0083": {
+      "id": "R-0083",
+      "label": "Part du risque des trois premières lignes de TSLA 10 %",
+      "value": 0.9024047809265391,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 10 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0067"
+        ]
+      },
+      "display": "90,2 %"
+    },
+    "R-0084": {
+      "id": "R-0084",
+      "label": "Poids du groupe Actions diversifiées dans TSLA 10 %",
+      "value": 0.45,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "TSLA 10 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "45,0 %"
+    },
+    "R-0085": {
+      "id": "R-0085",
+      "label": "Part du risque du groupe Actions diversifiées dans TSLA 10 %",
+      "value": 0.4611701574154443,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 10 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "regroupement : config/scenarios.toml"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0067"
+        ]
+      },
+      "display": "46,1 %"
+    },
+    "R-0086": {
+      "id": "R-0086",
+      "label": "Poids du groupe Consommation discrétionnaire dans TSLA 10 %",
+      "value": 0.1,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "TSLA 10 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "10,0 %"
+    },
+    "R-0087": {
+      "id": "R-0087",
+      "label": "Part du risque du groupe Consommation discrétionnaire dans TSLA 10 %",
+      "value": 0.4412346235110947,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 10 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "regroupement : config/scenarios.toml"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0067"
+        ]
+      },
+      "display": "44,1 %"
+    },
+    "R-0088": {
+      "id": "R-0088",
+      "label": "Poids du groupe Obligations dans TSLA 10 %",
+      "value": 0.44999999999999996,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "TSLA 10 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "45,0 %"
+    },
+    "R-0089": {
+      "id": "R-0089",
+      "label": "Part du risque du groupe Obligations dans TSLA 10 %",
+      "value": 0.09759521907346087,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 10 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "regroupement : config/scenarios.toml"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0067"
+        ]
+      },
+      "display": "9,8 %"
+    },
+    "R-0090": {
+      "id": "R-0090",
+      "label": "Composition TSLA 20 %",
+      "value": "SPY 16 %, TSLA 20 %, XBB.TO 32 %, XIU.TO 24 %, ZST.TO 8 %",
+      "unit": "text",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "TSLA 20 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "SPY 16 %, TSLA 20 %, XBB.TO 32 %, XIU.TO 24 %, ZST.TO 8 %"
+    },
+    "R-0091": {
+      "id": "R-0091",
+      "label": "Rendement annualisé TSLA 20 %",
+      "value": 0.09674649806338187,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 20 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0090"
+        ]
+      },
+      "display": "9,7 %"
+    },
+    "R-0092": {
+      "id": "R-0092",
+      "label": "Volatilité annualisée TSLA 20 %",
+      "value": 0.14544935942192053,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 20 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0090"
+        ]
+      },
+      "display": "14,5 %"
+    },
+    "R-0093": {
+      "id": "R-0093",
+      "label": "Pire baisse depuis un sommet TSLA 20 %",
+      "value": -0.22314550907840103,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 20 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "série hebdomadaire : les creux en cours de semaine ne sont pas vus"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0090"
+        ]
+      },
+      "display": "−22,3 %"
+    },
+    "R-0094": {
+      "id": "R-0094",
+      "label": "Rendement 2022 TSLA 20 %",
+      "value": -0.2165984428208132,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 20 %",
+      "period": [
+        "2021-12-31",
+        "2022-12-31"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0090"
+        ]
+      },
+      "display": "−21,7 %"
+    },
+    "R-0095": {
+      "id": "R-0095",
+      "label": "Pire rendement sur une fenêtre de 3 ans TSLA 20 %",
+      "value": 0.1727301817935143,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 20 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0090"
+        ]
+      },
+      "display": "17,3 %"
+    },
+    "R-0096": {
+      "id": "R-0096",
+      "label": "Poids de TSLA dans TSLA 20 %",
+      "value": 0.2,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "TSLA 20 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "20,0 %"
+    },
+    "R-0097": {
+      "id": "R-0097",
+      "label": "Part du risque (variance) due à TSLA dans TSLA 20 %",
+      "value": 0.7129149084792403,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 20 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0090"
+        ]
+      },
+      "display": "71,3 %"
+    },
+    "R-0098": {
+      "id": "R-0098",
+      "label": "Poids de XIU.TO dans TSLA 20 %",
+      "value": 0.24,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "TSLA 20 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "24,0 %"
+    },
+    "R-0099": {
+      "id": "R-0099",
+      "label": "Part du risque (variance) due à XIU.TO dans TSLA 20 %",
+      "value": 0.12548276454424262,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 20 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0090"
+        ]
+      },
+      "display": "12,5 %"
+    },
+    "R-0100": {
+      "id": "R-0100",
+      "label": "Poids de SPY dans TSLA 20 %",
+      "value": 0.16,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "TSLA 20 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "16,0 %"
+    },
+    "R-0101": {
+      "id": "R-0101",
+      "label": "Part du risque (variance) due à SPY dans TSLA 20 %",
+      "value": 0.11920907520966238,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 20 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0090"
+        ]
+      },
+      "display": "11,9 %"
+    },
+    "R-0102": {
+      "id": "R-0102",
+      "label": "Poids de XBB.TO dans TSLA 20 %",
+      "value": 0.32,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "TSLA 20 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "32,0 %"
+    },
+    "R-0103": {
+      "id": "R-0103",
+      "label": "Part du risque (variance) due à XBB.TO dans TSLA 20 %",
+      "value": 0.041818446097939777,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 20 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0090"
+        ]
+      },
+      "display": "4,2 %"
+    },
+    "R-0104": {
+      "id": "R-0104",
+      "label": "Poids de ZST.TO dans TSLA 20 %",
+      "value": 0.08,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "TSLA 20 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "8,0 %"
+    },
+    "R-0105": {
+      "id": "R-0105",
+      "label": "Part du risque (variance) due à ZST.TO dans TSLA 20 %",
+      "value": 0.0005748056689149099,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 20 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0090"
+        ]
+      },
+      "display": "0,1 %"
+    },
+    "R-0106": {
+      "id": "R-0106",
+      "label": "Part du risque des trois premières lignes de TSLA 20 %",
+      "value": 0.9576067482331453,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 20 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0090"
+        ]
+      },
+      "display": "95,8 %"
+    },
+    "R-0107": {
+      "id": "R-0107",
+      "label": "Poids du groupe Consommation discrétionnaire dans TSLA 20 %",
+      "value": 0.2,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "TSLA 20 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "20,0 %"
+    },
+    "R-0108": {
+      "id": "R-0108",
+      "label": "Part du risque du groupe Consommation discrétionnaire dans TSLA 20 %",
+      "value": 0.7129149084792403,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 20 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "regroupement : config/scenarios.toml"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0090"
+        ]
+      },
+      "display": "71,3 %"
+    },
+    "R-0109": {
+      "id": "R-0109",
+      "label": "Poids du groupe Actions diversifiées dans TSLA 20 %",
+      "value": 0.4,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "TSLA 20 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "40,0 %"
+    },
+    "R-0110": {
+      "id": "R-0110",
+      "label": "Part du risque du groupe Actions diversifiées dans TSLA 20 %",
+      "value": 0.24469183975390502,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 20 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "regroupement : config/scenarios.toml"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0090"
+        ]
+      },
+      "display": "24,5 %"
+    },
+    "R-0111": {
+      "id": "R-0111",
+      "label": "Poids du groupe Obligations dans TSLA 20 %",
+      "value": 0.4,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "TSLA 20 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "40,0 %"
+    },
+    "R-0112": {
+      "id": "R-0112",
+      "label": "Part du risque du groupe Obligations dans TSLA 20 %",
+      "value": 0.042393251766854684,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "TSLA 20 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "regroupement : config/scenarios.toml"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0090"
+        ]
+      },
+      "display": "4,2 %"
+    },
+    "R-0113": {
+      "id": "R-0113",
+      "label": "Composition QQQ 10 %",
+      "value": "QQQ 10 %, SPY 18 %, XBB.TO 36 %, XIU.TO 27 %, ZST.TO 9 %",
+      "unit": "text",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "QQQ 10 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "QQQ 10 %, SPY 18 %, XBB.TO 36 %, XIU.TO 27 %, ZST.TO 9 %"
+    },
+    "R-0114": {
+      "id": "R-0114",
+      "label": "Rendement annualisé QQQ 10 %",
+      "value": 0.08590411365838335,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "QQQ 10 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0113"
+        ]
+      },
+      "display": "8,6 %"
+    },
+    "R-0115": {
+      "id": "R-0115",
+      "label": "Volatilité annualisée QQQ 10 %",
+      "value": 0.08195519395468721,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "QQQ 10 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0113"
+        ]
+      },
+      "display": "8,2 %"
+    },
+    "R-0116": {
+      "id": "R-0116",
+      "label": "Pire baisse depuis un sommet QQQ 10 %",
+      "value": -0.14083652526587653,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "QQQ 10 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "série hebdomadaire : les creux en cours de semaine ne sont pas vus"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0113"
+        ]
+      },
+      "display": "−14,1 %"
+    },
+    "R-0117": {
+      "id": "R-0117",
+      "label": "Rendement 2022 QQQ 10 %",
+      "value": -0.10659176403003456,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "QQQ 10 %",
+      "period": [
+        "2021-12-31",
+        "2022-12-31"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0113"
+        ]
+      },
+      "display": "−10,7 %"
+    },
+    "R-0118": {
+      "id": "R-0118",
+      "label": "Pire rendement sur une fenêtre de 3 ans QQQ 10 %",
+      "value": 0.1971164057729171,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "QQQ 10 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0113"
+        ]
+      },
+      "display": "19,7 %"
+    },
+    "R-0119": {
+      "id": "R-0119",
+      "label": "Poids de XIU.TO dans QQQ 10 %",
+      "value": 0.27,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "QQQ 10 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "27,0 %"
+    },
+    "R-0120": {
+      "id": "R-0120",
+      "label": "Part du risque (variance) due à XIU.TO dans QQQ 10 %",
+      "value": 0.3435436677408384,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "QQQ 10 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0113"
+        ]
+      },
+      "display": "34,4 %"
+    },
+    "R-0121": {
+      "id": "R-0121",
+      "label": "Poids de SPY dans QQQ 10 %",
+      "value": 0.18,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "QQQ 10 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "18,0 %"
+    },
+    "R-0122": {
+      "id": "R-0122",
+      "label": "Part du risque (variance) due à SPY dans QQQ 10 %",
+      "value": 0.29575172863650095,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "QQQ 10 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0113"
+        ]
+      },
+      "display": "29,6 %"
+    },
+    "R-0123": {
+      "id": "R-0123",
+      "label": "Poids de QQQ dans QQQ 10 %",
+      "value": 0.1,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "QQQ 10 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "10,0 %"
+    },
+    "R-0124": {
+      "id": "R-0124",
+      "label": "Part du risque (variance) due à QQQ dans QQQ 10 %",
+      "value": 0.20912281060526616,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "QQQ 10 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0113"
+        ]
+      },
+      "display": "20,9 %"
+    },
+    "R-0125": {
+      "id": "R-0125",
+      "label": "Poids de XBB.TO dans QQQ 10 %",
+      "value": 0.36,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "QQQ 10 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "36,0 %"
+    },
+    "R-0126": {
+      "id": "R-0126",
+      "label": "Part du risque (variance) due à XBB.TO dans QQQ 10 %",
+      "value": 0.14978847576893903,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "QQQ 10 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0113"
+        ]
+      },
+      "display": "15,0 %"
+    },
+    "R-0127": {
+      "id": "R-0127",
+      "label": "Poids de ZST.TO dans QQQ 10 %",
+      "value": 0.09,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "QQQ 10 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "9,0 %"
+    },
+    "R-0128": {
+      "id": "R-0128",
+      "label": "Part du risque (variance) due à ZST.TO dans QQQ 10 %",
+      "value": 0.0017933172484554166,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "QQQ 10 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "covariance échantillon des rendements hebdomadaires"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0113"
+        ]
+      },
+      "display": "0,2 %"
+    },
+    "R-0129": {
+      "id": "R-0129",
+      "label": "Part du risque des trois premières lignes de QQQ 10 %",
+      "value": 0.8484182069826055,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "QQQ 10 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0113"
+        ]
+      },
+      "display": "84,8 %"
+    },
+    "R-0130": {
+      "id": "R-0130",
+      "label": "Poids du groupe Actions diversifiées dans QQQ 10 %",
+      "value": 0.45,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "QQQ 10 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "45,0 %"
+    },
+    "R-0131": {
+      "id": "R-0131",
+      "label": "Part du risque du groupe Actions diversifiées dans QQQ 10 %",
+      "value": 0.6392953963773393,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "QQQ 10 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "regroupement : config/scenarios.toml"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0113"
+        ]
+      },
+      "display": "63,9 %"
+    },
+    "R-0132": {
+      "id": "R-0132",
+      "label": "Poids du groupe Technologie dans QQQ 10 %",
+      "value": 0.1,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "QQQ 10 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "10,0 %"
+    },
+    "R-0133": {
+      "id": "R-0133",
+      "label": "Part du risque du groupe Technologie dans QQQ 10 %",
+      "value": 0.20912281060526616,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "QQQ 10 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "regroupement : config/scenarios.toml"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0113"
+        ]
+      },
+      "display": "20,9 %"
+    },
+    "R-0134": {
+      "id": "R-0134",
+      "label": "Poids du groupe Obligations dans QQQ 10 %",
+      "value": 0.44999999999999996,
+      "unit": "pct",
+      "status": "hypothèse",
+      "origin": "scénario de démonstration",
+      "subject": "QQQ 10 %",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "45,0 %"
+    },
+    "R-0135": {
+      "id": "R-0135",
+      "label": "Part du risque du groupe Obligations dans QQQ 10 %",
+      "value": 0.15158179301739444,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "QQQ 10 %",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "Portefeuille fictif rééquilibré chaque semaine aux poids indiqués (hypothèse)",
+        "regroupement : config/scenarios.toml"
+      ],
+      "inputs": {
+        "depend_de": [
+          "R-0113"
+        ]
+      },
+      "display": "15,2 %"
+    }
+  },
+  "trace": [
+    {
+      "outil": "profile_facts",
+      "arguments": {
+        "persona": "robert",
+        "scenario": {
+          "persona": "robert",
+          "titre": "Robert, à quelques années de la retraite, est tenté par Tesla",
+          "demande": "J'aimerais consacrer une partie de mon portefeuille à Tesla ; on en parle partout.",
+          "origine_demande": "initiative de la personne",
+          "actif_demande": "TSLA",
+          "part_declaree": 0.1,
+          "parts_etudiees": [
+            0.05,
+            0.1,
+            0.2
+          ],
+          "seuil_perte": -0.15,
+          "horizon_etude_ans": 3,
+          "alternative": "QQQ",
+          "portefeuille_actuel": {
+            "XBB.TO": 0.4,
+            "ZST.TO": 0.1,
+            "XIU.TO": 0.3,
+            "SPY": 0.2
+          }
+        }
+      },
+      "enregistrements": [
+        "P-0001",
+        "P-0002",
+        "P-0003",
+        "P-0004",
+        "P-0005",
+        "P-0006",
+        "P-0007",
+        "P-0008",
+        "P-0009",
+        "P-0010",
+        "P-0011",
+        "P-0012",
+        "P-0013",
+        "P-0014",
+        "P-0015",
+        "P-0016",
+        "P-0017"
+      ],
+      "duree_ms": 3.5
+    },
+    {
+      "outil": "data_manifest",
+      "arguments": {},
+      "enregistrements": [
+        "D-0001",
+        "D-0002",
+        "D-0003",
+        "D-0004",
+        "D-0005",
+        "D-0006"
+      ],
+      "duree_ms": 6.3
+    },
+    {
+      "outil": "asset_metrics",
+      "arguments": {
+        "ticker": "TSLA",
+        "horizon_years": 3
+      },
+      "enregistrements": [
+        "R-0001",
+        "R-0002",
+        "R-0003",
+        "R-0004",
+        "R-0005",
+        "R-0006",
+        "R-0007",
+        "R-0008",
+        "R-0009",
+        "R-0010"
+      ],
+      "duree_ms": 2.5
+    },
+    {
+      "outil": "asset_metrics",
+      "arguments": {
+        "ticker": "QQQ",
+        "horizon_years": 3
+      },
+      "enregistrements": [
+        "R-0011",
+        "R-0012",
+        "R-0013",
+        "R-0014",
+        "R-0015",
+        "R-0016",
+        "R-0017",
+        "R-0018",
+        "R-0019",
+        "R-0020"
+      ],
+      "duree_ms": 1.4
+    },
+    {
+      "outil": "portfolio_metrics",
+      "arguments": {
+        "name": "Actuel",
+        "weights": {
+          "XBB.TO": 0.4,
+          "ZST.TO": 0.1,
+          "XIU.TO": 0.3,
+          "SPY": 0.2
+        },
+        "horizon_years": 3
+      },
+      "enregistrements": [
+        "R-0021",
+        "R-0022",
+        "R-0023",
+        "R-0024",
+        "R-0025",
+        "R-0026",
+        "R-0027",
+        "R-0028",
+        "R-0029",
+        "R-0030",
+        "R-0031",
+        "R-0032",
+        "R-0033",
+        "R-0034",
+        "R-0035",
+        "R-0036",
+        "R-0037",
+        "R-0038",
+        "R-0039"
+      ],
+      "duree_ms": 3.6
+    },
+    {
+      "outil": "share_sweep",
+      "arguments": {
+        "name": "Balayage TSLA",
+        "base": {
+          "XBB.TO": 0.4,
+          "ZST.TO": 0.1,
+          "XIU.TO": 0.3,
+          "SPY": 0.2
+        },
+        "ticker": "TSLA",
+        "loss_threshold": -0.15
+      },
+      "enregistrements": [
+        "R-0040",
+        "R-0041"
+      ],
+      "duree_ms": 35.5
+    },
+    {
+      "outil": "share_sweep",
+      "arguments": {
+        "name": "Balayage QQQ",
+        "base": {
+          "XBB.TO": 0.4,
+          "ZST.TO": 0.1,
+          "XIU.TO": 0.3,
+          "SPY": 0.2
+        },
+        "ticker": "QQQ",
+        "loss_threshold": -0.15
+      },
+      "enregistrements": [
+        "R-0042",
+        "R-0043"
+      ],
+      "duree_ms": 38.2
+    },
+    {
+      "outil": "portfolio_metrics",
+      "arguments": {
+        "name": "TSLA 5 %",
+        "weights": {
+          "SPY": 0.19,
+          "TSLA": 0.05,
+          "XBB.TO": 0.38,
+          "XIU.TO": 0.285,
+          "ZST.TO": 0.095
+        },
+        "horizon_years": 3
+      },
+      "enregistrements": [
+        "R-0044",
+        "R-0045",
+        "R-0046",
+        "R-0047",
+        "R-0048",
+        "R-0049",
+        "R-0050",
+        "R-0051",
+        "R-0052",
+        "R-0053",
+        "R-0054",
+        "R-0055",
+        "R-0056",
+        "R-0057",
+        "R-0058",
+        "R-0059",
+        "R-0060",
+        "R-0061",
+        "R-0062",
+        "R-0063",
+        "R-0064",
+        "R-0065",
+        "R-0066"
+      ],
+      "duree_ms": 3.3
+    },
+    {
+      "outil": "portfolio_metrics",
+      "arguments": {
+        "name": "TSLA 10 %",
+        "weights": {
+          "SPY": 0.18,
+          "TSLA": 0.1,
+          "XBB.TO": 0.36,
+          "XIU.TO": 0.27,
+          "ZST.TO": 0.09
+        },
+        "horizon_years": 3
+      },
+      "enregistrements": [
+        "R-0067",
+        "R-0068",
+        "R-0069",
+        "R-0070",
+        "R-0071",
+        "R-0072",
+        "R-0073",
+        "R-0074",
+        "R-0075",
+        "R-0076",
+        "R-0077",
+        "R-0078",
+        "R-0079",
+        "R-0080",
+        "R-0081",
+        "R-0082",
+        "R-0083",
+        "R-0084",
+        "R-0085",
+        "R-0086",
+        "R-0087",
+        "R-0088",
+        "R-0089"
+      ],
+      "duree_ms": 2.2
+    },
+    {
+      "outil": "portfolio_metrics",
+      "arguments": {
+        "name": "TSLA 20 %",
+        "weights": {
+          "SPY": 0.16,
+          "TSLA": 0.2,
+          "XBB.TO": 0.32,
+          "XIU.TO": 0.24,
+          "ZST.TO": 0.08
+        },
+        "horizon_years": 3
+      },
+      "enregistrements": [
+        "R-0090",
+        "R-0091",
+        "R-0092",
+        "R-0093",
+        "R-0094",
+        "R-0095",
+        "R-0096",
+        "R-0097",
+        "R-0098",
+        "R-0099",
+        "R-0100",
+        "R-0101",
+        "R-0102",
+        "R-0103",
+        "R-0104",
+        "R-0105",
+        "R-0106",
+        "R-0107",
+        "R-0108",
+        "R-0109",
+        "R-0110",
+        "R-0111",
+        "R-0112"
+      ],
+      "duree_ms": 2.9
+    },
+    {
+      "outil": "portfolio_metrics",
+      "arguments": {
+        "name": "QQQ 10 %",
+        "weights": {
+          "QQQ": 0.1,
+          "SPY": 0.18,
+          "XBB.TO": 0.36,
+          "XIU.TO": 0.27,
+          "ZST.TO": 0.09
+        },
+        "horizon_years": 3
+      },
+      "enregistrements": [
+        "R-0113",
+        "R-0114",
+        "R-0115",
+        "R-0116",
+        "R-0117",
+        "R-0118",
+        "R-0119",
+        "R-0120",
+        "R-0121",
+        "R-0122",
+        "R-0123",
+        "R-0124",
+        "R-0125",
+        "R-0126",
+        "R-0127",
+        "R-0128",
+        "R-0129",
+        "R-0130",
+        "R-0131",
+        "R-0132",
+        "R-0133",
+        "R-0134",
+        "R-0135"
+      ],
+      "duree_ms": 6.1
+    }
+  ],
+  "graphiques": [
+    {
+      "titre": "Baisse depuis le plus haut précédent : TSLA, QQQ, Actuel",
+      "sous_titre": "série hebdomadaire en dollars canadiens",
+      "type": "ligne",
+      "unite": "pct",
+      "mise_en_evidence": "TSLA",
+      "series": {
+        "TSLA": [
+          [
+            "2021-11-12",
+            0.0
+          ],
+          [
+            "2021-11-19",
+            0.0
+          ],
+          [
+            "2021-11-26",
+            -0.0386
+          ],
+          [
+            "2021-12-03",
+            -0.0952
+          ],
+          [
+            "2021-12-10",
+            -0.1003
+          ],
+          [
+            "2021-12-17",
+            -0.1664
+          ],
+          [
+            "2021-12-24",
+            -0.0485
+          ],
+          [
+            "2021-12-31",
+            -0.0677
+          ],
+          [
+            "2022-01-07",
+            -0.0949
+          ],
+          [
+            "2022-01-14",
+            -0.0838
+          ],
+          [
+            "2022-01-21",
+            -0.1761
+          ],
+          [
+            "2022-01-28",
+            -0.2478
+          ],
+          [
+            "2022-02-04",
+            -0.1803
+          ],
+          [
+            "2022-02-11",
+            -0.2399
+          ],
+          [
+            "2022-02-18",
+            -0.2407
+          ],
+          [
+            "2022-02-25",
+            -0.2817
+          ],
+          [
+            "2022-03-04",
+            -0.2563
+          ],
+          [
+            "2022-03-11",
+            -0.296
+          ],
+          [
+            "2022-03-18",
+            -0.2051
+          ],
+          [
+            "2022-03-25",
+            -0.1208
+          ],
+          [
+            "2022-04-01",
+            -0.0557
+          ],
+          [
+            "2022-04-08",
+            -0.1017
+          ],
+          [
+            "2022-04-15",
+            -0.1363
+          ],
+          [
+            "2022-04-22",
+            -0.1117
+          ],
+          [
+            "2022-04-29",
+            -0.2249
+          ],
+          [
+            "2022-05-06",
+            -0.2241
+          ],
+          [
+            "2022-05-13",
+            -0.3064
+          ],
+          [
+            "2022-05-20",
+            -0.4073
+          ],
+          [
+            "2022-05-27",
+            -0.3267
+          ],
+          [
+            "2022-06-03",
+            -0.3842
+          ],
+          [
+            "2022-06-10",
+            -0.3806
+          ],
+          [
+            "2022-06-17",
+            -0.4102
+          ],
+          [
+            "2022-06-24",
+            -0.3367
+          ],
+          [
+            "2022-07-01",
+            -0.3887
+          ],
+          [
+            "2022-07-08",
+            -0.3212
+          ],
+          [
+            "2022-07-15",
+            -0.3466
+          ],
+          [
+            "2022-07-22",
+            -0.2682
+          ],
+          [
+            "2022-07-29",
+            -0.2045
+          ],
+          [
+            "2022-08-05",
+            -0.222
+          ],
+          [
+            "2022-08-12",
+            -0.1994
+          ],
+          [
+            "2022-08-19",
+            -0.1955
+          ],
+          [
+            "2022-08-26",
+            -0.2189
+          ],
+          [
+            "2022-09-02",
+            -0.2599
+          ],
+          [
+            "2022-09-09",
+            -0.1846
+          ],
+          [
+            "2022-09-16",
+            -0.1587
+          ],
+          [
+            "2022-09-23",
+            -0.2201
+          ],
+          [
+            "2022-09-30",
+            -0.241
+          ],
+          [
+            "2022-10-07",
+            -0.3615
+          ],
+          [
+            "2022-10-14",
+            -0.4071
+          ],
+          [
+            "2022-10-21",
+            -0.3861
+          ],
+          [
+            "2022-10-28",
+            -0.3505
+          ],
+          [
+            "2022-11-04",
+            -0.4146
+          ],
+          [
+            "2022-11-11",
+            -0.4527
+          ],
+          [
+            "2022-11-18",
+            -0.4965
+          ],
+          [
+            "2022-11-25",
+            -0.4894
+          ],
+          [
+            "2022-12-02",
+            -0.4522
+          ],
+          [
+            "2022-12-09",
+            -0.4906
+          ],
+          [
+            "2022-12-16",
+            -0.5708
+          ],
+          [
+            "2022-12-23",
+            -0.6503
+          ],
+          [
+            "2022-12-30",
+            -0.6517
+          ],
+          [
+            "2023-01-06",
+            -0.6817
+          ],
+          [
+            "2023-01-13",
+            -0.6575
+          ],
+          [
+            "2023-01-20",
+            -0.6262
+          ],
+          [
+            "2023-01-27",
+            -0.5056
+          ],
+          [
+            "2023-02-03",
+            -0.4689
+          ],
+          [
+            "2023-02-10",
+            -0.4508
+          ],
+          [
+            "2023-02-17",
+            -0.4135
+          ],
+          [
+            "2023-02-24",
+            -0.4402
+          ],
+          [
+            "2023-03-03",
+            -0.4381
+          ],
+          [
+            "2023-03-10",
+            -0.5001
+          ],
+          [
+            "2023-03-17",
+            -0.4836
+          ],
+          [
+            "2023-03-24",
+            -0.4529
+          ],
+          [
+            "2023-03-31",
+            -0.4139
+          ],
+          [
+            "2023-04-07",
+            -0.4793
+          ],
+          [
+            "2023-04-14",
+            -0.484
+          ],
+          [
+            "2023-04-21",
+            -0.5334
+          ],
+          [
+            "2023-04-28",
+            -0.5343
+          ],
+          [
+            "2023-05-05",
+            -0.5233
+          ],
+          [
+            "2023-05-12",
+            -0.5254
+          ],
+          [
+            "2023-05-19",
+            -0.4922
+          ],
+          [
+            "2023-05-26",
+            -0.4507
+          ],
+          [
+            "2023-06-02",
+            -0.3999
+          ],
+          [
+            "2023-06-09",
+            -0.3194
+          ],
+          [
+            "2023-06-16",
+            -0.2822
+          ],
+          [
+            "2023-06-23",
+            -0.293
+          ],
+          [
+            "2023-06-30",
+            -0.2765
+          ],
+          [
+            "2023-07-07",
+            -0.2385
+          ],
+          [
+            "2023-07-14",
+            -0.2257
+          ],
+          [
+            "2023-07-21",
+            -0.2829
+          ],
+          [
+            "2023-07-28",
+            -0.264
+          ],
+          [
+            "2023-08-04",
+            -0.2923
+          ],
+          [
+            "2023-08-11",
+            -0.3191
+          ],
+          [
+            "2023-08-18",
+            -0.3904
+          ],
+          [
+            "2023-08-25",
+            -0.3223
+          ],
+          [
+            "2023-09-01",
+            -0.3054
+          ],
+          [
+            "2023-09-08",
+            -0.2929
+          ],
+          [
+            "2023-09-15",
+            -0.2252
+          ],
+          [
+            "2023-09-22",
+            -0.3117
+          ],
+          [
+            "2023-09-29",
+            -0.2938
+          ],
+          [
+            "2023-10-06",
+            -0.2558
+          ],
+          [
+            "2023-10-13",
+            -0.2839
+          ],
+          [
+            "2023-10-20",
+            -0.394
+          ],
+          [
+            "2023-10-27",
+            -0.4004
+          ],
+          [
+            "2023-11-03",
+            -0.3717
+          ],
+          [
+            "2023-11-10",
+            -0.3808
+          ],
+          [
+            "2023-11-17",
+            -0.3289
+          ],
+          [
+            "2023-11-24",
+            -0.3304
+          ],
+          [
+            "2023-12-01",
+            -0.3266
+          ],
+          [
+            "2023-12-08",
+            -0.3084
+          ],
+          [
+            "2023-12-15",
+            -0.2921
+          ],
+          [
+            "2023-12-22",
+            -0.3011
+          ],
+          [
+            "2023-12-29",
+            -0.314
+          ],
+          [
+            "2024-01-05",
+            -0.3383
+          ],
+          [
+            "2024-01-12",
+            -0.3883
+          ],
+          [
+            "2024-01-19",
+            -0.4037
+          ],
+          [
+            "2024-01-26",
+            -0.4855
+          ],
+          [
+            "2024-02-02",
+            -0.4723
+          ],
+          [
+            "2024-02-09",
+            -0.4562
+          ],
+          [
+            "2024-02-16",
+            -0.4372
+          ],
+          [
+            "2024-02-23",
+            -0.4592
+          ],
+          [
+            "2024-03-01",
+            -0.4262
+          ],
+          [
+            "2024-03-08",
+            -0.5069
+          ],
+          [
+            "2024-03-15",
+            -0.5379
+          ],
+          [
+            "2024-03-22",
+            -0.5153
+          ],
+          [
+            "2024-03-29",
+            -0.5028
+          ],
+          [
+            "2024-04-05",
+            -0.5319
+          ],
+          [
+            "2024-04-12",
+            -0.5085
+          ],
+          [
+            "2024-04-19",
+            -0.578
+          ],
+          [
+            "2024-04-26",
+            -0.5198
+          ],
+          [
+            "2024-05-03",
+            -0.4829
+          ],
+          [
+            "2024-05-10",
+            -0.5194
+          ],
+          [
+            "2024-05-17",
+            -0.4956
+          ],
+          [
+            "2024-05-24",
+            -0.4884
+          ],
+          [
+            "2024-05-31",
+            -0.4931
+          ],
+          [
+            "2024-06-07",
+            -0.4909
+          ],
+          [
+            "2024-06-14",
+            -0.489
+          ],
+          [
+            "2024-06-21",
+            -0.4765
+          ],
+          [
+            "2024-06-28",
+            -0.4346
+          ],
+          [
+            "2024-07-05",
+            -0.2842
+          ],
+          [
+            "2024-07-12",
+            -0.2938
+          ],
+          [
+            "2024-07-19",
+            -0.3146
+          ],
+          [
+            "2024-07-26",
+            -0.3654
+          ],
+          [
+            "2024-08-02",
+            -0.3992
+          ],
+          [
+            "2024-08-09",
+            -0.4267
+          ],
+          [
+            "2024-08-16",
+            -0.3816
+          ],
+          [
+            "2024-08-23",
+            -0.3778
+          ],
+          [
+            "2024-08-30",
+            -0.397
+          ],
+          [
+            "2024-09-06",
+            -0.4042
+          ],
+          [
+            "2024-09-13",
+            -0.3469
+          ],
+          [
+            "2024-09-20",
+            -0.3254
+          ],
+          [
+            "2024-09-27",
+            -0.266
+          ],
+          [
+            "2024-10-04",
+            -0.2912
+          ],
+          [
+            "2024-10-11",
+            -0.3743
+          ],
+          [
+            "2024-10-18",
+            -0.3641
+          ],
+          [
+            "2024-10-25",
+            -0.2205
+          ],
+          [
+            "2024-11-01",
+            -0.2759
+          ],
+          [
+            "2024-11-08",
+            -0.0671
+          ],
+          [
+            "2024-11-15",
+            -0.0574
+          ],
+          [
+            "2024-11-22",
+            0.0
+          ],
+          [
+            "2024-11-29",
+            -0.0188
+          ],
+          [
+            "2024-12-06",
+            0.0
+          ],
+          [
+            "2024-12-13",
+            0.0
+          ],
+          [
+            "2024-12-20",
+            -0.0257
+          ],
+          [
+            "2024-12-27",
+            0.0
+          ],
+          [
+            "2025-01-03",
+            -0.0474
+          ],
+          [
+            "2025-01-10",
+            -0.0851
+          ],
+          [
+            "2025-01-17",
+            -0.0107
+          ],
+          [
+            "2025-01-24",
+            -0.0633
+          ],
+          [
+            "2025-01-31",
+            -0.0583
+          ],
+          [
+            "2025-02-07",
+            -0.1691
+          ],
+          [
+            "2025-02-14",
+            -0.1899
+          ],
+          [
+            "2025-02-21",
+            -0.2288
+          ],
+          [
+            "2025-02-28",
+            -0.3202
+          ],
+          [
+            "2025-03-07",
+            -0.3934
+          ],
+          [
+            "2025-03-14",
+            -0.422
+          ],
+          [
+            "2025-03-21",
+            -0.4265
+          ],
+          [
+            "2025-03-28",
+            -0.3941
+          ],
+          [
+            "2025-04-04",
+            -0.453
+          ],
+          [
+            "2025-04-11",
+            -0.4368
+          ],
+          [
+            "2025-04-18",
+            -0.4625
+          ],
+          [
+            "2025-04-25",
+            -0.3652
+          ],
+          [
+            "2025-05-02",
+            -0.3631
+          ],
+          [
+            "2025-05-09",
+            -0.3325
+          ],
+          [
+            "2025-05-16",
+            -0.2138
+          ],
+          [
+            "2025-05-23",
+            -0.2499
+          ],
+          [
+            "2025-05-30",
+            -0.234
+          ],
+          [
+            "2025-06-06",
+            -0.3507
+          ],
+          [
+            "2025-06-13",
+            -0.2891
+          ],
+          [
+            "2025-06-20",
+            -0.2893
+          ],
+          [
+            "2025-06-27",
+            -0.2888
+          ],
+          [
+            "2025-07-04",
+            -0.3121
+          ],
+          [
+            "2025-07-11",
+            -0.3106
+          ],
+          [
+            "2025-07-18",
+            -0.2732
+          ],
+          [
+            "2025-07-25",
+            -0.304
+          ],
+          [
+            "2025-08-01",
+            -0.329
+          ],
+          [
+            "2025-08-08",
+            -0.2715
+          ],
+          [
+            "2025-08-15",
+            -0.2666
+          ],
+          [
+            "2025-08-22",
+            -0.243
+          ],
+          [
+            "2025-08-29",
+            -0.2627
+          ],
+          [
+            "2025-09-05",
+            -0.2203
+          ],
+          [
+            "2025-09-12",
+            -0.1189
+          ],
+          [
+            "2025-09-19",
+            -0.0559
+          ],
+          [
+            "2025-09-26",
+            -0.0134
+          ],
+          [
+            "2025-10-03",
+            -0.0362
+          ],
+          [
+            "2025-10-10",
+            -0.0697
+          ],
+          [
+            "2025-10-17",
+            -0.0092
+          ],
+          [
+            "2025-10-24",
+            -0.0232
+          ],
+          [
+            "2025-10-31",
+            0.0
+          ],
+          [
+            "2025-11-07",
+            -0.0562
+          ],
+          [
+            "2025-11-14",
+            -0.1139
+          ],
+          [
+            "2025-11-21",
+            -0.1384
+          ],
+          [
+            "2025-11-28",
+            -0.0604
+          ],
+          [
+            "2025-12-05",
+            -0.0146
+          ],
+          [
+            "2025-12-12",
+            -0.0126
+          ],
+          [
+            "2025-12-19",
+            0.0
+          ],
+          [
+            "2025-12-26",
+            -0.0202
+          ],
+          [
+            "2026-01-02",
+            -0.0925
+          ],
+          [
+            "2026-01-09",
+            -0.0675
+          ],
+          [
+            "2026-01-16",
+            -0.0821
+          ],
+          [
+            "2026-01-23",
+            -0.0701
+          ],
+          [
+            "2026-01-30",
+            -0.1198
+          ],
+          [
+            "2026-02-06",
+            -0.1539
+          ],
+          [
+            "2026-02-13",
+            -0.143
+          ],
+          [
+            "2026-02-20",
+            -0.1499
+          ],
+          [
+            "2026-02-27",
+            -0.172
+          ],
+          [
+            "2026-03-06",
+            -0.1856
+          ],
+          [
+            "2026-03-13",
+            -0.1909
+          ],
+          [
+            "2026-03-20",
+            -0.2388
+          ],
+          [
+            "2026-03-27",
+            -0.2429
+          ],
+          [
+            "2026-04-03",
+            -0.2432
+          ],
+          [
+            "2026-04-10",
+            -0.2725
+          ],
+          [
+            "2026-04-17",
+            -0.1741
+          ],
+          [
+            "2026-04-24",
+            -0.2238
+          ],
+          [
+            "2026-05-01",
+            -0.1999
+          ],
+          [
+            "2026-05-08",
+            -0.116
+          ],
+          [
+            "2026-05-15",
+            -0.1244
+          ],
+          [
+            "2026-05-22",
+            -0.1129
+          ],
+          [
+            "2026-05-29",
+            -0.0933
+          ],
+          [
+            "2026-06-05",
+            -0.179
+          ],
+          [
+            "2026-06-12",
+            -0.1434
+          ],
+          [
+            "2026-06-19",
+            -0.1466
+          ],
+          [
+            "2026-06-26",
+            -0.1877
+          ],
+          [
+            "2026-07-03",
+            -0.1586
+          ],
+          [
+            "2026-07-10",
+            -0.1302
+          ],
+          [
+            "2026-07-17",
+            -0.1952
+          ],
+          [
+            "2026-07-24",
+            -0.3348
+          ],
+          [
+            "2026-07-31",
+            -0.3416
+          ],
+          [
+            "2026-08-07",
+            -0.3091
+          ],
+          [
+            "2026-08-14",
+            -0.2839
+          ],
+          [
+            "2026-08-21",
+            -0.2471
+          ],
+          [
+            "2026-08-28",
+            -0.2696
+          ],
+          [
+            "2026-09-04",
+            -0.261
+          ],
+          [
+            "2026-09-11",
+            -0.2359
+          ],
+          [
+            "2026-09-18",
+            -0.2309
+          ],
+          [
+            "2026-09-25",
+            -0.2063
+          ],
+          [
+            "2026-10-02",
+            -0.2039
+          ],
+          [
+            "2026-10-09",
+            -0.1764
+          ],
+          [
+            "2026-10-16",
+            -0.2429
+          ],
+          [
+            "2026-10-23",
+            -0.2146
+          ],
+          [
+            "2026-10-30",
+            -0.1583
+          ],
+          [
+            "2026-11-06",
+            -0.2376
+          ],
+          [
+            "2026-11-12",
+            -0.1456
+          ]
+        ],
+        "QQQ": [
+          [
+            "2021-11-12",
+            0.0
+          ],
+          [
+            "2021-11-19",
+            0.0
+          ],
+          [
+            "2021-11-26",
+            -0.0215
+          ],
+          [
+            "2021-12-03",
+            -0.0387
+          ],
+          [
+            "2021-12-10",
+            -0.009
+          ],
+          [
+            "2021-12-17",
+            -0.0316
+          ],
+          [
+            "2021-12-24",
+            -0.0025
+          ],
+          [
+            "2021-12-31",
+            -0.0109
+          ],
+          [
+            "2022-01-07",
+            -0.0565
+          ],
+          [
+            "2022-01-14",
+            -0.0652
+          ],
+          [
+            "2022-01-21",
+            -0.1348
+          ],
+          [
+            "2022-01-28",
+            -0.1189
+          ],
+          [
+            "2022-02-04",
+            -0.1043
+          ],
+          [
+            "2022-02-11",
+            -0.1355
+          ],
+          [
+            "2022-02-18",
+            -0.1472
+          ],
+          [
+            "2022-02-25",
+            -0.1357
+          ],
+          [
+            "2022-03-04",
+            -0.1567
+          ],
+          [
+            "2022-03-11",
+            -0.1908
+          ],
+          [
+            "2022-03-18",
+            -0.1304
+          ],
+          [
+            "2022-03-25",
+            -0.1179
+          ],
+          [
+            "2022-04-01",
+            -0.1111
+          ],
+          [
+            "2022-04-08",
+            -0.137
+          ],
+          [
+            "2022-04-15",
+            -0.1627
+          ],
+          [
+            "2022-04-22",
+            -0.1885
+          ],
+          [
+            "2022-04-29",
+            -0.2132
+          ],
+          [
+            "2022-05-06",
+            -0.2178
+          ],
+          [
+            "2022-05-13",
+            -0.2321
+          ],
+          [
+            "2022-05-20",
+            -0.2729
+          ],
+          [
+            "2022-05-27",
+            -0.2269
+          ],
+          [
+            "2022-06-03",
+            -0.2438
+          ],
+          [
+            "2022-06-10",
+            -0.2754
+          ],
+          [
+            "2022-06-17",
+            -0.297
+          ],
+          [
+            "2022-06-24",
+            -0.2505
+          ],
+          [
+            "2022-07-01",
+            -0.2848
+          ],
+          [
+            "2022-07-08",
+            -0.2466
+          ],
+          [
+            "2022-07-15",
+            -0.2514
+          ],
+          [
+            "2022-07-22",
+            -0.2351
+          ],
+          [
+            "2022-07-29",
+            -0.2042
+          ],
+          [
+            "2022-08-05",
+            -0.1814
+          ],
+          [
+            "2022-08-12",
+            -0.1692
+          ],
+          [
+            "2022-08-19",
+            -0.1749
+          ],
+          [
+            "2022-08-26",
+            -0.2144
+          ],
+          [
+            "2022-09-02",
+            -0.2381
+          ],
+          [
+            "2022-09-09",
+            -0.2126
+          ],
+          [
+            "2022-09-16",
+            -0.2439
+          ],
+          [
+            "2022-09-23",
+            -0.2632
+          ],
+          [
+            "2022-09-30",
+            -0.2781
+          ],
+          [
+            "2022-10-07",
+            -0.2728
+          ],
+          [
+            "2022-10-14",
+            -0.288
+          ],
+          [
+            "2022-10-21",
+            -0.2557
+          ],
+          [
+            "2022-10-28",
+            -0.2455
+          ],
+          [
+            "2022-11-04",
+            -0.2949
+          ],
+          [
+            "2022-11-11",
+            -0.2408
+          ],
+          [
+            "2022-11-18",
+            -0.2487
+          ],
+          [
+            "2022-11-25",
+            -0.2436
+          ],
+          [
+            "2022-12-02",
+            -0.2235
+          ],
+          [
+            "2022-12-09",
+            -0.2424
+          ],
+          [
+            "2022-12-16",
+            -0.2603
+          ],
+          [
+            "2022-12-23",
+            -0.2816
+          ],
+          [
+            "2022-12-30",
+            -0.2876
+          ],
+          [
+            "2023-01-06",
+            -0.2839
+          ],
+          [
+            "2023-01-13",
+            -0.2559
+          ],
+          [
+            "2023-01-20",
+            -0.2506
+          ],
+          [
+            "2023-01-27",
+            -0.2208
+          ],
+          [
+            "2023-02-03",
+            -0.1901
+          ],
+          [
+            "2023-02-10",
+            -0.2089
+          ],
+          [
+            "2023-02-17",
+            -0.1976
+          ],
+          [
+            "2023-02-24",
+            -0.2147
+          ],
+          [
+            "2023-03-03",
+            -0.1943
+          ],
+          [
+            "2023-03-10",
+            -0.213
+          ],
+          [
+            "2023-03-17",
+            -0.1715
+          ],
+          [
+            "2023-03-24",
+            -0.1535
+          ],
+          [
+            "2023-03-31",
+            -0.1407
+          ],
+          [
+            "2023-04-07",
+            -0.1519
+          ],
+          [
+            "2023-04-14",
+            -0.1578
+          ],
+          [
+            "2023-04-21",
+            -0.1519
+          ],
+          [
+            "2023-04-28",
+            -0.1335
+          ],
+          [
+            "2023-05-05",
+            -0.1422
+          ],
+          [
+            "2023-05-12",
+            -0.1297
+          ],
+          [
+            "2023-05-19",
+            -0.101
+          ],
+          [
+            "2023-05-26",
+            -0.061
+          ],
+          [
+            "2023-06-02",
+            -0.0573
+          ],
+          [
+            "2023-06-09",
+            -0.0643
+          ],
+          [
+            "2023-06-16",
+            -0.0393
+          ],
+          [
+            "2023-06-23",
+            -0.052
+          ],
+          [
+            "2023-06-30",
+            -0.031
+          ],
+          [
+            "2023-07-07",
+            -0.0355
+          ],
+          [
+            "2023-07-14",
+            -0.0099
+          ],
+          [
+            "2023-07-21",
+            -0.0168
+          ],
+          [
+            "2023-07-28",
+            0.0
+          ],
+          [
+            "2023-08-04",
+            -0.0208
+          ],
+          [
+            "2023-08-11",
+            -0.0297
+          ],
+          [
+            "2023-08-18",
+            -0.0435
+          ],
+          [
+            "2023-08-25",
+            -0.0239
+          ],
+          [
+            "2023-09-01",
+            0.0
+          ],
+          [
+            "2023-09-08",
+            -0.0095
+          ],
+          [
+            "2023-09-15",
+            -0.0219
+          ],
+          [
+            "2023-09-22",
+            -0.0589
+          ],
+          [
+            "2023-09-29",
+            -0.054
+          ],
+          [
+            "2023-10-06",
+            -0.0254
+          ],
+          [
+            "2023-10-13",
+            -0.0254
+          ],
+          [
+            "2023-10-20",
+            -0.0516
+          ],
+          [
+            "2023-10-27",
+            -0.0655
+          ],
+          [
+            "2023-11-03",
+            -0.0174
+          ],
+          [
+            "2023-11-10",
+            0.0
+          ],
+          [
+            "2023-11-17",
+            0.0
+          ],
+          [
+            "2023-11-24",
+            0.0
+          ],
+          [
+            "2023-12-01",
+            -0.0074
+          ],
+          [
+            "2023-12-08",
+            0.0
+          ],
+          [
+            "2023-12-15",
+            0.0
+          ],
+          [
+            "2023-12-22",
+            0.0
+          ],
+          [
+            "2023-12-29",
+            0.0
+          ],
+          [
+            "2024-01-05",
+            -0.0223
+          ],
+          [
+            "2024-01-12",
+            0.0
+          ],
+          [
+            "2024-01-19",
+            0.0
+          ],
+          [
+            "2024-01-26",
+            0.0
+          ],
+          [
+            "2024-02-02",
+            0.0
+          ],
+          [
+            "2024-02-09",
+            0.0
+          ],
+          [
+            "2024-02-16",
+            -0.0129
+          ],
+          [
+            "2024-02-23",
+            0.0
+          ],
+          [
+            "2024-03-01",
+            0.0
+          ],
+          [
+            "2024-03-08",
+            -0.0215
+          ],
+          [
+            "2024-03-15",
+            -0.0285
+          ],
+          [
+            "2024-03-22",
+            0.0
+          ],
+          [
+            "2024-03-29",
+            -0.0085
+          ],
+          [
+            "2024-04-05",
+            -0.0129
+          ],
+          [
+            "2024-04-12",
+            -0.0057
+          ],
+          [
+            "2024-04-19",
+            -0.0605
+          ],
+          [
+            "2024-04-26",
+            -0.0291
+          ],
+          [
+            "2024-05-03",
+            -0.0187
+          ],
+          [
+            "2024-05-10",
+            -0.0044
+          ],
+          [
+            "2024-05-17",
+            0.0
+          ],
+          [
+            "2024-05-24",
+            0.0
+          ],
+          [
+            "2024-05-31",
+            -0.0184
+          ],
+          [
+            "2024-06-07",
+            0.0
+          ],
+          [
+            "2024-06-14",
+            0.0
+          ],
+          [
+            "2024-06-21",
+            -0.0015
+          ],
+          [
+            "2024-06-28",
+            -0.0032
+          ],
+          [
+            "2024-07-05",
+            0.0
+          ],
+          [
+            "2024-07-12",
+            -0.0031
+          ],
+          [
+            "2024-07-19",
+            -0.0356
+          ],
+          [
+            "2024-07-26",
+            -0.0534
+          ],
+          [
+            "2024-08-02",
+            -0.0806
+          ],
+          [
+            "2024-08-09",
+            -0.0856
+          ],
+          [
+            "2024-08-16",
+            -0.0374
+          ],
+          [
+            "2024-08-23",
+            -0.04
+          ],
+          [
+            "2024-08-30",
+            -0.0501
+          ],
+          [
+            "2024-09-06",
+            -0.1015
+          ],
+          [
+            "2024-09-13",
+            -0.0453
+          ],
+          [
+            "2024-09-20",
+            -0.0325
+          ],
+          [
+            "2024-09-27",
+            -0.0272
+          ],
+          [
+            "2024-10-04",
+            -0.0205
+          ],
+          [
+            "2024-10-11",
+            0.0
+          ],
+          [
+            "2024-10-18",
+            0.0
+          ],
+          [
+            "2024-10-25",
+            0.0
+          ],
+          [
+            "2024-11-01",
+            -0.0117
+          ],
+          [
+            "2024-11-08",
+            0.0
+          ],
+          [
+            "2024-11-15",
+            -0.0227
+          ],
+          [
+            "2024-11-22",
+            -0.0116
+          ],
+          [
+            "2024-11-29",
+            -0.0016
+          ],
+          [
+            "2024-12-06",
+            0.0
+          ],
+          [
+            "2024-12-13",
+            0.0
+          ],
+          [
+            "2024-12-20",
+            -0.0132
+          ],
+          [
+            "2024-12-27",
+            -0.0006
+          ],
+          [
+            "2025-01-03",
+            -0.0064
+          ],
+          [
+            "2025-01-10",
+            -0.0296
+          ],
+          [
+            "2025-01-17",
+            -0.0009
+          ],
+          [
+            "2025-01-24",
+            0.0
+          ],
+          [
+            "2025-01-31",
+            -0.0037
+          ],
+          [
+            "2025-02-07",
+            -0.0153
+          ],
+          [
+            "2025-02-14",
+            0.0
+          ],
+          [
+            "2025-02-21",
+            -0.0196
+          ],
+          [
+            "2025-02-28",
+            -0.0376
+          ],
+          [
+            "2025-03-07",
+            -0.0729
+          ],
+          [
+            "2025-03-14",
+            -0.0947
+          ],
+          [
+            "2025-03-21",
+            -0.095
+          ],
+          [
+            "2025-03-28",
+            -0.1186
+          ],
+          [
+            "2025-04-04",
+            -0.2106
+          ],
+          [
+            "2025-04-11",
+            -0.1708
+          ],
+          [
+            "2025-04-18",
+            -0.1916
+          ],
+          [
+            "2025-04-25",
+            -0.1394
+          ],
+          [
+            "2025-05-02",
+            -0.1138
+          ],
+          [
+            "2025-05-09",
+            -0.1072
+          ],
+          [
+            "2025-05-16",
+            -0.0423
+          ],
+          [
+            "2025-05-23",
+            -0.0797
+          ],
+          [
+            "2025-05-30",
+            -0.0618
+          ],
+          [
+            "2025-06-06",
+            -0.047
+          ],
+          [
+            "2025-06-13",
+            -0.0587
+          ],
+          [
+            "2025-06-20",
+            -0.0499
+          ],
+          [
+            "2025-06-27",
+            -0.0142
+          ],
+          [
+            "2025-07-04",
+            -0.007
+          ],
+          [
+            "2025-07-11",
+            -0.0026
+          ],
+          [
+            "2025-07-18",
+            0.0
+          ],
+          [
+            "2025-07-25",
+            0.0
+          ],
+          [
+            "2025-08-01",
+            -0.0154
+          ],
+          [
+            "2025-08-08",
+            0.0
+          ],
+          [
+            "2025-08-15",
+            0.0
+          ],
+          [
+            "2025-08-22",
+            -0.0059
+          ],
+          [
+            "2025-08-29",
+            -0.0166
+          ],
+          [
+            "2025-09-05",
+            -0.0006
+          ],
+          [
+            "2025-09-12",
+            0.0
+          ],
+          [
+            "2025-09-19",
+            0.0
+          ],
+          [
+            "2025-09-26",
+            0.0
+          ],
+          [
+            "2025-10-03",
+            0.0
+          ],
+          [
+            "2025-10-10",
+            -0.0194
+          ],
+          [
+            "2025-10-17",
+            0.0
+          ],
+          [
+            "2025-10-24",
+            0.0
+          ],
+          [
+            "2025-10-31",
+            0.0
+          ],
+          [
+            "2025-11-07",
+            -0.0276
+          ],
+          [
+            "2025-11-14",
+            -0.0316
+          ],
+          [
+            "2025-11-21",
+            -0.0565
+          ],
+          [
+            "2025-11-28",
+            -0.0183
+          ],
+          [
+            "2025-12-05",
+            -0.0169
+          ],
+          [
+            "2025-12-12",
+            -0.0419
+          ],
+          [
+            "2025-12-19",
+            -0.0357
+          ],
+          [
+            "2025-12-26",
+            -0.0313
+          ],
+          [
+            "2026-01-02",
+            -0.0437
+          ],
+          [
+            "2026-01-09",
+            -0.0112
+          ],
+          [
+            "2026-01-16",
+            -0.0185
+          ],
+          [
+            "2026-01-23",
+            -0.029
+          ],
+          [
+            "2026-01-30",
+            -0.0424
+          ],
+          [
+            "2026-02-06",
+            -0.0552
+          ],
+          [
+            "2026-02-13",
+            -0.0695
+          ],
+          [
+            "2026-02-20",
+            -0.0537
+          ],
+          [
+            "2026-02-27",
+            -0.0593
+          ],
+          [
+            "2026-03-06",
+            -0.073
+          ],
+          [
+            "2026-03-13",
+            -0.0753
+          ],
+          [
+            "2026-03-20",
+            -0.0934
+          ],
+          [
+            "2026-03-27",
+            -0.1126
+          ],
+          [
+            "2026-04-03",
+            -0.0744
+          ],
+          [
+            "2026-04-10",
+            -0.0395
+          ],
+          [
+            "2026-04-17",
+            0.0
+          ],
+          [
+            "2026-04-24",
+            0.0
+          ],
+          [
+            "2026-05-01",
+            0.0
+          ],
+          [
+            "2026-05-08",
+            0.0
+          ],
+          [
+            "2026-05-15",
+            0.0
+          ],
+          [
+            "2026-05-22",
+            0.0
+          ],
+          [
+            "2026-05-29",
+            0.0
+          ],
+          [
+            "2026-06-05",
+            -0.0363
+          ],
+          [
+            "2026-06-12",
+            -0.0103
+          ],
+          [
+            "2026-06-19",
+            0.0
+          ],
+          [
+            "2026-06-26",
+            -0.0413
+          ],
+          [
+            "2026-07-03",
+            -0.0334
+          ],
+          [
+            "2026-07-10",
+            -0.0183
+          ],
+          [
+            "2026-07-17",
+            -0.0679
+          ],
+          [
+            "2026-07-24",
+            -0.0776
+          ],
+          [
+            "2026-07-31",
+            -0.0768
+          ],
+          [
+            "2026-08-07",
+            -0.0357
+          ],
+          [
+            "2026-08-14",
+            -0.0297
+          ],
+          [
+            "2026-08-21",
+            -0.061
+          ],
+          [
+            "2026-08-28",
+            -0.0483
+          ],
+          [
+            "2026-09-04",
+            -0.0482
+          ],
+          [
+            "2026-09-11",
+            -0.0518
+          ],
+          [
+            "2026-09-18",
+            -0.0337
+          ],
+          [
+            "2026-09-25",
+            0.0
+          ],
+          [
+            "2026-10-02",
+            0.0
+          ],
+          [
+            "2026-10-09",
+            0.0
+          ],
+          [
+            "2026-10-16",
+            -0.0629
+          ],
+          [
+            "2026-10-23",
+            -0.0807
+          ],
+          [
+            "2026-10-30",
+            -0.1009
+          ],
+          [
+            "2026-11-06",
+            -0.1363
+          ],
+          [
+            "2026-11-12",
+            -0.085
+          ]
+        ],
+        "Actuel": [
+          [
+            "2021-11-12",
+            0.0
+          ],
+          [
+            "2021-11-19",
+            0.0
+          ],
+          [
+            "2021-11-26",
+            -0.007
+          ],
+          [
+            "2021-12-03",
+            -0.0095
+          ],
+          [
+            "2021-12-10",
+            0.0
+          ],
+          [
+            "2021-12-17",
+            0.0
+          ],
+          [
+            "2021-12-24",
+            0.0
+          ],
+          [
+            "2021-12-31",
+            0.0
+          ],
+          [
+            "2022-01-07",
+            -0.0148
+          ],
+          [
+            "2022-01-14",
+            -0.0145
+          ],
+          [
+            "2022-01-21",
+            -0.0369
+          ],
+          [
+            "2022-01-28",
+            -0.0313
+          ],
+          [
+            "2022-02-04",
+            -0.0231
+          ],
+          [
+            "2022-02-11",
+            -0.026
+          ],
+          [
+            "2022-02-18",
+            -0.0368
+          ],
+          [
+            "2022-02-25",
+            -0.0342
+          ],
+          [
+            "2022-03-04",
+            -0.0257
+          ],
+          [
+            "2022-03-11",
+            -0.0421
+          ],
+          [
+            "2022-03-18",
+            -0.0296
+          ],
+          [
+            "2022-03-25",
+            -0.0329
+          ],
+          [
+            "2022-04-01",
+            -0.0292
+          ],
+          [
+            "2022-04-08",
+            -0.0355
+          ],
+          [
+            "2022-04-15",
+            -0.0436
+          ],
+          [
+            "2022-04-22",
+            -0.0598
+          ],
+          [
+            "2022-04-29",
+            -0.0712
+          ],
+          [
+            "2022-05-06",
+            -0.0766
+          ],
+          [
+            "2022-05-13",
+            -0.0826
+          ],
+          [
+            "2022-05-20",
+            -0.0871
+          ],
+          [
+            "2022-05-27",
+            -0.0666
+          ],
+          [
+            "2022-06-03",
+            -0.0771
+          ],
+          [
+            "2022-06-10",
+            -0.0986
+          ],
+          [
+            "2022-06-17",
+            -0.1233
+          ],
+          [
+            "2022-06-24",
+            -0.1087
+          ],
+          [
+            "2022-07-01",
+            -0.1133
+          ],
+          [
+            "2022-07-08",
+            -0.1069
+          ],
+          [
+            "2022-07-15",
+            -0.1129
+          ],
+          [
+            "2022-07-22",
+            -0.0961
+          ],
+          [
+            "2022-07-29",
+            -0.0753
+          ],
+          [
+            "2022-08-05",
+            -0.0763
+          ],
+          [
+            "2022-08-12",
+            -0.064
+          ],
+          [
+            "2022-08-19",
+            -0.0681
+          ],
+          [
+            "2022-08-26",
+            -0.0804
+          ],
+          [
+            "2022-09-02",
+            -0.0934
+          ],
+          [
+            "2022-09-09",
+            -0.0828
+          ],
+          [
+            "2022-09-16",
+            -0.0926
+          ],
+          [
+            "2022-09-23",
+            -0.1075
+          ],
+          [
+            "2022-09-30",
+            -0.1152
+          ],
+          [
+            "2022-10-07",
+            -0.1154
+          ],
+          [
+            "2022-10-14",
+            -0.1226
+          ],
+          [
+            "2022-10-21",
+            -0.1125
+          ],
+          [
+            "2022-10-28",
+            -0.0874
+          ],
+          [
+            "2022-11-04",
+            -0.1008
+          ],
+          [
+            "2022-11-11",
+            -0.0747
+          ],
+          [
+            "2022-11-18",
+            -0.0752
+          ],
+          [
+            "2022-11-25",
+            -0.059
+          ],
+          [
+            "2022-12-02",
+            -0.0502
+          ],
+          [
+            "2022-12-09",
+            -0.0623
+          ],
+          [
+            "2022-12-16",
+            -0.0729
+          ],
+          [
+            "2022-12-23",
+            -0.0803
+          ],
+          [
+            "2022-12-30",
+            -0.0866
+          ],
+          [
+            "2023-01-06",
+            -0.0732
+          ],
+          [
+            "2023-01-13",
+            -0.0562
+          ],
+          [
+            "2023-01-20",
+            -0.0542
+          ],
+          [
+            "2023-01-27",
+            -0.0478
+          ],
+          [
+            "2023-02-03",
+            -0.0431
+          ],
+          [
+            "2023-02-10",
+            -0.0533
+          ],
+          [
+            "2023-02-17",
+            -0.0553
+          ],
+          [
+            "2023-02-24",
+            -0.0649
+          ],
+          [
+            "2023-03-03",
+            -0.0532
+          ],
+          [
+            "2023-03-10",
+            -0.0626
+          ],
+          [
+            "2023-03-17",
+            -0.0634
+          ],
+          [
+            "2023-03-24",
+            -0.058
+          ],
+          [
+            "2023-03-31",
+            -0.0489
+          ],
+          [
+            "2023-04-07",
+            -0.0441
+          ],
+          [
+            "2023-04-14",
+            -0.044
+          ],
+          [
+            "2023-04-21",
+            -0.0361
+          ],
+          [
+            "2023-04-28",
+            -0.0314
+          ],
+          [
+            "2023-05-05",
+            -0.0381
+          ],
+          [
+            "2023-05-12",
+            -0.0369
+          ],
+          [
+            "2023-05-19",
+            -0.0408
+          ],
+          [
+            "2023-05-26",
+            -0.0492
+          ],
+          [
+            "2023-06-02",
+            -0.0435
+          ],
+          [
+            "2023-06-09",
+            -0.0486
+          ],
+          [
+            "2023-06-16",
+            -0.0426
+          ],
+          [
+            "2023-06-23",
+            -0.0533
+          ],
+          [
+            "2023-06-30",
+            -0.0339
+          ],
+          [
+            "2023-07-07",
+            -0.0473
+          ],
+          [
+            "2023-07-14",
+            -0.0342
+          ],
+          [
+            "2023-07-21",
+            -0.0286
+          ],
+          [
+            "2023-07-28",
+            -0.0287
+          ],
+          [
+            "2023-08-04",
+            -0.037
+          ],
+          [
+            "2023-08-11",
+            -0.035
+          ],
+          [
+            "2023-08-18",
+            -0.0476
+          ],
+          [
+            "2023-08-25",
+            -0.044
+          ],
+          [
+            "2023-09-01",
+            -0.0237
+          ],
+          [
+            "2023-09-08",
+            -0.0348
+          ],
+          [
+            "2023-09-15",
+            -0.0301
+          ],
+          [
+            "2023-09-22",
+            -0.0524
+          ],
+          [
+            "2023-09-29",
+            -0.0568
+          ],
+          [
+            "2023-10-06",
+            -0.0605
+          ],
+          [
+            "2023-10-13",
+            -0.0517
+          ],
+          [
+            "2023-10-20",
+            -0.0639
+          ],
+          [
+            "2023-10-27",
+            -0.0676
+          ],
+          [
+            "2023-11-03",
+            -0.0357
+          ],
+          [
+            "2023-11-10",
+            -0.0351
+          ],
+          [
+            "2023-11-17",
+            -0.0187
+          ],
+          [
+            "2023-11-24",
+            -0.0189
+          ],
+          [
+            "2023-12-01",
+            -0.0057
+          ],
+          [
+            "2023-12-08",
+            -0.0023
+          ],
+          [
+            "2023-12-15",
+            0.0
+          ],
+          [
+            "2023-12-22",
+            0.0
+          ],
+          [
+            "2023-12-29",
+            0.0
+          ],
+          [
+            "2024-01-05",
+            -0.006
+          ],
+          [
+            "2024-01-12",
+            -0.0007
+          ],
+          [
+            "2024-01-19",
+            -0.0045
+          ],
+          [
+            "2024-01-26",
+            -0.0005
+          ],
+          [
+            "2024-02-02",
+            0.0
+          ],
+          [
+            "2024-02-09",
+            -0.0013
+          ],
+          [
+            "2024-02-16",
+            0.0
+          ],
+          [
+            "2024-02-23",
+            0.0
+          ],
+          [
+            "2024-03-01",
+            0.0
+          ],
+          [
+            "2024-03-08",
+            0.0
+          ],
+          [
+            "2024-03-15",
+            -0.0027
+          ],
+          [
+            "2024-03-22",
+            0.0
+          ],
+          [
+            "2024-03-29",
+            0.0
+          ],
+          [
+            "2024-04-05",
+            -0.0043
+          ],
+          [
+            "2024-04-12",
+            -0.0108
+          ],
+          [
+            "2024-04-19",
+            -0.0201
+          ],
+          [
+            "2024-04-26",
+            -0.0155
+          ],
+          [
+            "2024-05-03",
+            -0.0096
+          ],
+          [
+            "2024-05-10",
+            -0.0012
+          ],
+          [
+            "2024-05-17",
+            0.0
+          ],
+          [
+            "2024-05-24",
+            -0.0009
+          ],
+          [
+            "2024-05-31",
+            -0.0022
+          ],
+          [
+            "2024-06-07",
+            0.0
+          ],
+          [
+            "2024-06-14",
+            0.0
+          ],
+          [
+            "2024-06-21",
+            -0.0011
+          ],
+          [
+            "2024-06-28",
+            0.0
+          ],
+          [
+            "2024-07-05",
+            0.0
+          ],
+          [
+            "2024-07-12",
+            0.0
+          ],
+          [
+            "2024-07-19",
+            -0.001
+          ],
+          [
+            "2024-07-26",
+            0.0
+          ],
+          [
+            "2024-08-02",
+            -0.0014
+          ],
+          [
+            "2024-08-09",
+            -0.0039
+          ],
+          [
+            "2024-08-16",
+            0.0
+          ],
+          [
+            "2024-08-23",
+            0.0
+          ],
+          [
+            "2024-08-30",
+            -0.002
+          ],
+          [
+            "2024-09-06",
+            -0.0097
+          ],
+          [
+            "2024-09-13",
+            0.0
+          ],
+          [
+            "2024-09-20",
+            0.0
+          ],
+          [
+            "2024-09-27",
+            0.0
+          ],
+          [
+            "2024-10-04",
+            -0.0025
+          ],
+          [
+            "2024-10-11",
+            0.0
+          ],
+          [
+            "2024-10-18",
+            0.0
+          ],
+          [
+            "2024-10-25",
+            -0.0078
+          ],
+          [
+            "2024-11-01",
+            -0.0118
+          ],
+          [
+            "2024-11-08",
+            0.0
+          ],
+          [
+            "2024-11-15",
+            -0.0023
+          ],
+          [
+            "2024-11-22",
+            0.0
+          ],
+          [
+            "2024-11-29",
+            0.0
+          ],
+          [
+            "2024-12-06",
+            0.0
+          ],
+          [
+            "2024-12-13",
+            -0.0082
+          ],
+          [
+            "2024-12-20",
+            -0.0203
+          ],
+          [
+            "2024-12-27",
+            -0.0165
+          ],
+          [
+            "2025-01-03",
+            -0.012
+          ],
+          [
+            "2025-01-10",
+            -0.0251
+          ],
+          [
+            "2025-01-17",
+            -0.0105
+          ],
+          [
+            "2025-01-24",
+            -0.0027
+          ],
+          [
+            "2025-01-31",
+            0.0
+          ],
+          [
+            "2025-02-07",
+            -0.0049
+          ],
+          [
+            "2025-02-14",
+            -0.0036
+          ],
+          [
+            "2025-02-21",
+            -0.0102
+          ],
+          [
+            "2025-02-28",
+            -0.0
+          ],
+          [
+            "2025-03-07",
+            -0.0183
+          ],
+          [
+            "2025-03-14",
+            -0.0257
+          ],
+          [
+            "2025-03-21",
+            -0.0184
+          ],
+          [
+            "2025-03-28",
+            -0.0245
+          ],
+          [
+            "2025-04-04",
+            -0.058
+          ],
+          [
+            "2025-04-11",
+            -0.0571
+          ],
+          [
+            "2025-04-18",
+            -0.0491
+          ],
+          [
+            "2025-04-25",
+            -0.0345
+          ],
+          [
+            "2025-05-02",
+            -0.0242
+          ],
+          [
+            "2025-05-09",
+            -0.019
+          ],
+          [
+            "2025-05-16",
+            0.0
+          ],
+          [
+            "2025-05-23",
+            -0.0142
+          ],
+          [
+            "2025-05-30",
+            -0.0023
+          ],
+          [
+            "2025-06-06",
+            -0.0008
+          ],
+          [
+            "2025-06-13",
+            -0.0036
+          ],
+          [
+            "2025-06-20",
+            -0.0002
+          ],
+          [
+            "2025-06-27",
+            0.0
+          ],
+          [
+            "2025-07-04",
+            0.0
+          ],
+          [
+            "2025-07-11",
+            -0.0027
+          ],
+          [
+            "2025-07-18",
+            0.0
+          ],
+          [
+            "2025-07-25",
+            0.0
+          ],
+          [
+            "2025-08-01",
+            -0.0056
+          ],
+          [
+            "2025-08-08",
+            0.0
+          ],
+          [
+            "2025-08-15",
+            0.0
+          ],
+          [
+            "2025-08-22",
+            0.0
+          ],
+          [
+            "2025-08-29",
+            0.0
+          ],
+          [
+            "2025-09-05",
+            0.0
+          ],
+          [
+            "2025-09-12",
+            0.0
+          ],
+          [
+            "2025-09-19",
+            0.0
+          ],
+          [
+            "2025-09-26",
+            0.0
+          ],
+          [
+            "2025-10-03",
+            0.0
+          ],
+          [
+            "2025-10-10",
+            -0.0106
+          ],
+          [
+            "2025-10-17",
+            -0.0019
+          ],
+          [
+            "2025-10-24",
+            0.0
+          ],
+          [
+            "2025-10-31",
+            0.0
+          ],
+          [
+            "2025-11-07",
+            -0.0064
+          ],
+          [
+            "2025-11-14",
+            -0.0035
+          ],
+          [
+            "2025-11-21",
+            -0.0073
+          ],
+          [
+            "2025-11-28",
+            0.0
+          ],
+          [
+            "2025-12-05",
+            -0.008
+          ],
+          [
+            "2025-12-12",
+            -0.0081
+          ],
+          [
+            "2025-12-19",
+            -0.0052
+          ],
+          [
+            "2025-12-26",
+            0.0
+          ],
+          [
+            "2026-01-02",
+            -0.0041
+          ],
+          [
+            "2026-01-09",
+            0.0
+          ],
+          [
+            "2026-01-16",
+            0.0
+          ],
+          [
+            "2026-01-23",
+            -0.005
+          ],
+          [
+            "2026-01-30",
+            -0.0155
+          ],
+          [
+            "2026-02-06",
+            -0.0096
+          ],
+          [
+            "2026-02-13",
+            -0.0031
+          ],
+          [
+            "2026-02-20",
+            0.0
+          ],
+          [
+            "2026-02-27",
+            0.0
+          ],
+          [
+            "2026-03-06",
+            -0.0195
+          ],
+          [
+            "2026-03-13",
+            -0.0271
+          ],
+          [
+            "2026-03-20",
+            -0.0412
+          ],
+          [
+            "2026-03-27",
+            -0.0381
+          ],
+          [
+            "2026-04-03",
+            -0.0183
+          ],
+          [
+            "2026-04-10",
+            -0.0069
+          ],
+          [
+            "2026-04-17",
+            0.0
+          ],
+          [
+            "2026-04-24",
+            -0.0019
+          ],
+          [
+            "2026-05-01",
+            -0.0024
+          ],
+          [
+            "2026-05-08",
+            0.0
+          ],
+          [
+            "2026-05-15",
+            -0.0052
+          ],
+          [
+            "2026-05-22",
+            0.0
+          ],
+          [
+            "2026-05-29",
+            0.0
+          ],
+          [
+            "2026-06-05",
+            -0.0045
+          ],
+          [
+            "2026-06-12",
+            0.0
+          ],
+          [
+            "2026-06-19",
+            0.0
+          ],
+          [
+            "2026-06-26",
+            -0.001
+          ],
+          [
+            "2026-07-03",
+            0.0
+          ],
+          [
+            "2026-07-10",
+            0.0
+          ],
+          [
+            "2026-07-17",
+            -0.0054
+          ],
+          [
+            "2026-07-24",
+            -0.0066
+          ],
+          [
+            "2026-07-31",
+            -0.0064
+          ],
+          [
+            "2026-08-07",
+            0.0
+          ],
+          [
+            "2026-08-14",
+            0.0
+          ],
+          [
+            "2026-08-21",
+            -0.0087
+          ],
+          [
+            "2026-08-28",
+            -0.0047
+          ],
+          [
+            "2026-09-04",
+            -0.0058
+          ],
+          [
+            "2026-09-11",
+            -0.0173
+          ],
+          [
+            "2026-09-18",
+            -0.0126
+          ],
+          [
+            "2026-09-25",
+            -0.0083
+          ],
+          [
+            "2026-10-02",
+            -0.0098
+          ],
+          [
+            "2026-10-09",
+            -0.0031
+          ],
+          [
+            "2026-10-16",
+            -0.0012
+          ],
+          [
+            "2026-10-23",
+            -0.0058
+          ],
+          [
+            "2026-10-30",
+            -0.007
+          ],
+          [
+            "2026-11-06",
+            -0.0057
+          ],
+          [
+            "2026-11-12",
+            0.0
+          ]
+        ]
+      },
+      "sources": [
+        "R-0003",
+        "R-0013",
+        "R-0024"
+      ],
+      "note": "Série hebdomadaire : pour un actif seul, la pire baisse citée dans le texte est mesurée sur la série quotidienne et peut être un peu plus profonde."
+    }
+  ],
+  "fiche_profil": [
+    [
+      "Profil de risque",
+      "P-0003"
+    ],
+    [
+      "Horizon",
+      "P-0004"
+    ],
+    [
+      "Objectif",
+      "P-0005"
+    ],
+    [
+      "Expérience",
+      "P-0006"
+    ],
+    [
+      "Origine de la demande",
+      "P-0017"
+    ]
+  ],
+  "chiffres_cles": [
+    {
+      "libelle": "Part maximale de Tesla au seuil de perte retenu",
+      "valeur": "R-0041",
+      "detail": "Seuil de {{R-0040}}, portefeuille {{R-0021}}"
+    },
+    {
+      "libelle": "Perte maximale du portefeuille avec la part déclarée de Tesla",
+      "valeur": "R-0070",
+      "detail": "Part de Tesla : {{R-0073}}"
+    },
+    {
+      "libelle": "Part du risque portée par Tesla à la part déclarée",
+      "valeur": "R-0087",
+      "detail": "Poids de Tesla : {{R-0086}}"
+    },
+    {
+      "libelle": "Part maximale de QQQ au même seuil",
+      "valeur": "R-0043",
+      "detail": "Seuil de {{R-0042}}"
+    }
+  ],
+  "tableaux": [
+    {
+      "titre": "Options comparées sur le portefeuille de démonstration",
+      "colonnes": [
+        "Poids de l'actif ajouté",
+        "Perte maximale",
+        "Rendement 2022",
+        "Volatilité",
+        "Part du risque de l'actif ajouté"
+      ],
+      "lignes": [
+        {
+          "nom": "Portefeuille actuel",
+          "cellules": [
+            null,
+            "R-0024",
+            "R-0025",
+            "R-0023",
+            null
+          ]
+        },
+        {
+          "nom": "Tesla à la part étudiée basse",
+          "cellules": [
+            "R-0054",
+            "R-0047",
+            "R-0048",
+            "R-0046",
+            "R-0055"
+          ]
+        },
+        {
+          "nom": "Tesla à la part déclarée",
+          "cellules": [
+            "R-0073",
+            "R-0070",
+            "R-0071",
+            "R-0069",
+            "R-0074"
+          ]
+        },
+        {
+          "nom": "Tesla à la part étudiée haute",
+          "cellules": [
+            "R-0096",
+            "R-0093",
+            "R-0094",
+            "R-0092",
+            "R-0097"
+          ]
+        },
+        {
+          "nom": "QQQ à la part déclarée",
+          "cellules": [
+            "R-0123",
+            "R-0116",
+            "R-0117",
+            "R-0115",
+            "R-0124"
+          ]
+        }
+      ]
+    }
+  ],
+  "aws": {
+    "service": "Amazon Bedrock Runtime (Converse)",
+    "region": "us-east-1",
+    "modele": "global.anthropic.claude-sonnet-5-5",
+    "appels": [
+      {
+        "requestId": "84b85880-4d2b-4b03-99a8-d72cf8fa0977",
+        "stopReason": "tool_use",
+        "inputTokens": 4573,
+        "outputTokens": 100,
+        "latenceMs": 924
+      },
+      {
+        "requestId": "638975f5-de63-479f-87f9-53f5839f78e7",
+        "stopReason": "tool_use",
+        "inputTokens": 7677,
+        "outputTokens": 1067,
+        "latenceMs": 5040
+      },
+      {
+        "requestId": "12fbfa01-f753-4937-8abf-93dad0cbe24b",
+        "stopReason": "tool_use",
+        "inputTokens": 10528,
+        "outputTokens": 729,
+        "latenceMs": 4110
+      },
+      {
+        "requestId": "affe37a0-7f13-4ac8-a2de-559cdab5b6ee",
+        "stopReason": "tool_use",
+        "inputTokens": 13848,
+        "outputTokens": 169,
+        "latenceMs": 1279
+      },
+      {
+        "requestId": "276ee661-dcde-4145-9c85-d429790f7bd6",
+        "stopReason": "tool_use",
+        "inputTokens": 14805,
+        "outputTokens": 5721,
+        "latenceMs": 35372
+      },
+      {
+        "requestId": "2811f1aa-6094-4a1e-a75e-d0e9b27a2d23",
+        "stopReason": "tool_use",
+        "inputTokens": 21413,
+        "outputTokens": 4345,
+        "latenceMs": 19483
+      }
+    ],
+    "corrections_demandees": 1
+  },
+  "verification": {
+    "affirmations": 22,
+    "valeurs_reliees": 97,
+    "affirmations_en_echec": [],
+    "problemes": {},
+    "ok": true,
+    "elements_verifies": 37
+  }
+}

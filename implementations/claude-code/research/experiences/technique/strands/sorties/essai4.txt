@@ -1,0 +1,18 @@
+A. outils vus par chaque rôle
+   agent1 : ['chercher_fiche'] | agent2 : ['calculer_volatilite']
+   spécifications envoyées au modèle pour agent1 : ['chercher_fiche']
+
+B. agent1 monté par erreur avec les deux outils ; on lui demande un calcul
+   raison d'arrêt : end_turn | réponse : Je n'ai pas pu obtenir la volatilité de TSLA : l'outil `calculer_volatilite` a renvoyé une erreur indiquant qu'il est interdit au rôle agent1_recherche.
+   fonctions réellement exécutées : []
+   résultat d'outil vu par le modèle : error | [{'text': 'Outil « calculer_volatilite » interdit au rôle agent1_recherche.'}]
+   journal des refus : {"role": "agent1_recherche", "outil": "calculer_volatilite", "entree": {"symbole": "TSLA"}, "decision": "refus"}
+
+C. appel direct, sans modèle : fautif.tool.calculer_volatilite(symbole='TSLA')
+   résultat : {'toolUseId': 'tooluse_calculer_volatilite_872100238', 'status': 'error', 'content': [{'text': 'Outil « calculer_volatilite » interdit au rôle agent1_recherche.'}]}
+   fonctions réellement exécutées : []
+
+[essai4] appels Bedrock de cet essai (toutes relances) : 2 ; total tous essais : 11/20
+    Converse 200 49fd8596-757e-4320-83b8-e7a4b3522983 {'inputTokens': 563, 'outputTokens': 57, 'totalTokens': 620, 'cacheReadInputTokens': 0, 'cacheWriteInputTokens': 0} tool_use 1.36 s
+    Converse 200 6493c7b9-82c9-49c3-a092-dc02649563ad {'inputTokens': 659, 'outputTokens': 185, 'totalTokens': 844, 'cacheReadInputTokens': 0, 'cacheWriteInputTokens': 0} end_turn 1.59 s
+[essai4] hôtes résolus par ce processus : ['bedrock-runtime.us-east-1.amazonaws.com']

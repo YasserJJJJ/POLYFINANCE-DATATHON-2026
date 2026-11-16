@@ -1,0 +1,4502 @@
+{
+  "scenario": "amira-libre-bitcoin-or",
+  "titre": "Risque comparé : Bitcoin, or et actions américaines",
+  "persona": "amira",
+  "demande": "Je n'ai pas encore de portefeuille. Explique-moi simplement le risque du Bitcoin comparé à celui de l'or et d'un indice d'actions américaines.",
+  "mode": "agent Bedrock (global.anthropic.claude-sonnet-5-5)",
+  "cree_le": "2026-11-15T12:00:25+00:00",
+  "resume": {
+    "gabarit": "Sur l'échantillon, le Bitcoin a une volatilité de {{R-0002}} et une pire baisse de {{R-0003}}. L'or affiche {{R-0012}} et {{R-0013}}, l'indice d'actions américaines {{R-0022}} et {{R-0023}}. Aucun portefeuille n'est construit : c'est une explication, pas une allocation.",
+    "texte": "Sur l'échantillon, le Bitcoin a une volatilité de 50,7 % et une pire baisse de −74,2 %. L'or affiche 16,2 % et −26,0 %, l'indice d'actions américaines 14,9 % et −22,2 %. Aucun portefeuille n'est construit : c'est une explication, pas une allocation."
+  },
+  "affirmations": [
+    {
+      "id": "A-001",
+      "section": "cadre",
+      "gabarit": "La demande porte sur une explication du risque de trois actifs, pas sur une allocation. Aucun portefeuille, seuil ni plafond n'est donc posé. Par hypothèse de ma part, modifiable, « l'indice d'actions américaines » est représenté par le fonds SPY, qui suit les grandes entreprises américaines. Toutes les mesures sont en dollars canadiens et viennent de l'historique disponible.",
+      "texte": "La demande porte sur une explication du risque de trois actifs, pas sur une allocation. Aucun portefeuille, seuil ni plafond n'est donc posé. Par hypothèse de ma part, modifiable, « l'indice d'actions américaines » est représenté par le fonds SPY, qui suit les grandes entreprises américaines. Toutes les mesures sont en dollars canadiens et viennent de l'historique disponible.",
+      "references": [],
+      "statut": "non étayée"
+    },
+    {
+      "id": "A-002",
+      "section": "profil",
+      "gabarit": "Amira n'a pas encore de portefeuille. Sa demande : {{P-0015}}",
+      "texte": "Amira n'a pas encore de portefeuille. Sa demande : Je n'ai pas encore de portefeuille. Explique-moi simplement le risque du Bitcoin comparé à celui de l'or et d'un indice d'actions américaines.",
+      "references": [
+        "P-0015"
+      ],
+      "statut": "scénario"
+    },
+    {
+      "id": "A-003",
+      "section": "profil",
+      "gabarit": "Son objectif est : {{P-0005}}. Son horizon minimal est de {{P-0007}}.",
+      "texte": "Son objectif est : Faire croître son capital à long terme. Son horizon minimal est de 15,0 ans.",
+      "references": [
+        "P-0005",
+        "P-0007"
+      ],
+      "statut": "déclaré"
+    },
+    {
+      "id": "A-004",
+      "section": "profil",
+      "gabarit": "{{P-0012.label}} : non renseignée. {{P-0013.label}} : non renseignée. {{P-0014.label}} : non renseigné. Ces trois éléments décident de ce qu'elle peut supporter, et ils manquent.",
+      "texte": "Capacité de perte (perte supportable sans compromettre les projets) : non renseignée. Besoins de liquidité et retraits prévus : non renseignée. Patrimoine total et part concernée : non renseigné. Ces trois éléments décident de ce qu'elle peut supporter, et ils manquent.",
+      "references": [
+        "P-0012",
+        "P-0013",
+        "P-0014"
+      ],
+      "statut": "inconnu"
+    },
+    {
+      "id": "A-005",
+      "section": "profil",
+      "gabarit": "Elle a un intérêt déclaré pour les cryptoactifs : {{P-0010}} Cette préférence n'est pas une capacité à encaisser des pertes.",
+      "texte": "Elle a un intérêt déclaré pour les cryptoactifs : Intéressée par les cryptoactifs Cette préférence n'est pas une capacité à encaisser des pertes.",
+      "references": [
+        "P-0010"
+      ],
+      "statut": "déclaré"
+    },
+    {
+      "id": "A-006",
+      "section": "constat",
+      "gabarit": "La volatilité mesure l'ampleur des variations. Le Bitcoin est à {{R-0002}}, l'or (GLD) à {{R-0012}} et l'indice américain (SPY) à {{R-0022}}. La volatilité du Bitcoin est {{cmp:R-0002:R-0022}} celle de l'indice américain.",
+      "texte": "La volatilité mesure l'ampleur des variations. Le Bitcoin est à 50,7 %, l'or (GLD) à 16,2 % et l'indice américain (SPY) à 14,9 %. La volatilité du Bitcoin est supérieure à celle de l'indice américain.",
+      "references": [
+        "R-0002",
+        "R-0012",
+        "R-0022"
+      ],
+      "statut": "mesuré"
+    },
+    {
+      "id": "A-007",
+      "section": "constat",
+      "gabarit": "La pire baisse est la perte entre un sommet et le creux suivant. Elle est de {{R-0003}} pour le Bitcoin, {{R-0013}} pour l'or et {{R-0023}} pour l'indice américain. Le Bitcoin a connu une baisse {{cmpabs:R-0003:R-0023}} celle de l'indice américain.",
+      "texte": "La pire baisse est la perte entre un sommet et le creux suivant. Elle est de −74,2 % pour le Bitcoin, −26,0 % pour l'or et −22,2 % pour l'indice américain. Le Bitcoin a connu une baisse plus forte que celle de l'indice américain.",
+      "references": [
+        "R-0003",
+        "R-0013",
+        "R-0023"
+      ],
+      "statut": "mesuré"
+    },
+    {
+      "id": "A-008",
+      "section": "constat",
+      "gabarit": "Le Bitcoin est resté sous son sommet pendant {{R-0007}}, contre {{R-0027}} pour l'indice américain et {{R-0017}} pour l'or. Pour l'or, le retour au sommet : {{R-0016}}.",
+      "texte": "Le Bitcoin est resté sous son sommet pendant 2,3 ans, contre 1,6 an pour l'indice américain et 0,8 an pour l'or. Pour l'or, le retour au sommet : pas encore retrouvé à la fin de l'échantillon.",
+      "references": [
+        "R-0007",
+        "R-0027",
+        "R-0017",
+        "R-0016"
+      ],
+      "statut": "mesuré"
+    },
+    {
+      "id": "A-009",
+      "section": "constat",
+      "gabarit": "Le rendement 2022 est de {{R-0008}} pour le Bitcoin, {{R-0018}} pour l'or et {{R-0028}} pour l'indice américain. C'est le rendement de cette seule année, pas la pire année de chaque actif.",
+      "texte": "Le rendement 2022 est de −61,8 % pour le Bitcoin, 6,0 % pour l'or et −12,6 % pour l'indice américain. C'est le rendement de cette seule année, pas la pire année de chaque actif.",
+      "references": [
+        "R-0008",
+        "R-0018",
+        "R-0028"
+      ],
+      "statut": "mesuré"
+    },
+    {
+      "id": "A-010",
+      "section": "constat",
+      "gabarit": "Les rendements hebdomadaires du Bitcoin et de l'indice américain sont peu liés : la corrélation est de {{R-0031}}. Cela ne veut pas dire que le Bitcoin protège en période de baisse, seulement qu'ils ne bougent pas toujours ensemble.",
+      "texte": "Les rendements hebdomadaires du Bitcoin et de l'indice américain sont peu liés : la corrélation est de 0,23. Cela ne veut pas dire que le Bitcoin protège en période de baisse, seulement qu'ils ne bougent pas toujours ensemble.",
+      "references": [
+        "R-0031"
+      ],
+      "statut": "mesuré"
+    },
+    {
+      "id": "A-011",
+      "section": "tension",
+      "gabarit": "Amira a un horizon minimal de {{P-0007}}. L'échantillon dure {{D-0005}} : cette durée {{cmpduree:D-0005:P-0007}} l'horizon minimal. L'historique ne montre donc qu'une partie de ce qui peut arriver sur la période qu'elle vise.",
+      "texte": "Amira a un horizon minimal de 15,0 ans. L'échantillon dure 5,0 ans : cette durée reste nettement inférieure à l'horizon minimal. L'historique ne montre donc qu'une partie de ce qui peut arriver sur la période qu'elle vise.",
+      "references": [
+        "P-0007",
+        "D-0005"
+      ],
+      "statut": "déclaré"
+    },
+    {
+      "id": "A-012",
+      "section": "tension",
+      "gabarit": "Le Bitcoin est resté sous son sommet pendant {{R-0007}}. Cette durée est à comparer à l'horizon minimal de {{P-0007}} : {{cmpduree:R-0007:P-0007}} l'horizon minimal. Un long horizon aide à attendre un retour, sans l'assurer.",
+      "texte": "Le Bitcoin est resté sous son sommet pendant 2,3 ans. Cette durée est à comparer à l'horizon minimal de 15,0 ans : reste nettement inférieure à l'horizon minimal. Un long horizon aide à attendre un retour, sans l'assurer.",
+      "references": [
+        "R-0007",
+        "P-0007"
+      ],
+      "statut": "déclaré"
+    },
+    {
+      "id": "A-013",
+      "section": "alternative",
+      "gabarit": "Pour juger le risque du Bitcoin, on peut le comparer à ces deux repères : l'indice américain, dont la perte maximale est {{R-0023}}, et l'or, à {{R-0013}}. Aucune pondération n'est proposée tant que sa capacité de perte n'est pas connue.",
+      "texte": "Pour juger le risque du Bitcoin, on peut le comparer à ces deux repères : l'indice américain, dont la perte maximale est −22,2 %, et l'or, à −26,0 %. Aucune pondération n'est proposée tant que sa capacité de perte n'est pas connue.",
+      "references": [
+        "R-0023",
+        "R-0013"
+      ],
+      "statut": "mesuré"
+    },
+    {
+      "id": "A-014",
+      "section": "question",
+      "gabarit": "Quelle perte, en pourcentage de son capital, Amira pourrait-elle subir sans devoir vendre ni changer ses projets ? {{P-0012.label}} et {{P-0013.label}} sont les informations décisives qui manquent.",
+      "texte": "Quelle perte, en pourcentage de son capital, Amira pourrait-elle subir sans devoir vendre ni changer ses projets ? Capacité de perte (perte supportable sans compromettre les projets) et Besoins de liquidité et retraits prévus sont les informations décisives qui manquent.",
+      "references": [
+        "P-0012",
+        "P-0013"
+      ],
+      "statut": "inconnu"
+    },
+    {
+      "id": "A-015",
+      "section": "condition",
+      "gabarit": "Si la capacité de perte d'Amira était nettement plus faible qu'une baisse de {{R-0003}}, le Bitcoin pèserait lourd dans le risque de tout portefeuille futur. Si elle était plus large, l'analyse pourrait aller plus loin, avec des seuils fixés explicitement.",
+      "texte": "Si la capacité de perte d'Amira était nettement plus faible qu'une baisse de −74,2 %, le Bitcoin pèserait lourd dans le risque de tout portefeuille futur. Si elle était plus large, l'analyse pourrait aller plus loin, avec des seuils fixés explicitement.",
+      "references": [
+        "R-0003"
+      ],
+      "statut": "mesuré"
+    },
+    {
+      "id": "A-016",
+      "section": "limite",
+      "gabarit": "L'échantillon dure {{D-0005}}. C'est court : il ne contient qu'une fenêtre indépendante pour chaque actif, comme le montre {{R-0010}} pour le Bitcoin.",
+      "texte": "L'échantillon dure 5,0 ans. C'est court : il ne contient qu'une fenêtre indépendante pour chaque actif, comme le montre 1 pour le Bitcoin.",
+      "references": [
+        "D-0005",
+        "R-0010"
+      ],
+      "statut": "mesuré"
+    },
+    {
+      "id": "A-017",
+      "section": "limite",
+      "gabarit": "{{D-0006}}. Les actifs observés sont donc ceux qui ont réussi à rester importants, ce qui peut flatter les résultats.",
+      "texte": "univers constitué après coup, parmi des titres importants à la date d'extraction (biais du survivant). Les actifs observés sont donc ceux qui ont réussi à rester importants, ce qui peut flatter les résultats.",
+      "references": [
+        "D-0006"
+      ],
+      "statut": "source"
+    },
+    {
+      "id": "A-018",
+      "section": "limite",
+      "gabarit": "Les actifs cotés en dollars américains sont convertis en dollars canadiens. L'âge maximal des données de change est de {{D-0004}}.",
+      "texte": "Les actifs cotés en dollars américains sont convertis en dollars canadiens. L'âge maximal des données de change est de 4 jours.",
+      "references": [
+        "D-0004"
+      ],
+      "statut": "mesuré"
+    }
+  ],
+  "enregistrements": {
+    "P-0001": {
+      "id": "P-0001",
+      "label": "Prénom (profil fictif)",
+      "value": "Amira",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 5",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "Amira"
+    },
+    "P-0002": {
+      "id": "P-0002",
+      "label": "Âge",
+      "value": 26,
+      "unit": "count",
+      "status": "déclaré",
+      "origin": "énoncé, p. 5",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "26"
+    },
+    "P-0003": {
+      "id": "P-0003",
+      "label": "Profil de risque déclaré",
+      "value": "élevé",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 5",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "élevé"
+    },
+    "P-0004": {
+      "id": "P-0004",
+      "label": "Horizon de placement",
+      "value": "15 ans ou plus",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 5",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "15 ans ou plus"
+    },
+    "P-0005": {
+      "id": "P-0005",
+      "label": "Objectif",
+      "value": "Faire croître son capital à long terme",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 5",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "Faire croître son capital à long terme"
+    },
+    "P-0006": {
+      "id": "P-0006",
+      "label": "Expérience en placement",
+      "value": "intermédiaire",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 5",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "intermédiaire"
+    },
+    "P-0007": {
+      "id": "P-0007",
+      "label": "Horizon minimal",
+      "value": 15,
+      "unit": "years",
+      "status": "déclaré",
+      "origin": "énoncé, p. 5",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "15,0 ans"
+    },
+    "P-0008": {
+      "id": "P-0008",
+      "label": "Préférence déclarée",
+      "value": "Très intéressée par l'intelligence artificielle et les technologies émergentes",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 5",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "Très intéressée par l'intelligence artificielle et les technologies émergentes"
+    },
+    "P-0009": {
+      "id": "P-0009",
+      "label": "Préférence déclarée",
+      "value": "Ouverte aux entreprises en forte croissance et à une volatilité importante",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 5",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "Ouverte aux entreprises en forte croissance et à une volatilité importante"
+    },
+    "P-0010": {
+      "id": "P-0010",
+      "label": "Préférence déclarée",
+      "value": "Intéressée par les cryptoactifs",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 5",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "Intéressée par les cryptoactifs"
+    },
+    "P-0011": {
+      "id": "P-0011",
+      "label": "Préférence déclarée",
+      "value": "Souhaite maintenir une certaine diversification et éviter de miser exclusivement sur les technologies",
+      "unit": "text",
+      "status": "déclaré",
+      "origin": "énoncé, p. 5",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "Souhaite maintenir une certaine diversification et éviter de miser exclusivement sur les technologies"
+    },
+    "P-0012": {
+      "id": "P-0012",
+      "label": "Capacité de perte (perte supportable sans compromettre les projets)",
+      "value": null,
+      "unit": "text",
+      "status": "inconnu",
+      "origin": "non fourni par l'énoncé",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "non disponible"
+    },
+    "P-0013": {
+      "id": "P-0013",
+      "label": "Besoins de liquidité et retraits prévus",
+      "value": null,
+      "unit": "text",
+      "status": "inconnu",
+      "origin": "non fourni par l'énoncé",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "non disponible"
+    },
+    "P-0014": {
+      "id": "P-0014",
+      "label": "Patrimoine total et part concernée",
+      "value": null,
+      "unit": "text",
+      "status": "inconnu",
+      "origin": "non fourni par l'énoncé",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "non disponible"
+    },
+    "P-0015": {
+      "id": "P-0015",
+      "label": "Demande formulée",
+      "value": "Je n'ai pas encore de portefeuille. Explique-moi simplement le risque du Bitcoin comparé à celui de l'or et d'un indice d'actions américaines.",
+      "unit": "text",
+      "status": "scénario",
+      "origin": "scénario de démonstration",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "Je n'ai pas encore de portefeuille. Explique-moi simplement le risque du Bitcoin comparé à celui de l'or et d'un indice d'actions américaines."
+    },
+    "P-0016": {
+      "id": "P-0016",
+      "label": "Origine de la demande",
+      "value": "demande libre saisie dans l'outil",
+      "unit": "text",
+      "status": "scénario",
+      "origin": "scénario de démonstration",
+      "subject": "Amira",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "demande libre saisie dans l'outil"
+    },
+    "D-0001": {
+      "id": "D-0001",
+      "label": "Fichier prices_daily.csv",
+      "value": "ff2a3f2d0a7d72ea",
+      "unit": "text",
+      "status": "source",
+      "origin": "jeu de départ AlphaForge (PolyFinances)",
+      "subject": "",
+      "period": null,
+      "conventions": [],
+      "inputs": {
+        "sha256": "ff2a3f2d0a7d72ea835e8d616d041e0510f018340cef3d3e55b918830e8a569d"
+      },
+      "display": "ff2a3f2d0a7d72ea"
+    },
+    "D-0002": {
+      "id": "D-0002",
+      "label": "Fichier fx_usdcad_daily.csv",
+      "value": "f04e218ac5b0145f",
+      "unit": "text",
+      "status": "source",
+      "origin": "jeu de départ AlphaForge (PolyFinances)",
+      "subject": "",
+      "period": null,
+      "conventions": [],
+      "inputs": {
+        "sha256": "f04e218ac5b0145fd552b3d0dcfbf73e5e17bb9a6fb4562460dbec95cb8972b3"
+      },
+      "display": "f04e218ac5b0145f"
+    },
+    "D-0003": {
+      "id": "D-0003",
+      "label": "Fichier assets_universe.csv",
+      "value": "f78de8ecb36d914a",
+      "unit": "text",
+      "status": "source",
+      "origin": "jeu de départ AlphaForge (PolyFinances)",
+      "subject": "",
+      "period": null,
+      "conventions": [],
+      "inputs": {
+        "sha256": "f78de8ecb36d914a3448db63498cc9a04a34d805bccb79c481dda1650755467d"
+      },
+      "display": "f78de8ecb36d914a"
+    },
+    "D-0004": {
+      "id": "D-0004",
+      "label": "Âge maximal du taux de change utilisé (jours)",
+      "value": 4,
+      "unit": "days",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "",
+      "period": null,
+      "conventions": [
+        "dernier taux Banque du Canada connu à la date de valorisation"
+      ],
+      "inputs": {},
+      "display": "4 jours"
+    },
+    "D-0005": {
+      "id": "D-0005",
+      "label": "Durée de l'échantillon de prix",
+      "value": 4.999315537303217,
+      "unit": "years",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [],
+      "inputs": {},
+      "display": "5,0 ans"
+    },
+    "D-0006": {
+      "id": "D-0006",
+      "label": "Limite connue de l'univers d'actifs",
+      "value": "univers constitué après coup, parmi des titres importants à la date d'extraction (biais du survivant)",
+      "unit": "text",
+      "status": "source",
+      "origin": "data/README.md (jeu de départ PolyFinances)",
+      "subject": "",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "univers constitué après coup, parmi des titres importants à la date d'extraction (biais du survivant)"
+    },
+    "R-0001": {
+      "id": "R-0001",
+      "label": "Rendement annualisé BTC-USD",
+      "value": 0.04757847975525875,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "BTC-USD",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52"
+      ],
+      "inputs": {
+        "nom": "Bitcoin"
+      },
+      "display": "4,8 %"
+    },
+    "R-0002": {
+      "id": "R-0002",
+      "label": "Volatilité annualisée BTC-USD",
+      "value": 0.5068105932504952,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "BTC-USD",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52"
+      ],
+      "inputs": {},
+      "display": "50,7 %"
+    },
+    "R-0003": {
+      "id": "R-0003",
+      "label": "Pire baisse depuis un sommet BTC-USD",
+      "value": -0.7418272417088669,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "BTC-USD",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "série quotidienne de l'actif"
+      ],
+      "inputs": {},
+      "display": "−74,2 %"
+    },
+    "R-0004": {
+      "id": "R-0004",
+      "label": "Date du sommet précédant la pire baisse BTC-USD",
+      "value": "2021-11-14",
+      "unit": "date",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "BTC-USD",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "14 nov. 2021"
+    },
+    "R-0005": {
+      "id": "R-0005",
+      "label": "Date du creux BTC-USD",
+      "value": "2022-11-21",
+      "unit": "date",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "BTC-USD",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "21 nov. 2022"
+    },
+    "R-0006": {
+      "id": "R-0006",
+      "label": "Date de retour au sommet BTC-USD",
+      "value": "2024-02-28",
+      "unit": "date",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "BTC-USD",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "28 févr. 2024"
+    },
+    "R-0007": {
+      "id": "R-0007",
+      "label": "Durée sous le sommet BTC-USD",
+      "value": 2.2888432580424367,
+      "unit": "years",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "BTC-USD",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [],
+      "inputs": {},
+      "display": "2,3 ans"
+    },
+    "R-0008": {
+      "id": "R-0008",
+      "label": "Rendement 2022 BTC-USD",
+      "value": -0.6182429719906745,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "BTC-USD",
+      "period": [
+        "2021-12-31",
+        "2022-12-31"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52"
+      ],
+      "inputs": {},
+      "display": "−61,8 %"
+    },
+    "R-0009": {
+      "id": "R-0009",
+      "label": "Pire rendement sur une fenêtre de 3 ans BTC-USD",
+      "value": 0.4878135201529312,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "BTC-USD",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52"
+      ],
+      "inputs": {
+        "debut_pire_fenetre": "2021-11-14",
+        "fenetres_glissantes": 731
+      },
+      "display": "48,8 %"
+    },
+    "R-0010": {
+      "id": "R-0010",
+      "label": "Fenêtres de 3 ans sans chevauchement dans l'échantillon",
+      "value": 1,
+      "unit": "count",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "BTC-USD",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [],
+      "inputs": {},
+      "display": "1"
+    },
+    "R-0011": {
+      "id": "R-0011",
+      "label": "Rendement annualisé GLD",
+      "value": 0.18210336758802503,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "GLD",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52"
+      ],
+      "inputs": {
+        "nom": "SPDR Gold Shares"
+      },
+      "display": "18,2 %"
+    },
+    "R-0012": {
+      "id": "R-0012",
+      "label": "Volatilité annualisée GLD",
+      "value": 0.1615530359265575,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "GLD",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52"
+      ],
+      "inputs": {},
+      "display": "16,2 %"
+    },
+    "R-0013": {
+      "id": "R-0013",
+      "label": "Pire baisse depuis un sommet GLD",
+      "value": -0.2599925169596916,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "GLD",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "série quotidienne de l'actif"
+      ],
+      "inputs": {},
+      "display": "−26,0 %"
+    },
+    "R-0014": {
+      "id": "R-0014",
+      "label": "Date du sommet précédant la pire baisse GLD",
+      "value": "2026-01-28",
+      "unit": "date",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "GLD",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "28 janv. 2026"
+    },
+    "R-0015": {
+      "id": "R-0015",
+      "label": "Date du creux GLD",
+      "value": "2026-10-30",
+      "unit": "date",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "GLD",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "30 oct. 2026"
+    },
+    "R-0016": {
+      "id": "R-0016",
+      "label": "Date de retour au sommet GLD",
+      "value": "pas encore retrouvé à la fin de l'échantillon",
+      "unit": "date",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "GLD",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "pas encore retrouvé à la fin de l'échantillon"
+    },
+    "R-0017": {
+      "id": "R-0017",
+      "label": "Durée sous le sommet GLD",
+      "value": 0.7885010266940452,
+      "unit": "years",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "GLD",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [],
+      "inputs": {},
+      "display": "0,8 an"
+    },
+    "R-0018": {
+      "id": "R-0018",
+      "label": "Rendement 2022 GLD",
+      "value": 0.06005874216391471,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "GLD",
+      "period": [
+        "2021-12-31",
+        "2022-12-31"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52"
+      ],
+      "inputs": {},
+      "display": "6,0 %"
+    },
+    "R-0019": {
+      "id": "R-0019",
+      "label": "Pire rendement sur une fenêtre de 3 ans GLD",
+      "value": 0.5155650539835357,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "GLD",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52"
+      ],
+      "inputs": {
+        "debut_pire_fenetre": "2021-11-17",
+        "fenetres_glissantes": 502
+      },
+      "display": "51,6 %"
+    },
+    "R-0020": {
+      "id": "R-0020",
+      "label": "Fenêtres de 3 ans sans chevauchement dans l'échantillon",
+      "value": 1,
+      "unit": "count",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "GLD",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [],
+      "inputs": {},
+      "display": "1"
+    },
+    "R-0021": {
+      "id": "R-0021",
+      "label": "Rendement annualisé SPY",
+      "value": 0.1447164598575732,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "SPY",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52"
+      ],
+      "inputs": {
+        "nom": "SPDR S&P 500 ETF Trust"
+      },
+      "display": "14,5 %"
+    },
+    "R-0022": {
+      "id": "R-0022",
+      "label": "Volatilité annualisée SPY",
+      "value": 0.14897803872118423,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "SPY",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52"
+      ],
+      "inputs": {},
+      "display": "14,9 %"
+    },
+    "R-0023": {
+      "id": "R-0023",
+      "label": "Pire baisse depuis un sommet SPY",
+      "value": -0.22245742927246515,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "SPY",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52",
+        "série quotidienne de l'actif"
+      ],
+      "inputs": {},
+      "display": "−22,2 %"
+    },
+    "R-0024": {
+      "id": "R-0024",
+      "label": "Date du sommet précédant la pire baisse SPY",
+      "value": "2021-12-27",
+      "unit": "date",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "SPY",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "27 déc. 2021"
+    },
+    "R-0025": {
+      "id": "R-0025",
+      "label": "Date du creux SPY",
+      "value": "2022-06-16",
+      "unit": "date",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "SPY",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "16 juin 2022"
+    },
+    "R-0026": {
+      "id": "R-0026",
+      "label": "Date de retour au sommet SPY",
+      "value": "2023-07-18",
+      "unit": "date",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "SPY",
+      "period": null,
+      "conventions": [],
+      "inputs": {},
+      "display": "18 juil. 2023"
+    },
+    "R-0027": {
+      "id": "R-0027",
+      "label": "Durée sous le sommet SPY",
+      "value": 1.5550992470910336,
+      "unit": "years",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "SPY",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [],
+      "inputs": {},
+      "display": "1,6 an"
+    },
+    "R-0028": {
+      "id": "R-0028",
+      "label": "Rendement 2022 SPY",
+      "value": -0.1258614751506265,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "SPY",
+      "period": [
+        "2021-12-31",
+        "2022-12-31"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52"
+      ],
+      "inputs": {},
+      "display": "−12,6 %"
+    },
+    "R-0029": {
+      "id": "R-0029",
+      "label": "Pire rendement sur une fenêtre de 3 ans SPY",
+      "value": 0.3069186551027836,
+      "unit": "pct",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "SPY",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52"
+      ],
+      "inputs": {
+        "debut_pire_fenetre": "2022-04-08",
+        "fenetres_glissantes": 502
+      },
+      "display": "30,7 %"
+    },
+    "R-0030": {
+      "id": "R-0030",
+      "label": "Fenêtres de 3 ans sans chevauchement dans l'échantillon",
+      "value": 1,
+      "unit": "count",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "SPY",
+      "period": [
+        "2021-11-12",
+        "2026-11-12"
+      ],
+      "conventions": [],
+      "inputs": {},
+      "display": "1"
+    },
+    "R-0031": {
+      "id": "R-0031",
+      "label": "Corrélation hebdomadaire BTC-USD / SPY",
+      "value": 0.23142550082013083,
+      "unit": "ratio",
+      "status": "mesuré",
+      "origin": "datathon2026.tools",
+      "subject": "BTC-USD, SPY",
+      "period": [
+        "2021-11-19",
+        "2026-11-12"
+      ],
+      "conventions": [
+        "Valeurs en CAD, converties au dernier taux Banque du Canada connu à la date",
+        "Période d'observation 2021-11-12 → 2026-11-12",
+        "Clôtures ajustées des dividendes et fractionnements (méthode Yahoo Finance)",
+        "Rendements hebdomadaires : dernière observation de chaque semaine se terminant le vendredi",
+        "Volatilité annualisée : écart type hebdomadaire × √52"
+      ],
+      "inputs": {},
+      "display": "0,23"
+    }
+  },
+  "trace": [
+    {
+      "outil": "profile_facts",
+      "arguments": {
+        "persona": "amira",
+        "scenario": {
+          "persona": "amira",
+          "demande": "Je n'ai pas encore de portefeuille. Explique-moi simplement le risque du Bitcoin comparé à celui de l'or et d'un indice d'actions américaines.",
+          "origine_demande": "demande libre saisie dans l'outil"
+        }
+      },
+      "enregistrements": [
+        "P-0001",
+        "P-0002",
+        "P-0003",
+        "P-0004",
+        "P-0005",
+        "P-0006",
+        "P-0007",
+        "P-0008",
+        "P-0009",
+        "P-0010",
+        "P-0011",
+        "P-0012",
+        "P-0013",
+        "P-0014",
+        "P-0015",
+        "P-0016"
+      ],
+      "duree_ms": 0.6
+    },
+    {
+      "outil": "data_manifest",
+      "arguments": {},
+      "enregistrements": [
+        "D-0001",
+        "D-0002",
+        "D-0003",
+        "D-0004",
+        "D-0005",
+        "D-0006"
+      ],
+      "duree_ms": 3.4
+    },
+    {
+      "outil": "asset_metrics",
+      "arguments": {
+        "ticker": "BTC-USD",
+        "horizon_years": 3
+      },
+      "enregistrements": [
+        "R-0001",
+        "R-0002",
+        "R-0003",
+        "R-0004",
+        "R-0005",
+        "R-0006",
+        "R-0007",
+        "R-0008",
+        "R-0009",
+        "R-0010"
+      ],
+      "duree_ms": 6.2
+    },
+    {
+      "outil": "asset_metrics",
+      "arguments": {
+        "ticker": "GLD",
+        "horizon_years": 3
+      },
+      "enregistrements": [
+        "R-0011",
+        "R-0012",
+        "R-0013",
+        "R-0014",
+        "R-0015",
+        "R-0016",
+        "R-0017",
+        "R-0018",
+        "R-0019",
+        "R-0020"
+      ],
+      "duree_ms": 2.5
+    },
+    {
+      "outil": "asset_metrics",
+      "arguments": {
+        "ticker": "SPY",
+        "horizon_years": 3
+      },
+      "enregistrements": [
+        "R-0021",
+        "R-0022",
+        "R-0023",
+        "R-0024",
+        "R-0025",
+        "R-0026",
+        "R-0027",
+        "R-0028",
+        "R-0029",
+        "R-0030"
+      ],
+      "duree_ms": 1.3
+    },
+    {
+      "outil": "correlation",
+      "arguments": {
+        "t1": "BTC-USD",
+        "t2": "SPY"
+      },
+      "enregistrements": [
+        "R-0031"
+      ],
+      "duree_ms": 0.7
+    }
+  ],
+  "graphiques": [
+    {
+      "titre": "Baisse depuis le plus haut précédent : BTC-USD, GLD, SPY",
+      "sous_titre": "série hebdomadaire en dollars canadiens",
+      "type": "ligne",
+      "unite": "pct",
+      "mise_en_evidence": "BTC-USD",
+      "series": {
+        "BTC-USD": [
+          [
+            "2021-11-12",
+            0.0
+          ],
+          [
+            "2021-11-19",
+            -0.0888
+          ],
+          [
+            "2021-11-26",
+            -0.1513
+          ],
+          [
+            "2021-12-03",
+            -0.1481
+          ],
+          [
+            "2021-12-10",
+            -0.2549
+          ],
+          [
+            "2021-12-17",
+            -0.2637
+          ],
+          [
+            "2021-12-24",
+            -0.1922
+          ],
+          [
+            "2021-12-31",
+            -0.2717
+          ],
+          [
+            "2022-01-07",
+            -0.347
+          ],
+          [
+            "2022-01-14",
+            -0.3293
+          ],
+          [
+            "2022-01-21",
+            -0.4326
+          ],
+          [
+            "2022-01-28",
+            -0.4014
+          ],
+          [
+            "2022-02-04",
+            -0.3432
+          ],
+          [
+            "2022-02-11",
+            -0.3318
+          ],
+          [
+            "2022-02-18",
+            -0.3676
+          ],
+          [
+            "2022-02-25",
+            -0.3799
+          ],
+          [
+            "2022-03-04",
+            -0.381
+          ],
+          [
+            "2022-03-11",
+            -0.3878
+          ],
+          [
+            "2022-03-18",
+            -0.3457
+          ],
+          [
+            "2022-03-25",
+            -0.3122
+          ],
+          [
+            "2022-04-01",
+            -0.2816
+          ],
+          [
+            "2022-04-08",
+            -0.3396
+          ],
+          [
+            "2022-04-15",
+            -0.3661
+          ],
+          [
+            "2022-04-22",
+            -0.3738
+          ],
+          [
+            "2022-04-29",
+            -0.3873
+          ],
+          [
+            "2022-05-06",
+            -0.4241
+          ],
+          [
+            "2022-05-13",
+            -0.5295
+          ],
+          [
+            "2022-05-20",
+            -0.5353
+          ],
+          [
+            "2022-05-27",
+            -0.5476
+          ],
+          [
+            "2022-06-03",
+            -0.5365
+          ],
+          [
+            "2022-06-10",
+            -0.539
+          ],
+          [
+            "2022-06-17",
+            -0.669
+          ],
+          [
+            "2022-06-24",
+            -0.6594
+          ],
+          [
+            "2022-07-01",
+            -0.692
+          ],
+          [
+            "2022-07-08",
+            -0.6504
+          ],
+          [
+            "2022-07-15",
+            -0.663
+          ],
+          [
+            "2022-07-22",
+            -0.6372
+          ],
+          [
+            "2022-07-29",
+            -0.6213
+          ],
+          [
+            "2022-08-05",
+            -0.6263
+          ],
+          [
+            "2022-08-12",
+            -0.613
+          ],
+          [
+            "2022-08-19",
+            -0.6635
+          ],
+          [
+            "2022-08-26",
+            -0.6736
+          ],
+          [
+            "2022-09-02",
+            -0.675
+          ],
+          [
+            "2022-09-09",
+            -0.6543
+          ],
+          [
+            "2022-09-16",
+            -0.6741
+          ],
+          [
+            "2022-09-23",
+            -0.6751
+          ],
+          [
+            "2022-09-30",
+            -0.6696
+          ],
+          [
+            "2022-10-07",
+            -0.6675
+          ],
+          [
+            "2022-10-14",
+            -0.6702
+          ],
+          [
+            "2022-10-21",
+            -0.6739
+          ],
+          [
+            "2022-10-28",
+            -0.6522
+          ],
+          [
+            "2022-11-04",
+            -0.6454
+          ],
+          [
+            "2022-11-11",
+            -0.7173
+          ],
+          [
+            "2022-11-18",
+            -0.7227
+          ],
+          [
+            "2022-11-25",
+            -0.7258
+          ],
+          [
+            "2022-12-02",
+            -0.7145
+          ],
+          [
+            "2022-12-09",
+            -0.7103
+          ],
+          [
+            "2022-12-16",
+            -0.7173
+          ],
+          [
+            "2022-12-23",
+            -0.7166
+          ],
+          [
+            "2022-12-30",
+            -0.7211
+          ],
+          [
+            "2023-01-06",
+            -0.7164
+          ],
+          [
+            "2023-01-13",
+            -0.6689
+          ],
+          [
+            "2023-01-20",
+            -0.6225
+          ],
+          [
+            "2023-01-27",
+            -0.6188
+          ],
+          [
+            "2023-02-03",
+            -0.6105
+          ],
+          [
+            "2023-02-10",
+            -0.6411
+          ],
+          [
+            "2023-02-17",
+            -0.589
+          ],
+          [
+            "2023-02-24",
+            -0.608
+          ],
+          [
+            "2023-03-03",
+            -0.6224
+          ],
+          [
+            "2023-03-10",
+            -0.6542
+          ],
+          [
+            "2023-03-17",
+            -0.5328
+          ],
+          [
+            "2023-03-24",
+            -0.5306
+          ],
+          [
+            "2023-03-31",
+            -0.5219
+          ],
+          [
+            "2023-04-07",
+            -0.5331
+          ],
+          [
+            "2023-04-14",
+            -0.4947
+          ],
+          [
+            "2023-04-21",
+            -0.5419
+          ],
+          [
+            "2023-04-28",
+            -0.5058
+          ],
+          [
+            "2023-05-05",
+            -0.5081
+          ],
+          [
+            "2023-05-12",
+            -0.55
+          ],
+          [
+            "2023-05-19",
+            -0.5496
+          ],
+          [
+            "2023-05-26",
+            -0.5485
+          ],
+          [
+            "2023-06-02",
+            -0.5459
+          ],
+          [
+            "2023-06-09",
+            -0.5618
+          ],
+          [
+            "2023-06-16",
+            -0.569
+          ],
+          [
+            "2023-06-23",
+            -0.4974
+          ],
+          [
+            "2023-06-30",
+            -0.4994
+          ],
+          [
+            "2023-07-07",
+            -0.4997
+          ],
+          [
+            "2023-07-14",
+            -0.5039
+          ],
+          [
+            "2023-07-21",
+            -0.5098
+          ],
+          [
+            "2023-07-28",
+            -0.5187
+          ],
+          [
+            "2023-08-04",
+            -0.5183
+          ],
+          [
+            "2023-08-11",
+            -0.5098
+          ],
+          [
+            "2023-08-18",
+            -0.5621
+          ],
+          [
+            "2023-08-25",
+            -0.5604
+          ],
+          [
+            "2023-09-01",
+            -0.5654
+          ],
+          [
+            "2023-09-08",
+            -0.5619
+          ],
+          [
+            "2023-09-15",
+            -0.5535
+          ],
+          [
+            "2023-09-22",
+            -0.5561
+          ],
+          [
+            "2023-09-29",
+            -0.5486
+          ],
+          [
+            "2023-10-06",
+            -0.5256
+          ],
+          [
+            "2023-10-13",
+            -0.5448
+          ],
+          [
+            "2023-10-20",
+            -0.4957
+          ],
+          [
+            "2023-10-27",
+            -0.4171
+          ],
+          [
+            "2023-11-03",
+            -0.4105
+          ],
+          [
+            "2023-11-10",
+            -0.3603
+          ],
+          [
+            "2023-11-17",
+            -0.377
+          ],
+          [
+            "2023-11-24",
+            -0.3625
+          ],
+          [
+            "2023-12-01",
+            -0.3517
+          ],
+          [
+            "2023-12-08",
+            -0.2555
+          ],
+          [
+            "2023-12-15",
+            -0.3042
+          ],
+          [
+            "2023-12-22",
+            -0.2764
+          ],
+          [
+            "2023-12-29",
+            -0.3093
+          ],
+          [
+            "2024-01-05",
+            -0.2688
+          ],
+          [
+            "2024-01-12",
+            -0.2883
+          ],
+          [
+            "2024-01-19",
+            -0.305
+          ],
+          [
+            "2024-01-26",
+            -0.3023
+          ],
+          [
+            "2024-02-02",
+            -0.2792
+          ],
+          [
+            "2024-02-09",
+            -0.2129
+          ],
+          [
+            "2024-02-16",
+            -0.1275
+          ],
+          [
+            "2024-02-23",
+            -0.1508
+          ],
+          [
+            "2024-03-01",
+            0.0
+          ],
+          [
+            "2024-03-08",
+            0.0
+          ],
+          [
+            "2024-03-15",
+            0.0
+          ],
+          [
+            "2024-03-22",
+            -0.077
+          ],
+          [
+            "2024-03-29",
+            0.0
+          ],
+          [
+            "2024-04-05",
+            -0.026
+          ],
+          [
+            "2024-04-12",
+            -0.0233
+          ],
+          [
+            "2024-04-19",
+            -0.0732
+          ],
+          [
+            "2024-04-26",
+            -0.0799
+          ],
+          [
+            "2024-05-03",
+            -0.0921
+          ],
+          [
+            "2024-05-10",
+            -0.1228
+          ],
+          [
+            "2024-05-17",
+            -0.036
+          ],
+          [
+            "2024-05-24",
+            -0.0107
+          ],
+          [
+            "2024-05-31",
+            -0.0282
+          ],
+          [
+            "2024-06-07",
+            0.0
+          ],
+          [
+            "2024-06-14",
+            -0.0473
+          ],
+          [
+            "2024-06-21",
+            -0.0782
+          ],
+          [
+            "2024-06-28",
+            -0.1335
+          ],
+          [
+            "2024-07-05",
+            -0.1892
+          ],
+          [
+            "2024-07-12",
+            -0.1718
+          ],
+          [
+            "2024-07-19",
+            -0.0389
+          ],
+          [
+            "2024-07-26",
+            -0.0142
+          ],
+          [
+            "2024-08-02",
+            -0.1067
+          ],
+          [
+            "2024-08-09",
+            -0.1225
+          ],
+          [
+            "2024-08-16",
+            -0.1527
+          ],
+          [
+            "2024-08-23",
+            -0.0899
+          ],
+          [
+            "2024-08-30",
+            -0.1629
+          ],
+          [
+            "2024-09-06",
+            -0.233
+          ],
+          [
+            "2024-09-13",
+            -0.1363
+          ],
+          [
+            "2024-09-20",
+            -0.1003
+          ],
+          [
+            "2024-09-27",
+            -0.0679
+          ],
+          [
+            "2024-10-04",
+            -0.1155
+          ],
+          [
+            "2024-10-11",
+            -0.0981
+          ],
+          [
+            "2024-10-18",
+            -0.0089
+          ],
+          [
+            "2024-10-25",
+            -0.0297
+          ],
+          [
+            "2024-11-01",
+            0.0
+          ],
+          [
+            "2024-11-08",
+            0.0
+          ],
+          [
+            "2024-11-15",
+            0.0
+          ],
+          [
+            "2024-11-22",
+            0.0
+          ],
+          [
+            "2024-11-29",
+            -0.0133
+          ],
+          [
+            "2024-12-06",
+            0.0
+          ],
+          [
+            "2024-12-13",
+            0.0
+          ],
+          [
+            "2024-12-20",
+            -0.0274
+          ],
+          [
+            "2024-12-27",
+            -0.0598
+          ],
+          [
+            "2025-01-03",
+            -0.0187
+          ],
+          [
+            "2025-01-10",
+            -0.0541
+          ],
+          [
+            "2025-01-17",
+            0.0
+          ],
+          [
+            "2025-01-24",
+            -0.0035
+          ],
+          [
+            "2025-01-31",
+            -0.0164
+          ],
+          [
+            "2025-02-07",
+            -0.0847
+          ],
+          [
+            "2025-02-14",
+            -0.084
+          ],
+          [
+            "2025-02-21",
+            -0.0943
+          ],
+          [
+            "2025-02-28",
+            -0.1921
+          ],
+          [
+            "2025-03-07",
+            -0.1733
+          ],
+          [
+            "2025-03-14",
+            -0.1988
+          ],
+          [
+            "2025-03-21",
+            -0.2003
+          ],
+          [
+            "2025-03-28",
+            -0.1997
+          ],
+          [
+            "2025-04-04",
+            -0.2096
+          ],
+          [
+            "2025-04-11",
+            -0.2317
+          ],
+          [
+            "2025-04-18",
+            -0.2239
+          ],
+          [
+            "2025-04-25",
+            -0.1292
+          ],
+          [
+            "2025-05-02",
+            -0.1131
+          ],
+          [
+            "2025-05-09",
+            -0.049
+          ],
+          [
+            "2025-05-16",
+            -0.0406
+          ],
+          [
+            "2025-05-23",
+            -0.0213
+          ],
+          [
+            "2025-05-30",
+            -0.0511
+          ],
+          [
+            "2025-06-06",
+            -0.0523
+          ],
+          [
+            "2025-06-13",
+            -0.0433
+          ],
+          [
+            "2025-06-20",
+            -0.0595
+          ],
+          [
+            "2025-06-27",
+            -0.0288
+          ],
+          [
+            "2025-07-04",
+            -0.0253
+          ],
+          [
+            "2025-07-11",
+            0.0
+          ],
+          [
+            "2025-07-18",
+            0.0
+          ],
+          [
+            "2025-07-25",
+            -0.0043
+          ],
+          [
+            "2025-08-01",
+            -0.0343
+          ],
+          [
+            "2025-08-08",
+            -0.0089
+          ],
+          [
+            "2025-08-15",
+            0.0
+          ],
+          [
+            "2025-08-22",
+            -0.001
+          ],
+          [
+            "2025-08-29",
+            -0.0808
+          ],
+          [
+            "2025-09-05",
+            -0.0559
+          ],
+          [
+            "2025-09-12",
+            -0.008
+          ],
+          [
+            "2025-09-19",
+            -0.0158
+          ],
+          [
+            "2025-09-26",
+            -0.0563
+          ],
+          [
+            "2025-10-03",
+            0.0
+          ],
+          [
+            "2025-10-10",
+            -0.0709
+          ],
+          [
+            "2025-10-17",
+            -0.1241
+          ],
+          [
+            "2025-10-24",
+            -0.0879
+          ],
+          [
+            "2025-10-31",
+            -0.0998
+          ],
+          [
+            "2025-11-07",
+            -0.1479
+          ],
+          [
+            "2025-11-14",
+            -0.224
+          ],
+          [
+            "2025-11-21",
+            -0.2967
+          ],
+          [
+            "2025-11-28",
+            -0.255
+          ],
+          [
+            "2025-12-05",
+            -0.2738
+          ],
+          [
+            "2025-12-12",
+            -0.2714
+          ],
+          [
+            "2025-12-19",
+            -0.2883
+          ],
+          [
+            "2025-12-26",
+            -0.3003
+          ],
+          [
+            "2026-01-02",
+            -0.2757
+          ],
+          [
+            "2026-01-09",
+            -0.2627
+          ],
+          [
+            "2026-01-16",
+            -0.221
+          ],
+          [
+            "2026-01-23",
+            -0.2796
+          ],
+          [
+            "2026-01-30",
+            -0.3312
+          ],
+          [
+            "2026-02-06",
+            -0.4356
+          ],
+          [
+            "2026-02-13",
+            -0.4505
+          ],
+          [
+            "2026-02-20",
+            -0.4543
+          ],
+          [
+            "2026-02-27",
+            -0.4732
+          ],
+          [
+            "2026-03-06",
+            -0.4563
+          ],
+          [
+            "2026-03-13",
+            -0.4294
+          ],
+          [
+            "2026-03-20",
+            -0.4329
+          ],
+          [
+            "2026-03-27",
+            -0.4605
+          ],
+          [
+            "2026-04-03",
+            -0.454
+          ],
+          [
+            "2026-04-10",
+            -0.4086
+          ],
+          [
+            "2026-04-17",
+            -0.3819
+          ],
+          [
+            "2026-04-24",
+            -0.379
+          ],
+          [
+            "2026-05-01",
+            -0.3779
+          ],
+          [
+            "2026-05-08",
+            -0.3567
+          ],
+          [
+            "2026-05-15",
+            -0.3626
+          ],
+          [
+            "2026-05-22",
+            -0.389
+          ],
+          [
+            "2026-05-29",
+            -0.4066
+          ],
+          [
+            "2026-06-05",
+            -0.5028
+          ],
+          [
+            "2026-06-12",
+            -0.4794
+          ],
+          [
+            "2026-06-19",
+            -0.4722
+          ],
+          [
+            "2026-06-26",
+            -0.5009
+          ],
+          [
+            "2026-07-03",
+            -0.4794
+          ],
+          [
+            "2026-07-10",
+            -0.4683
+          ],
+          [
+            "2026-07-17",
+            -0.4751
+          ],
+          [
+            "2026-07-24",
+            -0.4705
+          ],
+          [
+            "2026-07-31",
+            -0.4835
+          ],
+          [
+            "2026-08-07",
+            -0.4697
+          ],
+          [
+            "2026-08-14",
+            -0.4878
+          ],
+          [
+            "2026-08-21",
+            -0.3682
+          ],
+          [
+            "2026-08-28",
+            -0.3664
+          ],
+          [
+            "2026-09-04",
+            -0.3537
+          ],
+          [
+            "2026-09-11",
+            -0.3727
+          ],
+          [
+            "2026-09-18",
+            -0.336
+          ],
+          [
+            "2026-09-25",
+            -0.3032
+          ],
+          [
+            "2026-10-02",
+            -0.2944
+          ],
+          [
+            "2026-10-09",
+            -0.3095
+          ],
+          [
+            "2026-10-16",
+            -0.3238
+          ],
+          [
+            "2026-10-23",
+            -0.335
+          ],
+          [
+            "2026-10-30",
+            -0.3683
+          ],
+          [
+            "2026-11-06",
+            -0.3734
+          ],
+          [
+            "2026-11-12",
+            -0.4039
+          ]
+        ],
+        "GLD": [
+          [
+            "2021-11-12",
+            0.0
+          ],
+          [
+            "2021-11-19",
+            -0.0047
+          ],
+          [
+            "2021-11-26",
+            -0.0279
+          ],
+          [
+            "2021-12-03",
+            -0.026
+          ],
+          [
+            "2021-12-10",
+            -0.0338
+          ],
+          [
+            "2021-12-17",
+            -0.0166
+          ],
+          [
+            "2021-12-24",
+            -0.0121
+          ],
+          [
+            "2021-12-31",
+            -0.0112
+          ],
+          [
+            "2022-01-07",
+            -0.0307
+          ],
+          [
+            "2022-01-14",
+            -0.0289
+          ],
+          [
+            "2022-01-21",
+            -0.0208
+          ],
+          [
+            "2022-01-28",
+            -0.0264
+          ],
+          [
+            "2022-02-04",
+            -0.0172
+          ],
+          [
+            "2022-02-11",
+            0.0
+          ],
+          [
+            "2022-02-18",
+            0.0
+          ],
+          [
+            "2022-02-25",
+            -0.0022
+          ],
+          [
+            "2022-03-04",
+            0.0
+          ],
+          [
+            "2022-03-11",
+            0.0
+          ],
+          [
+            "2022-03-18",
+            -0.0391
+          ],
+          [
+            "2022-03-25",
+            -0.0315
+          ],
+          [
+            "2022-04-01",
+            -0.0461
+          ],
+          [
+            "2022-04-08",
+            -0.0297
+          ],
+          [
+            "2022-04-15",
+            -0.015
+          ],
+          [
+            "2022-04-22",
+            -0.0273
+          ],
+          [
+            "2022-04-29",
+            -0.0388
+          ],
+          [
+            "2022-05-06",
+            -0.0402
+          ],
+          [
+            "2022-05-13",
+            -0.0714
+          ],
+          [
+            "2022-05-20",
+            -0.0626
+          ],
+          [
+            "2022-05-27",
+            -0.0648
+          ],
+          [
+            "2022-06-03",
+            -0.0779
+          ],
+          [
+            "2022-06-10",
+            -0.0528
+          ],
+          [
+            "2022-06-17",
+            -0.0518
+          ],
+          [
+            "2022-06-24",
+            -0.0657
+          ],
+          [
+            "2022-07-01",
+            -0.0787
+          ],
+          [
+            "2022-07-08",
+            -0.106
+          ],
+          [
+            "2022-07-15",
+            -0.1194
+          ],
+          [
+            "2022-07-22",
+            -0.1213
+          ],
+          [
+            "2022-07-29",
+            -0.1062
+          ],
+          [
+            "2022-08-05",
+            -0.092
+          ],
+          [
+            "2022-08-12",
+            -0.0885
+          ],
+          [
+            "2022-08-19",
+            -0.1021
+          ],
+          [
+            "2022-08-26",
+            -0.1076
+          ],
+          [
+            "2022-09-02",
+            -0.1124
+          ],
+          [
+            "2022-09-09",
+            -0.1151
+          ],
+          [
+            "2022-09-16",
+            -0.1206
+          ],
+          [
+            "2022-09-23",
+            -0.1181
+          ],
+          [
+            "2022-09-30",
+            -0.0995
+          ],
+          [
+            "2022-10-07",
+            -0.0805
+          ],
+          [
+            "2022-10-14",
+            -0.0997
+          ],
+          [
+            "2022-10-21",
+            -0.1021
+          ],
+          [
+            "2022-10-28",
+            -0.1143
+          ],
+          [
+            "2022-11-04",
+            -0.1017
+          ],
+          [
+            "2022-11-11",
+            -0.0649
+          ],
+          [
+            "2022-11-18",
+            -0.0745
+          ],
+          [
+            "2022-11-25",
+            -0.0726
+          ],
+          [
+            "2022-12-02",
+            -0.0432
+          ],
+          [
+            "2022-12-09",
+            -0.0328
+          ],
+          [
+            "2022-12-16",
+            -0.0304
+          ],
+          [
+            "2022-12-23",
+            -0.0336
+          ],
+          [
+            "2022-12-30",
+            -0.0241
+          ],
+          [
+            "2023-01-06",
+            -0.005
+          ],
+          [
+            "2023-01-13",
+            0.0
+          ],
+          [
+            "2023-01-20",
+            0.0
+          ],
+          [
+            "2023-01-27",
+            -0.0084
+          ],
+          [
+            "2023-02-03",
+            -0.0347
+          ],
+          [
+            "2023-02-10",
+            -0.0373
+          ],
+          [
+            "2023-02-17",
+            -0.0401
+          ],
+          [
+            "2023-02-24",
+            -0.047
+          ],
+          [
+            "2023-03-03",
+            -0.0244
+          ],
+          [
+            "2023-03-10",
+            -0.0023
+          ],
+          [
+            "2023-03-17",
+            0.0
+          ],
+          [
+            "2023-03-24",
+            0.0
+          ],
+          [
+            "2023-03-31",
+            -0.019
+          ],
+          [
+            "2023-04-07",
+            -0.0056
+          ],
+          [
+            "2023-04-14",
+            -0.0148
+          ],
+          [
+            "2023-04-21",
+            -0.0131
+          ],
+          [
+            "2023-04-28",
+            -0.0073
+          ],
+          [
+            "2023-05-05",
+            -0.0042
+          ],
+          [
+            "2023-05-12",
+            0.0
+          ],
+          [
+            "2023-05-19",
+            -0.0192
+          ],
+          [
+            "2023-05-26",
+            -0.0252
+          ],
+          [
+            "2023-06-02",
+            -0.0379
+          ],
+          [
+            "2023-06-09",
+            -0.0394
+          ],
+          [
+            "2023-06-16",
+            -0.0519
+          ],
+          [
+            "2023-06-23",
+            -0.0697
+          ],
+          [
+            "2023-06-30",
+            -0.0664
+          ],
+          [
+            "2023-07-07",
+            -0.0608
+          ],
+          [
+            "2023-07-14",
+            -0.054
+          ],
+          [
+            "2023-07-21",
+            -0.048
+          ],
+          [
+            "2023-07-28",
+            -0.0482
+          ],
+          [
+            "2023-08-04",
+            -0.0482
+          ],
+          [
+            "2023-08-11",
+            -0.0557
+          ],
+          [
+            "2023-08-18",
+            -0.0602
+          ],
+          [
+            "2023-08-25",
+            -0.0441
+          ],
+          [
+            "2023-09-01",
+            -0.0326
+          ],
+          [
+            "2023-09-08",
+            -0.0398
+          ],
+          [
+            "2023-09-15",
+            -0.0459
+          ],
+          [
+            "2023-09-22",
+            -0.0488
+          ],
+          [
+            "2023-09-29",
+            -0.0832
+          ],
+          [
+            "2023-10-06",
+            -0.0816
+          ],
+          [
+            "2023-10-13",
+            -0.0337
+          ],
+          [
+            "2023-10-20",
+            -0.0055
+          ],
+          [
+            "2023-10-27",
+            0.0
+          ],
+          [
+            "2023-11-03",
+            -0.0198
+          ],
+          [
+            "2023-11-10",
+            -0.0383
+          ],
+          [
+            "2023-11-17",
+            -0.0229
+          ],
+          [
+            "2023-11-24",
+            -0.0202
+          ],
+          [
+            "2023-12-01",
+            0.0
+          ],
+          [
+            "2023-12-08",
+            -0.0274
+          ],
+          [
+            "2023-12-15",
+            -0.0354
+          ],
+          [
+            "2023-12-22",
+            -0.0273
+          ],
+          [
+            "2023-12-29",
+            -0.0251
+          ],
+          [
+            "2024-01-05",
+            -0.0255
+          ],
+          [
+            "2024-01-12",
+            -0.0208
+          ],
+          [
+            "2024-01-19",
+            -0.0245
+          ],
+          [
+            "2024-01-26",
+            -0.0302
+          ],
+          [
+            "2024-02-02",
+            -0.0216
+          ],
+          [
+            "2024-02-09",
+            -0.0265
+          ],
+          [
+            "2024-02-16",
+            -0.0312
+          ],
+          [
+            "2024-02-23",
+            -0.0186
+          ],
+          [
+            "2024-03-01",
+            0.0
+          ],
+          [
+            "2024-03-08",
+            0.0
+          ],
+          [
+            "2024-03-15",
+            -0.005
+          ],
+          [
+            "2024-03-22",
+            0.0
+          ],
+          [
+            "2024-03-29",
+            0.0
+          ],
+          [
+            "2024-04-05",
+            0.0
+          ],
+          [
+            "2024-04-12",
+            0.0
+          ],
+          [
+            "2024-04-19",
+            0.0
+          ],
+          [
+            "2024-04-26",
+            -0.0257
+          ],
+          [
+            "2024-05-03",
+            -0.0418
+          ],
+          [
+            "2024-05-10",
+            -0.0165
+          ],
+          [
+            "2024-05-17",
+            0.0
+          ],
+          [
+            "2024-05-24",
+            -0.0305
+          ],
+          [
+            "2024-05-31",
+            -0.0358
+          ],
+          [
+            "2024-06-07",
+            -0.0452
+          ],
+          [
+            "2024-06-14",
+            -0.0258
+          ],
+          [
+            "2024-06-21",
+            -0.0336
+          ],
+          [
+            "2024-06-28",
+            -0.0336
+          ],
+          [
+            "2024-07-05",
+            -0.0109
+          ],
+          [
+            "2024-07-12",
+            -0.0015
+          ],
+          [
+            "2024-07-19",
+            -0.0005
+          ],
+          [
+            "2024-07-26",
+            0.0
+          ],
+          [
+            "2024-08-02",
+            0.0
+          ],
+          [
+            "2024-08-09",
+            -0.0125
+          ],
+          [
+            "2024-08-16",
+            0.0
+          ],
+          [
+            "2024-08-23",
+            -0.0129
+          ],
+          [
+            "2024-08-30",
+            -0.0187
+          ],
+          [
+            "2024-09-06",
+            -0.0176
+          ],
+          [
+            "2024-09-13",
+            0.0
+          ],
+          [
+            "2024-09-20",
+            0.0
+          ],
+          [
+            "2024-09-27",
+            0.0
+          ],
+          [
+            "2024-10-04",
+            0.0
+          ],
+          [
+            "2024-10-11",
+            0.0
+          ],
+          [
+            "2024-10-18",
+            0.0
+          ],
+          [
+            "2024-10-25",
+            0.0
+          ],
+          [
+            "2024-11-01",
+            0.0
+          ],
+          [
+            "2024-11-08",
+            -0.0192
+          ],
+          [
+            "2024-11-15",
+            -0.053
+          ],
+          [
+            "2024-11-22",
+            -0.0071
+          ],
+          [
+            "2024-11-29",
+            -0.0218
+          ],
+          [
+            "2024-12-06",
+            -0.0236
+          ],
+          [
+            "2024-12-13",
+            -0.0116
+          ],
+          [
+            "2024-12-20",
+            -0.0113
+          ],
+          [
+            "2024-12-27",
+            -0.0106
+          ],
+          [
+            "2025-01-03",
+            -0.0003
+          ],
+          [
+            "2025-01-10",
+            0.0
+          ],
+          [
+            "2025-01-17",
+            0.0
+          ],
+          [
+            "2025-01-24",
+            0.0
+          ],
+          [
+            "2025-01-31",
+            0.0
+          ],
+          [
+            "2025-02-07",
+            0.0
+          ],
+          [
+            "2025-02-14",
+            -0.0003
+          ],
+          [
+            "2025-02-21",
+            0.0
+          ],
+          [
+            "2025-02-28",
+            -0.0118
+          ],
+          [
+            "2025-03-07",
+            0.0
+          ],
+          [
+            "2025-03-14",
+            0.0
+          ],
+          [
+            "2025-03-21",
+            0.0
+          ],
+          [
+            "2025-03-28",
+            0.0
+          ],
+          [
+            "2025-04-04",
+            -0.0215
+          ],
+          [
+            "2025-04-11",
+            0.0
+          ],
+          [
+            "2025-04-18",
+            0.0
+          ],
+          [
+            "2025-04-25",
+            -0.0041
+          ],
+          [
+            "2025-05-02",
+            -0.0306
+          ],
+          [
+            "2025-05-09",
+            0.0
+          ],
+          [
+            "2025-05-16",
+            -0.0375
+          ],
+          [
+            "2025-05-23",
+            -0.0029
+          ],
+          [
+            "2025-05-30",
+            -0.0226
+          ],
+          [
+            "2025-06-06",
+            -0.0223
+          ],
+          [
+            "2025-06-13",
+            0.0
+          ],
+          [
+            "2025-06-20",
+            -0.0101
+          ],
+          [
+            "2025-06-27",
+            -0.0422
+          ],
+          [
+            "2025-07-04",
+            -0.0306
+          ],
+          [
+            "2025-07-11",
+            -0.0164
+          ],
+          [
+            "2025-07-18",
+            -0.0162
+          ],
+          [
+            "2025-07-25",
+            -0.0205
+          ],
+          [
+            "2025-08-01",
+            -0.0084
+          ],
+          [
+            "2025-08-08",
+            0.0
+          ],
+          [
+            "2025-08-15",
+            -0.014
+          ],
+          [
+            "2025-08-22",
+            -0.0005
+          ],
+          [
+            "2025-08-29",
+            0.0
+          ],
+          [
+            "2025-09-05",
+            0.0
+          ],
+          [
+            "2025-09-12",
+            0.0
+          ],
+          [
+            "2025-09-19",
+            0.0
+          ],
+          [
+            "2025-09-26",
+            0.0
+          ],
+          [
+            "2025-10-03",
+            0.0
+          ],
+          [
+            "2025-10-10",
+            0.0
+          ],
+          [
+            "2025-10-17",
+            0.0
+          ],
+          [
+            "2025-10-24",
+            -0.0309
+          ],
+          [
+            "2025-10-31",
+            -0.0548
+          ],
+          [
+            "2025-11-07",
+            -0.0513
+          ],
+          [
+            "2025-11-14",
+            -0.0342
+          ],
+          [
+            "2025-11-21",
+            -0.0334
+          ],
+          [
+            "2025-11-28",
+            -0.0068
+          ],
+          [
+            "2025-12-05",
+            -0.0189
+          ],
+          [
+            "2025-12-12",
+            -0.0027
+          ],
+          [
+            "2025-12-19",
+            0.0
+          ],
+          [
+            "2025-12-26",
+            0.0
+          ],
+          [
+            "2026-01-02",
+            -0.0399
+          ],
+          [
+            "2026-01-09",
+            0.0
+          ],
+          [
+            "2026-01-16",
+            0.0
+          ],
+          [
+            "2026-01-23",
+            0.0
+          ],
+          [
+            "2026-01-30",
+            -0.0405
+          ],
+          [
+            "2026-02-06",
+            -0.0116
+          ],
+          [
+            "2026-02-13",
+            0.0
+          ],
+          [
+            "2026-02-20",
+            0.0
+          ],
+          [
+            "2026-02-27",
+            0.0
+          ],
+          [
+            "2026-03-06",
+            -0.0232
+          ],
+          [
+            "2026-03-13",
+            -0.0422
+          ],
+          [
+            "2026-03-20",
+            -0.1407
+          ],
+          [
+            "2026-03-27",
+            -0.1281
+          ],
+          [
+            "2026-04-03",
+            -0.0944
+          ],
+          [
+            "2026-04-10",
+            -0.0843
+          ],
+          [
+            "2026-04-17",
+            -0.0762
+          ],
+          [
+            "2026-04-24",
+            -0.102
+          ],
+          [
+            "2026-05-01",
+            -0.1294
+          ],
+          [
+            "2026-05-08",
+            -0.1004
+          ],
+          [
+            "2026-05-15",
+            -0.1304
+          ],
+          [
+            "2026-05-22",
+            -0.1341
+          ],
+          [
+            "2026-05-29",
+            -0.1279
+          ],
+          [
+            "2026-06-05",
+            -0.164
+          ],
+          [
+            "2026-06-12",
+            -0.1813
+          ],
+          [
+            "2026-06-19",
+            -0.1711
+          ],
+          [
+            "2026-06-26",
+            -0.1968
+          ],
+          [
+            "2026-07-03",
+            -0.1875
+          ],
+          [
+            "2026-07-10",
+            -0.1919
+          ],
+          [
+            "2026-07-17",
+            -0.2177
+          ],
+          [
+            "2026-07-24",
+            -0.2058
+          ],
+          [
+            "2026-07-31",
+            -0.2102
+          ],
+          [
+            "2026-08-07",
+            -0.1581
+          ],
+          [
+            "2026-08-14",
+            -0.1559
+          ],
+          [
+            "2026-08-21",
+            -0.1173
+          ],
+          [
+            "2026-08-28",
+            -0.1395
+          ],
+          [
+            "2026-09-04",
+            -0.1469
+          ],
+          [
+            "2026-09-11",
+            -0.1621
+          ],
+          [
+            "2026-09-18",
+            -0.1488
+          ],
+          [
+            "2026-09-25",
+            -0.1568
+          ],
+          [
+            "2026-10-02",
+            -0.1794
+          ],
+          [
+            "2026-10-09",
+            -0.1683
+          ],
+          [
+            "2026-10-16",
+            -0.1807
+          ],
+          [
+            "2026-10-23",
+            -0.2227
+          ],
+          [
+            "2026-10-30",
+            -0.2474
+          ],
+          [
+            "2026-11-06",
+            -0.2033
+          ],
+          [
+            "2026-11-12",
+            -0.2334
+          ]
+        ],
+        "SPY": [
+          [
+            "2021-11-12",
+            0.0
+          ],
+          [
+            "2021-11-19",
+            0.0
+          ],
+          [
+            "2021-11-26",
+            -0.0109
+          ],
+          [
+            "2021-12-03",
+            -0.0198
+          ],
+          [
+            "2021-12-10",
+            0.0
+          ],
+          [
+            "2021-12-17",
+            -0.0095
+          ],
+          [
+            "2021-12-24",
+            0.0
+          ],
+          [
+            "2021-12-31",
+            -0.0016
+          ],
+          [
+            "2022-01-07",
+            -0.0212
+          ],
+          [
+            "2022-01-14",
+            -0.0334
+          ],
+          [
+            "2022-01-21",
+            -0.089
+          ],
+          [
+            "2022-01-28",
+            -0.0641
+          ],
+          [
+            "2022-02-04",
+            -0.0509
+          ],
+          [
+            "2022-02-11",
+            -0.0724
+          ],
+          [
+            "2022-02-18",
+            -0.0832
+          ],
+          [
+            "2022-02-25",
+            -0.0748
+          ],
+          [
+            "2022-03-04",
+            -0.0864
+          ],
+          [
+            "2022-03-11",
+            -0.1141
+          ],
+          [
+            "2022-03-18",
+            -0.0672
+          ],
+          [
+            "2022-03-25",
+            -0.0587
+          ],
+          [
+            "2022-04-01",
+            -0.0575
+          ],
+          [
+            "2022-04-08",
+            -0.0629
+          ],
+          [
+            "2022-04-15",
+            -0.0825
+          ],
+          [
+            "2022-04-22",
+            -0.1
+          ],
+          [
+            "2022-04-29",
+            -0.1234
+          ],
+          [
+            "2022-05-06",
+            -0.1187
+          ],
+          [
+            "2022-05-13",
+            -0.1346
+          ],
+          [
+            "2022-05-20",
+            -0.1686
+          ],
+          [
+            "2022-05-27",
+            -0.1202
+          ],
+          [
+            "2022-06-03",
+            -0.1411
+          ],
+          [
+            "2022-06-10",
+            -0.1717
+          ],
+          [
+            "2022-06-17",
+            -0.2034
+          ],
+          [
+            "2022-06-24",
+            -0.1573
+          ],
+          [
+            "2022-07-01",
+            -0.1794
+          ],
+          [
+            "2022-07-08",
+            -0.1581
+          ],
+          [
+            "2022-07-15",
+            -0.1612
+          ],
+          [
+            "2022-07-22",
+            -0.1502
+          ],
+          [
+            "2022-07-29",
+            -0.1175
+          ],
+          [
+            "2022-08-05",
+            -0.1067
+          ],
+          [
+            "2022-08-12",
+            -0.088
+          ],
+          [
+            "2022-08-19",
+            -0.084
+          ],
+          [
+            "2022-08-26",
+            -0.1206
+          ],
+          [
+            "2022-09-02",
+            -0.1403
+          ],
+          [
+            "2022-09-09",
+            -0.1147
+          ],
+          [
+            "2022-09-16",
+            -0.1409
+          ],
+          [
+            "2022-09-23",
+            -0.1625
+          ],
+          [
+            "2022-09-30",
+            -0.1788
+          ],
+          [
+            "2022-10-07",
+            -0.1656
+          ],
+          [
+            "2022-10-14",
+            -0.1689
+          ],
+          [
+            "2022-10-21",
+            -0.1391
+          ],
+          [
+            "2022-10-28",
+            -0.1116
+          ],
+          [
+            "2022-11-04",
+            -0.1468
+          ],
+          [
+            "2022-11-11",
+            -0.1058
+          ],
+          [
+            "2022-11-18",
+            -0.1109
+          ],
+          [
+            "2022-11-25",
+            -0.0973
+          ],
+          [
+            "2022-12-02",
+            -0.0808
+          ],
+          [
+            "2022-12-09",
+            -0.1009
+          ],
+          [
+            "2022-12-16",
+            -0.1161
+          ],
+          [
+            "2022-12-23",
+            -0.1224
+          ],
+          [
+            "2022-12-30",
+            -0.1273
+          ],
+          [
+            "2023-01-06",
+            -0.1182
+          ],
+          [
+            "2023-01-13",
+            -0.0999
+          ],
+          [
+            "2023-01-20",
+            -0.1048
+          ],
+          [
+            "2023-01-27",
+            -0.0899
+          ],
+          [
+            "2023-02-03",
+            -0.0696
+          ],
+          [
+            "2023-02-10",
+            -0.0813
+          ],
+          [
+            "2023-02-17",
+            -0.0745
+          ],
+          [
+            "2023-02-24",
+            -0.0902
+          ],
+          [
+            "2023-03-03",
+            -0.0731
+          ],
+          [
+            "2023-03-10",
+            -0.1022
+          ],
+          [
+            "2023-03-17",
+            -0.0941
+          ],
+          [
+            "2023-03-24",
+            -0.0788
+          ],
+          [
+            "2023-03-31",
+            -0.0629
+          ],
+          [
+            "2023-04-07",
+            -0.0672
+          ],
+          [
+            "2023-04-14",
+            -0.0678
+          ],
+          [
+            "2023-04-21",
+            -0.0561
+          ],
+          [
+            "2023-04-28",
+            -0.0448
+          ],
+          [
+            "2023-05-05",
+            -0.0629
+          ],
+          [
+            "2023-05-12",
+            -0.0578
+          ],
+          [
+            "2023-05-19",
+            -0.0439
+          ],
+          [
+            "2023-05-26",
+            -0.0322
+          ],
+          [
+            "2023-06-02",
+            -0.0276
+          ],
+          [
+            "2023-06-09",
+            -0.0299
+          ],
+          [
+            "2023-06-16",
+            -0.0154
+          ],
+          [
+            "2023-06-23",
+            -0.0293
+          ],
+          [
+            "2023-06-30",
+            -0.0036
+          ],
+          [
+            "2023-07-07",
+            -0.0103
+          ],
+          [
+            "2023-07-14",
+            0.0
+          ],
+          [
+            "2023-07-21",
+            0.0
+          ],
+          [
+            "2023-07-28",
+            0.0
+          ],
+          [
+            "2023-08-04",
+            -0.013
+          ],
+          [
+            "2023-08-11",
+            -0.0091
+          ],
+          [
+            "2023-08-18",
+            -0.0216
+          ],
+          [
+            "2023-08-25",
+            -0.0099
+          ],
+          [
+            "2023-09-01",
+            0.0
+          ],
+          [
+            "2023-09-08",
+            -0.0088
+          ],
+          [
+            "2023-09-15",
+            -0.0178
+          ],
+          [
+            "2023-09-22",
+            -0.0508
+          ],
+          [
+            "2023-09-29",
+            -0.0534
+          ],
+          [
+            "2023-10-06",
+            -0.0374
+          ],
+          [
+            "2023-10-13",
+            -0.0345
+          ],
+          [
+            "2023-10-20",
+            -0.0553
+          ],
+          [
+            "2023-10-27",
+            -0.0679
+          ],
+          [
+            "2023-11-03",
+            -0.0258
+          ],
+          [
+            "2023-11-10",
+            -0.0028
+          ],
+          [
+            "2023-11-17",
+            0.0
+          ],
+          [
+            "2023-11-24",
+            0.0
+          ],
+          [
+            "2023-12-01",
+            -0.0002
+          ],
+          [
+            "2023-12-08",
+            0.0
+          ],
+          [
+            "2023-12-15",
+            0.0
+          ],
+          [
+            "2023-12-22",
+            0.0
+          ],
+          [
+            "2023-12-29",
+            0.0
+          ],
+          [
+            "2024-01-05",
+            -0.0065
+          ],
+          [
+            "2024-01-12",
+            0.0
+          ],
+          [
+            "2024-01-19",
+            0.0
+          ],
+          [
+            "2024-01-26",
+            0.0
+          ],
+          [
+            "2024-02-02",
+            0.0
+          ],
+          [
+            "2024-02-09",
+            0.0
+          ],
+          [
+            "2024-02-16",
+            -0.0014
+          ],
+          [
+            "2024-02-23",
+            0.0
+          ],
+          [
+            "2024-03-01",
+            0.0
+          ],
+          [
+            "2024-03-08",
+            -0.009
+          ],
+          [
+            "2024-03-15",
+            -0.0051
+          ],
+          [
+            "2024-03-22",
+            0.0
+          ],
+          [
+            "2024-03-29",
+            0.0
+          ],
+          [
+            "2024-04-05",
+            -0.0054
+          ],
+          [
+            "2024-04-12",
+            -0.0078
+          ],
+          [
+            "2024-04-19",
+            -0.0395
+          ],
+          [
+            "2024-04-26",
+            -0.0199
+          ],
+          [
+            "2024-05-03",
+            -0.0137
+          ],
+          [
+            "2024-05-10",
+            0.0
+          ],
+          [
+            "2024-05-17",
+            0.0
+          ],
+          [
+            "2024-05-24",
+            0.0
+          ],
+          [
+            "2024-05-31",
+            -0.0065
+          ],
+          [
+            "2024-06-07",
+            0.0
+          ],
+          [
+            "2024-06-14",
+            0.0
+          ],
+          [
+            "2024-06-21",
+            0.0
+          ],
+          [
+            "2024-06-28",
+            -0.0016
+          ],
+          [
+            "2024-07-05",
+            0.0
+          ],
+          [
+            "2024-07-12",
+            0.0
+          ],
+          [
+            "2024-07-19",
+            -0.0125
+          ],
+          [
+            "2024-07-26",
+            -0.0134
+          ],
+          [
+            "2024-08-02",
+            -0.0323
+          ],
+          [
+            "2024-08-09",
+            -0.041
+          ],
+          [
+            "2024-08-16",
+            -0.0044
+          ],
+          [
+            "2024-08-23",
+            -0.0035
+          ],
+          [
+            "2024-08-30",
+            -0.0035
+          ],
+          [
+            "2024-09-06",
+            -0.0409
+          ],
+          [
+            "2024-09-13",
+            0.0
+          ],
+          [
+            "2024-09-20",
+            0.0
+          ],
+          [
+            "2024-09-27",
+            0.0
+          ],
+          [
+            "2024-10-04",
+            0.0
+          ],
+          [
+            "2024-10-11",
+            0.0
+          ],
+          [
+            "2024-10-18",
+            0.0
+          ],
+          [
+            "2024-10-25",
+            -0.0045
+          ],
+          [
+            "2024-11-01",
+            -0.014
+          ],
+          [
+            "2024-11-08",
+            0.0
+          ],
+          [
+            "2024-11-15",
+            -0.0091
+          ],
+          [
+            "2024-11-22",
+            0.0
+          ],
+          [
+            "2024-11-29",
+            0.0
+          ],
+          [
+            "2024-12-06",
+            0.0
+          ],
+          [
+            "2024-12-13",
+            0.0
+          ],
+          [
+            "2024-12-20",
+            -0.0091
+          ],
+          [
+            "2024-12-27",
+            0.0
+          ],
+          [
+            "2025-01-03",
+            -0.0033
+          ],
+          [
+            "2025-01-10",
+            -0.024
+          ],
+          [
+            "2025-01-17",
+            0.0
+          ],
+          [
+            "2025-01-24",
+            0.0
+          ],
+          [
+            "2025-01-31",
+            0.0
+          ],
+          [
+            "2025-02-07",
+            -0.0146
+          ],
+          [
+            "2025-02-14",
+            -0.0091
+          ],
+          [
+            "2025-02-21",
+            -0.0222
+          ],
+          [
+            "2025-02-28",
+            -0.0158
+          ],
+          [
+            "2025-03-07",
+            -0.0505
+          ],
+          [
+            "2025-03-14",
+            -0.071
+          ],
+          [
+            "2025-03-21",
+            -0.0689
+          ],
+          [
+            "2025-03-28",
+            -0.0852
+          ],
+          [
+            "2025-04-04",
+            -0.1735
+          ],
+          [
+            "2025-04-11",
+            -0.1466
+          ],
+          [
+            "2025-04-18",
+            -0.1607
+          ],
+          [
+            "2025-04-25",
+            -0.1216
+          ],
+          [
+            "2025-05-02",
+            -0.1
+          ],
+          [
+            "2025-05-09",
+            -0.0956
+          ],
+          [
+            "2025-05-16",
+            -0.0442
+          ],
+          [
+            "2025-05-23",
+            -0.0834
+          ],
+          [
+            "2025-05-30",
+            -0.0669
+          ],
+          [
+            "2025-06-06",
+            -0.0562
+          ],
+          [
+            "2025-06-13",
+            -0.0659
+          ],
+          [
+            "2025-06-20",
+            -0.0585
+          ],
+          [
+            "2025-06-27",
+            -0.0295
+          ],
+          [
+            "2025-07-04",
+            -0.0203
+          ],
+          [
+            "2025-07-11",
+            -0.0152
+          ],
+          [
+            "2025-07-18",
+            -0.0063
+          ],
+          [
+            "2025-07-25",
+            0.0
+          ],
+          [
+            "2025-08-01",
+            -0.0175
+          ],
+          [
+            "2025-08-08",
+            0.0
+          ],
+          [
+            "2025-08-15",
+            0.0
+          ],
+          [
+            "2025-08-22",
+            0.0
+          ],
+          [
+            "2025-08-29",
+            -0.0085
+          ],
+          [
+            "2025-09-05",
+            0.0
+          ],
+          [
+            "2025-09-12",
+            0.0
+          ],
+          [
+            "2025-09-19",
+            0.0
+          ],
+          [
+            "2025-09-26",
+            0.0
+          ],
+          [
+            "2025-10-03",
+            0.0
+          ],
+          [
+            "2025-10-10",
+            -0.0209
+          ],
+          [
+            "2025-10-17",
+            -0.0014
+          ],
+          [
+            "2025-10-24",
+            0.0
+          ],
+          [
+            "2025-10-31",
+            0.0
+          ],
+          [
+            "2025-11-07",
+            -0.0131
+          ],
+          [
+            "2025-11-14",
+            -0.0144
+          ],
+          [
+            "2025-11-21",
+            -0.0281
+          ],
+          [
+            "2025-11-28",
+            -0.0008
+          ],
+          [
+            "2025-12-05",
+            -0.006
+          ],
+          [
+            "2025-12-12",
+            -0.0182
+          ],
+          [
+            "2025-12-19",
+            -0.0161
+          ],
+          [
+            "2025-12-26",
+            -0.0098
+          ],
+          [
+            "2026-01-02",
+            -0.0156
+          ],
+          [
+            "2026-01-09",
+            0.0
+          ],
+          [
+            "2026-01-16",
+            -0.0023
+          ],
+          [
+            "2026-01-23",
+            -0.0187
+          ],
+          [
+            "2026-01-30",
+            -0.027
+          ],
+          [
+            "2026-02-06",
+            -0.0227
+          ],
+          [
+            "2026-02-13",
+            -0.0377
+          ],
+          [
+            "2026-02-20",
+            -0.0215
+          ],
+          [
+            "2026-02-27",
+            -0.0297
+          ],
+          [
+            "2026-03-06",
+            -0.051
+          ],
+          [
+            "2026-03-13",
+            -0.0581
+          ],
+          [
+            "2026-03-20",
+            -0.075
+          ],
+          [
+            "2026-03-27",
+            -0.0853
+          ],
+          [
+            "2026-04-03",
+            -0.051
+          ],
+          [
+            "2026-04-10",
+            -0.0234
+          ],
+          [
+            "2026-04-17",
+            0.0
+          ],
+          [
+            "2026-04-24",
+            0.0
+          ],
+          [
+            "2026-05-01",
+            0.0
+          ],
+          [
+            "2026-05-08",
+            0.0
+          ],
+          [
+            "2026-05-15",
+            0.0
+          ],
+          [
+            "2026-05-22",
+            0.0
+          ],
+          [
+            "2026-05-29",
+            0.0
+          ],
+          [
+            "2026-06-05",
+            -0.0161
+          ],
+          [
+            "2026-06-12",
+            -0.0068
+          ],
+          [
+            "2026-06-19",
+            0.0
+          ],
+          [
+            "2026-06-26",
+            -0.02
+          ],
+          [
+            "2026-07-03",
+            0.0
+          ],
+          [
+            "2026-07-10",
+            0.0
+          ],
+          [
+            "2026-07-17",
+            -0.0246
+          ],
+          [
+            "2026-07-24",
+            -0.0249
+          ],
+          [
+            "2026-07-31",
+            -0.0187
+          ],
+          [
+            "2026-08-07",
+            0.0
+          ],
+          [
+            "2026-08-14",
+            -0.0009
+          ],
+          [
+            "2026-08-21",
+            -0.0227
+          ],
+          [
+            "2026-08-28",
+            -0.009
+          ],
+          [
+            "2026-09-04",
+            -0.0113
+          ],
+          [
+            "2026-09-11",
+            -0.0171
+          ],
+          [
+            "2026-09-18",
+            -0.0083
+          ],
+          [
+            "2026-09-25",
+            0.0
+          ],
+          [
+            "2026-10-02",
+            0.0
+          ],
+          [
+            "2026-10-09",
+            0.0
+          ],
+          [
+            "2026-10-16",
+            -0.0277
+          ],
+          [
+            "2026-10-23",
+            -0.0429
+          ],
+          [
+            "2026-10-30",
+            -0.0505
+          ],
+          [
+            "2026-11-06",
+            -0.066
+          ],
+          [
+            "2026-11-12",
+            -0.0286
+          ]
+        ]
+      },
+      "sources": [
+        "R-0003",
+        "R-0013",
+        "R-0023"
+      ],
+      "note": "Série hebdomadaire : pour un actif seul, la pire baisse citée dans le texte est mesurée sur la série quotidienne et peut être un peu plus profonde."
+    }
+  ],
+  "fiche_profil": [
+    [
+      "Profil de risque",
+      "P-0003"
+    ],
+    [
+      "Horizon",
+      "P-0004"
+    ],
+    [
+      "Objectif",
+      "P-0005"
+    ],
+    [
+      "Expérience",
+      "P-0006"
+    ],
+    [
+      "Origine de la demande",
+      "P-0016"
+    ]
+  ],
+  "chiffres_cles": [
+    {
+      "libelle": "Volatilité du Bitcoin",
+      "valeur": "R-0002",
+      "detail": "Indice américain : {{R-0022}}, or : {{R-0012}}"
+    },
+    {
+      "libelle": "Pire baisse du Bitcoin",
+      "valeur": "R-0003",
+      "detail": "Indice américain : {{R-0023}}, or : {{R-0013}}"
+    },
+    {
+      "libelle": "Durée du Bitcoin sous son sommet",
+      "valeur": "R-0007",
+      "detail": "Horizon minimal : {{P-0007}}"
+    },
+    {
+      "libelle": "Durée de l'échantillon",
+      "valeur": "D-0005",
+      "detail": "Horizon minimal : {{P-0007}}"
+    }
+  ],
+  "tableaux": [
+    {
+      "titre": "Risque historique en dollars canadiens",
+      "colonnes": [
+        "Volatilité",
+        "Pire baisse",
+        "Durée sous le sommet",
+        "Rendement 2022"
+      ],
+      "lignes": [
+        {
+          "nom": "Bitcoin (BTC-USD)",
+          "cellules": [
+            "R-0002",
+            "R-0003",
+            "R-0007",
+            "R-0008"
+          ]
+        },
+        {
+          "nom": "Or (GLD)",
+          "cellules": [
+            "R-0012",
+            "R-0013",
+            "R-0017",
+            "R-0018"
+          ]
+        },
+        {
+          "nom": "Indice américain (SPY)",
+          "cellules": [
+            "R-0022",
+            "R-0023",
+            "R-0027",
+            "R-0028"
+          ]
+        }
+      ]
+    }
+  ],
+  "aws": {
+    "service": "Amazon Bedrock Runtime (Converse)",
+    "region": "us-east-1",
+    "modele": "global.anthropic.claude-sonnet-5-5",
+    "appels": [
+      {
+        "requestId": "b0a31884-d21a-465f-9d4c-5f68cf4f383f",
+        "stopReason": "tool_use",
+        "inputTokens": 4337,
+        "outputTokens": 100,
+        "latenceMs": 920
+      },
+      {
+        "requestId": "a60b8bb0-289f-416e-9932-ffae3633f277",
+        "stopReason": "tool_use",
+        "inputTokens": 7393,
+        "outputTokens": 360,
+        "latenceMs": 2542
+      },
+      {
+        "requestId": "1479bda6-2fe0-4088-b2d6-1fcba5272b2a",
+        "stopReason": "tool_use",
+        "inputTokens": 8805,
+        "outputTokens": 3659,
+        "latenceMs": 21968
+      },
+      {
+        "requestId": "7c40dea4-5d1a-4bae-bf1d-1f9f3bdb26d4",
+        "stopReason": "tool_use",
+        "inputTokens": 13238,
+        "outputTokens": 2983,
+        "latenceMs": 13366
+      }
+    ],
+    "corrections_demandees": 1
+  },
+  "verification": {
+    "affirmations": 18,
+    "valeurs_reliees": 50,
+    "affirmations_en_echec": [],
+    "problemes": {},
+    "ok": true,
+    "elements_verifies": 30
+  }
+}

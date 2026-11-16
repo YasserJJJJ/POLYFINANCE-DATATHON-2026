@@ -1,0 +1,17 @@
+1. raison d'arrêt : interrupt
+   interruptions : [{'id': 'v1:tool_call:tooluse_MOc4jCQI6yJdFATQsddsBK:f5f6fb98-dd57-5a5d-853f-d5bf1abb20fd', 'name': 'question_a_la_personne', 'reason': {'question': "Quel est l'horizon de placement de Robert pour ses 40 % de Tesla (court terme, moyen terme ou long terme, et si possible une échéance précise) ?"}, 'response': None}]
+   appels de modèle jusqu'ici : 5 | passages : ["corps de l'outil, avant l'interruption"]
+   historique : [('user', ['text']), ('assistant', ['reasoningContent', 'toolUse'])]
+
+   Rappel de l'agent avec un texte ordinaire au lieu d'une réponse (doit être refusé, sans appel de modèle) :
+   EXCEPTION : TypeError prompt_type=<class 'str'> | must resume from interrupt with list of interruptResponse's
+
+2. raison d'arrêt après reprise : end_turn
+   réponse : Avec un horizon de 7 ans, détenir 40 % de son patrimoine dans une seule action comme Tesla est un risque élevé, principalement de concentration : la volatilité peut être forte, et une baisse prolongée de l'action pèserait lourdement sur l'ensemble du portefeuille, même si 7 ans laissent du temps pou
+   appels de modèle au total : 6 | passages : ["corps de l'outil, avant l'interruption", "corps de l'outil, avant l'interruption", "corps de l'outil, après l'interruption"]
+   historique : [('user', ['text']), ('assistant', ['reasoningContent', 'toolUse']), ('user', ['toolResult']), ('assistant', ['reasoningContent', 'text'])]
+
+[essai6] appels Bedrock de cet essai (toutes relances) : 2 ; total tous essais : 11/20
+    Converse 200 28008515-c71e-4562-9123-d5e133919e07 {'inputTokens': 479, 'outputTokens': 209, 'totalTokens': 688, 'cacheReadInputTokens': 0, 'cacheWriteInputTokens': 0} tool_use 2.02 s
+    Converse 200 c7af56c6-5582-4f14-b3fb-64db1d6feddf {'inputTokens': 707, 'outputTokens': 211, 'totalTokens': 918, 'cacheReadInputTokens': 0, 'cacheWriteInputTokens': 0} end_turn 2.08 s
+[essai6] hôtes résolus par ce processus : ['bedrock-runtime.us-east-1.amazonaws.com']
