@@ -105,6 +105,10 @@ export default function Etape5Bascule({ dossier, onRetour, onRecommencer, ouvrir
       <h1>Comment l'avis change-t-il avec le montant ou l'horizon ?</h1>
       <p className="lede">Bouge le montant ou l'horizon : chaque position est un verdict du Gardien, calculé par le code,
         sans IA ({bascule.cases.length} combinaisons calculées pendant l'analyse).</p>
+      {dossier.regles?.some((r) => r.code === 'exclusion' && r.niveau === 'rouge') && (
+        <p className="alerte">Ce placement fait partie de tes exclusions : aucun montant ni aucun horizon ne le rend cohérent, d'où une
+          carte entièrement rouge. Les placements de la liste qui passent tes règles sont proposés au verdict.</p>
+      )}
       {!bascule.cases.length && <p className="manque">Verdict impossible à calculer : complète d'abord les informations manquantes.</p>}
       {monotonie && !monotonie.observee && <div className="carte">
         <h2>Une grille non monotone peut être cohérente</h2>

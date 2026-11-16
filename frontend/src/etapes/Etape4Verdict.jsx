@@ -50,18 +50,25 @@ function titreDesOptions(etat, plan) {
     coherent: "D'autres façons de faire, pour comparer" }[etat]
 }
 
+const minuscule = (t = '') => t.charAt(0).toLowerCase() + t.slice(1)
+
 // Plan ouvert : les placements de la liste qui passent les règles, en tableau, chacun analysable seul.
-function PlacementsDuPlan({ plan, verdict, ouvrir, onAnalyser }) {
+function PlacementsDuPlan({ plan, verdict, ouvrir, onAnalyser, suggestion = false }) {
   const [choisi, setChoisi] = useState(plan.placements[0]?.ticker || null)
   useEffect(() => setChoisi(plan.placements[0]?.ticker || null), [plan])
   const selection = plan.placements.find((pl) => pl.ticker === choisi)
+  const familles = [...new Set(plan.placements.map((pl) => pl.famille))]
   return (
     <div className="carte">
       <p className="explication-plan"><Etiquette type="SCENARIO" />{' '}
-        Tu n'as pas choisi de placement : voici {plan.placements.length > 1 ? `${plan.placements.length} placements` : 'le placement'} de
-        la liste qui {plan.placements.length > 1 ? 'passent' : 'passe'} toutes tes règles, de familles différentes (obligations, marché
-        large, autre) et hors de tes exclusions. Ils sont choisis par la pire chute observée la plus faible, jamais par le
-        rendement passé. C'est une simulation de ce que les règles acceptent pour toi, pas une recommandation.</p>
+        {suggestion ? 'Ce placement ne correspond pas à ta situation' : "Tu n'as pas choisi de placement"} :
+        voici {plan.placements.length > 1 ? `${plan.placements.length} placements` : 'le placement'} de
+        la liste qui {plan.placements.length > 1 ? 'passent' : 'passe'} toutes tes règles{familles.length > 1
+          ? `, de familles différentes (${familles.map(minuscule).join(', ')})`
+          : plan.placements.length > 1 ? `, tous de la même famille (${minuscule(familles[0])}) : aucune autre famille ne passe tes règles` : ''}
+        {' '}et hors de tes exclusions. {plan.placements.length > 1 ? 'Ils sont choisis' : 'Il est choisi'} par la pire chute
+        observée la plus faible, jamais par le rendement passé. C'est une simulation de ce que les règles acceptent pour toi,
+        pas une recommandation.</p>
       {plan.placements.length > 0 && (
         <div className="defile-x">
           <table className="registre comparatif">
@@ -90,7 +97,7 @@ function PlacementsDuPlan({ plan, verdict, ouvrir, onAnalyser }) {
           <GraphiqueChute ticker={selection.ticker} faitId={selection.faits[0]} ouvrir={ouvrir} />
         </div>
       )}
-      {verdict.etat === 'incoherent' && plan.bloquante && (
+      {!suggestion && verdict.etat === 'incoherent' && plan.bloquante && (
         <p className="muted petit">La règle qui bloque le plus souvent : « {plan.bloquante} ». Change ce point de ta demande pour voir le plan basculer.</p>
       )}
       {plan.ecartes?.length > 0 && (
@@ -199,6 +206,10 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
             : <div className="trois-options">
                 {options.map((o, i) => <Option key={o.nom} o={o} principal={i === 1} ouvrir={ouvrirFait} />)}
               </div>}
+          {dossier.suggestions?.placements?.length > 0 && (<>
+            <h3 className="sous-titre-options">D'autres placements de la liste qui passent tes règles</h3>
+            <PlacementsDuPlan plan={dossier.suggestions} verdict={verdict} ouvrir={ouvrirFait} onAnalyser={onAnalyserPlacement} suggestion />
+          </>)}
         </section>
       )}
       <div className="actions">
@@ -234,7 +245,7 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
         </details>
       </div>
       {plan && <p className="muted petit">Plan ouvert : les règles ci-dessous sont celles appliquées à {plan.regles_de || 'la liste'}, le premier placement retenu.</p>}
-      <div className="colonnes">
+      <div className={plan ? '' : 'colonnes'}>
         <div className="carte">
           <h2>Les règles appliquées</h2>
           <ul className="regles">
@@ -273,15 +284,16 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
 
 
 
-      <div className="colonnes">
-        <div className="carte">
+      <div className={qualite.length ? 'colonnes' : ''}>
+        {qualite.length > 0 && <div className="carte">
           <h2>Qualité des données</h2>
+          {plan && <p className="muted petit">Les 7 contrôles, faits sur chaque placement de la liste jugé pour ton plan.</p>}
           <ul className="qualite">
             {qualite.map((c) => (
               <li key={c.code} className={`q-${c.statut}`}><span className="q-statut">{c.statut === 'ok' ? '✓' : '!'}</span>{c.libelle} <span className="muted">— {c.detail}</span></li>
             ))}
           </ul>
-        </div>
+        </div>}
         <div className="carte">
           <h2>Limites</h2>
           <ul className="phrases">{texte?.limites?.map((p, i) => <Phrase key={i} p={p} ouvrir={ouvrirFait} />)}</ul>
