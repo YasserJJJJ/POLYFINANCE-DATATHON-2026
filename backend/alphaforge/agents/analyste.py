@@ -11,7 +11,7 @@ import time
 
 import pandas as pd
 
-from .. import calculs
+from .. import calculs, portefeuille
 from ..donnees import FENETRE, SOURCE_FX, SOURCE_PRIX, controle_qualite, info_actif, univers
 from ..dossier import Dossier
 from ..format import dollars, fr
@@ -79,6 +79,65 @@ def _faits_hypotheses(d: Dossier, ids: dict, avec_correlations: bool, volatilite
             "Seuil de fausse diversification (hypothèse de l'équipe)", SEUIL_CORRELATION, "", "HYPOTHESE", origine,
             "À partir de cette corrélation hebdomadaire avec un placement déjà détenu, le nouveau placement ne "
             "diversifie pas.").id
+
+
+def _faits_portefeuille(d: Dossier, ids: dict) -> None:
+    """Chaque nombre de K3 a sa preuve ; les mesures de C restent distinctes."""
+    c = d.comparaison = portefeuille.comparer(d.profil, d.demande)
+    if not c["disponible"]:
+        return
+    methode = (f"Moteur historique-B ({c['version_moteur']}) : {c['politique']}. "
+               f"Du {c['fenetre']['debut']} au {c['fenetre']['fin']}, "
+               f"{c['fenetre']['observations']} observations. "
+               "Prix ajustés ; métriques en points de pourcentage. "
+               "Aucune soustraction avec les mesures d'un titre du moteur C.")
+
+    def fait(cle, libelle, valeur, unite, type_, detail="", justification="portefeuille"):
+        identifiant = d.ajouter_fait(
+            libelle, valeur, unite, type_, "Jeu de départ AlphaForge et moteur historique B",
+            methode + (" " + detail if detail else ""), references=references_de(justification),
+        ).id
+        c["faits"][cle] = ids[cle] = identifiant
+
+    declare = c["origine_poids"] == "declare"
+    if not declare:
+        fait("h_equiponderation", "Poids inconnus : hypothèse d'équipondération",
+             c["poids_avant"], "fraction", "HYPOTHESE",
+             "Chaque symbole distinct reçoit la même fraction de l'épargne ; à faire confirmer.",
+             "h_equiponderation")
+    fait("fenetre_portefeuille", "Fenêtre commune de comparaison", c["fenetre"], "", "FAIT")
+    fait("poids_avant", "Allocation actuelle utilisée", c["poids_avant"], "fraction",
+         "FAIT" if declare else "HYPOTHESE", "Poids déclarés." if declare else "Poids supposés égaux.")
+    fait("poids_apres", "Allocation après ajout du placement", c["poids_apres"], "fraction", "SCENARIO",
+         "Ajout blend de A : chaque poids initial × (1 − montant/épargne), puis ajout de montant/épargne au titre.",
+         "allocation-ajout")
+    libelles = {
+        "pire_chute_pct": ("pire_chute", "Pire baisse du portefeuille", "%"),
+        "volatilite_pct": ("volatilite", "Volatilité du portefeuille", "%/an"),
+        "rendement_annualise_pct": ("rendement", "Rendement annualisé passé du portefeuille", "%/an"),
+        "valeur_finale_cad": ("valeur_finale", "Valeur finale rétrospective du portefeuille", "$"),
+    }
+    for bras in ("avant", "apres"):
+        for mesure, (cle, libelle, unite) in libelles.items():
+            fait(f"{bras}_{cle}", f"{libelle} {'avant' if bras == 'avant' else 'après'} la demande",
+                 c[bras][mesure], unite,
+                 ("FAIT" if declare else "HYPOTHESE") if bras == "avant" else "SCENARIO")
+    fait("ecart_pire_chute", "Écart de pire baisse : après moins avant",
+         c["ecarts"]["pire_chute_pts"], "points", "SCENARIO",
+         f"Sens calculé : {c['ecarts']['sens_pire_chute']}. Valeurs négatives : un écart négatif aggrave la baisse.")
+    fait("ecart_volatilite", "Écart de volatilité : après moins avant",
+         c["ecarts"]["volatilite_pts"], "points", "SCENARIO")
+    fait("h_attribution", "Attribution de la perte supportable (hypothèse de l'équipe)",
+         "Un dépassement antérieur de capacité ne rend pas la demande rouge si elle n'aggrave pas la pire baisse.",
+         "", "HYPOTHESE", "La tolérance reste évaluée ; les seuils restent inchangés.", "h_attribution")
+    fait("h_non_monotonie", "Montant et risque : monotonie conditionnelle (hypothèse de l'équipe)",
+         "Quand une demande diversifie le portefeuille et améliore sa pire baisse, un montant plus élevé "
+         "peut donner un meilleur verdict. Chaque case est jugée séparément ; ce constat n'est pas un conseil.",
+         "", "HYPOTHESE",
+         f"Comparaison liée : avant {c['faits']['avant_pire_chute']}, après {c['faits']['apres_pire_chute']}, "
+         f"écart {c['faits']['ecart_pire_chute']}. Décision du porteur, révision de l'invariant 7.",
+         "h_non_monotonie")
+    fait("limites_portefeuille", "Limites de la comparaison historique", c["limites"], "", "FAIT")
 
 
 def executer(d: Dossier) -> None:
@@ -166,6 +225,7 @@ def executer(d: Dossier) -> None:
     for cle, fid in ids.items():
         d.fait(fid).references = references_de(cle)
 
+    _faits_portefeuille(d, ids)
     d.demande["mesures"] = {**pc, "volatilite_pct": vol, "rendement_annualise_pct": rend, "secteur": info["sector"],
                             "asset_class": info["asset_class"], "devise": info["currency"], "correlations": correls,
                             "qualite": d.qualite_donnees}

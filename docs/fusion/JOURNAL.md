@@ -46,3 +46,75 @@
 - Preuves et compte rendu consolidés dans `docs/fusion/preuves/tranche-1/` et `COMPTE-RENDU.md`.
 - Le commit de clôture de ce journal sera étiqueté `fusion/t1`, puis poussé sans force vers `origin/fusion-corrections-deploiement`. La réponse finale donne le SHA vérifié sur le distant.
 - Aucune ressource AWS créée et aucun déploiement.
+
+# Tranche 2 — Analyse du portefeuille appariée
+
+## Départ et périmètre
+
+- Prompt 2 externe et cadre commun relus intégralement. Autorisations explicites
+  du prompt reçu : push de `fusion/analyse`, sans force, après tests verts.
+- `git fetch origin` réussi ; départ propre de `fusion/t1`,
+  `f767a3b2b5bb98bac0c23619d973bbb8b9b2aca7`.
+- `git worktree add ../POLYFINANCE-fusion-analyse -b fusion/analyse f767a3b2b5bb98bac0c23619d973bbb8b9b2aca7`.
+  Écritures uniquement dans ce nouvel arbre ; dossier et branche vérifiés avant
+  chaque commit. Aucun accès à la tranche AWS.
+- Champs de contrat présents et baseline **249 passed in 8.83s**.
+- Route de session vérifiée : Bedrock, modèle `global.openai.gpt-6-astra`,
+  profil `alphaforge`, région `us-east-1`. Outils natifs ; aucun sous-agent,
+  sa route n'étant pas vérifiable préalablement. Tests produit hors ligne.
+
+## Transferts et raccordement
+
+- `a61b6bd` : deux modules et huit tests pris dans l'archive B vérifiée ;
+  `blend` extrait de A ; cinq tests d'allocation ajoutés. Formules inchangées.
+- K3 : un appel apparié, mêmes séances et données pour les deux bras, unités
+  publiques vérifiées, données et change mis en cache, erreurs explicites.
+- Analyste : faits sourcés et hypothèses ; Gardien : K5, attribution d'un état
+  antérieur, fallback inchangé ; personas : poids fictifs explicites.
+- Robert : capacité orange, verdict incohérent conservé. Amira/BTC : capacité
+  rouge et verdict incohérent. Mateo : exclusion rouge conservée.
+- Retrait manquant de Robert : contre-hypothèse à l'horizon, question décisive,
+  profil et verdict courant conservés.
+
+## Révision autorisée et performances
+
+- Amira/XIU.TO démontre l'incompatibilité : 14 000 CAD → ajustement,
+  17 500 CAD → cohérent. Preuve et options consignées avant l'arbitrage.
+- Le porteur choisit K5 exact et la monotonie conditionnelle, puis autorise
+  la révision de l'invariant 7. Les six conditions sont appliquées et testées.
+- Recherche exhaustive au pas de 100 CAD, distance minimale dans les deux
+  sens, texte constatif ; 16 300 CAD est le premier état amélioré depuis
+  14 000 CAD de XIU.TO pour Amira.
+- Réutilisation des primitives inchangées de B pour la perte seule pendant la
+  recherche ; comparaisons complètes conservées pour K3. Égalité vérifiée.
+- Critique facultative `portefeuille_entier` : trois issues, au plus trois
+  objections, aucun changement du verdict.
+- `996b849` : raccordement fonctionnel et tests ; **310 tests verts** avant
+  régénération des trois références.
+
+## Références et réception
+
+- `7e9f24c` : commit séparé des références, avec tous les changements d'état
+  et de niveau dans son message. Les 47 valeurs des faits antérieurs restent
+  identiques ; les références T1 restent disponibles dans Git.
+- Réception complète : **313 passed in 18.41s**. Construction Vite :
+  **39 modules**, **482 ms**, dépendances et verrou inchangés.
+- Trois mesures par cas, caches applicatifs vidés : maximum Robert 319,557 ms,
+  Amira/BTC 617,355 ms, Mateo 274,986 ms, Amira/XIU 301,206 ms.
+- Trois archives et transferts contrôlés. `implementations/`, données,
+  infrastructure, frontend et fichiers réservés inchangés depuis T1.
+- Le prompt reçu contient les autorisations et l'isolation ajoutées depuis
+  T1 : différence reconnue dans la preuve, manifeste historique préservé.
+- Le dépôt principal reste propre sur `f767a3b`.
+
+## Clôture et transmission
+
+- Compte rendu en six parties et preuves rassemblés dans `preuves/tranche-2/`.
+  Le commit de clôture sera étiqueté localement `fusion/t2` puis poussé, sans
+  force, vers `origin/fusion/analyse`. La réponse finale donne le SHA distant vérifié.
+- Prompt 4 : curseurs compatibles avec une grille non monotone ;
+  `bascule.monotonie_montant` et `option.sens`/`option.constat` à afficher sans
+  qualification d'erreur ni conseil d'achat supplémentaire.
+- Poids fictifs signalés au porteur pour validation ; approximation disponible.
+- Extension G non réalisée. Aucune ressource AWS, aucun déploiement, aucune
+  fusion dans l'intégration et aucune exécution de la tranche 3.

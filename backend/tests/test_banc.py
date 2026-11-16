@@ -35,15 +35,21 @@ VARIANTES = [(nom, {}, {}) for nom in NOMS] + [
 ]
 
 
-# 1-11. Monotonie sur TOUTE la grille : un montant plus petit, ou un horizon plus long, n'aggrave jamais le verdict.
+# 1-11. Invariant 7 révisé : montant monotone pour une demande aggravante ;
+# pour une demande diversifiante, chaque case reste le verdict exact du Gardien.
 @pytest.mark.parametrize("nom, profil, demande", VARIANTES)
-def test_monotonie_de_toute_la_grille(nom, profil, demande):
+def test_monotonie_conditionnelle_et_exactitude_de_toute_la_grille(nom, profil, demande):
     d = _run(nom, profil, demande)
     cases, montants, horizons = _grille(d)
     montants = sorted(montants)
     for h in horizons:
         for petit, grand in zip(montants, montants[1:]):
-            assert RANG[cases[(petit, h)]] <= RANG[cases[(grand, h)]], (petit, grand, h)
+            if not d["comparaison"].get("disponible") or d["comparaison"]["ecarts"]["sens_pire_chute"] == "aggrave":
+                assert RANG[cases[(petit, h)]] <= RANG[cases[(grand, h)]], (petit, grand, h)
+        for montant in montants:
+            r = gardien.appliquer_regles({**d["profil"], "horizon_ans": h},
+                                         {**d["demande"], "montant_cad": montant}, d["demande"]["mesures"])
+            assert cases[montant, h] == gardien.verdict(r)["etat"]
     for m in montants:
         for court, long in zip(horizons, horizons[1:]):
             assert RANG[cases[(m, long)]] <= RANG[cases[(m, court)]], (m, court, long)

@@ -34,7 +34,7 @@ Chaque élément montré à la personne répond à trois questions : **quelle do
 
 | Élément | Données | Règle de calcul | Références | Hypothèse de l'équipe |
 |---|---|---|---|---|
-| `regle-capacite` | — | Impact = (montant / épargne) × |pire chute|. Rouge au-delà de la capacité de perte, orange au-delà de la tolérance, sinon respectée. | Organisme canadien de réglementation des investissements (OCRI) (2021), Autorités canadiennes en valeurs mobilières (ACVM) (2021), A. Chekhlov (2005) | — |
+| `regle-capacite` | — | Impact = |pire baisse du portefeuille après|, comparé aux seuils de capacité (rouge) et de tolérance (orange). Un dépassement antérieur de capacité non aggravé ne rend pas la demande rouge. Sans comparaison, ou avec ALPHAFORGE_CAPACITE=approximation : (montant / épargne) × |pire chute du titre C|, reste du portefeuille supposé stable. | Organisme canadien de réglementation des investissements (OCRI) (2021), Autorités canadiennes en valeurs mobilières (ACVM) (2021), A. Chekhlov (2005), Équipe AlphaForge (2026), Équipe AlphaForge (2026) | — |
 | `regle-preserver` | — | Rouge si épargne − montant < somme à préserver. | A. B. Chhabra (2005), S. Das (2010) | — |
 | `regle-exclusion` | — | Rouge si le secteur de l'actif fait partie des exclusions déclarées. | Autorité européenne des marchés financiers (ESMA) (2022), F. Berg (2022) | — |
 | `regle-retrait` | — | Rouge si l'actif est volatil (> 25 %/an) et que le retrait prévu arrive avant la récupération observée. | Autorités canadiennes en valeurs mobilières (ACVM) (2021) | — |
@@ -51,7 +51,7 @@ Chaque élément montré à la personne répond à trois questions : **quelle do
 | `jauges` | — | Deux jauges séparées, tolérance (ce que tu veux risquer) et capacité (ce que ta situation permet) ; on retient la plus basse. | Autorités canadiennes en valeurs mobilières (ACVM) (2021), Organisme canadien de réglementation des investissements (OCRI) (2021), ACVM et OCRI (2025) | — |
 | `questions` | — | Score de tolérance = moyenne des 3 réponses (0, 33, 67 ou 100). | J. Grable (1999), Autorité européenne des marchés financiers (ESMA) (2022) | Points par réponse choisis par l'équipe. |
 | `verdict` | — | Le plus grave des niveaux des règles décide : rouge → incohérent, orange → ajustement, gris → impossible de conclure, sinon cohérent. Aucun modèle n'intervient. | ACVM et OCRI (2025), M. Turpin (2023), Kim (2025) | — |
-| `ajustement` | — | Plus petit montant (au pas de 100 $), puis plus petit allongement d'horizon, qui améliore le verdict d'au moins un état. | S. Wachter (2018), T. Miller (2019) | — |
+| `ajustement` | — | Montant le plus proche de la demande qui améliore le verdict d'au moins un état, recherche exhaustive au pas de 100 CAD dans les deux sens, entre 100 CAD et l'épargne totale. À distance égale, baisse examinée d'abord. Si aucun montant ne convient, premier allongement d'horizon de 1 à 5 ans qui améliore l'état. Constat de simulation, pas de conseil. | S. Wachter (2018), T. Miller (2019), Équipe AlphaForge (2026) | — |
 | `bascule` | — | Verdict du Gardien recalculé pour 8 montants × 20 horizons, sans modèle. | S. Wachter (2018) | — |
 
 ## Agents : pourquoi chacun est conçu ainsi
@@ -71,6 +71,7 @@ Chaque élément montré à la personne répond à trois questions : **quelle do
 
 | Id | Référence | Ce qu'elle justifie | Niveau d'examen |
 |---|---|---|---|
+| `donnees-profil` | Personne utilisatrice ; équipe pour les personas fictives (2026). *Profil et demande saisis : portefeuille_actuel, epargne_totale_cad, montant_cad*. Entrées du dossier de simulation. | Poids et capital de départ déclarés. Les montants et poids des trois personas sont fictifs et restent à valider par le porteur. Une liste sans poids est une hypothèse d'équipondération. | types et poids validés par le code ; déclarations non vérifiées auprès d'un dépositaire |
 | `donnees-prix` | Organisateurs du datathon ; Yahoo Finance via yfinance (2026). *prices_daily.csv, colonne adj_close (jeu de départ AlphaForge)*. data/raw/alphaforge_starter/, extrait le 2026-11-13, fenêtre 2021-11-12 → 2026-11-12. [lien](https://legal.yahoo.com/us/en/yahoo/terms/otos/index.html) | Prix ajustés des dividendes et des fractionnements, pour 31 actifs. Conditions Yahoo : usage personnel, pas de collecte automatisée sans permission. | fichier lu et recalculé indépendamment (audit du 15 nov.) |
 | `donnees-change` | Banque du Canada (2026). *Taux de change USD/CAD quotidien (API Valet), fx_usdcad_daily.csv, colonne usdcad*. jeu de départ AlphaForge. [lien](https://www.bankofcanada.ca/rates/exchange/background-information/) | Taux indicatif : moyenne de cotations relevées entre 8 h et 16 h (heure de l'Est), publiée les jours ouvrables de la Banque. Ce n'est pas un cours de clôture. | méthodologie : texte analysé (dossier de recherche) ; fichier recalculé (audit) |
 | `donnees-univers` | Organisateurs du datathon (2026). *assets_universe.csv, colonnes sector, currency, asset_class*. jeu de départ AlphaForge. | Secteur, devise et classe de chaque actif. Étiquettes simplifiées : ce n'est ni une classification officielle ni une donnée ESG. | fichier lu |
@@ -114,10 +115,13 @@ Chaque élément montré à la personne répond à trois questions : **quelle do
 
 | Id | Référence | Ce qu'elle justifie | Niveau d'examen |
 |---|---|---|---|
+| `moteur-historique-b` | Équipe AlphaForge, réalisation B (Folio 0.7.0) (2026). *Comparaison appariée cad-buy-and-hold-v1*. backend/alphaforge/moteurs/historique/analytics.py et datasets.py. | Achat-conservation en CAD sur la grille commune fixe ; FX du jour ou antérieur (7 jours maximum). Pire baisse sommet-creux, volatilité des rendements simples annualisée par la fréquence observée, TCAC sur le temps calendaire. Les sorties *_pct sont déjà en points. Les limites de meta.limitations et les avertissements des instruments restent dans le dossier. | code transféré de l'archive B ; empreintes vérifiées ; tests d'origine exécutés |
+| `allocation-a` | Équipe AlphaForge, réalisation A (datathon2026 0.1.0) (2026). *Ajout proportionnel blend*. backend/alphaforge/moteurs/allocation.py, original analytics.py:192-198. | Réduit les poids initiaux par 1 − part, puis ajoute part à la ligne demandée, même déjà détenue. | fonction copiée de l'archive A et testée, formule inchangée |
 | `yfinance-reparation` | Mainteneurs de yfinance (2026). *Price repair (documentation)*. dépôt ranaroussi/yfinance. [lien](https://github.com/ranaroussi/yfinance/blob/main/doc/source/advanced/price_repair.rst) | Les mainteneurs documentent des ajustements manquants ou fictifs dans les données Yahoo et écrivent que seules les données américaines semblent parfaites : une limite pour les titres du TSX. | texte analysé (dossier de recherche) |
 
 ### Document de l'équipe
 
 | Id | Référence | Ce qu'elle justifie | Niveau d'examen |
 |---|---|---|---|
+| `fusion-k5` | Équipe AlphaForge (2026). *Contrats K3–K5 et attribution de la perte supportable*. docs/fusion/CADRE-COMMUN.md, sections 6 et 14. | Seuils inchangés, évalués sur le portefeuille après la demande. Un dépassement antérieur de capacité ne rend pas la demande rouge si elle n'aggrave pas la baisse. La tolérance reste évaluée. Retour au calcul antérieur avec ALPHAFORGE_CAPACITE=approximation. | mandat d'intégration lu ; hypothèse d'équipe à valider par le porteur (décision 4) |
 | `dossier-adam` | Équipe AlphaForge (Adam) (2026). *Réutiliser des briques éprouvées, prouver leur assemblage (dossier de recherche documentaire)*. document interne du 2026-11-14. | Synthèse de sept carnets de recherche : choix des méthodes, pièges des données, conception des agents. | document de l'équipe ; chaque affirmation y porte son propre niveau de preuve |

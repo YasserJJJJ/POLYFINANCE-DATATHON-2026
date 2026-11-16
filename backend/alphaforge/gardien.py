@@ -6,7 +6,9 @@ et les faits (F-n) qui la soutiennent. Les seuils viennent de profil.py.
 from __future__ import annotations
 
 import math
+import os
 
+from . import portefeuille
 from .dossier import Regle
 from .format import dollars, fr
 from .profil import evaluer, symboles_portefeuille
@@ -97,7 +99,56 @@ def appliquer_regles(profil: dict, demande: dict, m: dict, f: dict | None = None
     return regles
 
 
-def _regles(profil: dict, demande: dict, m: dict, f: dict | None = None) -> list[Regle]:
+def _regle_capacite(profil: dict, demande: dict, m: dict, f: dict, ev: dict, comparaison=None) -> Regle:
+    """Une seule règle, utilisée par le dossier et la recherche exhaustive."""
+    poids = demande["montant_cad"] / profil["epargne_totale_cad"]
+    chute = abs(m["pire_chute_pct"])
+    impact = round(poids * chute, 1)
+
+    # 1. Capacité et tolérance de perte
+    if comparaison is None:
+        comparaison = (portefeuille.comparer(profil, demande)
+                       if os.environ.get("ALPHAFORGE_CAPACITE") != "approximation" else {})
+    faits_capacite = [f.get("chute", ""), f.get("h_perte", ""), f.get("h_capacite", "")]
+    if comparaison.get("disponible"):
+        avant = abs(comparaison["avant"]["pire_chute_pct"])
+        impact = abs(comparaison["apres"]["pire_chute_pct"])
+        ecart = comparaison["ecarts"]["pire_chute_pts"]
+        anterieur = avant > ev["perte_max_capacite_pct"]
+        attribuable = not (anterieur and ecart >= 0)
+        niveau = ("rouge" if impact > ev["perte_max_capacite_pct"] and attribuable else
+                  "orange" if impact > ev["perte_max_tolerance_pct"] else "ok")
+        txt = (f"Pire baisse du portefeuille après la demande : {fr(-impact)} %, "
+               f"contre {fr(-avant)} % avant ; écart après moins avant : {fr(ecart)} points "
+               f"({comparaison['ecarts']['sens_pire_chute']}). "
+               f"Capacité de perte : {fr(ev['perte_max_capacite_pct'])} % ; "
+               f"tolérance : {fr(ev['perte_max_tolerance_pct'])} %. ")
+        if anterieur:
+            txt += "Le portefeuille actuel dépassait déjà la capacité avant cette demande. "
+            if not attribuable:
+                txt += ("La demande n'aggrave pas cette baisse : cet état antérieur ne la rend pas rouge "
+                        "(hypothèse d'attribution de l'équipe).")
+        faits_capacite = [f.get(cle, "") for cle in (
+            "avant_pire_chute", "apres_pire_chute", "ecart_pire_chute",
+            "h_perte", "h_capacite", "h_attribution",
+        )]
+    elif impact > ev["perte_max_capacite_pct"]:
+        niveau, txt = "rouge", (f"Si ce placement revivait sa pire chute ({fr(m['pire_chute_pct'])} %), ton épargne "
+                                f"baisserait de {fr(impact)} %. Ta capacité de perte est estimée à "
+                                f"{fr(ev['perte_max_capacite_pct'])} %.")
+    elif impact > ev["perte_max_tolerance_pct"]:
+        niveau, txt = "orange", (f"La pire chute observée ferait baisser ton épargne de {fr(impact)} %. C'est dans ta "
+                                 f"capacité ({fr(ev['perte_max_capacite_pct'])} %), mais au-delà de ce que tu dis "
+                                 f"vouloir risquer ({fr(ev['perte_max_tolerance_pct'])} %).")
+    else:
+        niveau, txt = "ok", (f"La pire chute observée ferait baisser ton épargne de {fr(impact)} %, sous ta limite "
+                             f"de {fr(ev['perte_max_retenue_pct'])} %.")
+    if not comparaison.get("disponible"):
+        txt += " Cette approximation suppose le reste du portefeuille stable."
+    return Regle("capacite", "Perte supportable", niveau, txt, faits_capacite)
+
+
+def _regles(profil: dict, demande: dict, m: dict, f: dict | None = None, *, _avec_capacite: bool = True) -> list[Regle]:
     """profil : champs du profil ; demande : ticker, montant_cad ; m : mesures
     calculées ; f : identifiants des faits (pour relier chaque règle à ses preuves)."""
     f = f or {}
@@ -118,23 +169,8 @@ def _regles(profil: dict, demande: dict, m: dict, f: dict | None = None) -> list
         return regles
 
     poids = montant / epargne
-    chute = abs(m["pire_chute_pct"])
-    impact = round(poids * chute, 1)
-
-    # 1. Capacité et tolérance de perte
-    if impact > ev["perte_max_capacite_pct"]:
-        niveau, txt = "rouge", (f"Si ce placement revivait sa pire chute ({fr(m['pire_chute_pct'])} %), ton épargne "
-                                f"baisserait de {fr(impact)} %. Ta capacité de perte est estimée à "
-                                f"{fr(ev['perte_max_capacite_pct'])} %.")
-    elif impact > ev["perte_max_tolerance_pct"]:
-        niveau, txt = "orange", (f"La pire chute observée ferait baisser ton épargne de {fr(impact)} %. C'est dans ta "
-                                 f"capacité ({fr(ev['perte_max_capacite_pct'])} %), mais au-delà de ce que tu dis "
-                                 f"vouloir risquer ({fr(ev['perte_max_tolerance_pct'])} %).")
-    else:
-        niveau, txt = "ok", (f"La pire chute observée ferait baisser ton épargne de {fr(impact)} %, sous ta limite "
-                             f"de {fr(ev['perte_max_retenue_pct'])} %.")
-    regles.append(Regle("capacite", "Perte supportable", niveau, txt,
-                        [f.get("chute", ""), f.get("h_perte", ""), f.get("h_capacite", "")]))
+    if _avec_capacite:
+        regles.append(_regle_capacite(profil, demande, m, f, ev))
 
     # 2. Somme à préserver
     preserver = profil.get("somme_a_preserver_cad")
@@ -260,34 +296,68 @@ def _etat(profil: dict, demande: dict, m: dict) -> str:
 
 def _montant_exact(profil: dict, demande: dict, m: dict, bon: float, mauvais: float, cible: str) -> int:
     """Plus grand montant (au pas de 100 $) entre `bon` (atteint la cible) et `mauvais` (ne l'atteint pas).
-    La grille est monotone en montant (vérifiée par les tests), donc une recherche par dichotomie suffit."""
+    Recherche décroissante exhaustive : K5 ne garantit pas la monotonie d'un mélange.
+    Les mesures par montant et les réponses FX sont mises en cache par l'adaptateur."""
     bas, haut = int(bon // PAS_MONTANT), int(mauvais // PAS_MONTANT)
-    while haut - bas > 1:
-        milieu = (bas + haut) // 2
-        if _etat(profil, {**demande, "montant_cad": milieu * PAS_MONTANT}, m) == cible:
-            bas = milieu
-        else:
-            haut = milieu
-    return max(bas * PAS_MONTANT, int(bon))
+    for palier in range(haut, bas, -1):
+        montant = palier * PAS_MONTANT
+        if _etat(profil, {**demande, "montant_cad": montant}, m) == cible:
+            return montant
+    return int(bon)
 
 
 def plus_petit_ajustement(profil: dict, demande: dict, m: dict) -> dict | None:
-    """Plus petit changement (montant d'abord, puis horizon) qui rend la demande cohérente,
-    sinon qui l'améliore au moins d'un état. Un « ajustement » qui ne change pas l'état n'en est pas un."""
+    """Variation de montant la plus proche qui améliore l'état, dans les deux sens.
+
+    Tous les paliers admissibles sont visités par distance croissante ; à égalité,
+    la baisse passe d'abord. Aucun ordre de risque n'est supposé. Si aucun montant
+    n'améliore l'état, essayer les cinq allongements d'horizon du socle.
+    """
     base_h = profil["horizon_ans"]
-    actuel = _etat(profil, demande, m)
+    regles_actuelles = appliquer_regles(profil, demande, m)
+    actuel = verdict(regles_actuelles)["etat"]
+    if actuel in ("coherent", "indetermine"):
+        return None
     montant = demande["montant_cad"]
-    for cible in ("coherent", "ajustement"):
-        if RANG[cible] >= RANG[actuel]:
-            continue
-        precedent = montant
-        for fr in FRACTIONS[1:]:
-            essai = round(montant * fr)
-            if _etat(profil, {**demande, "montant_cad": essai}, m) == cible:
-                exact = _montant_exact(profil, demande, m, essai, precedent, cible)
-                return {"changement": {"montant_cad": exact}, "etat": cible}
-            precedent = essai
-        for k in range(1, 6):
-            if _etat({**profil, "horizon_ans": base_h + k}, demande, m) == cible:
-                return {"changement": {"horizon_ans": base_h + k}, "etat": cible}
+    # Ces règles ne dépendent ni du montant ni de l'horizon testé. Si leur niveau
+    # suffit à maintenir l'état, aucune recherche de montant/horizon ne peut aider.
+    fixes = [r for r in _regles(profil, demande, m, _avec_capacite=False)
+             if r.code in ("exclusion", "retrait", "coussin", "diversification")]
+    if fixes and RANG[verdict(fixes)["etat"]] >= RANG[actuel]:
+        return None
+    ev = evaluer(profil)
+    bas = (math.ceil(montant / PAS_MONTANT) - 1) * PAS_MONTANT
+    haut = (math.floor(montant / PAS_MONTANT) + 1) * PAS_MONTANT
+    plafond = profil["epargne_totale_cad"]
+    while bas >= PAS_MONTANT or haut <= plafond:
+        baisse = bas >= PAS_MONTANT and (haut > plafond or montant - bas <= haut - montant)
+        essai = bas if baisse else haut
+        if baisse:
+            bas -= PAS_MONTANT
+        else:
+            haut += PAS_MONTANT
+        dem = {**demande, "montant_cad": essai}
+        autres = _regles(profil, dem, m, _avec_capacite=False)
+        if RANG[verdict(autres)["etat"]] >= RANG[actuel]:
+            continue  # rejet prouvé par les autres règles, sans calcul financier inutile
+        comparaison = ({} if os.environ.get("ALPHAFORGE_CAPACITE") == "approximation"
+                       else portefeuille.comparer_pertes(profil, dem))
+        nouvelles = [_regle_capacite(profil, dem, m, {}, ev, comparaison), *autres]
+        etat = verdict(nouvelles)["etat"]
+        if RANG[etat] < RANG[actuel]:
+            anciens_niveaux = {r.code: r.niveau for r in regles_actuelles}
+            changements = [
+                (f"la règle « {r.libelle} » serait respectée" if r.niveau == "ok" else
+                 f"la règle « {r.libelle} » passerait au niveau {r.niveau}")
+                for r in nouvelles if ORDRE[r.niveau] < ORDRE[anciens_niveaux[r.code]]
+            ]
+            return {"changement": {"montant_cad": essai}, "etat": etat,
+                    "sens": "baisse" if baisse else "hausse",
+                    "constat": (f"À {dollars(essai).replace('$', 'CAD')}, " + " ; ".join(changements) + ". "
+                                f"Le verdict serait « {LIBELLES_ETAT[etat]} » "
+                                f"(variation à la {'baisse' if baisse else 'hausse'} dans cette simulation).")}
+    for k in range(1, 6):
+        etat = _etat({**profil, "horizon_ans": base_h + k}, demande, m)
+        if RANG[etat] < RANG[actuel]:
+            return {"changement": {"horizon_ans": base_h + k}, "etat": etat}
     return None

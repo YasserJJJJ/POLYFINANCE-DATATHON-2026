@@ -40,13 +40,13 @@ def test_version_ajustee_robert_est_le_montant_exact_de_bascule():
     from alphaforge import gardien
     d = _run("robert")
     aj = _ajustee(d)
-    assert aj and aj["etat"] == "coherent"
-    # 38 000 $ = 9,5 % de 400 000 $ (5 + 0,15 × score 30), exactement le seuil : c'est le plus petit ajustement.
-    assert aj["montant_cad"] == 38000
+    assert aj and aj["etat"] == "ajustement"
+    # Révision du porteur : premier état amélioré, pas priorité au vert plus éloigné (29 700 CAD).
+    assert aj["montant_cad"] == 38000 and aj["sens"] == "baisse"
     p, dem = PERSONAS["robert"]["profil"], PERSONAS["robert"]["demande"]
     m = d["demande"]["mesures"]
     au_dessus = gardien.verdict(gardien.appliquer_regles(p, {**dem, "montant_cad": 38100}, m))["etat"]
-    assert au_dessus != "coherent"
+    assert au_dessus == "incoherent"
 
 
 @pytest.mark.parametrize("nom, profil", [

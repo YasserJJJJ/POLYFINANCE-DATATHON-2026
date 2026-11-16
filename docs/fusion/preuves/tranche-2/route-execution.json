@@ -1,0 +1,9 @@
+{
+  "model_provider": "amazon-bedrock-runtime",
+  "model": "global.openai.gpt-6-astra",
+  "AWS_PROFILE": "alphaforge",
+  "AWS_REGION": "us-east-1",
+  "outils": "Exécution native locale : shell, Python, Git ; aucun service d’inférence appelé par les commandes. Réseau GitHub et registre npm uniquement pour transfert de code et dépendances existantes.",
+  "sous_agents": "Aucun : route du fournisseur non vérifiable séparément avant lancement.",
+  "tests_produit": "ALPHAFORGE_LLM=off ; faux client local pour les tests avec modèle ; aucun appel réel aux modèles du produit."
+}

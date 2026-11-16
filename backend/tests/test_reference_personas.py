@@ -1,4 +1,4 @@
-"""Filet figé depuis C évalué : aucune régénération automatique par les tests."""
+"""Filet figé par tranche : aucune régénération automatique par les tests."""
 import copy
 import json
 from pathlib import Path
@@ -9,13 +9,13 @@ from alphaforge.orchestrateur import analyser
 from alphaforge.personas import PERSONAS
 
 REFERENCE = Path(__file__).with_name("reference")
-CHAMPS_CONTRAT_2 = ("version_contrat", "comparaison", "appels_modele")
+CHAMPS_VARIABLES = ("appels_modele",)
 
 
 def sans_variations(dossier):
-    """Seules les durées et les trois ajouts de contrat échappent à la comparaison."""
+    """K3 actif est désormais figé aussi ; seules durées et preuves d'appels varient."""
     resultat = copy.deepcopy(dossier)
-    for champ in CHAMPS_CONTRAT_2:
+    for champ in CHAMPS_VARIABLES:
         resultat.pop(champ, None)
     for etape in resultat["trace"]:
         etape["duree_ms"] = 0
