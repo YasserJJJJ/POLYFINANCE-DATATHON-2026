@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { dollars } from '../api.js'
 import { pourClient } from '../affichage.js'
 import BarreDemande from '../composants/BarreDemande.jsx'
+import CarteRaisonnement from '../composants/CarteRaisonnement.jsx'
 import { Etiquette, PuceIssue, PuceNiveau, PuceVerdict, PucesFaits } from '../composants/Base.jsx'
 import GraphiqueChute from '../composants/GraphiqueChute.jsx'
 import ComparaisonPortefeuille from '../composants/ComparaisonPortefeuille.jsx'
@@ -229,7 +230,13 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
       </div>
 
       <div className="carte">
-        <h2>Tous les chiffres utilisés</h2>
+        <h2>Comment chaque chiffre mène au verdict</h2>
+        <p className="muted petit">De gauche à droite : d'où viennent les données, ce qui est mesuré ou déclaré, les seuils choisis par
+          l'équipe, les règles, puis le verdict. Survole ou sélectionne un élément pour suivre son chemin ; clique sur un chiffre pour
+          voir sa source et sa méthode.</p>
+        <CarteRaisonnement dossier={dossier} ouvrirFait={ouvrirFait} surligne={surligne} />
+        <details className="liste-chiffres" open={surligne.length > 0}>
+          <summary>La liste de tous les chiffres du dossier ({faits.length})</summary>
         <div className="defile-x">
           <table className="registre">
             <thead><tr><th>Ce que c'est</th><th>Valeur</th><th>Nature</th><th /></tr></thead>
@@ -245,6 +252,7 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
             </tbody>
           </table>
         </div>
+        </details>
       </div>
 
       <div className="colonnes">
