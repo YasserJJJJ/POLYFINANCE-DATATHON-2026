@@ -25,7 +25,7 @@ function Editeur({ champ, profil, demande, actifs, onAppliquer, onFermer }) {
         </select>
       )}
       {champ.type === 'nombre' && (
-        <input ref={premier} type="number" min={champ.min ?? 0} max={champ.max} step={champ.pas ?? 1}
+        <input ref={premier} type="number" min={champ.min ?? 0} max={champ.max} step="any"
           value={valeur ?? ''} placeholder={champ.indice || ''} onChange={(e) => setValeur(nombre(e.target.value))} />
       )}
       {champ.type === 'curseur' && (

@@ -14,6 +14,7 @@ export const NOM_PRODUIT = 'AlphaForge AI'
 export const SOUS_TITRE = 'Second avis'
 
 const ETAPES = ['Tes mots', 'On vérifie', 'Analyse', 'Verdict', 'Curseurs']
+const ROMAINS = ['I', 'II', 'III', 'IV', 'V']
 
 const DIRECT_VIDE = { trace: [], objections: [], faits: [] }
 
@@ -40,6 +41,8 @@ export default function App() {
   const [initiale, setInitiale] = useState('')              // demande de départ, gardée dans la conversation
   const [echanges, setEchanges] = useState([])
   const [envoi, setEnvoi] = useState(false)
+  const [editions, setEditions] = useState([])   // chaque analyse reçue, gardée telle quelle pour être relue
+  const [lue, setLue] = useState(null)           // index de l'édition relue ; null = la dernière
 
   const [sante, setSante] = useState(null)
   const [registre, setRegistre] = useState(null)
@@ -90,6 +93,8 @@ export default function App() {
       // texte_lu : la personne a relu et corrigé l'étape 2 ; l'analyse ne re-remplit pas un champ qu'elle a vidé.
       const nouveau = await api.analyserEnDirect(p, { ...dm, texte_lu: true }, surPlace ? () => {} : suivre)
       setDossier(nouveau)
+      setEditions((e) => [...e, { dossier: nouveau, profil: p, demande: dm, heure: Date.now() }])
+      setLue(null)
       return nouveau
     } catch (e) {
       // Sans dossier, l'écran d'analyse attendrait sans fin : on revient à l'étape 2, réponses conservées.
@@ -139,12 +144,21 @@ export default function App() {
     }
   }
 
+  // Relire une édition : son dossier, avec les entrées qui l'ont produite. Rien n'est recalculé.
+  const voirEdition = (i) => {
+    const e = editions[i]
+    if (!e) return
+    setDossier(e.dossier); setProfil(e.profil); setDemande(e.demande)
+    setLue(i === editions.length - 1 ? null : i); setEtape(3)
+  }
+  const indexEdition = lue ?? editions.length - 1
+
   // Toujours une liste d'identifiants : une phrase peut s'appuyer sur plusieurs chiffres.
   const ouvrirFait = (ids) => setFaitOuvert([].concat(ids))
 
   const recommencer = () => {
     setEtape(0); setDossier(null); setProfil(PROFIL_VIERGE); setDemande({ texte: '', ticker: null, montant_cad: null })
-    setChampsFichier([]); setEchanges([]); setInitiale('')
+    setChampsFichier([]); setEchanges([]); setInitiale(''); setEditions([]); setLue(null)
   }
 
   return (
@@ -152,31 +166,40 @@ export default function App() {
     <div className="app">
       <header className="entete">
         <div className="entete-int">
-          <button type="button" className="marque" onClick={() => { setVue('parcours'); recommencer() }}>
-            <span className="marque-signe" aria-hidden="true">≠</span>
-            {NOM_PRODUIT}
-            <span className="marque-sous">{SOUS_TITRE}</span>
+          <div className="manchette-gauche">
+            <button type="button" className="lien-retour" onClick={() => { setVue('parcours'); recommencer() }}>← Nouvelle demande</button>
+          </div>
+          <button type="button" className="marque" onClick={() => { setVue('parcours'); recommencer() }} aria-label={`Folio, ${NOM_PRODUIT} ${SOUS_TITRE} : revenir au début`}>
+            folio
+            <span className="marque-sous">AlphaForge · {SOUS_TITRE}</span>
           </button>
-          {vue === 'parcours' && (
-            <ol className="etapes" aria-label="Étapes du parcours">
-              {ETAPES.map((nom, i) => (
-                <li key={nom} className={i === etape ? 'actuelle' : i < etape ? 'faite' : ''}>
-                  <span className="etape-num">{i + 1}</span>
-                  <span className="etape-nom">{nom}</span>
-                </li>
-              ))}
-            </ol>
-          )}
-          {sante && (
-            <span className={`etat-agents ${sante.llm ? 'actifs' : ''}`}
-              title={sante.llm ? `${sante.modeles.principal} et ${sante.modeles.leger}` : sante.raison || ''}>
-              <i aria-hidden="true" />
-              {sante.llm ? 'Agents IA : Bedrock' : 'Agents : mode hors ligne'}
-            </span>
-          )}
-          <button type="button" className="bouton discret" onClick={() => setVue(vue === 'parcours' ? 'comparer' : 'parcours')}>
-            {vue === 'parcours' ? 'Comparer les 3 profils' : 'Retour au parcours'}
-          </button>
+          <div className="manchette-droite">
+            <div>Le dossier de décision</div>
+            <div>{editions.length === 0 ? 'Simulation éducative'
+              : `${lue !== null ? 'Archive' : 'Édition'} ${indexEdition + 1} sur ${editions.length} · ${relance ? 'analyse en cours' : 'analyse terminée'}`}</div>
+            {sante && (
+              <span className={`etat-agents ${sante.llm ? 'actifs' : ''}`}
+                title={sante.llm ? `${sante.modeles.principal} et ${sante.modeles.leger}` : sante.raison || ''}>
+                <i aria-hidden="true" />
+                {sante.llm ? 'Agents IA : Bedrock' : 'Agents : mode hors ligne'}
+              </span>
+            )}
+          </div>
+          <div className="barre-etapes">
+            {vue === 'parcours' ? (
+              <ol className="etapes" aria-label="Étapes du parcours">
+                {ETAPES.map((nom, i) => (
+                  <li key={nom} className={i === etape ? 'actuelle' : i < etape ? 'faite' : ''} aria-current={i === etape ? 'step' : undefined}>
+                    <span className="etape-num" aria-hidden="true">{ROMAINS[i]}</span>
+                    <span className="etape-nom">{nom}</span>
+                  </li>
+                ))}
+              </ol>
+            ) : <span />}
+            <button type="button" className="bouton discret" onClick={() => setVue(vue === 'parcours' ? 'comparer' : 'parcours')}>
+              {vue === 'parcours' ? 'Comparer les 3 profils' : 'Retour au parcours'}
+            </button>
+          </div>
         </div>
       </header>
 
@@ -206,7 +229,8 @@ export default function App() {
               <Etape4Verdict dossier={dossier} ouvrirFait={ouvrirFait} onBascule={() => setEtape(4)}
                 onModifier={() => setEtape(1)} saisie={{ profil, demande }} actifs={actifs} relance={relance}
                 onRelancer={relancer} onAnalyserPlacement={(t) => relancer(profil, { ...demande, ticker: t })}
-                initiale={initiale} echanges={echanges} onMessage={envoyerMessage} envoi={envoi} />
+                initiale={initiale} echanges={echanges} onMessage={envoyerMessage} envoi={envoi}
+                editions={editions} indexEdition={indexEdition} onVoirEdition={voirEdition} />
             )}
             {etape === 4 && dossier && (
               <Etape5Bascule dossier={dossier} onRetour={() => setEtape(3)} onRecommencer={recommencer} ouvrirFait={ouvrirFait} />
