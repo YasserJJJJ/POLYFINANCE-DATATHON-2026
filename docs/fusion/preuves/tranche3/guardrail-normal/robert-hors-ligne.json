@@ -1,0 +1,1617 @@
+{
+  "profil": {
+    "nom": "Robert",
+    "age": 59,
+    "profession": "Professionnel de la santé",
+    "experience": "avancée",
+    "horizon_ans": 4,
+    "tolerance": 30,
+    "epargne_totale_cad": 400000,
+    "somme_a_preserver_cad": 300000,
+    "revenu_stable": true,
+    "fonds_urgence": true,
+    "dettes_importantes": false,
+    "retrait_prevu_ans": 4,
+    "exclusions": [],
+    "portefeuille_actuel": [
+      "XIU.TO",
+      "XBB.TO",
+      "RY.TO"
+    ],
+    "citations": [
+      "Je veux préserver mon capital",
+      "Tout le monde parle de Tesla en ce moment"
+    ],
+    "extraits": {
+      "champs": {},
+      "source": "mots-clés (hors ligne)"
+    },
+    "evaluation": {
+      "tolerance": 30.0,
+      "capacite": 60.0,
+      "capacite_raisons": [
+        "Horizon de 3 à 5 ans : -10",
+        "Revenu stable : +10",
+        "Fonds d'urgence : +10"
+      ],
+      "score_retenu": 30.0,
+      "limite": "tolérance",
+      "perte_max_tolerance_pct": 15.5,
+      "perte_max_capacite_pct": 26.0,
+      "perte_max_retenue_pct": 15.5,
+      "seuil_concentration_pct": 9.5,
+      "seuil_titre_unique_pct": 19.0,
+      "poids_pct": 20
+    },
+    "tensions": [
+      "Demande très médiatisée : la décision s'appuie sur l'attention publique plutôt que sur ta situation.",
+      "Écart entre ce que tu veux risquer (30/100) et ce que ta situation permet (60/100)."
+    ]
+  },
+  "demande": {
+    "texte": "Je veux mettre 80 000 $ dans Tesla, tout le monde en parle.",
+    "ticker": "TSLA",
+    "montant_cad": 80000,
+    "mesures": {
+      "pire_chute_pct": -70.9,
+      "date_sommet": "2022-01-03",
+      "date_creux": "2023-01-03",
+      "date_retour": "2024-12-05",
+      "recuperation_annees": 1.9,
+      "recupere": true,
+      "annees_depuis_creux": 3.9,
+      "volatilite_pct": 58.8,
+      "rendement_annualise_pct": 5.5,
+      "secteur": "Consumer Discretionary",
+      "asset_class": "equity",
+      "devise": "USD",
+      "correlations": {
+        "XIU.TO": 0.33,
+        "XBB.TO": 0.07,
+        "RY.TO": 0.26
+      },
+      "qualite": [
+        {
+          "code": "presence",
+          "libelle": "Données présentes",
+          "statut": "ok",
+          "detail": "1255 lignes."
+        },
+        {
+          "code": "doublons",
+          "libelle": "Pas de doublons de date",
+          "statut": "ok",
+          "detail": "0 doublon(s)."
+        },
+        {
+          "code": "magnitude",
+          "libelle": "Prix strictement positifs",
+          "statut": "ok",
+          "detail": "0 prix nul(s) ou négatif(s)."
+        },
+        {
+          "code": "couverture",
+          "libelle": "Couvre la fenêtre 2021-11 → 2026-11",
+          "statut": "ok",
+          "detail": "Du 2021-11-12 au 2026-11-12."
+        },
+        {
+          "code": "trous",
+          "libelle": "Pas de trou anormal dans la série",
+          "statut": "ok",
+          "detail": "Plus long écart entre deux cotations : 4 jour(s)."
+        },
+        {
+          "code": "sauts",
+          "libelle": "Pas de variation journalière > 40 %",
+          "statut": "ok",
+          "detail": "0 variation(s) suspecte(s)."
+        },
+        {
+          "code": "devise",
+          "libelle": "Devise connue et convertie en CAD",
+          "statut": "ok",
+          "detail": "Converti avec le taux USD/CAD de la Banque du Canada."
+        }
+      ]
+    },
+    "ids_faits": {
+      "secteur": "F-1",
+      "chute": "F-2",
+      "recuperation": "F-3",
+      "volatilite": "F-4",
+      "rendement": "F-5",
+      "pire12": "F-6",
+      "perte": "F-7",
+      "correlation": "F-8",
+      "reference": "F-9",
+      "h_perte": "F-10",
+      "h_capacite": "F-11",
+      "h_concentration": "F-12",
+      "h_retrait_proche": "F-13",
+      "h_volatil": "F-14",
+      "h_correlation": "F-15"
+    }
+  },
+  "faits": [
+    {
+      "id": "F-1",
+      "libelle": "Secteur de Tesla",
+      "valeur": "Consumer Discretionary",
+      "unite": "",
+      "type": "FAIT",
+      "source": "assets_universe.csv (jeu de départ)",
+      "methode": "Lu tel quel",
+      "lu_ou_calcule": "lu",
+      "references": [
+        "donnees-univers",
+        "esma-2022",
+        "berg-2022"
+      ]
+    },
+    {
+      "id": "F-2",
+      "libelle": "Pire chute de TSLA",
+      "valeur": -70.9,
+      "unite": "%",
+      "type": "FAIT",
+      "source": "Yahoo Finance via yfinance, jeu de départ AlphaForge (extrait le 2026-11-13)",
+      "methode": "Baisse maximale sommet → creux du 2021-11-12 au 2026-11-12, adj_close (dividendes réinvestis, fractionnements appliqués), converti en CAD au taux BdC du jour, ou au dernier taux publié (fins de semaine, fériés). Sommet 2022-01-03, creux 2023-01-03.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "chekhlov-2005",
+        "yfinance-reparation"
+      ]
+    },
+    {
+      "id": "F-3",
+      "libelle": "Temps entre le creux et le retour au sommet (TSLA)",
+      "valeur": 1.9,
+      "unite": "an(s)",
+      "type": "FAIT",
+      "source": "Yahoo Finance via yfinance, jeu de départ AlphaForge (extrait le 2026-11-13)",
+      "methode": "Du creux (2023-01-03) au retour au sommet (2024-12-05). Depuis le sommet (2022-01-03), le prix est resté sous son sommet 2,9 an(s).",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "chekhlov-2005"
+      ]
+    },
+    {
+      "id": "F-4",
+      "libelle": "Volatilité annualisée de TSLA",
+      "valeur": 58.8,
+      "unite": "%/an",
+      "type": "FAIT",
+      "source": "Yahoo Finance via yfinance, jeu de départ AlphaForge (extrait le 2026-11-13)",
+      "methode": "Écart-type des rendements log quotidiens × √252, en CAD (effet du change USD/CAD inclus), du 2021-11-12 au 2026-11-12.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "markowitz-1952",
+        "dossier-adam"
+      ]
+    },
+    {
+      "id": "F-5",
+      "libelle": "Rendement annualisé passé de TSLA",
+      "valeur": 5.5,
+      "unite": "%/an",
+      "type": "FAIT",
+      "source": "Yahoo Finance via yfinance, jeu de départ AlphaForge (extrait le 2026-11-13)",
+      "methode": "Taux de croissance annuel composé du 2021-11-12 au 2026-11-12, en CAD (effet du change USD/CAD inclus), dividendes réinvestis. Erreur type de cette moyenne ≈ volatilité / √années = 26,3 points : la vraie moyenne peut s'écarter d'environ ± 52,6 points. Le passé ne prédit pas le futur ; ce chiffre ne sert jamais au verdict.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "demiguel-2009",
+        "van-der-bles-2020"
+      ]
+    },
+    {
+      "id": "F-6",
+      "libelle": "Pire période de 52 semaines (TSLA, cours du vendredi)",
+      "valeur": -64.8,
+      "unite": "%",
+      "type": "FAIT",
+      "source": "Yahoo Finance via yfinance, jeu de départ AlphaForge (extrait le 2026-11-13)",
+      "methode": "Rendements sur 52 semaines glissantes, cours du vendredi, fin 2023-01-06. Mesure hebdomadaire : la pire baisse sur 12 mois de cotations quotidiennes peut être plus forte. 41,0 % des périodes de 12 mois sont négatives.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "chekhlov-2005"
+      ]
+    },
+    {
+      "id": "F-7",
+      "libelle": "Perte si la pire chute se répétait",
+      "valeur": -56720.0,
+      "unite": "$",
+      "type": "SCENARIO",
+      "source": "Calcul sur F-2",
+      "methode": "80 000 $ × -70.9 %. Scénario fictif : la prochaine baisse peut être plus forte ou plus faible.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "das-2010"
+      ]
+    },
+    {
+      "id": "F-8",
+      "libelle": "Corrélation de TSLA avec tes placements",
+      "valeur": {
+        "XIU.TO": 0.33,
+        "XBB.TO": 0.07,
+        "RY.TO": 0.26
+      },
+      "unite": "",
+      "type": "FAIT",
+      "source": "Yahoo Finance via yfinance, jeu de départ AlphaForge (extrait le 2026-11-13)",
+      "methode": "Corrélation des rendements hebdomadaires (vendredi), en CAD.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "markowitz-1952",
+        "dossier-adam"
+      ]
+    },
+    {
+      "id": "F-9",
+      "libelle": "Pour comparer : pire chute de XIU.TO (marché canadien)",
+      "valeur": -16.4,
+      "unite": "%",
+      "type": "FAIT",
+      "source": "Yahoo Finance via yfinance, jeu de départ AlphaForge (extrait le 2026-11-13)",
+      "methode": "Même méthode, du 2021-11-12 au 2026-11-12.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "chekhlov-2005"
+      ]
+    },
+    {
+      "id": "F-10",
+      "libelle": "Perte supportable retenue pour ton profil (hypothèse de l'équipe)",
+      "valeur": 15.5,
+      "unite": "%",
+      "type": "HYPOTHESE",
+      "source": "Barème de l'équipe (backend/alphaforge/profil.py), publié et modifiable",
+      "methode": "5 + 0,35 × score retenu. Score retenu = le plus bas entre tolérance (30,0) et capacité (60,0), soit 30,0 (limite : tolérance).",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "ocri-gn-3400",
+        "acvm-31-103cp",
+        "osc-iap-2015"
+      ]
+    },
+    {
+      "id": "F-11",
+      "libelle": "Capacité de perte selon ta situation (hypothèse de l'équipe)",
+      "valeur": 26.0,
+      "unite": "%",
+      "type": "HYPOTHESE",
+      "source": "Barème de l'équipe (backend/alphaforge/profil.py), publié et modifiable",
+      "methode": "5 + 0,35 × score de capacité. Détail du score : Horizon de 3 à 5 ans : -10 ; Revenu stable : +10 ; Fonds d'urgence : +10.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "acvm-31-103cp",
+        "osc-iap-2015"
+      ]
+    },
+    {
+      "id": "F-12",
+      "libelle": "Part maximale de l'épargne dans un actif très volatil, pour ton profil (hypothèse de l'équipe)",
+      "valeur": 9.5,
+      "unite": "%",
+      "type": "HYPOTHESE",
+      "source": "Barème de l'équipe (backend/alphaforge/profil.py), publié et modifiable",
+      "methode": "5 + 0,15 × score retenu (30,0), soit de 5 % à 20 % : une fonction continue, pour qu'un point de score ne fasse pas basculer le verdict.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "markowitz-1952",
+        "acvm-ocri-31-368"
+      ]
+    },
+    {
+      "id": "F-13",
+      "libelle": "Retrait jugé proche (hypothèse de l'équipe)",
+      "valeur": 5,
+      "unite": "an(s)",
+      "type": "HYPOTHESE",
+      "source": "Barème de l'équipe (backend/alphaforge/profil.py), publié et modifiable",
+      "methode": "Un retrait prévu dans 5 ans ou moins rend incohérente une concentration au-delà du seuil sur un actif très volatil : il resterait peu de temps pour attendre une remontée.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "acvm-31-103cp"
+      ]
+    },
+    {
+      "id": "F-14",
+      "libelle": "Seuil « actif très volatil » (hypothèse de l'équipe)",
+      "valeur": 30,
+      "unite": "%/an",
+      "type": "HYPOTHESE",
+      "source": "Barème de l'équipe (backend/alphaforge/profil.py), publié et modifiable",
+      "methode": "Au-delà de 30 %/an, la règle de concentration s'applique ; au-delà de 25 %/an, un retrait prévu avant la récupération est jugé risqué.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "markowitz-1952"
+      ]
+    },
+    {
+      "id": "F-15",
+      "libelle": "Seuil de fausse diversification (hypothèse de l'équipe)",
+      "valeur": 0.8,
+      "unite": "",
+      "type": "HYPOTHESE",
+      "source": "Barème de l'équipe (backend/alphaforge/profil.py), publié et modifiable",
+      "methode": "À partir de cette corrélation hebdomadaire avec un placement déjà détenu, le nouveau placement ne diversifie pas.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "markowitz-1952"
+      ]
+    },
+    {
+      "id": "F-16",
+      "libelle": "Pire chute de TSLA en USD (sans conversion)",
+      "valeur": -73.0,
+      "unite": "%",
+      "type": "FAIT",
+      "source": "Yahoo Finance",
+      "methode": "Même calcul, sans conversion en CAD.",
+      "lu_ou_calcule": "calcule",
+      "references": [
+        "donnees-prix",
+        "donnees-change"
+      ]
+    }
+  ],
+  "objections": [
+    {
+      "id": "O-1",
+      "cible": "F-2",
+      "texte": "La pire chute est-elle mesurée en dollars canadiens ? Pour un investisseur canadien, le taux de change compte.",
+      "recalcul": "Recalculer la pire chute en USD et comparer.",
+      "resolue": true,
+      "reponse": "Recalcul fait (F-16) : -73,0 % en USD contre -70,9 % en CAD (écart de 2,1 point(s)). On garde la mesure en CAD.",
+      "issue": "confirmee"
+    },
+    {
+      "id": "O-2",
+      "cible": "F-2",
+      "texte": "La fenêtre ne couvre que 5 ans. Une crise plus forte (2008, 2020) n'y figure pas.",
+      "recalcul": "Marquer la pire chute comme borne observée, pas comme pire cas possible.",
+      "resolue": true,
+      "reponse": "Limite ajoutée au texte final : la pire chute est celle observée sur 5 ans, pas un maximum.",
+      "issue": "limite"
+    }
+  ],
+  "regles": [
+    {
+      "code": "capacite",
+      "libelle": "Perte supportable",
+      "niveau": "ok",
+      "explication": "La pire chute observée ferait baisser ton épargne de 14,2 %, sous ta limite de 15,5 %.",
+      "faits": [
+        "F-2",
+        "F-10",
+        "F-11"
+      ],
+      "references": [
+        "ocri-gn-3400",
+        "acvm-31-103cp",
+        "chekhlov-2005"
+      ],
+      "type": "SCENARIO"
+    },
+    {
+      "code": "preserver",
+      "libelle": "Somme à préserver",
+      "niveau": "ok",
+      "explication": "Après ce placement, il resterait 320 000 $ hors de ce titre, pour 300 000 $ à préserver.",
+      "faits": [],
+      "references": [
+        "chhabra-2005",
+        "das-2010"
+      ],
+      "type": "SCENARIO"
+    },
+    {
+      "code": "retrait",
+      "libelle": "Retrait prévu",
+      "niveau": "ok",
+      "explication": "Le retrait prévu laisse le temps de traverser une baisse comparable.",
+      "faits": [
+        "F-4",
+        "F-3",
+        "F-14"
+      ],
+      "references": [
+        "acvm-31-103cp"
+      ],
+      "type": "HYPOTHESE"
+    },
+    {
+      "code": "horizon",
+      "libelle": "Horizon et temps de récupération",
+      "niveau": "ok",
+      "explication": "Ton horizon est de 4 an(s) ; après la pire chute, il a fallu 1,9 an(s) pour revenir au sommet.",
+      "faits": [
+        "F-3"
+      ],
+      "references": [
+        "acvm-31-103cp",
+        "chekhlov-2005"
+      ],
+      "type": "FAIT"
+    },
+    {
+      "code": "concentration",
+      "libelle": "Concentration",
+      "niveau": "rouge",
+      "explication": "Ce placement représente 20 % de ton épargne. Pour un actif aussi volatil, le seuil retenu pour ton profil est 9,5 %. Tu prévois de retirer de l'argent dans 4 an(s) : si près du besoin, dépasser ce seuil n'est pas cohérent avec ta situation.",
+      "faits": [
+        "F-4",
+        "F-12",
+        "F-14",
+        "F-13"
+      ],
+      "references": [
+        "markowitz-1952",
+        "acvm-ocri-31-368",
+        "acvm-31-103cp"
+      ],
+      "type": "HYPOTHESE"
+    },
+    {
+      "code": "coussin",
+      "libelle": "Fonds d'urgence",
+      "niveau": "ok",
+      "explication": "Tu as un fonds d'urgence.",
+      "faits": [],
+      "references": [
+        "acvm-31-103cp"
+      ],
+      "type": "HYPOTHESE"
+    },
+    {
+      "code": "diversification",
+      "libelle": "Diversification réelle",
+      "niveau": "ok",
+      "explication": "Corrélation la plus forte avec tes placements : XIU.TO (0,33), sous le seuil de 0,8 retenu par l'équipe pour parler de fausse diversification.",
+      "faits": [
+        "F-8",
+        "F-15"
+      ],
+      "references": [
+        "markowitz-1952"
+      ],
+      "type": "HYPOTHESE"
+    }
+  ],
+  "verdict": {
+    "etat": "incoherent",
+    "libelle": "Incohérent avec ta situation",
+    "respectees": 6,
+    "evaluees": 7
+  },
+  "options": [
+    {
+      "nom": "Ta demande",
+      "ticker": "TSLA",
+      "montant_cad": 80000,
+      "horizon_ans": 4,
+      "etat": "incoherent"
+    },
+    {
+      "nom": "Version ajustée",
+      "ticker": "TSLA",
+      "changement": {
+        "montant_cad": 38000
+      },
+      "etat": "coherent",
+      "montant_cad": 38000,
+      "horizon_ans": 4
+    },
+    {
+      "nom": "Placement large, même montant",
+      "ticker": "XIU.TO",
+      "libelle_actif": "iShares S&P/TSX 60 Index ETF",
+      "montant_cad": 80000,
+      "horizon_ans": 4,
+      "etat": "coherent",
+      "faits": [
+        "F-9"
+      ],
+      "note": "Pour comparer, le marché canadien large : pire chute observée -16,4 %, contre -70,9 % pour TSLA."
+    }
+  ],
+  "bascule": {
+    "montants": [
+      80000,
+      60000,
+      40000,
+      32000,
+      24000,
+      16000,
+      8000,
+      4000
+    ],
+    "horizons": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "cases": [
+      {
+        "montant_cad": 80000,
+        "horizon_ans": 1,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 80000,
+        "horizon_ans": 2,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 80000,
+        "horizon_ans": 3,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 80000,
+        "horizon_ans": 4,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 80000,
+        "horizon_ans": 5,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 80000,
+        "horizon_ans": 6,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 80000,
+        "horizon_ans": 7,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 80000,
+        "horizon_ans": 8,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 80000,
+        "horizon_ans": 9,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 80000,
+        "horizon_ans": 10,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 80000,
+        "horizon_ans": 11,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 80000,
+        "horizon_ans": 12,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 80000,
+        "horizon_ans": 13,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 80000,
+        "horizon_ans": 14,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 80000,
+        "horizon_ans": 15,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 80000,
+        "horizon_ans": 16,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 80000,
+        "horizon_ans": 17,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 80000,
+        "horizon_ans": 18,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 80000,
+        "horizon_ans": 19,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 80000,
+        "horizon_ans": 20,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 60000,
+        "horizon_ans": 1,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 60000,
+        "horizon_ans": 2,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 60000,
+        "horizon_ans": 3,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 60000,
+        "horizon_ans": 4,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 60000,
+        "horizon_ans": 5,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 60000,
+        "horizon_ans": 6,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 60000,
+        "horizon_ans": 7,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 60000,
+        "horizon_ans": 8,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 60000,
+        "horizon_ans": 9,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 60000,
+        "horizon_ans": 10,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 60000,
+        "horizon_ans": 11,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 60000,
+        "horizon_ans": 12,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 60000,
+        "horizon_ans": 13,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 60000,
+        "horizon_ans": 14,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 60000,
+        "horizon_ans": 15,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 60000,
+        "horizon_ans": 16,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 60000,
+        "horizon_ans": 17,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 60000,
+        "horizon_ans": 18,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 60000,
+        "horizon_ans": 19,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 60000,
+        "horizon_ans": 20,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 40000,
+        "horizon_ans": 1,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 40000,
+        "horizon_ans": 2,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 40000,
+        "horizon_ans": 3,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 40000,
+        "horizon_ans": 4,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 40000,
+        "horizon_ans": 5,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 40000,
+        "horizon_ans": 6,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 40000,
+        "horizon_ans": 7,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 40000,
+        "horizon_ans": 8,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 40000,
+        "horizon_ans": 9,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 40000,
+        "horizon_ans": 10,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 40000,
+        "horizon_ans": 11,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 40000,
+        "horizon_ans": 12,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 40000,
+        "horizon_ans": 13,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 40000,
+        "horizon_ans": 14,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 40000,
+        "horizon_ans": 15,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 40000,
+        "horizon_ans": 16,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 40000,
+        "horizon_ans": 17,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 40000,
+        "horizon_ans": 18,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 40000,
+        "horizon_ans": 19,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 40000,
+        "horizon_ans": 20,
+        "etat": "incoherent"
+      },
+      {
+        "montant_cad": 32000,
+        "horizon_ans": 1,
+        "etat": "ajustement"
+      },
+      {
+        "montant_cad": 32000,
+        "horizon_ans": 2,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 32000,
+        "horizon_ans": 3,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 32000,
+        "horizon_ans": 4,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 32000,
+        "horizon_ans": 5,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 32000,
+        "horizon_ans": 6,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 32000,
+        "horizon_ans": 7,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 32000,
+        "horizon_ans": 8,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 32000,
+        "horizon_ans": 9,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 32000,
+        "horizon_ans": 10,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 32000,
+        "horizon_ans": 11,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 32000,
+        "horizon_ans": 12,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 32000,
+        "horizon_ans": 13,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 32000,
+        "horizon_ans": 14,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 32000,
+        "horizon_ans": 15,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 32000,
+        "horizon_ans": 16,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 32000,
+        "horizon_ans": 17,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 32000,
+        "horizon_ans": 18,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 32000,
+        "horizon_ans": 19,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 32000,
+        "horizon_ans": 20,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 24000,
+        "horizon_ans": 1,
+        "etat": "ajustement"
+      },
+      {
+        "montant_cad": 24000,
+        "horizon_ans": 2,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 24000,
+        "horizon_ans": 3,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 24000,
+        "horizon_ans": 4,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 24000,
+        "horizon_ans": 5,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 24000,
+        "horizon_ans": 6,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 24000,
+        "horizon_ans": 7,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 24000,
+        "horizon_ans": 8,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 24000,
+        "horizon_ans": 9,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 24000,
+        "horizon_ans": 10,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 24000,
+        "horizon_ans": 11,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 24000,
+        "horizon_ans": 12,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 24000,
+        "horizon_ans": 13,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 24000,
+        "horizon_ans": 14,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 24000,
+        "horizon_ans": 15,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 24000,
+        "horizon_ans": 16,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 24000,
+        "horizon_ans": 17,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 24000,
+        "horizon_ans": 18,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 24000,
+        "horizon_ans": 19,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 24000,
+        "horizon_ans": 20,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 16000,
+        "horizon_ans": 1,
+        "etat": "ajustement"
+      },
+      {
+        "montant_cad": 16000,
+        "horizon_ans": 2,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 16000,
+        "horizon_ans": 3,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 16000,
+        "horizon_ans": 4,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 16000,
+        "horizon_ans": 5,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 16000,
+        "horizon_ans": 6,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 16000,
+        "horizon_ans": 7,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 16000,
+        "horizon_ans": 8,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 16000,
+        "horizon_ans": 9,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 16000,
+        "horizon_ans": 10,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 16000,
+        "horizon_ans": 11,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 16000,
+        "horizon_ans": 12,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 16000,
+        "horizon_ans": 13,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 16000,
+        "horizon_ans": 14,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 16000,
+        "horizon_ans": 15,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 16000,
+        "horizon_ans": 16,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 16000,
+        "horizon_ans": 17,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 16000,
+        "horizon_ans": 18,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 16000,
+        "horizon_ans": 19,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 16000,
+        "horizon_ans": 20,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 8000,
+        "horizon_ans": 1,
+        "etat": "ajustement"
+      },
+      {
+        "montant_cad": 8000,
+        "horizon_ans": 2,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 8000,
+        "horizon_ans": 3,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 8000,
+        "horizon_ans": 4,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 8000,
+        "horizon_ans": 5,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 8000,
+        "horizon_ans": 6,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 8000,
+        "horizon_ans": 7,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 8000,
+        "horizon_ans": 8,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 8000,
+        "horizon_ans": 9,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 8000,
+        "horizon_ans": 10,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 8000,
+        "horizon_ans": 11,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 8000,
+        "horizon_ans": 12,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 8000,
+        "horizon_ans": 13,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 8000,
+        "horizon_ans": 14,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 8000,
+        "horizon_ans": 15,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 8000,
+        "horizon_ans": 16,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 8000,
+        "horizon_ans": 17,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 8000,
+        "horizon_ans": 18,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 8000,
+        "horizon_ans": 19,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 8000,
+        "horizon_ans": 20,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 4000,
+        "horizon_ans": 1,
+        "etat": "ajustement"
+      },
+      {
+        "montant_cad": 4000,
+        "horizon_ans": 2,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 4000,
+        "horizon_ans": 3,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 4000,
+        "horizon_ans": 4,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 4000,
+        "horizon_ans": 5,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 4000,
+        "horizon_ans": 6,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 4000,
+        "horizon_ans": 7,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 4000,
+        "horizon_ans": 8,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 4000,
+        "horizon_ans": 9,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 4000,
+        "horizon_ans": 10,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 4000,
+        "horizon_ans": 11,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 4000,
+        "horizon_ans": 12,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 4000,
+        "horizon_ans": 13,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 4000,
+        "horizon_ans": 14,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 4000,
+        "horizon_ans": 15,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 4000,
+        "horizon_ans": 16,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 4000,
+        "horizon_ans": 17,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 4000,
+        "horizon_ans": 18,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 4000,
+        "horizon_ans": 19,
+        "etat": "coherent"
+      },
+      {
+        "montant_cad": 4000,
+        "horizon_ans": 20,
+        "etat": "coherent"
+      }
+    ]
+  },
+  "qualite_donnees": [
+    {
+      "code": "presence",
+      "libelle": "Données présentes",
+      "statut": "ok",
+      "detail": "1255 lignes."
+    },
+    {
+      "code": "doublons",
+      "libelle": "Pas de doublons de date",
+      "statut": "ok",
+      "detail": "0 doublon(s)."
+    },
+    {
+      "code": "magnitude",
+      "libelle": "Prix strictement positifs",
+      "statut": "ok",
+      "detail": "0 prix nul(s) ou négatif(s)."
+    },
+    {
+      "code": "couverture",
+      "libelle": "Couvre la fenêtre 2021-11 → 2026-11",
+      "statut": "ok",
+      "detail": "Du 2021-11-12 au 2026-11-12."
+    },
+    {
+      "code": "trous",
+      "libelle": "Pas de trou anormal dans la série",
+      "statut": "ok",
+      "detail": "Plus long écart entre deux cotations : 4 jour(s)."
+    },
+    {
+      "code": "sauts",
+      "libelle": "Pas de variation journalière > 40 %",
+      "statut": "ok",
+      "detail": "0 variation(s) suspecte(s)."
+    },
+    {
+      "code": "devise",
+      "libelle": "Devise connue et convertie en CAD",
+      "statut": "ok",
+      "detail": "Converti avec le taux USD/CAD de la Banque du Canada."
+    }
+  ],
+  "questions": [],
+  "texte": {
+    "reformulation": "Robert envisage de placer 80 000 $ dans TSLA, soit 20 % de son épargne, avec un horizon de 4 an(s).",
+    "miroir": [
+      {
+        "texte": "Tu as dit : « Je veux préserver mon capital ». Si ce placement revivait sa pire chute observée, il perdrait environ 56 720 $.",
+        "type": "SCENARIO",
+        "faits": [
+          "F-7",
+          "F-2"
+        ]
+      }
+    ],
+    "pourquoi": [
+      {
+        "texte": "Ce placement représente 20 % de ton épargne. Pour un actif aussi volatil, le seuil retenu pour ton profil est 9,5 %. Tu prévois de retirer de l'argent dans 4 an(s) : si près du besoin, dépasser ce seuil n'est pas cohérent avec ta situation.",
+        "type": "HYPOTHESE",
+        "faits": [
+          "F-4",
+          "F-12",
+          "F-14",
+          "F-13"
+        ]
+      }
+    ],
+    "ce_qui_changerait": [
+      {
+        "texte": "Ce qui changerait l'avis : ramener le montant à 38 000 $.",
+        "type": "SCENARIO",
+        "faits": []
+      }
+    ],
+    "verdict": "Incohérent avec ta situation : 6 règle(s) respectée(s) sur 7.",
+    "tensions": [
+      "Demande très médiatisée : la décision s'appuie sur l'attention publique plutôt que sur ta situation.",
+      "Écart entre ce que tu veux risquer (30/100) et ce que ta situation permet (60/100)."
+    ],
+    "limites": [
+      {
+        "texte": "Les chiffres décrivent la période 2021-2026. Ils ne prédisent pas l'avenir.",
+        "type": "HYPOTHESE",
+        "faits": []
+      },
+      {
+        "texte": "Les montants et l'épargne de ce profil sont fictifs (scénario de l'équipe).",
+        "type": "SCENARIO",
+        "faits": []
+      },
+      {
+        "texte": "L'univers de 31 actifs a été choisi en 2026 : il ne contient que des placements qui existent encore (biais du survivant). Les pires cas réels peuvent être plus graves.",
+        "type": "HYPOTHESE",
+        "faits": [],
+        "references": [
+          "donnees-univers",
+          "dossier-adam"
+        ]
+      },
+      {
+        "texte": "Le taux USD/CAD de la Banque du Canada est une moyenne indicative de la journée (8 h à 16 h), appliquée ici à des prix de clôture.",
+        "type": "HYPOTHESE",
+        "faits": [],
+        "references": [
+          "donnees-change"
+        ]
+      },
+      {
+        "texte": "Recalcul fait (F-16) : -73,0 % en USD contre -70,9 % en CAD (écart de 2,1 point(s)). On garde la mesure en CAD.",
+        "type": "FAIT",
+        "faits": [
+          "F-16"
+        ]
+      },
+      {
+        "texte": "Limite ajoutée au texte final : la pire chute est celle observée sur 5 ans, pas un maximum.",
+        "type": "HYPOTHESE",
+        "faits": [
+          "F-2"
+        ]
+      }
+    ],
+    "avertissement": "Simulation éducative. Ceci n'est pas un conseil financier personnalisé.",
+    "source": "modèles de phrases (hors ligne)",
+    "controle": [
+      "mode hors ligne demandé (ALPHAFORGE_LLM=off)"
+    ]
+  },
+  "trace": [
+    {
+      "agent": "Profileur",
+      "action": "structure le profil",
+      "detail": "Demande comprise : TSLA pour 80000 $. Tolérance 30.0, capacité 60.0 → on retient 30.0 (limite : tolérance). Lecture de la phrase : mots-clés (hors ligne).",
+      "faits": [],
+      "duree_ms": 3,
+      "references": [
+        "clamber-2024",
+        "ross-lo-2026",
+        "acvm-31-103cp"
+      ],
+      "appels_modele": []
+    },
+    {
+      "agent": "Contrôle données",
+      "action": "7 contrôles avant calcul",
+      "detail": "7/7 contrôles réussis pour TSLA.",
+      "faits": [],
+      "duree_ms": 22,
+      "references": [
+        "yfinance-reparation",
+        "dossier-adam"
+      ],
+      "appels_modele": []
+    },
+    {
+      "agent": "Analyste",
+      "action": "appelle les outils de calcul",
+      "detail": "15 faits produits (pire chute -70.9 %, volatilité 58.8 %/an). Sources : prix Yahoo Finance, Banque du Canada, API Valet (USD/CAD quotidien).",
+      "faits": [
+        "F-1",
+        "F-2",
+        "F-3",
+        "F-4",
+        "F-5",
+        "F-6",
+        "F-7",
+        "F-8",
+        "F-9",
+        "F-10",
+        "F-11",
+        "F-12",
+        "F-13",
+        "F-14",
+        "F-15"
+      ],
+      "duree_ms": 28,
+      "references": [
+        "gao-pal-2023",
+        "turpin-2023"
+      ],
+      "appels_modele": []
+    },
+    {
+      "agent": "Sceptique",
+      "action": "objecte et force des vérifications",
+      "detail": "2 objection(s) choisie(s) parmi 5 vérifications autorisées (règles (hors ligne)). Chacune a été exécutée par le code : 1 confirmée(s), 0 écartée(s), 1 limite(s) notée(s).",
+      "faits": [
+        "F-2",
+        "F-2"
+      ],
+      "duree_ms": 2,
+      "references": [
+        "gou-critic-2024",
+        "huang-2024",
+        "choi-2025"
+      ],
+      "appels_modele": []
+    },
+    {
+      "agent": "Gardien",
+      "action": "applique les règles et décide",
+      "detail": "Incohérent avec ta situation (6/7 règles respectées). Grille de bascule : 160 combinaisons recalculées.",
+      "faits": [
+        "F-2",
+        "F-10",
+        "F-11",
+        "F-4",
+        "F-3",
+        "F-14",
+        "F-3",
+        "F-4",
+        "F-12",
+        "F-14",
+        "F-13",
+        "F-8",
+        "F-15"
+      ],
+      "duree_ms": 16,
+      "references": [
+        "anthropic-2024",
+        "kim-2025",
+        "acvm-ocri-31-368"
+      ],
+      "appels_modele": []
+    },
+    {
+      "agent": "Rédacteur",
+      "action": "explique le dossier, puis passe le contrôle d'ancrage",
+      "detail": "Texte : modèles de phrases (hors ligne). mode hors ligne demandé (ALPHAFORGE_LLM=off)",
+      "faits": [],
+      "duree_ms": 0,
+      "references": [
+        "turpin-2023",
+        "huang-2024",
+        "miller-2019",
+        "bansal-2021"
+      ],
+      "appels_modele": []
+    }
+  ],
+  "version_contrat": "2",
+  "comparaison": {},
+  "appels_modele": []
+}

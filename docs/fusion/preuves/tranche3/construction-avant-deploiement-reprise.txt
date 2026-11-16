@@ -1,0 +1,35 @@
+
+▶ Construction du paquet Lambda (dépendances Linux, Python 3.12)
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+botocore 1.44.3 requires python-dateutil<3.0.0,>=2.1, but you have python-dateutil 4.0.0 which is incompatible.
+  alphaforge-lambda.zip : 28.4 Mo
+
+▶ Construction de l'interface React
+
+added 66 packages, and audited 67 packages in 2s
+
+9 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+npm notice
+npm notice New major version of npm available! 10.9.8 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice
+
+> alphaforge-interface@0.1.0 build
+> vite build
+
+vite v6.4.6 building for production...
+transforming...
+✓ 39 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.66 kB │ gzip:  0.39 kB
+dist/assets/index-D9CBsb7u.css   18.98 kB │ gzip:  4.93 kB
+dist/assets/index-CvQqsOYw.js   191.95 kB │ gzip: 61.83 kB
+✓ built in 474ms
+  alphaforge-interface.zip : 0.1 Mo (API : même origine)
+
+Construction terminée (rien n'a été envoyé sur AWS).

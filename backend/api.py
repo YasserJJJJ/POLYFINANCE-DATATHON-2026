@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import json
 import math
+import os
 import queue
 import threading
 
@@ -23,7 +24,12 @@ from alphaforge.personas import PERSONAS
 from alphaforge.profil import QUESTIONS_TOLERANCE
 
 app = FastAPI(title="AlphaForge API")
-app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
+ORIGINES_INTERFACE = [o.strip().rstrip("/") for o in os.environ.get(
+    "ALPHAFORGE_ORIGINES_INTERFACE", "http://localhost:5173,http://127.0.0.1:5173").split(",") if o.strip()]
+if "*" in ORIGINES_INTERFACE:
+    raise ValueError("ALPHAFORGE_ORIGINES_INTERFACE exige des origines explicites.")
+app.add_middleware(CORSMiddleware, allow_origins=ORIGINES_INTERFACE,
+                   allow_methods=["GET", "POST"], allow_headers=["Content-Type"])
 
 
 class Requete(BaseModel):
@@ -71,6 +77,13 @@ def _dossier_invalide(req: Requete) -> Dossier | None:
 
 
 def _analyser_requete(req: Requete, sur_etape=None) -> dict:
+    # Cette portée est ouverte dans le fil d'analyse du flux, pas dans le fil
+    # qui construit StreamingResponse : aucune entrée partagée entre requêtes.
+    with llm.portee_analyse():
+        return _analyser_dans_portee(req, sur_etape)
+
+
+def _analyser_dans_portee(req: Requete, sur_etape=None) -> dict:
     req = _normaliser_requete(req)
     ticker = req.demande.get("ticker")
     if ticker and (not isinstance(ticker, str) or ticker not in univers().index):
@@ -80,13 +93,19 @@ def _analyser_requete(req: Requete, sur_etape=None) -> dict:
     invalide = _dossier_invalide(req)
     if invalide is not None:
         return invalide.to_dict()
-    return analyser(req.profil, req.demande, sur_etape)
+    dossier = analyser(req.profil, req.demande, sur_etape)
+    for trace in dossier["trace"]:
+        trace["appels_modele"] = [i for i, appel in enumerate(dossier["appels_modele"])
+                                  if appel["agent"] == trace["agent"]]
+    return dossier
 
 
 @app.get("/api/sante")
 def sante() -> dict:
     return {"ok": True, "llm": llm.acces_verifie(), "raison": llm.raison_indisponible(),
-            "modeles": {"principal": llm.nom(llm.MODELE_PRINCIPAL), "leger": llm.nom(llm.MODELE_LEGER)}}
+            "modeles": {"principal": llm.nom(llm.MODELE_PRINCIPAL), "leger": llm.nom(llm.MODELE_LEGER)},
+            "region": llm.REGION,
+            "modeles_ids": {"principal": llm.MODELE_PRINCIPAL, "leger": llm.MODELE_LEGER}}
 
 
 @app.get("/api/personas")
@@ -118,8 +137,10 @@ def comprendre(req: Requete) -> dict:
     if invalide is not None:
         return {"profil": invalide.profil, "demande": invalide.demande, "questions": invalide.questions}
     d = Dossier(profil=dict(req.profil), demande=dict(req.demande))
-    profileur.executer(d)
-    return {"profil": d.profil, "demande": d.demande, "questions": d.questions}
+    with llm.portee_analyse():
+        profileur.executer(d)
+        appels = llm.journal_appels()
+    return {"profil": d.profil, "demande": d.demande, "questions": d.questions, "appels_modele": appels}
 
 
 @app.get("/api/serie/{ticker}")

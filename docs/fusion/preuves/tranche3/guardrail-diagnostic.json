@@ -1,0 +1,35 @@
+{
+  "erreur": "ValidationException: An error occurred (ValidationException) when calling the Converse operation: The query length is too long for guardrails contextual grounding policy evaluation. The maximum allowed query length is 1 text unit.",
+  "reponse_erreur": {
+    "Error": {
+      "Message": "The query length is too long for guardrails contextual grounding policy evaluation. The maximum allowed query length is 1 text unit.",
+      "Code": "ValidationException"
+    },
+    "ResponseMetadata": {
+      "RequestId": "10bc603f-2dd6-4fa3-a590-53757ab872de",
+      "HTTPStatusCode": 400,
+      "HTTPHeaders": {
+        "date": "Mon, 16 Nov 2026 01:25:33 GMT",
+        "content-type": "application/json",
+        "content-length": "146",
+        "connection": "keep-alive",
+        "x-amzn-requestid": "10bc603f-2dd6-4fa3-a590-53757ab872de",
+        "x-amzn-errortype": "ValidationException:http://internal.amazon.com/coral/com.amazon.bedrock/"
+      },
+      "RetryAttempts": 0
+    },
+    "message": "The query length is too long for guardrails contextual grounding policy evaluation. The maximum allowed query length is 1 text unit."
+  },
+  "appels": [
+    {
+      "agent": "Rédacteur",
+      "modele": "global.anthropic.claude-sonnet-5",
+      "request_id": "10bc603f-2dd6-4fa3-a590-53757ab872de",
+      "stop_reason": "erreur:ValidationException",
+      "jetons_entree": null,
+      "jetons_sortie": null,
+      "latence_ms": 5938,
+      "garde_fou": "configure"
+    }
+  ]
+}

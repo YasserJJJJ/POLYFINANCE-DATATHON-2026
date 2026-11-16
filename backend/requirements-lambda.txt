@@ -3,3 +3,5 @@ fastapi>=0.115
 mangum>=0.19
 pandas>=2.2
 numpy>=1.26
+# Dépendance transitive de pandas : reste compatible avec botocore du runtime Lambda.
+python-dateutil>=2.8.2,<3.0

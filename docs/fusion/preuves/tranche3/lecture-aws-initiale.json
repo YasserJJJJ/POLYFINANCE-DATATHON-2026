@@ -1,0 +1,119 @@
+{
+  "identite": {
+    "UserId": "AROAW3MEDFHVCQFYCLB4D:Participant",
+    "Account": "471112821226",
+    "Arn": "arn:aws:sts::471112821226:assumed-role/WSParticipantRole/Participant",
+    "ResponseMetadata": {
+      "RequestId": "adc1ac80-c714-4fa6-980e-391b8e56d2d5",
+      "HTTPStatusCode": 200,
+      "HTTPHeaders": {
+        "x-amzn-requestid": "adc1ac80-c714-4fa6-980e-391b8e56d2d5",
+        "x-amz-sts-extended-request-id": "MTp1cy1lYXN0LTE6UzoxNzk0NzkxOTkwNjkzOlI6aGlXNUd5QUQ=",
+        "content-type": "text/xml",
+        "content-length": "446",
+        "date": "Mon, 16 Nov 2026 01:19:50 GMT"
+      },
+      "RetryAttempts": 0
+    }
+  },
+  "role": {
+    "Path": "/",
+    "RoleName": "WSParticipantRole",
+    "RoleId": "AROAW3MEDFHVCQFYCLB4D",
+    "Arn": "arn:aws:iam::471112821226:role/WSParticipantRole",
+    "CreateDate": "2026-10-26 18:44:44+00:00",
+    "AssumeRolePolicyDocument": {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Sid": "WSParticipantRoleTrust",
+          "Effect": "Allow",
+          "Principal": {
+            "AWS": [
+              "arn:aws:iam::484654583263:root",
+              "arn:aws:iam::471112821226:user/WSControlPlaneUser"
+            ]
+          },
+          "Action": "sts:AssumeRole"
+        },
+        {
+          "Effect": "Allow",
+          "Principal": {
+            "Service": "ec2.amazonaws.com"
+          },
+          "Action": "sts:AssumeRole"
+        }
+      ]
+    },
+    "Description": "Workshop Studio's Participant role. Setup to provide Participant level permissions.",
+    "MaxSessionDuration": 43200,
+    "RoleLastUsed": {
+      "LastUsedDate": "2026-11-16 01:16:07+00:00",
+      "Region": "us-east-1"
+    }
+  },
+  "profil_leger": {
+    "ResponseMetadata": {
+      "RequestId": "a7f631b7-3c43-4fe9-82ed-64a26e8faedc",
+      "HTTPStatusCode": 200,
+      "HTTPHeaders": {
+        "date": "Mon, 16 Nov 2026 01:19:50 GMT",
+        "content-type": "application/json",
+        "content-length": "621",
+        "connection": "keep-alive",
+        "x-amzn-requestid": "a7f631b7-3c43-4fe9-82ed-64a26e8faedc"
+      },
+      "RetryAttempts": 0
+    },
+    "inferenceProfileName": "GLOBAL Amazon Nova 2 Lite",
+    "description": "Routes requests to Amazon Nova 2 Lite globally across all supported AWS Regions.",
+    "createdAt": "2025-10-31 16:18:38.430000+00:00",
+    "updatedAt": "2025-11-22 21:09:07.061000+00:00",
+    "inferenceProfileArn": "arn:aws:bedrock:us-east-1:471112821226:inference-profile/global.amazon.nova-2-lite-v1:0",
+    "models": [
+      {
+        "modelArn": "arn:aws:bedrock:::foundation-model/amazon.nova-2-lite-v1:0"
+      },
+      {
+        "modelArn": "arn:aws:bedrock:us-east-1::foundation-model/amazon.nova-2-lite-v1:0"
+      }
+    ],
+    "inferenceProfileId": "global.amazon.nova-2-lite-v1:0",
+    "status": "ACTIVE",
+    "type": "SYSTEM_DEFINED"
+  },
+  "profil_principal": {
+    "ResponseMetadata": {
+      "RequestId": "132e4d60-b91f-49d4-92c4-99ab670121bd",
+      "HTTPStatusCode": 200,
+      "HTTPHeaders": {
+        "date": "Mon, 16 Nov 2026 01:19:50 GMT",
+        "content-type": "application/json",
+        "content-length": "643",
+        "connection": "keep-alive",
+        "x-amzn-requestid": "132e4d60-b91f-49d4-92c4-99ab670121bd"
+      },
+      "RetryAttempts": 0
+    },
+    "inferenceProfileName": "Global Anthropic Claude Sonnet 5",
+    "description": "Routes requests to Anthropic Claude Sonnet 5 globally across all supported AWS Regions.",
+    "createdAt": "2026-06-30 01:24:08.564000+00:00",
+    "updatedAt": "2026-09-24 00:38:18.589000+00:00",
+    "inferenceProfileArn": "arn:aws:bedrock:us-east-1:471112821226:inference-profile/global.anthropic.claude-sonnet-5",
+    "models": [
+      {
+        "modelArn": "arn:aws:bedrock:::foundation-model/anthropic.claude-sonnet-5"
+      },
+      {
+        "modelArn": "arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-sonnet-5"
+      }
+    ],
+    "inferenceProfileId": "global.anthropic.claude-sonnet-5",
+    "status": "ACTIVE",
+    "type": "SYSTEM_DEFINED"
+  },
+  "s3": [],
+  "amplify": [],
+  "guardrails": [],
+  "lambda": []
+}

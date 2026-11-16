@@ -1,0 +1,21 @@
+
+▶ Construction du paquet Lambda (dépendances Linux, Python 3.12)
+/Users/vpro/Documents/ChatGPT/POLYFINANCE-DATATHON-2026/backend/.venv/bin/python: No module named pip
+Traceback (most recent call last):
+  File "/Users/vpro/Documents/ChatGPT/POLYFINANCE-fusion-aws/infra/deployer.py", line 519, in <module>
+    main()
+    ~~~~^^
+  File "/Users/vpro/Documents/ChatGPT/POLYFINANCE-fusion-aws/infra/deployer.py", line 469, in main
+    construire_zip_lambda()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/vpro/Documents/ChatGPT/POLYFINANCE-fusion-aws/infra/deployer.py", line 171, in construire_zip_lambda
+    subprocess.run([sys.executable, "-m", "pip", "install", "--quiet", "--target", str(pkg),
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    "--platform", "manylinux2014_x86_64", "--python-version", "3.12", "--implementation", "cp",
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    "--only-binary=:all:", "-r", str(RACINE / "backend" / "requirements-lambda.txt")], check=True)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['/Users/vpro/Documents/ChatGPT/POLYFINANCE-DATATHON-2026/backend/.venv/bin/python', '-m', 'pip', 'install', '--quiet', '--target', '/Users/vpro/Documents/ChatGPT/POLYFINANCE-fusion-aws/infra/build/lambda', '--platform', 'manylinux2014_x86_64', '--python-version', '3.12', '--implementation', 'cp', '--only-binary=:all:', '-r', '/Users/vpro/Documents/ChatGPT/POLYFINANCE-fusion-aws/backend/requirements-lambda.txt']' returned non-zero exit status 1.

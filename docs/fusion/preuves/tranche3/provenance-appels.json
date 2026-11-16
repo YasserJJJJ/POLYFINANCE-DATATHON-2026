@@ -1,0 +1,21 @@
+{
+  "archive": "IMPLEMENTATION_IDENTIFIANT-A-ATTRIBUER_2026-11-15(claude-code).zip",
+  "archive_sha256": "89fa9270fe7e307287c357c76cbce002744d39c4d33083ddc10b431af4e6b967",
+  "source": "IMPLEMENTATION_IDENTIFIANT-A-ATTRIBUER_2026-11-15/src/datathon2026/agent.py",
+  "sha256_original": "6cb2dc9841c93ba346ef71bdfed604ab2136312904069ffc89d036ffabf324c2",
+  "composant": "BedrockAgent._converse, collecte des métadonnées",
+  "destination": "backend/alphaforge/llm.py::_preuve",
+  "adaptations": [
+    "Clés K6 en français",
+    "agent et état Guardrail",
+    "ContextVar par analyse",
+    "Métadonnées des appels en erreur sans identifiant inventé"
+  ],
+  "correspondance": {
+    "requestId": "request_id",
+    "stopReason": "stop_reason",
+    "inputTokens": "jetons_entree",
+    "outputTokens": "jetons_sortie",
+    "latenceMs": "latence_ms"
+  }
+}

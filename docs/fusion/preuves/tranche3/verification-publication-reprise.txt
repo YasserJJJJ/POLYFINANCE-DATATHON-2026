@@ -1,0 +1,62 @@
+{
+  "sante_ok": true,
+  "interface_ok": true,
+  "cors_ok": true,
+  "decisions_identiques": {
+    "verdict": true,
+    "regles": true,
+    "options": true,
+    "bascule": true
+  },
+  "archivage": {
+    "bucket": "alphaforge-471112821226-us-east-1",
+    "cle": "dossiers/20261116-012751-f1522c45.json",
+    "egalite_complete": true,
+    "sha256": "3bef37ef2dba37b424d7f886bcf6cef8ed8857e1a6491fa90a1d87efb33e06b0"
+  },
+  "appels": [
+    {
+      "agent": "Profileur",
+      "modele": "global.amazon.nova-2-lite-v1:0",
+      "request_id": "839f7abd-ae30-406d-9e80-72509112f2f0",
+      "stop_reason": "end_turn",
+      "jetons_entree": 735,
+      "jetons_sortie": 124,
+      "latence_ms": 796,
+      "garde_fou": "absent"
+    },
+    {
+      "agent": "Sceptique",
+      "modele": "global.anthropic.claude-sonnet-5",
+      "request_id": "974e5068-27a4-4451-a91d-0efc02b9aafe",
+      "stop_reason": "end_turn",
+      "jetons_entree": 1081,
+      "jetons_sortie": 219,
+      "latence_ms": 3437,
+      "garde_fou": "absent"
+    },
+    {
+      "agent": "Rédacteur",
+      "modele": "global.anthropic.claude-sonnet-5",
+      "request_id": "16278046-bfd1-484f-8c1b-a44fc7e71247",
+      "stop_reason": "end_turn",
+      "jetons_entree": 6361,
+      "jetons_sortie": 539,
+      "latence_ms": 6499,
+      "garde_fou": "configure"
+    },
+    {
+      "agent": "Rédacteur",
+      "modele": "global.anthropic.claude-sonnet-5",
+      "request_id": "b7ff6a7d-2cf9-4b86-81c2-971ba2ff7c14",
+      "stop_reason": "end_turn",
+      "jetons_entree": 6415,
+      "jetons_sortie": 613,
+      "latence_ms": 6729,
+      "garde_fou": "configure"
+    }
+  ],
+  "premiere_ligne_s": 18.302999,
+  "derniere_ligne_s": 18.32915,
+  "etalement_lignes_s": 0.026151
+}
