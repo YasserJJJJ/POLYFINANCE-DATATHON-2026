@@ -18,6 +18,11 @@ Puis pour la liste unique après un « incohérent » : options sans « Alternat
 suggestions recalculées (Robert : XIU.TO remplace SPY), phrase « ce qui changerait » sur les suggestions,
 fait de l'alternative de Mateo retiré. Verdict, règles et grille de bascule inchangés.
 
+Puis pour « Version ajustée » quand seul le placement bloque : Mateo (exclusion) et Amira (BTC-USD, aucun
+montant ni horizon ne suffit) reçoivent une deuxième option, même montant et même horizon, avec le premier
+placement suggéré (ZST.TO, JNJ), et la phrase correspondante en tête de « ce qui changerait ». Robert,
+verdicts, règles, faits et grilles inchangés.
+
 `test_reference_personas.py` compare tout le dossier, en neutralisant seulement
 les durées de trace et `appels_modele`. La comparaison K3 et la version du
 contrat sont désormais figées aussi.

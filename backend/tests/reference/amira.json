@@ -1612,6 +1612,22 @@
       "montant_cad": 10000,
       "nom": "Ta demande",
       "ticker": "BTC-USD"
+    },
+    {
+      "changement": {
+        "ticker": "JNJ"
+      },
+      "constat": "Seul le placement change : JNJ au lieu de BTC-USD, même montant et même horizon. Le verdict serait « Cohérent avec ta situation ».",
+      "etat": "coherent",
+      "faits": [
+        "F-32"
+      ],
+      "horizon_ans": 15,
+      "libelle_actif": "Johnson & Johnson",
+      "montant_cad": 10000,
+      "nom": "Version ajustée",
+      "note": "Pire chute observée -15,5 %, contre -74,2 % pour BTC-USD.",
+      "ticker": "JNJ"
     }
   ],
   "profil": {
@@ -1842,6 +1858,13 @@
   "texte": {
     "avertissement": "Simulation éducative. Ceci n'est pas un conseil financier personnalisé.",
     "ce_qui_changerait": [
+      {
+        "faits": [
+          "F-32"
+        ],
+        "texte": "Seul le placement change : JNJ au lieu de BTC-USD, même montant et même horizon. Le verdict serait « Cohérent avec ta situation ».",
+        "type": "SCENARIO"
+      },
       {
         "faits": [
           "F-32",
