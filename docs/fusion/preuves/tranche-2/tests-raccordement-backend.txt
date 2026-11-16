@@ -1,0 +1,242 @@
+.....F....F...................................F.FFF.FFF................. [ 27%]
+..F.....F..............................FFF.............................. [ 54%]
+.....................................................FFF.......F........ [ 82%]
+....................FFFFFF..................F.                           [100%]
+=================================== FAILURES ===================================
+________________ test_ce_qui_changerait_reste_ecrit_par_le_code ________________
+tests/test_ancrage.py:43: in test_ce_qui_changerait_reste_ecrit_par_le_code
+    assert "médiatique" not in textes and 38000.0 in llm.nombres(textes)
+E   assert ('médiatique' not in 'Ce qui chan...\u202f700 $.'
+E
+E     'médiatique' is contained here:
+E       à 29 700 $. and 38000.0 in {29700.0})
+E    +  where {29700.0} = <function nombres at 0x106d9bec0>("Ce qui changerait l'avis : ramener le montant à 29\u202f700 $.")
+E    +    where <function nombres at 0x106d9bec0> = llm.nombres
+___________ test_le_code_corrige_les_etiquettes_du_modele_et_le_dit ____________
+tests/test_ancrage.py:118: in test_le_code_corrige_les_etiquettes_du_modele_et_le_dit
+    assert types_[seuil] == "HYPOTHESE" and types_[scen] == "SCENARIO"
+           ^^^^^^^^^^^^^
+E   KeyError: 'Le point qui pèse le plus : ce placement représenterait 20 % de ton épargne, alors que le seuil retenu pour un actif aussi volatil est 5 % dans ton profil.'
+____ test_cas[01 Robert : Tesla, 20 % de l'\xe9pargne, retrait dans 4 ans] _____
+tests/test_banc_12_cas.py:59: in test_cas
+    assert regles_non_ok(d) == regles, (nom, regles_non_ok(d))
+E   AssertionError: ("01 Robert : Tesla, 20 % de l'épargne, retrait dans 4 ans", {'capacite', 'concentration'})
+E   assert {'capacite', 'concentration'} == {'concentration'}
+E
+E     Extra items in the left set:
+E     'capacite'
+E     Use -v to get more diff
+______________ test_cas[03 Robert : Tesla, sans fonds d'urgence] _______________
+tests/test_banc_12_cas.py:59: in test_cas
+    assert regles_non_ok(d) == regles, (nom, regles_non_ok(d))
+E   AssertionError: ("03 Robert : Tesla, sans fonds d'urgence", {'capacite', 'concentration', 'coussin'})
+E   assert {'capacite', ...n', 'coussin'} == {'concentration', 'coussin'}
+E
+E     Extra items in the left set:
+E     'capacite'
+E     Use -v to get more diff
+___________ test_cas[04 Robert : Tesla, retrait pr\xe9vu dans 1 an] ____________
+tests/test_banc_12_cas.py:59: in test_cas
+    assert regles_non_ok(d) == regles, (nom, regles_non_ok(d))
+E   AssertionError: ('04 Robert : Tesla, retrait prévu dans 1 an', {'capacite', 'concentration', 'retrait'})
+E   assert {'capacite', ...n', 'retrait'} == {'concentration', 'retrait'}
+E
+E     Extra items in the left set:
+E     'capacite'
+E     Use -v to get more diff
+___________ test_cas[05 Robert : somme \xe0 pr\xe9server trop haute] ___________
+tests/test_banc_12_cas.py:59: in test_cas
+    assert regles_non_ok(d) == regles, (nom, regles_non_ok(d))
+E   AssertionError: ('05 Robert : somme à préserver trop haute', {'capacite', 'concentration', 'preserver'})
+E   assert {'capacite', ..., 'preserver'} == {'concentration', 'preserver'}
+E
+E     Extra items in the left set:
+E     'capacite'
+E     Use -v to get more diff
+___________________ test_cas[07 Amira : 10 000 $ en Bitcoin] ___________________
+tests/test_banc_12_cas.py:57: in test_cas
+    assert d["verdict"]["etat"] == etat, (nom, d["verdict"], regles_non_ok(d))
+E   AssertionError: ('07 Amira : 10 000 $ en Bitcoin', {'etat': 'incoherent', 'libelle': 'Incohérent avec ta situation', 'respectees': 4, 'evaluees': 6}, {'capacite', 'concentration'})
+E   assert 'incoherent' == 'ajustement'
+E
+E     - ajustement
+E     + incoherent
+__________________ test_cas[08 Amira : un FNB canadien large] __________________
+tests/test_banc_12_cas.py:57: in test_cas
+    assert d["verdict"]["etat"] == etat, (nom, d["verdict"], regles_non_ok(d))
+E   AssertionError: ('08 Amira : un FNB canadien large', {'etat': 'ajustement', 'libelle': 'Cohérent avec un ajustement', 'respectees': 4, 'evaluees': 5}, {'capacite'})
+E   assert 'ajustement' == 'coherent'
+E
+E     - coherent
+E     + ajustement
+____________ test_cas[09 Amira : Bitcoin, argent requis dans 1 an] _____________
+tests/test_banc_12_cas.py:59: in test_cas
+    assert regles_non_ok(d) == regles, (nom, regles_non_ok(d))
+E   AssertionError: ('09 Amira : Bitcoin, argent requis dans 1 an', {'capacite', 'concentration', 'retrait'})
+E   assert {'capacite', ...n', 'retrait'} == {'concentration', 'retrait'}
+E
+E     Extra items in the left set:
+E     'capacite'
+E     Use -v to get more diff
+______ test_un_seul_titre_peu_volatil_n_est_plus_coherent_a_87_pour_cent _______
+tests/test_banc_12_cas.py:137: in test_un_seul_titre_peu_volatil_n_est_plus_coherent_a_87_pour_cent
+    assert d["verdict"]["etat"] == "ajustement" and regles_non_ok(d) == {"concentration"}
+E   AssertionError: assert ('ajustement' == 'ajustement'
+E
+E       ajustement and {'capacite', 'concentration'} == {'concentration'}
+E
+E     Extra items in the left set:
+E     'capacite'
+E     Use -v to get more diff)
+________________ test_les_trois_personas_donnent_trois_verdicts ________________
+tests/test_bout_en_bout.py:16: in test_les_trois_personas_donnent_trois_verdicts
+    assert len(set(etats.values())) >= 2, etats
+E   AssertionError: {'amira': 'incoherent', 'mateo': 'incoherent', 'robert': 'incoherent'}
+E   assert 1 >= 2
+E    +  where 1 = len({'incoherent'})
+E    +    where {'incoherent'} = set(dict_values(['incoherent', 'incoherent', 'incoherent']))
+E    +      where dict_values(['incoherent', 'incoherent', 'incoherent']) = <built-in method values of dict object at 0x10a8a2600>()
+E    +        where <built-in method values of dict object at 0x10a8a2600> = {'amira': 'incoherent', 'mateo': 'incoherent', 'robert': 'incoherent'}.values
+____ test_les_appelants_lisent_les_symboles_et_conservent_les_poids[robert] ____
+tests/test_contrats_fusion.py:72: in test_les_appelants_lisent_les_symboles_et_conservent_les_poids
+    assert sans_variations(obtenu) == sans_variations(attendu)
+E   AssertionError: assert {'profil': {'...', ...}], ...} == {'profil': {'...', ...}], ...}
+E
+E     Omitting 7 identical items, use -vv to show
+E     Differing items:
+E     {'faits': [{'id': 'F-1', 'libelle': 'Secteur de Tesla', 'valeur': 'Consumer Discretionary', 'unite': '', ...}, {'id': ...: 'F-6', 'libelle': 'Pire période de 52 semaines (TSLA, cours du vendredi)', 'valeur': -64.8, 'unite': '%', ...}, ...]} != {'faits': [{'id': 'F-1', 'libelle': 'Secteur de Tesla', 'valeur': 'Consumer Discretionary', 'unite': '', ...}, {'id': ...: 'F-6', 'libelle': 'Pire période de 52 semaines (TSLA, cours du vendredi)', 'valeur': -64.8, 'unite': '%', ...}, ...]}
+E     {'options': [{'nom': 'Ta demande'...
+E
+E     ...Full output truncated, use '-vv' to show
+____ test_les_appelants_lisent_les_symboles_et_conservent_les_poids[amira] _____
+tests/test_contrats_fusion.py:72: in test_les_appelants_lisent_les_symboles_et_conservent_les_poids
+    assert sans_variations(obtenu) == sans_variations(attendu)
+E   assert {'profil': {'...', ...}], ...} == {'profil': {'...', ...}], ...}
+E
+E     Omitting 9 identical items, use -vv to show
+E     Differing items:
+E     {'regles': [{'code': 'capacite', 'libelle': 'Perte supportable', 'niveau': 'rouge', 'explication': 'Pire baisse du por...c tes placements : QQQ (0,26), sous le seuil de 0,8 retenu par l'équipe pour parler de fausse diversification.", ...}]} != {'regles': [{'code': 'capacite', 'libelle': 'Perte supportable', 'niveau': 'rouge', 'explication': 'Pire baisse du por...c tes placements : QQQ (0,26), sous le seuil de 0,8 retenu par l'équipe pour parler de fausse diversification.", ...}]}
+E     {'faits': [{'id': 'F-1', 'libelle...
+E
+E     ...Full output truncated, use '-vv' to show
+____ test_les_appelants_lisent_les_symboles_et_conservent_les_poids[mateo] _____
+tests/test_contrats_fusion.py:72: in test_les_appelants_lisent_les_symboles_et_conservent_les_poids
+    assert sans_variations(obtenu) == sans_variations(attendu)
+E   assert {'profil': {'...', ...}], ...} == {'profil': {'...', ...}], ...}
+E
+E     Omitting 10 identical items, use -vv to show
+E     Differing items:
+E     {'regles': [{'code': 'capacite', 'libelle': 'Perte supportable', 'niveau': 'ok', 'explication': 'Pire baisse du portef...code': 'coussin', 'libelle': "Fonds d'urgence", 'niveau': 'ok', 'explication': "Tu as un fonds d'urgence.", ...}, ...]} != {'regles': [{'code': 'capacite', 'libelle': 'Perte supportable', 'niveau': 'ok', 'explication': 'Pire baisse du portef...code': 'coussin', 'libelle': "Fonds d'urgence", 'niveau': 'ok', 'explication': "Tu as un fonds d'urgence.", ...}, ...]}
+E     {'faits': [{'id': 'F-1', 'libell...
+E
+E     ...Full output truncated, use '-vv' to show
+________________________ test_reference_persona[robert] ________________________
+tests/test_reference_personas.py:32: in test_reference_persona
+    assert sans_variations(obtenu) == sans_variations(attendu)
+E   AssertionError: assert {'profil': {'...', ...}], ...} == {'bascule': {...', ...}], ...}
+E
+E     Omitting 2 identical items, use -vv to show
+E     Differing items:
+E     {'faits': [{'id': 'F-1', 'libelle': 'Secteur de Tesla', 'valeur': 'Consumer Discretionary', 'unite': '', ...}, {'id': ...: 'F-6', 'libelle': 'Pire période de 52 semaines (TSLA, cours du vendredi)', 'valeur': -64.8, 'unite': '%', ...}, ...]} != {'faits': [{'id': 'F-1', 'libelle': 'Secteur de Tesla', 'lu_ou_calcule': 'lu', 'methode': 'Lu tel quel', ...}, {'id': ...ur 12 mois de cotations quotidiennes peut être plus forte. 41,0 % des périodes de 12 mois sont négatives.', ...}, ...]}
+E     {'demande': {'texte': 'Je veux me...
+E
+E     ...Full output truncated, use '-vv' to show
+________________________ test_reference_persona[amira] _________________________
+tests/test_reference_personas.py:32: in test_reference_persona
+    assert sans_variations(obtenu) == sans_variations(attendu)
+E   AssertionError: assert {'profil': {'...', ...}], ...} == {'bascule': {...', ...}], ...}
+E
+E     Omitting 2 identical items, use -vv to show
+E     Differing items:
+E     {'faits': [{'id': 'F-1', 'libelle': 'Secteur de Bitcoin', 'valeur': 'Crypto asset', 'unite': '', ...}, {'id': 'F-2', '...F-6', 'libelle': 'Pire période de 52 semaines (BTC-USD, cours du vendredi)', 'valeur': -71.7, 'unite': '%', ...}, ...]} != {'faits': [{'id': 'F-1', 'libelle': 'Secteur de Bitcoin', 'lu_ou_calcule': 'lu', 'methode': 'Lu tel quel', ...}, {'id'...ur 12 mois de cotations quotidiennes peut être plus forte. 39,5 % des périodes de 12 mois sont négatives.', ...}, ...]}
+E     {'demande': {'texte': 'Je veux me...
+E
+E     ...Full output truncated, use '-vv' to show
+________________________ test_reference_persona[mateo] _________________________
+tests/test_reference_personas.py:32: in test_reference_persona
+    assert sans_variations(obtenu) == sans_variations(attendu)
+E   AssertionError: assert {'profil': {'...', ...}], ...} == {'bascule': {...', ...}], ...}
+E
+E     Omitting 5 identical items, use -vv to show
+E     Differing items:
+E     {'faits': [{'id': 'F-1', 'libelle': 'Secteur de Enbridge', 'valeur': 'Energy', 'unite': '', ...}, {'id': 'F-2', 'libel...'F-6', 'libelle': 'Pire période de 52 semaines (ENB.TO, cours du vendredi)', 'valeur': -12.3, 'unite': '%', ...}, ...]} != {'faits': [{'id': 'F-1', 'libelle': 'Secteur de Enbridge', 'lu_ou_calcule': 'lu', 'methode': 'Lu tel quel', ...}, {'id...ur 12 mois de cotations quotidiennes peut être plus forte. 27,1 % des périodes de 12 mois sont négatives.', ...}, ...]}
+E     {'demande': {'texte': 'Je veux me...
+E
+E     ...Full output truncated, use '-vv' to show
+_________ test_version_ajustee_robert_est_le_montant_exact_de_bascule __________
+tests/test_robustesse.py:45: in test_version_ajustee_robert_est_le_montant_exact_de_bascule
+    assert aj["montant_cad"] == 38000
+E   assert 29700 == 38000
+_________ test_chaque_fait_a_des_sources_et_une_donnee[amira-demande0] _________
+tests/test_sources.py:41: in test_chaque_fait_a_des_sources_et_une_donnee
+    assert any(sources.REFERENCES[r]["type"] == "donnees" for r in f["references"]), f["libelle"]
+E   AssertionError: Allocation après ajout du placement
+E   assert False
+E    +  where False = any(<generator object test_chaque_fait_a_des_sources_et_une_donnee.<locals>.<genexpr> at 0x10babf9f0>)
+_________ test_chaque_fait_a_des_sources_et_une_donnee[mateo-demande1] _________
+tests/test_sources.py:41: in test_chaque_fait_a_des_sources_et_une_donnee
+    assert any(sources.REFERENCES[r]["type"] == "donnees" for r in f["references"]), f["libelle"]
+E   AssertionError: Allocation après ajout du placement
+E   assert False
+E    +  where False = any(<generator object test_chaque_fait_a_des_sources_et_une_donnee.<locals>.<genexpr> at 0x10c19e740>)
+________ test_chaque_fait_a_des_sources_et_une_donnee[robert-demande2] _________
+tests/test_sources.py:41: in test_chaque_fait_a_des_sources_et_une_donnee
+    assert any(sources.REFERENCES[r]["type"] == "donnees" for r in f["references"]), f["libelle"]
+E   AssertionError: Allocation après ajout du placement
+E   assert False
+E    +  where False = any(<generator object test_chaque_fait_a_des_sources_et_une_donnee.<locals>.<genexpr> at 0x10c156dc0>)
+________ test_chaque_fait_a_des_sources_et_une_donnee[robert-demande3] _________
+tests/test_sources.py:41: in test_chaque_fait_a_des_sources_et_une_donnee
+    assert any(sources.REFERENCES[r]["type"] == "donnees" for r in f["references"]), f["libelle"]
+E   AssertionError: Allocation après ajout du placement
+E   assert False
+E    +  where False = any(<generator object test_chaque_fait_a_des_sources_et_une_donnee.<locals>.<genexpr> at 0x10babf9f0>)
+_________ test_chaque_fait_a_des_sources_et_une_donnee[amira-demande4] _________
+tests/test_sources.py:41: in test_chaque_fait_a_des_sources_et_une_donnee
+    assert any(sources.REFERENCES[r]["type"] == "donnees" for r in f["references"]), f["libelle"]
+E   AssertionError: Allocation après ajout du placement
+E   assert False
+E    +  where False = any(<generator object test_chaque_fait_a_des_sources_et_une_donnee.<locals>.<genexpr> at 0x10babf9f0>)
+_________ test_chaque_fait_a_des_sources_et_une_donnee[mateo-demande5] _________
+tests/test_sources.py:41: in test_chaque_fait_a_des_sources_et_une_donnee
+    assert any(sources.REFERENCES[r]["type"] == "donnees" for r in f["references"]), f["libelle"]
+E   AssertionError: Allocation après ajout du placement
+E   assert False
+E    +  where False = any(<generator object test_chaque_fait_a_des_sources_et_une_donnee.<locals>.<genexpr> at 0x10bc35a40>)
+___________________________ test_doc_sources_a_jour ____________________________
+tests/test_sources.py:95: in test_doc_sources_a_jour
+    assert Path(g.CIBLE).read_text(encoding="utf-8") == g.generer(), "relancer : python generer_doc_sources.py"
+E   AssertionError: relancer : python generer_doc_sources.py
+E   assert '# Sources, m...de preuve |\n' == '# Sources, m...de preuve |\n'
+E
+E     Skipping 5313 identical leading characters in diff, use -v to show
+E     -  Impact = |pire baisse du portefeuille après|, comparé aux seuils de capacité (rouge) et de tolérance (orange). Un dépassement antérieur de capacité non aggravé ne rend pas la demande rouge. Sans comparaison, ou avec ALPHAFORGE_CAPACITE=approximation : (montant / épargne) × |pire chute du titre C|, reste du portefeuille supposé stable. | Organisme canadien de réglementation des investissements (OCRI) (2021), Autorités canadiennes en valeurs mobilières (ACVM) (2021), A. Chekhlov (2005), Équipe AlphaForge...
+E
+E     ...Full output truncated, use '-vv' to show
+=========================== short test summary info ============================
+FAILED tests/test_ancrage.py::test_ce_qui_changerait_reste_ecrit_par_le_code
+FAILED tests/test_ancrage.py::test_le_code_corrige_les_etiquettes_du_modele_et_le_dit
+FAILED tests/test_banc_12_cas.py::test_cas[01 Robert : Tesla, 20 % de l'\xe9pargne, retrait dans 4 ans]
+FAILED tests/test_banc_12_cas.py::test_cas[03 Robert : Tesla, sans fonds d'urgence]
+FAILED tests/test_banc_12_cas.py::test_cas[04 Robert : Tesla, retrait pr\xe9vu dans 1 an]
+FAILED tests/test_banc_12_cas.py::test_cas[05 Robert : somme \xe0 pr\xe9server trop haute]
+FAILED tests/test_banc_12_cas.py::test_cas[07 Amira : 10 000 $ en Bitcoin] - ...
+FAILED tests/test_banc_12_cas.py::test_cas[08 Amira : un FNB canadien large]
+FAILED tests/test_banc_12_cas.py::test_cas[09 Amira : Bitcoin, argent requis dans 1 an]
+FAILED tests/test_banc_12_cas.py::test_un_seul_titre_peu_volatil_n_est_plus_coherent_a_87_pour_cent
+FAILED tests/test_bout_en_bout.py::test_les_trois_personas_donnent_trois_verdicts
+FAILED tests/test_contrats_fusion.py::test_les_appelants_lisent_les_symboles_et_conservent_les_poids[robert]
+FAILED tests/test_contrats_fusion.py::test_les_appelants_lisent_les_symboles_et_conservent_les_poids[amira]
+FAILED tests/test_contrats_fusion.py::test_les_appelants_lisent_les_symboles_et_conservent_les_poids[mateo]
+FAILED tests/test_reference_personas.py::test_reference_persona[robert] - Ass...
+FAILED tests/test_reference_personas.py::test_reference_persona[amira] - Asse...
+FAILED tests/test_reference_personas.py::test_reference_persona[mateo] - Asse...
+FAILED tests/test_robustesse.py::test_version_ajustee_robert_est_le_montant_exact_de_bascule
+FAILED tests/test_sources.py::test_chaque_fait_a_des_sources_et_une_donnee[amira-demande0]
+FAILED tests/test_sources.py::test_chaque_fait_a_des_sources_et_une_donnee[mateo-demande1]
+FAILED tests/test_sources.py::test_chaque_fait_a_des_sources_et_une_donnee[robert-demande2]
+FAILED tests/test_sources.py::test_chaque_fait_a_des_sources_et_une_donnee[robert-demande3]
+FAILED tests/test_sources.py::test_chaque_fait_a_des_sources_et_une_donnee[amira-demande4]
+FAILED tests/test_sources.py::test_chaque_fait_a_des_sources_et_une_donnee[mateo-demande5]
+FAILED tests/test_sources.py::test_doc_sources_a_jour - AssertionError: relan...
+25 failed, 237 passed in 18.76s
