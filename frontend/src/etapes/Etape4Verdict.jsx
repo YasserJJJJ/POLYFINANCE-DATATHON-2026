@@ -52,6 +52,9 @@ function titreDesOptions(etat, plan) {
 
 // Plan ouvert : les placements de la liste qui passent les règles, en tableau, chacun analysable seul.
 function PlacementsDuPlan({ plan, verdict, ouvrir, onAnalyser }) {
+  const [choisi, setChoisi] = useState(plan.placements[0]?.ticker || null)
+  useEffect(() => setChoisi(plan.placements[0]?.ticker || null), [plan])
+  const selection = plan.placements.find((pl) => pl.ticker === choisi)
   return (
     <div className="carte">
       <p className="explication-plan"><Etiquette type="SCENARIO" />{' '}
@@ -65,16 +68,26 @@ function PlacementsDuPlan({ plan, verdict, ouvrir, onAnalyser }) {
             <thead><tr><th>Placement</th><th>Famille</th><th>Pire chute observée</th><th>Verdict</th><th /></tr></thead>
             <tbody>
               {plan.placements.map((pl) => (
-                <tr key={pl.ticker}>
+                <tr key={pl.ticker} className={pl.ticker === choisi ? 'choisi' : ''}>
                   <td><strong>{pl.ticker}</strong><br /><span className="muted petit">{pl.nom}</span></td>
                   <td>{pl.famille}</td>
                   <td className="nombre">{String(pl.pire_chute_pct).replace('.', ',')} % <PucesFaits ids={pl.faits} ouvrir={ouvrir} /></td>
                   <td><PuceVerdict etat={pl.etat} />{pl.a_ajuster.length > 0 && <p className="muted petit">À ajuster : {pl.a_ajuster.join(', ')}</p>}</td>
-                  <td><button type="button" className="bouton discret" onClick={() => onAnalyser(pl.ticker)}>Analyse complète</button></td>
+                  <td className="actions-ligne">
+                    <button type="button" className="bouton discret" aria-pressed={pl.ticker === choisi} onClick={() => setChoisi(pl.ticker)}>
+                      {pl.ticker === choisi ? 'Graphique affiché' : 'Voir le graphique'}</button>
+                    <button type="button" className="bouton discret" onClick={() => onAnalyser(pl.ticker)}>Analyse complète</button>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
+        </div>
+      )}
+      {selection && (
+        <div className="graphique-plan">
+          <h3>La pire chute observée de {selection.ticker} ({selection.nom})</h3>
+          <GraphiqueChute ticker={selection.ticker} faitId={selection.faits[0]} ouvrir={ouvrir} />
         </div>
       )}
       {verdict.etat === 'incoherent' && plan.bloquante && (
@@ -195,6 +208,31 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
       </>)}
 
       {onglet === 'detail' && (<>
+      <div className="carte">
+        <h2>Comment chaque chiffre mène au verdict</h2>
+        <p className="muted petit">De gauche à droite : d'où viennent les données, ce qui est mesuré ou déclaré, les seuils choisis par
+          l'équipe, les règles, puis le verdict. Survole ou sélectionne un élément pour suivre son chemin ; clique sur un chiffre pour
+          voir sa source et sa méthode.</p>
+        <CarteRaisonnement dossier={dossier} ouvrirFait={ouvrirFait} surligne={surligne} />
+        <details className="liste-chiffres" open={surligne.length > 0}>
+          <summary>La liste de tous les chiffres du dossier ({faits.length})</summary>
+        <div className="defile-x">
+          <table className="registre">
+            <thead><tr><th>Ce que c'est</th><th>Valeur</th><th>Nature</th><th /></tr></thead>
+            <tbody>
+              {faits.map((f) => (
+                <tr key={f.id} data-fait={f.id} className={surligne.includes(f.id) ? 'surligne' : ''}>
+                  <td>{pourClient(f.libelle)}</td>
+                  <td className="nombre">{pourClient(typeof f.valeur === 'object' && f.valeur !== null ? Object.entries(f.valeur).map(([k, v]) => `${k} ${v}`).join(', ') : `${f.valeur ?? '—'} ${f.unite}`)}</td>
+                  <td><Etiquette type={f.type} /></td>
+                  <td><PucesFaits ids={[f.id]} ouvrir={ouvrirFait} /></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        </details>
+      </div>
       {plan && <p className="muted petit">Plan ouvert : les règles ci-dessous sont celles appliquées à {plan.regles_de || 'la liste'}, le premier placement retenu.</p>}
       <div className="colonnes">
         <div className="carte">
@@ -233,31 +271,7 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
         </div>}
       </div>
 
-      <div className="carte">
-        <h2>Comment chaque chiffre mène au verdict</h2>
-        <p className="muted petit">De gauche à droite : d'où viennent les données, ce qui est mesuré ou déclaré, les seuils choisis par
-          l'équipe, les règles, puis le verdict. Survole ou sélectionne un élément pour suivre son chemin ; clique sur un chiffre pour
-          voir sa source et sa méthode.</p>
-        <CarteRaisonnement dossier={dossier} ouvrirFait={ouvrirFait} surligne={surligne} />
-        <details className="liste-chiffres" open={surligne.length > 0}>
-          <summary>La liste de tous les chiffres du dossier ({faits.length})</summary>
-        <div className="defile-x">
-          <table className="registre">
-            <thead><tr><th>Ce que c'est</th><th>Valeur</th><th>Nature</th><th /></tr></thead>
-            <tbody>
-              {faits.map((f) => (
-                <tr key={f.id} data-fait={f.id} className={surligne.includes(f.id) ? 'surligne' : ''}>
-                  <td>{pourClient(f.libelle)}</td>
-                  <td className="nombre">{pourClient(typeof f.valeur === 'object' && f.valeur !== null ? Object.entries(f.valeur).map(([k, v]) => `${k} ${v}`).join(', ') : `${f.valeur ?? '—'} ${f.unite}`)}</td>
-                  <td><Etiquette type={f.type} /></td>
-                  <td><PucesFaits ids={[f.id]} ouvrir={ouvrirFait} /></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        </details>
-      </div>
+
 
       <div className="colonnes">
         <div className="carte">

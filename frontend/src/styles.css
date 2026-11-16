@@ -388,3 +388,9 @@ input[type=range] { width: 100%; accent-color: var(--accent); }
   .colonnes-raisonnement { grid-template-columns: 1fr; }
   .liens-raisonnement { display: none; }
 }
+
+/* Plan ouvert : la ligne choisie et son graphique */
+.registre.comparatif tr.choisi td { background: var(--accent-doux); }
+.actions-ligne { display: flex; flex-wrap: wrap; gap: 6px; }
+.graphique-plan { display: grid; gap: 8px; margin-top: 14px; }
+.graphique-plan h3 { font-size: 0.95rem; }
