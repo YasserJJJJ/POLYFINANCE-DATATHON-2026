@@ -238,3 +238,35 @@ h2[data-repliable]:hover { color: var(--red); }
   .saisie-message .bouton { padding: 12px 14px; }
   .saisie-message .bouton.principal::after { display: none; }
 }
+
+/* Colonnes sans vide : le contenu coule d'une colonne à l'autre et s'équilibre, au lieu de deux blocs de hauteurs inégales */
+.colonnes { display: block; columns: 2; column-gap: 36px; column-rule: 1px solid var(--line); }
+.colonnes > * { margin: 0 0 10px; }
+.colonnes .pile { display: block; }
+.colonnes .carte { break-inside: auto; }
+.colonnes > .carte:first-child, .colonnes > .pile:first-child > .carte:first-child { border-top: 1px solid var(--ink); }
+.colonnes h2, .colonnes h3, .colonnes .regle-tete { break-after: avoid; }
+.colonnes .regle, .colonnes .phrase, .colonnes .objection, .colonnes .champ, .colonnes .champ-ligne, .colonnes .jauge, .colonnes .question,
+.colonnes .graphe, .colonnes svg, .colonnes table, .colonnes .defile-x, .colonnes details, .colonnes .comparaison-portefeuille,
+.colonnes .carte-chaleur, .colonnes .controle, .colonnes .qualite li, .colonnes .mise-en-situation, .colonnes .actions { break-inside: avoid; }
+.replie { break-inside: avoid; }
+@media (max-width: 860px) { .colonnes { columns: 1; } }
+
+/* Double page du verdict : la page de droite porte aussi ce qui tend la demande, pour ne laisser aucun blanc */
+.heros-tensions { position: relative; display: grid; gap: 6px; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); width: 100%; }
+.heros-tensions .tension { border-left: 2px solid var(--red); background: none; padding: 1px 0 1px 12px; border-radius: 0; font-size: 0.88rem; }
+.heros-mention { position: relative; margin-top: 6px; }
+
+/* Bouton « i » : petit, discret, à la suite du texte qu'il documente */
+.bouton-info { display: inline-grid; place-items: center; width: 17px; height: 17px; min-width: 17px; padding: 0; margin: 0 0 0 6px; vertical-align: 0.08em;
+  border-radius: 50%; border: 1px solid var(--muted-f); background: transparent; color: var(--muted-f); font: italic 500 0.7rem/1 var(--serif); cursor: pointer; }
+.bouton-info:hover, .bouton-info:focus-visible { background: transparent; border-color: var(--red); color: var(--red); }
+.regle { display: block; }
+.regle > .regle-tete { margin-bottom: 3px; }
+.regle > p { display: inline; }
+.regle > details, .regle > .comparaison-portefeuille { display: block; margin-top: 5px; }
+.phrase { display: block; }
+.phrase > .etiquette { margin-right: 8px; }
+.phrase > span:nth-child(2) { display: inline; }
+.objection { background: none; border-radius: 0; border-top: 1px solid var(--line); padding: 8px 0; margin: 0; }
+.pourquoi-regle summary { font-size: 0.8rem; color: var(--muted-f); cursor: pointer; }
