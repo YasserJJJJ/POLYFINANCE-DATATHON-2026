@@ -43,32 +43,84 @@ def _choisir(juges: list[dict], etat: str) -> list[dict]:
     return sorted(retenus, key=lambda j: abs(j["m"]["pire_chute_pct"]))
 
 
-def executer(d: Dossier) -> None:
-    debut = time.perf_counter()
+def juger_liste(d: Dossier, exclure: set[str] | frozenset = frozenset()) -> tuple[list[dict], Counter]:
+    """Le Gardien juge le même montant sur chaque placement de la liste, hors exclusions et hors `exclure`."""
     exclusions = gardien.exclusions_normalisees(d.profil)
     portefeuille = symboles_portefeuille(d.profil.get("portefeuille_actuel"))
     juges, ecartes = [], Counter()
     for ticker, info in univers().iterrows():
+        if ticker in exclure:
+            continue
         if any(e in str(info["sector"]).lower() for e in exclusions):
             ecartes["Secteur exclu"] += 1
             continue
         m = analyste.mesures_actif(ticker, portefeuille)
         regles = gardien.appliquer_regles(d.profil, {**d.demande, "ticker": ticker}, m)
         v = gardien.verdict(regles)
-        if v["etat"] == "indetermine" and any(r.code == "donnees" for r in regles) and not juges:
-            # Une information essentielle de la personne manque (horizon, épargne, tolérance) : on ne conclut pas.
-            if not any("données de marché" in r.explication for r in regles):
-                d.regles, d.verdict = regles, v
-                d.questions = gardien.questions_manquantes(d.profil, d.demande) + d.questions
-                d.tracer("Gardien", "juge le plan sur la liste des placements",
-                         "Impossible de conclure : " + regles[0].explication, debut=debut)
-                return
         juges.append({"ticker": ticker, "nom": info["name"], "famille": FAMILLES.get(info["asset_class"], "Autre"),
                       "m": m, "regles": regles, "etat": v["etat"]})
         if v["etat"] != "coherent":
             for r in regles:
                 if r.niveau in ("rouge", "orange", "gris"):
                     ecartes[r.libelle] += 1
+    return juges, ecartes
+
+
+def _placements(d: Dossier, retenus: list[dict]) -> list[dict]:
+    sortie = []
+    for j in retenus:
+        f = d.ajouter_fait(f"Pire chute de {j['ticker']} ({j['nom']})", j["m"]["pire_chute_pct"], "%", "FAIT",
+                           "Yahoo Finance via yfinance, jeu de départ AlphaForge",
+                           "Même méthode pour tous les placements de la liste, en CAD, 2021-11-12 → 2026-11-12.",
+                           references=references_de("alternative"))
+        sortie.append({"ticker": j["ticker"], "nom": j["nom"], "famille": j["famille"], "etat": j["etat"],
+                       "pire_chute_pct": j["m"]["pire_chute_pct"], "volatilite_pct": j["m"]["volatilite_pct"],
+                       "a_ajuster": [r.libelle for r in j["regles"] if r.niveau in ("orange", "rouge")],
+                       "faits": [f.id]})
+    return sortie
+
+
+def _bilan_qualite(juges: list[dict]) -> list[dict]:
+    """Les 7 contrôles de données, résumés sur tous les placements jugés (le pire statut l'emporte)."""
+    rang = {"ok": 0, "alerte": 1, "echec": 2}
+    bilan: dict[str, dict] = {}
+    for j in juges:
+        for c in j["m"].get("qualite") or []:
+            b = bilan.setdefault(c["code"], {"code": c["code"], "libelle": c["libelle"], "statut": "ok", "ok": 0, "n": 0})
+            b["n"] += 1
+            b["ok"] += c["statut"] == "ok"
+            if rang.get(c["statut"], 0) > rang[b["statut"]]:
+                b["statut"] = c["statut"]
+    return [{"code": b["code"], "libelle": b["libelle"], "statut": b["statut"],
+             "detail": f"réussi pour {b['ok']} placement(s) sur {b['n']}"} for b in bilan.values()]
+
+
+def suggerer(d: Dossier) -> None:
+    """Après un « incohérent » sur le placement demandé : les placements de la liste qui passent les règles
+    de la personne, comme pour un plan sans placement (hors placement demandé et hors options déjà montrées)."""
+    deja = {d.demande.get("ticker")} | {o.get("ticker") for o in d.options if o.get("ticker")}
+    juges, _ecartes = juger_liste(d, exclure=deja)
+    retenus = _choisir(juges, "coherent") or _choisir(juges, "ajustement")
+    if not retenus:
+        return
+    d.suggestions = {"placements": _placements(d, retenus), "critere": CRITERE, "evalues": len(juges),
+                     "passent": sum(j["etat"] == "coherent" for j in juges)}
+
+
+def executer(d: Dossier) -> None:
+    debut = time.perf_counter()
+    premier = d.demande.get("ticker") or next(iter(univers().index))
+    essai = gardien.appliquer_regles(d.profil, {**d.demande, "ticker": premier},
+                                     analyste.mesures_actif(premier, symboles_portefeuille(d.profil.get("portefeuille_actuel"))))
+    if gardien.verdict(essai)["etat"] == "indetermine" and gardien.informations_manquantes(d.profil, d.demande):
+        # Une information essentielle de la personne manque (horizon, épargne, tolérance) : on ne conclut pas.
+        d.regles, d.verdict = essai, gardien.verdict(essai)
+        d.questions = gardien.questions_manquantes(d.profil, d.demande) + d.questions
+        d.tracer("Gardien", "juge le plan sur la liste des placements",
+                 "Impossible de conclure : " + essai[0].explication, debut=debut)
+        return
+    juges, ecartes = juger_liste(d)
+    d.qualite_donnees = _bilan_qualite(juges)
     d.tracer("Analyste", "mesure chaque placement de la liste",
              f"{len(juges)} placements mesurés avec les mêmes outils de calcul (pire chute, volatilité, récupération), "
              f"{ecartes['Secteur exclu']} écarté(s) d'avance par tes exclusions.", debut=debut)
@@ -85,16 +137,7 @@ def executer(d: Dossier) -> None:
             break
     passent = sum(j["etat"] == "coherent" for j in juges)
     avec_ajustement = sum(j["etat"] == "ajustement" for j in juges)
-    placements = []
-    for j in retenus:
-        f = d.ajouter_fait(f"Pire chute de {j['ticker']} ({j['nom']})", j["m"]["pire_chute_pct"], "%", "FAIT",
-                           "Yahoo Finance via yfinance, jeu de départ AlphaForge",
-                           "Même méthode pour tous les placements de la liste, en CAD, 2021-11-12 → 2026-11-12.",
-                           references=references_de("alternative"))
-        placements.append({"ticker": j["ticker"], "nom": j["nom"], "famille": j["famille"], "etat": j["etat"],
-                           "pire_chute_pct": j["m"]["pire_chute_pct"], "volatilite_pct": j["m"]["volatilite_pct"],
-                           "a_ajuster": [r.libelle for r in j["regles"] if r.niveau in ("orange", "rouge")],
-                           "faits": [f.id]})
+    placements = _placements(d, retenus)
     reference = retenus[0] if retenus else min(juges, key=lambda j: gardien.RANG[j["etat"]], default=None)
     d.regles = reference["regles"] if reference else []
     bloquante = ecartes.most_common(1)[0][0] if ecartes and etat == "incoherent" else None

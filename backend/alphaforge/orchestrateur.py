@@ -177,9 +177,13 @@ def analyser(profil: dict, demande: dict, sur_etape: Callable[[dict], None] | No
     if d.verdict["etat"] != "indetermine":
         d.bascule = gardien.grille_bascule(d.profil, d.demande, m)
         _documenter_monotonie(d)
+    if d.verdict["etat"] == "incoherent":
+        plan_ouvert.suggerer(d)
     d.tracer("Gardien", "applique les règles et décide",
              f"{d.verdict['libelle']} ({d.verdict['respectees']}/{d.verdict['evaluees']} règles respectées). "
-             f"Grille de bascule : {len(d.bascule.get('cases', []))} combinaisons recalculées.",
+             f"Grille de bascule : {len(d.bascule.get('cases', []))} combinaisons recalculées."
+             + (f" {len(d.suggestions['placements'])} autre(s) placement(s) de la liste passent tes règles."
+                if d.suggestions else ""),
              [f for r in d.regles for f in r.faits if f], debut)
     publier()
 
