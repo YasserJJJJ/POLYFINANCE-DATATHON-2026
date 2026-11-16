@@ -4,6 +4,17 @@
 
 Chaque élément montré à la personne répond à trois questions : **quelle donnée** (fichier, colonne), **quelle règle de calcul** (appliquée par le code) et **sur quelle base** (réglementation, recherche, ou choix de l'équipe dit comme tel). Le niveau d'examen de chaque source vient du dossier de recherche de l'équipe (14 nov. 2026) : une référence non relue n'est jamais présentée comme vérifiée.
 
+## Portefeuille apparié (B), allocation (A) et attribution (K4–K5)
+
+| Élément | Données | Règle de calcul | Références | Hypothèse de l'équipe |
+|---|---|---|---|---|
+| `portefeuille` | Organisateurs du datathon (2026), Banque du Canada (2026), Organisateurs du datathon (2026), Personne utilisatrice (2026) | Deux allocations, un appel à compare_portfolios de B, même fenêtre et grille. Écarts = après − avant ; écart de pire baisse négatif → aggrave, positif → ameliore, nul → neutre. Jamais de soustraction entre mesures de C et de B. | Équipe AlphaForge (2026) | — |
+| `allocation-ajout` | Personne utilisatrice (2026) | part = montant / épargne ; poids après = poids avant × (1 − part), puis ajout de part à la ligne demandée. | Équipe AlphaForge (2026), Équipe AlphaForge (2026) | — |
+| `h_equiponderation` | — | Une liste de N symboles distincts sans poids reçoit 1/N par ligne. | Équipe AlphaForge (2026) | Poids inconnus supposés égaux ; aucune déclaration de la personne n'est inventée. |
+| `h_attribution` | — | Si la pire baisse avant dépasse déjà la capacité et que l'écart après − avant est positif ou nul, ne pas attribuer le rouge à cette demande. | Équipe AlphaForge (2026) | Choix d'attribution de l'équipe à valider ; aucun seuil modifié. |
+| `h_non_monotonie` | Personne utilisatrice (2026) | Chaque montant est recalculé. Un ajout diversifiant peut réduire la pire baisse et améliorer le verdict quand son montant augmente. La grille conserve ces résultats. | Équipe AlphaForge (2026), Équipe AlphaForge (2026) | Invariant 7 révisé par le porteur : monotonie conditionnelle, aucun lissage de la grille. |
+| `h_retrait_decisif` | — | Date de retrait absente : comparer le verdict fourni au verdict avec retrait à l'horizon déclaré. Question décisive seulement si l'état diffère. | Autorités canadiennes en valeurs mobilières (ACVM) (2021), Équipe AlphaForge (2026) | Hypothèse testée séparément ; ni la date ni le verdict affiché ne sont remplacés. |
+
 ## Faits calculés par l'Analyste
 
 | Élément | Données | Règle de calcul | Références | Hypothèse de l'équipe |
@@ -34,7 +45,7 @@ Chaque élément montré à la personne répond à trois questions : **quelle do
 
 | Élément | Données | Règle de calcul | Références | Hypothèse de l'équipe |
 |---|---|---|---|---|
-| `regle-capacite` | — | Impact = |pire baisse du portefeuille après|, comparé aux seuils de capacité (rouge) et de tolérance (orange). Un dépassement antérieur de capacité non aggravé ne rend pas la demande rouge. Sans comparaison, ou avec ALPHAFORGE_CAPACITE=approximation : (montant / épargne) × |pire chute du titre C|, reste du portefeuille supposé stable. | Organisme canadien de réglementation des investissements (OCRI) (2021), Autorités canadiennes en valeurs mobilières (ACVM) (2021), A. Chekhlov (2005), Équipe AlphaForge (2026), Équipe AlphaForge (2026) | — |
+| `regle-capacite` | — | Impact = \|pire baisse du portefeuille après\|, comparé aux seuils de capacité (rouge) et de tolérance (orange). Un dépassement antérieur de capacité non aggravé ne rend pas la demande rouge. Sans comparaison, ou avec ALPHAFORGE_CAPACITE=approximation : (montant / épargne) × \|pire chute du titre C\|, reste du portefeuille supposé stable. | Organisme canadien de réglementation des investissements (OCRI) (2021), Autorités canadiennes en valeurs mobilières (ACVM) (2021), A. Chekhlov (2005), Équipe AlphaForge (2026), Équipe AlphaForge (2026) | — |
 | `regle-preserver` | — | Rouge si épargne − montant < somme à préserver. | A. B. Chhabra (2005), S. Das (2010) | — |
 | `regle-exclusion` | — | Rouge si le secteur de l'actif fait partie des exclusions déclarées. | Autorité européenne des marchés financiers (ESMA) (2022), F. Berg (2022) | — |
 | `regle-retrait` | — | Rouge si l'actif est volatil (> 25 %/an) et que le retrait prévu arrive avant la récupération observée. | Autorités canadiennes en valeurs mobilières (ACVM) (2021) | — |

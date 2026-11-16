@@ -18,6 +18,9 @@ CIBLE = Path(__file__).resolve().parents[1] / "docs" / "sources.md"
 TITRES = {"donnees": "Données", "reglementation": "Réglementation", "recherche": "Recherche publiée",
           "methode": "Documentation de méthode", "interne": "Document de l'équipe"}
 SECTIONS = [
+    ("Portefeuille apparié (B), allocation (A) et attribution (K4–K5)",
+     ["portefeuille", "allocation-ajout", "h_equiponderation", "h_attribution", "h_non_monotonie",
+      "h_retrait_decisif"]),
     ("Faits calculés par l'Analyste", ["chute", "recuperation", "volatilite", "rendement", "pire12", "perte",
                                        "correlation", "secteur", "reference", "devise_usd", "alternative"]),
     ("Seuils et barèmes de l'équipe (faits HYPOTHESE)", ["h_perte", "h_capacite", "h_concentration", "h_volatil",
@@ -47,7 +50,8 @@ def generer() -> str:
             j = sources.JUSTIFICATIONS[cle]
             donnees = ", ".join(court(r) for r in j.get("donnees", [])) or "—"
             refs = ", ".join(court(r) for r in j.get("references", [])) or "—"
-            lignes.append(f"| `{cle}` | {donnees} | {j['calcul']} | {refs} | {j.get('hypothese', '—')} |")
+            cellules = [f"`{cle}`", donnees, j["calcul"], refs, j.get("hypothese", "—")]
+            lignes.append("| " + " | ".join(str(c).replace("|", "\\|") for c in cellules) + " |")
         lignes.append("")
     lignes += ["## Agents : pourquoi chacun est conçu ainsi", "", "| Agent | Conception | Références |", "|---|---|---|"]
     for agent, a in sources.AGENTS.items():
