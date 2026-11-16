@@ -10,6 +10,10 @@ par exclusion, niveaux inchangés. Les valeurs des faits antérieurs sont
 conservées. Les changements de grille et d'options sont détaillés dans
 `docs/fusion/preuves/tranche-2/changements-references.json`.
 
+Régénérées ensuite pour les suggestions (après un verdict « incohérent ») : seuls ajouts, le champ
+`suggestions`, 3 faits FAIT en fin de registre (pire chute des placements suggérés) et une phrase dans la
+trace du Gardien. Verdict, règles, options, grille, texte et faits existants inchangés pour les trois personas.
+
 `test_reference_personas.py` compare tout le dossier, en neutralisant seulement
 les durées de trace et `appels_modele`. La comparaison K3 et la version du
 contrat sont désormais figées aussi.

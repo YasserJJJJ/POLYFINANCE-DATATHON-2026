@@ -1523,6 +1523,57 @@
       "type": "FAIT",
       "unite": "%",
       "valeur": -75.9
+    },
+    {
+      "id": "F-32",
+      "libelle": "Pire chute de JNJ (Johnson & Johnson)",
+      "lu_ou_calcule": "calcule",
+      "methode": "Même méthode pour tous les placements de la liste, en CAD, 2021-11-12 → 2026-11-12.",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "donnees-univers",
+        "esma-2022",
+        "berg-2022"
+      ],
+      "source": "Yahoo Finance via yfinance, jeu de départ AlphaForge",
+      "type": "FAIT",
+      "unite": "%",
+      "valeur": -15.5
+    },
+    {
+      "id": "F-33",
+      "libelle": "Pire chute de XOM (Exxon Mobil)",
+      "lu_ou_calcule": "calcule",
+      "methode": "Même méthode pour tous les placements de la liste, en CAD, 2021-11-12 → 2026-11-12.",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "donnees-univers",
+        "esma-2022",
+        "berg-2022"
+      ],
+      "source": "Yahoo Finance via yfinance, jeu de départ AlphaForge",
+      "type": "FAIT",
+      "unite": "%",
+      "valeur": -19.1
+    },
+    {
+      "id": "F-34",
+      "libelle": "Pire chute de ATD.TO (Alimentation Couche-Tard)",
+      "lu_ou_calcule": "calcule",
+      "methode": "Même méthode pour tous les placements de la liste, en CAD, 2021-11-12 → 2026-11-12.",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "donnees-univers",
+        "esma-2022",
+        "berg-2022"
+      ],
+      "source": "Yahoo Finance via yfinance, jeu de départ AlphaForge",
+      "type": "FAIT",
+      "unite": "%",
+      "valeur": -22.2
     }
   ],
   "objections": [
@@ -1757,6 +1808,49 @@
       "type": "HYPOTHESE"
     }
   ],
+  "suggestions": {
+    "critere": "Un placement par famille, en partant de la pire chute observée la plus faible. Aucun classement au rendement passé, qui serait lu comme une prévision.",
+    "evalues": 29,
+    "passent": 3,
+    "placements": [
+      {
+        "a_ajuster": [],
+        "etat": "coherent",
+        "faits": [
+          "F-32"
+        ],
+        "famille": "Action d'une entreprise",
+        "nom": "Johnson & Johnson",
+        "pire_chute_pct": -15.5,
+        "ticker": "JNJ",
+        "volatilite_pct": 18.4
+      },
+      {
+        "a_ajuster": [],
+        "etat": "coherent",
+        "faits": [
+          "F-33"
+        ],
+        "famille": "Action d'une entreprise",
+        "nom": "Exxon Mobil",
+        "pire_chute_pct": -19.1,
+        "ticker": "XOM",
+        "volatilite_pct": 26.0
+      },
+      {
+        "a_ajuster": [],
+        "etat": "coherent",
+        "faits": [
+          "F-34"
+        ],
+        "famille": "Action d'une entreprise",
+        "nom": "Alimentation Couche-Tard",
+        "pire_chute_pct": -22.2,
+        "ticker": "ATD.TO",
+        "volatilite_pct": 24.0
+      }
+    ]
+  },
   "texte": {
     "avertissement": "Simulation éducative. Ceci n'est pas un conseil financier personnalisé.",
     "ce_qui_changerait": [],
@@ -2031,7 +2125,7 @@
     {
       "action": "applique les règles et décide",
       "agent": "Gardien",
-      "detail": "Incohérent avec ta situation (4/6 règles respectées). Grille de bascule : 160 combinaisons recalculées.",
+      "detail": "Incohérent avec ta situation (4/6 règles respectées). Grille de bascule : 160 combinaisons recalculées. 3 autre(s) placement(s) de la liste passent tes règles.",
       "duree_ms": 0,
       "faits": [
         "F-18",
