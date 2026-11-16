@@ -214,7 +214,7 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
                 {options.map((o, i) => <Option key={o.nom} o={o} principal={i === 1} ouvrir={ouvrirFait} />)}
               </div>}
           {dossier.suggestions?.placements?.length > 0 && (<>
-            <h3 className="sous-titre-options">D'autres placements de la liste qui passent tes règles</h3>
+            <h3 className="sous-titre-options">Les placements de la liste qui passent tes règles</h3>
             <PlacementsDuPlan plan={dossier.suggestions} verdict={verdict} ouvrir={ouvrirFait} onAnalyser={onAnalyserPlacement} suggestion />
           </>)}
         </section>
