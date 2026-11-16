@@ -1,3 +1,4 @@
+import { PucesFaits } from './Base.jsx'
 import { useEffect, useState } from 'react'
 import { api } from '../api.js'
 
@@ -47,9 +48,9 @@ export default function GraphiqueChute({ ticker, faitId, ouvrir }) {
         <text x={x(iC)} y={y(pts[iC].valeur) + 18} textAnchor="middle" className="txt-graphe fort">{pc.pire_chute_pct} %</text>
       </svg>
       <figcaption>
-        Valeur de {ticker} en $ CA, base 100 au 2021-11-12, prix hebdomadaire. Zone colorée : du sommet ({pc.date_sommet})
+        Valeur de {ticker} en $ CA, base 100 au 2021-11-12, tracé hebdomadaire (le pourcentage de la pire chute est calculé sur les prix quotidiens : le tracé lisse le creux). Zone colorée : du sommet ({pc.date_sommet})
         {pc.recupere ? ` au retour au sommet (${pc.date_retour})` : ' à aujourd\'hui, sommet non retrouvé'}.{' '}
-        {faitId && <button type="button" className="puce-fait" onClick={() => ouvrir(faitId)}>{faitId}</button>}
+        {faitId && <PucesFaits ids={[faitId]} ouvrir={ouvrir} />}
       </figcaption>
     </figure>
   )

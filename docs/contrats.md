@@ -34,12 +34,28 @@ Source de vérité : [backend/alphaforge/dossier.py](../backend/alphaforge/dossi
 | `verdict` | `{etat, libelle, respectees, evaluees}` ; `etat` ∈ `coherent`, `ajustement`, `incoherent`, `indetermine` |
 | `regles` | `[{code, libelle, niveau, explication, faits}]` ; `niveau` ∈ `ok`, `orange`, `rouge`, `gris`, `non_evaluee` |
 | `faits` | `[{id: "F-3", libelle, valeur, unite, type, source, methode, lu_ou_calcule}]` ; `type` ∈ `FAIT`, `HYPOTHESE`, `SCENARIO` |
-| `objections` | `[{id: "O-1", cible: "F-2", texte, recalcul, resolue, reponse}]` |
-| `options` | Ta demande / Version ajustée (si elle existe) / Ne rien changer : `{nom, montant_cad, horizon_ans, etat, changement?}` |
+| `objections` | `[{id: "O-1", cible: "F-2", texte, recalcul, resolue, reponse, issue}]` — `resolue` : la vérification a été exécutée par le code ; `issue` : `confirmee` (elle donne raison au Sceptique), `ecartee` (le fait tient tel quel) ou `limite` (limite de méthode, rien à trancher) |
+| `options` | Ta demande / Version ajustée (si elle existe) / Placement large, même montant (XIU.TO, jugé par le Gardien), ou l'alternative compatible avec les exclusions : `{nom, ticker, montant_cad, horizon_ans, etat, changement?, libelle_actif?, faits?, note?}` |
 | `bascule` | `{montants: [...], horizons: [...], cases: [{montant_cad, horizon_ans, etat}]}` pour les curseurs |
-| `profil.evaluation` | Les 2 jauges : `tolerance`, `capacite`, `capacite_raisons`, `score_retenu`, `perte_max_*_pct`, `seuil_concentration_pct` |
+| `profil.evaluation` | Les 2 jauges : `tolerance`, `capacite`, `capacite_raisons`, `score_retenu`, `perte_max_*_pct`, `seuil_concentration_pct`, `seuil_titre_unique_pct` |
 | `profil.tensions` | Tensions repérées (effet de mode, écart tolérance/capacité), en mots factuels |
 | `qualite_donnees` | `[{code, libelle, statut: ok/alerte/echec, detail}]` |
 | `questions` | Questions à poser quand une information manque |
 | `texte` | `{reformulation, verdict, tensions, miroir[], pourquoi[], ce_qui_changerait[], limites[], avertissement}` ; chaque phrase `{texte, type, faits}` |
 | `trace` | `[{agent, action, detail, faits, duree_ms}]` dans l'ordre d'exécution |
+
+## Ajouts du 15 novembre (branche `fusion-corrections-deploiement`, à valider par l'équipe)
+
+Tous **optionnels et rétrocompatibles** : un client qui les ignore continue de fonctionner.
+
+| Champ | Contenu |
+|---|---|
+| `faits[].references` | Identifiants du registre des sources (`GET /api/sources`) : données utilisées, méthode, base théorique ou réglementaire |
+| `faits[]` de type `HYPOTHESE` | Les seuils et barèmes de l'équipe (perte supportable, capacité, concentration, volatilité, corrélation) entrent au registre comme faits, cités par les règles qui les appliquent |
+| `regles[].type` | Nature de l'explication : `FAIT`, `HYPOTHESE` ou `SCENARIO` (source unique : `gardien.TYPE_REGLE`) |
+| `regles[].references` | Sur quoi repose la règle |
+| `trace[].references` | Pourquoi l'agent est conçu ainsi (études citées) |
+| phrase `{texte, type, faits, references?}` | `references` présent pour les limites tirées du dossier de recherche |
+| `profil.evaluation.poids_pct` | Part de l'épargne placée, arrondie une seule fois en code |
+| `demande.texte_lu` | `true` quand la personne a relu l'étape 2 : l'analyse ne re-remplit pas un champ qu'elle a vidé |
+| `GET /api/sources` | `{references, justifications, agents}` : le registre complet (`backend/alphaforge/sources.py`) |

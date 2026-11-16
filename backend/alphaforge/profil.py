@@ -83,12 +83,16 @@ def perte_max_pct(score: float) -> float:
 
 
 def seuil_concentration_pct(score: float) -> float:
-    """Poids maximal d'un actif très volatil selon le score retenu."""
-    if score < 35:
-        return 5.0
-    if score < 65:
-        return 10.0
-    return 20.0
+    """Poids maximal d'un actif très volatil : 5 % à 20 %, continu (des paliers faisaient basculer à 1 point près)."""
+    return round(5 + 0.15 * score, 1)
+
+
+FACTEUR_TITRE_UNIQUE = 2  # un seul titre moins volatil : seuil deux fois plus large (hypothèse de l'équipe)
+
+
+def seuil_titre_unique_pct(score: float) -> float:
+    """Poids maximal d'un seul titre (une action) qui n'est pas très volatil : 10 % à 40 %."""
+    return round(FACTEUR_TITRE_UNIQUE * seuil_concentration_pct(score), 1)
 
 
 def evaluer(p: dict) -> dict:
@@ -105,4 +109,5 @@ def evaluer(p: dict) -> dict:
         "perte_max_capacite_pct": None if cap is None else perte_max_pct(cap),
         "perte_max_retenue_pct": None if retenu is None else perte_max_pct(retenu),
         "seuil_concentration_pct": None if retenu is None else seuil_concentration_pct(retenu),
+        "seuil_titre_unique_pct": None if retenu is None else seuil_titre_unique_pct(retenu),
     }

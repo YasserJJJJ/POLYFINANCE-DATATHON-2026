@@ -25,28 +25,21 @@ export function PuceVerdict({ etat, grand = false, libelle }) {
   )
 }
 
-const ICONES = {
-  coherent: 'm5 12 5 5 9-10',
-  ajustement: 'M12 8v5M12 17h.01',
-  incoherent: 'M18 6 6 18M6 6l12 12',
-  indetermine: 'M9 9a3 3 0 1 1 4.5 2.6c-1 .6-1.5 1.1-1.5 2.4M12 17h.01',
-}
-
-// Pastille ronde du bandeau de verdict : coche, point d'exclamation, croix ou point d'interrogation.
-export function IconeEtat({ etat }) {
-  return (
-    <span className="verdict-icone" aria-hidden="true">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6"
-        strokeLinecap="round" strokeLinejoin="round">
-        <path d={ICONES[etat] || ICONES.indetermine} />
-      </svg>
-    </span>
-  )
-}
-
 export function PuceNiveau({ niveau }) {
   const n = NIVEAUX[niveau] || NIVEAUX.non_evaluee
   return <span className={`puce-niveau ${n.classe}`}>{n.libelle}</span>
+}
+
+// Issue d'une vérification du Sceptique : elle lui donne raison, elle l'écarte, ou elle note une limite de méthode.
+const ISSUES = {
+  confirmee: { libelle: 'Objection confirmée', classe: 'warn' },
+  ecartee: { libelle: 'Objection écartée', classe: 'ok' },
+  limite: { libelle: 'Limite notée', classe: 'grey' },
+}
+
+export function PuceIssue({ issue }) {
+  const i = ISSUES[issue]
+  return i ? <span className={`puce-niveau ${i.classe}`}>{i.libelle}</span> : null
 }
 
 const TYPES = { FAIT: 'Fait', HYPOTHESE: 'Hypothèse', SCENARIO: 'Scénario fictif' }
@@ -55,16 +48,15 @@ export function Etiquette({ type }) {
   return <span className={`etiquette t-${(type || '').toLowerCase()}`}>{TYPES[type] || type}</span>
 }
 
+// Un seul bouton « i » par phrase ou par règle : l'écran reste simple, le détail s'ouvre au clic.
 export function PucesFaits({ ids, ouvrir }) {
-  if (!ids?.length) return null
+  const liste = [...new Set((ids || []).filter(Boolean))]
+  if (!liste.length) return null
+  const titre = liste.length > 1 ? "D'où viennent ces chiffres ?" : "D'où vient ce chiffre ?"
   return (
-    <span className="puces-faits">
-      {ids.filter(Boolean).map((id) => (
-        <button key={id} type="button" className="puce-fait" onClick={() => ouvrir(id)}>
-          {id}
-        </button>
-      ))}
-    </span>
+    <button type="button" className="bouton-info" onClick={() => ouvrir(liste)} aria-label={titre} title={titre}>
+      i
+    </button>
   )
 }
 

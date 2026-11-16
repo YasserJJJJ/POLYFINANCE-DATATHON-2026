@@ -82,10 +82,9 @@ biais du survivant ; **aucune donnée ESG ni nouvelle** incluse (à sourcer si o
 | **Yasser** | Gardien, AWS, tests, intégration (à confirmer) | Second avis strict : verdict à 4 états, 3 choix, point de bascule ; « le code décide, l'IA explique » | Pas de démo de bout en bout → **squelette d'abord, gel dimanche 16 h** |
 | **Adam** | Agents, consignes, architecture | Méthodique : clarifier puis comparer, ne demander que l'info utile, chaque conclusion vérifiable | Impressionnant mais générique → **test anti-générique : changer de persona doit changer le texte** |
 
-Le dépôt GitHub appartient à Yasser. Le plan d'attaque complet (schémas des 4 visions, matrice des réponses) :
-artifact **https://claude.ai/artifact/U4F45ZdsweHSkxKQehYh8k** (privé, à partager depuis son menu « Partager »)
-et copie hors ligne dans [docs/plan-attaque.html](plan-attaque.html). Réponses brutes au questionnaire : sur
-l'ordinateur de Yahia (`Desktop/datathon2026PF/reponses_equipe.md`), volontairement pas dans ce dépôt public.
+Le dépôt GitHub appartient à Yasser. Le plan d'attaque complet (schémas des 4 visions, matrice des réponses) est
+dans [docs/plan-attaque.html](plan-attaque.html). Les réponses brutes au questionnaire restent volontairement hors
+de ce dépôt public.
 
 ---
 
@@ -176,20 +175,23 @@ Outils de calcul (calculs.py, donnees.py) sur data/raw/alphaforge_starter
 ### Règles du Gardien
 
 Rouge : capacité de perte dépassée · somme à préserver entamée · exclusion violée · retrait prévu avant récupération
-sur actif volatil. Orange : impact au-delà de la tolérance (mais dans la capacité) · horizon plus court que le temps
-de récupération observé · concentration au-delà du seuil (actif volatil > 30 %/an) · pas de fonds d'urgence ·
-corrélation ≥ 0,8 avec le portefeuille. Gris : horizon, épargne, montant ou tolérance manquants, ou données en échec.
+sur actif volatil · concentration au-delà du seuil sur un actif très volatil avec un retrait prévu dans 5 ans ou moins.
+Orange : impact au-delà de la tolérance (mais dans la capacité) · horizon plus court que le temps de récupération
+observé · concentration au-delà du seuil (actif très volatil > 30 %/an : 5 + 0,15 × score, de 5 à 20 % ; un seul titre
+moins volatil : le double) · pas de fonds d'urgence · corrélation ≥ 0,8 avec le portefeuille. Gris : horizon, épargne,
+montant ou tolérance manquants, ou données en échec.
 
 ### Résultats actuels (montants fictifs)
 
 | Persona | Demande | Verdict | Raison | Option |
 |---|---|---|---|---|
-| Amira | 10 000 $ en Bitcoin (25 % de 40 000 $) | Cohérent avec ajustement | Concentration > 20 % | 7 500 $ → cohérent |
+| Amira | 10 000 $ en Bitcoin (25 % de 40 000 $) | Cohérent avec ajustement | Concentration > 17 % | 6 800 $ → cohérent |
 | Mateo | 15 000 $ dans Enbridge | Incohérent | Exclusion Énergie | Alternative ESGV → cohérent |
-| Robert | 80 000 $ dans Tesla (20 % de 400 000 $) | Cohérent avec ajustement | Concentration > 5 % ; effet de mode signalé | 16 000 $ → cohérent |
+| Robert | 80 000 $ dans Tesla (20 % de 400 000 $) | Incohérent | Concentration > 9,5 % avec un retrait dans 4 ans ; effet de mode signalé | 38 000 $ → cohérent |
 
-**Question ouverte** : Robert n'est pas « Incohérent » (perte potentielle 14,2 % de l'épargne, juste sous sa limite
-de 15,5 %). Décider avec Yasser s'il faut ajuster les montants fictifs ou les seuils, **sans tricher sur les règles**.
+Cas Robert tranché le 15 nov. (audit P1-4 et P1-5) : seuil de concentration continu au lieu de 3 paliers, et règle
+« retrait dans 5 ans ou moins + actif très volatil + concentration dépassée → rouge ». Sans retrait prévu, la même
+demande reste « ajustement » : la règle tient à sa situation, pas à son nom (tests dans `test_banc_12_cas.py`).
 
 ### Lancer
 

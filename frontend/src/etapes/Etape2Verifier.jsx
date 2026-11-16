@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { api, dollars } from '../api.js'
 import { Jauge } from '../composants/Base.jsx'
+import { SourcesCompactes, useRegistre } from '../composants/Sources.jsx'
 
 export const SECTEURS_FR = {
   Energy: 'Énergie (pétrole, gaz, pipelines)', 'Crypto asset': 'Cryptoactifs', Financials: 'Finance',
@@ -61,6 +62,8 @@ export default function Etape2Verifier({ profil, setProfil, demande, setDemande,
         texteApplique.current = demande.texte
         const champs = r.profil?.extraits?.champs || {}
         const pourProfil = Object.fromEntries(Object.entries(champs).filter(([k]) => k !== 'ticker' && k !== 'montant_cad'))
+        // L'envie et la peur lues dans la phrase restent dans le profil : le Rédacteur s'en sert au verdict.
+        for (const k of ['envie', 'peur']) if (r.profil?.[k]) pourProfil[k] = r.profil[k]
         if (Object.keys(pourProfil).length) setProfil((p) => ({ ...p, ...pourProfil }))
         if (champs.ticker || champs.montant_cad) {
           setDemande((d) => ({ ...d, ticker: d.ticker ?? champs.ticker ?? null, montant_cad: d.montant_cad ?? champs.montant_cad ?? null }))
@@ -72,6 +75,7 @@ export default function Etape2Verifier({ profil, setProfil, demande, setDemande,
 
   const secteurs = useMemo(() => [...new Set(actifs.map((a) => a.sector))].filter((s) => SECTEURS_FR[s]), [actifs])
   const actif = actifs.find((a) => a.ticker === demande.ticker)
+  const registre = useRegistre()
   const ev = compris?.profil?.evaluation
   // Le pourcentage vient du backend (même calcul qu'à l'étape du verdict) pour ne jamais diverger
   // d'un arrondi JS à un arrondi Python ; secours si l'appel /api/comprendre n'a pas encore répondu.
@@ -189,7 +193,8 @@ export default function Etape2Verifier({ profil, setProfil, demande, setDemande,
         <div className="pile">
           <div className="carte">
             <h2>Ton rapport au risque</h2>
-            <p className="muted petit">3 questions inspirées d'une échelle validée (Grable &amp; Lytton, 1999).</p>
+            <p className="muted petit">3 questions adaptées de l'échelle de tolérance de Grable &amp; Lytton (1999). Les points
+              attribués à chaque réponse sont un barème de l'équipe, pas celui de l'échelle d'origine.</p>
             {questions.map((q) => (
               <fieldset key={q.id} className="question">
                 <legend>{q.texte}</legend>
@@ -214,7 +219,10 @@ export default function Etape2Verifier({ profil, setProfil, demande, setDemande,
             <h2>Tes deux jauges</h2>
             <Jauge libelle="Ce que tu veux risquer (tolérance)" valeur={ev?.tolerance}
               retenue={ev?.limite === 'tolérance'}
-              detail={ev?.perte_max_tolerance_pct != null ? `Baisse acceptée : jusqu'à ${ev.perte_max_tolerance_pct} % de ton épargne` : 'Réponds aux 3 questions.'} />
+              detail={ev?.perte_max_tolerance_pct == null ? 'Réponds aux 3 questions.'
+                : Object.keys(profil.reponses_tolerance || {}).length === 0
+                  ? `Valeur fixée par le profil fictif (« ${profil.nom} »), pas une mesure : réponds aux 3 questions pour la mesurer. Baisse acceptée retenue : ${ev.perte_max_tolerance_pct} %.`
+                  : `Baisse acceptée : jusqu'à ${ev.perte_max_tolerance_pct} % de ton épargne (barème de l'équipe)`} />
             <Jauge libelle="Ce que ta situation permet (capacité)" valeur={ev?.capacite}
               retenue={ev?.limite === 'capacité'}
               detail={ev?.capacite_raisons?.join(' · ')} />
@@ -225,6 +233,8 @@ export default function Etape2Verifier({ profil, setProfil, demande, setDemande,
               </p>
             )}
             <p className="muted petit">Barèmes : hypothèses de l'équipe, inspirées des Réformes axées sur le client (ACVM).</p>
+            <SourcesCompactes ids={[...(registre?.justifications?.jauges?.references || []),
+              ...(registre?.justifications?.questions?.references || [])]} />
           </div>
         </div>
       </div>

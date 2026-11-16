@@ -7,14 +7,14 @@ import Etape4Verdict from './etapes/Etape4Verdict.jsx'
 import Etape5Bascule from './etapes/Etape5Bascule.jsx'
 import Comparer from './etapes/Comparer.jsx'
 import TiroirFait from './composants/TiroirFait.jsx'
-import Logo from './composants/Logo.jsx'
+import { RegistreContext } from './composants/Sources.jsx'
 
 export const NOM_PRODUIT = 'AlphaForge AI'
 export const SOUS_TITRE = 'Second avis'
-// Mot affiché dans le logo. Le nom du produit reste à trancher en équipe (Verdict, Second Avis…).
-export const NOM_LOGO = 'verdict'
 
 const ETAPES = ['Tes mots', 'On vérifie', 'Analyse', 'Verdict', 'Curseurs']
+
+const DIRECT_VIDE = { trace: [], objections: [], faits: [] }
 
 const PROFIL_VIERGE = {
   nom: 'Toi', age: null, experience: null, horizon_ans: null, tolerance: null, reponses_tolerance: {},
@@ -31,14 +31,17 @@ export default function App() {
   const [profil, setProfil] = useState(PROFIL_VIERGE)
   const [demande, setDemande] = useState({ texte: '', ticker: null, montant_cad: null })
   const [dossier, setDossier] = useState(null)
+  const [direct, setDirect] = useState(DIRECT_VIDE)   // étapes reçues pendant l'analyse, avant le dossier complet
   const [faitOuvert, setFaitOuvert] = useState(null)
   const [erreur, setErreur] = useState(null)
 
   const [sante, setSante] = useState(null)
+  const [registre, setRegistre] = useState(null)
 
   useEffect(() => {
     Promise.all([api.personas(), api.actifs(), api.questions(), api.sante()])
       .then(([p, a, q, s]) => { setPersonas(p); setActifs(a); setQuestions(q); setSante(s) })
+      .then(() => api.sources().then(setRegistre).catch(() => setRegistre(null)))
       .catch((e) => setErreur(`Impossible de joindre l'API. Lance-la avec « uvicorn api:app --port 8000 » dans backend/. (${e.message})`))
   }, [])
 
@@ -55,9 +58,15 @@ export default function App() {
 
   const lancer = async () => {
     setDossier(null)
+    setDirect(DIRECT_VIDE)
     setEtape(2)
     try {
-      setDossier(await api.analyser(profil, demande))
+      // texte_lu : la personne a relu et corrigé l'étape 2 ; l'analyse ne re-remplit pas un champ qu'elle a vidé.
+      setDossier(await api.analyserEnDirect(profil, { ...demande, texte_lu: true }, (m) => setDirect((d) => ({
+        trace: [...d.trace, m.etape],
+        objections: m.objections.length ? m.objections : d.objections,
+        faits: m.faits,
+      }))))
     } catch (e) {
       // Sans dossier, l'écran d'analyse attendrait sans fin : on revient à l'étape 2, réponses conservées.
       setEtape(1)
@@ -65,15 +74,20 @@ export default function App() {
     }
   }
 
+  // Toujours une liste d'identifiants : une phrase peut s'appuyer sur plusieurs chiffres.
+  const ouvrirFait = (ids) => setFaitOuvert([].concat(ids))
+
   const recommencer = () => { setEtape(0); setDossier(null); setProfil(PROFIL_VIERGE); setDemande({ texte: '', ticker: null, montant_cad: null }) }
 
   return (
+    <RegistreContext.Provider value={registre}>
     <div className="app">
       <header className="entete">
         <div className="entete-int">
           <button type="button" className="marque" onClick={() => { setVue('parcours'); recommencer() }}>
-            <Logo texte={NOM_LOGO} />
-            <span className="marque-sous">{NOM_PRODUIT} · {SOUS_TITRE}</span>
+            <span className="marque-signe" aria-hidden="true">≠</span>
+            {NOM_PRODUIT}
+            <span className="marque-sous">{SOUS_TITRE}</span>
           </button>
           {vue === 'parcours' && (
             <ol className="etapes" aria-label="Étapes du parcours">
@@ -106,7 +120,7 @@ export default function App() {
           </div>
         )}
 
-        {vue === 'comparer' && personas && <Comparer personas={personas} ouvrirFait={setFaitOuvert} />}
+        {vue === 'comparer' && personas && <Comparer personas={personas} />}
 
         {vue === 'parcours' && (
           <>
@@ -118,9 +132,9 @@ export default function App() {
               <Etape2Verifier profil={profil} setProfil={setProfil} demande={demande} setDemande={setDemande}
                 actifs={actifs} questions={questions} onRetour={() => setEtape(0)} onLancer={lancer} />
             )}
-            {etape === 2 && <Etape3Trace dossier={dossier} onFini={() => setEtape(3)} ouvrirFait={setFaitOuvert} />}
+            {etape === 2 && <Etape3Trace dossier={dossier} direct={direct} onFini={() => setEtape(3)} ouvrirFait={ouvrirFait} />}
             {etape === 3 && dossier && (
-              <Etape4Verdict dossier={dossier} ouvrirFait={setFaitOuvert} onBascule={() => setEtape(4)}
+              <Etape4Verdict dossier={dossier} ouvrirFait={ouvrirFait} onBascule={() => setEtape(4)}
                 onModifier={() => setEtape(1)} />
             )}
             {etape === 4 && dossier && (
@@ -135,9 +149,11 @@ export default function App() {
         2021-11-12 → 2026-11-12 (prix Yahoo Finance, taux de change Banque du Canada). Montants des profils fictifs.
       </footer>
 
-      {faitOuvert && dossier && (
-        <TiroirFait fait={dossier.faits.find((f) => f.id === faitOuvert)} onFermer={() => setFaitOuvert(null)} />
+      {faitOuvert && (
+        <TiroirFait faits={faitOuvert.map((id) => (dossier?.faits || direct.faits).find((f) => f.id === id))}
+          onFermer={() => setFaitOuvert(null)} />
       )}
     </div>
+    </RegistreContext.Provider>
   )
 }

@@ -8,6 +8,20 @@ from __future__ import annotations
 from .dossier import Regle
 from .format import dollars, fr
 from .profil import evaluer
+from .sources import references_de
+
+# Seuils de l'équipe (hypothèses, inchangés) : nommés une seule fois pour être affichés comme faits HYPOTHESE.
+SEUIL_VOLATIL_RETRAIT = 25      # %/an : au-delà, un retrait avant récupération est risqué
+SEUIL_TRES_VOLATIL = 30         # %/an : au-delà, la règle de concentration s'applique
+SEUIL_CORRELATION = 0.8         # au-delà, on parle de fausse diversification
+RETRAIT_PROCHE_ANS = 5          # retrait dans 5 ans ou moins : une concentration très volatile devient rouge
+CLASSES_TITRE_UNIQUE = ("equity", "crypto")  # un seul émetteur : la concentration compte même sous 30 %/an
+
+# Nature de l'explication de chaque règle (affichée comme étiquette) :
+# SCENARIO = situation fictive ; HYPOTHESE = repose sur un seuil de l'équipe ; FAIT = constat observé.
+TYPE_REGLE = {"capacite": "SCENARIO", "preserver": "SCENARIO", "concentration": "HYPOTHESE",
+              "diversification": "HYPOTHESE", "coussin": "HYPOTHESE", "retrait": "HYPOTHESE",
+              "horizon": "FAIT", "exclusion": "FAIT", "donnees": "FAIT"}
 
 ORDRE = {"gris": 4, "rouge": 3, "orange": 2, "ok": 1, "non_evaluee": 0}
 ETATS = {"gris": "indetermine", "rouge": "incoherent", "orange": "ajustement", "ok": "coherent"}
@@ -26,6 +40,14 @@ SYNONYMES_SECTEURS = {"énergie": "energy", "energie": "energy", "pétrole": "en
                       "finance": "financials", "santé": "health care", "services publics": "utilities"}
 
 
+# Libellés français des secteurs de assets_universe.csv (affichage seulement ; la comparaison reste en anglais).
+SECTEURS_FR = {"Energy": "Énergie", "Crypto asset": "Cryptoactifs", "Financials": "Finance",
+               "Information Technology": "Technologies", "Consumer Discretionary": "Consommation discrétionnaire",
+               "Health Care": "Santé", "Utilities": "Services publics", "Industrials": "Industrie",
+               "Consumer Staples": "Consommation de base", "Communication Services": "Communication",
+               "Materials": "Matériaux", "Real Estate": "Immobilier"}
+
+
 def exclusions_normalisees(profil: dict) -> list[str]:
     """Exclusions en minuscules, sans entrée vide (une chaîne vide excluait tous les secteurs)."""
     sortie = []
@@ -37,6 +59,15 @@ def exclusions_normalisees(profil: dict) -> list[str]:
 
 
 def appliquer_regles(profil: dict, demande: dict, m: dict, f: dict | None = None) -> list[Regle]:
+    """Applique les règles, puis rattache à chacune sa nature (FAIT/HYPOTHESE/SCENARIO) et ses sources."""
+    regles = _regles(profil, demande, m, f)
+    for r in regles:
+        r.type = TYPE_REGLE.get(r.code, "HYPOTHESE")  # type: ignore[assignment]
+        r.references = references_de(f"regle-{r.code}")
+    return regles
+
+
+def _regles(profil: dict, demande: dict, m: dict, f: dict | None = None) -> list[Regle]:
     """profil : champs du profil ; demande : ticker, montant_cad ; m : mesures
     calculées ; f : identifiants des faits (pour relier chaque règle à ses preuves)."""
     f = f or {}
@@ -76,7 +107,8 @@ def appliquer_regles(profil: dict, demande: dict, m: dict, f: dict | None = None
     else:
         niveau, txt = "ok", (f"La pire chute observée ferait baisser ton épargne de {fr(impact)} %, sous ta limite "
                              f"de {fr(ev['perte_max_retenue_pct'])} %.")
-    regles.append(Regle("capacite", "Perte supportable", niveau, txt, [f.get("chute", "")]))
+    regles.append(Regle("capacite", "Perte supportable", niveau, txt,
+                        [f.get("chute", ""), f.get("h_perte", ""), f.get("h_capacite", "")]))
 
     # 2. Somme à préserver
     preserver = profil.get("somme_a_preserver_cad")
@@ -93,7 +125,8 @@ def appliquer_regles(profil: dict, demande: dict, m: dict, f: dict | None = None
     if exclusions:
         touche = any(e in secteur.lower() for e in exclusions)
         regles.append(Regle("exclusion", "Respect de tes exclusions", "rouge" if touche else "ok",
-                            f"Secteur de l'actif : {secteur}. " + ("Il fait partie de tes exclusions."
+                            f"Secteur de l'actif : {SECTEURS_FR.get(secteur, secteur)}"
+                            + (f" ({secteur}). " if secteur in SECTEURS_FR else ". ") + ("Il fait partie de tes exclusions."
                                                                    if touche else "Il n'est pas exclu."),
                             [f.get("secteur", "")]))
 
@@ -101,14 +134,14 @@ def appliquer_regles(profil: dict, demande: dict, m: dict, f: dict | None = None
     retrait = profil.get("retrait_prevu_ans")
     recup = m.get("recuperation_annees") if m.get("recupere") else None
     if retrait is not None:
-        risque = m["volatilite_pct"] > 25 and (recup is None or retrait < recup)
+        risque = m["volatilite_pct"] > SEUIL_VOLATIL_RETRAIT and (recup is None or retrait < recup)
         regles.append(Regle("retrait", "Retrait prévu", "rouge" if risque else "ok",
                             (f"Tu prévois de retirer de l'argent dans {retrait} an(s). Ce placement est volatil "
                              f"({fr(m['volatilite_pct'])} %/an) et a mis "
                              + (f"{fr(recup)} an(s)" if recup else "plus que la période observée")
                              + " à se remettre de sa pire chute.") if risque else
                             "Le retrait prévu laisse le temps de traverser une baisse comparable.",
-                            [f.get("volatilite", ""), f.get("recuperation", "")]))
+                            [f.get("volatilite", ""), f.get("recuperation", ""), f.get("h_volatil", "")]))
 
     # 5. Horizon plus court que le temps de récupération observé
     horizon = profil["horizon_ans"]
@@ -122,13 +155,22 @@ def appliquer_regles(profil: dict, demande: dict, m: dict, f: dict | None = None
                         f"Ton horizon est de {horizon} an(s) ; après la pire chute, {detail}.",
                         [f.get("recuperation", "")]))
 
-    # 6. Concentration sur un actif très volatil
-    if m["volatilite_pct"] > 30:
-        trop = poids * 100 > ev["seuil_concentration_pct"]
-        regles.append(Regle("concentration", "Concentration", "orange" if trop else "ok",
-                            f"Ce placement représente {poids * 100:.0f} % de ton épargne. Pour un actif aussi "
-                            f"volatil, le seuil retenu pour ton profil est {ev['seuil_concentration_pct']:.0f} %.",
-                            [f.get("volatilite", "")]))
+    # 6. Concentration : sur un actif très volatil, et sur un seul titre même moins volatil
+    tres_volatil = m["volatilite_pct"] > SEUIL_TRES_VOLATIL
+    if tres_volatil or m.get("asset_class") in CLASSES_TITRE_UNIQUE:
+        seuil = ev["seuil_concentration_pct"] if tres_volatil else ev["seuil_titre_unique_pct"]
+        trop = poids * 100 > seuil
+        proche = tres_volatil and retrait is not None and retrait <= RETRAIT_PROCHE_ANS
+        niveau = ("rouge" if proche else "orange") if trop else "ok"
+        nature = "un actif aussi volatil" if tres_volatil else "un seul titre, moins volatil"
+        txt = (f"Ce placement représente {poids * 100:.0f} % de ton épargne. Pour {nature}, le seuil retenu pour ton "
+               f"profil est {fr(int(seuil) if seuil == int(seuil) else seuil)} %.")
+        if niveau == "rouge":
+            txt += (f" Tu prévois de retirer de l'argent dans {retrait} an(s) : si près du besoin, dépasser ce seuil "
+                    "n'est pas cohérent avec ta situation.")
+        regles.append(Regle("concentration", "Concentration", niveau, txt,
+                            [f.get("volatilite", ""), f.get("h_concentration" if tres_volatil else "h_titre", ""),
+                             f.get("h_volatil", "")] + ([f.get("h_retrait_proche", "")] if niveau == "rouge" else [])))
 
     # 7. Coussin de sécurité
     if profil.get("fonds_urgence") is not None:
@@ -141,14 +183,14 @@ def appliquer_regles(profil: dict, demande: dict, m: dict, f: dict | None = None
     deja = demande.get("ticker") and demande.get("ticker") in (profil.get("portefeuille_actuel") or [])
     note_deja = f" Tu détiens déjà {demande['ticker']} : ce placement s'y ajoute." if deja else ""
     if correl:
-        forts = {t: c for t, c in correl.items() if c >= 0.8}
+        forts = {t: c for t, c in correl.items() if c >= SEUIL_CORRELATION}
         t_max, c_max = max(correl.items(), key=lambda kv: kv[1])
         regles.append(Regle("diversification", "Diversification réelle", "orange" if forts else "ok",
                             (("Très corrélé à ce que tu détiens déjà : " + ", ".join(f"{t} ({fr(c)})" for t, c in forts.items())
                               + ". Ça ne diversifie pas.") if forts else
                              (f"Corrélation la plus forte avec tes placements : {t_max} ({fr(c_max)}), sous le seuil de 0,8 "
                               "retenu par l'équipe pour parler de fausse diversification.")) + note_deja,
-                            [f.get("correlation", "")]))
+                            [f.get("correlation", ""), f.get("h_correlation", "")]))
     else:
         regles.append(Regle("diversification", "Diversification réelle", "non_evaluee",
                             (f"Tu ne détiens que {demande['ticker']} : diversification non évaluée." if deja else

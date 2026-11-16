@@ -16,7 +16,7 @@ from ..donnees import univers
 from ..dossier import Dossier
 from ..profil import evaluer
 
-MOTS_EFFET_DE_MODE = ["tout le monde", "en parle", "médiatis", "à la mode", "buzz", "hype", "ne pas rater",
+MOTS_EFFET_DE_MODE = ["tout le monde", "en parle", "médiatis", "à la mode", "buzz", "hype", "ne pas rater", "rater le train", "pas rater", "manquer le train",
                       "exploser", "fusée"]
 CHAMPS_ESSENTIELS = {"horizon_ans": "Dans combien d'années penses-tu avoir besoin de cet argent ?",
                      "epargne_totale_cad": "Combien as-tu d'épargne au total, environ ?",
@@ -152,10 +152,37 @@ def extraire(texte: str) -> tuple[dict, str]:
     return champs, "mots-clés (hors ligne)"
 
 
+GAIN_RAPIDE = re.compile(r"\b(doubler|tripler|devenir riche|vite|rapidement|exploser|gros gain|rendement eleve)")
+SANS_RISQUE = re.compile(r"\bsans (aucun )?risque\b|\baucun risque\b|\brisque nul\b|\bsans (rien )?perdre\b|\bsans perte\b")
+
+
+def _sans_accents(t: str) -> str:
+    import unicodedata
+    return "".join(c for c in unicodedata.normalize("NFKD", t) if not unicodedata.combining(c))
+
+
+def _tickers_mentionnes(texte: str) -> list[str]:
+    """Tous les placements reconnus dans la phrase, dans l'ordre (pour repérer une demande à deux placements)."""
+    t, trouves = texte.lower(), []
+    for ticker, ligne in univers().iterrows():
+        noms = {ticker.lower(), ticker.split(".")[0].split("-")[0].lower(), str(ligne["name"]).lower().split(" ")[0]}
+        positions = [m.start() for n in noms if len(n) > 2 for m in re.finditer(rf"\b{re.escape(n)}\b", t)]
+        if ticker == "BTC-USD":
+            positions += [m.start() for m in re.finditer(r"\bbitcoin\b", t)]
+        if positions:
+            trouves.append((min(positions), ticker))
+    return [tk for _pos, tk in sorted(trouves)]
+
+
 def executer(d: Dossier) -> None:
     debut = time.perf_counter()
     texte = d.demande.get("texte", "") or ""
-    extraits, source = extraire(texte) if texte else ({}, "aucun texte")
+    if d.demande.get("texte_lu"):
+        # La personne a déjà relu et corrigé ce qui a été tiré de sa phrase (étape 2) : un champ qu'elle a vidé
+        # ou mis à « Je ne sais pas » ne doit pas être re-rempli en silence au moment de l'analyse.
+        extraits, source = {}, "phrase déjà relue et corrigée par la personne (étape 2)"
+    else:
+        extraits, source = extraire(texte) if texte else ({}, "aucun texte")
 
     appliques = {}
     for champ in ("ticker", "montant_cad"):
@@ -185,6 +212,10 @@ def executer(d: Dossier) -> None:
             d.questions.append(question)
     if not d.demande.get("ticker"):
         d.questions.append("Quel placement as-tu en tête (nom ou symbole) ?")
+    autres = [t for t in _tickers_mentionnes(texte) if t != d.demande.get("ticker")]
+    if d.demande.get("ticker") and autres:
+        d.questions.append(f"Ta phrase parle aussi de {', '.join(autres)} : on analyse un placement à la fois "
+                           f"({d.demande['ticker']} ici). Lance une deuxième analyse pour l'autre.")
 
     tensions = []
     if any(mot in texte.lower() for mot in MOTS_EFFET_DE_MODE):
@@ -193,6 +224,10 @@ def executer(d: Dossier) -> None:
     if ev["tolerance"] is not None and ev["capacite"] is not None and abs(ev["tolerance"] - ev["capacite"]) >= 25:
         tensions.append(f"Écart entre ce que tu veux risquer ({ev['tolerance']:.0f}/100) et ce que ta "
                         f"situation permet ({ev['capacite']:.0f}/100).")
+    bas = _sans_accents(texte.lower())
+    if GAIN_RAPIDE.search(bas) and SANS_RISQUE.search(bas):
+        tensions.append("Ta demande associe un gain rapide et l'absence de risque : ces deux objectifs se "
+                        "contredisent. L'analyse montre la pire baisse observée du placement visé.")
     d.profil["tensions"] = tensions
 
     detail = (f"Demande comprise : {d.demande.get('ticker')} pour {d.demande.get('montant_cad')} $. "

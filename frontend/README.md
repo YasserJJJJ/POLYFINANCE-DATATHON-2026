@@ -24,11 +24,3 @@ npm run dev        # http://localhost:5173  (/api est redirigé vers le port 800
 | Comparer | `src/etapes/Comparer.jsx` | La même demande pour Amira, Mateo et Robert, côte à côte |
 
 Le nom affiché (`AlphaForge AI`, sous-titre `Second avis`) est défini par deux constantes dans `src/App.jsx`.
-Le mot du logo (`verdict`) est une troisième constante, `NOM_LOGO` : le nom du produit reste à trancher en équipe.
-
-## Style
-
-Thème clair uniquement (fond blanc, même si l'appareil est en mode sombre), neutres zinc, boutons noirs. Les
-couleurs sont des variables CSS en tête de `src/styles.css` : la couleur est réservée au verdict (vert, orange,
-rouge, gris) et le violet n'apparaît que dans le logo (`src/composants/Logo.jsx`). Le bandeau de verdict est
-teinté selon l'état, avec une icône (`IconeEtat` dans `src/composants/Base.jsx`).

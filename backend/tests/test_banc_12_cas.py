@@ -33,9 +33,9 @@ def regles_non_ok(dossier):
 
 # (nom du cas, persona, changements de profil, changements de demande, verdict attendu, règles qui se déclenchent)
 CAS = [
-    ("01 Robert : Tesla, 20 % de l'épargne", "robert", {}, {}, "ajustement", {"concentration"}),
+    ("01 Robert : Tesla, 20 % de l'épargne, retrait dans 4 ans", "robert", {}, {}, "incoherent", {"concentration"}),
     ("02 Robert : un FNB obligataire", "robert", {}, {"ticker": "XBB.TO", "montant_cad": 20000}, "coherent", set()),
-    ("03 Robert : Tesla, sans fonds d'urgence", "robert", {"fonds_urgence": False}, {}, "ajustement",
+    ("03 Robert : Tesla, sans fonds d'urgence", "robert", {"fonds_urgence": False}, {}, "incoherent",
      {"concentration", "coussin"}),
     ("04 Robert : Tesla, retrait prévu dans 1 an", "robert", {"retrait_prevu_ans": 1}, {}, "incoherent", {"retrait", "concentration"}),
     ("05 Robert : somme à préserver trop haute", "robert", {"somme_a_preserver_cad": 390000}, {}, "incoherent",
@@ -123,3 +123,31 @@ def test_aucune_phrase_affichee_ne_conseille_d_acheter():
             for p in phrases:
                 texte = (p["texte"] if isinstance(p, dict) else str(p)).lower()
                 assert not any(mot in texte for mot in interdits), (nom, section, texte)
+
+
+# --- Règle de concentration : continue, pour tout titre unique, et rouge si le retrait est proche ---
+def test_seuil_de_concentration_sans_saut_entre_deux_points_de_score():
+    from alphaforge.profil import seuil_concentration_pct
+    assert seuil_concentration_pct(0) == 5 and seuil_concentration_pct(100) == 20
+    assert abs(seuil_concentration_pct(65) - seuil_concentration_pct(64)) < 0.5   # avant : 10 % → 20 %
+
+
+def test_un_seul_titre_peu_volatil_n_est_plus_coherent_a_87_pour_cent():
+    d = lancer("amira", demande={"ticker": "AAPL", "montant_cad": 35000})       # 87,5 % de 40 000 $
+    assert d["verdict"]["etat"] == "ajustement" and regles_non_ok(d) == {"concentration"}
+
+
+def test_un_fnb_large_n_est_pas_soumis_au_seuil_d_un_titre():
+    d = lancer("amira", demande={"ticker": "XIU.TO", "montant_cad": 35000})
+    assert "concentration" not in {r["code"] for r in d["regles"]}
+
+
+@pytest.mark.parametrize("retrait, etat", [(None, "ajustement"), (6, "ajustement"), (5, "incoherent"), (4, "incoherent")])
+def test_robert_retrait_proche_rend_la_concentration_rouge(retrait, etat):
+    d = lancer("robert", {"retrait_prevu_ans": retrait})
+    assert d["verdict"]["etat"] == etat
+    conc = next(r for r in d["regles"] if r["code"] == "concentration")
+    ids = {f["id"]: f for f in d["faits"]}
+    assert all(f in ids for f in conc["faits"] if f), conc["faits"]
+    if etat == "incoherent":
+        assert any(ids[f]["type"] == "HYPOTHESE" and ids[f]["valeur"] == 5 for f in conc["faits"] if f)

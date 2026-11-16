@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { PucesFaits } from '../composants/Base.jsx'
+import { PuceIssue, PucesFaits } from '../composants/Base.jsx'
+import { SourcesCompactes } from '../composants/Sources.jsx'
 
 export const AGENTS = {
   Profileur: { role: 'Comprend ta demande et structure ton profil', nature: 'Agent IA' },
@@ -10,30 +11,37 @@ export const AGENTS = {
   Rédacteur: { role: 'Explique, sans rien ajouter', nature: 'Agent IA' },
 }
 
-const DELAI_MS = 750
+const ORDRE = Object.keys(AGENTS)
 
-export default function Etape3Trace({ dossier, onFini, ouvrirFait }) {
-  const [visibles, setVisibles] = useState(0)
-  const trace = dossier?.trace || []
+// Chaque étape s'affiche dès que son agent a fini (flux /api/analyse/flux) : rien n'est rejoué ni simulé.
+export default function Etape3Trace({ dossier, direct, onFini, ouvrirFait }) {
+  const [secondes, setSecondes] = useState(0)
+  const trace = dossier?.trace || direct.trace
+  const objections = dossier?.objections || direct.objections
+  const totalMs = trace.reduce((s, t) => s + (t.duree_ms || 0), 0)
+  const dernier = trace[trace.length - 1]?.agent
+  const prochain = dernier ? ORDRE[ORDRE.indexOf(dernier) + 1] : ORDRE[0]
 
   useEffect(() => {
-    if (!dossier) return
-    if (visibles >= trace.length) {
-      const t = setTimeout(onFini, 900)
-      return () => clearTimeout(t)
-    }
-    const t = setTimeout(() => setVisibles((v) => v + 1), DELAI_MS)
-    return () => clearTimeout(t)
-  }, [dossier, visibles, trace.length, onFini])
+    if (dossier) return
+    const debut = Date.now()
+    const t = setInterval(() => setSecondes(Math.round((Date.now() - debut) / 1000)), 250)
+    return () => clearInterval(t)
+  }, [dossier])
 
   return (
     <section className="etape3">
-      <p className="surtitre">Analyse en direct</p>
+      <p className="surtitre">Analyse</p>
       <h1>Six rôles examinent ta demande, chacun à son tour.</h1>
       <p className="lede">Les chiffres viennent du code. Les agents comprennent, contestent et expliquent.</p>
+      <p className="muted petit" aria-live="polite">
+        {dossier
+          ? `Analyse terminée en ${(totalMs / 1000).toFixed(1).replace('.', ',')} s. Chaque étape s'est affichée dès que son rôle a fini ; sa durée mesurée est à droite.`
+          : `Les agents travaillent (${secondes} s écoulées). Chaque rôle s'affiche dès qu'il a fini.`}
+      </p>
 
       <ol className="trace">
-        {trace.slice(0, visibles).map((t, i) => (
+        {trace.map((t, i) => (
           <li key={i} className={`trace-etape ${AGENTS[t.agent]?.nature === 'Code' ? 'code' : 'ia'}`}>
             <div className="trace-agent">
               <strong>{t.agent}</strong>
@@ -42,25 +50,27 @@ export default function Etape3Trace({ dossier, onFini, ouvrirFait }) {
             <div className="trace-corps">
               <p className="trace-action">{t.action}</p>
               <p>{t.detail}</p>
-              {t.agent === 'Sceptique' && dossier.objections.map((o) => (
+              {t.agent === 'Sceptique' && objections.map((o) => (
                 <div key={o.id} className="objection">
                   <p><span className="mono">{o.id} → {o.cible}</span> {o.texte}</p>
                   <p className="recalcul">↳ {o.reponse}</p>
+                  <PuceIssue issue={o.issue} />
                 </div>
               ))}
               <PucesFaits ids={[...new Set(t.faits)]} ouvrir={ouvrirFait} />
+              <SourcesCompactes ids={t.references} prefixe="Conçu d'après :" />
             </div>
             <span className="duree mono">{t.duree_ms} ms</span>
           </li>
         ))}
-        {(!dossier || visibles < trace.length) && (
+        {!dossier && prochain && (
           <li className="trace-etape attente" aria-live="polite">
             <span className="points" aria-hidden="true"><i /><i /><i /></span>
-            {dossier ? `${trace[visibles]?.agent} travaille…` : 'Préparation du dossier de décision…'}
+            {`${prochain} travaille… ${AGENTS[prochain].role.toLowerCase()}.`}
           </li>
         )}
       </ol>
-      {dossier && visibles >= trace.length && (
+      {dossier && (
         <button type="button" className="bouton principal" onClick={onFini}>Voir le verdict</button>
       )}
     </section>

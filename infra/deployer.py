@@ -137,7 +137,8 @@ def role_iam(iam, bucket: str) -> str:
     politique = {"Version": "2012-10-17", "Statement": [
         {"Effect": "Allow", "Action": ["s3:GetObject", "s3:PutObject", "s3:ListBucket"],
          "Resource": [f"arn:aws:s3:::{bucket}", f"arn:aws:s3:::{bucket}/*"]},
-        {"Effect": "Allow", "Action": ["bedrock:InvokeModel", "bedrock:InvokeModelWithResponseStream"],
+        {"Effect": "Allow", "Action": ["bedrock:InvokeModel", "bedrock:InvokeModelWithResponseStream",
+                                    "bedrock:ApplyGuardrail"],  # ApplyGuardrail : nécessaire si ALPHAFORGE_GUARDRAIL_ID est défini
          "Resource": "*"}]}
     iam.put_role_policy(RoleName=NOM_ROLE, PolicyName="alphaforge-acces", PolicyDocument=json.dumps(politique))
     return arn
@@ -148,6 +149,10 @@ def fonction_lambda(lam, s3, bucket: str, archive: Path, role_arn: str) -> str:
     cle = "code/alphaforge-lambda.zip"
     s3.upload_file(str(archive), bucket, cle)
     env = {"Variables": {"ALPHAFORGE_DATA_BUCKET": bucket, "ALPHAFORGE_LLM": "auto"}}
+    # Guardrail Bedrock (infra/creer_guardrail.py) : transmis à la fonction s'il est défini dans le terminal.
+    for cle in ("ALPHAFORGE_GUARDRAIL_ID", "ALPHAFORGE_GUARDRAIL_VERSION"):
+        if os.environ.get(cle):
+            env["Variables"][cle] = os.environ[cle]
     existe = True
     try:
         lam.get_function(FunctionName=NOM_FONCTION)

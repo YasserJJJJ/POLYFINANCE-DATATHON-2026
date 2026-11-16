@@ -1,6 +1,8 @@
-pandas>=2.2
-numpy>=1.26
-fastapi>=0.115
-uvicorn[standard]>=0.30
-pytest>=8.0
-boto3>=1.35
+# Versions figées : celles avec lesquelles les 195 tests passent (Python 3.14.7, Windows, 15 nov. 2026).
+# Python 3.12 ou plus récent requis. La fonction Lambda a sa propre liste : requirements-lambda.txt.
+pandas==3.1.1
+numpy==2.5.4
+fastapi==0.163.0
+uvicorn[standard]==0.54.0
+pytest==9.2.0
+boto3==1.44.3

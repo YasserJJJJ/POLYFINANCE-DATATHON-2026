@@ -25,7 +25,7 @@ def test_valeur_impossible_donne_gris_explique(profil, demande):
 
 
 def test_valeurs_valides_inchangees():
-    assert _run("robert")["verdict"]["etat"] == "ajustement"
+    assert _run("robert")["verdict"]["etat"] == "incoherent"
 
 
 # --- Version ajustée : elle doit améliorer l'état et viser le montant exact de bascule ---
@@ -41,11 +41,11 @@ def test_version_ajustee_robert_est_le_montant_exact_de_bascule():
     d = _run("robert")
     aj = _ajustee(d)
     assert aj and aj["etat"] == "coherent"
-    # 20 000 $ = 5 % de 400 000 $, exactement le seuil : c'est le plus petit ajustement (avant : 16 000 $).
-    assert aj["montant_cad"] == 20000
+    # 38 000 $ = 9,5 % de 400 000 $ (5 + 0,15 × score 30), exactement le seuil : c'est le plus petit ajustement.
+    assert aj["montant_cad"] == 38000
     p, dem = PERSONAS["robert"]["profil"], PERSONAS["robert"]["demande"]
     m = d["demande"]["mesures"]
-    au_dessus = gardien.verdict(gardien.appliquer_regles(p, {**dem, "montant_cad": 20100}, m))["etat"]
+    au_dessus = gardien.verdict(gardien.appliquer_regles(p, {**dem, "montant_cad": 38100}, m))["etat"]
     assert au_dessus != "coherent"
 
 
@@ -97,5 +97,48 @@ def test_tolerance_bornee_entre_0_et_100():
 
 def test_placement_detenu_inconnu_ignore_sans_bloquer_l_analyse():
     d = _run("robert", {"portefeuille_actuel": ["XIU.TO", "FOO"]})     # avant : KeyError → HTTP 422
-    assert d["verdict"]["etat"] == "ajustement"
+    assert d["verdict"]["etat"] == "incoherent"
     assert any("FOO" in t["detail"] for t in d["trace"] if t["agent"] == "Analyste")
+
+
+# --- Textes fidèles : alternative, secteur, effet de mode ---
+def test_alternative_ne_pretend_pas_respecter_des_valeurs_esg_non_mesurees():
+    d = _run("mateo")
+    alt = next(o for o in d["options"] if o["nom"].startswith("Alternative"))
+    assert "valeurs" not in alt["nom"] and "secteur" in alt["nom"]
+
+
+def test_secteur_affiche_en_francais():
+    assert "Énergie (Energy)" in _regle(_run("mateo"), "exclusion")["explication"]
+
+
+def test_effet_de_mode_ne_veux_pas_rater_le_train():
+    from alphaforge.agents import profileur
+    from alphaforge.dossier import Dossier
+    d = Dossier(profil={}, demande={"texte": "Je ne veux pas rater le train de l'IA."})
+    profileur.executer(d)
+    assert any("médiatisée" in t for t in d.profil["tensions"])
+
+
+def test_le_placement_large_est_juge_par_le_gardien_et_cite_sa_pire_chute():
+    d = _run("robert")
+    large = next(o for o in d["options"] if o["nom"] == "Placement large, même montant")
+    assert large["ticker"] == "XIU.TO" and large["montant_cad"] == d["demande"]["montant_cad"]
+    assert large["etat"] in RANG and large["faits"]
+    faits = {f["id"]: f for f in d["faits"]}
+    assert all(f in faits for f in large["faits"]) and "XIU.TO" in faits[large["faits"][0]]["libelle"]
+    assert "Ne rien changer" not in {o["nom"] for o in d["options"]}
+
+
+def test_pas_de_placement_large_quand_on_demande_deja_le_marche_large_ou_qu_une_alternative_existe():
+    assert all(o["nom"] != "Placement large, même montant"
+               for o in _run("robert", demande={"ticker": "XIU.TO", "texte": ""})["options"])
+    noms = [o["nom"] for o in _run("mateo")["options"]]
+    assert "Alternative compatible avec tes exclusions de secteur" in noms and "Placement large, même montant" not in noms
+
+
+def test_le_placement_large_n_est_pas_presente_comme_une_alternative_aux_exclusions():
+    textes = " ".join(ph["texte"] for ph in _run("robert")["texte"]["ce_qui_changerait"])
+    assert "exclusions" not in textes
+    textes = " ".join(ph["texte"] for ph in _run("mateo")["texte"]["ce_qui_changerait"])
+    assert "compatible avec tes exclusions" in textes

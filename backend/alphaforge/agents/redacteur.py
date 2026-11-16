@@ -26,13 +26,8 @@ SECTIONS = ("reformulation", "miroir", "pourquoi", "ce_qui_changerait")
 # change le verdict (un modèle a déjà inventé un levier inexistant et un seuil faux dans cette section).
 SECTIONS_MODELE = ("reformulation", "miroir", "pourquoi")
 
-# Étiquette de l'explication de chaque règle du Gardien :
-# - SCENARIO : situation fictive (« si la pire chute se répétait », reste après un placement fictif) ;
-# - HYPOTHESE : dépend d'un seuil ou d'un barème choisi par l'équipe (concentration, volatilité > 25 %, 0,8…) ;
-# - FAIT : constat observé (secteur lu, temps de récupération mesuré).
-TYPE_REGLE = {"capacite": "SCENARIO", "preserver": "SCENARIO", "concentration": "HYPOTHESE",
-              "diversification": "HYPOTHESE", "coussin": "HYPOTHESE", "retrait": "HYPOTHESE",
-              "horizon": "FAIT", "exclusion": "FAIT", "donnees": "FAIT"}
+# Étiquette de l'explication de chaque règle du Gardien (SCENARIO, HYPOTHESE ou FAIT) : source unique dans gardien.py.
+from ..gardien import TYPE_REGLE  # noqa: E402
 
 SYSTEME = """Tu es le Rédacteur d'un outil éducatif qui donne un second avis sur une décision d'investissement
 (simulation, jamais de conseil personnalisé). Le verdict est déjà décidé par des règles en code : tu ne le changes
@@ -54,8 +49,34 @@ Format JSON :
 Ne parle pas de ce qui changerait le verdict : cette partie est calculée par le code."""
 
 
-def _phrase(texte: str, type_: str, faits: list[str] | None = None) -> dict:
-    return {"texte": texte, "type": type_, "faits": [f for f in (faits or []) if f]}
+def _phrase(texte: str, type_: str, faits: list[str] | None = None, references: list[str] | None = None) -> dict:
+    ph = {"texte": texte, "type": type_, "faits": [f for f in (faits or []) if f]}
+    if references:
+        ph["references"] = list(references)  # sources.REFERENCES : sur quoi repose cette phrase
+    return ph
+
+
+def _limites_des_donnees(d: Dossier) -> list[dict]:
+    """Limites documentées dans le dossier de recherche de l'équipe, affichées seulement quand elles concernent la
+    demande. Chacune cite sa source."""
+    horizon = d.profil.get("horizon_ans")
+    mesures = d.demande.get("mesures") or {}
+    limites = [_phrase("L'univers de 31 actifs a été choisi en 2026 : il ne contient que des placements qui existent "
+                       "encore (biais du survivant). Les pires cas réels peuvent être plus graves.", "HYPOTHESE",
+                       references=["donnees-univers", "dossier-adam"])]
+    if isinstance(horizon, (int, float)) and horizon > 5:
+        limites.append(_phrase(f"Ton horizon ({horizon} ans) dépasse les 5 ans de données : rien ici ne valide ce qui "
+                               f"se passerait sur {horizon} ans. Les chiffres décrivent le passé récent.", "HYPOTHESE",
+                               references=["demiguel-2009"]))
+    if mesures.get("devise") == "USD":
+        limites.append(_phrase("Le taux USD/CAD de la Banque du Canada est une moyenne indicative de la journée (8 h à "
+                               "16 h), appliquée ici à des prix de clôture.", "HYPOTHESE",
+                               references=["donnees-change"]))
+    if str(d.demande.get("ticker", "")).endswith(".TO"):
+        limites.append(_phrase("Les prix ajustés de Yahoo peuvent contenir des erreurs d'ajustement, plus fréquentes "
+                               "hors des États-Unis selon les mainteneurs de yfinance.", "HYPOTHESE",
+                               references=["yfinance-reparation"]))
+    return limites
 
 
 def _limite_objection(o) -> dict:
@@ -105,7 +126,7 @@ def _modele_de_phrases(d: Dossier) -> dict:
         if "horizon_ans" in ch:
             morceaux.append(f"allonger l'horizon à {ch['horizon_ans']} ans")
         changerait.append(_phrase("Ce qui changerait l'avis : " + " et ".join(morceaux) + ".", "SCENARIO"))
-    alt = next((o for o in d.options if o.get("ticker") and o.get("ticker") != dem["ticker"]), None)
+    alt = next((o for o in d.options if o.get("nom", "").startswith("Alternative")), None)
     if alt:
         changerait.append(_phrase(f"Une option compatible avec tes exclusions existe : {alt['ticker']} "
                                   f"({alt.get('libelle_actif', '')}), même montant.", "SCENARIO", alt.get("faits")))
@@ -169,7 +190,9 @@ def _nombres_autorises(d: Dossier, base: dict) -> set[float]:
     sources = [json.dumps(base, ensure_ascii=False), json.dumps(d.options, default=str),
                json.dumps(d.verdict), json.dumps(ev, default=str), " ".join(r.explication for r in d.regles)]
     for f in d.faits:
-        sources.append(f"{f.valeur} {f.methode} {f.libelle}")
+        # Pour un seuil de l'équipe (HYPOTHESE), seule sa valeur est citable : les nombres de son barème
+        # (« horizon de 3 à 5 ans : −10 ») ne doivent pas autoriser un « 3 ans » faux ailleurs.
+        sources.append(f"{f.valeur}" if f.type == "HYPOTHESE" else f"{f.valeur} {f.methode} {f.libelle}")
         if isinstance(f.valeur, (int, float)):
             sources.append(str(abs(f.valeur)))
     for champ in ("epargne_totale_cad", "somme_a_preserver_cad", "horizon_ans", "retrait_prevu_ans", "age"):
@@ -296,10 +319,11 @@ def executer(d: Dossier) -> None:
     if llm.actif():
         autorises = _nombres_autorises(d, base)
         ids_valides = {f.id for f in d.faits}
-        consigne = _dossier_pour_modele(d, base)
+        consigne = dossier_json = _dossier_pour_modele(d, base)
         for essai in (1, 2):
             try:
-                propose = llm.appeler_json(SYSTEME, consigne, llm.MODELE_PRINCIPAL, 1800)
+                # Le dossier sert aussi de source d'ancrage à Bedrock Guardrails, s'il est configuré.
+                propose = llm.appeler_json(SYSTEME, consigne, llm.MODELE_PRINCIPAL, 1800, source_ancrage=dossier_json)
                 defauts = verifier(propose, autorises, ids_valides, _mots_de_la_personne(d), d.verdict.get("etat"))
             except Exception as e:
                 journal.append(f"essai {essai} : réponse inutilisable ({type(e).__name__})")
@@ -330,7 +354,7 @@ def executer(d: Dossier) -> None:
          if _est_persona(d) else
          _phrase("Les montants sont ceux que tu as saisis : ils ne sont pas vérifiés, l'analyse reste une simulation.",
                  "HYPOTHESE")),
-    ] + [_limite_objection(o) for o in d.objections]
+    ] + _limites_des_donnees(d) + [_limite_objection(o) for o in d.objections]
 
     v = d.verdict
     d.texte = {

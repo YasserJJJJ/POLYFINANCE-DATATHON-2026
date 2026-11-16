@@ -1,6 +1,7 @@
 import { dollars } from '../api.js'
-import { Etiquette, IconeEtat, PuceNiveau, PuceVerdict, PucesFaits } from '../composants/Base.jsx'
+import { Etiquette, PuceIssue, PuceNiveau, PuceVerdict, PucesFaits } from '../composants/Base.jsx'
 import GraphiqueChute from '../composants/GraphiqueChute.jsx'
+import { ListeSources, SourcesCompactes, SourcesParType, sourcesDuDossier } from '../composants/Sources.jsx'
 
 function Phrase({ p, ouvrir }) {
   return (
@@ -8,11 +9,12 @@ function Phrase({ p, ouvrir }) {
       <Etiquette type={p.type} />
       <span>{p.texte}</span>
       <PucesFaits ids={p.faits} ouvrir={ouvrir} />
+      {p.references?.length > 0 && <SourcesCompactes ids={p.references} prefixe="Source :" />}
     </li>
   )
 }
 
-function Option({ o, principal }) {
+function Option({ o, principal, ouvrir }) {
   return (
     <div className={`carte option ${principal ? 'principale' : ''}`}>
       <p className="option-nom">{o.nom}</p>
@@ -22,6 +24,9 @@ function Option({ o, principal }) {
         <div><dt>Montant</dt><dd>{dollars(o.montant_cad)}</dd></div>
         <div><dt>Horizon</dt><dd>{o.horizon_ans} an(s)</dd></div>
       </dl>
+      {(o.note || o.faits?.length > 0) && (
+        <p className="muted petit option-note">{o.note} <PucesFaits ids={o.faits} ouvrir={ouvrir} /></p>
+      )}
     </div>
   )
 }
@@ -38,14 +43,11 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
   return (
     <section className="etape4">
       <div className={`verdict-tete carte etat-${verdict.etat}`}>
-        <IconeEtat etat={verdict.etat} />
-        <div className="verdict-corps">
-          <p className="surtitre">Le second avis</p>
-          <PuceVerdict etat={verdict.etat} grand libelle={verdict.libelle} />
-          <p className="compte-regles"><strong>{verdict.respectees}</strong> règle(s) respectée(s) sur <strong>{verdict.evaluees}</strong></p>
-          {texte?.reformulation && <p className="reformulation">{texte.reformulation}</p>}
-          {texte?.tensions?.map((t) => <p key={t} className="tension">{t}</p>)}
-        </div>
+        <p className="surtitre">Le second avis</p>
+        <PuceVerdict etat={verdict.etat} grand libelle={verdict.libelle} />
+        <p className="compte-regles"><strong>{verdict.respectees}</strong> règle(s) respectée(s) sur <strong>{verdict.evaluees}</strong></p>
+        {texte?.reformulation && <p className="reformulation">{texte.reformulation}</p>}
+        {texte?.tensions?.map((t) => <p key={t} className="tension">{t}</p>)}
       </div>
 
       {verdict.etat === 'indetermine' && dossier.questions?.length > 0 && (
@@ -74,7 +76,7 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
       )}
 
       <div className="trois-options">
-        {options.map((o, i) => <Option key={o.nom} o={o} principal={i === 1 && options.length === 3} />)}
+        {options.map((o, i) => <Option key={o.nom} o={o} principal={i === 1} ouvrir={ouvrirFait} />)}
       </div>
       {texte?.ce_qui_changerait?.length > 0 && (
         <ul className="phrases">{texte.ce_qui_changerait.map((p, i) => <Phrase key={i} p={p} ouvrir={ouvrirFait} />)}</ul>
@@ -93,12 +95,19 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
             {reglesTriees.map((r) => (
               <li key={r.code} className={`regle n-${r.niveau}`}>
                 <div className="regle-tete"><strong>{r.libelle}</strong><PuceNiveau niveau={r.niveau} /></div>
-                <p>{r.explication}</p>
+                <p>{r.type && <Etiquette type={r.type} />} {r.explication}</p>
                 <PucesFaits ids={r.faits} ouvrir={ouvrirFait} />
+                {r.references?.length > 0 && (
+                  <details className="pourquoi-regle">
+                    <summary>Sur quoi repose cette règle ?</summary>
+                    <ListeSources ids={r.references} />
+                  </details>
+                )}
               </li>
             ))}
           </ul>
-          <p className="muted petit">Ces règles sont du code, pas l'avis d'une IA. Le verdict ne peut pas les contredire.</p>
+          <p className="muted petit">Ces règles sont du code, pas l'avis d'une IA. Le verdict ne peut pas les contredire.
+            Les seuils (étiquette Hypothèse) sont des choix de l'équipe, au registre des chiffres ci-dessous.</p>
         </div>
 
         <div className="pile">
@@ -112,6 +121,7 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
               <div key={o.id} className="objection">
                 <p><span className="mono">{o.id}</span> {o.texte}</p>
                 <p className="recalcul">↳ {o.reponse}</p>
+                <PuceIssue issue={o.issue} />
               </div>
             ))}
           </div>
@@ -161,6 +171,13 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
           </div>
           <p className="avertissement">{texte?.avertissement}</p>
         </div>
+      </div>
+      <div className="carte sources-analyse">
+        <h2>Sources de cette analyse</h2>
+        <p className="muted petit">Chaque chiffre vient d'un fichier du jeu de départ et d'une méthode appliquée par le code.
+          Chaque règle et chaque agent s'appuient sur les références ci-dessous. Le niveau d'examen indique ce que
+          l'équipe a réellement lu : une référence non relue n'est jamais présentée comme vérifiée.</p>
+        <SourcesParType ids={sourcesDuDossier(dossier)} />
       </div>
     </section>
   )
