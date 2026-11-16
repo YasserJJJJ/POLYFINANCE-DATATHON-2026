@@ -8,7 +8,7 @@ Source du style : `FOLIO_UI_KIT` (Folio 0.7.0), voie « transférer le langage v
 
 - `frontend/public/fonts/` : DM Sans et Newsreader (six fichiers, licences SIL OFL jointes). Plus aucune police chargée depuis un service externe.
 - `frontend/src/folio.css` : palette (papier, encre verte, rouge d'annotation), typographie, filets, manchette, onglets, double page du résultat. Chargée après `styles.css` : elle rhabille les classes existantes, elle n'en retire aucune.
-- Manchette : mot-symbole, état du dossier (édition, archive, analyse en cours), étapes en chiffres romains.
+- En-tête sobre sur une ligne : « AlphaForge AI · Second avis » (le nom de l'énoncé), étapes en chiffres romains, état du dossier, thème.
 - Verdict en double page : l'avis en grand titre à gauche ; à droite le chiffre qui le porte, la pire baisse du portefeuille avec la demande, face à celle d'avant, avec son écart et son sens rendus par le moteur. Le chiffre ouvre sa preuve.
 - Lecture « Essentielle » et « Approfondie » : les deux onglets existants, présentés comme dans Folio.
 
@@ -18,6 +18,9 @@ Source du style : `FOLIO_UI_KIT` (Folio 0.7.0), voie « transférer le langage v
 - **Ce que la modification change** : entre deux éditions successives, l'avis, les niveaux de règles (appariés par code) et les mesures du portefeuille qui diffèrent, en marques de correction.
 - **Épreuve périmée** : pendant une relance, l'ancien résultat reste lisible mais marqué comme périmé.
 - États : chaque état garde un libellé et un signe distinct ; la couleur ne porte jamais seule l'information.
+- **Sections repliables** (`repliable.js`) : un clic, ou Entrée, sur le titre d'une section la réduit à ce titre ; « Tout replier » et « Tout déplier » à côté du niveau de lecture. Les deux sections les plus longues de la lecture approfondie (sources, qualité des données) sont repliées au départ. Mesuré à 1280 px : la lecture approfondie passe de 8 270 px de haut à 800 px, tout replié.
+- **Thème clair ou sombre**, gardé d'une visite à l'autre ; sans choix, le réglage du système s'applique.
+- Espacements resserrés : le verdict et son chiffre tiennent dans le premier écran.
 
 ## Corrections faites en passant
 
@@ -33,9 +36,8 @@ Non vérifié : étape « Curseurs », vue « Comparer les 3 profils », plan ou
 ## Limites
 
 - Les éditions vivent dans la mémoire de la page : elles disparaissent au rechargement.
-- Le thème sombre n'existe plus : Folio est un papier clair.
 - Le tableau de comparaison de la lecture approfondie affiche encore les mesures avec six décimales.
-- Le mot-symbole affiché est « folio », sous-titré « AlphaForge · Second avis » ; les constantes du produit ne changent pas.
+- L'état replié des sections vit dans la page : il revient à son réglage de départ au rechargement.
 
 ## Lancer
 

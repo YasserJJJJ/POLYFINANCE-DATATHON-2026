@@ -7,6 +7,7 @@ import { Etiquette, PuceIssue, PuceNiveau, PuceVerdict, PucesFaits } from '../co
 import GraphiqueChute from '../composants/GraphiqueChute.jsx'
 import ComparaisonPortefeuille from '../composants/ComparaisonPortefeuille.jsx'
 import Editions, { CeQuiChange } from '../composants/Editions.jsx'
+import { toutReplier } from '../repliable.js'
 import { ListeSources, SourcesCompactes, SourcesParType, sourcesDuDossier } from '../composants/Sources.jsx'
 
 function Phrase({ p, ouvrir }) {
@@ -185,6 +186,10 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
           <button key={cle} type="button" role="tab" aria-selected={onglet === cle}
             className={`onglet ${onglet === cle ? 'actif' : ''}`} onClick={() => setOnglet(cle)}>{nom}</button>
         ))}
+        <span className="replier-tout">
+          <button type="button" className="lien" onClick={() => toutReplier(true)}>Tout replier</button>
+          <button type="button" className="lien" onClick={() => toutReplier(false)}>Tout déplier</button>
+        </span>
       </div>
 
       {onglet === 'essentiel' && (<>
