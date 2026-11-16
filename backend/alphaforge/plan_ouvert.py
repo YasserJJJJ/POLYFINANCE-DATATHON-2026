@@ -59,8 +59,7 @@ def executer(d: Dossier) -> None:
             # Une information essentielle de la personne manque (horizon, épargne, tolérance) : on ne conclut pas.
             if not any("données de marché" in r.explication for r in regles):
                 d.regles, d.verdict = regles, v
-                d.questions = gardien.questions_manquantes(d.profil, d.demande) + \
-                    [q for q in d.questions if "placement as-tu en tête" not in q]
+                d.questions = gardien.questions_manquantes(d.profil, d.demande) + d.questions
                 d.tracer("Gardien", "juge le plan sur la liste des placements",
                          "Impossible de conclure : " + regles[0].explication, debut=debut)
                 return
@@ -105,7 +104,6 @@ def executer(d: Dossier) -> None:
               "regles_de": reference["ticker"] if reference else None,
               "ecartes": [{"raison": r, "nombre": n} for r, n in ecartes.most_common()],
               "bloquante": bloquante}
-    d.questions = [q for q in d.questions if "placement as-tu en tête" not in q]
     d.tracer("Gardien", "juge le plan sur la liste des placements",
              f"{LIBELLES[etat]} : {passent} placement(s) sur {len(juges)} passent toutes les règles, "
              f"{avec_ajustement} avec un ajustement.", [p["faits"][0] for p in placements], debut)

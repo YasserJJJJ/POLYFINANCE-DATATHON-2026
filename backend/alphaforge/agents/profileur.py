@@ -128,6 +128,25 @@ def _trouver_montant(texte: str) -> float | None:
     return None
 
 
+NOMBRES_EN_LETTRES = {"un": 1, "une": 1, "deux": 2, "trois": 3, "quatre": 4, "cinq": 5, "six": 6, "sept": 7, "huit": 8,
+                      "neuf": 9, "dix": 10, "quinze": 15, "vingt": 20, "trente": 30}
+# Un horizon se dit avec une préposition (« dans 10 ans », « sur 5 ans », « d'ici au moins un an ») : sans elle,
+# « j'ai 26 ans » est un âge, pas un horizon.
+HORIZON = re.compile(r"\b(?:dans|d'ici|sur|pendant|au bout d'|au bout de|apres|horizon de)\s+(?:au moins |environ |a peu pres |plus de |moins de )?"
+                     r"(\d+|" + "|".join(NOMBRES_EN_LETTRES) + r")\s+(?:ans?|annees?)\b")
+HORIZON_UN_AN = re.compile(r"\b(?:la |l')?(?:premiere|1re|1ere) annee\b|\bl'an prochain\b|\bl'annee prochaine\b|\bd'ici un an\b")
+
+
+def _trouver_horizon(texte: str) -> float | None:
+    """Horizon lu par le code, en complément du modèle : « dans 10 ans », « la première année », « l'an prochain »."""
+    t = _sans_accents(_propre(texte).lower().replace("’", "'"))
+    if (m := HORIZON.search(t)):
+        brut = m.group(1)
+        valeur = float(brut) if brut.isdigit() else float(NOMBRES_EN_LETTRES[brut])
+        return valeur if 0 < valeur <= 60 else None
+    return 1.0 if HORIZON_UN_AN.search(t) else None
+
+
 def _trouver_epargne(texte: str) -> float | None:
     t = _propre(texte)
     return next((v for v, _d, fin in _montants(t) if CONTEXTE_EPARGNE.search(t[fin:fin + 20])), None)
@@ -138,9 +157,13 @@ def extraire(texte: str) -> tuple[dict, str]:
     if texte.strip() and llm.actif():
         try:
             avant = extraire_llm.cache_info().hits
-            champs = extraire_llm(texte.strip())
+            champs = dict(extraire_llm(texte.strip()))
             en_cache = extraire_llm.cache_info().hits > avant
-            return champs, llm.nom(llm.MODELE_LEGER) + (", réponse déjà lue (cache)" if en_cache else "")
+            source = llm.nom(llm.MODELE_LEGER) + (", réponse déjà lue (cache)" if en_cache else "")
+            if "horizon_ans" not in champs and (h := _trouver_horizon(texte)) is not None:
+                champs["horizon_ans"] = h          # le modèle n'a pas lu l'horizon ; le code l'a reconnu
+                source += " ; horizon lu par le code"
+            return champs, source
         except Exception:
             pass
     champs = {}
@@ -150,6 +173,8 @@ def extraire(texte: str) -> tuple[dict, str]:
         champs["montant_cad"] = m
     if (e := _trouver_epargne(texte)) is not None:
         champs["epargne_totale_cad"] = e
+    if (h := _trouver_horizon(texte)) is not None:
+        champs["horizon_ans"] = h
     return champs, "mots-clés (hors ligne)"
 
 
@@ -211,8 +236,6 @@ def executer(d: Dossier) -> None:
         valeur = d.demande.get(champ) if champ == "montant_cad" else d.profil.get(champ)
         if valeur is None:
             d.questions.append(question)
-    if not d.demande.get("ticker"):
-        d.questions.append("Quel placement as-tu en tête (nom ou symbole) ?")
     autres = [t for t in _tickers_mentionnes(texte) if t != d.demande.get("ticker")]
     if d.demande.get("ticker") and autres:
         d.questions.append(f"Ta phrase parle aussi de {', '.join(autres)} : on analyse un placement à la fois "
