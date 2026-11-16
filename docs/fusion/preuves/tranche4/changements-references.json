@@ -1,0 +1,712 @@
+{
+  "robert": {
+    "champs_modifies": [
+      "pourquoi",
+      "limites"
+    ],
+    "objets_metier_identiques": true,
+    "avant": {
+      "pourquoi": [
+        {
+          "faits": [
+            "F-19",
+            "F-23",
+            "F-27",
+            "F-10",
+            "F-11",
+            "F-29"
+          ],
+          "texte": "Pire baisse du portefeuille après la demande : -20,595922 %, contre -14,256677 % avant ; écart après moins avant : -6,339245 points (aggrave). Capacité de perte : 26,0 % ; tolérance : 15,5 %. ",
+          "type": "SCENARIO"
+        },
+        {
+          "faits": [
+            "F-4",
+            "F-12",
+            "F-14",
+            "F-13"
+          ],
+          "texte": "Ce placement représente 20 % de ton épargne. Pour un actif aussi volatil, le seuil retenu pour ton profil est 9,5 %. Tu prévois de retirer de l'argent dans 4 an(s) : si près du besoin, dépasser ce seuil n'est pas cohérent avec ta situation.",
+          "type": "HYPOTHESE"
+        }
+      ],
+      "limites": [
+        {
+          "faits": [],
+          "texte": "Les chiffres décrivent la période 2021-2026. Ils ne prédisent pas l'avenir.",
+          "type": "HYPOTHESE"
+        },
+        {
+          "faits": [],
+          "texte": "Les montants et l'épargne de ce profil sont fictifs (scénario de l'équipe).",
+          "type": "SCENARIO"
+        },
+        {
+          "faits": [],
+          "references": [
+            "donnees-univers",
+            "dossier-adam"
+          ],
+          "texte": "L'univers de 31 actifs a été choisi en 2026 : il ne contient que des placements qui existent encore (biais du survivant). Les pires cas réels peuvent être plus graves.",
+          "type": "HYPOTHESE"
+        },
+        {
+          "faits": [],
+          "references": [
+            "donnees-change"
+          ],
+          "texte": "Le taux USD/CAD de la Banque du Canada est une moyenne indicative de la journée (8 h à 16 h), appliquée ici à des prix de clôture.",
+          "type": "HYPOTHESE"
+        },
+        {
+          "faits": [
+            "F-10"
+          ],
+          "texte": "Recalcul du portefeuille entier (F-23) : pire baisse après -20,595922 %, pour une perte supportable retenue de 15,5 % (F-10). La baisse dépasse ce seuil ; le Gardien applique aussi sa règle d'attribution.",
+          "type": "HYPOTHESE"
+        },
+        {
+          "faits": [
+            "F-32"
+          ],
+          "texte": "Recalcul fait (F-32) : -73,0 % en USD contre -70,9 % en CAD (écart de 2,1 point(s)). On garde la mesure en CAD.",
+          "type": "FAIT"
+        },
+        {
+          "faits": [
+            "F-2"
+          ],
+          "texte": "Limite ajoutée au texte final : la pire chute est celle observée sur 5 ans, pas un maximum.",
+          "type": "HYPOTHESE"
+        }
+      ]
+    },
+    "apres": {
+      "pourquoi": [
+        {
+          "texte": "Pire baisse du portefeuille après la demande : -20,595922 %, contre -14,256677 % avant ; écart après moins avant : -6,339245 points (aggrave). Capacité de perte : 26,0 % ; tolérance : 15,5 %. ",
+          "type": "SCENARIO",
+          "faits": [
+            "F-19",
+            "F-23",
+            "F-27",
+            "F-10",
+            "F-11",
+            "F-29"
+          ]
+        },
+        {
+          "texte": "Ce placement représente 20 % de ton épargne. Pour un actif aussi volatil, le seuil retenu pour ton profil est 9,5 %. Tu prévois de retirer de l'argent dans 4 an(s) : si près du besoin, dépasser ce seuil n'est pas cohérent avec ta situation.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-4",
+            "F-12",
+            "F-14",
+            "F-13"
+          ]
+        },
+        {
+          "texte": "Sur la même fenêtre historique, la pire baisse du portefeuille est de -20,595922 % après la demande, contre -14,256677 % avant : un écart après moins avant de -6,339245 points, soit une baisse plus profonde. Ce scénario ne prédit pas une perte future.",
+          "type": "SCENARIO",
+          "faits": [
+            "F-23",
+            "F-19",
+            "F-27"
+          ]
+        }
+      ],
+      "limites": [
+        {
+          "texte": "Les chiffres décrivent la période 2021-2026. Ils ne prédisent pas l'avenir.",
+          "type": "HYPOTHESE",
+          "faits": []
+        },
+        {
+          "texte": "Les montants et l'épargne de ce profil sont fictifs (scénario de l'équipe).",
+          "type": "SCENARIO",
+          "faits": []
+        },
+        {
+          "texte": "L'univers de 31 actifs a été choisi en 2026 : il ne contient que des placements qui existent encore (biais du survivant). Les pires cas réels peuvent être plus graves.",
+          "type": "HYPOTHESE",
+          "faits": [],
+          "references": [
+            "donnees-univers",
+            "dossier-adam"
+          ]
+        },
+        {
+          "texte": "Le taux USD/CAD de la Banque du Canada est une moyenne indicative de la journée (8 h à 16 h), appliquée ici à des prix de clôture.",
+          "type": "HYPOTHESE",
+          "faits": [],
+          "references": [
+            "donnees-change"
+          ]
+        },
+        {
+          "texte": "La comparaison porte sur cinq ans, incluant 2022. Cette fenêtre récente ne couvre pas toutes les crises et n'attribue aucune probabilité aux pertes futures.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-16"
+          ]
+        },
+        {
+          "texte": "Les deux allocations sont mesurées en CAD, en achat-conservation, sans rééquilibrage. L'allocation après est un scénario rétrospectif, pas une prévision.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-18",
+            "F-31"
+          ]
+        },
+        {
+          "texte": "Comparaison rétrospective, pas prévision ni backtest de sélection historiquement réalisable : univers et prix ajustés acquis en 2026.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-31"
+          ]
+        },
+        {
+          "texte": "Le drawdown est le creux observé sur cette grille; il ne borne pas une perte future et ignore les mouvements entre observations.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-31"
+          ]
+        },
+        {
+          "texte": "La volatilité annualisée suppose des intervalles comparables et une mise à l'échelle en racine du temps; week-ends et jours fériés créent des intervalles inégaux.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-31"
+          ]
+        },
+        {
+          "texte": "Le taux FX est une moyenne indicative, pas un cours exécutable synchronisé avec la clôture des actifs.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-31"
+          ]
+        },
+        {
+          "texte": "L'heure de valorisation est une convention documentaire; les fichiers ne contiennent pas l'historique des heures exactes de publication.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-31"
+          ]
+        },
+        {
+          "texte": "Les fenêtres historiques sont descriptives, choisies à l'avance dans le code; aucune probabilité de scénario futur ne leur est attribuée.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-31"
+          ]
+        },
+        {
+          "texte": "Aucun score ESG, exposition réelle des FNB, valorisation fondamentale ou capacité personnelle de perte n'est déduit de ces données.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-31"
+          ]
+        },
+        {
+          "texte": "Les poids portent sur les instruments. Les compositions des FNB ne sont pas disponibles : les expositions communes ne sont pas mesurées.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-31"
+          ]
+        },
+        {
+          "texte": "Recalcul du portefeuille entier (F-23) : pire baisse après -20,595922 %, pour une perte supportable retenue de 15,5 % (F-10). La baisse dépasse ce seuil ; le Gardien applique aussi sa règle d'attribution.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-10"
+          ]
+        },
+        {
+          "texte": "Recalcul fait (F-32) : -73,0 % en USD contre -70,9 % en CAD (écart de 2,1 point(s)). On garde la mesure en CAD.",
+          "type": "FAIT",
+          "faits": [
+            "F-32"
+          ]
+        },
+        {
+          "texte": "Limite ajoutée au texte final : la pire chute est celle observée sur 5 ans, pas un maximum.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-2"
+          ]
+        }
+      ]
+    }
+  },
+  "amira": {
+    "champs_modifies": [
+      "pourquoi",
+      "limites"
+    ],
+    "objets_metier_identiques": true,
+    "avant": {
+      "pourquoi": [
+        {
+          "faits": [
+            "F-18",
+            "F-22",
+            "F-26",
+            "F-10",
+            "F-11",
+            "F-28"
+          ],
+          "texte": "Pire baisse du portefeuille après la demande : -50,609205 %, contre -46,806061 % avant ; écart après moins avant : -3,803144 points (aggrave). Capacité de perte : 38,2 % ; tolérance : 33,0 %. Le portefeuille actuel dépassait déjà la capacité avant cette demande. ",
+          "type": "SCENARIO"
+        },
+        {
+          "faits": [
+            "F-4",
+            "F-12",
+            "F-13"
+          ],
+          "texte": "Ce placement représente 25 % de ton épargne. Pour un actif aussi volatil, le seuil retenu pour ton profil est 17 %.",
+          "type": "HYPOTHESE"
+        }
+      ],
+      "limites": [
+        {
+          "faits": [],
+          "texte": "Les chiffres décrivent la période 2021-2026. Ils ne prédisent pas l'avenir.",
+          "type": "HYPOTHESE"
+        },
+        {
+          "faits": [],
+          "texte": "Les montants et l'épargne de ce profil sont fictifs (scénario de l'équipe).",
+          "type": "SCENARIO"
+        },
+        {
+          "faits": [],
+          "references": [
+            "donnees-univers",
+            "dossier-adam"
+          ],
+          "texte": "L'univers de 31 actifs a été choisi en 2026 : il ne contient que des placements qui existent encore (biais du survivant). Les pires cas réels peuvent être plus graves.",
+          "type": "HYPOTHESE"
+        },
+        {
+          "faits": [],
+          "references": [
+            "demiguel-2009"
+          ],
+          "texte": "Ton horizon (15 ans) dépasse les 5 ans de données : rien ici ne valide ce qui se passerait sur 15 ans. Les chiffres décrivent le passé récent.",
+          "type": "HYPOTHESE"
+        },
+        {
+          "faits": [],
+          "references": [
+            "donnees-change"
+          ],
+          "texte": "Le taux USD/CAD de la Banque du Canada est une moyenne indicative de la journée (8 h à 16 h), appliquée ici à des prix de clôture.",
+          "type": "HYPOTHESE"
+        },
+        {
+          "faits": [
+            "F-10"
+          ],
+          "texte": "Recalcul du portefeuille entier (F-22) : pire baisse après -50,609205 %, pour une perte supportable retenue de 33,0 % (F-10). La baisse dépasse ce seuil ; le Gardien applique aussi sa règle d'attribution.",
+          "type": "HYPOTHESE"
+        },
+        {
+          "faits": [
+            "F-31"
+          ],
+          "texte": "Recalcul fait (F-31) : -75,9 % en USD contre -74,2 % en CAD (écart de 1,7 point(s)). On garde la mesure en CAD.",
+          "type": "FAIT"
+        },
+        {
+          "faits": [
+            "F-2"
+          ],
+          "texte": "Limite ajoutée au texte final : la pire chute est celle observée sur 5 ans, pas un maximum.",
+          "type": "HYPOTHESE"
+        }
+      ]
+    },
+    "apres": {
+      "pourquoi": [
+        {
+          "texte": "Pire baisse du portefeuille après la demande : -50,609205 %, contre -46,806061 % avant ; écart après moins avant : -3,803144 points (aggrave). Capacité de perte : 38,2 % ; tolérance : 33,0 %. Le portefeuille actuel dépassait déjà la capacité avant cette demande. ",
+          "type": "SCENARIO",
+          "faits": [
+            "F-18",
+            "F-22",
+            "F-26",
+            "F-10",
+            "F-11",
+            "F-28"
+          ]
+        },
+        {
+          "texte": "Ce placement représente 25 % de ton épargne. Pour un actif aussi volatil, le seuil retenu pour ton profil est 17 %.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-4",
+            "F-12",
+            "F-13"
+          ]
+        },
+        {
+          "texte": "Sur la même fenêtre historique, la pire baisse du portefeuille est de -50,609205 % après la demande, contre -46,806061 % avant : un écart après moins avant de -3,803144 points, soit une baisse plus profonde. Ce scénario ne prédit pas une perte future.",
+          "type": "SCENARIO",
+          "faits": [
+            "F-22",
+            "F-18",
+            "F-26"
+          ]
+        }
+      ],
+      "limites": [
+        {
+          "texte": "Les chiffres décrivent la période 2021-2026. Ils ne prédisent pas l'avenir.",
+          "type": "HYPOTHESE",
+          "faits": []
+        },
+        {
+          "texte": "Les montants et l'épargne de ce profil sont fictifs (scénario de l'équipe).",
+          "type": "SCENARIO",
+          "faits": []
+        },
+        {
+          "texte": "L'univers de 31 actifs a été choisi en 2026 : il ne contient que des placements qui existent encore (biais du survivant). Les pires cas réels peuvent être plus graves.",
+          "type": "HYPOTHESE",
+          "faits": [],
+          "references": [
+            "donnees-univers",
+            "dossier-adam"
+          ]
+        },
+        {
+          "texte": "Ton horizon (15 ans) dépasse les 5 ans de données : rien ici ne valide ce qui se passerait sur 15 ans. Les chiffres décrivent le passé récent.",
+          "type": "HYPOTHESE",
+          "faits": [],
+          "references": [
+            "demiguel-2009"
+          ]
+        },
+        {
+          "texte": "Le taux USD/CAD de la Banque du Canada est une moyenne indicative de la journée (8 h à 16 h), appliquée ici à des prix de clôture.",
+          "type": "HYPOTHESE",
+          "faits": [],
+          "references": [
+            "donnees-change"
+          ]
+        },
+        {
+          "texte": "La comparaison porte sur cinq ans, incluant 2022. Cette fenêtre récente ne couvre pas toutes les crises et n'attribue aucune probabilité aux pertes futures.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-15"
+          ]
+        },
+        {
+          "texte": "Les deux allocations sont mesurées en CAD, en achat-conservation, sans rééquilibrage. L'allocation après est un scénario rétrospectif, pas une prévision.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-17",
+            "F-30"
+          ]
+        },
+        {
+          "texte": "Comparaison rétrospective, pas prévision ni backtest de sélection historiquement réalisable : univers et prix ajustés acquis en 2026.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-30"
+          ]
+        },
+        {
+          "texte": "Le drawdown est le creux observé sur cette grille; il ne borne pas une perte future et ignore les mouvements entre observations.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-30"
+          ]
+        },
+        {
+          "texte": "La volatilité annualisée suppose des intervalles comparables et une mise à l'échelle en racine du temps; week-ends et jours fériés créent des intervalles inégaux.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-30"
+          ]
+        },
+        {
+          "texte": "Le taux FX est une moyenne indicative, pas un cours exécutable synchronisé avec la clôture des actifs.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-30"
+          ]
+        },
+        {
+          "texte": "L'heure de valorisation est une convention documentaire; les fichiers ne contiennent pas l'historique des heures exactes de publication.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-30"
+          ]
+        },
+        {
+          "texte": "Les fenêtres historiques sont descriptives, choisies à l'avance dans le code; aucune probabilité de scénario futur ne leur est attribuée.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-30"
+          ]
+        },
+        {
+          "texte": "Aucun score ESG, exposition réelle des FNB, valorisation fondamentale ou capacité personnelle de perte n'est déduit de ces données.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-30"
+          ]
+        },
+        {
+          "texte": "Les poids portent sur les instruments. Les compositions des FNB ne sont pas disponibles : les expositions communes ne sont pas mesurées.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-30"
+          ]
+        },
+        {
+          "texte": "Crypto échantillonnée aux seules séances communes : les creux intrajournaliers et de fin de semaine peuvent être invisibles.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-30"
+          ]
+        },
+        {
+          "texte": "Recalcul du portefeuille entier (F-22) : pire baisse après -50,609205 %, pour une perte supportable retenue de 33,0 % (F-10). La baisse dépasse ce seuil ; le Gardien applique aussi sa règle d'attribution.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-10"
+          ]
+        },
+        {
+          "texte": "Recalcul fait (F-31) : -75,9 % en USD contre -74,2 % en CAD (écart de 1,7 point(s)). On garde la mesure en CAD.",
+          "type": "FAIT",
+          "faits": [
+            "F-31"
+          ]
+        },
+        {
+          "texte": "Limite ajoutée au texte final : la pire chute est celle observée sur 5 ans, pas un maximum.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-2"
+          ]
+        }
+      ]
+    }
+  },
+  "mateo": {
+    "champs_modifies": [
+      "pourquoi",
+      "limites"
+    ],
+    "objets_metier_identiques": true,
+    "avant": {
+      "pourquoi": [
+        {
+          "faits": [
+            "F-1"
+          ],
+          "texte": "Secteur de l'actif : Énergie (Energy). Il fait partie de tes exclusions.",
+          "type": "FAIT"
+        }
+      ],
+      "limites": [
+        {
+          "faits": [],
+          "texte": "Les chiffres décrivent la période 2021-2026. Ils ne prédisent pas l'avenir.",
+          "type": "HYPOTHESE"
+        },
+        {
+          "faits": [],
+          "texte": "Les montants et l'épargne de ce profil sont fictifs (scénario de l'équipe).",
+          "type": "SCENARIO"
+        },
+        {
+          "faits": [],
+          "references": [
+            "donnees-univers",
+            "dossier-adam"
+          ],
+          "texte": "L'univers de 31 actifs a été choisi en 2026 : il ne contient que des placements qui existent encore (biais du survivant). Les pires cas réels peuvent être plus graves.",
+          "type": "HYPOTHESE"
+        },
+        {
+          "faits": [],
+          "references": [
+            "demiguel-2009"
+          ],
+          "texte": "Ton horizon (10 ans) dépasse les 5 ans de données : rien ici ne valide ce qui se passerait sur 10 ans. Les chiffres décrivent le passé récent.",
+          "type": "HYPOTHESE"
+        },
+        {
+          "faits": [],
+          "references": [
+            "yfinance-reparation"
+          ],
+          "texte": "Les prix ajustés de Yahoo peuvent contenir des erreurs d'ajustement, plus fréquentes hors des États-Unis selon les mainteneurs de yfinance.",
+          "type": "HYPOTHESE"
+        },
+        {
+          "faits": [
+            "F-10"
+          ],
+          "texte": "Recalcul du portefeuille entier (F-23) : pire baisse après -12,062254 %, pour une perte supportable retenue de 22,5 % (F-10). La baisse ne dépasse pas ce seuil dans cette simulation.",
+          "type": "HYPOTHESE"
+        },
+        {
+          "faits": [
+            "F-2"
+          ],
+          "texte": "Limite ajoutée au texte final : la pire chute est celle observée sur 5 ans, pas un maximum.",
+          "type": "HYPOTHESE"
+        }
+      ]
+    },
+    "apres": {
+      "pourquoi": [
+        {
+          "texte": "Secteur de l'actif : Énergie (Energy). Il fait partie de tes exclusions.",
+          "type": "FAIT",
+          "faits": [
+            "F-1"
+          ]
+        },
+        {
+          "texte": "Sur la même fenêtre historique, la pire baisse du portefeuille est de -12,062254 % après la demande, contre -13,159563 % avant : un écart après moins avant de 1,097309 points, soit une baisse moins profonde. Ce scénario ne prédit pas une perte future.",
+          "type": "SCENARIO",
+          "faits": [
+            "F-23",
+            "F-19",
+            "F-27"
+          ]
+        }
+      ],
+      "limites": [
+        {
+          "texte": "Les chiffres décrivent la période 2021-2026. Ils ne prédisent pas l'avenir.",
+          "type": "HYPOTHESE",
+          "faits": []
+        },
+        {
+          "texte": "Les montants et l'épargne de ce profil sont fictifs (scénario de l'équipe).",
+          "type": "SCENARIO",
+          "faits": []
+        },
+        {
+          "texte": "L'univers de 31 actifs a été choisi en 2026 : il ne contient que des placements qui existent encore (biais du survivant). Les pires cas réels peuvent être plus graves.",
+          "type": "HYPOTHESE",
+          "faits": [],
+          "references": [
+            "donnees-univers",
+            "dossier-adam"
+          ]
+        },
+        {
+          "texte": "Ton horizon (10 ans) dépasse les 5 ans de données : rien ici ne valide ce qui se passerait sur 10 ans. Les chiffres décrivent le passé récent.",
+          "type": "HYPOTHESE",
+          "faits": [],
+          "references": [
+            "demiguel-2009"
+          ]
+        },
+        {
+          "texte": "Les prix ajustés de Yahoo peuvent contenir des erreurs d'ajustement, plus fréquentes hors des États-Unis selon les mainteneurs de yfinance.",
+          "type": "HYPOTHESE",
+          "faits": [],
+          "references": [
+            "yfinance-reparation"
+          ]
+        },
+        {
+          "texte": "La comparaison porte sur cinq ans, incluant 2022. Cette fenêtre récente ne couvre pas toutes les crises et n'attribue aucune probabilité aux pertes futures.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-16"
+          ]
+        },
+        {
+          "texte": "Les deux allocations sont mesurées en CAD, en achat-conservation, sans rééquilibrage. L'allocation après est un scénario rétrospectif, pas une prévision.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-18",
+            "F-31"
+          ]
+        },
+        {
+          "texte": "Comparaison rétrospective, pas prévision ni backtest de sélection historiquement réalisable : univers et prix ajustés acquis en 2026.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-31"
+          ]
+        },
+        {
+          "texte": "Le drawdown est le creux observé sur cette grille; il ne borne pas une perte future et ignore les mouvements entre observations.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-31"
+          ]
+        },
+        {
+          "texte": "La volatilité annualisée suppose des intervalles comparables et une mise à l'échelle en racine du temps; week-ends et jours fériés créent des intervalles inégaux.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-31"
+          ]
+        },
+        {
+          "texte": "Le taux FX est une moyenne indicative, pas un cours exécutable synchronisé avec la clôture des actifs.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-31"
+          ]
+        },
+        {
+          "texte": "L'heure de valorisation est une convention documentaire; les fichiers ne contiennent pas l'historique des heures exactes de publication.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-31"
+          ]
+        },
+        {
+          "texte": "Les fenêtres historiques sont descriptives, choisies à l'avance dans le code; aucune probabilité de scénario futur ne leur est attribuée.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-31"
+          ]
+        },
+        {
+          "texte": "Aucun score ESG, exposition réelle des FNB, valorisation fondamentale ou capacité personnelle de perte n'est déduit de ces données.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-31"
+          ]
+        },
+        {
+          "texte": "Les poids portent sur les instruments. Les compositions des FNB ne sont pas disponibles : les expositions communes ne sont pas mesurées.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-31"
+          ]
+        },
+        {
+          "texte": "Recalcul du portefeuille entier (F-23) : pire baisse après -12,062254 %, pour une perte supportable retenue de 22,5 % (F-10). La baisse ne dépasse pas ce seuil dans cette simulation.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-10"
+          ]
+        },
+        {
+          "texte": "Limite ajoutée au texte final : la pire chute est celle observée sur 5 ans, pas un maximum.",
+          "type": "HYPOTHESE",
+          "faits": [
+            "F-2"
+          ]
+        }
+      ]
+    }
+  }
+}
