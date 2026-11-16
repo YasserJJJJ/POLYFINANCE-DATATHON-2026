@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Second avis · cinq directions d'interface</title>
+<style>
+  :root { --fond:#f6f5f1; --carte:#fff; --encre:#1b1c1f; --doux:#5c5f66; --filet:#d9d6cd; --accent:#2b4acb; --ok:#1f6b45; --aj:#8a5a00; --ko:#9c2b23; --ind:#55585f; }
+  @media (prefers-color-scheme: dark) { :root { --fond:#141518; --carte:#1d1f23; --encre:#ecebe6; --doux:#a6a8ae; --filet:#33363c; --accent:#8fa6ff; --ok:#6fd0a0; --aj:#e8b85a; --ko:#ff8f85; --ind:#b3b6bd; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--fond); color:var(--encre); font:16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width:1120px; margin:0 auto; padding:28px 16px 64px; }
+  h1 { font-size:clamp(1.6rem, 4vw, 2.3rem); line-height:1.15; margin:0 0 8px; letter-spacing:-.01em; }
+  h2 { font-size:1.15rem; margin:36px 0 12px; }
+  p { margin:0 0 12px; max-width:70ch; }
+  .doux { color:var(--doux); }
+  .bandeau { font-size:.82rem; color:var(--doux); border:1px solid var(--filet); border-radius:8px; padding:8px 12px; margin:0 0 20px; background:var(--carte); }
+  .etat { display:flex; flex-wrap:wrap; gap:8px 14px; align-items:center; background:var(--carte); border:1px solid var(--filet); border-radius:12px; padding:12px 14px; }
+  .etat strong { font-weight:650; }
+  .puce { display:inline-flex; align-items:center; gap:6px; border:1px solid currentColor; border-radius:999px; padding:2px 10px; font-size:.85rem; font-weight:600; }
+  .puce.coherent { color:var(--ok); } .puce.ajustement { color:var(--aj); } .puce.incoherent { color:var(--ko); } .puce.indetermine { color:var(--ind); }
+  button, select { font:inherit; color:inherit; background:var(--carte); border:1px solid var(--filet); border-radius:8px; padding:9px 12px; min-height:44px; cursor:pointer; }
+  button:hover, select:hover { border-color:var(--accent); }
+  :focus-visible { outline:3px solid var(--accent); outline-offset:2px; }
+  .grille { display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:16px; margin-top:16px; }
+  .carte { background:var(--carte); border:1px solid var(--filet); border-radius:14px; overflow:hidden; display:flex; flex-direction:column; }
+  .carte img { width:100%; aspect-ratio:16/10; object-fit:cover; object-position:top; display:block; border-bottom:1px solid var(--filet); background:var(--filet); }
+  .carte .corps { padding:14px 16px 16px; display:flex; flex-direction:column; gap:8px; flex:1; }
+  .carte h3 { margin:0; font-size:1.1rem; }
+  .carte .num { font-variant-numeric:tabular-nums; color:var(--doux); font-weight:600; margin-right:6px; }
+  .carte p { margin:0; font-size:.93rem; }
+  .carte dl { margin:4px 0 0; font-size:.86rem; display:grid; grid-template-columns:auto 1fr; gap:2px 10px; }
+  .carte dt { color:var(--doux); } .carte dd { margin:0; }
+  .ouvrir { margin-top:auto; display:inline-block; text-align:center; text-decoration:none; background:var(--accent); color:#fff; border-radius:8px; padding:11px 14px; font-weight:600; }
+  @media (prefers-color-scheme: dark) { .ouvrir { color:#10131c; } }
+  .table { overflow-x:auto; border:1px solid var(--filet); border-radius:12px; background:var(--carte); }
+  table { border-collapse:collapse; width:100%; min-width:760px; font-size:.9rem; }
+  th, td { text-align:left; vertical-align:top; padding:9px 12px; border-bottom:1px solid var(--filet); }
+  thead th { font-size:.8rem; color:var(--doux); font-weight:600; }
+  tbody tr:last-child td, tbody tr:last-child th { border-bottom:0; }
+  tbody th { font-weight:600; white-space:nowrap; }
+  .parcours { display:grid; gap:6px; padding-left:20px; margin:0; }
+  code { font:0.88em ui-monospace, Menlo, Consolas, monospace; background:color-mix(in srgb, var(--filet) 45%, transparent); padding:1px 5px; border-radius:4px; }
+</style>
+</head>
+<body>
+<main>
+  <p class="bandeau" id="bandeau">Simulation éducative · données de démonstration précalculées par le moteur réel.</p>
+  <h1>Second avis : cinq façons de l'incarner</h1>
+  <p class="doux">Cinq prototypes interactifs sur les mêmes faits. Seule la présentation change. Ils partagent le cas, les paramètres, le niveau de lecture et l'historique : ce que tu modifies dans l'un se retrouve dans les autres.</p>
+
+  <h2>État partagé</h2>
+  <div class="etat" aria-live="polite">
+    <span id="resume"></span>
+    <span id="verdict" class="puce"></span>
+    <label>Situation <select id="cas"></select></label>
+    <label>Lecture <select id="niveau"><option value="essentiel">Essentiel</option><option value="approfondi">Approfondi</option></select></label>
+    <button id="raz" type="button">Revenir à la demande de départ</button>
+  </div>
+
+  <div class="grille" id="grille"></div>
+
+  <h2>Le même parcours dans chacune</h2>
+  <ol class="parcours">
+    <li>Lire la demande de Robert et ce que le produit a compris de son profil.</li>
+    <li>Regarder le travail des rôles, puis le verdict et ses règles.</li>
+    <li>Ouvrir la preuve de la plus forte baisse du portefeuille après la demande.</li>
+    <li>Ramener le montant de 80 000 $ à 38 000 $ : le résultat devient périmé, puis se met à jour.</li>
+    <li>Comparer les deux états, puis revenir à l'état précédent.</li>
+    <li>Passer le retrait à « non précisé » : conclusion conditionnelle et question décisive.</li>
+    <li>Changer de situation : Mateo (une préférence prime sur une mesure), Amira (le portefeuille dépasse déjà la limite).</li>
+  </ol>
+
+  <h2>Ce qui les distingue</h2>
+  <div class="table"><table>
+    <thead><tr><th></th><th>Composition</th><th>Navigation</th><th>Preuve</th><th>Modifier et comparer</th><th>Historique</th><th>Lecteur visé d'abord</th></tr></thead>
+    <tbody>
+      <tr><th>1 Carnet</th><td>Une colonne de lecture et sa marge</td><td>On lit de haut en bas</td><td>Notes de marge</td><td>Correction dans la phrase, édition comparée</td><td>Éditions successives</td><td>Lecteur qui veut comprendre</td></tr>
+      <tr><th>2 Relief</th><td>Une carte et une coupe</td><td>On se déplace dans l'espace</td><td>Fiche de relevé</td><td>Déplacer le repère sur la carte</td><td>Itinéraire balisé</td><td>Lecteur qui explore</td></tr>
+      <tr><th>3 Pupitre</th><td>Volets denses fixes</td><td>Clavier et commandes</td><td>Registre des faits</td><td>Commande, puis différence exacte</td><td>Journal de révisions</td><td>Professionnel</td></tr>
+      <tr><th>4 Fil</th><td>Cartes empilées, une main</td><td>On déroule</td><td>Feuille basse</td><td>Puces « et si », carte « ce qui a changé »</td><td>Le fil lui-même</td><td>Novice, sur téléphone</td></tr>
+      <tr><th>5 Épure</th><td>Deux panneaux miroirs</td><td>Une planche, un cartouche</td><td>Fiche de mesure</td><td>Cotes éditables, rideau avant/après</td><td>Tableau des révisions</td><td>Lecteur qui compare</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Documents</h2>
+  <p>Synthèse, journal des références, comparaison argumentée et plan d'intégration : <code>docs/ui-adam/</code>. Cahier commun : <code>prototypes/ui-adam/BRIEF.md</code>. Les données viennent de <code>outils/generer_fixtures.py</code>, qui appelle le moteur réel hors ligne.</p>
+</main>
+<script src="socle/fixtures.js"></script>
+<script src="socle/socle.js"></script>
+<script>
+  const PROTOS = [
+    { d: '1-carnet', nom: 'Carnet', idee: 'Le dossier comme un texte annoté. On modifie la phrase, la page se corrige.', matiere: 'Papier, serif, encre rouge de correction, demi-teinte' },
+    { d: '2-relief', nom: 'Relief', idee: 'La décision comme un territoire. On déplace sa demande vers la zone acceptable.', matiere: 'Lignes topographiques, paysage monochrome' },
+    { d: '3-pupitre', nom: 'Pupitre', idee: 'Tout le dossier sous les yeux, au clavier, avec des différences exactes.', matiere: 'Monospace, matrice de points, filets ASCII' },
+    { d: '4-fil', nom: 'Fil', idee: 'Une conversation avec ses propres « et si ». Le fil est l’historique.', matiere: 'Dégradés thermiques granuleux, verre cannelé' },
+    { d: '5-epure', nom: 'Épure', idee: 'La comparaison est l’interface : sans et avec la demande, cotées.', matiere: 'Grille de plan, cotes, cartouche' },
+  ];
+  const $ = (id) => document.getElementById(id);
+  function dessiner() {
+    const e = AF.etat(), d = AF.dossier(), v = d.verdict.etat;
+    $('bandeau').textContent = `Simulation éducative · données de démonstration précalculées par le moteur réel le ${AF.meta.genere_le.slice(0, 10)}, commit ${AF.meta.commit} · profils, montants et poids fictifs.`;
+    $('resume').innerHTML = `<strong>${d.profil.nom}</strong> · ${AF.fmt.cad(e.montant)} dans ${d.demande.ticker} · retrait ${AF.fmt.retrait(e.retrait)} · révision ${AF.position() + 1} sur ${AF.historique().length}`;
+    $('verdict').className = 'puce ' + v; $('verdict').textContent = AF.ETATS[v].long;
+    $('cas').innerHTML = AF.cas().map((c) => `<option value="${c}" ${c === e.cas ? 'selected' : ''}>${AF.nomCas(c)}</option>`).join('');
+    $('niveau').value = e.niveau;
+    $('grille').innerHTML = PROTOS.map((p, i) => `<article class="carte"><img src="captures/${p.d}.jpg" alt="Capture du prototype ${p.nom}" loading="lazy" onerror="this.style.display='none'"><div class="corps"><h3><span class="num">${i + 1}</span>${p.nom}</h3><p>${p.idee}</p><dl><dt>Matière</dt><dd>${p.matiere}</dd></dl><a class="ouvrir" href="${AF.lien(p.d + '/index.html')}">Ouvrir ${p.nom} dans cet état</a></div></article>`).join('');
+  }
+  $('cas').addEventListener('change', (ev) => AF.changerCas(ev.target.value));
+  $('niveau').addEventListener('change', (ev) => AF.definirNiveau(ev.target.value));
+  $('raz').addEventListener('click', () => AF.reinitialiser());
+  AF.abonner(dessiner); dessiner();
+</script>
+</body>
+</html>
