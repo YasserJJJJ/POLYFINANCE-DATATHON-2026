@@ -148,6 +148,25 @@ def _regle_capacite(profil: dict, demande: dict, m: dict, f: dict, ev: dict, com
     return Regle("capacite", "Perte supportable", niveau, txt, faits_capacite)
 
 
+QUESTIONS_MANQUANTS = {
+    "horizon": "Dans combien d'années auras-tu besoin de cet argent ?",
+    "épargne totale": "Combien as-tu d'épargne au total, en dollars canadiens ?",
+    "montant": "Combien veux-tu placer ?",
+    "tolérance": "Quel risque es-tu prêt à prendre ? Réponds aux 3 questions « Ton rapport au risque », ou règle la puce « risque ».",
+}
+
+
+def informations_manquantes(profil: dict, demande: dict) -> list[str]:
+    """Informations essentielles absentes : sans elles, le Gardien ne conclut pas (verdict gris)."""
+    ev = evaluer(profil)
+    return [nom for nom, v in [("horizon", profil.get("horizon_ans")), ("épargne totale", profil.get("epargne_totale_cad")),
+                               ("montant", demande.get("montant_cad")), ("tolérance", ev["tolerance"])] if v is None]
+
+
+def questions_manquantes(profil: dict, demande: dict) -> list[str]:
+    return [QUESTIONS_MANQUANTS[nom] for nom in informations_manquantes(profil, demande)]
+
+
 def _regles(profil: dict, demande: dict, m: dict, f: dict | None = None, *, _avec_capacite: bool = True) -> list[Regle]:
     """profil : champs du profil ; demande : ticker, montant_cad ; m : mesures
     calculées ; f : identifiants des faits (pour relier chaque règle à ses preuves)."""
@@ -160,8 +179,7 @@ def _regles(profil: dict, demande: dict, m: dict, f: dict | None = None, *, _ave
     epargne = profil.get("epargne_totale_cad")
     montant = demande.get("montant_cad")
 
-    manquants = [nom for nom, v in [("horizon", profil.get("horizon_ans")), ("épargne totale", epargne),
-                                    ("montant", montant), ("tolérance", ev["tolerance"])] if v is None]
+    manquants = informations_manquantes(profil, demande)
     if any(c["statut"] == "echec" for c in m.get("qualite", [])):
         manquants.append("données de marché fiables")
     if manquants:

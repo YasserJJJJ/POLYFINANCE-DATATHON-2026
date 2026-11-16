@@ -99,7 +99,7 @@ export default function Etape2Verifier({ profil, setProfil, demande, setDemande,
         <p className="surtitre">Voici ce que j'ai compris de toi</p>
         <p className="compris-phrase">
           {profil.nom === 'Toi' ? 'Tu envisages' : `${profil.nom} envisage`} de placer{' '}
-          <strong>{dollars(demande.montant_cad)}</strong> dans <strong>{actif ? `${actif.name} (${actif.ticker})` : '…'}</strong>
+          <strong>{dollars(demande.montant_cad)}</strong> dans <strong>{actif ? `${actif.name} (${actif.ticker})` : 'un placement à trouver dans la liste'}</strong>
           {poids != null && <>, soit <strong>{poids} %</strong> de l'épargne</>}, avec un horizon de{' '}
           <strong>{profil.horizon_ans ?? '…'} an(s)</strong>.
         </p>
@@ -136,9 +136,9 @@ export default function Etape2Verifier({ profil, setProfil, demande, setDemande,
         <div className="carte formulaire">
           <h2>Ta demande</h2>
           <div className="champ">
-            <label htmlFor="ticker">Placement envisagé</label>
+            <label htmlFor="ticker">Placement envisagé <span className="muted petit">(facultatif)</span></label>
             <select id="ticker" value={demande.ticker || ''} onChange={(e) => setDemande((d) => ({ ...d, ticker: e.target.value || null }))}>
-              <option value="">Choisir…</option>
+              <option value="">Au choix : le Gardien teste toute la liste</option>
               {actifs.map((a) => <option key={a.ticker} value={a.ticker}>{a.name} ({a.ticker})</option>)}
             </select>
           </div>
@@ -272,8 +272,8 @@ export default function Etape2Verifier({ profil, setProfil, demande, setDemande,
 
       <div className="actions barre-actions">
         <button type="button" className="bouton discret" onClick={onRetour}>Retour</button>
-        <button type="button" className="bouton principal" onClick={onLancer} disabled={!demande.ticker}>
-          Lancer l'analyse
+        <button type="button" className="bouton principal" onClick={() => onLancer()} disabled={!demande.montant_cad}>
+          {demande.ticker ? "Lancer l'analyse" : 'Juger mon plan sur toute la liste'}
         </button>
       </div>
     </section>

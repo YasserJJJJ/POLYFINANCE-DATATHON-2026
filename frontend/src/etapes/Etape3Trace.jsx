@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { PuceIssue, PucesFaits } from '../composants/Base.jsx'
 import { SourcesCompactes } from '../composants/Sources.jsx'
+import { pourClient } from '../affichage.js'
 import PreuveAppels from '../composants/PreuveAppels.jsx'
 
 export const AGENTS = {
@@ -50,11 +51,11 @@ export default function Etape3Trace({ dossier, direct, onFini, ouvrirFait }) {
             </div>
             <div className="trace-corps">
               <p className="trace-action">{t.action}</p>
-              <p>{t.detail}</p>
+              <p>{pourClient(t.detail)}</p>
               {t.agent === 'Sceptique' && objections.map((o) => (
                 <div key={o.id} className="objection">
-                  <p><span className="mono">{o.id} → {o.cible}</span> {o.texte}</p>
-                  <p className="recalcul">↳ {o.reponse}</p>
+                  <p>{pourClient(o.texte)}</p>
+                  <p className="recalcul">↳ {pourClient(o.reponse)}</p>
                   <PuceIssue issue={o.issue} />
                 </div>
               ))}

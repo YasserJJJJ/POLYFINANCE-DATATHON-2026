@@ -6,6 +6,7 @@ appellent ces fonctions et citent le résultat (voir dossier.Fait).
 from __future__ import annotations
 
 import math
+from functools import lru_cache
 
 import numpy as np
 import pandas as pd
@@ -48,6 +49,7 @@ def rendement_annualise(ticker: str) -> float:
     return round(float((s.iloc[-1] / s.iloc[0]) ** (1 / annees) - 1) * 100, 1)
 
 
+@lru_cache(maxsize=64)   # même durée de vie que serie_cad, dont elle n'est que le rééchantillonnage
 def _hebdo(ticker: str) -> pd.Series:
     return serie_cad(ticker).resample("W-FRI").last().dropna()
 
@@ -61,6 +63,7 @@ def pire_annee_glissante(ticker: str) -> dict:
             "part_periodes_negatives_pct": round(float((r < 0).mean()) * 100, 1)}
 
 
+@lru_cache(maxsize=1024)
 def correlation(t1: str, t2: str) -> float:
     """Corrélation des rendements hebdomadaires (calendriers alignés le vendredi)."""
     a, b = _hebdo(t1).pct_change(), _hebdo(t2).pct_change()

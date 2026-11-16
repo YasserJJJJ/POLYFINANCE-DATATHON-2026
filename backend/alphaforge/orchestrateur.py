@@ -12,7 +12,7 @@ import time
 from collections.abc import Callable
 from dataclasses import asdict
 
-from . import gardien, llm
+from . import gardien, llm, plan_ouvert
 from .agents import analyste, profileur, redacteur, sceptique
 from .donnees import info_actif
 from .dossier import Dossier
@@ -132,6 +132,11 @@ def analyser(profil: dict, demande: dict, sur_etape: Callable[[dict], None] | No
 
     profileur.executer(d)
     publier()
+    if not d.demande.get("ticker") and d.demande.get("montant_cad") is not None:
+        plan_ouvert.executer(d)          # pas de placement choisi : le Gardien juge le plan sur toute la liste
+        publier()
+        d.appels_modele = llm.journal_appels()
+        return d.to_dict()
     if not d.demande.get("ticker") or d.demande.get("montant_cad") is None:
         d.verdict = {"etat": "indetermine", "libelle": gardien.LIBELLES_ETAT["indetermine"],
                      "respectees": 0, "evaluees": 0}
@@ -147,6 +152,8 @@ def analyser(profil: dict, demande: dict, sur_etape: Callable[[dict], None] | No
     m, ids = d.demande["mesures"], d.demande["ids_faits"]
     d.regles = gardien.appliquer_regles(d.profil, d.demande, m, ids)
     d.verdict = gardien.verdict(d.regles)
+    if d.verdict["etat"] == "indetermine":
+        d.questions = [q for q in gardien.questions_manquantes(d.profil, d.demande) if q not in d.questions] + d.questions
     _question_retrait(d, m)
     ticker = d.demande["ticker"]
     d.options = [{"nom": "Ta demande", "ticker": ticker, "montant_cad": d.demande["montant_cad"],
@@ -170,9 +177,13 @@ def analyser(profil: dict, demande: dict, sur_etape: Callable[[dict], None] | No
     if d.verdict["etat"] != "indetermine":
         d.bascule = gardien.grille_bascule(d.profil, d.demande, m)
         _documenter_monotonie(d)
+    if d.verdict["etat"] == "incoherent":
+        plan_ouvert.suggerer(d)
     d.tracer("Gardien", "applique les règles et décide",
              f"{d.verdict['libelle']} ({d.verdict['respectees']}/{d.verdict['evaluees']} règles respectées). "
-             f"Grille de bascule : {len(d.bascule.get('cases', []))} combinaisons recalculées.",
+             f"Grille de bascule : {len(d.bascule.get('cases', []))} combinaisons recalculées."
+             + (f" {len(d.suggestions['placements'])} autre(s) placement(s) de la liste passent tes règles."
+                if d.suggestions else ""),
              [f for r in d.regles for f in r.faits if f], debut)
     publier()
 

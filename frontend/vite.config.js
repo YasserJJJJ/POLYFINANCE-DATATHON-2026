@@ -5,5 +5,5 @@ import react from '@vitejs/plugin-react'
 // En production, VITE_API_URL pointe vers l'API déployée sur AWS.
 export default defineConfig({
   plugins: [react()],
-  server: { port: 5173, proxy: { '/api': 'http://localhost:8000' } },
+  server: { port: 5173, proxy: { '/api': process.env.ALPHAFORGE_API || 'http://localhost:8000' } },
 })

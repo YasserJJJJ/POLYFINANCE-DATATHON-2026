@@ -307,3 +307,92 @@ input[type=range] { width: 100%; accent-color: var(--accent); }
 .depot-lu { display: grid; gap: 6px; }
 .depot-lu .bouton { justify-self: start; }
 .lien { background: none; border: 0; padding: 0; color: var(--accent); text-decoration: underline; cursor: pointer; font: inherit; }
+
+/* Option C : la demande en puces modifiables, le résultat en 3 onglets */
+.barre-demande { display: grid; gap: 10px; margin-bottom: 14px; }
+.puces-demande { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.puce-demande { border: 1px solid var(--trait); background: var(--voile); color: var(--encre); border-radius: 999px;
+  padding: 4px 11px; font-size: 0.82rem; cursor: pointer; }
+.puce-demande:hover, .puce-demande.ouverte { border-color: var(--accent); }
+.puce-demande.vide { border-style: dashed; color: var(--doux); }
+.puce-demande span { color: var(--doux); font-size: 0.75rem; margin-left: 2px; }
+.puce-demande:disabled { opacity: 0.6; cursor: wait; }
+.editeur-puce { display: grid; gap: 8px; max-width: 420px; border: 1px solid var(--accent); border-radius: 10px; padding: 12px;
+  background: var(--surface); }
+.editeur-puce input[type="number"], .editeur-puce select { padding: 6px 8px; border-radius: 7px; border: 1px solid var(--trait);
+  background: var(--voile); }
+.secteurs-editeur { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 12px; font-size: 0.85rem; }
+.relance { color: var(--accent); font-size: 0.85rem; }
+.etape4.en-relance > :not(.barre-demande) { opacity: 0.5; pointer-events: none; transition: opacity .2s; }
+.onglets { display: flex; gap: 4px; border-bottom: 1px solid var(--trait); margin-bottom: 14px; }
+.onglet { background: none; border: 0; border-bottom: 2px solid transparent; padding: 8px 14px; color: var(--doux);
+  font-weight: 600; cursor: pointer; }
+.onglet.actif { color: var(--encre); border-bottom-color: var(--accent); }
+.registre.comparatif td { vertical-align: middle; }
+
+/* Le miroir intégré au verdict : la raison, dite juste après la demande */
+.miroir-integre { border-left: 3px solid var(--t-scen); padding-left: 12px; }
+.miroir-integre .lien { font-weight: 600; }
+.miroir-integre .etiquette { vertical-align: 2px; }
+
+/* Les options sous un titre adapté, dans l'essentiel ; ligne surlignée quand on vient de « d'après les analyses » */
+.bloc-options { display: grid; gap: 12px; margin-top: 8px; }
+.titre-options { font-size: 1.15rem; margin: 0; }
+.registre tr.surligne td { background: var(--accent-doux); }
+
+/* Conversation au-dessus des puces : demande de départ, messages, réponses */
+.conversation { display: grid; gap: 8px; }
+.fil { display: grid; gap: 6px; max-height: 220px; overflow-y: auto; padding-right: 4px; }
+.bulle { margin: 0; padding: 8px 12px; border-radius: 12px; max-width: 85%; font-size: 0.9rem; display: grid; gap: 2px; }
+.bulle .qui { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--doux); }
+.bulle.toi { background: var(--accent-doux); justify-self: end; }
+.bulle.outil { background: var(--voile); justify-self: start; }
+.saisie-message { display: flex; gap: 8px; }
+.saisie-message input { flex: 1; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--trait); background: var(--voile); }
+.visuellement-cache { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Plan ouvert : le choix des placements expliqué au client ; carte persona et son lien « sans placement » */
+.explication-plan { font-size: 0.95rem; margin-bottom: 10px; }
+.persona-bloc { display: grid; gap: 6px; align-content: start; }
+.persona-bloc > .persona { height: 100%; }
+.persona-bloc > .lien { justify-self: center; }
+
+/* Carte du raisonnement : sources → mesures → seuils → règles → verdict, reliés par des traits */
+.carte-raisonnement { position: relative; margin-top: 12px; }
+.liens-raisonnement { position: absolute; inset: 0; pointer-events: none; overflow: visible; }
+.liens-raisonnement path { fill: none; stroke: var(--trait); stroke-width: 1.4; transition: stroke .15s, opacity .15s; }
+.liens-raisonnement path.allume { stroke: var(--accent); stroke-width: 2.4; }
+.liens-raisonnement path.eteint { opacity: 0.25; }
+.colonnes-raisonnement { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 22px; }
+.colonne-raisonnement { display: grid; gap: 8px; align-content: start; }
+.titre-colonne { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--doux); font-weight: 700; }
+.noeud-raisonnement { position: relative; display: grid; gap: 2px; text-align: left; border: 1px solid var(--trait); border-left-width: 3px;
+  background: var(--surface); color: var(--encre); border-radius: 8px; padding: 7px 9px; font: inherit; font-size: 0.8rem; cursor: default;
+  transition: opacity .15s, border-color .15s, background .15s; }
+.noeud-raisonnement[data-fait] { cursor: pointer; }
+.noeud-raisonnement .noeud-valeur { font-family: var(--f-titre); font-size: 0.9rem; }
+.noeud-raisonnement .puce-niveau { justify-self: start; }
+.n-fait { border-left-color: var(--t-fait); } .n-hyp { border-left-color: var(--t-hyp); }
+.n-scen { border-left-color: var(--t-scen); } .n-sit { border-left-color: var(--accent); }
+.n-regle.niveau-rouge { border-left-color: var(--bad); } .n-regle.niveau-orange { border-left-color: var(--warn); }
+.n-regle.niveau-ok { border-left-color: var(--ok); } .n-regle.niveau-gris { border-left-color: var(--grey); }
+.n-verdict { font-family: var(--f-titre); font-weight: 700; font-size: 0.9rem; }
+.n-verdict.etat-incoherent { background: var(--bad-fond); color: var(--bad); border-color: var(--bad); }
+.n-verdict.etat-ajustement { background: var(--warn-fond); color: var(--warn); border-color: var(--warn); }
+.n-verdict.etat-coherent { background: var(--ok-fond); color: var(--ok); border-color: var(--ok); }
+.noeud-raisonnement.allume { background: var(--accent-doux); border-color: var(--accent); }
+.noeud-raisonnement.eteint { opacity: 0.35; }
+.liste-chiffres { margin-top: 16px; }
+.liste-chiffres > summary { cursor: pointer; color: var(--accent); font-weight: 600; margin-bottom: 8px; }
+@media (max-width: 860px) {
+  .colonnes-raisonnement { grid-template-columns: 1fr; }
+  .liens-raisonnement { display: none; }
+}
+
+/* Plan ouvert : la ligne choisie et son graphique */
+.registre.comparatif tr.choisi td { background: var(--accent-doux); }
+.actions-ligne { display: flex; flex-wrap: wrap; gap: 6px; }
+.graphique-plan { display: grid; gap: 8px; margin-top: 14px; }
+.graphique-plan h3 { font-size: 0.95rem; }
+
+.sous-titre-options { font-size: 1rem; margin-top: 10px; }

@@ -1,3 +1,4 @@
+import { pourClient } from '../affichage.js'
 import { useMemo, useState } from 'react'
 import { dollars } from '../api.js'
 import { ETATS, PuceVerdict, Etiquette, PucesFaits } from '../composants/Base.jsx'
@@ -31,7 +32,7 @@ function fiche(d, registre) {
     `# Ma demande, préparée pour mon rendez-vous`,
     '',
     `## Ce que je veux faire`,
-    d.texte.reformulation,
+    pourClient(d.texte.reformulation),
     '',
     `## Ma situation`,
     `- Horizon : ${p.horizon_ans} an(s)`,
@@ -41,21 +42,20 @@ function fiche(d, registre) {
     '',
     `## Le second avis obtenu`,
     `**${v.libelle}** (${v.respectees} règle(s) respectée(s) sur ${v.evaluees})`,
-    ...bloquees.map((r) => `- ${r.libelle} : ${r.explication}`),
+    ...bloquees.map((r) => `- ${r.libelle} : ${pourClient(r.explication)}`),
     '',
     `## Les options comparées`,
-    ...d.options.map((o) => `- ${o.nom} : ${dollars(o.montant_cad)}, horizon ${o.horizon_ans} an(s) → ${ETATS[o.etat].libelle}${o.constat ? `. ${o.constat}` : ''}`),
+    ...d.options.map((o) => `- ${o.nom} : ${dollars(o.montant_cad)}, horizon ${o.horizon_ans} an(s) → ${ETATS[o.etat].libelle}${o.constat ? `. ${pourClient(o.constat)}` : ''}`),
     '',
     ...(c?.disponible ? [
       '## Comparaison historique du portefeuille — demande de départ',
       `Pire baisse : ${nombreMesure(c.avant.pire_chute_pct)} % avant → ${nombreMesure(c.apres.pire_chute_pct)} % après.`,
       `Écart : ${nombreMesure(c.ecarts.pire_chute_pts)} points ; ${SENS_BAISSE[c.ecarts.sens_pire_chute].toLowerCase()}.`,
-      `Preuves : ${c.faits.avant_pire_chute}, ${c.faits.apres_pire_chute}, ${c.faits.ecart_pire_chute}.`,
       `Poids ${c.origine_poids === 'declare' ? 'déclarés' : "supposés égaux (hypothèse d'équipondération)"}.`,
       `Même fenêtre ${c.fenetre.debut} → ${c.fenetre.fin}, en CAD, achat-conservation. Scénario rétrospectif, aucune prévision.`,
       ...c.limites.map((l) => `- ${l}`), '',
     ] : []),
-    ...(d.questions?.length ? ['## Informations à confirmer', ...d.questions.map((q) => `- ${q}`), ''] : []),
+    ...(d.questions?.length ? ['## Informations à confirmer', ...d.questions.map((q) => `- ${pourClient(q)}`), ''] : []),
     '',
     `## Mes questions pour le conseiller`,
     ...questions.map((q) => `- ${q}`),
@@ -105,10 +105,14 @@ export default function Etape5Bascule({ dossier, onRetour, onRecommencer, ouvrir
       <h1>Comment l'avis change-t-il avec le montant ou l'horizon ?</h1>
       <p className="lede">Bouge le montant ou l'horizon : chaque position est un verdict du Gardien, calculé par le code,
         sans IA ({bascule.cases.length} combinaisons calculées pendant l'analyse).</p>
+      {dossier.regles?.some((r) => r.code === 'exclusion' && r.niveau === 'rouge') && (
+        <p className="alerte">Ce placement fait partie de tes exclusions : aucun montant ni aucun horizon ne le rend cohérent, d'où une
+          carte entièrement rouge. Les placements de la liste qui passent tes règles sont proposés au verdict.</p>
+      )}
       {!bascule.cases.length && <p className="manque">Verdict impossible à calculer : complète d'abord les informations manquantes.</p>}
       {monotonie && !monotonie.observee && <div className="carte">
         <h2>Une grille non monotone peut être cohérente</h2>
-        <p><Etiquette type="HYPOTHESE" /> {monotonie.explication}</p>
+        <p><Etiquette type="HYPOTHESE" /> {pourClient(monotonie.explication)}</p>
         {exemple && <p>À {dollars(exemple.montant_bas_cad)} : {ETATS[exemple.etat_bas].libelle} ;
           à {dollars(exemple.montant_haut_cad)} : {ETATS[exemple.etat_haut].libelle},
           pour un horizon de {exemple.horizon_ans} an(s). C'est un constat de règle, pas une invitation à placer davantage.</p>}

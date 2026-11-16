@@ -1541,6 +1541,57 @@
       "type": "FAIT",
       "unite": "%",
       "valeur": -73.0
+    },
+    {
+      "id": "F-33",
+      "libelle": "Pire chute de ZST.TO (BMO Ultra Short-Term Bond ETF)",
+      "lu_ou_calcule": "calcule",
+      "methode": "Même méthode pour tous les placements de la liste, en CAD, 2021-11-12 → 2026-11-12.",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "donnees-univers",
+        "esma-2022",
+        "berg-2022"
+      ],
+      "source": "Yahoo Finance via yfinance, jeu de départ AlphaForge",
+      "type": "FAIT",
+      "unite": "%",
+      "valeur": -0.4
+    },
+    {
+      "id": "F-34",
+      "libelle": "Pire chute de SPY (SPDR S&P 500 ETF Trust)",
+      "lu_ou_calcule": "calcule",
+      "methode": "Même méthode pour tous les placements de la liste, en CAD, 2021-11-12 → 2026-11-12.",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "donnees-univers",
+        "esma-2022",
+        "berg-2022"
+      ],
+      "source": "Yahoo Finance via yfinance, jeu de départ AlphaForge",
+      "type": "FAIT",
+      "unite": "%",
+      "valeur": -22.2
+    },
+    {
+      "id": "F-35",
+      "libelle": "Pire chute de GLD (SPDR Gold Shares)",
+      "lu_ou_calcule": "calcule",
+      "methode": "Même méthode pour tous les placements de la liste, en CAD, 2021-11-12 → 2026-11-12.",
+      "references": [
+        "donnees-prix",
+        "donnees-change",
+        "donnees-univers",
+        "esma-2022",
+        "berg-2022"
+      ],
+      "source": "Yahoo Finance via yfinance, jeu de départ AlphaForge",
+      "type": "FAIT",
+      "unite": "%",
+      "valeur": -26.0
     }
   ],
   "objections": [
@@ -1807,6 +1858,49 @@
       "type": "HYPOTHESE"
     }
   ],
+  "suggestions": {
+    "critere": "Un placement par famille, en partant de la pire chute observée la plus faible. Aucun classement au rendement passé, qui serait lu comme une prévision.",
+    "evalues": 29,
+    "passent": 6,
+    "placements": [
+      {
+        "a_ajuster": [],
+        "etat": "coherent",
+        "faits": [
+          "F-33"
+        ],
+        "famille": "Obligations",
+        "nom": "BMO Ultra Short-Term Bond ETF",
+        "pire_chute_pct": -0.4,
+        "ticker": "ZST.TO",
+        "volatilite_pct": 0.6
+      },
+      {
+        "a_ajuster": [],
+        "etat": "coherent",
+        "faits": [
+          "F-34"
+        ],
+        "famille": "Marché large (FNB d'actions)",
+        "nom": "SPDR S&P 500 ETF Trust",
+        "pire_chute_pct": -22.2,
+        "ticker": "SPY",
+        "volatilite_pct": 16.6
+      },
+      {
+        "a_ajuster": [],
+        "etat": "coherent",
+        "faits": [
+          "F-35"
+        ],
+        "famille": "Or",
+        "nom": "SPDR Gold Shares",
+        "pire_chute_pct": -26.0,
+        "ticker": "GLD",
+        "volatilite_pct": 18.5
+      }
+    ]
+  },
   "texte": {
     "avertissement": "Simulation éducative. Ceci n'est pas un conseil financier personnalisé.",
     "ce_qui_changerait": [
@@ -2077,7 +2171,7 @@
     {
       "action": "applique les règles et décide",
       "agent": "Gardien",
-      "detail": "Incohérent avec ta situation (5/7 règles respectées). Grille de bascule : 160 combinaisons recalculées.",
+      "detail": "Incohérent avec ta situation (5/7 règles respectées). Grille de bascule : 160 combinaisons recalculées. 3 autre(s) placement(s) de la liste passent tes règles.",
       "duree_ms": 0,
       "faits": [
         "F-19",

@@ -10,7 +10,7 @@ const PERSONAS_RESUME = {
   robert: { age: 59, risque: 'Risque faible à modéré', horizon: '3 à 5 ans', teste: 'Une demande médiatisée face à sa retraite proche' },
 }
 
-export default function Etape1Mots({ personas, onPersona, onDemarrer }) {
+export default function Etape1Mots({ personas, onPersona, onPersonaSansPlacement, onDemarrer }) {
   const [texte, setTexte] = useState('')
   const [fichier, setFichier] = useState(null)
   const [erreurFichier, setErreurFichier] = useState('')
@@ -86,7 +86,8 @@ export default function Etape1Mots({ personas, onPersona, onDemarrer }) {
         {personas ? Object.entries(personas).map(([cle, p]) => {
           const r = PERSONAS_RESUME[cle] || {}
           return (
-            <button key={cle} type="button" className="carte persona" onClick={() => onPersona(cle)}>
+            <div key={cle} className="persona-bloc">
+            <button type="button" className="carte persona" onClick={() => onPersona(cle)}>
               <span className="persona-tete">
                 <span className="avatar" aria-hidden="true">{p.profil.nom[0]}</span>
                 <span>
@@ -102,6 +103,12 @@ export default function Etape1Mots({ personas, onPersona, onDemarrer }) {
               <span className="persona-teste">{r.teste}</span>
               <span className="muted petit">Épargne fictive : {dollars(p.profil.epargne_totale_cad)}</span>
             </button>
+            {onPersonaSansPlacement && (
+              <button type="button" className="lien petit" onClick={() => onPersonaSansPlacement(cle)}>
+                Même situation, sans placement choisi
+              </button>
+            )}
+            </div>
           )
         }) : <p className="muted">Chargement des profils…</p>}
       </div>
