@@ -125,13 +125,14 @@ def test_anti_generique_texte_pas_un_gabarit_dont_seuls_les_chiffres_changent():
         assert difflib.SequenceMatcher(None, textes[a], textes[b]).ratio() < 0.9, (a, b)
 
 
-# 19. Mateo : l'alternative proposée n'est jamais dans un secteur exclu, et améliore le verdict.
-def test_alternative_respecte_les_exclusions():
+# 19. Mateo : les placements suggérés ne sont jamais dans un secteur exclu, et améliorent le verdict.
+def test_suggestions_respectent_les_exclusions():
     d = _run("mateo")
-    alt = next(o for o in d["options"] if o["nom"].startswith("Alternative"))
     from alphaforge.donnees import info_actif
-    assert "energy" not in str(info_actif(alt["ticker"])["sector"]).lower()
-    assert RANG[alt["etat"]] < RANG[d["verdict"]["etat"]]
+    assert d["suggestions"]["placements"]
+    for pl in d["suggestions"]["placements"]:
+        assert "energy" not in str(info_actif(pl["ticker"])["sector"]).lower()
+        assert RANG[pl["etat"]] < RANG[d["verdict"]["etat"]]
 
 
 # 20. Le Gardien seul décide : le verdict ne dépend que des règles, recalculées en code.

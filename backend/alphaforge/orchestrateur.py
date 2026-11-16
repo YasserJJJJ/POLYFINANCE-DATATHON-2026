@@ -21,30 +21,6 @@ from .profil import symboles_portefeuille
 from .sources import references_de
 
 
-# Placements larges essayés, dans l'ordre, quand une exclusion bloque la demande.
-CANDIDATS_ALTERNATIVE = ["ESGV", "XIU.TO", "XBB.TO", "FTS.TO"]
-
-
-def _alternative(d: Dossier) -> dict | None:
-    """Premier placement large, hors secteurs exclus, que le Gardien juge acceptable au même montant."""
-    exclusions = gardien.exclusions_normalisees(d.profil)
-    for t in CANDIDATS_ALTERNATIVE:
-        info = info_actif(t)
-        if t == d.demande["ticker"] or any(e in str(info["sector"]).lower() for e in exclusions):
-            continue
-        m = analyste.mesures_actif(t, symboles_portefeuille(d.profil.get("portefeuille_actuel")))
-        etat = gardien.verdict(gardien.appliquer_regles(d.profil, {**d.demande, "ticker": t}, m))["etat"]
-        if etat in ("coherent", "ajustement"):
-            f = d.ajouter_fait(f"Pire chute de {t} ({info['name']})", m["pire_chute_pct"], "%", "FAIT",
-                               "Yahoo Finance via yfinance, jeu de départ AlphaForge",
-                               "Même méthode que pour la demande, en CAD, 2021-11-12 → 2026-11-12.",
-                               references=references_de("alternative"))
-            return {"nom": "Alternative compatible avec tes exclusions de secteur", "ticker": t, "libelle_actif": info["name"],
-                    "montant_cad": d.demande["montant_cad"], "horizon_ans": d.profil.get("horizon_ans"),
-                    "etat": etat, "faits": [f.id]}
-    return None
-
-
 def _placement_large(d: Dossier, m: dict) -> dict | None:
     """Le même montant dans le marché canadien large, jugé par le Gardien : une règle simple ferait-elle aussi bien ?"""
     ref = analyste.REFERENCE
@@ -167,18 +143,18 @@ def analyser(profil: dict, demande: dict, sur_etape: Callable[[dict], None] | No
                               **{k: aj[k] for k in ("sens", "constat") if k in aj},
                               "montant_cad": aj["changement"].get("montant_cad", d.demande["montant_cad"]),
                               "horizon_ans": aj["changement"].get("horizon_ans", d.profil.get("horizon_ans"))})
-    alt = _alternative(d) if exclusion else None
-    if alt:
-        d.options.append(alt)          # l'alternative est déjà un placement large compatible avec les exclusions
-    else:
+    # Une seule règle de choix : après un « incohérent », les placements de la liste qui passent les règles
+    # (pire chute la plus faible, familles différentes, hors exclusions). Le placement large ne sert de point
+    # de comparaison que s'il n'y a pas de suggestion.
+    if d.verdict["etat"] == "incoherent":
+        plan_ouvert.suggerer(d)
+    if not d.suggestions:
         large = _placement_large(d, m)
         if large:
             d.options.append(large)
     if d.verdict["etat"] != "indetermine":
         d.bascule = gardien.grille_bascule(d.profil, d.demande, m)
         _documenter_monotonie(d)
-    if d.verdict["etat"] == "incoherent":
-        plan_ouvert.suggerer(d)
     d.tracer("Gardien", "applique les règles et décide",
              f"{d.verdict['libelle']} ({d.verdict['respectees']}/{d.verdict['evaluees']} règles respectées). "
              f"Grille de bascule : {len(d.bascule.get('cases', []))} combinaisons recalculées."

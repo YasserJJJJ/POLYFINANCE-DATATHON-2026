@@ -102,10 +102,9 @@ def test_placement_detenu_inconnu_ignore_sans_bloquer_l_analyse():
 
 
 # --- Textes fidèles : alternative, secteur, effet de mode ---
-def test_alternative_ne_pretend_pas_respecter_des_valeurs_esg_non_mesurees():
-    d = _run("mateo")
-    alt = next(o for o in d["options"] if o["nom"].startswith("Alternative"))
-    assert "valeurs" not in alt["nom"] and "secteur" in alt["nom"]
+def test_les_suggestions_ne_pretendent_pas_respecter_des_valeurs_esg_non_mesurees():
+    textes = " ".join(ph["texte"] for ph in _run("mateo")["texte"]["ce_qui_changerait"])
+    assert "valeurs" not in textes and "passent tes règles" in textes
 
 
 def test_secteur_affiche_en_francais():
@@ -121,7 +120,7 @@ def test_effet_de_mode_ne_veux_pas_rater_le_train():
 
 
 def test_le_placement_large_est_juge_par_le_gardien_et_cite_sa_pire_chute():
-    d = _run("robert")
+    d = _run("robert", {"retrait_prevu_ans": None})       # « ajustement » : pas de suggestions, le placement large compare
     large = next(o for o in d["options"] if o["nom"] == "Placement large, même montant")
     assert large["ticker"] == "XIU.TO" and large["montant_cad"] == d["demande"]["montant_cad"]
     assert large["etat"] in RANG and large["faits"]
@@ -130,15 +129,17 @@ def test_le_placement_large_est_juge_par_le_gardien_et_cite_sa_pire_chute():
     assert "Ne rien changer" not in {o["nom"] for o in d["options"]}
 
 
-def test_pas_de_placement_large_quand_on_demande_deja_le_marche_large_ou_qu_une_alternative_existe():
+def test_une_seule_liste_apres_un_incoherent_et_pas_de_placement_large_en_double():
     assert all(o["nom"] != "Placement large, même montant"
-               for o in _run("robert", demande={"ticker": "XIU.TO", "texte": ""})["options"])
-    noms = [o["nom"] for o in _run("mateo")["options"]]
-    assert "Alternative compatible avec tes exclusions de secteur" in noms and "Placement large, même montant" not in noms
+               for o in _run("robert", {"retrait_prevu_ans": None}, {"ticker": "XIU.TO", "texte": ""})["options"])
+    d = _run("mateo")
+    noms = [o["nom"] for o in d["options"]]
+    assert not any(n.startswith("Alternative") for n in noms) and "Placement large, même montant" not in noms
+    assert d["suggestions"]["placements"]
 
 
 def test_le_placement_large_n_est_pas_presente_comme_une_alternative_aux_exclusions():
     textes = " ".join(ph["texte"] for ph in _run("robert")["texte"]["ce_qui_changerait"])
     assert "exclusions" not in textes
     textes = " ".join(ph["texte"] for ph in _run("mateo")["texte"]["ce_qui_changerait"])
-    assert "compatible avec tes exclusions" in textes
+    assert "passent tes règles" in textes

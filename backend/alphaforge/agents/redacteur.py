@@ -157,10 +157,11 @@ def _modele_de_phrases(d: Dossier) -> dict:
             morceaux.append(f"allonger l'horizon à {ch['horizon_ans']} ans")
         changerait.append(_phrase(aj.get("constat") or
                                   ("Ce qui changerait l'avis : " + " et ".join(morceaux) + "."), "SCENARIO"))
-    alt = next((o for o in d.options if o.get("nom", "").startswith("Alternative")), None)
-    if alt:
-        changerait.append(_phrase(f"Une option compatible avec tes exclusions existe : {alt['ticker']} "
-                                  f"({alt.get('libelle_actif', '')}), même montant.", "SCENARIO", alt.get("faits")))
+    suggeres = (d.suggestions or {}).get("placements") or []
+    if suggeres:
+        changerait.append(_phrase("Placements de la liste qui passent tes règles, au même montant : "
+                                  + ", ".join(pl["ticker"] for pl in suggeres) + ".", "SCENARIO",
+                                  [pl["faits"][0] for pl in suggeres]))
     return {"reformulation": reformulation, "miroir": miroir, "pourquoi": pourquoi, "ce_qui_changerait": changerait}
 
 

@@ -56,11 +56,11 @@ def test_pire_chute_negative_et_dates_ordonnees():
     assert pc["date_sommet"] < pc["date_creux"]
 
 
-def test_mateo_recoit_une_alternative_compatible_avec_ses_valeurs():
+def test_mateo_recoit_des_placements_compatibles_avec_ses_exclusions():
     d = _run("mateo")
-    alt = [o for o in d["options"] if o["nom"].startswith("Alternative")]
-    assert alt and alt[0]["ticker"] != "ENB.TO"
-    assert alt[0]["etat"] in ("coherent", "ajustement")
+    suggeres = d["suggestions"]["placements"]
+    assert suggeres and all(pl["ticker"] != "ENB.TO" for pl in suggeres)
+    assert all(pl["etat"] in ("coherent", "ajustement") for pl in suggeres)
 
 
 def test_garde_fou_refuse_un_nombre_invente_et_un_conseil():

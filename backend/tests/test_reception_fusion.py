@@ -34,7 +34,7 @@ def test_01_robert_perte_appariee_et_options():
     c = d["comparaison"]
     r = next(r for r in d["regles"] if r["code"] == "capacite")
     assert {c["faits"]["apres_pire_chute"], c["faits"]["avant_pire_chute"]} <= set(r["faits"])
-    assert {"Version ajustée", "Placement large, même montant"} <= {o["nom"] for o in d["options"]}
+    assert "Version ajustée" in {o["nom"] for o in d["options"]} and d["suggestions"]["placements"]
     ph = next(p for p in d["texte"]["pourquoi"] if "Sur la même fenêtre historique" in p["texte"])
     assert c["faits"]["ecart_pire_chute"] in ph["faits"] and "plus profonde" in ph["texte"]
 
@@ -54,7 +54,7 @@ def test_03_mateo_preference_prime_sur_ecart_favorable():
     assert d["verdict"]["etat"] == "incoherent"
     assert next(r for r in d["regles"] if r["code"] == "exclusion")["niveau"] == "rouge"
     assert d["comparaison"]["ecarts"]["sens_pire_chute"] == "ameliore"
-    assert any(o["nom"].startswith("Alternative compatible") for o in d["options"])
+    assert d["suggestions"]["placements"] and all(pl["ticker"] != "ENB.TO" for pl in d["suggestions"]["placements"])
     assert any("moins profonde" in p["texte"] for p in d["texte"]["pourquoi"])
 
 
