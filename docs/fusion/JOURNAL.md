@@ -25,3 +25,24 @@
 - Kit copié avec manifeste ; seule métadonnée Finder `.DS_Store` omise.
 - Robert, Amira et Mateo figés avant les changements : incohérent / ajustement / incohérent.
 - Révision du raccordement K1 autorisée par le porteur ; voir `REVISIONS.md`.
+
+## Étape 6 — contrats
+
+- Commit `d2b893e2b9b1e3b489366a11c687957c0bd88bc9` : références enregistrées avant changements.
+- Commit `b46fde2043913c4e3bf2f458ac0f04653eb1ab39` : contrats et seul pont de lecture K1 autorisé.
+- 30 tests ciblés réussis (références + contrats) ; test Node du pont réussi.
+- Aucun champ comparatif rempli ; aucun appel réel ajouté.
+
+## Étape 7 — qualification
+
+- Commit `bce87e5250faf737eace1bfd0cbd36b0b6c9923d` : trois défauts corrigés dans le Gardien et l'API ; champs numériques normalisés à la frontière HTTP.
+- 249 tests Python réussis, construction Vite réussie, 1 test Node réussi.
+- Contrôles HTTP réels en local : résultats attendus pour les personas, la demande impossible, les types d'entrée et l'actif inconnu ; serveur local arrêté.
+- Dossiers complets inchangés hors durées et trois champs nouveaux ; empreintes avant/après identiques.
+- Archives originales, kit et import B inchangés ; 259 fichiers et blobs Git de A identiques à l'archive.
+
+## Étape 8 — clôture
+
+- Preuves et compte rendu consolidés dans `docs/fusion/preuves/tranche-1/` et `COMPTE-RENDU.md`.
+- Le commit de clôture de ce journal sera étiqueté `fusion/t1`, puis poussé sans force vers `origin/fusion-corrections-deploiement`. La réponse finale donne le SHA vérifié sur le distant.
+- Aucune ressource AWS créée et aucun déploiement.

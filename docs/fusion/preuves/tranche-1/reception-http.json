@@ -1,0 +1,62 @@
+[
+  {
+    "cas": "robert",
+    "http": 200,
+    "verdict": "incoherent",
+    "duree_ms": 70.65
+  },
+  {
+    "cas": "amira",
+    "http": 200,
+    "verdict": "ajustement",
+    "duree_ms": 44.48
+  },
+  {
+    "cas": "mateo",
+    "http": 200,
+    "verdict": "incoherent",
+    "duree_ms": 37.14
+  },
+  {
+    "cas": "demande impossible",
+    "http": 200,
+    "verdict": "indetermine",
+    "detail": "Le montant dépasse l'épargne totale."
+  },
+  {
+    "cas": "chaînes numériques",
+    "http": 200,
+    "verdict": "incoherent",
+    "detail": null
+  },
+  {
+    "cas": "montant non numérique",
+    "http": 200,
+    "verdict": "indetermine",
+    "detail": "Il faut un montant positif."
+  },
+  {
+    "cas": "horizon non numérique",
+    "http": 200,
+    "verdict": "indetermine",
+    "detail": "Il faut un horizon d'au moins 1 an."
+  },
+  {
+    "cas": "actif hors univers",
+    "http": 422,
+    "verdict": null,
+    "detail": "L'actif demandé ne fait pas partie des 31 actifs du jeu de départ."
+  },
+  {
+    "cas": "exclusion en chaîne",
+    "http": 200,
+    "verdict": "incoherent"
+  },
+  {
+    "cas": "actif hors univers dans le flux",
+    "http": 200,
+    "type": "erreur",
+    "statut": 422,
+    "detail": "L'actif demandé ne fait pas partie des 31 actifs du jeu de départ."
+  }
+]

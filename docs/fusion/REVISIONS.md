@@ -39,3 +39,18 @@ modifie pas et ne change aucune formule.
   seul marqueur conformément à « sans data/raw » ; 259 fichiers préservés.
 - `npm install` a supprimé des métadonnées `libc` du verrou ; restauration du
   verrou de C, sans changement des dépendances installées.
+
+## Espaces des références A — conservation conforme au mandat
+
+Commande : `git diff --cached --check`. Sortie : alertes « trailing whitespace »
+et « new blank line at EOF » dans des fichiers originaux de A ; liste complète
+dans `preuves/tranche-1/espaces-originaux-A.log`.
+
+1. Conserver les octets et appliquer le contrôle des espaces au code neuf :
+   coût nul sur le produit, identité des 259 empreintes et blobs vérifiée. **Retenu**,
+   conformément à l'obligation de préserver les références.
+2. Nettoyer les espaces des références : modifierait leurs empreintes et
+   exigerait une révision de la règle de conservation ; non retenu.
+
+Aucun composant n'est remplacé. Ces alertes de mise en forme ne sont pas des
+échecs des tests du produit ; les originaux restent intacts.

@@ -1,0 +1,10 @@
+$ git diff --exit-code fusion/ref-avant -- implementations/codex
+code_retour=0
+
+$ git diff --exit-code fusion/ref-C -- backend/requirements.txt frontend/package.json frontend/package-lock.json backend/alphaforge/calculs.py backend/alphaforge/donnees.py infra data
+code_retour=0
+
+$ git diff --check
+code_retour=0
+
+Tests originaux de C : aucun fichier modifié.
