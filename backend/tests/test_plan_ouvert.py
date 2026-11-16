@@ -58,3 +58,12 @@ def test_chaque_placement_propose_renvoie_a_un_fait_du_registre():
     d = _ouvert("amira")
     ids = {f["id"] for f in d["faits"]}
     assert all(p["faits"] and p["faits"][0] in ids for p in d["plan"]["placements"])
+
+
+@pytest.mark.parametrize("ticker", [None, "XIU.TO"])
+def test_sans_tolerance_on_demande_le_risque_jamais_un_placement(ticker):
+    p = {**PERSONAS["robert"]["profil"], "tolerance": None, "reponses_tolerance": {}}
+    d = analyser(p, {"ticker": ticker, "montant_cad": 10000, "texte": ""})
+    assert d["verdict"]["etat"] == "indetermine"
+    assert any("risque es-tu prêt à prendre" in q for q in d["questions"])
+    assert not any("placement as-tu en tête" in q for q in d["questions"])

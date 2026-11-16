@@ -80,7 +80,11 @@ const CHAMPS = [
     lire: (p) => p.evaluation?.tolerance ?? p.tolerance,
     // Le score saisi ici remplace les réponses au questionnaire, sinon elles resteraient prioritaires.
     ecrire: (p, d, v) => ({ profil: { ...p, tolerance: v, reponses_tolerance: {} }, demande: d }),
-    puce: (p) => `risque ${Math.round(p.evaluation?.tolerance ?? p.tolerance ?? 0)} / 100` },
+    puce: (p) => {
+      const t = p.evaluation?.tolerance ?? p.tolerance
+      return t == null ? 'risque : à préciser' : `risque ${Math.round(t)} / 100`
+    },
+    vide: (p) => (p.evaluation?.tolerance ?? p.tolerance) == null },
 ]
 
 // La conversation garde la demande de départ ; un nouveau message change la demande (et relance l'analyse)

@@ -151,6 +151,10 @@ export default function Etape4Verdict({ dossier, ouvrirFait, onBascule, onModifi
           <h2>{verdict.etat === 'indetermine' ? "Ce qu'il me faut pour conclure" : 'La question qui pourrait changer cet avis'}</h2>
           <ul>{dossier.questions.map((q) => <li key={q}><strong>{pourClient(q)}</strong>
             <PucesFaits ids={q.match(/F-\d+/g) || []} ouvrir={ouvrirFait} /></li>)}</ul>
+          {verdict.etat === 'indetermine' && (
+            <div className="actions"><button type="button" className="bouton principal" onClick={onModifier}>Compléter ma demande</button>
+              <span className="muted petit">ou modifie la puce correspondante, en haut de la page.</span></div>
+          )}
         </div>
       )}
 

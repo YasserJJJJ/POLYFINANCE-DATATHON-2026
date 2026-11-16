@@ -152,6 +152,8 @@ def analyser(profil: dict, demande: dict, sur_etape: Callable[[dict], None] | No
     m, ids = d.demande["mesures"], d.demande["ids_faits"]
     d.regles = gardien.appliquer_regles(d.profil, d.demande, m, ids)
     d.verdict = gardien.verdict(d.regles)
+    if d.verdict["etat"] == "indetermine":
+        d.questions = [q for q in gardien.questions_manquantes(d.profil, d.demande) if q not in d.questions] + d.questions
     _question_retrait(d, m)
     ticker = d.demande["ticker"]
     d.options = [{"nom": "Ta demande", "ticker": ticker, "montant_cad": d.demande["montant_cad"],
