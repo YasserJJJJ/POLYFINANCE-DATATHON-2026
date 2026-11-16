@@ -1,0 +1,10 @@
+{"gabarit_restitue": true, "guardrail_bloque": false}
+[{"agent": "Rédacteur", "modele": "global.anthropic.claude-sonnet-5", "request_id": "d4ed3314-9609-49fa-8ee2-ff715ab69294", "stop_reason": "erreur:ValidationException", "jetons_entree": null, "jetons_sortie": null, "latence_ms": 5730, "garde_fou": "configure"}]
+Traceback (most recent call last):
+  File "/Users/vpro/Documents/ChatGPT/POLYFINANCE-fusion-aws/infra/verifier_guardrail.py", line 56, in <module>
+    main()
+    ~~~~^^
+  File "/Users/vpro/Documents/ChatGPT/POLYFINANCE-fusion-aws/infra/verifier_guardrail.py", line 51, in main
+    assert resultat["guardrail_bloque"], "Pas de blocage Bedrock observé"
+           ~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: Pas de blocage Bedrock observé

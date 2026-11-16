@@ -1,0 +1,57 @@
+{
+  "name": "alphaforge-garde-fou",
+  "description": "AlphaForge : refuse le conseil d'achat ou de vente et vérifie l'ancrage du texte sur le dossier.",
+  "topicPolicyConfig": {
+    "topicsConfig": [
+      {
+        "name": "conseil-achat-vente",
+        "definition": "Recommander d'acheter, de vendre ou de conserver un placement précis, ou promettre un rendement, à une personne donnée.",
+        "examples": [
+          "Je te recommande d'acheter Tesla.",
+          "Achète du bitcoin maintenant.",
+          "Vends ce titre avant qu'il baisse.",
+          "Ce placement est sans risque, fonce."
+        ],
+        "type": "DENY"
+      }
+    ]
+  },
+  "wordPolicyConfig": {
+    "wordsConfig": [
+      {
+        "text": "achète maintenant"
+      },
+      {
+        "text": "je te recommande"
+      },
+      {
+        "text": "je recommande"
+      },
+      {
+        "text": "garanti"
+      },
+      {
+        "text": "sans risque"
+      },
+      {
+        "text": "fonce"
+      }
+    ]
+  },
+  "contextualGroundingPolicyConfig": {
+    "filtersConfig": [
+      {
+        "type": "GROUNDING",
+        "threshold": 0.7
+      },
+      {
+        "type": "RELEVANCE",
+        "threshold": 0.5
+      }
+    ]
+  },
+  "blockedInputMessaging": "Cette demande ne peut pas être traitée par le second avis.",
+  "blockedOutputsMessaging": "Réponse bloquée par le garde-fou : le texte du second avis est rédigé par le code."
+}
+
+Rien n'a été créé (--verifier).

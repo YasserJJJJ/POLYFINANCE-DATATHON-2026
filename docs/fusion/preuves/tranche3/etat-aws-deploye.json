@@ -1,0 +1,153 @@
+{
+  "amplify_jobs": {
+    "jobSummaries": [
+      {
+        "jobArn": "arn:aws:amplify:us-east-1:471112821226:apps/d1d3b8g2y5hkdd/branches/main/jobs/0000000001",
+        "jobId": "1",
+        "startTime": "2026-11-15 20:27:16.642000-05:00",
+        "status": "SUCCEED",
+        "endTime": "2026-11-15 20:27:18.557000-05:00"
+      }
+    ]
+  },
+  "s3_prive": {
+    "PublicAccessBlockConfiguration": {
+      "BlockPublicAcls": true,
+      "IgnorePublicAcls": true,
+      "BlockPublicPolicy": true,
+      "RestrictPublicBuckets": true
+    }
+  },
+  "iam_execution": {
+    "RoleName": "alphaforge-lambda",
+    "PolicyName": "alphaforge-acces",
+    "PolicyDocument": {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Action": "s3:ListBucket",
+          "Resource": "arn:aws:s3:::alphaforge-471112821226-us-east-1",
+          "Condition": {
+            "StringLike": {
+              "s3:prefix": [
+                "data/*"
+              ]
+            }
+          }
+        },
+        {
+          "Effect": "Allow",
+          "Action": "s3:GetObject",
+          "Resource": "arn:aws:s3:::alphaforge-471112821226-us-east-1/data/*"
+        },
+        {
+          "Effect": "Allow",
+          "Action": "s3:PutObject",
+          "Resource": "arn:aws:s3:::alphaforge-471112821226-us-east-1/dossiers/*"
+        },
+        {
+          "Effect": "Allow",
+          "Action": [
+            "bedrock:InvokeModel",
+            "bedrock:InvokeModelWithResponseStream"
+          ],
+          "Resource": [
+            "arn:aws:bedrock:::foundation-model/amazon.nova-2-lite-v1:0",
+            "arn:aws:bedrock:::foundation-model/anthropic.claude-sonnet-5",
+            "arn:aws:bedrock:us-east-1:471112821226:inference-profile/global.amazon.nova-2-lite-v1:0",
+            "arn:aws:bedrock:us-east-1:471112821226:inference-profile/global.anthropic.claude-sonnet-5",
+            "arn:aws:bedrock:us-east-1::foundation-model/amazon.nova-2-lite-v1:0",
+            "arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-sonnet-5"
+          ]
+        },
+        {
+          "Effect": "Allow",
+          "Action": "bedrock:ApplyGuardrail",
+          "Resource": "arn:aws:bedrock:us-east-1:471112821226:guardrail/xj89p36uyw64"
+        }
+      ]
+    }
+  },
+  "lambda_url": {
+    "FunctionUrl": "https://ldk3ad4p3grqn3ppbcosvznivm0plyck.lambda-url.us-east-1.on.aws/",
+    "FunctionArn": "arn:aws:lambda:us-east-1:471112821226:function:alphaforge-api",
+    "AuthType": "NONE",
+    "CreationTime": "2026-11-16T01:27:09.182088801Z",
+    "LastModifiedTime": "2026-11-16T01:27:09.182088801Z",
+    "InvokeMode": "BUFFERED"
+  },
+  "lambda_concurrence": {
+    "ReservedConcurrentExecutions": 2
+  },
+  "guardrail": {
+    "name": "alphaforge-garde-fou",
+    "description": "Version publiée pour l'API AlphaForge",
+    "guardrailId": "xj89p36uyw64",
+    "guardrailArn": "arn:aws:bedrock:us-east-1:471112821226:guardrail/xj89p36uyw64",
+    "version": "1",
+    "status": "READY",
+    "topicPolicy": {
+      "topics": [
+        {
+          "name": "conseil-achat-vente",
+          "definition": "Recommander d'acheter, de vendre ou de conserver un placement précis, ou promettre un rendement, à une personne donnée.",
+          "examples": [
+            "Je te recommande d'acheter Tesla.",
+            "Achète du bitcoin maintenant.",
+            "Vends ce titre avant qu'il baisse.",
+            "Ce placement est sans risque, fonce."
+          ],
+          "type": "DENY"
+        }
+      ],
+      "tier": {
+        "tierName": "CLASSIC"
+      }
+    },
+    "wordPolicy": {
+      "words": [
+        {
+          "text": "achète maintenant"
+        },
+        {
+          "text": "je te recommande"
+        },
+        {
+          "text": "je recommande"
+        },
+        {
+          "text": "garanti"
+        },
+        {
+          "text": "sans risque"
+        },
+        {
+          "text": "fonce"
+        }
+      ],
+      "managedWordLists": []
+    },
+    "contextualGroundingPolicy": {
+      "filters": [
+        {
+          "type": "GROUNDING",
+          "threshold": 0.7
+        },
+        {
+          "type": "RELEVANCE",
+          "threshold": 0.5
+        }
+      ],
+      "tier": {
+        "tierName": "CLASSIC"
+      }
+    },
+    "createdAt": "2026-11-16 01:24:37+00:00",
+    "updatedAt": "2026-11-16 01:24:37.277787+00:00",
+    "statusReasons": [],
+    "failureRecommendations": [],
+    "blockedInputMessaging": "Cette demande ne peut pas être traitée par le second avis.",
+    "blockedOutputsMessaging": "Réponse bloquée par le garde-fou : le texte du second avis est rédigé par le code."
+  }
+}

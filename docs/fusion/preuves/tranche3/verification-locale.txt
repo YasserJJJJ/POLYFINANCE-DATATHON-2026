@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/vpro/Documents/ChatGPT/POLYFINANCE-fusion-aws/infra/verifier_tranche3.py", line 88, in <module>
+    main()
+    ~~~~^^
+  File "/Users/vpro/Documents/ChatGPT/POLYFINANCE-fusion-aws/infra/verifier_tranche3.py", line 72, in main
+    controles = {cle: dossier[cle] == hors_ligne[cle] for cle in ("verdict", "regles", "options", "grille")}
+                      ~~~~~~~^^^^^
+KeyError: 'grille'

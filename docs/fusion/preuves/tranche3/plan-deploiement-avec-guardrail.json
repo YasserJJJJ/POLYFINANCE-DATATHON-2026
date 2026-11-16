@@ -1,0 +1,91 @@
+{
+  "compte": "471112821226",
+  "region": "us-east-1",
+  "frontend": "amplify",
+  "ressources": [
+    {
+      "service": "s3",
+      "nom": "alphaforge-471112821226-us-east-1",
+      "arn": "arn:aws:s3:::alphaforge-471112821226-us-east-1",
+      "acces": "privé"
+    },
+    {
+      "service": "iam",
+      "nom": "alphaforge-lambda",
+      "arn": "arn:aws:iam::471112821226:role/alphaforge-lambda"
+    },
+    {
+      "service": "lambda",
+      "nom": "alphaforge-api",
+      "arn": "arn:aws:lambda:us-east-1:471112821226:function:alphaforge-api",
+      "url": "Function URL publique, AuthType NONE",
+      "concurrence_reservee": 2
+    },
+    {
+      "service": "amplify",
+      "nom": "alphaforge",
+      "acces": "interface publique ; aucun dossier de décision"
+    },
+    {
+      "service": "logs",
+      "nom": "/aws/lambda/alphaforge-api",
+      "creation": "automatique lors des invocations Lambda"
+    }
+  ],
+  "cors": "Origine exacte du site Amplify ou S3 obtenue avant de configurer Lambda ; aucun joker.",
+  "politique_role": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": "s3:ListBucket",
+        "Resource": "arn:aws:s3:::alphaforge-471112821226-us-east-1",
+        "Condition": {
+          "StringLike": {
+            "s3:prefix": [
+              "data/*"
+            ]
+          }
+        }
+      },
+      {
+        "Effect": "Allow",
+        "Action": "s3:GetObject",
+        "Resource": "arn:aws:s3:::alphaforge-471112821226-us-east-1/data/*"
+      },
+      {
+        "Effect": "Allow",
+        "Action": "s3:PutObject",
+        "Resource": "arn:aws:s3:::alphaforge-471112821226-us-east-1/dossiers/*"
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+          "bedrock:InvokeModel",
+          "bedrock:InvokeModelWithResponseStream"
+        ],
+        "Resource": [
+          "arn:aws:bedrock:::foundation-model/amazon.nova-2-lite-v1:0",
+          "arn:aws:bedrock:::foundation-model/anthropic.claude-sonnet-5",
+          "arn:aws:bedrock:us-east-1:471112821226:inference-profile/global.amazon.nova-2-lite-v1:0",
+          "arn:aws:bedrock:us-east-1:471112821226:inference-profile/global.anthropic.claude-sonnet-5",
+          "arn:aws:bedrock:us-east-1::foundation-model/amazon.nova-2-lite-v1:0",
+          "arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-sonnet-5"
+        ]
+      },
+      {
+        "Effect": "Allow",
+        "Action": "bedrock:ApplyGuardrail",
+        "Resource": "arn:aws:bedrock:us-east-1:471112821226:guardrail/xj89p36uyw64"
+      }
+    ]
+  },
+  "politique_journaux": "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+  "modeles": [
+    "global.anthropic.claude-sonnet-5",
+    "global.amazon.nova-2-lite-v1:0"
+  ],
+  "guardrail_existant": "arn:aws:bedrock:us-east-1:471112821226:guardrail/xj89p36uyw64",
+  "groupe_journaux_existait": false,
+  "creation_guardrail": "Commande séparée infra/creer_guardrail.py ; --verifier pour son plan."
+}

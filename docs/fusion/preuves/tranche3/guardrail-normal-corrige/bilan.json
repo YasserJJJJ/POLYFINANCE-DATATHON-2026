@@ -1,0 +1,63 @@
+{
+  "robert": {
+    "duree_http_s": 19.134,
+    "duree_agents_ms": 19126,
+    "decisions_identiques": {
+      "verdict": true,
+      "regles": true,
+      "options": true,
+      "bascule": true
+    },
+    "nombre_appels": 4,
+    "appels": [
+      {
+        "agent": "Profileur",
+        "modele": "global.amazon.nova-2-lite-v1:0",
+        "request_id": "27fb5400-cde4-4727-a8f1-6654b43f0ba2",
+        "stop_reason": "end_turn",
+        "jetons_entree": 735,
+        "jetons_sortie": 124,
+        "latence_ms": 755,
+        "garde_fou": "absent"
+      },
+      {
+        "agent": "Sceptique",
+        "modele": "global.anthropic.claude-sonnet-5",
+        "request_id": "3e0f35fa-19b3-4527-b27c-063c991683cb",
+        "stop_reason": "end_turn",
+        "jetons_entree": 1081,
+        "jetons_sortie": 211,
+        "latence_ms": 3608,
+        "garde_fou": "absent"
+      },
+      {
+        "agent": "Rédacteur",
+        "modele": "global.anthropic.claude-sonnet-5",
+        "request_id": "fde12caa-8814-4fa1-a16d-589c1ea4ce5a",
+        "stop_reason": "end_turn",
+        "jetons_entree": 6361,
+        "jetons_sortie": 521,
+        "latence_ms": 6678,
+        "garde_fou": "configure"
+      },
+      {
+        "agent": "Rédacteur",
+        "modele": "global.anthropic.claude-sonnet-5",
+        "request_id": "70694299-7553-4d29-8791-129eeaf14142",
+        "stop_reason": "end_turn",
+        "jetons_entree": 6417,
+        "jetons_sortie": 609,
+        "latence_ms": 7388,
+        "garde_fou": "configure"
+      }
+    ],
+    "jetons_entree": 14594,
+    "jetons_sortie": 1465,
+    "source_texte": "Claude Sonnet (Bedrock)",
+    "controle_ancrage": [
+      "essai 1 : refusé — citation non textuelle : « actif très volatil »",
+      "essai 2 : accepté par le contrôle d'ancrage",
+      "2 étiquette(s) corrigée(s) par le code : « La volatilité annualisée de TSLA est de … » : FAIT → HYPOTHESE ; « Les autres règles sont respectées : la p… » : FAIT → SCENARIO"
+    ]
+  }
+}
